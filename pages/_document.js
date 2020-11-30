@@ -1,6 +1,6 @@
 import Document, { Html, Main, NextScript } from 'next/document'
 import React from "react";
-import Head from 'next/Head';
+import {Head} from 'next/document'
 
 
 class MyDocument extends Document {
