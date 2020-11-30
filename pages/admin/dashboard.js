@@ -16,7 +16,7 @@ import {END} from 'redux-saga';
 //     // };
 // });
 
-export const getServerSideProps = wrapper.getServerSideProps(
+export const getStaticProps = wrapper.getStaticProps(
     async ({store, preview}) => {
         console.log('2. Page.getStaticProps uses the store to dispatch things');
         store.dispatch(authCheck());
