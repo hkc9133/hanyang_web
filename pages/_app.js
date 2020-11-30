@@ -2,7 +2,7 @@ import React from 'react';
 import withRedux from 'next-redux-wrapper';
 import wrapper from '../store/configureStore';
 import nextReduxSaga from 'next-redux-saga'
-import Head from 'next/Head';
+import {Head} from 'next/document'
 
 
 
