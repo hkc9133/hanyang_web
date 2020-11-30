@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from "next/link";
-import {Head } from 'next/document'
 
 const Index = () => {
     return (
