@@ -1,0 +1,46 @@
+.container{
+    width:930px;
+    /*height: 240px;*/
+    border: 1px solid lightblue;
+}
+.box{
+    height: 240px;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid lightblue;
+}
+
+.box_inner{
+    flex:1;
+    height: 100%;
+    border-right: 1px solid lightblue;
+    overflow: scroll;
+}
+
+.box_inner.date_picker{
+    flex:1;
+    height: 100%;
+    border-right: 1px solid lightblue;
+    overflow: scroll;
+}
+
+.box_inner .active{
+    color:blue;
+}
+.box_inner .disable{
+    color:red;
+}
+.box_inner .selected{
+    color:darkcyan;
+}
+
+.apply_result_box{
+    height: 120px;
+    display: flex;
+    border: 1px solid lightblue;
+}
+
+.box_inner:last-child{
+    border-right: none;
+}
+

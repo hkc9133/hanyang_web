@@ -1,0 +1,131 @@
+import React, {useEffect, useState} from 'react';
+import NaverLogin from 'react-naver-login';
+import GoogleLogin from 'react-google-login';
+import KaKaoLogin from 'react-kakao-login';
+import {socialLogin, socialSignUp} from "../../store/auth/auth";
+import {useDispatch, useSelector} from "react-redux";
+import { useRouter } from 'next/router'
+import Modal from "../../component/common/Modal";
+import SignUpInfo from "../../component/auth/SignUpInfo";
+
+const Login = () => {
+
+    const dispatch = useDispatch();
+    const router = useRouter()
+
+    const [showJoinInfoModal, setShowJoinInfoModal] = useState(false);
+    const [showJoinSuccessModal, setShowJoinSuccessModal] = useState(false);
+    const {user, signup, loginLoading, signUpLoading, loading} = useSelector(({auth, loading}) => ({
+        user: auth.user,
+        signup: auth.signup,
+        loginLoading: loading['auth/SOCIAL_LOGIN'],
+        signUpLoading: loading['auth/SOCIAL_SIGNUP'],
+        loading: loading
+    }))
+
+    const handleSocialLogin = (id, email, name, type) => {
+        console.log("디스패")
+        dispatch(socialLogin({id, email, name, type}))
+    };
+
+    const handleSignUp = (role) => {
+        const signUpInfo = {
+            ...user.info,
+            role: role
+        }
+        console.log(signUpInfo)
+        dispatch(socialSignUp(signUpInfo))
+    };
+
+    useEffect(() => {
+        if (!loginLoading && user.login == false && user.code == 401) {
+            console.log("")
+            setShowJoinInfoModal(true);
+        }else if(!loginLoading && user.login == true && user.code == 200){
+            router.push('/')
+        }
+
+    }, [user, loginLoading])
+
+    useEffect(() => {
+        if (!signUpLoading && signup.result == true && signup.error == null) {
+            console.log("가입 성공")
+            setShowJoinSuccessModal(true);
+        }
+
+    }, [signup, signUpLoading])
+
+    return (
+        <div>
+            <NaverLogin
+                clientId="X1l09clZ_fftNuaDbjIz"
+                callbackUrl="http://127.0.0.1:3000/auth/login"
+                render={(props) => <button onClick={props.onClick}>Naver Login</button>}
+                onSuccess={(result) => {
+                    console.log("성공")
+                    handleSocialLogin(result.id, result.email, result.name, "naver");
+                }}
+                onFailure={() => {
+                    console.log("실")
+                    console.error();
+                }}
+            />
+
+            {/*<NaverLogin*/}
+            {/*    clientId="X1l09clZ_fftNuaDbjIz"*/}
+            {/*    callbackUrl="http://localhost:3000"*/}
+            {/*    onSuccess={(result) => {*/}
+            {/*        handleSocialLogin(result.id, result.email, result.name, "naver");*/}
+            {/*    }}*/}
+            {/*    onFailure={() => {*/}
+            {/*        console.error();*/}
+            {/*    }}*/}
+            {/*    render={(props) => (*/}
+            {/*        <button onClick={props.onClick}>*/}
+            {/*            네이버 아이디로 로그인*/}
+            {/*        </button>*/}
+            {/*    )}*/}
+            {/*>*/}
+            {/*</NaverLogin>*/}
+            <GoogleLogin
+                clientId='437495859189-616u9auj0k1161lsur2g1g0l88emj026.apps.googleusercontent.com'
+                render={(props) => (
+                    <button onClick={props.onClick}>
+                        구글 아이디로 로그
+                    </button>
+                )}
+                onSuccess={result => {
+                    console.log(result);
+                    handleSocialLogin(result.profileObj.googleId, result.profileObj.email, result.profileObj.name, "google")
+                }}
+                onFailure={result => console.log(result)}
+                cookiePolicy={'single_host_origin'}
+            />
+            <KaKaoLogin
+                //styled component 통해 style을 입혀 줄 예정
+                token='e30e8790c8207f560e3b47879051adb8'
+                //카카오에서 할당받은 jsKey를 입력
+                buttonText='카카오 계정으로 로그인'
+                //로그인 버튼의 text를 입력
+                onSuccess={result => {
+                    console.log(result);
+                    handleSocialLogin(result.profile.id, result.profile.kakao_account.email, result.profile.kakao_account.profile.nicname, "kakao")
+                }}
+                //성공했을때 불러올 함수로서 fetch해서 localStorage에 저장할 함수를 여기로 저장
+                onFail={(e) => {
+                    console.log(e)
+                }}
+                getProfile={true}
+            />
+            {showJoinInfoModal && <Modal visible={showJoinInfoModal} closable={true} maskClosable={true}
+                                         onClose={() => setShowJoinInfoModal(false)}>
+                <SignUpInfo handleSignUp={handleSignUp}/>
+                {showJoinSuccessModal && <Modal visible={showJoinSuccessModal} closable={true} maskClosable={true} onClose={() => {setShowJoinSuccessModal(false);setShowJoinInfoModal(false);router.push('/')}}><div>가입 완료</div></Modal>}
+            </Modal>
+
+            }
+        </div>
+    );
+};
+
+export default Login;

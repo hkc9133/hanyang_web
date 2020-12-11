@@ -1,6 +1,9 @@
 import {combineReducers} from 'redux';
 import {all} from 'redux-saga/effects'
 import auth,{authSaga} from './auth/auth';
+import spaceRental,{spaceRentalSaga} from './spaceRental/spaceRental';
+
+
 import company,{companySaga} from './company/company';
 import member,{memberSaga} from './member/member';
 import commute,{commuteSaga} from './commute/commute';
@@ -10,10 +13,41 @@ import {HYDRATE} from 'next-redux-wrapper';
 
 import loading from './loading';
 
+// const reducer = (state = { app: 'init', page: 'init' }, action) => {
+//     switch (action.type) {
+//         case HYDRATE:
+//             if (action.payload.app === 'init') delete action.payload.app;
+//             if (action.payload.page === 'init') delete action.payload.page;
+//             return state;
+//         case 'APP':
+//             return { ...state, app: action.payload };
+//         case 'PAGE':
+//             return { ...state, page: action.payload };
+//         default:
+//             console.log("=====")
+//             console.log(action.type)
+//             console.log(action)
+//             console.log("=====")
+//             return state;
+//     }
+// };
+
 const rootReducer = combineReducers({
-    auth,company,member,commute,schedule,loading
+    auth,spaceRental,company,member,commute,schedule,loading
 })
 
+// const reducer = (state, action) => {
+//     if (action.type === HYDRATE) {
+//         const nextState = {
+//             ...state, // use previous state
+//             ...action.payload, // apply delta from hydration
+//         }
+//         if (state.count.count) nextState.count.count = state.count.count // preserve count value on client side navigation
+//         return nextState
+//     } else {
+//         return rootReducer(state, action)
+//     }
+// }
 
 // const rootReducer = (state, action) => {
 //     console.log("```")
@@ -31,7 +65,7 @@ const rootReducer = combineReducers({
 //     }
 // }
 export function* rootSaga(){
-    yield all ([authSaga(),companySaga(),memberSaga(),commuteSaga(),scheduleSaga()]);
+    yield all ([authSaga(),spaceRentalSaga(), companySaga(),memberSaga(),commuteSaga(),scheduleSaga()]);
 
 }
 

@@ -16,16 +16,16 @@ import {END} from 'redux-saga';
 //     // };
 // });
 
-export const getStaticProps = wrapper.getStaticProps(
-    async ({store, preview}) => {
-        console.log('2. Page.getStaticProps uses the store to dispatch things');
-        store.dispatch(authCheck());
-        store.dispatch(END);
-        console.log('getServerSideProps end');
-        // saga의 비동기 이벤트 설정
-        await store.sagaTask.toPromise();
-    }
-);
+// export const getStaticProps = wrapper.getStaticProps(
+//     async ({store, preview}) => {
+//         console.log('2. Page.getStaticProps uses the store to dispatch things');
+//         store.dispatch(authCheck());
+//         store.dispatch(END);
+//         console.log('getServerSideProps end');
+//         // saga의 비동기 이벤트 설정
+//         await store.sagaTask.toPromise();
+//     }
+// );
 
 const Dashboard = () => {
     const auth = useSelector(state => state.auth);
@@ -34,10 +34,10 @@ const Dashboard = () => {
     console.log("111")
 
     const dispatch = useDispatch();
-    // useEffect(() => {
-    //     dispatch(authCheck());
-    //
-    // },[])
+    useEffect(() => {
+        dispatch(authCheck());
+
+    },[])
 
     return (
         <div>
