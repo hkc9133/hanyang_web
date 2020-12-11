@@ -59,7 +59,7 @@ const Login = () => {
         <div>
             <NaverLogin
                 clientId="X1l09clZ_fftNuaDbjIz"
-                callbackUrl="http://210.103.188.119:3000/auth/login"
+                callbackUrl="http://210.103.188.119/auth/login"
                 render={(props) => <button onClick={props.onClick}>Naver Login</button>}
                 onSuccess={(result) => {
                     console.log("성공")
