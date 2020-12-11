@@ -4,7 +4,8 @@ import rootReducer, {rootSaga} from './index';
 import createSagaMiddleware from "redux-saga";
 import {composeWithDevTools} from "redux-devtools-extension";
 import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+import logger from 'redux-logger';
+
 
 
 const bindMiddleware = (middleware) => {
@@ -39,7 +40,7 @@ const makeStore = ({ isServer }) => {
         const store = createStore(
             persistedReducer,
             {},
-            bindMiddleware([sagaMiddleware])
+            bindMiddleware([sagaMiddleware, logger])
         ); // Creating the store again
 
         store.sagaTask = sagaMiddleware.run(rootSaga);

@@ -42,9 +42,6 @@ _App.getInitialProps = async (context) => {
     const { ctx, Component } = context;
     let pageProps = {};
     if(ctx.req != undefined){
-        console.log("흐음111")
-        console.log(ctx)
-        console.log("흐음")
         const state = ctx.store.getState();
         const cookie = ctx.req.headers.cookie;
         // 모든 axios 헤더에 기본적으로 쿠키가 담기도록

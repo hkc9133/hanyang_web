@@ -1,10 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {
-    addRentalSchedule,
-    getAvailableRoomTimeList,
-    getSpaceRentalInfoAll,
-    initialize
-} from "../../store/spaceRental/spaceRental";
 import {eventChannel, END} from 'redux-saga';
 import wrapper from '../../store/configureStore';
 import {useSelector,useDispatch} from "react-redux";
@@ -15,20 +9,16 @@ import "react-datepicker/dist/react-datepicker.css";
 import styles from '../../assets/styles/rental/rental.module.css';
 import classnames from "classnames/bind"
 import "../../assets/styles/date-picker.css"
+import {
+    addRentalSchedule,
+    getAvailableRoomTimeList,
+    getSpaceRentalInfoAll,
+    initialize
+} from "../../store/spaceRental/spaceRental";
 import RentalApply from "../../component/rental/RentalApply";
 
 
 const cx = classnames.bind(styles);
-
-export const getServerSideProps = wrapper.getServerSideProps(
-    async ({store, preview}) => {
-
-        store.dispatch(getSpaceRentalInfoAll());
-        store.dispatch(END);
-        await store.sagaTask.toPromise();
-    }
-);
-
 
 
 const Rental = () => {
@@ -136,7 +126,6 @@ const Rental = () => {
     }
 
     const handleTimeChange = (time) => {
-        console.log(time)
 
         setSelectTime({
             time:moment(time.time,"hh:mm:ss").format("H:mm").toString(),
@@ -258,5 +247,22 @@ const Rental = () => {
         </div>
     );
 };
+//
+// Rental.getServerSideProps = wrapper.getServerSideProps(
+//     async ({store, preview}) => {
+//
+//         store.dispatch(getSpaceRentalInfoAll());
+//         // store.dispatch(END);
+//         // await store.sagaTask.toPromise();
+//     }
+// );
+
+export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
+    console.log("=aa=")
+
+    console.log("=aa=")
+    store.dispatch(getSpaceRentalInfoAll());
+})
+
 
 export default Rental;

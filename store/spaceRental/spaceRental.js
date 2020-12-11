@@ -1,7 +1,7 @@
 import {createAction, handleActions} from 'redux-actions';
+import createRequestSaga, {createRequestActionTypes} from "../../lib/createRequestSaga";
 import produce from 'immer';
 import {takeLatest} from 'redux-saga/effects';
-import createRequestSaga, {createRequestActionTypes} from "../../lib/createRequestSaga";
 import * as spaceRentalAPI from '../../lib/api/spaceRental/spaceRental';
 import {HYDRATE} from 'next-redux-wrapper';
 
