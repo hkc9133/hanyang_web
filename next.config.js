@@ -4,6 +4,11 @@ const { styles } = require('@ckeditor/ckeditor5-dev-utils')
 const CKEditorWebpackPlugin = require( '@ckeditor/ckeditor5-dev-webpack-plugin' );
 
 
+module.exports = {
+    env: {
+        NODE_ENV: 'production',
+    },
+}
 module.exports = withCSS(
     withImages({
         webpack(config, options) {

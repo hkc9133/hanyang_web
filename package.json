@@ -7,7 +7,7 @@
     "dev": "NODE_ENV='development' node server.js",
     "nextdev": "next dev",
     "build": "next build",
-    "start": "NODE_ENV='production'next start",
+    "start": "next start",
     "prod": "next build && next export"
   },
   "dependencies": {
