@@ -62,7 +62,7 @@ const Login = () => {
         <div>
             <NaverLogin
                 clientId="X1l09clZ_fftNuaDbjIz"
-                callbackUrl='http://127.0.0.1/auth/login'
+                callbackUrl={`${url}/auth/login`}
                 render={(props) => <button onClick={props.onClick}>Naver Login</button>}
                 onSuccess={(result) => {
                     handleSocialLogin(result.id, result.email, result.name, "naver");
