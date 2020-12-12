@@ -50,10 +50,10 @@ const initialState = {
 
 const spaceRental = handleActions(
     {
-        [HYDRATE]: (state, action) => ({
-            ...state.spaceRental,
-            ...action.payload.spaceRental
-        }),
+        // [HYDRATE]: (state, action) => ({
+        //     ...state.spaceRental,
+        //     ...action.payload.spaceRental
+        // }),
         [GET_SPACE_RENTAL_INFO_ALL_SUCCESS]: (state, {payload: response}) =>
             produce(state, draft => {
                 draft.spaceInfo.place = response.data.place

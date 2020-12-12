@@ -16,7 +16,9 @@ const Board = () => {
         setContent(value);
     }
     return (
+
         <>
+            <meta name="keywords" content="SEO,검색엔진 최적화,메타 태그"></meta>
             <Editor content={content} handleContent={handleContent}/>
         </>
     );

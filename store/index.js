@@ -3,14 +3,7 @@ import {all} from 'redux-saga/effects'
 import auth,{authSaga} from './auth/auth';
 import spaceRental,{spaceRentalSaga} from './spaceRental/spaceRental';
 
-
-import company,{companySaga} from './company/company';
-import member,{memberSaga} from './member/member';
-import commute,{commuteSaga} from './commute/commute';
-import schedule,{scheduleSaga} from './schedule/schedule';
 import {HYDRATE} from 'next-redux-wrapper';
-
-
 import loading from './loading';
 
 // const reducer = (state = { app: 'init', page: 'init' }, action) => {
@@ -32,10 +25,19 @@ import loading from './loading';
 //     }
 // };
 
-const rootReducer = combineReducers({
-    auth,spaceRental,company,member,commute,schedule,loading
-})
-
+const rootReducer = (state, action) => {
+    switch (action.type) {
+        case HYDRATE:
+            console.log('HYDRATE', action, state);
+            return action.payload;
+        default: {
+            const combinedReducer = combineReducers({
+                auth,spaceRental,loading
+            })
+            return combinedReducer(state, action);
+        }
+    }
+};
 // const reducer = (state, action) => {
 //     if (action.type === HYDRATE) {
 //         const nextState = {
@@ -65,7 +67,7 @@ const rootReducer = combineReducers({
 //     }
 // }
 export function* rootSaga(){
-    yield all ([authSaga(),spaceRentalSaga(), companySaga(),memberSaga(),commuteSaga(),scheduleSaga()]);
+    yield all ([authSaga(),spaceRentalSaga()]);
 
 }
 

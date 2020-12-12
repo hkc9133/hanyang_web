@@ -20,6 +20,11 @@ import RentalApply from "../../component/rental/RentalApply";
 
 const cx = classnames.bind(styles);
 
+export const getServerSideProps = wrapper.getServerSideProps(async ({ store }) => {
+    store.dispatch(getSpaceRentalInfoAll());
+    store.dispatch(END);
+    await store.sagaTask.toPromise();
+})
 
 const Rental = () => {
 
@@ -47,7 +52,7 @@ const Rental = () => {
         spaceInfo: spaceRental.spaceInfo,
         addSchedule: spaceRental.addSchedule,
         spaceInfoLoading: loading['spaceRental/GET_SPACE_RENTAL_INFO_ALL'],
-        timeListLoading: loading['spaceRental/GET_SPACE_RENTAL_INFO_ALL'],
+        timeListLoading: loading['spaceRental/GET_AVAILABLE_ROOM_TIME_LIST'],
         addScheduleLoading: loading['spaceRental/ADD_RENTAL_SCHEDULE']
     }))
 
@@ -256,13 +261,6 @@ const Rental = () => {
 //         // await store.sagaTask.toPromise();
 //     }
 // );
-
-export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
-    console.log("=aa=")
-
-    console.log("=aa=")
-    store.dispatch(getSpaceRentalInfoAll());
-})
 
 
 export default Rental;

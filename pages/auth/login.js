@@ -8,6 +8,8 @@ import { useRouter } from 'next/router'
 import Modal from "../../component/common/Modal";
 import SignUpInfo from "../../component/auth/SignUpInfo";
 
+import {url} from '../../lib/api/client';
+
 const Login = () => {
 
     const dispatch = useDispatch();
@@ -23,8 +25,8 @@ const Login = () => {
         loading: loading
     }))
 
+
     const handleSocialLogin = (id, email, name, type) => {
-        console.log("디스패")
         dispatch(socialLogin({id, email, name, type}))
     };
 
@@ -41,7 +43,8 @@ const Login = () => {
         if (!loginLoading && user.login == false && user.code == 401) {
             console.log("")
             setShowJoinInfoModal(true);
-        }else if(!loginLoading && user.login == true && user.code == 200){
+        }
+        else if(!loginLoading && user.login == true && user.code == 200){
             router.push('/')
         }
 
@@ -59,14 +62,12 @@ const Login = () => {
         <div>
             <NaverLogin
                 clientId="X1l09clZ_fftNuaDbjIz"
-                callbackUrl="http://210.103.188.119/auth/login"
+                callbackUrl='http://127.0.0.1/auth/login'
                 render={(props) => <button onClick={props.onClick}>Naver Login</button>}
                 onSuccess={(result) => {
-                    console.log("성공")
                     handleSocialLogin(result.id, result.email, result.name, "naver");
                 }}
                 onFailure={() => {
-                    console.log("실")
                     console.error();
                 }}
             />

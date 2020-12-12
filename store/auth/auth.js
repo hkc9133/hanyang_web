@@ -76,15 +76,14 @@ const initialState = {
 
 const auth = handleActions(
     {
-        [HYDRATE]: (state, action) => ({
-             ...state.auth,
-            ...action.payload.auth
-        }),
+        // [HYDRATE]: (state, action) => ({
+        //      ...state.auth,
+        //     ...action.payload.auth
+        // }),
         [SOCIAL_LOGIN_SUCCESS]: (state, {payload: response}) =>
             produce(state, draft => {
                 draft.user.login = response.code == 200 ? true : false
-                draft.user.info = response.data.token;
-                draft.user.role = response.data.role;
+                draft.user.info = response.data;
                 draft.user.code = response.code;
                 draft.login.result = true;
                 draft.login.error = null;
@@ -107,14 +106,17 @@ const auth = handleActions(
                 draft.signup.result = false;
                 draft.signup.error = error.response.data;
             }),
-        [AUTH_CHECK_SUCCESS]: (state, {payload: data}) =>
+        [AUTH_CHECK_SUCCESS]: (state, {payload: response}) =>
             produce(state, draft => {
-                draft.user.login = true;
+                draft.user.login = response.code == 200 ? true : false
+                draft.user.info = response.data;
+                draft.user.code = response.code;
             }),
         [AUTH_CHECK_FAILURE]: (state, {payload: error}) =>
             produce(state, draft => {
-                draft.user.login = true
-                // AsyncStorage.clear()
+                draft.user.login = false;
+                draft.login.result = false;
+                draft.login.error = error.response.data;
             }),
         [LOGIN_SUCCESS]: (state, {payload: response}) =>
             produce(state, draft => {
