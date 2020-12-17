@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 //     ssr: false
 // });
 
-const QuillEditor = dynamic(() => import("../../component/common/QuillEditor"), {
+const QuillEditor = dynamic(() => import("../../ component/common/QuillEditor"), {
     ssr: false,
     loading: () => <p>Loading ...</p>,
 });
