@@ -20,6 +20,7 @@ export const socialSignUp= createAction(SOCIAL_SIGNUP,(signUpInfo) => (signUpInf
 
 
 export const authCheck = createAction(AUTH_CHECK);
+export const logout = createAction(LOGOUT);
 export const signup = createAction(SIGNUP, (userInfo)=>(userInfo));
 export const login = createAction(LOGIN, (loginInfo) => (loginInfo))
 export const initialize = createAction(INITIALIZE);
@@ -60,7 +61,7 @@ const initialState = {
         result:null,
         error:null
     },
-    logOut:{
+    logout:{
         result:null,
     },
     // signup:{
@@ -135,12 +136,12 @@ const auth = handleActions(
             }),
         [LOGOUT_SUCCESS]: (state, {payload: data}) =>
             produce(state, draft => {
-                draft.logOut.result = true;
+                draft.logout.result = true;
+                draft.user = initialState.user;
             }),
         [LOGOUT_FAILURE]: (state, {payload: error}) =>
             produce(state, draft => {
-                draft.logOut.result = false;
-                // AsyncStorage.clear()
+                draft.logout.result = false;
             }),
         [SIGNUP_SUCCESS]: (state, {payload: data}) =>
             produce(state, draft => {

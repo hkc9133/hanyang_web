@@ -35,16 +35,17 @@ const Dashboard = () => {
 
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(authCheck());
+        // dispatch(authCheck());
 
     },[])
 
     return (
         <div>
-            <Link href="/"><a>메 이동</a></Link>
-            <div>
-                {auth.user.login == true ? "트루" : "거짓"}
-            </div>
+            {/*<Link href="/"><a>메 이동</a></Link>*/}
+            {/*<div>*/}
+            {/*    대시보드*/}
+            {/*    /!*{auth.user.login == true ? "트루" : "거짓"}*!/*/}
+            {/*</div>*/}
         </div>
     );
 };

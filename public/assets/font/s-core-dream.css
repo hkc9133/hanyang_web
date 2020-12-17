@@ -1,0 +1,63 @@
+@font-face {
+    font-family: 's-core-dream-thin';
+    src: url('font/scdream1-webfont.woff2') format('woff2'),
+         url('font/scdream1-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 's-core-dream-extralight';
+    src: url('font/scdream2-webfont.woff2') format('woff2'),
+         url('font/scdream2-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 's-core-dream-light';
+    src: url('font/scdream3-webfont.woff2') format('woff2'),
+         url('font/scdream3-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 's-core-dream-regular';
+    src: url('font/scdream4-webfont.woff2') format('woff2'),
+         url('font/scdream4-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 's-core-dream-medium';
+    src: url('font/scdream5-webfont.woff2') format('woff2'),
+         url('font/scdream5-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 's-core-dream-bold';
+    src: url('font/scdream6-webfont.woff2') format('woff2'),
+         url('font/scdream6-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 's-core-dream-extrabold';
+    src: url('font/scdream7-webfont.woff2') format('woff2'),
+         url('font/scdream7-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 's-core-dream-heavy';
+    src: url('font/scdream8-webfont.woff2') format('woff2'),
+         url('font/scdream8-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 's-core-dream-black';
+    src: url('font/scdream9-webfont.woff2') format('woff2'),
+         url('font/scdream9-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}

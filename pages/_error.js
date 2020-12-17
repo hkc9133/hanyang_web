@@ -1,10 +1,18 @@
 import React from 'react';
 
-const _Error = () => {
+const Error = ({ statusCode }) => {
     return (
-        <h1>This is the error page</h1>
+        <p>
+            {statusCode
+                ? `An error ${statusCode} occurred on server`
+                : 'An error occurred on client'}
+        </p>
+    )
+}
 
-    );
-};
+Error.getInitialProps = ({ res, err }) => {
+    const statusCode = res ? res.statusCode : err ? err.statusCode : 404
+    return { statusCode }
+}
 
-export default _Error;
+export default Error

@@ -1,0 +1,70 @@
+/*navi*/
+.navi_wrap{border-bottom:1px solid #ccc; }
+.navi{margin:0 auto; max-width:1320px; }
+.navi>ul{border-left:1px solid #ccc;}
+.navi>ul:after{ clear: both; content: "."; display: block; height: 0; visibility: hidden; font-size: 0;}
+.navi>ul>li{float:left; position:relative; border-right:1px solid #ccc;  width:240px; height:55px; display:table;}
+.navi>ul>li.home{width:55px; line-height:55px; text-align:center; }
+.navi>ul>li>span{padding:0 20px; width:100%; box-sizing:border-box; display:table-cell; vertical-align:middle; font-size:16px; color:#404040; }
+.navi>ul>li .s_navi_open{padding:0 30px 0 20px; width:100%; text-align:left; box-sizing:border-box; display:table-cell; vertical-align:middle; background:url(../../image/navi_arrow.gif) no-repeat right 20px center; font-size:16px; color:#404040;z-index: 10; }
+.s_navi{position:absolute; left:-1px; top:55px;
+    border-left:0.5px solid #ccc;
+    border-right:0.5px solid #ccc;
+    border-bottom:0.5px solid #ccc;
+    overflow-y: hidden;
+    max-height: 0;
+    transition-property: max-height;
+    transition-duration: 0.5s;
+    transition-timing-function: cubic-bezier(0, 1, 0, 1);
+    z-index: 2;
+    width: 100%
+}
+.s_navi li{
+    background-color: white;
+    float: left;
+    position: relative;
+    width: 240px;
+    height: 55px;
+    display: table;
+    border-top:0.5px solid #ccc;
+}
+
+.navi>ul>.s_navi_li a{
+    padding: 0 30px 0 20px;
+    width: 100%;
+    text-align: left;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 16px;
+    color: #404040;
+}
+
+.navi>ul>.s_navi_li:hover .s_navi{
+    /*display:block;*/
+    max-height: 500px;
+    transition-property: max-height;
+    transition-duration: 0.2s;
+    transition-timing-function: linear;
+}
+
+
+
+@media screen and (max-width: 768px){
+
+    .login_wrap{padding:60px 20px; }
+    .navi>ul{border-left:none; }
+    .navi>ul>li{height:45px; }
+    .navi>ul>li{width:50%; box-sizing:border-box;}
+    .navi>ul>li.home{display:none;}
+    .navi>ul>li>span,
+    .navi>ul>li .s_navi_open{font-size:14px; }
+
+    .s_navi{top:45px;}
+
+    .s_navi li{
+        height: 45px;width: 100%;
+    }
+
+}

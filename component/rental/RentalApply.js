@@ -1,5 +1,5 @@
 import React from 'react';
-import moment from "moment";
+import moment from "moment/moment";
 
 const RentalApply = ({cx,selectPlace, selectRoom, selectDate,selectTime,applyActive, handleRentalApply}) => {
     return (

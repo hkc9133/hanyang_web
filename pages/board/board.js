@@ -1,8 +1,14 @@
 import React,{useState,useEffect} from 'react';
 import dynamic from "next/dynamic";
+// import QuillEditor from "../../component/common/QuillEditor";
 
-const Editor = dynamic(() => import("../../component/common/Editor"), {
-    ssr: false
+// const Editor = dynamic(() => import("../../component/common/Editor"), {
+//     ssr: false
+// });
+
+const QuillEditor = dynamic(() => import("../../component/common/QuillEditor"), {
+    ssr: false,
+    loading: () => <p>Loading ...</p>,
 });
 
 const Board = () => {
@@ -19,7 +25,9 @@ const Board = () => {
 
         <>
             <meta name="keywords" content="SEO,검색엔진 최적화,메타 태그"></meta>
-            <Editor content={content} handleContent={handleContent}/>
+            <QuillEditor Contents={content} QuillChange={handleContent}/>
+
+            {/*<Editor content={content} handleContent={handleContent}/>*/}
         </>
     );
 };

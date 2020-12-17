@@ -6,9 +6,8 @@ import moment from 'moment';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-import styles from '../../assets/styles/rental/rental.module.css';
+import styles from '../../public/assets/styles/rental/rental.module.css';
 import classnames from "classnames/bind"
-import "../../assets/styles/date-picker.css"
 import {
     addRentalSchedule,
     getAvailableRoomTimeList,
@@ -20,7 +19,7 @@ import RentalApply from "../../component/rental/RentalApply";
 
 const cx = classnames.bind(styles);
 
-export const getServerSideProps = wrapper.getServerSideProps(async ({ store }) => {
+export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
     store.dispatch(getSpaceRentalInfoAll());
     store.dispatch(END);
     await store.sagaTask.toPromise();
@@ -72,7 +71,6 @@ const Rental = () => {
         }else{
             setApplyActive(false);
         }
-
     },[selectPlace,selectRoom,selectDate,selectTime])
 
 
