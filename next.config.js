@@ -1,7 +1,5 @@
 const withImages = require("next-images")
 const withCSS = require("@zeit/next-css")
-const { styles } = require('@ckeditor/ckeditor5-dev-utils')
-const CKEditorWebpackPlugin = require( '@ckeditor/ckeditor5-dev-webpack-plugin' );
 const path = require('path');
 
 // module.exports = {
