@@ -111,8 +111,8 @@
     .header_inner{height:70px;}
     .btn_menu_open{width:60px; height:70px; }
     .btn_menu_open span{top:22px;}
-    .language{right:80px; top:25px; }
-    .login_box{top: 26px;}
+    .language{right:80px; top:25px;display: none; }
+    .login_box{top: 26px;right: 60px;}
     .login_box a{margin-right: 15px;}
 
 
