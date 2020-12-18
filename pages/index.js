@@ -6,6 +6,10 @@ import Image from 'next/image'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import wrapper from "../store/configureStore";
+import {getSpaceRentalInfoAll} from "../store/spaceRental/spaceRental";
+import {END} from "redux-saga";
+import Head from "next/head";
 
 
 
@@ -93,12 +97,20 @@ const logoSliderSettings = {
     ]
 }
 
+// export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
+//     store.dispatch(END);
+//     await store.sagaTask.toPromise();
+// })
+
 const Index = () => {
 
     const logoSlider = React.createRef();
 
     return (
         <>
+            <Head>
+                <title>한양대학교 창업지원단 메인</title>
+            </Head>
             <div className={cx("main_cont_1")}>
                 <div className={cx("main_cont")}>
                     <h1>나의 창업을 부탁해!<strong>무엇이 필요하신가요?</strong></h1>

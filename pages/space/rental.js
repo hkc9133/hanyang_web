@@ -16,13 +16,20 @@ import {
 } from "../../store/spaceRental/spaceRental";
 import RentalApply from "../../component/rental/RentalApply";
 
+import client from "../../lib/api/client"
+
 
 const cx = classnames.bind(styles);
 
-export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
-    store.dispatch(getSpaceRentalInfoAll());
-    store.dispatch(END);
-    await store.sagaTask.toPromise();
+export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
+    console.log(context.req)
+
+    const cookie = context.req ? context.req.headers.cookie : '';
+    client.defaults.headers.Cookie = cookie;
+
+    context.store.dispatch(getSpaceRentalInfoAll());
+    context.store.dispatch(END);
+    await context.store.sagaTask.toPromise();
 })
 
 const Rental = () => {

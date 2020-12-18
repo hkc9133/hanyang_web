@@ -25,7 +25,6 @@ import ScrollToTop from "../component/common/ScrollToTop";
 import GlobalStyles from '../public/assets/styles/global'
 import AdminGlobalStyles from '../public/assets/styles/admin_global'
 
-
 // "dev": "NODE_ENV='development' node server.js",
 
 
@@ -55,10 +54,8 @@ const _App = ({Component, pageProps}) => {
 
     let allowed = true;
     if (router.pathname.startsWith("/admin") && role !== "ROLE_ADMIN") {
-        // require('../public/assets/styles/admin_styles.css')
-        // allowed = false;
+        allowed = false;
     } else {
-        // require('../public/assets/styles/styles.css')
     }
     const ComponentToRender = allowed ? Component : AuthFail;
 
@@ -71,8 +68,6 @@ const _App = ({Component, pageProps}) => {
                     src="https://polyfill.io/v3/polyfill.min.js?features=es6,es7,es8,es9,NodeList.prototype.forEach&flags=gated"/>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
             </Head>
-            <div id="modal-root"></div>
-            {authLoading === false && (
                 <div id="wrap">
                     <ScrollToTop>
                         {router.pathname.startsWith("/admin") ? allowed ?
@@ -102,45 +97,32 @@ const _App = ({Component, pageProps}) => {
                         }
                     </ScrollToTop>
                 </div>
-            )}
         </>
 
     );
 };
 
-_App.getInitialProps = async (context) => {
-    const {ctx, Component} = context;
-    const cookie = ctx.isServer ? ctx.req.headers.cookie : '';
-
-    let pageProps = {};
-    if (ctx.req) {
-        // 서버 환경일 때만 쿠키를 심어줌. 클라이언트 환경일 때는 브라우저가 자동으로 쿠키를 넣어줌
-        client.defaults.headers.Cookie = cookie;
-        // defaluts: 모든 axios 요청 시에 쿠키 데이터를 심어줌.
-    } else {
-
-    }
-
-    // if(ctx.req != undefined){
-    //     const state = ctx.store.getState();
-    //     const cookie = ctx.req.headers.cookie;
-    //     // 모든 axios 헤더에 기본적으로 쿠키가 담기도록
-    //     client.defaults.headers.Cookie = cookie;
-    //     // if (!state.user.me) {
-    //     //     ctx.store.dispatch({
-    //     //         type : LOAD_USER_REQUEST,
-    //     //     })
-    //     // }
-    // }
-    if (Component.getServerSideProps) {
-        pageProps = await context.Component.getInitialProps(ctx);
-    }
-
-    if (Component.getStaticProps) {
-        pageProps = await context.Component.getInitialProps(ctx);
-    }
-
-    return {pageProps};
-};
+// _App.getInitialProps = async (context) => {
+//     const {ctx, Component} = context;
+//     const cookie = ctx.isServer ? ctx.req.headers.cookie : '';
+//
+//     let pageProps = {};
+//     if (ctx.req) {
+//         // 서버 환경일 때만 쿠키를 심어줌. 클라이언트 환경일 때는 브라우저가 자동으로 쿠키를 넣어줌
+//         client.defaults.headers.Cookie = cookie;
+//         // defaluts: 모든 axios 요청 시에 쿠키 데이터를 심어줌.
+//     } else {
+//
+//     }
+//     if (Component.getServerSideProps) {
+//         pageProps = await context.Component.getInitialProps(ctx);
+//     }
+//
+//     if (Component.getStaticProps) {
+//         pageProps = await context.Component.getInitialProps(ctx);
+//     }
+//
+//     return {pageProps};
+// };
 
 export default wrapper.withRedux(_App);

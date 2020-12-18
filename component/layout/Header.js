@@ -41,8 +41,9 @@ const Header = () => {
     const [currentMenuItem, setCurrentMenuItem] = useState(null);
     const totalMenu = React.createRef();
 
-    const {user,loading} = useSelector(({auth, loading}) => ({
+    const {user,logoutResult,signUpLoading} = useSelector(({auth, loading}) => ({
         user: auth.user,
+        logoutResult:auth.logout.result,
         signUpLoading: loading['auth/LOGOUT'],
     }))
 
@@ -51,6 +52,13 @@ const Header = () => {
         setCurrentMenuItem(null)
 
     },[router.pathname])
+
+    useEffect(() => {
+
+        if(!signUpLoading && logoutResult){
+            router.push("/")
+        }
+    },[signUpLoading,logoutResult])
 
     const handleTopMenu = () => {
         setShowMenu(!showMenu)
@@ -189,15 +197,15 @@ const Header = () => {
                                 <ul>
                                     <li><Link href="/"><a>창업상담신청</a></Link></li>
                                     <li><Link href="/startup_counsel/mentor_introduce"><a>멘토단소개</a></Link></li>
-                                    <li><Link href="/"><a>창업절차</a></Link></li>
+                                    <li><Link href="/space/rental"><a>창업절차</a></Link></li>
                                 </ul>
                             </div>
                         </li>
                         <li>
-                            <a href="#" onClick={(e) => handleShowMenuItem(3)}>창업지원정보</a>
+                            <a href="#" onClick={(e) => {e.preventDefault();handleShowMenuItem(3)}}>창업지원정보</a>
                             <div className={cx("s_menu",{show:currentMenuItem === 3})}>
                                 <ul>
-                                    <li><Link href="/"><a>창업지원정보</a></Link></li>
+                                    <li><Link href="/space/rental"><a >창업지원정보</a></Link></li>
                                     <li><Link href="/"><a>창업행사</a></Link></li>
                                     <li><Link href="/"><a>자료실</a></Link></li>
                                     <li><Link href="/"><a>커뮤니티</a></Link></li>

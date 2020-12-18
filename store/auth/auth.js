@@ -51,7 +51,8 @@ const initialState = {
         login:null,
         info:null,
         code:null,
-        role:null
+        role:null,
+        token:null
     },
     signup:{
         result:null,
@@ -84,10 +85,13 @@ const auth = handleActions(
         [SOCIAL_LOGIN_SUCCESS]: (state, {payload: response}) =>
             produce(state, draft => {
                 draft.user.login = response.code == 200 ? true : false
-                draft.user.info = response.data;
+                draft.user.info = response.data.user;
+                draft.user.role = response.data.user.role;
                 draft.user.code = response.code;
+                // draft.user.token = response.data.token;
                 draft.login.result = true;
                 draft.login.error = null;
+                // localStorage.setItem('token',response.data.token);
             }),
         [SOCIAL_LOGIN_FAILURE]: (state, {payload: error}) =>
             produce(state, draft => {
@@ -97,9 +101,14 @@ const auth = handleActions(
             }),
         [SOCIAL_SIGNUP_SUCCESS]: (state, {payload: response}) =>
             produce(state, draft => {
-                draft.user.login = true;
+                draft.user.login = response.code == 200 ? true : false
+                draft.user.info = response.data.user;
+                draft.user.role = response.data.user.role;
+                draft.user.code = response.code;
+                // draft.user.token = response.data.token;
                 draft.signup.result = true;
                 draft.signup.error = null;
+                // localStorage.setItem('token',response.data.token);
             }),
         [SOCIAL_SIGNUP_FAILURE]: (state, {payload: error}) =>
             produce(state, draft => {
@@ -112,6 +121,7 @@ const auth = handleActions(
                 draft.user.login = response.code == 200 ? true : false
                 draft.user.info = response.data;
                 draft.user.code = response.code;
+                // localStorage.setItem('token',response.data.token);
             }),
         [AUTH_CHECK_FAILURE]: (state, {payload: error}) =>
             produce(state, draft => {
@@ -122,11 +132,13 @@ const auth = handleActions(
         [LOGIN_SUCCESS]: (state, {payload: response}) =>
             produce(state, draft => {
                 draft.user.login = response.code == 200 ? true : false
-                draft.user.info = response.data;
-                draft.user.role = response.data.role;
+                draft.user.info = response.data.user;
+                draft.user.role = response.data.user.role;
                 draft.user.code = response.code;
+                // draft.user.token = response.data.token;
                 draft.login.result = true;
                 draft.login.error = null;
+                // localStorage.setItem('token',draft.user.token = response.data.token);
             }),
         [LOGIN_FAILURE]: (state, {payload: error}) =>
             produce(state, draft => {
@@ -148,7 +160,6 @@ const auth = handleActions(
                 draft.signup.result = true;
                 draft.signup.error = true;
             }),
-
         [SIGNUP_FAILURE]: (state, {payload: error}) =>
             produce(state, draft => {
                 draft.signup.result = false;
