@@ -94,10 +94,10 @@ const Header = () => {
                             <a href="university_student.html">창업교육</a>
                             <div className={cx("s_gnb")}>
                                 <ul>
-                                    <li><Link href="/"><a href="university_student.html">대학(원) 생 대상</a></Link></li>
-                                    <li><Link href="/"><a href="teacher.html">교원 대상</a></Link></li>
+                                    <li><Link href="/startup_education/university_student"><a href="#">대학(원) 생 대상</a></Link></li>
+                                    <li><Link href="/startup_education/teacher"><a href="#">교원 대상</a></Link></li>
                                     <li><Link href="/"><a href="alumnus.html">동문대상</a></Link></li>
-                                    <li><Link href="/"><a href="people.html">일반인대상</a></Link></li>
+                                    <li><Link href="/startup_education/people"><a href="#">일반인대상</a></Link></li>
                                     <li><Link href="/"><a href="online_content.html">온라인콘텐츠</a></Link></li>
                                 </ul>
                             </div>
@@ -180,19 +180,19 @@ const Header = () => {
                     <div className={cx("logoArea")}><Image src="/assets/image/left_menu_logo.jpg" width={108} height={36} alt="left_logo"/></div>
                     <ul className={"clfx"}>
                         <li>
-                            <a href="#" onClick={(e) => handleShowMenuItem(1)}>창업교육</a>
+                            <a href="#" onClick={(e) => {e.preventDefault();handleShowMenuItem(1)}}>창업교육</a>
                             <div className={cx("s_menu",{show:currentMenuItem === 1})}>
                                 <ul>
                                     <li><Link href="/startup_education/university_student"><a>대학(원) 생 대상</a></Link></li>
-                                    <li><Link href="/"><a>교원 대상</a></Link></li>
+                                    <li><Link href="/startup_education/teacher"><a>교원 대상</a></Link></li>
                                     <li><Link href="/"><a>동문대상</a></Link></li>
-                                    <li><Link href="/"><a>일반인대상</a></Link></li>
+                                    <li><Link href="/startup_education/people"><a href="#">일반인대상</a></Link></li>
                                     <li><Link href="/"><a>온라인콘텐츠</a></Link></li>
                                 </ul>
                             </div>
                         </li>
                         <li>
-                            <a href="#" onClick={(e) => handleShowMenuItem(2)}>창업상담</a>
+                            <a href="#" onClick={(e) => {e.preventDefault();handleShowMenuItem(2)}}>창업상담</a>
                             <div className={cx("s_menu",{show:currentMenuItem === 2})}>
                                 <ul>
                                     <li><Link href="/"><a>창업상담신청</a></Link></li>
@@ -213,7 +213,7 @@ const Header = () => {
                             </div>
                         </li>
                         <li>
-                            <a href="#" onClick={(e) => handleShowMenuItem(4)}>스타트업H</a>
+                            <a href="#" onClick={(e) => {e.preventDefault();handleShowMenuItem(4)}}>스타트업H</a>
                             <div className={cx("s_menu",{show:currentMenuItem === 4})}>
                                 <ul>
                                     <li><Link href="/"><a>우수스타트업</a></Link></li>
@@ -222,7 +222,7 @@ const Header = () => {
                             </div>
                         </li>
                         <li>
-                            <a href="#" onClick={(e) => handleShowMenuItem(5)}>투자연계</a>
+                            <a href="#" onClick={(e) => {e.preventDefault();handleShowMenuItem(5)}}>투자연계</a>
                             <div className={cx("s_menu",{show:currentMenuItem === 5})}>
                                 <ul>
                                     <li><Link href="/"><a>IR/ 투자 안</a></Link></li>
@@ -231,7 +231,7 @@ const Header = () => {
                             </div>
                         </li>
                         <li>
-                            <a href="#" onClick={(e) => handleShowMenuItem(6)}>창업지원단소개</a>
+                            <a href="#" onClick={(e) => {e.preventDefault();handleShowMenuItem(6)}}>창업지원단소개</a>
                             <div className={cx("s_menu",{show:currentMenuItem === 6})}>
                                 <ul>
                                     <li><Link href="/"><a>기관소개</a></Link></li>

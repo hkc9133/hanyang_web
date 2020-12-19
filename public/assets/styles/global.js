@@ -18,7 +18,7 @@ export default css.global`
         button{border:none; background:none; cursor:pointer; outline:none;}
         
         body,a,[type=text], [type=password], [type=file], [type=email], [type=number], [type=tel], [type=submit],select,h1, h2, h3, h4, h5, h6, pre,textarea, button{
-            font-family:"s-core-dream-regular","MalgunGothic","맑은 고딕","돋움","tahoma","sans-serif"; font-size:13px; line-height:1.4; color:#333;}
+font-family:"s-core-dream-regular","MalgunGothic","맑은 고딕","돋움","tahoma","sans-serif"; font-size:13px; line-height:1.4; color:#333; letter-spacing:-0.7px;}
         
         [type=text], [type=password], [type=file], [type=email], [type=number], [type=tel], [type=submit]{padding-left:10px; box-sizing:border-box; vertical-align:middle; border:solid 1px #ddd; background-color:#fff; height:40px; line-height:38px; outline:none;}
         [type=checkbox], [type=radio]{vertical-align:middle;margin:6px 4px 4px 4px;}

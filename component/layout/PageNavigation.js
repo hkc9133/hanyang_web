@@ -9,7 +9,7 @@ import Link from "next/link";
 const cx = classnames.bind(styles);
 
 const siteMap =[
-    {url:"startup_education",name:"창업교육",sub:[{url:"university_student", name:"대학(원) 생 대상"}]},
+    {url:"startup_education",name:"창업교육",sub:[{url:"university_student", name:"대학(원) 생 대상"},{url:"teacher", name:"교대상"},{url:"people", name:"일반인대상"}]},
     {url:"startup_counsel",name:"창업상담",sub:[{url:"aa", name:"창업상담신청"},{url:"mentor_introduce", name:"멘토단 소개"},{url:"bb", name:"창업절차"}]},
     {url:"user",name:"회원",sub:[{url:"login", name:"로그인"},{url:"join", name:"회원가입"}]},
 ]

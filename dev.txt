@@ -1,0 +1,5 @@
+className="(.*?)"
+className={cx("$1")}
+
+<a (.*?)>(.*?)</a>
+<Link $1><a>$2</a></Link>

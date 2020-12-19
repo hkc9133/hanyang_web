@@ -1,14 +1,18 @@
-import React from 'react';
+import React,{useState} from 'react';
 import PageNavigation from "../../component/layout/PageNavigation";
 
 import styles from '../../public/assets/styles/mentor/mentor.module.css';
 import classnames from "classnames/bind"
 import Image from "next/image";
+import SignUpInfo from "../../component/auth/SignUpInfo";
+import Modal from "../../component/common/Modal";
 
 
 const cx = classnames.bind(styles);
 
 const MentorIntroduce = () => {
+
+    const [showMentorDetail, setShowMentorDetail] = useState(false);
     return (
         <>
             <PageNavigation/>
@@ -39,7 +43,7 @@ const MentorIntroduce = () => {
                     <ul>
                         <li>
                             <div className={`${cx("mentor_top")} clfx `}>
-                                <div className={cx("photo")}><Image src="/assets/image/mentor_group_photo.jpg" width={120} height={120} alt="login_bg"/></div>
+                                <div className={cx("photo")}><Image src="/assets/image/mentor_group_photo.jpg" width={120} height={120} alt="mentor_group_photo"/></div>
                                 <div className={cx("mentor")}>
                                     <strong className={cx("name")}>류창한</strong>
                                     <span>한양대학교 창업지원 단장</span>
@@ -57,11 +61,11 @@ const MentorIntroduce = () => {
                                 <a href="#"><span>창업상담 하기</span></a>
                             </div>
                             <button type="button" className={cx("more")}
-                                    onClick="popup_open('.mentor_detail_popup');"></button>
+                                    onClick={() => {setShowMentorDetail(true)}}></button>
                         </li>
                         <li>
                             <div className={`${cx("mentor_top")} clfx `}>
-                                <div className={cx("photo")}><Image src="/assets/image/mentor_group_photo.jpg" width={120} height={120} alt="login_bg"/></div>
+                                <div className={cx("photo")}><Image src="/assets/image/mentor_group_photo.jpg" width={120} height={120} alt="mentor_group_photo"/></div>
                                 <div className={cx("mentor")}>
                                     <strong className={cx("name")}>류창한</strong>
                                     <span>한양대학교 창업지원 단장</span>
@@ -79,11 +83,11 @@ const MentorIntroduce = () => {
                                 <a href="#"><span>창업상담 하기</span></a>
                             </div>
                             <button type="button" className={cx("more")}
-                                    onClick="popup_open('.mentor_detail_popup');"></button>
+                                    onClick={() => {setShowMentorDetail(true)}}></button>
                         </li>
                         <li>
                             <div className={`${cx("mentor_top")} clfx `}>
-                                <div className={cx("photo")}><Image src="/assets/image/mentor_group_photo.jpg" width={120} height={120} alt="login_bg"/></div>
+                                <div className={cx("photo")}><Image src="/assets/image/mentor_group_photo.jpg" width={120} height={120} alt="mentor_group_photo"/></div>
                                 <div className={cx("mentor")}>
                                     <strong className={cx("name")}>류창한</strong>
                                     <span>한양대학교 창업지원 단장</span>
@@ -101,11 +105,11 @@ const MentorIntroduce = () => {
                                 <a href="#"><span>창업상담 하기</span></a>
                             </div>
                             <button type="button" className={cx("more")}
-                                    onClick="popup_open('.mentor_detail_popup');"></button>
+                                    onClick={() => {setShowMentorDetail(true)}}></button>
                         </li>
                         <li>
                             <div className={`${cx("mentor_top")} clfx `}>
-                                <div className={cx("photo")}><Image src="/assets/image/mentor_group_photo.jpg" width={120} height={120} alt="login_bg"/></div>
+                                <div className={cx("photo")}><Image src="/assets/image/mentor_group_photo.jpg" width={120} height={120} alt="mentor_group_photo"/></div>
                                 <div className={cx("mentor")}>
                                     <strong className={cx("name")}>류창한</strong>
                                     <span>한양대학교 창업지원 단장</span>
@@ -123,11 +127,11 @@ const MentorIntroduce = () => {
                                 <a href="#"><span>창업상담 하기</span></a>
                             </div>
                             <button type="button" className={cx("more")}
-                                    onClick="popup_open('.mentor_detail_popup');"></button>
+                                    onClick={() => {setShowMentorDetail(true)}}></button>
                         </li>
                         <li>
                             <div className={`${cx("mentor_top")} clfx `}>
-                                <div className={cx("photo")}><Image src="/assets/image/mentor_group_photo.jpg" width={120} height={120} alt="login_bg"/></div>
+                                <div className={cx("photo")}><Image src="/assets/image/mentor_group_photo.jpg" width={120} height={120} alt="mentor_group_photo"/></div>
                                 <div className={cx("mentor")}>
                                     <strong className={cx("name")}>류창한</strong>
                                     <span>한양대학교 창업지원 단장</span>
@@ -145,11 +149,11 @@ const MentorIntroduce = () => {
                                 <a href="#"><span>창업상담 하기</span></a>
                             </div>
                             <button type="button" className={cx("more")}
-                                    onClick="popup_open('.mentor_detail_popup');"></button>
+                                    onClick={() => {setShowMentorDetail(true)}}></button>
                         </li>
                         <li>
                             <div className={`${cx("mentor_top")} clfx `}>
-                                <div className={cx("photo")}><Image src="/assets/image/mentor_group_photo.jpg" width={120} height={120} alt="login_bg"/></div>
+                                <div className={cx("photo")}><Image src="/assets/image/mentor_group_photo.jpg" width={120} height={120} alt="mentor_group_photo"/></div>
                                 <div className={cx("mentor")}>
                                     <strong className={cx("name")}>류창한</strong>
                                     <span>한양대학교 창업지원 단장</span>
@@ -167,19 +171,41 @@ const MentorIntroduce = () => {
                                 <a href="#"><span>창업상담 하기</span></a>
                             </div>
                             <button type="button" className={cx("more")}
-                                    onClick="popup_open('.mentor_detail_popup');"></button>
+                                    onClick={() => {setShowMentorDetail(true)}}></button>
                         </li>
                     </ul>
                 </div>
+                <Modal visible={showMentorDetail} closable={true} maskClosable={true} onClose={() => setShowMentorDetail(false)} cx={cx} className={cx("mentor_detail_popup")}>
+                    <strong className={cx("name")}>류창한</strong>
+                    <ul className={cx("title")}>
+                        <li>한양대학교창업지원단단장</li>
+                        <li>한양대학교경영학박사</li>
+                    </ul>
+                    <div className={cx("career")}>
+                        <ul>
+                            <li>現한양대학교창업지원단장</li>
+                            <li>現대학원창업융합학과주임교수</li>
+                            <li>前(주)데이콤사이버패스창업 및 KOSDAQ</li>
+                        </ul>
+                    </div>
+                    <div className={cx("keyword")}>
+                        <span>멘토링Keyword</span>
+                        <p className={cx("c-blue")}>#엔젤투자 #비즈니스모델 #사업계획 수립</p>
+                    </div>
+                    <div className={cx("self_introduction")}>
+                        평생 직장도, 평생 직업도 없는 21세기에는 누구나 한번 이상은 창업의 기회를 마주하게될 것 입니다. 아이디어나 기술만으로도 창업에 도전할 수 있지만, 지속가능한 성공을
+                        위해서는 체계적인 교육과 훈련이 필요합니다. 다양한분야의 전문지식을 알아야 하고, 실전경험을 통해‘촉’을 체득해야 합니다.
+                    </div>
+                </Modal>
 
                 <div className={cx("paging")}>
-                    <a href="#"><Image src="/assets/image/page_prev.gif" width={8} height={14} alt="login_bg"/></a>
+                    <a href="#"><Image src="/assets/image/page_prev.gif" width={8} height={14} alt="page_prev"/></a>
                     <a href="#" className={cx("on")}>1</a>
                     <a href="#">2</a>
                     <a href="#">3</a>
                     <a href="#">4</a>
                     <a href="#">5</a>
-                    <a href="#"><Image src="/assets/image/page_next.gif" width={8} height={14} alt="login_bg"/></a>
+                    <a href="#"><Image src="/assets/image/page_next.gif" width={8} height={14} alt="page_next"/></a>
                 </div>
             </div>
         </>

@@ -1,9 +1,16 @@
 import React,{useEffect} from 'react'
 import styled from 'styled-components'
 import Portal from "./Portal";
+import CloseImage from '../../public/assets/image/popup_close.gif';
 
 
-function Modal({className,onClose,maskClosable,closable,visible, children}) {
+// import styles from '../../public/assets/styles/common/modal.module.css.module.css';
+// import classnames from "classnames/bind"
+
+
+// const cx = classnames.bind(styles);
+
+function Modal({className,onClose,maskClosable,closable,visible, children,cx}) {
 
     const onMaskClick = (e) => {
         if (e.target === e.currentTarget) {
@@ -30,20 +37,31 @@ function Modal({className,onClose,maskClosable,closable,visible, children}) {
 
     return (
         <>
-        <Portal elementId="modal-root">
-            <ModalOverlay visible={visible} />
-            <ModalWrapper
-                className={className}
-                onClick={maskClosable ? onMaskClick : null}
-                tabIndex="-1"
-                visible={visible}
-            >
-                <ModalInner tabIndex="0" className="modal-inner">
-                    {closable && <button className="modal-close" onClick={close} >X</button>}
-                    {children}
-                </ModalInner>
-            </ModalWrapper>
-        </Portal>
+            {/*<Portal elementId="modal-root">*/}
+            {/*    <div className={cx("popup")} visible={visible}>*/}
+            {/*        <div className={cx("popup-content")}>*/}
+            {/*            <div className={cx("popup_inner")}>*/}
+            {/*                {children}*/}
+            {/*            </div>*/}
+            {/*            <button type="button" className={cx("popup_close")}>팝업닫기</button>*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
+            {/*</Portal>*/}
+
+            <Portal elementId="modal-root">
+                <ModalOverlay visible={visible} />
+                <ModalWrapper
+                    className={cx(className)}
+                    onClick={maskClosable ? onMaskClick : null}
+                    tabIndex="-1"
+                    visible={visible}
+                >
+                    <ModalInner tabIndex="0" className="modal-inner">
+                        {closable && <CloseBtn className="modal-close" onClick={close} >X</CloseBtn>}
+                        {children}
+                    </ModalInner>
+                </ModalWrapper>
+            </Portal>
         </>
     )
 }
@@ -60,6 +78,7 @@ const ModalWrapper = styled.div`
   z-index: 1000;
   overflow: auto;
   outline: 0;
+  outline:none;
 `
 
 const ModalOverlay = styled.div`
@@ -72,6 +91,7 @@ const ModalOverlay = styled.div`
   right: 0;
   background-color: rgba(0, 0, 0, 0.2);
   z-index: 999;
+  outline:none;
 `
 
 const ModalInner = styled.div`
@@ -80,12 +100,23 @@ const ModalInner = styled.div`
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
   background-color: #fff;
   border-radius: 10px;
-  width: 360px;
-  max-width: 480px;
+  max-width:90%; width:680px; max-height:90vh;
   top: 50%;
   transform: translateY(-50%);
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 40px;
+  outline:none;
+`
+
+const CloseBtn = styled.button`
+  position:absolute;
+  right:10px;
+  top:10px;
+  width:40px;
+  height:40px;
+  background:url(${CloseImage}) no-repeat center center;
+  display:block;
+  text-indent:-9999px; 
 `
 
 export default Modal

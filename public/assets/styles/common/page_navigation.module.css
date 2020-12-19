@@ -16,7 +16,7 @@
     transition-property: max-height;
     transition-duration: 0.5s;
     transition-timing-function: cubic-bezier(0, 1, 0, 1);
-    z-index: 2;
+    z-index: 5;
     width: 100%
 }
 .s_navi li{

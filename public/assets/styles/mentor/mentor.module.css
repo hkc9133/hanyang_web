@@ -59,6 +59,15 @@
 .paging a.on{border:1px solid #222; color:#222; }
 
 
+.mentor_detail_popup .name{margin-bottom:5px; display:block; font-size:24px; font-family: 's-core-dream-medium';}
+.mentor_detail_popup .title{margin-bottom:25px; padding-bottom:25px; border-bottom:1px solid #ccc; }
+.mentor_detail_popup .title li{margin-bottom:5px; font-size:18px; color:#666;}
+.mentor_detail_popup .career{padding-bottom:35px; }
+.mentor_detail_popup .career li{margin-bottom:5px; font-size:18px; color:#000;}
+.mentor_detail_popup .keyword span{display:block; font-size:18px; }
+.mentor_detail_popup .keyword .c-blue{margin-bottom:25px; font-size:18px; color:#4b8cf7;font-family: 's-core-dream-light';}
+.mentor_detail_popup .self_introduction{font-size:18px; }
+
 
 @media screen and (max-width: 1360px){
 
