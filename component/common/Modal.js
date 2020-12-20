@@ -12,6 +12,7 @@ import CloseImage from '../../public/assets/image/popup_close.gif';
 
 function Modal({className,onClose,maskClosable,closable,visible, children,cx}) {
 
+    console.log(cx)
     const onMaskClick = (e) => {
         if (e.target === e.currentTarget) {
             onClose(e)
@@ -51,7 +52,7 @@ function Modal({className,onClose,maskClosable,closable,visible, children,cx}) {
             <Portal elementId="modal-root">
                 <ModalOverlay visible={visible} />
                 <ModalWrapper
-                    className={cx(className)}
+                    className={cx !== undefined ? cx(className) : className}
                     onClick={maskClosable ? onMaskClick : null}
                     tabIndex="-1"
                     visible={visible}
