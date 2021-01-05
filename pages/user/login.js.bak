@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import NaverLogin from 'react-naver-login';
-import GoogleLogin from 'react-google-login';
+import NaverLoginButton from 'react-naver-login';
+import GoogleLoginButton from 'react-google-login';
 import KaKaoLogin from 'react-kakao-login';
 import {socialLogin, socialSignUp} from "../../store/auth/auth";
 import {useDispatch, useSelector} from "react-redux";
@@ -60,7 +60,7 @@ const Login = () => {
 
     return (
         <div>
-            <NaverLogin
+            <NaverLoginButton
                 clientId="X1l09clZ_fftNuaDbjIz"
                 callbackUrl={`${url}/auth/login`}
                 render={(props) => <button onClick={props.onClick}>Naver Login</button>}
@@ -71,7 +71,7 @@ const Login = () => {
                     console.error();
                 }}
             />
-            <GoogleLogin
+            <GoogleLoginButton
                 clientId='437495859189-616u9auj0k1161lsur2g1g0l88emj026.apps.googleusercontent.com'
                 render={(props) => (
                     <button onClick={props.onClick}>

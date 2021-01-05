@@ -12,7 +12,7 @@
 .footer_link:before{position:absolute; left:0; top:0; width:1px; height:70px; background-color:#ddd; display:block; content:"";}
 .footer_link ul li{float:left; width:33.33%;}
 .footer_link ul li a{padding-top:60px; display:block; text-align:center; vertical-align:top; font-family:"MalgunGothic"; font-weight:bold; font-size:14px; }
-.footer_link ul li.icon_1 a{background:url('../../image/main_faq_icon.png') no-repeat center 0; }
+.footer_link ul li.icon_1 a{background:url(../../image/main_faq_icon.png) no-repeat center 0; }
 .footer_link ul li.icon_2 a{background:url(../../image/main_qna_icon.png) no-repeat center 0; }
 .footer_link ul li.icon_3 a{background:url(../../image/main_inquiry_icon.png) no-repeat center 0; }
 .footer_notice{position:relative; float:left; position:relative; padding-left:120px; width:37.89%; box-sizing:border-box;}

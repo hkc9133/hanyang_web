@@ -6,27 +6,18 @@ import Image from 'next/image'
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
 import {logout} from "../../store/auth/auth";
+import { Transition, animated } from 'react-spring'
 
 
 const cx = classnames.bind(styles);
 
 const menuStyles = {
-    menu:{transition: '.25s all'},
+    menu:{transition: '.25s all ease-out'},
     show: {
         right: 0
     },
     hidden:{
         right: -300
-    }
-}
-
-const menuItemStyles = {
-    menu:{transition: '.25s all'},
-    show: {
-        display: 'none'
-    },
-    hidden:{
-        display: 'block'
     }
 }
 
@@ -37,9 +28,9 @@ const Header = () => {
 
 
     const [showMenu, setShowMenu] = useState(false);
-    const [showMenuItem, setShowMenuItem] = useState(false);
     const [currentMenuItem, setCurrentMenuItem] = useState(null);
     const totalMenu = React.createRef();
+
 
     const {user,logoutResult,signUpLoading} = useSelector(({auth, loading}) => ({
         user: auth.user,
@@ -50,7 +41,6 @@ const Header = () => {
     useEffect(()=> {
         setShowMenu(false)
         setCurrentMenuItem(null)
-
     },[router.pathname])
 
     useEffect(() => {
@@ -68,13 +58,7 @@ const Header = () => {
         if(num == currentMenuItem){
             return setCurrentMenuItem(null)
         }
-        // if(currentMenuItem != null){
-        //     e.current.style = menuItemStyles.show
-        // }
-        // e.current.style = menuItemStyles.show
-        // setShowMenu(!showMenu)
         setCurrentMenuItem(num)
-        // setShowMenuItem(!showMenuItem)
     }
 
     const handleLogout = () => {
@@ -94,11 +78,11 @@ const Header = () => {
                             <a href="university_student.html">창업교육</a>
                             <div className={cx("s_gnb")}>
                                 <ul>
-                                    <li><Link href="/startup_education/university_student"><a href="#">대학(원) 생 대상</a></Link></li>
-                                    <li><Link href="/startup_education/teacher"><a href="#">교원 대상</a></Link></li>
-                                    <li><Link href="/"><a href="alumnus.html">동문대상</a></Link></li>
-                                    <li><Link href="/startup_education/people"><a href="#">일반인대상</a></Link></li>
-                                    <li><Link href="/"><a href="online_content.html">온라인콘텐츠</a></Link></li>
+                                    <li><Link href="/startup_education/university_student"><a>대학(원) 생 대상</a></Link></li>
+                                    <li><Link href="/startup_education/teacher"><a>교원 대상</a></Link></li>
+                                    <li><Link href="/"><a>동문대상</a></Link></li>
+                                    <li><Link href="/board/people/list"><a>일반인대상</a></Link></li>
+                                    <li><Link href="/board/online_content/list"><a>온라인콘텐츠</a></Link></li>
                                 </ul>
                             </div>
                         </li>
@@ -106,9 +90,9 @@ const Header = () => {
                             <a href="consultation.html">창업상담</a>
                             <div className={cx("s_gnb")}>
                                 <ul>
-                                    <li><Link href="/"><a>창업상담신청</a></Link></li>
+                                    <li><Link href="/startup_counsel/counsel_process"><a>창업상담신청</a></Link></li>
                                     <li><Link href="/startup_counsel/mentor_introduce"><a>멘토단소개</a></Link></li>
-                                    <li><Link href="/"><a>창업절차</a></Link></li>
+                                    <li><Link href="/space/rental"><a>창업절차</a></Link></li>
                                 </ul>
                             </div>
                         </li>
@@ -116,10 +100,10 @@ const Header = () => {
                             <a href="startup_support.html">창업지원정보</a>
                             <div className={cx("s_gnb")}>
                                 <ul>
-                                    <li><Link href="/"><a>창업지원정보</a></Link></li>
-                                    <li><Link href="/"><a>창업행사</a></Link></li>
-                                    <li><Link href="/"><a>자료실</a></Link></li>
-                                    <li><Link href="/"><a>커뮤니티</a></Link></li>
+                                    <li><Link href="/board/startup_info/list"><a>창업지원정보</a></Link></li>
+                                    <li><Link href="/startup_info/startup_event"><a>창업행사</a></Link></li>
+                                    <li><Link href="/board/data_room/list"><a>자료실</a></Link></li>
+                                    <li><Link href="/board/community/list"><a>커뮤니티</a></Link></li>
                                 </ul>
                             </div>
                         </li>
@@ -172,9 +156,20 @@ const Header = () => {
                     </div>
                 </div>
 
-                <div className={cx("menu_open")}>
+                <div className={cx("menu_open",{fixed:showMenu})}>
                     <button type="button" className={cx('btn_menu_open',{open:showMenu})} onClick={() => {handleTopMenu();}}><span>메뉴열기</span></button>
                 </div>
+
+                {/*<Transition*/}
+                {/*    // native*/}
+                {/*    items={showMenu}*/}
+                {/*    from={{ position: 'absolute', overflow: 'hidden', height: 0 }}*/}
+                {/*    enter={[{ height: 'auto' }]}*/}
+                {/*    leave={{ height: 0 }}>*/}
+                {/*    {show =>*/}
+                {/*        show && (props => <animated.div style={props}>hello</animated.div>)*/}
+                {/*    }*/}
+                {/*</Transition>*/}
 
                 <div className={cx("total_menu")} ref={totalMenu} style={Object.assign({}, menuStyles.menu, showMenu ? menuStyles.show : menuStyles.hidden)}>
                     <div className={cx("logoArea")}><Image src="/assets/image/left_menu_logo.jpg" width={108} height={36} alt="left_logo"/></div>
@@ -186,8 +181,8 @@ const Header = () => {
                                     <li><Link href="/startup_education/university_student"><a>대학(원) 생 대상</a></Link></li>
                                     <li><Link href="/startup_education/teacher"><a>교원 대상</a></Link></li>
                                     <li><Link href="/"><a>동문대상</a></Link></li>
-                                    <li><Link href="/startup_education/people"><a href="#">일반인대상</a></Link></li>
-                                    <li><Link href="/"><a>온라인콘텐츠</a></Link></li>
+                                    <li><Link href="/board/people/list"><a>일반인대상</a></Link></li>
+                                    <li><Link href="/board/online_content/list"><a>온라인콘텐츠</a></Link></li>
                                 </ul>
                             </div>
                         </li>
@@ -195,7 +190,7 @@ const Header = () => {
                             <a href="#" onClick={(e) => {e.preventDefault();handleShowMenuItem(2)}}>창업상담</a>
                             <div className={cx("s_menu",{show:currentMenuItem === 2})}>
                                 <ul>
-                                    <li><Link href="/"><a>창업상담신청</a></Link></li>
+                                    <li><Link href="/startup_counsel/counsel_process"><a>창업상담신청</a></Link></li>
                                     <li><Link href="/startup_counsel/mentor_introduce"><a>멘토단소개</a></Link></li>
                                     <li><Link href="/space/rental"><a>창업절차</a></Link></li>
                                 </ul>
@@ -205,10 +200,10 @@ const Header = () => {
                             <a href="#" onClick={(e) => {e.preventDefault();handleShowMenuItem(3)}}>창업지원정보</a>
                             <div className={cx("s_menu",{show:currentMenuItem === 3})}>
                                 <ul>
-                                    <li><Link href="/space/rental"><a >창업지원정보</a></Link></li>
-                                    <li><Link href="/"><a>창업행사</a></Link></li>
-                                    <li><Link href="/"><a>자료실</a></Link></li>
-                                    <li><Link href="/"><a>커뮤니티</a></Link></li>
+                                    <li><Link href="/board/startup_info/list"><a>창업지원정보</a></Link></li>
+                                    <li><Link href="/startup_info/startup_event"><a>창업행사</a></Link></li>
+                                    <li><Link href="/board/data_room/list"><a>자료실</a></Link></li>
+                                    <li><Link href="/board/community/list"><a>커뮤니티</a></Link></li>
                                 </ul>
                             </div>
                         </li>

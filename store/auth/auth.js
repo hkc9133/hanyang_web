@@ -13,6 +13,7 @@ const [SIGNUP,SIGNUP_SUCCESS, SIGNUP_FAILURE] = createRequestActionTypes('auth/S
 const [LOGIN,LOGIN_SUCCESS, LOGIN_FAILURE] = createRequestActionTypes('auth/LOGIN')
 const [AUTH_CHECK,AUTH_CHECK_SUCCESS, AUTH_CHECK_FAILURE] = createRequestActionTypes('auth/AUTH_CHECK')
 const INITIALIZE = 'auth/INITIALIZE';
+const INITIALIZE_FORM  = 'auth/INITIALIZE_FORM';
 
 
 export const socialLogin = createAction(SOCIAL_LOGIN,(loginInfo) => (loginInfo));
@@ -24,6 +25,7 @@ export const logout = createAction(LOGOUT);
 export const signup = createAction(SIGNUP, (userInfo)=>(userInfo));
 export const login = createAction(LOGIN, (loginInfo) => (loginInfo))
 export const initialize = createAction(INITIALIZE);
+export const initializeForm = createAction(INITIALIZE_FORM, from => from);
 
 
 
@@ -62,6 +64,9 @@ const initialState = {
         result:null,
         error:null
     },
+    loginCode:{
+        code:null
+    },
     logout:{
         result:null,
     },
@@ -78,16 +83,12 @@ const initialState = {
 
 const auth = handleActions(
     {
-        // [HYDRATE]: (state, action) => ({
-        //      ...state.auth,
-        //     ...action.payload.auth
-        // }),
         [SOCIAL_LOGIN_SUCCESS]: (state, {payload: response}) =>
             produce(state, draft => {
                 draft.user.login = response.code == 200 ? true : false
-                draft.user.info = response.data.user;
-                draft.user.role = response.data.user.role;
-                draft.user.code = response.code;
+                draft.user.info = response.data.user != null ? response.data.user : response.data;
+                draft.user.role = response.code == 200 && response.data.user.role;
+                draft.loginCode.code = response.code;
                 // draft.user.token = response.data.token;
                 draft.login.result = true;
                 draft.login.error = null;
@@ -118,9 +119,9 @@ const auth = handleActions(
             }),
         [AUTH_CHECK_SUCCESS]: (state, {payload: response}) =>
             produce(state, draft => {
-                draft.user.login = response.code == 200 ? true : false
+                draft.user.login = true
                 draft.user.info = response.data;
-                draft.user.code = response.code;
+                // draft.user.code = response.code;
                 // localStorage.setItem('token',response.data.token);
             }),
         [AUTH_CHECK_FAILURE]: (state, {payload: error}) =>
@@ -134,7 +135,7 @@ const auth = handleActions(
                 draft.user.login = response.code == 200 ? true : false
                 draft.user.info = response.data.user;
                 draft.user.role = response.data.user.role;
-                draft.user.code = response.code;
+                draft.loginCode.code = response.code;
                 // draft.user.token = response.data.token;
                 draft.login.result = true;
                 draft.login.error = null;
@@ -167,6 +168,10 @@ const auth = handleActions(
             }),
         [INITIALIZE]: (state, {payload: form}) => ({
             ...initialState
+        }),
+        [INITIALIZE_FORM]: (state, {payload: form}) => ({
+            ...state,
+            [form]: initialState[form],
         }),
     }
     ,

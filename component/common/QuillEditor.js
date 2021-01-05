@@ -47,9 +47,6 @@ const QuillEditor = ({QuillChange,Contents}) => {
 
 
     useEffect(() => {
-        console.log("==")
-        console.log(quillElement.current)
-        console.log("==")
         if (quillElement.current) {
             quillInstance.current = new Quill(quillElement.current, {
                 theme: "snow",

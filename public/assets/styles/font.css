@@ -6,6 +6,7 @@
     src: url(../font/NotoSans-Thin.eot?#iefix) format('embedded-opentype'),
     url(../font/NotoSans-Thin.woff2) format('woff2'),
     url(../font/NotoSans-Thin.woff) format('woff');
+    font-display: swap;
 }
 
 @font-face {
@@ -16,6 +17,7 @@
     src: url(../font/NotoSans-Light.eot?#iefix) format('embedded-opentype'),
     url(../font/NotoSans-Light.woff2) format('woff2'),
     url(../font/NotoSans-Light.woff) format('woff');
+    font-display: swap;
 }
 
 
@@ -27,6 +29,7 @@
     src: url(../font/NotoSans-DemiLight.eot?#iefix) format('embedded-opentype'),
     url(../font/NotoSans-DemiLight.woff2) format('woff2'),
     url(../font/NotoSans-DemiLight.woff) format('woff');
+    font-display: swap;
 }
 
 
@@ -38,6 +41,7 @@
     src: url(../font/NotoSans-Regular.eot?#iefix) format('embedded-opentype'),
     url(../font/NotoSans-Regular.woff2) format('woff2'),
     url(../font/NotoSans-Regular.woff) format('woff');
+    font-display: swap;
 }
 
 
@@ -49,6 +53,7 @@
     src: url(../font/NotoSans-Medium.eot?#iefix) format('embedded-opentype'),
     url(../font/NotoSans-Medium.woff2) format('woff2'),
     url(../font/NotoSans-Medium.woff) format('woff');
+    font-display: swap;
 }
 
 
@@ -59,6 +64,7 @@
     src: url(../font/NotoSans-Bold.eot),
     url(../font/NotoSans-Bold.woff2) format('woff2'),
     url(../font/NotoSans-Bold.woff) format('woff');
+    font-display: swap;
 }
 
 @font-face {
@@ -69,6 +75,7 @@
     src: url(../font/NotoSans-Black.eot?#iefix) format('embedded-opentype'),
     url(../font/NotoSans-Black.woff2) format('woff2'),
     url(../font/NotoSans-Black.woff) format('woff');
+    font-display: swap;
 }
 
 /*에스코어드림*/
@@ -78,6 +85,7 @@
     url('../font/scdream1.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 @font-face {
     font-family: 's-core-dream-extralight';
@@ -85,6 +93,7 @@
     url('../font/scdream2.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 @font-face {
     font-family: 's-core-dream-light';
@@ -92,6 +101,7 @@
     url('../font/scdream3.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 @font-face {
     font-family: 's-core-dream-regular';
@@ -99,6 +109,7 @@
     url('../font/scdream4.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 @font-face {
     font-family: 's-core-dream-medium';
@@ -106,6 +117,7 @@
     url('../font/scdream5.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 @font-face {
     font-family: 's-core-dream-bold';
@@ -113,6 +125,7 @@
     url('../font/scdream6.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 @font-face {
     font-family: 's-core-dream-extrabold';
@@ -120,6 +133,7 @@
     url('../font/scdream7.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 @font-face {
     font-family: 's-core-dream-heavy';
@@ -127,6 +141,7 @@
     url('../font/scdream8.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 @font-face {
     font-family: 's-core-dream-black';
@@ -134,4 +149,5 @@
     url('../font/scdream9.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }

@@ -1,0 +1,58 @@
+import React from 'react';
+import {Input} from "antd";
+
+const ReplyItem = ({reply,addNewReReply,newReReply,changeAddReReply,showInput,setShowInput,changeUpdateReply,showUpdateInput,setShowUpdateInput,updateReply,updateReplyValue,handleUpdateReply,handleDeleteReply}) => {
+
+    const addReReply = () =>{
+        const data = {
+            parent:reply.parentId != null ? reply.parentId : reply.replyId,
+            parentReply:reply.parentId != null ? reply.replyId : null
+        }
+        addNewReReply(data)
+    }
+
+    const updateBtnClick = () =>{
+        setShowUpdateInput(reply.replyId);
+
+        const data = {
+            target:{
+                name:"replyContent",
+                value:reply.replyContent
+            }
+        }
+        changeUpdateReply(data)
+
+    }
+
+    return (
+        <>
+            <div>
+                <span key={reply.replyId}>{reply.status == 'D' ? "삭제된 댓글 입니다." : reply.replyContent}</span>
+                {reply.status != 'D' && (
+                    <>
+                        <button onClick={() =>{setShowInput(reply.replyId)}}>대댓글 달기</button>
+                        <button onClick={updateBtnClick}>수정</button>
+                        <button onClick={() =>{handleDeleteReply(reply.replyId)}}>삭제</button>
+                    </>
+                )}
+            </div>
+            {reply.replyId == showUpdateInput && (
+                <div>
+                    <Input.TextArea name="replyContent" value={updateReplyValue.replyContent} onChange={changeUpdateReply}/>
+                    <button onClick={() =>{handleUpdateReply(reply.replyId)}}>저장</button>
+                    <button onClick={() =>{setShowUpdateInput(null)}}>닫기</button>
+                </div>
+            )}
+
+            {reply.replyId == showInput && (
+                <div>
+                    <Input.TextArea name="replyContent" value={newReReply.replyContent} onChange={changeAddReReply}/>
+                    <button onClick={() =>{addReReply()}}>추가</button>
+                    <button onClick={() =>{setShowInput(null)}}>닫기</button>
+                </div>
+            )}
+        </>
+    );
+};
+
+export default React.memo(ReplyItem);

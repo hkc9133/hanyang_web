@@ -1,11 +1,69 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from '../../public/assets/styles/user/user.module.css';
 import classnames from "classnames/bind"
 import PageNavigation from "../../component/layout/PageNavigation";
+import {useDispatch, useSelector} from "react-redux";
+import {initializeForm, socialLogin, socialSignUp} from "../../store/auth/auth";
+import {useRouter} from "next/router";
+import NaverLoginButton from "../../component/auth/NaverLoginButton";
+import FaceBookLoginButton from "../../component/auth/FaceBookLoginButton";
+import KakaoLoginButton from "../../component/auth/KakaoLoinButton";
+import GoogleLoginButton from "../../component/auth/GoogleLoginButton";
+import Modal from "../../component/common/Modal";
+import SignUpInfo from "../../component/auth/SignUpInfo";
+import JoinType from "../../component/auth/JoinType";
 
 const cx = classnames.bind(styles);
 
 const Join = () => {
+    const dispatch = useDispatch();
+    const [showJoinInfoModal, setShowJoinInfoModal] = useState(false);
+    const [showJoinSuccessModal, setShowJoinSuccessModal] = useState(false);
+
+    const router = useRouter();
+
+    const {user,loginCode, signup, loginLoading, signUpLoading, loading} = useSelector(({auth, loading}) => ({
+        user: auth.user,
+        loginCode:auth.loginCode.code,
+        signup: auth.signup,
+        loginLoading: loading['auth/SOCIAL_LOGIN'],
+        signUpLoading: loading['auth/SOCIAL_SIGNUP'],
+        loading: loading
+    }))
+    useEffect(() => {
+        // dispatch(initializeForm(login.code))
+
+    },[])
+
+    useEffect(() => {
+        if (!signUpLoading && signup.result == true && signup.error == null) {
+            console.log("가입 성공")
+            setShowJoinSuccessModal(true)
+            // router.push('/')
+        }
+
+    }, [signup, signUpLoading])
+
+    useEffect(() => {
+        if (!loginLoading && user.login == false && loginCode == 401) {
+            setShowJoinInfoModal(true);
+        }
+        else if(!loginLoading && user.login == true && loginCode == 200){
+            router.push('/')
+        }
+
+    }, [user, loginLoading])
+
+    const handleSocialLogin = (id, email, name, type) => {
+        dispatch(socialLogin({id, email, name, type}))
+    };
+    const handleSignUp = (role) => {
+        const signUpInfo = {
+            ...user.info,
+            role: role
+        }
+        dispatch(socialSignUp(signUpInfo))
+    };
     return (
         <>
             <PageNavigation/>
@@ -164,28 +222,28 @@ const Join = () => {
                             </a>
                         </li>
                         <li className={cx("icon_1")}>
-                            <a href="#">
-                                <span>네이버 <br/>계정가입</span>
-                            </a>
+                            <NaverLoginButton handleSocialLogin={handleSocialLogin}/>
                         </li>
                         <li className={cx("icon_2")}>
-                            <a href="#">
-                                <span>페이스북 <br/>계정가입</span>
-                            </a>
+                            <FaceBookLoginButton handleSocialLogin={handleSocialLogin}/>
                         </li>
                         <li className={cx("icon_3")}>
-                            <a href="#">
-                                <span>카카오 <br/>계정가입</span>
-                            </a>
+                            <KakaoLoginButton handleSocialLogin={handleSocialLogin}/>
                         </li>
                         <li className={cx("icon_4")}>
-                            <a href="#">
-                                <span>구글 <br/>계정가입</span>
-                            </a>
+                            <GoogleLoginButton handleSocialLogin={handleSocialLogin}/>
                         </li>
                     </ul>
                 </div>
 
+                {showJoinInfoModal &&
+                    <JoinType handleSignUp={handleSignUp}/>
+                // <Modal visible={showJoinInfoModal} closable={true} maskClosable={true} onClose={() => setShowJoinInfoModal(false)}>
+                //     <SignUpInfo handleSignUp={handleSignUp}/>
+                //     {showJoinSuccessModal && <Modal visible={showJoinSuccessModal} closable={true} maskClosable={true} onClose={() => {setShowJoinSuccessModal(false);setShowJoinInfoModal(false);router.push('/')}}><div>가입 완료</div></Modal>}
+                // </Modal>
+                }
+                {showJoinSuccessModal && <Modal visible={showJoinSuccessModal} closable={true} maskClosable={true} onClose={() => {setShowJoinSuccessModal(false);setShowJoinInfoModal(false);router.push('/')}}><div>가입 완료</div></Modal>}
 
             </div>
 

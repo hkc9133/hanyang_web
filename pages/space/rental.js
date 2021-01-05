@@ -22,9 +22,8 @@ import client from "../../lib/api/client"
 const cx = classnames.bind(styles);
 
 export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
-    console.log(context.req)
 
-    const cookie = context.req ? context.req.headers.cookie : '';
+    const cookie = context.req && context.req.headers.cookie ? context.req.headers.cookie : '';
     client.defaults.headers.Cookie = cookie;
 
     context.store.dispatch(getSpaceRentalInfoAll());

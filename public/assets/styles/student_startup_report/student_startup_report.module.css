@@ -1,0 +1,99 @@
+.sub_cont{margin:0 auto; padding:60px 20px; max-width:1320px; }
+.sub_container{margin:0 auto; padding:120px 20px; max-width:1320px; }
+.sub_top_title{position:relative; z-index:2; margin-bottom:40px; line-height:1; font-size:42px; color:#222; font-family: 's-core-dream-bold';}
+.sub_top_txt{position:relative; z-index:2; margin-bottom:100px; font-size:24px; }
+.sub_cont_top{position:relative; z-index:1; padding:120px 20px 60px; overflow:hidden;}
+.sub_cont_top:before{position:absolute; right:20px; top:25px; width:445px; height:288px; display:block; background:url(../../image/mentor_group_bg.jpg) no-repeat right 0; content:"";}
+.sub_container{position:relative; z-index:1; overflow:hidden;}
+.sub_container:before{position:absolute; right:20px; top:25px; width:445px; height:288px; display:block; background:url(../../image/mentor_group_bg.jpg) no-repeat right 0; content:"";}
+
+.mentor_group_write .tab_style_2{margin-bottom:50px;}
+.mentor_group_write h2{position:relative; z-index:2; padding-bottom:20px; border-bottom:2px solid #222; font-size:24px; color:#222; font-family: 's-core-dream-medium';}
+.mentor_group_write h2 span{vertical-align:bottom; color:#888; font-size:20px; }
+.mentor_group_write input[type=text]{width:100%; height:50px; line-height:48px; border-radius:5px;}
+.mentor_group_write h3{padding-bottom:20px; font-size:16px; font-family: 's-core-dream-medium'; color:#222; }
+.mentor_group_write .termsArea{padding:40px; margin-bottom:60px; border-bottom:1px solid #ddd; }
+.mentor_group_write .termsArea .terms_box{margin-bottom:20px; padding:20px; width:100%; height:320px; border:1px solid #ddd; border-radius:5px; overflow:auto; box-sizing:border-box; }
+.mentor_group_write .termsArea .terms_box pre{color:#222; font-size:16px;}
+.mentor_group_write .termsArea .agree label{margin-left:10px; display:inline-block; font-size:16px; color:#666;}
+.mentor_group_write .mentoring_applicants{padding:40px; border-bottom:1px solid #ddd; margin-bottom:50px; }
+.mentor_group_write .mentoring_applicants ul li{float:left; margin:0 0 20px 3.33%; width:22.5%;}
+.mentor_group_write .mentoring_applicants ul li:first-child{margin-left:0;}
+.mentor_group_write .mentoring_applicants ul li label{display:block; margin-bottom:10px; color:#222; font-family: 's-core-dream-medium'; font-size:16px;}
+.mentor_group_write .mentoring_applicants ul li.w_50{margin:0; width:48.5%;}
+.mentor_group_write .mentoring_applicants ul li .email{width:100%; }
+.mentor_group_write .mentoring_applicants ul li .email:after{ clear: both; content: "."; display: block; height: 0; visibility: hidden; font-size: 0;}
+.mentor_group_write .mentoring_applicants ul li .email input[type=text]{float:left; width:30%; font-size:16px; }
+.mentor_group_write .mentoring_applicants ul li .email select{float:right; width:33.33%; font-size:16px; }
+.mentor_group_write .mentoring_applicants ul li .email span{float:left; width:5%; text-align:center; line-height:50px; display:block; font-size:16px; color:#888;}
+.mentor_group_write .mentoring_applicants ul.w_3 li{width:31%; margin:0 3.5% 0 0;}
+.mentor_group_write .mentoring_applicants ul.w_3 li:nth-child(3n){margin-right:0;}
+.mentor_group_write .mentoring_applicants ul.w_2 li{width:49%; margin:0 0 10px;}
+.mentor_group_write .mentoring_applicants ul.w_2 li:nth-child(2n){float:Right; }
+.mentor_group_write .mentoring_applicants .time select{float:left; width:48%;}
+.mentor_group_write .mentoring_applicants .time span{float:left; width:4%; text-align:center; display:block; line-height:40px;}
+.mentor_group_write .mentoring_applicants ul li.w_100{width:100%; }
+
+
+.student_report .mentoring_applicants{padding:40px 40px 20px;}
+.student_report .mentoring_applicants ul.w_3 li{margin-bottom:20px; }
+.student_report .mentoring_applicants ul li.w_60{margin-right:0; width:65.5%;}
+.list_style_4 li{position:relative; padding:0 10px; font-size:18px; }
+.list_style_4 li:before{position:absolute; left:0; top:10px; width:3px; height:3px; display:block; background-color:#333; content:""; }
+.student_report .list_style_4{margin-bottom:50px; padding:40px;}
+.student_report .list_style_4 ul:after{ clear: both; content: "."; display: block; height: 0; visibility: hidden; font-size: 0;}
+.student_report .list_style_4 li{float:left; margin:2px 0; width:50%; box-sizing:border-box; }
+
+.basic-btn03{width:200px; height:60px; line-height:58px; display:inline-block; text-align:center; border-radius:5px; font-size:18px; box-sizing:border-box; vertical-align:top; font-family: 's-core-dream-medium';cursor:pointer;
+    -webkit-transition: all 0.35s ease-out;
+    -moz-transition: all 0.35s ease-out;
+    -ms-transition: all 0.35s ease-out;
+    -o-transition: all 0.35s ease-out;
+    transition: all 0.35s ease-out;
+}
+
+@media screen and (max-width: 1024px){
+
+
+    .mentor_group_write .mentoring_applicants{padding:20px 0; }
+    .mentor_group_write .mentoring_applicants ul li{width:49%; margin:0 0 10px;}
+    .mentor_group_write .mentoring_applicants ul li:nth-child(2n){float:right; }
+    .startup_procedure h2{font-size:36px; }
+    .startup_procedure .txt_1{font-size:20px; }
+
+    .student_report .list_style_4{padding:20px 0; }
+    .student_report .list_style_4 li{font-size:16px;}
+    .mentor_group_write .mentoring_applicants ul.w_3 li{width:32%; margin-right:2%; }
+    .mentor_group_write .mentoring_applicants ul.w_3 li:nth-child(2n){float:left; margin-right:2%; }
+    .mentor_group_write .mentoring_applicants ul.w_3 li:nth-child(3n){margin-right:0; }
+    .student_report .mentoring_applicants ul li.w_60{margin-right:0; width:66%;}
+    .mentor_group_write .mentoring_applicants ul.w_3 li.w_100{width:100%; }
+
+}
+
+@media screen and (max-width: 768px){
+    .student_report .list_style_4{margin-bottom:30px; }
+    .student_report .list_style_4 li{float:none; padding-right:0; width:100%; font-size:14px; }
+    .list_style_4 li:before{top:7px; }
+
+    .mentor_group_write .mentoring_applicants ul li{float:none; width:100%; }
+    .mentor_group_write .mentoring_applicants ul li label{font-size:14px; }
+    .mentor_group_write .mentoring_applicants ul li.w_50{float:none; width:100%; }
+    .mentor_group_write .mentoring_applicants ul li .email select,
+    .mentor_group_write .mentoring_applicants ul li .email input[type=text]{font-size:14px; }
+    .mentor_group_write .mentoring_applicants ul.w_2 li,.mentor_group_write .mentoring_applicants ul.w_3 li{float:none; width:100%; margin:0 0 10px;}
+
+
+    .mentor_group_write .termsArea{margin-bottom:40px; padding:20px 0;}
+    .mentor_group_write .termsArea .terms_box{height:250px; }
+    .mentor_group_write .termsArea .terms_box pre{font-size:14px;}
+    .mentor_group_write .termsArea .agree label{font-size:14px;}
+
+    .mentor_group_write .mentor_detail ul li.field select,
+    .mentor_group_write .personal_info ul li.email select,
+    .mentor_group_write select,
+    .mentor_group_write .personal_info ul li.email span,
+    .mentor_group_write input[type=text]{height:40px; line-height:38px; font-size:14px; }
+
+    .basic-btn03{width:140px; height:40px; line-height:38px; font-size:13px;}
+}

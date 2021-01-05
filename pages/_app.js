@@ -5,6 +5,8 @@ import {useRouter} from "next/router";
 import client from '../lib/api/client'
 import {registerLocale} from "react-datepicker";
 import ko from 'date-fns/locale/ko';
+import "react-big-calendar/lib/css/react-big-calendar.css";
+// import '../public/assets/styles/antd.less'
 
 registerLocale('ko', ko)
 import AuthFail from "./user/auth_fail";
@@ -14,7 +16,9 @@ import Header from "../component/layout/Header";
 
 import {authCheck} from "../store/auth/auth";
 
+import 'antd/dist/antd.css';
 import "../public/assets/styles/font.css";
+import "../public/assets/styles/styles.css";
 import "react-datepicker/dist/react-datepicker.css";
 import '../public/assets/styles/slick.css'
 import "../public/assets/styles/date-picker.css"
@@ -54,7 +58,7 @@ const _App = ({Component, pageProps}) => {
 
     let allowed = true;
     if (router.pathname.startsWith("/admin") && role !== "ROLE_ADMIN") {
-        allowed = false;
+        // allowed = false;
     } else {
     }
     const ComponentToRender = allowed ? Component : AuthFail;
@@ -68,35 +72,35 @@ const _App = ({Component, pageProps}) => {
                     src="https://polyfill.io/v3/polyfill.min.js?features=es6,es7,es8,es9,NodeList.prototype.forEach&flags=gated"/>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
             </Head>
-                <div id="wrap">
-                    <ScrollToTop>
-                        {router.pathname.startsWith("/admin") ? allowed ?
-                            <>
-                                <style jsx global>
-                                    {AdminGlobalStyles}
-                                </style>
-                                <AdminHeader/>
-                                <ComponentToRender {...pageProps} />
-                            </>
-
-                            :
-                            <ComponentToRender {...pageProps} />
-                            : null
-                        }
-                        {!router.pathname.startsWith("/admin") && allowed &&
+            <div id="wrap">
+                <ScrollToTop>
+                    {router.pathname.startsWith("/admin") ? allowed ?
                         <>
                             <style jsx global>
-                                {GlobalStyles}
+                                {AdminGlobalStyles}
                             </style>
-                            <Header/>
-                            <div className="container">
-                                <ComponentToRender {...pageProps} />
-                            </div>
-                            <Footer/>
+                            <AdminHeader/>
+                            <ComponentToRender {...pageProps} />
                         </>
-                        }
-                    </ScrollToTop>
-                </div>
+
+                        :
+                        <ComponentToRender {...pageProps} />
+                        : null
+                    }
+                    {!router.pathname.startsWith("/admin") && allowed &&
+                    <>
+                        <style jsx global>
+                            {GlobalStyles}
+                        </style>
+                        <Header/>
+                        <div className="container">
+                            <ComponentToRender {...pageProps} />
+                        </div>
+                        <Footer/>
+                    </>
+                    }
+                </ScrollToTop>
+            </div>
         </>
 
     );

@@ -11,8 +11,6 @@ import CloseImage from '../../public/assets/image/popup_close.gif';
 // const cx = classnames.bind(styles);
 
 function Modal({className,onClose,maskClosable,closable,visible, children,cx}) {
-
-    console.log(cx)
     const onMaskClick = (e) => {
         if (e.target === e.currentTarget) {
             onClose(e)
@@ -57,7 +55,7 @@ function Modal({className,onClose,maskClosable,closable,visible, children,cx}) {
                     tabIndex="-1"
                     visible={visible}
                 >
-                    <ModalInner tabIndex="0" className="modal-inner">
+                    <ModalInner tabIndex="0" className={`${cx !== undefined && cx("inner")} modal-inner`}>
                         {closable && <CloseBtn className="modal-close" onClick={close} >X</CloseBtn>}
                         {children}
                     </ModalInner>

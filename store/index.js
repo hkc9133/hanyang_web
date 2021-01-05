@@ -2,7 +2,12 @@ import {combineReducers} from 'redux';
 import {all} from 'redux-saga/effects'
 import auth,{authSaga} from './auth/auth';
 import spaceRental,{spaceRentalSaga} from './spaceRental/spaceRental';
-
+import mentoring ,{mentoringSaga} from './mentoring/mentoring';
+import board ,{boardSaga} from './board/board';
+import adminBoard ,{adminBoardSaga} from './board/adminBoard';
+import user ,{userSaga} from './user/user';
+import file ,{fileSaga} from './file/file';
+import startupEvent ,{startupEventSaga} from './startupEvent/startupEvent';
 import {HYDRATE} from 'next-redux-wrapper';
 import loading from './loading';
 
@@ -28,11 +33,10 @@ import loading from './loading';
 const rootReducer = (state, action) => {
     switch (action.type) {
         case HYDRATE:
-            console.log('HYDRATE', action, state);
             return action.payload;
         default: {
             const combinedReducer = combineReducers({
-                auth,spaceRental,loading
+                auth,file,spaceRental,mentoring,board,adminBoard,user,startupEvent,loading
             })
             return combinedReducer(state, action);
         }
@@ -67,8 +71,7 @@ const rootReducer = (state, action) => {
 //     }
 // }
 export function* rootSaga(){
-    yield all ([authSaga(),spaceRentalSaga()]);
-
+    yield all ([authSaga(),fileSaga(),spaceRentalSaga(),mentoringSaga(),boardSaga(),adminBoardSaga(),startupEventSaga(),userSaga()]);
 }
 
 export default rootReducer;

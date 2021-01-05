@@ -1,0 +1,74 @@
+
+
+.calendar_top{position:relative;border-bottom: 2px solid black; text-align:center;padding-bottom: 30px; }
+.calendar_top .category{display:inline-block; }
+.calendar_top .category:after{ clear: both; content: "."; display: block; height: 0; visibility: hidden; font-size: 0;}
+.calendar_top .category li{float:left;}
+.calendar_top .category li a{width:100px; height:50px; display:block; line-height:48px; border:1px solid #ddd; font-size:18px; color:#aaa; font-family: 's-core-dream-medium';}
+.calendar_top .category li a.on{color:#0069f8; border-color:#0069f8;}
+.calendar_top .calendar_year{position:absolute; left:0; top:0; }
+.calendar_top .calendar_year span{margin:0 25px; display:inline-block; font-size:36px; color:#222; font-family: 's-core-dream-bold';}
+.calendar_top .calendar_year button{
+    vertical-align: middle;
+    opacity:1;
+    -webkit-transition: all 0.35s ease-out;
+    -moz-transition: all 0.35s ease-out;
+    -ms-transition: all 0.35s ease-out;
+    -o-transition: all 0.35s ease-out;
+    transition: all 0.35s ease-out;
+}
+.calendar_top .calendar_year button:hover{opacity:0.3;}
+.calendar_top .type{position:absolute; right:0; top:10px; }
+.calendar_type .header{
+    padding: 20px 0;
+    text-align: center;
+    background-color: #fafafa;
+    border-top: none;
+    font-size: 16px;
+}
+.calendar_top .type li{float:left; margin-left:30px; }
+.calendar_top .type li button{min-height:27px; line-height:27px; font-size:16px; display:inline-block; }
+.calendar_top .type li .icon_calendar_type{padding-left:45px; background:url(../../image/icon_calendar_type.png) no-repeat 0 center; }
+.calendar_top .type li .icon_list_type{padding-left:45px; background:url(../../image/icon_list_type.png) no-repeat 0 center; }
+.calendar_top .type li.on .icon_calendar_type{background:url(../../image/icon_calendar_type_on.png) no-repeat 0 center; }
+.calendar_top .type li.on .icon_list_type{background:url(../../image/icon_list_type_on.png) no-repeat 0 center; }
+.calendar_top .type li.on button{color:#0353f4;}
+/*.calendar_type{border-top:2px solid #222; }*/
+.calendar_type th{padding:20px 0; text-align:center; background-color:#fafafa; border:1px solid #ddd; border-top:none; font-size:16px; }
+.calendar_type td{position:relative; padding:50px 10px 10px; height:140px; border:1px solid #ddd; box-sizing:border-box; vertical-align:top;}
+.calendar_type .date{padding: 10px 3px 2px; width:100%; text-align:right; box-sizing:border-box; font-size:16px; color:#888;display: inline-block; }
+.calendar_type ul li .event_title{padding:5px 8px; border-radius:5px; background-color:#e5f0fe; display:block; font-size:14px; color:#0069f8;}
+.calendarCont>div{display:none;}
+.calendarCont>div:first-child{display:block; }
+
+@media screen and (max-width: 1024px){
+/*.calendar_top{padding:0; }*/
+.calendar_top .calendar_year{position:relative; left:0; top:0; margin-bottom:30px; width:100%;}
+.calendar_top .category li a{width:100px; height:40px; line-height:38px; font-size:16px; }
+.calendar_type td{padding:40px 5px 5px; }
+.calendar_type td ul li a{font-size:12px;}
+.calendar_type td .date{font-size:14px; }
+.calendar_type th{padding:15px 0; font-size:14px; }
+.calendar_top .calendar_year span{font-size:30px; }
+
+}
+
+@media screen and (max-width: 768px){
+
+    .calendar_top{margin-bottom:0;}
+    .calendar_top .calendar_year span{font-size:24px;}
+    .calendar_top .type{position:relative; top:0;}
+    .calendar_top .category{margin-bottom:30px; display:block; width:100%; }
+    .calendar_top .category li{width:33.33%;}
+    .calendar_top .category li a{width:100%; height:36px; line-height:34px; font-size:14px; }
+    .calendar_top .type{text-align:center; }
+    .calendar_top .type li{float:none; display:inline-block; margin:0 15px; }
+    .calendar_top .type li button{font-size:14px; }
+    .calendar_type th{padding:10px 0; font-size:12px;}
+    .calendar_type td ul li a{padding:5px; font-size:11px; }
+
+    .calendarCont .calendar_type{display:none !important;}
+    .calendarCont .list_type{display:block !important;}
+    .calendar_top .type{display:none;}
+
+}

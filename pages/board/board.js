@@ -15,7 +15,8 @@ const Board = () => {
     const [content,setContent] = useState("");
 
     useEffect(()=> {
-        console.log(content)
+        var strReg = new RegExp("http://*[^>]*\\.(jpg|gif|png)","gim");
+        var xArr =  content.match(strReg);
     },[content])
 
     const handleContent = (value) => {

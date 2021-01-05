@@ -16,7 +16,7 @@ const ScrollToTop = ({ children}) => {
       // just a fallback for older browsers
       window.scrollTo(0, 0);
     }
-  }, [router.pathname]);
+  }, [router]);
 
   return children;
 };

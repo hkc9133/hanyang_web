@@ -8,60 +8,116 @@ import Link from "next/link";
 
 const cx = classnames.bind(styles);
 
-const siteMap =[
-    {url:"startup_education",name:"창업교육",sub:[{url:"university_student", name:"대학(원) 생 대상"},{url:"teacher", name:"교원대상"},{url:"people", name:"일반인대상"}]},
-    {url:"startup_counsel",name:"창업상담",sub:[{url:"aa", name:"창업상담신청"},{url:"mentor_introduce", name:"멘토단 소개"},{url:"bb", name:"창업절차"}]},
-    {url:"user",name:"회원",sub:[{url:"login", name:"로그인"},{url:"join", name:"회원가입"}]},
-]
+// const siteMap =[
+//     {url:"startup_education",name:"창업교육",sub:[{url:"university_student", name:"대학(원) 생 대상"},{url:"teacher", name:"교원대상"},{url:"people", name:"일반인대상"},{url:"online_content", name:"온라인콘텐츠"}]},
+//     {url:"startup_counsel",name:"창업상담",sub:[{url:"counsel_process", name:"창업상담신청"},{url:"mentor_introduce", name:"멘토단 소개"},{url:"mentor_apply", name:"멘토 신청"},{url:"counsel_apply", name:"창업상담하기"}]},
+//     {url:"startup_info",name:"창업지원정보",sub:[{url:"data_room", name:"자료실"},{url:"community", name:"커뮤니티"}]},
+//     {url:"user",name:"회원",sub:[{url:"login", name:"로그인"},{url:"join", name:"회원가입"}]},
+// ]
 
+const dep1 = {
+    startup_education:{
+        name:'창업교육',
+        link:"/startup_education/university_student",
+        sub:{
+            university_student:{name:"대학(원) 생 대상",link:"/startup_education/university_student"},
+            teacher:{name:"교원대상",link:"/startup_education/teacher"},
+            people:{name:"일반인대상",link:"/board/people/list"},
+            online_content:{name:"온라인콘텐츠",link:"/board/online_content/list"},
+        }
+    },
+    startup_counsel:{
+        name:'창업상담',
+        link:"/startup_counsel/counsel_process",
+        sub:{
+            counsel_process: {name:'창업상담신청',link:'/startup_counsel/counsel_process'},
+            mentor_introduce: {name:'멘토단 소개',link:'/startup_counsel/mentor_introduce'},
+            mentor_apply: {name:'멘토 신청',link:'/startup_counsel/mentor_apply'},
+            counsel_apply: {name:'창업상담하기',link:'/startup_counsel/counsel_apply'},
+        }
+    },
+    startup_info:{
+        name:'창업지원정보',
+        link:"/board/community/list",
+        sub:{
+            startup_info: {name:'창업지원정보',link:'/board/startup_info/list'},
+            startup_event: {name:'창업행사',link:'/startup_info/startup_event'},
+            community: {name:'커뮤니티',link:'/board/community/list'},
+            data_room: {name:'자료실',link:'/board/data_room/list'}
+        }
+    },
+}
+const board = {
+    community:{parents:'startup_info'},
+    data_room:{parents:'startup_info'},
+    startup_info:{parents:'startup_info'},
+    people:{parents:'startup_education'},
+    online_content:{parents:'startup_education'},
+}
 
 const PageNavigation = () => {
 
+    console.log("navi")
     const [navi, setNavi] = useState(null);
     const [subNavi, setSubNavi] = useState({key:null,name:null});
     const router = useRouter();
 
     useEffect(() => {
-        const arr = router.pathname.split("/");  // 구분자를 통해 나뉜 결과는 배열로 저장된다.
+        const arr = router.asPath.split("/");  // 구분자를 통해 나뉜 결과는 배열로 저장된다.
 
-        let keyV;
-        let itemIndex = null;
-        let subItemIndex = null;
-        arr.forEach((element,index) => {
-            switch (index) {
-                case 1:
-                    siteMap.forEach((item,itemIdx) => {
-                        if(item.url == element){
-                            itemIndex = itemIdx;
-                            return;
-                        }
-                    })
-                    setNavi(itemIndex)
-                    break;
-                case 2:
-                    siteMap[itemIndex].sub.forEach((subItem,subIndex) => {
-                        if(subItem.url == element){
-                            subItemIndex = subIndex;
-                            return;
-                        }
-                    })
-                    if(siteMap[itemIndex].sub.length > 0 ){
-                        setSubNavi({
-                            key:element,
-                            name:siteMap[itemIndex].sub[subItemIndex].name
-                        })
+        console.log(arr)
+        setNavi(arr[1] == 'board' ? dep1[board[arr[2]].parents] : dep1[arr[1]])
+        setSubNavi(arr[1] == 'board' ? dep1[board[arr[2]].parents].sub[arr[2]] : dep1[arr[1]].sub[arr[2]])
 
-                    }
-                    break;
-            }
-        });
+
+        // let keyV;
+        // let itemIndex = null;
+        // let subItemIndex = null;
+        // arr.forEach((element,index) => {
+        //     switch (index) {
+        //         case 1:
+        //             siteMap.forEach((item,itemIdx) => {
+        //                 if(element == 'board'){
+        //                     if(board[arr[2]].parents == item.url){
+        //                         itemIndex = itemIdx
+        //                         return
+        //                     }
+        //                 }else{
+        //                     if(item.url == element){
+        //                         itemIndex = itemIdx;
+        //                         return;
+        //                     }
+        //                 }
+        //             })
+        //             setNavi(itemIndex)
+        //             break;
+        //         case 2:
+        //             if(siteMap[itemIndex] != null){
+        //                 siteMap[itemIndex].sub.forEach((subItem,subIndex) => {
+        //                     if(subItem.url == element){
+        //                         subItemIndex = subIndex;
+        //                         return;
+        //                     }
+        //                 })
+        //                 if(siteMap[itemIndex].sub.length > 0 && subItemIndex != null){
+        //                     setSubNavi({
+        //                         key:element,
+        //                         name:siteMap[itemIndex].sub[subItemIndex].name
+        //                     })
+        //
+        //                 }
+        //             }
+        //             break;
+        //     }
+        // });
 
 
     },[])
 
     useEffect(() => {
 
-        console.log(navi,subNavi)
+        console.log(navi)
+        console.log(subNavi)
 
 
     },[navi,subNavi])
@@ -71,48 +127,46 @@ const PageNavigation = () => {
         <div className={cx("navi_wrap")}>
             <div className={cx("navi")}>
                 <ul>
+                    {navi != null && (
+                        <>
                     <li className={cx("home")}><Image src="/assets/image/icon_navi.gif" width={16} height={14} alt="home" /></li>
-                    <li className={cx("s_navi_li")}>
-                        <a href="#" className={cx("s_navi_open")}>{navi != null && siteMap[navi].name}</a>
-                        <div className={cx("s_navi")}>
-                            <ul>
-                                {
-                                    siteMap.map((item)=>{
-                                        return(
-                                            <li key={item.url}><a href={`/${item.url}/${item.sub.length > 0 && item.sub[0].url}`}>{item.name}</a></li>
-                                        )
-                                    })
-                                }
-                            {/*<ul>*/}
-                            {/*    <li><a href="#">창업교육</a></li>*/}
-                            {/*    <li><a href="#">창업상담</a></li>*/}
-                            {/*    <li><a href="#">창업지원정보</a></li>*/}
-                            {/*    <li><a href="#">스타트업H</a></li>*/}
-                            {/*    <li><a href="#">투자연계</a></li>*/}
-                            {/*    <li><a href="#">창업지원단소개</a></li>*/}
-                            </ul>
-                        </div>
-                    </li>
-                    {subNavi.key !== null &&
                         <li className={cx("s_navi_li")}>
-                            <a href="#" className={cx("s_navi_open")}>{subNavi.name}</a>
+                            <a href="#" className={cx("s_navi_open")}>{navi.name}</a>
                             <div className={cx("s_navi")}>
                                 <ul>
                                     {
-                                        siteMap[navi].sub.map(function(item) {
-                                            return(
-                                                <li key={item.url}><Link href={`/${siteMap[navi].url}/${item.url}`}><a>{item.name}</a></Link></li>
-                                            )
+                                        Object.keys(dep1).map((key) => {
+                                            return (<li key={dep1[key].name}><a href={dep1[key].link}>{dep1[key].name}</a></li>)
                                         })
                                     }
                                 </ul>
                             </div>
                         </li>
-                    }
+                    {/*{subNavi.key !== null &&*/}
+                        <li className={cx("s_navi_li")}>
+                            <a href="#" className={cx("s_navi_open")}>{subNavi.name}</a>
+                            <div className={cx("s_navi")}>
+                                <ul>
+                                    {
+                                        Object.keys(navi.sub).map((key) => {
+                                            return (<li key={navi.sub[key].name}><a href={navi.sub[key].link}>{navi.sub[key].name}</a></li>)
+                                        })
+                                        // siteMap[navi].sub.map(function(item) {
+                                        //     return(
+                                        //         <li key={item.url}><Link href={`/${siteMap[navi].url}/${item.url}`}><a>{item.name}</a></Link></li>
+                                        //     )
+                                        // })
+                                    }
+                                </ul>
+                            </div>
+                        </li>
+                        </>
+                        )}
+                    {/*}*/}
                 </ul>
             </div>
         </div>
     );
 };
 
-export default PageNavigation;
+export default React.memo(PageNavigation);
