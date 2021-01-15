@@ -13,7 +13,7 @@ import Link from 'next/link'
 import styles from '../../../public/assets/styles/skin/board.module.css';
 import classnames from "classnames/bind"
 
-import qs from 'qs';
+import qs from 'query-string';
 const cx = classnames.bind(styles);
 
 
@@ -22,21 +22,9 @@ export const getServerSideProps = wrapper.getServerSideProps(async (context) => 
     const cookie = context.req && context.req.headers.cookie ? context.req.headers.cookie : '';
     client.defaults.headers.Cookie = cookie;
     const { page = 1,boardName = context.params.boardName, categoryId = null,categoryCodeId = null,searchValue = null,searchField = null} = context.query
-    // const data = {
-    //     page:page,
-    //     boardEnName:boardName,
-    //     categoryId:categoryId,
-    //     categoryCodeId:categoryCodeId,
-    //     searchValue:searchValue,
-    //     searchField:searchField
-    // }
-    // context.store.dispatch(getBoardContentList(data));
     context.store.dispatch(getBoard(boardName));
     context.store.dispatch(END);
     await context.store.sagaTask.toPromise();
-    // return {
-    //     props: { boardName: context.params.boardName },
-    // };
 })
 
 const List = () => {
@@ -58,9 +46,10 @@ const List = () => {
         category:[]
     });
 
-    const {content,board,contentListLoading} = useSelector(({board,loading})=> ({
+    const {content,board,user,contentListLoading} = useSelector(({board,auth,loading})=> ({
         content:board.content,
         board:board.board,
+        user:auth.user,
         contentListLoading:loading['board/GET_BOARD_CONTENT_LIST'],
     }))
 
@@ -93,26 +82,6 @@ const List = () => {
     },[board,router.query])
 
 
-    // useEffect(() => {
-    //
-    //     if(board.board != null){
-    //         const { page = 1,boardName = null,categoryId = null,categoryCodeId = null,searchValue = null,searchField = null} = router.query
-    //
-    //         const data = {
-    //             page:page,
-    //             boardEnName:boardName,
-    //             categoryId:categoryId,
-    //             categoryCodeId:categoryCodeId,
-    //             searchValue:searchValue,
-    //             searchField:searchField,
-    //             pageSize:board.board.pageSize ? board.board.pageSize : 0
-    //         }
-    //         dispatch(getBoardContentList(data));
-    //     }
-    //
-    // },[router.query])
-
-
     const changeSearchInfo = (e) =>{
 
         const {name, value} = e.target;
@@ -121,11 +90,6 @@ const List = () => {
             [name]:value
         }))
     }
-
-    // const searchContent = (e) =>{
-    //     const queryString = qs.stringify({...searchInfo,boardEnName:currentBoard.board.boardEnName});
-    //     router.push(`${router.pathname}?${queryString}`)
-    // }
 
     const searchContent = useCallback((value) =>{
         const queryString = qs.stringify({...searchInfo,boardName:router.query.boardName,page:1});
@@ -138,7 +102,6 @@ const List = () => {
         router.push(`${router.pathname}?${queryString}`)
     },[router.query])
 
-
     return (
         <>
             <PageNavigation/>
@@ -147,6 +110,9 @@ const List = () => {
                     <h1 className={cx("sub_top_title")}>{currentBoard.board.boardKrName}</h1>
                     <p className={cx("sub_top_txt")}>{currentBoard.board.boardDesc}</p>
 
+                    {currentBoard.board.boardEnName == 'notice' && (
+                        <SearchBoxSelector skinName="SearchBoxStyle01" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
+                    )}
                     {currentBoard.board.boardEnName == 'people' && (
                         <SearchBoxSelector skinName="SearchBoxStyle02" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
                     )}
@@ -159,9 +125,18 @@ const List = () => {
                         <SearchBoxSelector skinName="SearchBoxStyle01" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
                     )}
 
-                    <div className={cx("btn_box")}>
-                        <Link href={`/board/${currentBoard.board.boardEnName}/write`}><a className={cx("basic-btn03","write_btn")}>글쓰기</a></Link>
-                    </div>
+                    {
+                        currentBoard.board.writeRole != null && currentBoard.board.writeRole.indexOf(user.role) > 0 || user.role == 'ROLE_ADMIN' && (
+                            <div className={cx("btn_box")}>
+                                <Link href={`/board/${currentBoard.board.boardEnName}/write`}><a className={cx("basic-btn03","write_btn")}>글쓰기</a></Link>
+                            </div>
+                        )
+                    }
+
+
+                    {currentBoard.board.boardEnName == 'notice' && (
+                        <BoardSkinSelector skinName="ListType02" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
+                    )}
                     {currentBoard.board.boardEnName == 'data_room' && (
                         <BoardSkinSelector skinName="ListType01" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
                     )}

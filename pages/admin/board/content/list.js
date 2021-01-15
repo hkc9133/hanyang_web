@@ -4,7 +4,7 @@ import wrapper from "../../../../store/configureStore";
 import client from "../../../../lib/api/client";
 import {getBoard, getBoardContentList, getBoardInfoAll} from "../../../../store/board/adminBoard";
 import {END} from "redux-saga";
-import qs from 'qs';
+import qs from 'query-string';
 import Image from "next/image";
 import Link from "next/link";
 
@@ -158,24 +158,6 @@ const List = () => {
                                 onPageChanged={pageChange}
                             />
                         )}
-
-                        {/*<div className={cx("paging")}>*/}
-                        {/*    <Link href="/admin/users">*/}
-                        {/*        <a>*/}
-                        {/*            <Image src="/assets/image/admin/page_prev.gif" width={40} height={40} alt="page_prev"/>*/}
-                        {/*        </a>*/}
-                        {/*    </Link>*/}
-                        {/*    <Link href="/admin/users" className={cx("on")}><a>1</a></Link>*/}
-                        {/*    <Link href="/admin/users"><a>2</a></Link>*/}
-                        {/*    <Link href="/admin/users"><a>3</a></Link>*/}
-                        {/*    <Link href="/admin/users"><a>4</a></Link>*/}
-                        {/*    <Link href="/admin/users"><a>5</a></Link>*/}
-                        {/*    <Link href="/admin/users">*/}
-                        {/*        <a>*/}
-                        {/*            <Image src="/assets/image/admin/page_next.gif" width={40} height={40} alt="page_prev"/>*/}
-                        {/*        </a>*/}
-                        {/*    </Link>*/}
-                        {/*</div>*/}
                     </div>
 
                 </div>

@@ -19,7 +19,7 @@ button{border:none; background:none; cursor:pointer; outline:none;}
 body,a,[type=text], [type=password], [type=file], [type=email], [type=number], [type=tel], [type=submit],select,h1, h2, h3, h4, h5, h6, pre,textarea, button{
     font-family:"s-core-dream-regular","MalgunGothic","맑은 고딕","돋움","tahoma","sans-serif"; font-size:13px; line-height:1.4; color:#333; letter-spacing:-0.7px;}
 
-[type=text], [type=password], [type=file], [type=email], [type=number], [type=tel], [type=submit]{padding-left:10px; box-sizing:border-box; vertical-align:middle; border:solid 1px #ddd; background-color:#fff; height:40px; line-height:38px; outline:none;}
+[type=text], [type=password], [type=file], [type=email], [type=number], [type=tel]{padding-left:10px; box-sizing:border-box; vertical-align:middle; border:solid 1px #ddd; background-color:#fff; height:40px; line-height:38px; outline:none;}
 [type=checkbox], [type=radio]{vertical-align:middle;margin:6px 4px 4px 4px;}
 select{height:40px; line-height:38px; border:1px solid #ddd; box-sizing:border-box; outline:none;}
 
@@ -33,6 +33,10 @@ button:focus,textarea:focus,input:focus{outline:none;}
 
 .hid{display:none;}
 
+
+.paging{text-align:center; }
+.paging a{margin:0 4px; width:60px; height:60px; line-height:60px;  display:inline-block; text-align:center; border:1px solid #ccc; box-sizing:border-box; font-size:18px; color:#999;}
+.paging a.on{border:1px solid #222; color:#222; }
 
 /*float 해제*/
 * html .clfx { height: 1%; overflow: visible;} /* IE6 float 해제*/
@@ -166,10 +170,19 @@ input[type=file]::-webkit-file-upload-button{
 .ant-select-selector:hover{border-color: black !important;}
 .ant-select:hover {border-color: black;}
 
+.ant-upload-list-picture-card .ant-upload-list-item-info::before{left:0px;}
+.ant-upload-picture-card-wrapper{width: auto;}
+
+
+.ant-picker-ranges .ant-picker-ok button{padding: 2px 5px;border-radius: 6px;}
+.ant-picker-ranges .ant-picker-ok button:hover span{}
+.ant-picker-ranges .ant-picker-ok button span{color:black;}
+.ant-picker-ranges .ant-picker-ok button span:hover{color:white;}
 
 /*캘린더*/
 .rbc-event{background-color: transparent;}
 .rbc-event.rbc-selected{background-color: transparent;}
+.rbc-overlay{display: none !important;}
 
 
 /*-- font --*/
@@ -310,4 +323,10 @@ input[type=file]::-webkit-file-upload-button{
     url('../font/scdream9.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+}
+
+
+@media screen and (max-width: 768px){
+
+    .paging a{margin:0 1px; width:40px; line-height:38px; height:40px; font-size:14px;}
 }

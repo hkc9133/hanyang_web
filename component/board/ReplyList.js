@@ -7,9 +7,7 @@ const ReplyList = (props) => {
     return (
         <div>
             {props.list.map((reply) =>
-                <>
-                    <ReplyItem reply={reply}{...props}/>
-                </>
+                <ReplyItem key={reply.replyId} reply={reply} {...props}/>
             )}
         </div>
     );

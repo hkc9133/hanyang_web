@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from '../public/assets/styles/index/index.module.css';
 import classnames from "classnames/bind"
 import Link from "next/link";
@@ -10,7 +10,11 @@ import wrapper from "../store/configureStore";
 import {getSpaceRentalInfoAll} from "../store/spaceRental/spaceRental";
 import {END} from "redux-saga";
 import Head from "next/head";
-
+import {useDispatch, useSelector} from "react-redux";
+import {getBoardContentList} from "../store/board/board";
+import {getMainData} from "../store/main/main";
+import {getThumbnail} from '../component/common/util/ThumbnailUtil';
+import moment from 'moment';
 
 
 const cx = classnames.bind(styles);
@@ -19,7 +23,7 @@ const cx = classnames.bind(styles);
 const calendarSliderSettings = {
     dots: true,
     infinite: false,
-    arrows:false,
+    arrows: false,
     speed: 300,
     slidesToShow: 3,
     slidesToScroll: 1,
@@ -46,7 +50,7 @@ const calendarSliderSettings = {
 const boardSliderSettings = {
     dots: true,
     infinite: false,
-    arrows:false,
+    arrows: false,
     speed: 300,
     slidesToShow: 4,
     slidesToScroll: 1,
@@ -78,10 +82,10 @@ const boardSliderSettings = {
 };
 
 const logoSliderSettings = {
-    arrows : false,
+    arrows: false,
     dots: false,
     infinite: true,
-    autoplay:true,
+    autoplay: true,
     speed: 300,
     slidesToShow: 1,
     centerPadding: 0,
@@ -104,7 +108,23 @@ const logoSliderSettings = {
 
 const Index = () => {
 
+    const dispatch = useDispatch();
     const logoSlider = React.createRef();
+
+    const [showNotice,setShowNotice] = useState(true);
+
+    const {mainData} = useSelector(({main, loading}) => ({
+        mainData: main.mainData
+    }))
+
+    useEffect(() => {
+        dispatch(getMainData())
+    }, [])
+
+    const toggleNoticeSlider = () =>{
+        setShowNotice(!showNotice)
+    }
+
 
     return (
         <>
@@ -249,11 +269,10 @@ const Index = () => {
                     <div className={cx("main_hotissue")}>
                         <h1><Link href="/"><a>창업지원단 핫이슈</a></Link></h1>
                         <ul>
-                            <li><Link href="/"><a>2020년 한양대학교 스타트업 현장실습 참가자 모집</a></Link></li>
-                            <li><Link href="/"><a>2020년 한양대학교 스타트업 현장실습 참가자 모집</a></Link></li>
-                            <li><Link href="/"><a>2020년 한양대학교 스타트업 현장실습 참가자 모집</a></Link></li>
-                            <li><Link href="/"><a>2020년 한양대학교 스타트업 현장실습 참가자 모집</a></Link></li>
-                            <li><Link href="/"><a>2020년 한양대학교 스타트업 현장실습 참가자 모집</a></Link></li>
+                            {mainData.notice.map( (item,index) =>
+                                    index < 5 && <li><Link href="/"><a>{item.title}</a></Link></li>
+
+                            )}
                         </ul>
                     </div>
 
@@ -263,7 +282,7 @@ const Index = () => {
                             <div className={cx("list")}>
                                 <Link href="/">
                                     <a>
-                                        <Image src="/assets/image/main_banner.jpg" layout="fill"  alt="main_banner"/>
+                                        <Image src="/assets/image/main_banner.jpg" layout="fill" alt="main_banner"/>
                                     </a>
                                 </Link>
                             </div>
@@ -276,281 +295,213 @@ const Index = () => {
                 <div className={cx("main_cont")}>
                     <div className={cx("main_tab")}>
                         <ul>
-                            <li className={cx("on")}>
-                                <button type="button">공지사항</button>
+                            <li className={cx({on:showNotice})}>
+                                <button type="button" onClick={() =>{toggleNoticeSlider()}}>공지사항</button>
                             </li>
-                            <li>
-                                <button type="button">창업지원정보</button>
+                            <li className={cx({on:!showNotice})}>
+                                <button type="button" onClick={() =>{toggleNoticeSlider()}}>창업지원정보</button>
                             </li>
                         </ul>
                     </div>
 
-                    <div className={cx("main_board_list","main_tabCont")}>
+                    <div className={cx("main_board_list", "main_tabCont")}>
                         {/*공지사항*/}
-                        <Slider className={`${cx("slides")} main_board_list`} {...boardSliderSettings}>
-                            <div className={cx("list")}>
-                                <div className={cx("img_area")}>
-                                    <Link href="/">
-                                        <a>
-                                            <Image src="/assets/image/main_notice_img.jpg" layout="fill"  alt="main_notice_img"/>
-                                        </a>
-                                    </Link>
-                                </div>
-                                <div className={cx("txt_area")}>
-                                    <Link href="/">
-                                        <a>
-                                            <div className={cx("title")}>
-                                                2020 September Ent. Lunch Talk 미래과학기술지주 김판건 대표
+                        <Slider className={`${cx("slides",{hidden:!showNotice})} main_board_list`} {...boardSliderSettings}>
+                            {
+                                mainData.notice.map((item) => {
+                                    return (
+                                        <div className={cx("list")} key={item.noticeId}>
+                                            <div className={cx("img_area")}>
+                                                <Link href={`/introduce/notice/${item.noticeId}`}>
+                                                    <a>
+                                                        <Image src="/assets/image/main_notice_img.jpg" layout="fill"
+                                                               alt="main_notice_img"/>
+                                                    </a>
+                                                </Link>
                                             </div>
-                                            <div className={cx("txt")}>
-                                                2020년 9월 런치톡은 9월25일(금) 오후 2시 부터 3시까지 미래과학기술지주 김판건 대표님의 “투자자가 끌리는
-                                                스타트업”이라는 주제로 줌 췌이나로 진행될 예정입니다.
+                                            <div className={cx("txt_area")}>
+                                                <Link href={`/introduce/notice/${item.noticeId}`}>
+                                                    <a>
+                                                        <div className={cx("title")}>
+                                                            {item.title}
+                                                        </div>
+                                                        <div className={cx("txt")}>
+                                                            <div dangerouslySetInnerHTML={{__html: item.content}}/>
+                                                        </div>
+                                                        <span
+                                                            className={cx("date")}>{moment(item.regDate).format("YYYY년 MM월 DD일")}</span>
+                                                    </a>
+                                                </Link>
                                             </div>
-                                            <span className={cx("date")}>2020년 11월23일</span>
-                                        </a>
-                                    </Link>
-                                </div>
-                            </div>
-                            <div className={cx("list")}>
-                                <div className={cx("img_area")}>
-                                    <Link href="/">
-                                        <a>
-                                            <Image src="/assets/image/main_notice_img.jpg" layout="fill"  alt="main_notice_img"/>
-                                        </a>
-                                    </Link>
-                                </div>
-                                <div className={cx("txt_area")}>
-                                    <Link href="/">
-                                        <a>
-                                            <div className={cx("title")}>
-                                                2020 September Ent. Lunch Talk 미래과학기술지주 김판건 대표
+                                        </div>
+
+                                    )
+                                })
+                            }
+                        </Slider>
+
+                        <Slider className={`${cx("slides",{hidden:showNotice})} main_board_list`} {...boardSliderSettings}>
+                            {
+                                mainData.startup_info.map((item) => {
+                                    return (
+                                        <div className={cx("list")} key={item.contentId}>
+                                            <div className={cx("img_area")}>
+                                                <Link href={`/board/data_room/view/${item.contentId}`}>
+                                                    <a>
+                                                        <Image src="/assets/image/main_notice_img.jpg" layout="fill"
+                                                               alt="main_notice_img"/>
+                                                    </a>
+                                                </Link>
                                             </div>
-                                            <div className={cx("txt")}>
-                                                2020년 9월 런치톡은 9월25일(금) 오후 2시 부터 3시까지 미래과학기술지주 김판건 대표님의 “투자자가 끌리는
-                                                스타트업”이라는 주제로 줌 췌이나로 진행될 예정입니다.
+                                            <div className={cx("txt_area")}>
+                                                <Link href={`/board/data_room/view/${item.contentId}`}>
+                                                    <a>
+                                                        <div className={cx("title")}>
+                                                            {item.title}
+                                                        </div>
+                                                        <div className={cx("txt")}>
+                                                            <div dangerouslySetInnerHTML={{__html: item.content.replace("<br>","")}}/>
+                                                        </div>
+                                                        <span
+                                                            className={cx("date")}>{moment(item.regDate).format("YYYY년 MM월 DD일")}</span>
+                                                    </a>
+                                                </Link>
                                             </div>
-                                            <span className={cx("date")}>2020년 11월23일</span>
-                                        </a>
-                                    </Link>
-                                </div>
-                            </div>
-                            <div className={cx("list")}>
-                                <div className={cx("img_area")}>
-                                    <Link href="/">
-                                        <a>
-                                            <Image src="/assets/image/main_notice_img.jpg" layout="fill"  alt="main_notice_img"/>
-                                        </a>
-                                    </Link>
-                                </div>
-                                <div className={cx("txt_area")}>
-                                    <Link href="/">
-                                        <a>
-                                            <div className={cx("title")}>
-                                                2020 September Ent. Lunch Talk 미래과학기술지주 김판건 대표
-                                            </div>
-                                            <div className={cx("txt")}>
-                                                2020년 9월 런치톡은 9월25일(금) 오후 2시 부터 3시까지 미래과학기술지주 김판건 대표님의 “투자자가 끌리는
-                                                스타트업”이라는 주제로 줌 췌이나로 진행될 예정입니다.
-                                            </div>
-                                            <span className={cx("date")}>2020년 11월23일</span>
-                                        </a>
-                                    </Link>
-                                </div>
-                            </div>
-                            <div className={cx("list")}>
-                                <div className={cx("img_area")}>
-                                    <Link href="/">
-                                        <a>
-                                            <Image src="/assets/image/main_notice_img.jpg" layout="fill"  alt="main_notice_img"/>
-                                        </a>
-                                    </Link>
-                                </div>
-                                <div className={cx("txt_area")}>
-                                    <Link href="/">
-                                        <a>
-                                            <div className={cx("title")}>
-                                                2020 September Ent. Lunch Talk 미래과학기술지주 김판건 대표
-                                            </div>
-                                            <div className={cx("txt")}>
-                                                2020년 9월 런치톡은 9월25일(금) 오후 2시 부터 3시까지 미래과학기술지주 김판건 대표님의 “투자자가 끌리는
-                                                스타트업”이라는 주제로 줌 췌이나로 진행될 예정입니다.
-                                            </div>
-                                            <span className={cx("date")}>2020년 11월23일</span>
-                                        </a>
-                                    </Link>
-                                </div>
-                            </div>
-                            <div className={cx("list")}>
-                                <div className={cx("img_area")}>
-                                    <Link href="/">
-                                        <a>
-                                            <Image src="/assets/image/main_notice_img.jpg" layout="fill"  alt="main_notice_img"/>
-                                        </a>
-                                    </Link>
-                                </div>
-                                <div className={cx("txt_area")}>
-                                    <Link href="/">
-                                        <a>
-                                            <div className={cx("title")}>
-                                                2020 September Ent. Lunch Talk 미래과학기술지주 김판건 대표
-                                            </div>
-                                            <div className={cx("txt")}>
-                                                2020년 9월 런치톡은 9월25일(금) 오후 2시 부터 3시까지 미래과학기술지주 김판건 대표님의 “투자자가 끌리는
-                                                스타트업”이라는 주제로 줌 췌이나로 진행될 예정입니다.
-                                            </div>
-                                            <span className={cx("date")}>2020년 11월23일</span>
-                                        </a>
-                                    </Link>
-                                </div>
-                            </div>
-                            <div className={cx("list")}>
-                                <div className={cx("img_area")}>
-                                    <Link href="/">
-                                        <a>
-                                            <Image src="/assets/image/main_notice_img.jpg" layout="fill"  alt="main_notice_img"/>
-                                        </a>
-                                    </Link>
-                                </div>
-                                <div className={cx("txt_area")}>
-                                    <Link href="/">
-                                        <a>
-                                            <div className={cx("title")}>
-                                                2020 September Ent. Lunch Talk 미래과학기술지주 김판건 대표
-                                            </div>
-                                            <div className={cx("txt")}>
-                                                2020년 9월 런치톡은 9월25일(금) 오후 2시 부터 3시까지 미래과학기술지주 김판건 대표님의 “투자자가 끌리는
-                                                스타트업”이라는 주제로 줌 췌이나로 진행될 예정입니다.
-                                            </div>
-                                            <span className={cx("date")}>2020년 11월23일</span>
-                                        </a>
-                                    </Link>
-                                </div>
-                            </div>
+                                        </div>
+
+                                    )
+                                })
+                            }
                         </Slider>
                         <div>
                         </div>
                         {/*//공지사항*/}
 
                         {/*창업지원정보*/}
-                        <div>
-                            <div className={cx("slides")}>
-                                <div className={cx("list")}>
-                                    <div className={cx("img_area")}>
-                                        <Link href="/">
-                                            <a>
-                                                <Image src="/assets/image/main_notice_img.jpg" width={309} height={225} alt="main_notice_img"/>
-                                            </a>
-                                        </Link>
-                                    </div>
-                                    <div className={cx("txt_area")}>
-                                        <Link href="/">
-                                            <a>
-                                                <div className={cx("title")}>
-                                                    2020 September Ent. Lunch Talk 미래과학기술지주 김판건 대표
-                                                </div>
-                                                <div className={cx("txt")}>
-                                                    2020년 9월 런치톡은 9월25일(금) 오후 2시 부터 3시까지 미래과학기술지주 김판건 대표님의 “투자자가 끌리는
-                                                    스타트업”이라는 주제로 줌 췌이나로 진행될 예정입니다.
-                                                </div>
-                                                <span className={cx("date")}>2020년 11월23일</span>
-                                            </a>
-                                        </Link>
-                                    </div>
-                                </div>
-                                <div className={cx("list")}>
-                                    <div className={cx("img_area")}>
-                                        <Link href="/">
-                                            <a>
-                                                <Image src="/assets/image/main_notice_img.jpg" width={309} height={225} alt="main_notice_img"/>
-                                            </a>
-                                        </Link>
-                                    </div>
-                                    <div className={cx("txt_area")}>
-                                        <Link href="/">
-                                            <a>
-                                                <div className={cx("title")}>
-                                                    2020 September Ent. Lunch Talk 미래과학기술지주 김판건 대표
-                                                </div>
-                                                <div className={cx("txt")}>
-                                                    2020년 9월 런치톡은 9월25일(금) 오후 2시 부터 3시까지 미래과학기술지주 김판건 대표님의 “투자자가 끌리는
-                                                    스타트업”이라는 주제로 줌 췌이나로 진행될 예정입니다.
-                                                </div>
-                                                <span className={cx("date")}>2020년 11월23일</span>
-                                            </a>
-                                        </Link>
-                                    </div>
-                                </div>
-                                <div className={cx("list")}>
-                                    <div className={cx("img_area")}>
-                                        <Link href="/">
-                                            <a>
-                                                <Image src="/assets/image/main_notice_img.jpg" width={309} height={225} alt="main_notice_img"/>
-                                            </a>
-                                        </Link>
-                                    </div>
-                                    <div className={cx("txt_area")}>
-                                        <Link href="/">
-                                            <a>
-                                                <div className={cx("title")}>
-                                                    2020 September Ent. Lunch Talk 미래과학기술지주 김판건 대표
-                                                </div>
-                                                <div className={cx("txt")}>
-                                                    2020년 9월 런치톡은 9월25일(금) 오후 2시 부터 3시까지 미래과학기술지주 김판건 대표님의 “투자자가 끌리는
-                                                    스타트업”이라는 주제로 줌 췌이나로 진행될 예정입니다.
-                                                </div>
-                                                <span className={cx("date")}>2020년 11월23일</span>
-                                            </a>
-                                        </Link>
-                                    </div>
-                                </div>
-                                <div className={cx("list")}>
-                                    <div className={cx("img_area")}>
-                                        <Link href="/">
-                                            <a>
-                                                <Image src="/assets/image/main_notice_img.jpg" width={309} height={225} alt="main_notice_img"/>
-                                            </a>
-                                        </Link>
-                                    </div>
-                                    <div className={cx("txt_area")}>
-                                        <Link href="/">
-                                            <a>
-                                                <div className={cx("title")}>
-                                                    2020 September Ent. Lunch Talk 미래과학기술지주 김판건 대표
-                                                </div>
-                                                <div className={cx("txt")}>
-                                                    2020년 9월 런치톡은 9월25일(금) 오후 2시 부터 3시까지 미래과학기술지주 김판건 대표님의 “투자자가 끌리는
-                                                    스타트업”이라는 주제로 줌 췌이나로 진행될 예정입니다.
-                                                </div>
-                                                <span className={cx("date")}>2020년 11월23일</span>
-                                            </a>
-                                        </Link>
-                                    </div>
-                                </div>
-                                <div className={cx("list")}>
-                                    <div className={cx("img_area")}>
-                                        <Link href="/">
-                                            <a>
-                                                <Image src="/assets/image/main_notice_img.jpg" width={309} height={225} alt="main_notice_img"/>
-                                            </a>
-                                        </Link>
-                                    </div>
-                                    <div className={cx("txt_area")}>
-                                        <Link href="/">
-                                            <a>
-                                                <div className={cx("title")}>
-                                                    2020 September Ent. Lunch Talk 미래과학기술지주 김판건 대표
-                                                </div>
-                                                <div className={cx("txt")}>
-                                                    2020년 9월 런치톡은 9월25일(금) 오후 2시 부터 3시까지 미래과학기술지주 김판건 대표님의 “투자자가 끌리는
-                                                    스타트업”이라는 주제로 줌 췌이나로 진행될 예정입니다.
-                                                </div>
-                                                <span className={cx("date")}>2020년 11월23일</span>
-                                            </a>
-                                        </Link>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {/*<div>*/}
+                        {/*    <div className={cx("slides")}>*/}
+                        {/*        <div className={cx("list")}>*/}
+                        {/*            <div className={cx("img_area")}>*/}
+                        {/*                <Link href="/">*/}
+                        {/*                    <a>*/}
+                        {/*                        <Image src="/assets/image/main_notice_img.jpg" width={309} height={225}*/}
+                        {/*                               alt="main_notice_img"/>*/}
+                        {/*                    </a>*/}
+                        {/*                </Link>*/}
+                        {/*            </div>*/}
+                        {/*            <div className={cx("txt_area")}>*/}
+                        {/*                <Link href="/">*/}
+                        {/*                    <a>*/}
+                        {/*                        <div className={cx("title")}>*/}
+                        {/*                            2020 September Ent. Lunch Talk 미래과학기술지주 김판건 대표*/}
+                        {/*                        </div>*/}
+                        {/*                        <div className={cx("txt")}>*/}
+                        {/*                            2020년 9월 런치톡은 9월25일(금) 오후 2시 부터 3시까지 미래과학기술지주 김판건 대표님의 “투자자가 끌리는*/}
+                        {/*                            스타트업”이라는 주제로 줌 췌이나로 진행될 예정입니다.*/}
+                        {/*                        </div>*/}
+                        {/*                        <span className={cx("date")}>2020년 11월23일</span>*/}
+                        {/*                    </a>*/}
+                        {/*                </Link>*/}
+                        {/*            </div>*/}
+                        {/*        </div>*/}
+                        {/*        <div className={cx("list")}>*/}
+                        {/*            <div className={cx("img_area")}>*/}
+                        {/*                <Link href="/">*/}
+                        {/*                    <a>*/}
+                        {/*                        <Image src="/assets/image/main_notice_img.jpg" width={309} height={225}*/}
+                        {/*                               alt="main_notice_img"/>*/}
+                        {/*                    </a>*/}
+                        {/*                </Link>*/}
+                        {/*            </div>*/}
+                        {/*            <div className={cx("txt_area")}>*/}
+                        {/*                <Link href="/">*/}
+                        {/*                    <a>*/}
+                        {/*                        <div className={cx("title")}>*/}
+                        {/*                            2020 September Ent. Lunch Talk 미래과학기술지주 김판건 대표*/}
+                        {/*                        </div>*/}
+                        {/*                        <div className={cx("txt")}>*/}
+                        {/*                            2020년 9월 런치톡은 9월25일(금) 오후 2시 부터 3시까지 미래과학기술지주 김판건 대표님의 “투자자가 끌리는*/}
+                        {/*                            스타트업”이라는 주제로 줌 췌이나로 진행될 예정입니다.*/}
+                        {/*                        </div>*/}
+                        {/*                        <span className={cx("date")}>2020년 11월23일</span>*/}
+                        {/*                    </a>*/}
+                        {/*                </Link>*/}
+                        {/*            </div>*/}
+                        {/*        </div>*/}
+                        {/*        <div className={cx("list")}>*/}
+                        {/*            <div className={cx("img_area")}>*/}
+                        {/*                <Link href="/">*/}
+                        {/*                    <a>*/}
+                        {/*                        <Image src="/assets/image/main_notice_img.jpg" width={309} height={225}*/}
+                        {/*                               alt="main_notice_img"/>*/}
+                        {/*                    </a>*/}
+                        {/*                </Link>*/}
+                        {/*            </div>*/}
+                        {/*            <div className={cx("txt_area")}>*/}
+                        {/*                <Link href="/">*/}
+                        {/*                    <a>*/}
+                        {/*                        <div className={cx("title")}>*/}
+                        {/*                            2020 September Ent. Lunch Talk 미래과학기술지주 김판건 대표*/}
+                        {/*                        </div>*/}
+                        {/*                        <div className={cx("txt")}>*/}
+                        {/*                            2020년 9월 런치톡은 9월25일(금) 오후 2시 부터 3시까지 미래과학기술지주 김판건 대표님의 “투자자가 끌리는*/}
+                        {/*                            스타트업”이라는 주제로 줌 췌이나로 진행될 예정입니다.*/}
+                        {/*                        </div>*/}
+                        {/*                        <span className={cx("date")}>2020년 11월23일</span>*/}
+                        {/*                    </a>*/}
+                        {/*                </Link>*/}
+                        {/*            </div>*/}
+                        {/*        </div>*/}
+                        {/*        <div className={cx("list")}>*/}
+                        {/*            <div className={cx("img_area")}>*/}
+                        {/*                <Link href="/">*/}
+                        {/*                    <a>*/}
+                        {/*                        <Image src="/assets/image/main_notice_img.jpg" width={309} height={225}*/}
+                        {/*                               alt="main_notice_img"/>*/}
+                        {/*                    </a>*/}
+                        {/*                </Link>*/}
+                        {/*            </div>*/}
+                        {/*            <div className={cx("txt_area")}>*/}
+                        {/*                <Link href="/">*/}
+                        {/*                    <a>*/}
+                        {/*                        <div className={cx("title")}>*/}
+                        {/*                            2020 September Ent. Lunch Talk 미래과학기술지주 김판건 대표*/}
+                        {/*                        </div>*/}
+                        {/*                        <div className={cx("txt")}>*/}
+                        {/*                            2020년 9월 런치톡은 9월25일(금) 오후 2시 부터 3시까지 미래과학기술지주 김판건 대표님의 “투자자가 끌리는*/}
+                        {/*                            스타트업”이라는 주제로 줌 췌이나로 진행될 예정입니다.*/}
+                        {/*                        </div>*/}
+                        {/*                        <span className={cx("date")}>2020년 11월23일</span>*/}
+                        {/*                    </a>*/}
+                        {/*                </Link>*/}
+                        {/*            </div>*/}
+                        {/*        </div>*/}
+                        {/*        <div className={cx("list")}>*/}
+                        {/*            <div className={cx("img_area")}>*/}
+                        {/*                <Link href="/">*/}
+                        {/*                    <a>*/}
+                        {/*                        <Image src="/assets/image/main_notice_img.jpg" width={309} height={225}*/}
+                        {/*                               alt="main_notice_img"/>*/}
+                        {/*                    </a>*/}
+                        {/*                </Link>*/}
+                        {/*            </div>*/}
+                        {/*            <div className={cx("txt_area")}>*/}
+                        {/*                <Link href="/">*/}
+                        {/*                    <a>*/}
+                        {/*                        <div className={cx("title")}>*/}
+                        {/*                            2020 September Ent. Lunch Talk 미래과학기술지주 김판건 대표*/}
+                        {/*                        </div>*/}
+                        {/*                        <div className={cx("txt")}>*/}
+                        {/*                            2020년 9월 런치톡은 9월25일(금) 오후 2시 부터 3시까지 미래과학기술지주 김판건 대표님의 “투자자가 끌리는*/}
+                        {/*                            스타트업”이라는 주제로 줌 췌이나로 진행될 예정입니다.*/}
+                        {/*                        </div>*/}
+                        {/*                        <span className={cx("date")}>2020년 11월23일</span>*/}
+                        {/*                    </a>*/}
+                        {/*                </Link>*/}
+                        {/*            </div>*/}
+                        {/*        </div>*/}
+                        {/*    </div>*/}
+                        {/*</div>*/}
                         {/*//창업지원정보*/}
                     </div>
                 </div>
@@ -596,7 +547,8 @@ const Index = () => {
 
             <div className={cx("main_cont_5")}>
                 <h1>Startup Network</h1>
-                <div className={cx("img_area")}><Image src="/assets/image/main_network.png" width={1531} height={492} alt="main_network"/></div>
+                <div className={cx("img_area")}><Image src="/assets/image/main_network.png" width={1531} height={492}
+                                                       alt="main_network"/></div>
             </div>
 
             <div className={cx("main_cont_6")}>
@@ -633,25 +585,42 @@ const Index = () => {
                 <div className={cx("main_cont")}>
                     <div className={cx("main_logo_rolling_list")}>
                         <Slider className={cx("slide")} {...logoSliderSettings} ref={logoSlider}>
-                            <div className={cx("list")}><Image src="/assets/image/family_site_1.jpg" width={150} height={88} alt="family_site"/></div>
-                            <div className={cx("list")}><Image src="/assets/image/family_site_2.jpg" width={126} height={88} alt="family_site"/></div>
-                            <div className={cx("list")}><Image src="/assets/image/family_site_3.jpg" width={114} height={88} alt="family_site"/></div>
-                            <div className={cx("list")}><Image src="/assets/image/family_site_4.jpg" width={86} height={88} alt="family_site"/></div>
-                            <div className={cx("list")}><Image src="/assets/image/family_site_5.jpg" width={120} height={88} alt="family_site"/></div>
-                            <div className={cx("list")}><Image src="/assets/image/family_site_6.jpg" width={126} height={88} alt="family_site"/></div>
-                            <div className={cx("list")}><Image src="/assets/image/family_site_1.jpg" width={150} height={88} alt="family_site"/></div>
-                            <div className={cx("list")}><Image src="/assets/image/family_site_2.jpg" width={126} height={88} alt="family_site"/></div>
+                            <div className={cx("list")}><Image src="/assets/image/family_site_1.jpg" width={150}
+                                                               height={88} alt="family_site"/></div>
+                            <div className={cx("list")}><Image src="/assets/image/family_site_2.jpg" width={126}
+                                                               height={88} alt="family_site"/></div>
+                            <div className={cx("list")}><Image src="/assets/image/family_site_3.jpg" width={114}
+                                                               height={88} alt="family_site"/></div>
+                            <div className={cx("list")}><Image src="/assets/image/family_site_4.jpg" width={86}
+                                                               height={88} alt="family_site"/></div>
+                            <div className={cx("list")}><Image src="/assets/image/family_site_5.jpg" width={120}
+                                                               height={88} alt="family_site"/></div>
+                            <div className={cx("list")}><Image src="/assets/image/family_site_6.jpg" width={126}
+                                                               height={88} alt="family_site"/></div>
+                            <div className={cx("list")}><Image src="/assets/image/family_site_1.jpg" width={150}
+                                                               height={88} alt="family_site"/></div>
+                            <div className={cx("list")}><Image src="/assets/image/family_site_2.jpg" width={126}
+                                                               height={88} alt="family_site"/></div>
                         </Slider>
                         <div className={cx("slick_controller")}>
                             <ul className={'clfx'}>
                                 <li>
-                                    <button type="button" className={cx("slick_prev")} onClick={() => {logoSlider.current.slickPrev()}}><Image src="/assets/image/family_site_prev.jpg" width={44} height={46} alt="family_site_prev"/></button>
+                                    <button type="button" className={cx("slick_prev")} onClick={() => {
+                                        logoSlider.current.slickPrev()
+                                    }}><Image src="/assets/image/family_site_prev.jpg" width={44} height={46}
+                                              alt="family_site_prev"/></button>
                                 </li>
                                 <li>
-                                    <button type="button" className={cx("slick_pause")} onClick={() => {logoSlider.current.slickPause()}}><Image src="/assets/image/family_site_stop.jpg" width={44} height={46} alt="family_site_stop"/></button>
+                                    <button type="button" className={cx("slick_pause")} onClick={() => {
+                                        logoSlider.current.slickPause()
+                                    }}><Image src="/assets/image/family_site_stop.jpg" width={44} height={46}
+                                              alt="family_site_stop"/></button>
                                 </li>
                                 <li>
-                                    <button type="button" className={cx("slick_next")} onClick={() => {logoSlider.current.slickNext()}}><Image src="/assets/image/family_site_next.jpg" width={44} height={46} alt="family_site_next"/></button>
+                                    <button type="button" className={cx("slick_next")} onClick={() => {
+                                        logoSlider.current.slickNext()
+                                    }}><Image src="/assets/image/family_site_next.jpg" width={44} height={46}
+                                              alt="family_site_next"/></button>
                                 </li>
                             </ul>
                         </div>

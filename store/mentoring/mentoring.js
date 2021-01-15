@@ -4,6 +4,7 @@ import produce from 'immer';
 import {takeLatest} from 'redux-saga/effects';
 import * as mentoringAPI from '../../lib/api/mentoring/mentoring';
 import {HYDRATE} from 'next-redux-wrapper';
+import * as adminMentoringAPI from "../../lib/api/admin/mentoring/mentoring";
 
 
 const [GET_COUNSEL_FIELD_CODE,GET_COUNSEL_FIELD_CODE_SUCCESS, GET_COUNSEL_FIELD_CODE_FAILURE] = createRequestActionTypes('mentoring/GET_COUNSEL_FIELD_CODE')
@@ -15,6 +16,13 @@ const [GET_MENTOR_LIST,GET_MENTOR_LIST_SUCCESS, GET_MENTOR_LIST_FAILURE] = creat
 const [APPLY_MENTOR,APPLY_MENTOR_SUCCESS, APPLY_MENTOR_FAILURE] = createRequestActionTypes('mentoring/APPLY_MENTOR')
 const [APPLY_COUNSEL,APPLY_COUNSEL_SUCCESS, APPLY_COUNSEL_FAILURE] = createRequestActionTypes('mentoring/APPLY_COUNSEL')
 const [GET_COUNSEL_APPLY_LIST,GET_COUNSEL_APPLY_LIST_SUCCESS, GET_COUNSEL_APPLY_LIST_FAILURE] = createRequestActionTypes('mentoring/GET_COUNSEL_APPLY_LIST')
+const [GET_COUNSEL_APPLY,GET_COUNSEL_APPLY_SUCCESS, GET_COUNSEL_APPLY_FAILURE] = createRequestActionTypes('mentoring/GET_COUNSEL_APPLY')
+const [UPDATE_COUNSEL_APPLY_STATUS,UPDATE_COUNSEL_APPLY_STATUS_SUCCESS, UPDATE_COUNSEL_APPLY_STATUS_FAILURE] = createRequestActionTypes('mentoring/UPDATE_COUNSEL_APPLY_STATUS')
+const [GET_MENTOR_COUNSEL_APPLY,GET_MENTOR_COUNSEL_APPLY_SUCCESS, GET_MENTOR_COUNSEL_APPLY_FAILURE] = createRequestActionTypes('mentoring/GET_MENTOR_COUNSEL_APPLY')
+const [GET_MENTOR_COUNSEL_APPLY_LIST,GET_MENTOR_COUNSEL_APPLY_LIST_SUCCESS, GET_MENTOR_COUNSEL_APPLY_LIST_FAILURE] = createRequestActionTypes('mentoring/GET_MENTOR_COUNSEL_APPLY_LIST')
+
+const [ADD_DIARY,ADD_DIARY_SUCCESS, ADD_DIARY_FAILURE] = createRequestActionTypes('mentoring/ADD_DIARY')
+const [UPDATE_DIARY,UPDATE_DIARY_SUCCESS, UPDATE_DIARY_FAILURE] = createRequestActionTypes('mentoring/UPDATE_DIARY')
 
 const INITIALIZE = 'mentoring/INITIALIZE';
 const INITIALIZE_FORM  = 'mentoring/INITIALIZE_FORM';
@@ -26,7 +34,7 @@ export const initialize = createAction(INITIALIZE);
 export const changeMentorList = createAction(CHANGE_MENTOR_LIST);
 
 export const getMentor = createAction(GET_MENTOR);
-export const getMentorList = createAction(GET_MENTOR_LIST);
+export const getMentorList = createAction(GET_MENTOR_LIST, form => form);
 export const applyMentor = createAction(APPLY_MENTOR, form => form);
 export const applyCounsel = createAction(APPLY_COUNSEL, form => form);
 export const getCounselFieldCode = createAction(GET_COUNSEL_FIELD_CODE);
@@ -34,7 +42,15 @@ export const getProgressItem = createAction(GET_PROGRESS_ITEM);
 export const getSortationItem = createAction(GET_SORTATION_ITEM);
 export const getWayItem = createAction(GET_WAY_ITEM);
 
+export const getCounselApply = createAction(GET_COUNSEL_APPLY,formId =>formId);
+export const updateCounselApplyStatus = createAction(UPDATE_COUNSEL_APPLY_STATUS,form =>form);
+export const getMentorCounselApply = createAction(GET_MENTOR_COUNSEL_APPLY,formId =>formId);
 export const getCounselApplyList = createAction(GET_COUNSEL_APPLY_LIST,data =>data);
+export const getMentorCounselApplyList = createAction(GET_MENTOR_COUNSEL_APPLY_LIST,data =>data);
+
+export const addDiary = createAction(ADD_DIARY,form =>form);
+export const updateDiary = createAction(UPDATE_DIARY,form =>form);
+
 
 
 
@@ -44,11 +60,20 @@ const getCounselFieldCodeSaga = createRequestSaga(GET_COUNSEL_FIELD_CODE, mentor
 const applyMentorSaga = createRequestSaga(APPLY_MENTOR, mentoringAPI.applyMentor);
 const applyCounselSaga = createRequestSaga(APPLY_COUNSEL, mentoringAPI.applyCounsel);
 
+
 const getProgressItemSaga = createRequestSaga(GET_PROGRESS_ITEM, mentoringAPI.getProgressItem);
 const getSortationItemSaga = createRequestSaga(GET_SORTATION_ITEM, mentoringAPI.getSortationItem);
 const getWayItemSaga = createRequestSaga(GET_WAY_ITEM, mentoringAPI.getWayItem);
 
+
+const getCounselApplySaga = createRequestSaga(GET_COUNSEL_APPLY, mentoringAPI.getCounselApply);
+const updateCounselApplyStatusSaga = createRequestSaga(UPDATE_COUNSEL_APPLY_STATUS, mentoringAPI.updateCounselApplyStatus);
+const getMentorCounselApplySaga = createRequestSaga(GET_MENTOR_COUNSEL_APPLY, mentoringAPI.getMentorCounselApply);
 const getCounselApplyListSaga = createRequestSaga(GET_COUNSEL_APPLY_LIST, mentoringAPI.getCounselApplyList);
+const getMentorCounselApplyListSaga = createRequestSaga(GET_MENTOR_COUNSEL_APPLY_LIST, mentoringAPI.getMentorCounselApplyList);
+
+const addDiarySaga = createRequestSaga(ADD_DIARY, mentoringAPI.addDiary);
+const updateDiarySaga = createRequestSaga(UPDATE_DIARY, mentoringAPI.updateDiary);
 
 
 export function* mentoringSaga(){
@@ -65,7 +90,15 @@ export function* mentoringSaga(){
     yield takeLatest(APPLY_MENTOR, applyMentorSaga);
     yield takeLatest(APPLY_COUNSEL, applyCounselSaga);
 
+    yield takeLatest(GET_COUNSEL_APPLY, getCounselApplySaga);
+    yield takeLatest(UPDATE_COUNSEL_APPLY_STATUS, updateCounselApplyStatusSaga);
+    yield takeLatest(GET_MENTOR_COUNSEL_APPLY, getMentorCounselApplySaga);
     yield takeLatest(GET_COUNSEL_APPLY_LIST, getCounselApplyListSaga);
+    yield takeLatest(GET_MENTOR_COUNSEL_APPLY_LIST, getMentorCounselApplyListSaga);
+
+    yield takeLatest(ADD_DIARY, addDiarySaga);
+    yield takeLatest(UPDATE_DIARY, updateDiarySaga);
+
 
 }
 
@@ -103,9 +136,27 @@ const initialState = {
         list:[],
         page:null
     },
+    statusUpdate:{
+        result:null
+    },
+    getCounselApply:{
+        result:false,
+        counselApply:null,
+        files:[],
+        answerFiles:[],
+        error:null
+    },
     mentorCheck:{
         result:null,
         code:null,
+    },
+    addDiary:{
+        result:null,
+        error:null
+    },
+    updateDiary:{
+        result:null,
+        error:null
     }
 };
 
@@ -184,12 +235,53 @@ const mentoring = handleActions(
         [GET_MENTOR_LIST_SUCCESS]: (state, {payload: response}) =>
             produce(state, draft => {
                 draft.mentorList.result = true
-                draft.mentorList.list = response.data
+                draft.mentorList.list = response.data.list
+                draft.mentorList.page = response.data.page
             }),
         [GET_MENTOR_LIST_FAILURE]: (state, {payload: error}) =>
             produce(state, draft => {
                 draft.mentorList.result = false
                 draft.mentorList.list = []
+                draft.mentorList.page = null
+            }),
+        [GET_COUNSEL_APPLY_SUCCESS]: (state, {payload: response}) =>
+            produce(state, draft => {
+                draft.getCounselApply.result = true
+                draft.getCounselApply.counselApply = response.data.counselApply
+                draft.getCounselApply.files = response.data.files
+                draft.getCounselApply.answerFiles = response.data.counselApply.applyStatus == 'COMPLETED' && response.data.answerFiles
+            }),
+        [GET_COUNSEL_APPLY_FAILURE]: (state, {payload: error}) =>
+            produce(state, draft => {
+                draft.getCounselApply.result = false
+                draft.getCounselApply.counselApply = null
+                draft.getCounselApply.files = []
+                draft.getCounselApply.answerFiles = []
+                draft.getCounselApply.error = error.response.data
+            }),
+        [UPDATE_COUNSEL_APPLY_STATUS_SUCCESS]: (state, {payload: response}) =>
+            produce(state, draft => {
+                draft.statusUpdate.result = true
+                draft.getCounselApply.counselApply.applyStatus = response.data
+            }),
+        [UPDATE_COUNSEL_APPLY_STATUS_FAILURE]: (state, {payload: error}) =>
+            produce(state, draft => {
+                draft.statusUpdate.result = false
+            }),
+        [GET_MENTOR_COUNSEL_APPLY_SUCCESS]: (state, {payload: response}) =>
+            produce(state, draft => {
+                draft.getCounselApply.result = true
+                draft.getCounselApply.counselApply = response.data.counselApply
+                draft.getCounselApply.files = response.data.files
+                draft.getCounselApply.answerFiles = response.data.counselApply.applyStatus == 'COMPLETED' && response.data.answerFiles
+            }),
+        [GET_MENTOR_COUNSEL_APPLY_FAILURE]: (state, {payload: error}) =>
+            produce(state, draft => {
+                draft.getCounselApply.result = false
+                draft.getCounselApply.counselApply = null
+                draft.getCounselApply.files = []
+                draft.getCounselApply.answerFiles = []
+                draft.getCounselApply.error = error.response.data
             }),
         [GET_COUNSEL_APPLY_LIST_SUCCESS]: (state, {payload: response}) =>
             produce(state, draft => {
@@ -202,6 +294,38 @@ const mentoring = handleActions(
                 draft.counselApplyList.result = false
                 draft.counselApplyList.list = []
                 draft.counselApplyList.page = null
+            }),
+        [GET_MENTOR_COUNSEL_APPLY_LIST_SUCCESS]: (state, {payload: response}) =>
+            produce(state, draft => {
+                draft.counselApplyList.result = true
+                draft.counselApplyList.list = response.data.list
+                draft.counselApplyList.page = response.data.page
+            }),
+        [GET_MENTOR_COUNSEL_APPLY_LIST_FAILURE]: (state, {payload: error}) =>
+            produce(state, draft => {
+                draft.counselApplyList.result = false
+                draft.counselApplyList.list = []
+                draft.counselApplyList.page = null
+            }),
+        [ADD_DIARY_SUCCESS]: (state, {payload: response}) =>
+            produce(state, draft => {
+                draft.addDiary.result = true
+                draft.addDiary.error = null
+            }),
+        [ADD_DIARY_FAILURE]: (state, {payload: error}) =>
+            produce(state, draft => {
+                draft.addDiary.result = false
+                draft.addDiary.error = 'error'
+            }),
+        [UPDATE_DIARY_SUCCESS]: (state, {payload: response}) =>
+            produce(state, draft => {
+                draft.updateDiary.result = true
+                draft.updateDiary.error = null
+            }),
+        [UPDATE_DIARY_FAILURE]: (state, {payload: error}) =>
+            produce(state, draft => {
+                draft.updateDiary.result = false
+                draft.updateDiary.error = 'error'
             }),
         [INITIALIZE]: (state, {payload: form}) => ({
             ...initialState

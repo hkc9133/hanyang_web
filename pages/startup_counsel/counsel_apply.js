@@ -402,7 +402,7 @@ const CounselApply = () => {
                             <Option value="">전체</Option>
                             {
                                 counselField.list.map((item) =>{
-                                    return <Option value={item.value}>{item.label}</Option>
+                                    return <Option value={item.value} key={item.value}>{item.label}</Option>
                                 })
                             }
                         </Select>
@@ -502,8 +502,7 @@ const CounselApply = () => {
                             <p className={cx("help_txt01")}>※ 신청하신 멘토링과 관련된 참고자료를 첨부해주세요. 첨부파일은 담당 멘토에게 전달되며, 최대3개까지 첨부 가능합니다.</p>
                         </li>
                     </ul>
-
-                    <div className={cx("txt_c")}>
+                    <div className={cx("txt_c")} style={{marginTop:40}}>
                         <input type="submit" value="신청하기" className={cx("basic-btn03", "btn-blue-bg2")}/>
                     </div>
                 </div>

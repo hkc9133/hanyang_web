@@ -1,35 +1,9 @@
 import React from 'react';
 import moment from 'moment';
+import Link from 'next/link';
+import {getUserRole, getUserType} from "../../common/util/StatusUtil";
 const UserListTable = ({cx,list}) => {
 
-    const setUserRole = (role) =>{
-        switch (role){
-            case 'ROLE_USER':
-                return "일반(미승인)"
-            case 'ROLE_ST':
-                return "학생"
-            case 'ROLE_TC':
-                return "교직"
-            case 'ROLE_MT':
-                return "멘토"
-            case 'ROLE_ADMIN':
-                return "관리자"
-        }
-    }
-    const setType = (type) =>{
-        switch (type){
-            case 'KAKAO':
-                return "kakao_icon"
-            case 'GOOGLE':
-                return "google_icon"
-            case 'FACEBOOK':
-                return "facebook_icon"
-            case 'NAVER':
-                return "naver_icon"
-            case 'HANYANG':
-                return "hanyang_icon"
-        }
-    }
     return (
         <table>
             <colgroup>
@@ -57,16 +31,16 @@ const UserListTable = ({cx,list}) => {
             <tbody>
             {
                 list.map((item)=>(
-                    <tr>
+                    <tr key={item.rownum}>
                         <td>{item.rownum}</td>
                         <td>
-                            <span className={cx(setType(item.type), "id_name")}>{item.userId}</span>
+                            <Link href={`/admin/users/edit/${item.userId}`}><a><span className={cx(getUserType(item.type), "id_name")}>{item.userId}</span></a></Link>
                         </td>
                         <td>{item.userName}</td>
                         <td>{item.userEmail}</td>
                         <td className={cx("c-blue")}>{item.status}</td>
                         <td>{moment(item.lastLogin).format("YYYY-MM-DD hh:mm:ss")}</td>
-                        <td>{setUserRole(item.role)}</td>
+                        <td>{getUserRole(item.role)}</td>
                         <td>{moment(item.regDate).format("YYYY-MM-DD  hh:mm:ss")}</td>
                     </tr>
                 ))

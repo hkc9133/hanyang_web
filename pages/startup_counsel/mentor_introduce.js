@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import PageNavigation from "../../component/layout/PageNavigation";
 
 import styles from '../../public/assets/styles/mentor/mentor.module.css';
@@ -9,9 +9,10 @@ import SignUpInfo from "../../component/auth/SignUpInfo";
 import Modal from "../../component/common/Modal";
 import {useDispatch, useSelector} from "react-redux";
 import CounselFieldCateList from "../../component/mentor_introduce/CounselFieldCateList";
-import {getCounselFieldCode} from "../../store/mentoring/mentoring";
-import qs from "qs";
+import {getCounselFieldCode, getMentorList} from "../../store/mentoring/mentoring";
+import qs from 'query-string';
 import {useRouter} from "next/router";
+import Pagination from "../../component/common/Pagination";
 
 
 const cx = classnames.bind(styles);
@@ -21,7 +22,8 @@ const MentorIntroduce = () => {
     const router = useRouter();
     const [showMentorDetail, setShowMentorDetail] = useState(false);
 
-    const {counselField,counselFiledLoading} = useSelector(({mentoring, loading}) => ({
+    const {mentorList,counselField,counselFiledLoading} = useSelector(({mentoring, loading}) => ({
+        mentorList:mentoring.mentorList,
         counselField: mentoring.counselField,
         counselFiledLoading: loading['mentoring/GET_COUNSEL_FIELD_CODE'],
     }))
@@ -31,11 +33,24 @@ const MentorIntroduce = () => {
             ignoreQueryPrefix:true,
         });
 
+        dispatch(getMentorList())
+
         dispatch(getCounselFieldCode(router.query));
     },[])
 
     useEffect(() => {
-        dispatch(getCounselFieldCode(router.query));
+        dispatch(getMentorList(router.query))
+        // dispatch(getCounselFieldCode(router.query));
+    },[router.query])
+
+    const pageChange = useCallback((page) =>{
+        const { counselField = ""} = router.query
+        const data = {
+            counselField:counselField,
+            page:page,
+        }
+        const queryString = qs.stringify(data);
+        router.push(`${router.pathname}?${queryString}`)
     },[router.query])
 
     return (
@@ -206,15 +221,15 @@ const MentorIntroduce = () => {
                     </div>
                 </Modal>
 
-                <div className={cx("paging")}>
-                    <Link href="#"><a><Image src="/assets/image/page_prev.gif" width={8} height={14} alt="page_prev"/></a></Link>
-                    <Link href="#" className={cx("on")}><a>1</a></Link>
-                    <Link href="#"><a>2</a></Link>
-                    <Link href="#"><a>3</a></Link>
-                    <Link href="#"><a>4</a></Link>
-                    <Link href="#"><a>5</a></Link>
-                    <Link href="#"><a><Image src="/assets/image/page_next.gif" width={8} height={14} alt="page_next"/></a></Link>
-                </div>
+                {mentorList.page != null && (
+                    <Pagination
+                        totalRecords={mentorList.page.totalCount}
+                        pageLimit={mentorList.page.pageSize}
+                        pageNeighbours={1}
+                        currentPage={mentorList.page.pageNo}
+                        onPageChanged={pageChange}
+                    />
+                )}
             </div>
         </>
     );

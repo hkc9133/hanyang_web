@@ -6,6 +6,7 @@ import * as authAPI from '../../lib/api/auth/auth';
 import {HYDRATE} from 'next-redux-wrapper';
 
 const [SOCIAL_LOGIN,SOCIAL_LOGIN_SUCCESS, SOCIAL_LOGIN_FAILURE] = createRequestActionTypes('auth/SOCIAL_LOGIN')
+const [NORMAL_LOGIN,NORMAL_LOGIN_SUCCESS, NORMAL_LOGIN_FAILURE] = createRequestActionTypes('auth/NORMAL_LOGIN')
 const [SOCIAL_SIGNUP,SOCIAL_SIGNUP_SUCCESS, SOCIAL_SIGNUP_FAILURE] = createRequestActionTypes('auth/SOCIAL_SIGNUP')
 
 const [LOGOUT,LOGOUT_SUCCESS, LOGOUT_FAILURE] = createRequestActionTypes('auth/LOGOUT')
@@ -15,7 +16,7 @@ const [AUTH_CHECK,AUTH_CHECK_SUCCESS, AUTH_CHECK_FAILURE] = createRequestActionT
 const INITIALIZE = 'auth/INITIALIZE';
 const INITIALIZE_FORM  = 'auth/INITIALIZE_FORM';
 
-
+export const normalLogin = createAction(NORMAL_LOGIN,(loginInfo) => (loginInfo));
 export const socialLogin = createAction(SOCIAL_LOGIN,(loginInfo) => (loginInfo));
 export const socialSignUp= createAction(SOCIAL_SIGNUP,(signUpInfo) => (signUpInfo));
 
@@ -32,6 +33,8 @@ export const initializeForm = createAction(INITIALIZE_FORM, from => from);
 const socialLoginSaga = createRequestSaga(SOCIAL_LOGIN, authAPI.socialLogin);
 const socialSignUpSaga = createRequestSaga(SOCIAL_SIGNUP, authAPI.socialSignUp);
 
+const normalLoginSaga = createRequestSaga(NORMAL_LOGIN, authAPI.normalLogin);
+
 const logoutSaga = createRequestSaga(LOGOUT, authAPI.logout);
 const authCheckSaga = createRequestSaga(AUTH_CHECK, authAPI.authCheck);
 const signupSaga = createRequestSaga(SIGNUP, authAPI.signup);
@@ -41,7 +44,7 @@ export function* authSaga(){
 
     yield takeLatest(SOCIAL_LOGIN, socialLoginSaga);
     yield takeLatest(SOCIAL_SIGNUP, socialSignUpSaga);
-
+    yield takeLatest(NORMAL_LOGIN, normalLoginSaga);
     yield takeLatest(AUTH_CHECK, authCheckSaga);
     yield takeLatest(LOGOUT, logoutSaga);
     yield takeLatest(SIGNUP, signupSaga);
@@ -89,10 +92,23 @@ const auth = handleActions(
                 draft.user.info = response.data.user != null ? response.data.user : response.data;
                 draft.user.role = response.code == 200 && response.data.user.role;
                 draft.loginCode.code = response.code;
-                // draft.user.token = response.data.token;
                 draft.login.result = true;
                 draft.login.error = null;
-                // localStorage.setItem('token',response.data.token);
+            }),
+        [NORMAL_LOGIN_FAILURE]: (state, {payload: error}) =>
+            produce(state, draft => {
+                draft.user.login = false;
+                draft.login.result = false;
+                draft.login.error = error.response.data;
+            }),
+        [NORMAL_LOGIN_SUCCESS]: (state, {payload: response}) =>
+            produce(state, draft => {
+                draft.user.login = response.code == 200 ? true : false
+                draft.user.info = response.data.user != null ? response.data.user : response.data;
+                draft.user.role = response.code == 200 && response.data.user.role;
+                draft.loginCode.code = response.code;
+                draft.login.result = true;
+                draft.login.error = null;
             }),
         [SOCIAL_LOGIN_FAILURE]: (state, {payload: error}) =>
             produce(state, draft => {
@@ -121,6 +137,7 @@ const auth = handleActions(
             produce(state, draft => {
                 draft.user.login = true
                 draft.user.info = response.data;
+                draft.user.role = response.data.role;
                 // draft.user.code = response.code;
                 // localStorage.setItem('token',response.data.token);
             }),
@@ -128,6 +145,7 @@ const auth = handleActions(
             produce(state, draft => {
                 draft.user.login = false;
                 draft.login.result = false;
+                draft.user.role = null;
                 draft.login.error = error.response.data;
             }),
         [LOGIN_SUCCESS]: (state, {payload: response}) =>

@@ -13,7 +13,7 @@ import Link from 'next/link'
 import styles from '../../public/assets/styles/skin/board.module.css';
 import classnames from "classnames/bind"
 
-import qs from 'qs';
+import qs from 'query-string';
 const cx = classnames.bind(styles);
 
 

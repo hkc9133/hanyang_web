@@ -69,9 +69,6 @@ const Edit = () => {
         }
     },[board])
 
-    // useEffect(() => {
-    // },[boardValue,categoryValue,categoryCodeValue])
-
     useEffect(() => {
         if(update.result === true && update.error === null){
             alert("업데이트 성공")
@@ -127,22 +124,8 @@ const Edit = () => {
                                 <colgroup>
                                     <col style={{width:"30%"}}/>
                                     <col/>
-                                    {/*<col style={{width:"14.6%"}}/>*/}
-                                    {/*<col style={{width:"13.7%"}}/>*/}
-                                    {/*<col style={{width:"13.6%"}}/>*/}
-                                    {/*<col style={{width:"17.2%"}}/>*/}
-                                    {/*<col/>*/}
                                 </colgroup>
                                 <thead>
-                                {/*<tr>*/}
-                                {/*    <th scope="col">NO</th>*/}
-                                {/*    <th scope="col">아이디</th>*/}
-                                {/*    <th scope="col">닉네임</th>*/}
-                                {/*    <th scope="col">메일인증</th>*/}
-                                {/*    <th scope="col">상태</th>*/}
-                                {/*    <th scope="col">최근접속일</th>*/}
-                                {/*    <th scope="col">권한</th>*/}
-                                {/*</tr>*/}
                                 </thead>
                                 <tbody>
                                 <tr>
@@ -180,16 +163,24 @@ const Edit = () => {
                                         {/*<input className={cx("txt")} type="text" name="boardKrName" value={boardValue.boardKrName} onChange={(e)=>{changeBoardValue(e)}}/>*/}
                                     </td>
                                 </tr>
-                                {/*<tr>*/}
-                                {/*    <td>디자인 템플릿</td>*/}
-                                {/*    <td>*/}
-                                {/*        <select>*/}
-                                {/*            <option>템플릿1</option>*/}
-                                {/*            <option>템플릿2</option>*/}
-                                {/*            <option>템플릿3</option>*/}
-                                {/*        </select>*/}
-                                {/*    </td>*/}
-                                {/*</tr>*/}
+                                <tr>
+                                    <td>첨부파일 사용</td>
+                                    <td>
+                                        <select value={boardValue.useFile} name="useFile" onChange={(e)=>{changeBoardValue(e)}}>
+                                            <option value={false}>사용안함</option>
+                                            <option value={true}>사용</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>댓글 사용</td>
+                                    <td>
+                                        <select value={boardValue.useComment} name="useComment" onChange={(e)=>{changeBoardValue(e)}}>
+                                            <option value={false}>사용안함</option>
+                                            <option value={true}>사용</option>
+                                        </select>
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
                             <div>

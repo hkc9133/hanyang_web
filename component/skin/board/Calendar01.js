@@ -12,6 +12,7 @@ import Image from "next/image";
 import Link from 'next/link'
 import {useRouter} from "next/router";
 import qs from "query-string";
+import {Button, Modal} from "antd";
 
 
 const cx = classnames.bind(styles);
@@ -27,12 +28,31 @@ const Calendar01 = ({events,cateList,changeCategory,changeType}) => {
     const router = useRouter();
 
     const [eventList, setEventList] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+    const [moreEvent, setMoreEvent] = useState({
+        date:null,
+        events:[]
+    });
 
+    useEffect(() =>{
+        if(router.query.date == null || router.query.date == undefined){
+            const month = moment().format("YYYY-MM").toString()
 
+            const { type,categoryCodeId} = router.query
+            const data = {
+                type:type,
+                categoryCodeId:categoryCodeId,
+                date:month
+            }
+            const queryString = qs.stringify(data);
+            router.push(`${router.pathname}?${queryString}`)
+        }
+
+    },[])
     useEffect(() =>{
         let result = [];
         const a = events.map((item)=>{
-            return [{id:item.eventId,title:item.eventName+" 신청기간",start:item.applyStartDate,end:item.applyEndDate},{id:item.eventId,title:item.eventName,start:item.eventDate,end:item.eventDate}]
+            return [{id:item.noticeId,title:item.title+" 신청기간",start:item.applyStartDate,end:item.applyEndDate},{id:item.noticeId,title:item.title,start:item.eventDate,end:item.eventDate}]
         })
         a.forEach((item) =>{
             item.forEach((event) =>{
@@ -114,7 +134,7 @@ const Calendar01 = ({events,cateList,changeCategory,changeType}) => {
                 </div>
 
                 <ul className={cx("category")}>
-                    <li><a href="#" onClick={() =>{changeCategory("")}} className={cx({on:router.query.categoryCodeId == ""})}>전체</a></li>
+                    <li><a href="#" onClick={() =>{changeCategory("")}} className={cx({on:router.query.categoryCodeId == null  || router.query.categoryCodeId == ""})}>전체</a></li>
                     {cateList.map((item) =>(
                         <li key={item.categoryCodeId}><a href="#" className={cx({on:router.query.categoryCodeId == item.categoryCodeId})} onClick={() =>{changeCategory(item.categoryCodeId)}}>{item.categoryCodeName}</a></li>
                     ))}
@@ -141,12 +161,30 @@ const Calendar01 = ({events,cateList,changeCategory,changeType}) => {
                 endAccessor="end"
                 style={{ height: 850 }}
                 onNavigate={changeMonth}
+                popup={true}
+                canRenderSlotEvent={2}
+                onShowMore={(events, date) => {setShowModal(true);setMoreEvent({...moreEvent,date:date, events:events});}}
                 components={{
                     month: { header: MyCustomHeader,dateHeader:YourCalendarDateHeader },
                     event: CustomEvent,
                     toolbar: CustomToolbar,
                 }}
             />
+
+            <Modal title={moment(moreEvent.date).format("YYYY년 MM월 DD일")} visible={showModal}
+                   onCancel={() =>{setShowModal(false)}}
+                   footer={[
+                       <Button key="back" onClick={() =>{setShowModal(false)}}>
+                           확인
+                       </Button>,
+                   ]}
+            >
+                {
+                    moreEvent.events.map((event) =>
+                        <div key={event.id}>{event.title}</div>
+                    )
+                }
+            </Modal>
         </div>
     );
 };

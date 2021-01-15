@@ -20,7 +20,7 @@ const EventListType01 = ({list,cateList,page,pageChange,changeCategory,changeTyp
                 </div>
 
                 <ul className={cx("category")}>
-                    <li><a href="#" onClick={() =>{changeCategory("")}} className={cx({on:router.query.categoryCodeId == ""})}>전체</a></li>
+                    <li><a href="#" onClick={() =>{changeCategory("")}} className={cx({on:router.query.categoryCodeId == null || router.query.categoryCodeId == ""})}>전체</a></li>
                     {cateList.map((item) =>(
                         <li key={item.categoryCodeId}><a href="#" className={cx({on:router.query.categoryCodeId == item.categoryCodeId})} onClick={() =>{changeCategory(item.categoryCodeId)}}>{item.categoryCodeName}</a></li>
                     ))}
@@ -44,7 +44,6 @@ const EventListType01 = ({list,cateList,page,pageChange,changeCategory,changeTyp
                         <col/>
                         <col style={{width:"15%"}}/>
                         <col style={{width:"20%"}}/>
-                        <col style={{width:"10%"}}/>
                     </colgroup>
                     <thead>
                     <tr>
@@ -53,17 +52,16 @@ const EventListType01 = ({list,cateList,page,pageChange,changeCategory,changeTyp
                         <th scope="col">행사명</th>
                         <th scope="col">일시</th>
                         <th scope="col">신청기간</th>
-                        <th scope="col">정원</th>
                     </tr>
                     </thead>
                     <tbody>
                     {
                         list.map((item)=>{
                             return (
-                                <tr key={item.eventId}>
+                                <tr key={item.noticeId}>
                                     <td>{item.rownum}</td>
                                     <td><span className={cx("category",{red:item.progressStatus == "OPEN"})}>{item.progressStatus == "OPEN" ? "진행중" : "마감"}</span></td>
-                                    <td className={cx("txt_l")}><Link href="#"><a>{item.eventName}</a></Link></td>
+                                    <td className={cx("txt_l")}><Link href="#"><a>{item.title}</a></Link></td>
                                     <td>{item.eventDate != null && moment(item.eventDate).format("YYYY-MM-DD HH시mm분")}</td>
                                     <td>
                                         {
@@ -74,7 +72,6 @@ const EventListType01 = ({list,cateList,page,pageChange,changeCategory,changeTyp
                                              `
                                         }
                                     </td>
-                                    <td>{item.fixedNumber}</td>
                                 </tr>
                             )
                         })

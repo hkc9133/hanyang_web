@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {initializeForm, socialLogin, socialSignUp} from "../../store/auth/auth";
+import {initializeForm, normalLogin, socialLogin, socialSignUp} from "../../store/auth/auth";
 import {useDispatch, useSelector} from "react-redux";
 import { useRouter } from 'next/router'
 import Modal from "../../component/common/Modal";
@@ -28,11 +28,16 @@ const Login = () => {
 
     const [showJoinInfoModal, setShowJoinInfoModal] = useState(false);
     const [showJoinSuccessModal, setShowJoinSuccessModal] = useState(false);
-    const {user,loginCode, signup, loginLoading, signUpLoading, loading} = useSelector(({auth, loading}) => ({
+    const [loginInfo,setLoginInfo] = useState({
+        userId:"",
+        userPassword:""
+    })
+    const {user,loginCode, signup, loginLoading, signUpLoading,normalLoginLoading, loading} = useSelector(({auth, loading}) => ({
         user: auth.user,
         loginCode:auth.loginCode.code,
         signup: auth.signup,
         loginLoading: loading['auth/SOCIAL_LOGIN'],
+        normalLoginLoading: loading['auth/NORMAL_LOGIN'],
         signUpLoading: loading['auth/SOCIAL_SIGNUP'],
         loading: loading
     }))
@@ -40,9 +45,20 @@ const Login = () => {
     useEffect(() => {
     },[])
 
+    const handleChangeLoginInfo = (e) => {
+        const {name, value} = e.target
+        setLoginInfo({
+            ...loginInfo,
+            [name]:value
+        })
+    };
 
     const handleSocialLogin = (id, email, name, type) => {
         dispatch(socialLogin({id, email, name, type}))
+    };
+
+    const handleLogin = () => {
+        dispatch(normalLogin(loginInfo))
     };
 
     const handleSignUp = (role) => {
@@ -55,6 +71,7 @@ const Login = () => {
 
 
     useEffect(() => {
+        console.log(loginCode)
         if (!loginLoading && user.login == false && loginCode == 401) {
             dispatch(initializeForm('loginCode'))
             router.push('/user/join')
@@ -62,16 +79,16 @@ const Login = () => {
         }
         else if(!loginLoading && user.login == true && loginCode == 200){
             router.push('/')
+        }else if(!normalLoginLoading && user.login == false && loginCode == 400){
+            alert("에러 발생")
         }
-
-    }, [user, loginLoading])
+    }, [user.login,loginCode,loginLoading, normalLoginLoading])
 
     useEffect(() => {
         if (!signUpLoading && signup.result == true && signup.error == null) {
             console.log("가입 성공")
             router.push('/')
         }
-
     }, [signup, signUpLoading])
 
     return (
@@ -85,26 +102,26 @@ const Login = () => {
                             <div className={cx("loginArea")}>
                                 <p>한양인으로 로그인 하려면 아이디/비번을 입력해주세요</p>
                                 <ul className={cx("login_form")}>
-                                    <li><input type="text" placeholder="아이디"/></li>
-                                    <li><input type="password" placeholder="비밀번호"/></li>
+                                    <li><input type="text" name="userId" placeholder="아이디" onChange={handleChangeLoginInfo}/></li>
+                                    <li><input type="password" name="userPassword" placeholder="비밀번호" onChange={handleChangeLoginInfo}/></li>
                                 </ul>
                                 <div className={`${cx("login_info")} clfx`}>
-                                    <ul className={"clfx"}>
-                                        <li>
-                                            <input type="checkbox" id="id_save"/>
-                                            <label htmlFor="id_save">ID저장하기</label>
-                                        </li>
-                                        <li>
-                                            <input type="checkbox" id="auto_login"/>
-                                            <label htmlFor="auto_login">자동로그인</label>
-                                        </li>
-                                    </ul>
-                                    <div className={cx("f-r")}>
-                                        <a href="#">아이디/비밀번호 찾기</a>
-                                    </div>
+                                    {/*<ul className={"clfx"}>*/}
+                                    {/*    <li>*/}
+                                    {/*        <input type="checkbox" id="id_save"/>*/}
+                                    {/*        <label htmlFor="id_save">ID저장하기</label>*/}
+                                    {/*    </li>*/}
+                                    {/*    <li>*/}
+                                    {/*        <input type="checkbox" id="auto_login"/>*/}
+                                    {/*        <label htmlFor="auto_login">자동로그인</label>*/}
+                                    {/*    </li>*/}
+                                    {/*</ul>*/}
+                                    {/*<div className={cx("f-r")}>*/}
+                                    {/*    <a href="#">아이디/비밀번호 찾기</a>*/}
+                                    {/*</div>*/}
                                 </div>
                                 <div className={cx("btn_area")}>
-                                    <input type="submit" value="로그인" className={cx("btn_login")}/>
+                                    <input type="button" onClick={handleLogin} value="로그인" className={cx("btn_login")}/>
                                 </div>
                                 <div className={`${cx("login_join")} clfx`}>
                                     <p>멘토링, 공간예약을 이용하시려면 <br/>회원가입이 필요합니다.</p>

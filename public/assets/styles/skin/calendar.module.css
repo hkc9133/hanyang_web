@@ -37,7 +37,7 @@
 .calendar_type th{padding:20px 0; text-align:center; background-color:#fafafa; border:1px solid #ddd; border-top:none; font-size:16px; }
 .calendar_type td{position:relative; padding:50px 10px 10px; height:140px; border:1px solid #ddd; box-sizing:border-box; vertical-align:top;}
 .calendar_type .date{padding: 10px 3px 2px; width:100%; text-align:right; box-sizing:border-box; font-size:16px; color:#888;display: inline-block; }
-.calendar_type ul li .event_title{padding:5px 8px; border-radius:5px; background-color:#e5f0fe; display:block; font-size:14px; color:#0069f8;}
+.calendar_type ul li .event_title{padding:2px 8px; border-radius:5px; background-color:#e5f0fe; display:block; font-size:14px; color:#0069f8;}
 .calendarCont>div{display:none;}
 .calendarCont>div:first-child{display:block; }
 

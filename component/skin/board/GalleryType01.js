@@ -6,20 +6,14 @@ import styles from '../../../public/assets/styles/skin/gallery.module.css';
 import classnames from "classnames/bind"
 import PageNavigation from "../../../component/layout/PageNavigation";
 import Pagination from "../../common/Pagination";
-import noImage from '../../../public/assets/image/gallery_list.jpg';
 const cx = classnames.bind(styles);
+import qs from 'query-string';
+import {useRouter} from "next/router";
+import {getThumbnail} from '../../common/util/ThumbnailUtil';
 
-const GalleryType01 = ({content, pageChange}) => {
 
-    const getThumbnail = (item) =>{
-        const strReg = new RegExp("(http|https)://*[^>]*\\.(jpg|gif|png)","gim");
-        const imgSrc =  item.match(strReg);
-        if(imgSrc != null){
-            return imgSrc[0];
-        }else{
-            return noImage;
-        }
-    }
+const GalleryType01 = ({content,board, pageChange}) => {
+    const router = useRouter();
 
     return (
         <>
@@ -29,12 +23,14 @@ const GalleryType01 = ({content, pageChange}) => {
                         return (
                             <li key={item.rownum}>
                                 <div className={cx("img_area")}>
+                                    <Link href={`/board/${board.boardEnName}/view/${item.contentId}?${qs.stringify(router.query)}`}>
                                     <a href="#">
                                         <img src={getThumbnail(item.content)} alt="gallery_list"/>
                                     </a>
+                                    </Link>
                                 </div>
                                 <div className={cx("txt_area")}>
-                                    <Link href="#"><a>{item.title}</a></Link>
+                                    <Link href={`/board/${board.boardEnName}/view/${item.contentId}?${qs.stringify(router.query)}`}><a>{item.title}</a></Link>
                                 </div>
                             </li>
                         )

@@ -6,21 +6,14 @@ import styles from '../../../public/assets/styles/skin/gallery.module.css';
 import classnames from "classnames/bind"
 import PageNavigation from "../../../component/layout/PageNavigation";
 import Pagination from "../../common/Pagination";
-import noImage from '../../../public/assets/image/gallery_list.jpg';
 const cx = classnames.bind(styles);
+import qs from 'query-string';
+import {useRouter} from "next/router";
+import {getThumbnail} from '../../common/util/ThumbnailUtil';
 
-const GalleryType02 = ({content, pageChange}) => {
+const GalleryType02 = ({content,board, pageChange}) => {
+    const router = useRouter();
 
-    const getThumbnail = (item) =>{
-        const strReg = new RegExp("(http|https)://*[^>]*\\.(jpg|gif|png)","gim");
-        const imgSrc =  item.match(strReg);
-        console.log(imgSrc)
-        if(imgSrc != null){
-            return imgSrc[0];
-        }else{
-            return noImage;
-        }
-    }
 
     return (
         <>
@@ -28,19 +21,23 @@ const GalleryType02 = ({content, pageChange}) => {
                 <ul>
                     {content.list.map((item) =>{
                         return (
-                            <li>
+                            <li key={item.rownum}>
                                 <div className={cx("img_area")}>
+                                    <Link href={`/board/${board.boardEnName}/view/${item.contentId}?${qs.stringify(router.query)}`}>
                                     <a href="#">
                                         <img src={getThumbnail(item.content)} alt="gallery_list"/>
                                     </a>
+                                    </Link>
                                 </div>
                                 <div className={cx("txt_area")}>
+                                    <Link href={`/board/${board.boardEnName}/view/${item.contentId}?${qs.stringify(router.query)}`}>
                                     <a href="#">
                                         <div className={cx("title")}>
                                             {item.title}
                                         </div>
                                         <span className={cx("date")}>2020.12.21</span>
                                     </a>
+                                    </Link>
                                 </div>
                             </li>
                         )

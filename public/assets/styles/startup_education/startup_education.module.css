@@ -148,6 +148,29 @@
 .paging a{margin:0 4px; width:60px; height:60px; line-height:60px;  display:inline-block; text-align:center; border:1px solid #ccc; box-sizing:border-box; font-size:18px; color:#999;}
 .paging a.on{border:1px solid #222; color:#222; }
 
+
+.alumnusCont_1 .txtArea>ul{border-top:1px solid #aaa; }
+.alumnusCont_1 .txtArea>ul>li{position:relative; padding:20px 0 20px 260px; border-bottom:1px solid #aaa;}
+.alumnusCont_1 .txtArea>ul>li .title{position:absolute; left:0; top:20px; font-size:18px; color:#222; font-family: 's-core-dream-medium';}
+.alumnusCont_1 .txtArea>ul>li li{margin-bottom:5px; font-size:18px; }
+.alumnusCont_2 .txtArea ul li{margin-bottom:5px; font-size:18px; color:#222; }
+
+.tb_style_1 th{padding:15px 5px; border-bottom:1px solid #aaa; border-top:1px solid #aaa; font-size:18px; font-weight:normal; font-family: 's-core-dream-medium';}
+.tb_style_1 td{padding:15px 5px; border-bottom:1px solid #ddd; text-align:center; font-size:18px; }
+.tb_style_1 td:last-child{padding-left:40px; text-align:left; }
+.alumnusCont_5 .txtArea ul:after{ clear: both; content: "."; display: block; height: 0; visibility: hidden; font-size: 0;}
+.alumnusCont_5 .txtArea ul li{float:left; margin:0 1.55% 30px 0;  width:32.3%; }
+.alumnusCont_5 .txtArea ul li:nth-child(3n){margin-right:0; }
+.alumnusCont_5 .txtArea ul li .img_area{position:relative; padding-bottom:60%; display:block; }
+.alumnusCont_5 .txtArea ul li .img_area img{position:absolute; left:0; top:0; bottom:0; width:100%; height:100%;}
+.alumnusCont_6 .qa_list table{margin-bottom:50px; }
+.alumnusCont_6 .qa_list th{padding:12px 5px; text-align:center; border-top:1px solid #aaa; border-bottom:1px solid #aaa; font-size:18px; color:#222; }
+.alumnusCont_6 .qa_list td{padding:12px 5px; text-align:center; background-color:#fff; border-bottom:1px solid #ddd; font-size:18px; }
+.alumnusCont_6 .qa_list .list_1 li{margin-bottom:5px; font-size:18px; }
+.alumnus .sub_cont{padding:30px 20px;}
+.alumnus .txt_style_1{margin:0; }
+.alumnus{padding-bottom:100px; }
+
 @media screen and (max-width: 1400px){
 
     /*header*/
@@ -244,6 +267,15 @@
     .gallery_list_2 ul li .txt_area .title{font-size:18px; height:54px; }
     .gallery_list_2 ul li .txt_area .date{font-size:14px;}
 
+    .alumnusCont_1 .txtArea>ul>li .title,
+    .alumnusCont_1 .txtArea>ul>li li,
+    .alumnusCont_6 .qa_list .list_1 li,
+    .alumnusCont_6 .qa_list th,
+    .alumnusCont_6 .qa_list td,
+    .qa_list .answer .txt_1,
+    .tb_style_1 td,
+    .tb_style_1 th{font-size:16px;}
+
 
 }
 
@@ -325,5 +357,22 @@
 
 
     .paging a{margin:0 1px; width:40px; line-height:38px; height:40px; font-size:14px;}
+
+    .alumnusCont_2 .txtArea ul li,
+    .alumnusCont_1 .txtArea>ul>li .title,
+    .alumnusCont_1 .txtArea>ul>li li,
+    .alumnusCont_6 .qa_list .list_1 li,
+    .alumnusCont_6 .qa_list th,
+    .alumnusCont_6 .qa_list td,
+    .qa_list .answer .txt_1,
+    .tb_style_1 td,
+    .tb_style_1 th{font-size:14px;}
+    .alumnusCont_1 .txtArea>ul>li .title{position:relative; left:0; top:0; width:100%; display:block; margin-bottom:10px; }
+    .alumnusCont_1 .txtArea>ul>li{padding-left:0; }
+    .alumnus .sub_cont{padding:15px 20px;}
+    .alumnusCont_5 .txtArea ul li{margin:0 0 10px; width:49%; }
+    .alumnusCont_5 .txtArea ul li:nth-child(2n){float:right; }
+    .qa_list .answer .txt_1{margin-bottom:20px; }
+    .alumnus{padding-bottom:50px; }
 
 }

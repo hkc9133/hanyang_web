@@ -8,7 +8,8 @@ import {useRouter} from "next/router";
 
 import {getBoardContentList, getBoardList} from "../../../store/board/adminBoard";
 import BoardListTable from "../../../component/admin/board/BoardListTable";
-import qs from 'qs';
+import qs from 'query-string';
+import Pagination from "../../../component/common/Pagination";
 
 const cx = classnames.bind(styles);
 
@@ -66,6 +67,11 @@ const List = () => {
         router.push(`${router.pathname}?${queryString}`)
     }
 
+    const pageChange = (page) =>{
+        const queryString = qs.stringify(searchInfo,{...page});
+        router.push(`${router.pathname}?${queryString}`)
+
+    }
     return (
         <section className={cx("container")}>
             <h1 className={cx("top_title")}>게시판 관리</h1>
@@ -100,23 +106,15 @@ const List = () => {
                 <div className={cx("admin_cont")}>
                     <h2 className={cx("title_style_1")}><span>전체목록</span></h2>
                     <BoardListTable cx={cx} list={boardList.list} moveBoardConfig={moveBoardConfig} moveBoardContentList={moveBoardContentList}/>
-                    <div className={cx("paging")}>
-                        <Link href="/admin/users">
-                            <a>
-                                <Image src="/assets/image/admin/page_prev.gif" width={40} height={40} alt="page_prev"/>
-                            </a>
-                        </Link>
-                        <Link href="/admin/users" className={cx("on")}><a>1</a></Link>
-                        <Link href="/admin/users"><a>2</a></Link>
-                        <Link href="/admin/users"><a>3</a></Link>
-                        <Link href="/admin/users"><a>4</a></Link>
-                        <Link href="/admin/users"><a>5</a></Link>
-                        <Link href="/admin/users">
-                            <a>
-                                <Image src="/assets/image/admin/page_next.gif" width={40} height={40} alt="page_prev"/>
-                            </a>
-                        </Link>
-                    </div>
+                    {boardList.page != null && (
+                        <Pagination
+                            totalRecords={boardList.page.totalCount}
+                            pageLimit={boardList.page.pageSize}
+                            pageNeighbours={1}
+                            currentPage={boardList.page.pageNo}
+                            onPageChanged={pageChange}
+                        />
+                    )}
                 </div>
 
             </div>

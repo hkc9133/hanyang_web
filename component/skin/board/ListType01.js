@@ -5,7 +5,7 @@ import styles from '../../../public/assets/styles/skin/board.module.css';
 import classnames from "classnames/bind"
 import Pagination from "../../common/Pagination";
 import BoardContentListTable from "../../admin/board/BoardContentListTable";
-import qs from 'qs';
+import qs from 'query-string';
 import {useRouter} from "next/router";
 
 const cx = classnames.bind(styles);
@@ -55,7 +55,7 @@ const ListType01 = ({content,board,moveContentDetail,pageChange,category}) => {
                                     <td>
                                         {item.attachFileList != null && (
                                             item.attachFileList.map((attachFile)=>{
-                                                return <span className={cx("attach",attachFile.fileExtension.replace('.',''))}></span>
+                                                return <span key={attachFile.fileId} className={cx("attach",attachFile.fileExtension.replace('.',''))}></span>
                                             })
                                         )}
                                     </td>

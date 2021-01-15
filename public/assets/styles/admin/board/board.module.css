@@ -1,4 +1,4 @@
-.container{padding:40px 0 50px 90px; min-width:1290px; max-width:1290px; background-color:#f9faff; box-sizing:border-box; }
+.container{padding:40px 0 50px 90px; min-width:1290px; max-width:1350px; background-color:#f9faff; box-sizing:border-box; }
 .top_title{margin-bottom:20px; font-size:25px; color:#222; line-height:1; font-weight:400; }
 .box{padding:20px; box-shadow:2px 2px 3px 2px rgba(150,150,150,0.1); background-color:#fff; }
 .member_info{margin-bottom:25px; }
@@ -11,12 +11,22 @@
 .member_info>ul>li .icon_1{padding-left:34px; background:url(../../../image/admin/member_icon_1.png) no-repeat 0 center; }
 .member_info>ul>li .icon_2{padding-left:34px; background:url(../../../image/admin/member_icon_2.png) no-repeat 0 center; }
 .member_info>ul>li .icon_3{padding-left:34px; background:url(../../../image/admin/member_icon_3.png) no-repeat 0 center; }
+.member_info>ul>li .icon_4{padding-left:34px; background:url(../../../image/admin/adm_menu_3.png) no-repeat 0 center; }
 .member_info>ul>li .number{float:right; margin-left:30px; line-height:1; display:block; font-size:14px; font-weight:200; }
 .member_info>ul>li .number strong{font-size:24px; font-weight:400; vertical-align:bottom;}
 .member_info .member_id_search{float:right; position:relative; width:840px;text-align: right; }
-.member_info .member_id_search select{width:17.5%; height:35px; line-height:33px; background-color:#ebf0f9;margin-right: 0.5%; }
+.member_info .member_id_search select{width:17.83%; height:35px; line-height:33px; background-color:#ebf0f9;margin-right: 0.5%; }
 .member_info .member_id_search input[type=text]{float:right; padding-right:39px;width:45%; height:35px; line-height:33px; box-sizing:border-box;}
 .member_info .member_id_search .btn_search{position:absolute; right:1px; top:1px; width:40px; height:33px; }
+
+.member_info .startup_event_search select{width:32.8%}
+.member_info .startup_event_search .btn_search{position:absolute; right:1px; top:41px; width:40px; height:33px; }
+.member_info .startup_event_search input[type=text]{margin-top: 5px;}
+
+.startup_event_search .date_range{width: 54.5%;float: left;margin-top: 5px;height: 35px;background-color: #ebf0f9;}
+.startup_event_search .date_range input{text-align: center;}
+
+
 .admin_cont{padding:30px 20px; background-color:#fff; box-shadow:2px 2px 3px 2px rgba(150,150,150,0.1); background-color:#fff; }
 .txt_style_1{margin-bottom:15px; font-size:14px; font-weight:200; }
 .title_style_1{position:relative; margin-bottom:40px; line-height:1; }
@@ -28,6 +38,7 @@
 .tb_style_1 th:before{position:absolute; left:0; top:50%; margin-top:-10px; width:1px; height:20px; background-color:#c8c8c8; display:block; content:"";}
 .tb_style_1 th:first-child:before{display:none;}
 .tb_style_1 td{padding:8px 5px; text-align:center; border-bottom:1px solid #d9e0e5; font-size:14px; color:#596475; }
+.tb_style_1 td:first-of-type{border-top:1px solid #d9e0e5;}
 
 .tb_style_1 td .id_name{padding-left:36px; display:inline-block; line-height:30px; }
 .tb_style_1 td.td_btn:hover{cursor: pointer;}
@@ -38,6 +49,32 @@
 .tb_style_1 td.c-blue{color:#4b8cf7;}
 .tb_style_1 td .state{padding:5px 24px; border-radius:20px; background-color:#dee9fb; color:#417dde;}
 .tb_style_1.edit_form td:nth-child(even){text-align: left;}
+
+
+.tb_style_1.edit_form.content td input[type=text]{
+    padding-right: 39px;
+    width: 100%;
+    height: 35px;
+    line-height: 33px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;}
+
+.tb_style_2{padding:40px;}
+/*.tb_style_2 td input[type=text]{*/
+/*    padding-right: 39px;*/
+/*    width: 100%;*/
+/*    height: 35px;*/
+/*    line-height: 33px;*/
+/*    -moz-box-sizing: border-box;*/
+/*    box-sizing: border-box;}*/
+.tb_style_2 .btn_box{text-align: right;}
+.tb_style_2 td{border-bottom: 1px solid black;padding:20px;}
+.tb_style_2 td .title{font-size: 24px;margin-bottom: 15px;}
+.tb_style_2 td .cate{font-size: 17px;font-width: 500; margin-right: 10px;}
+.tb_style_2 td .date{font-size: 14px;line-height: 1;}
+.tb_style_2 td .view_cnt{font-size: 14px;margin-left:20px;line-height: 1;}
+
+
 .container.board_container input.txt{padding-right: 39px;width: 69.8%;height: 35px;line-height: 33px;-moz-box-sizing: border-box;box-sizing: border-box;}
 .container.board_container select{min-width: 100px;height: 35px;}
 
@@ -46,3 +83,76 @@
 .paging a{margin:0 3px; width:40px; height:40px; line-height:40px; text-align:center; border:1px solid #ddd; display:inline-block; font-size:12px; }
 .paging a img{vertical-align:top;}
 .paging .on{border:1px solid #222; color:#222; }
+
+.basic-btn01{background-color: #009bcb; padding:8px 18px; color:white;box-sizing: border-box;margin:3px;border-radius: 5px;}
+.basic-btn01:hover{color:white;}
+.basic-btn02{padding:8px 16px;border: 1px solid gray;box-sizing: border-box;margin:3px;border-radius: 5px;}
+.basic-btn02:hover{color:black;}
+
+.notice_icon{
+    background-color: black;
+    width: 45px;
+    height: 33px;
+    border-radius: 20px;
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    display: inline-block;
+    line-height: 33px;
+    margin-right: 5px;
+}
+
+.prev_next{padding:10px;}
+.prev_next li{padding:5px;}
+.prev_next a{margin-left: 10px;}
+.prev_next .date{margin-left: 15px;}
+
+.reply_box{padding:10px;}
+.reply_box .add_box{padding:20px 10px;}
+.reply_box textarea{
+    max-width: 77.2%;
+    height: auto;
+    min-height: 32px;
+    line-height: 1.5715;
+    vertical-align: bottom;
+    -moz-transition: all 0.3s, height 0s;
+    transition: all 0.3s, height 0s;}
+.reply_box .reply_add_btn{width: 21.8%;
+    height: 52px;
+    line-height: 52px;
+    text-align: center;
+    background-color: #009bcb;
+    font-size: 15px;
+    color: #fff;
+    float: right;}
+
+.reply_box .reply_content_box{padding:15px 10px;border-bottom: 1px solid darkgray;}
+.reply_box .reply_content_box.rereply{padding:15px 0 15px 50px;}
+.reply_box .reply_content_box .to_name{font-weight: 700;margin-right: 5px;}
+.reply_box .reply_content_box .reply_content{white-space: pre;}
+.reply_box .edit_box{padding: 15px 0 15px 80px;}
+.reply_box .edit_box textarea{max-width:75%}
+.reply_box .edit_box .reply_edit_btn{width: 11%;
+    height: 52px;
+    line-height: 52px;
+    text-align: center;
+    background-color: #009bcb;
+    border:1px solid #009bcb;
+    font-size: 15px;
+    color: #fff;
+    margin-left: 1%;
+    }
+
+.reply_box .edit_box .reply_cancel_btn{width: 11%;
+    height: 52px;
+    line-height: 52px;
+    text-align: center;
+    background-color: white;
+    font-size: 15px;
+    color: black;
+    margin-left: 1%;
+    border: 1px solid gray;
+    }
+
+.reply_box .reply_content_btn_box{margin-top:5px;}
+.reply_box .reply_content_btn_box button{margin-right: 8px;color:gray;}

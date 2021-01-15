@@ -7,6 +7,7 @@ export default css.global`
         body{background-color:#f9faff; min-width:1290px;}
         ol,ul,dl {margin-top: 0;margin-bottom: 0;}
         #wrap{position:relative;}
+        a:hover{none}
         
         /*!*-- font --*!*/
         

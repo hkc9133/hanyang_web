@@ -60,6 +60,56 @@
 
 
 
+.reply_box{padding:10px;}
+.reply_box .add_box{padding:20px 10px;}
+.reply_box textarea{
+    max-width: 77.2%;
+    height: auto;
+    min-height: 32px;
+    line-height: 1.5715;
+    vertical-align: bottom;
+    -moz-transition: all 0.3s, height 0s;
+    transition: all 0.3s, height 0s;}
+.reply_box .reply_add_btn{width: 21.8%;
+    height: 52px;
+    line-height: 52px;
+    text-align: center;
+    background-color: #009bcb;
+    font-size: 15px;
+    color: #fff;
+    float: right;}
+
+.reply_box .reply_content_box{padding:15px 10px;border-bottom: 1px solid #ddd;}
+.reply_box .reply_content_box.rereply{padding:15px 0 15px 50px;}
+.reply_box .reply_content_box .to_name{font-weight: 700;margin-right: 5px;}
+.reply_box .reply_content_box .reply_content{white-space: pre;}
+.reply_box .edit_box{padding: 15px 0 15px 80px;}
+.reply_box .edit_box textarea{max-width:75%}
+.reply_box .edit_box .reply_edit_btn{width: 11%;
+    height: 52px;
+    line-height: 52px;
+    text-align: center;
+    background-color: #009bcb;
+    border:1px solid #009bcb;
+    font-size: 15px;
+    color: #fff;
+    margin-left: 1%;
+}
+
+.reply_box .edit_box .reply_cancel_btn{width: 11%;
+    height: 52px;
+    line-height: 52px;
+    text-align: center;
+    background-color: white;
+    font-size: 15px;
+    color: black;
+    margin-left: 1%;
+    border: 1px solid gray;
+}
+
+.reply_box .reply_content_btn_box{margin-top:5px;}
+.reply_box .reply_content_btn_box button{margin-right: 8px;color:gray;}
+
 @media screen and (max-width: 1024px){
     .bbs_view .topTitleArea{padding:30px 0; }
     .bbs_viewCont{padding:30px 0; }

@@ -1,7 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import styles from '../../public/assets/styles/startup_info/startup_info.module.css';
 import classnames from "classnames/bind"
-import Link from 'next/link'
 import {Input, Tag, Button, Select,Form,Checkbox } from 'antd';
 const {CheckableTag} = Tag;
 import Image from "next/image";

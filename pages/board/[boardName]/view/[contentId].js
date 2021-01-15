@@ -11,7 +11,7 @@ import Link from 'next/link'
 import moment from 'moment';
 import styles from '../../../../public/assets/styles/board/board.module.css';
 import classnames from "classnames/bind"
-import qs from 'qs';
+import qs from 'query-string';
 import {Input, Upload} from "antd";
 import {fileDownload, fileDownload2} from "../../../../store/file/file";
 import ReplyAdd from "../../../../component/board/ReplyAdd";
@@ -53,7 +53,8 @@ const BoardView = () => {
     const [showInput, setShowInput] = useState(null);
     const [showUpdateInput, setShowUpdateInput] = useState(null);
 
-    const {board, view, reply} = useSelector(({board, loading}) => ({
+    const {board,user, view, reply} = useSelector(({board,auth, loading}) => ({
+        user:auth.user,
         board: board.board,
         view: board.view,
         reply: board.reply
@@ -168,8 +169,7 @@ const BoardView = () => {
                     <div className={cx("bbs_view")}>
                         <div className={cx("topTitleArea")}>
                             <h2>{view.content.title}</h2>
-                            <span
-                                className={cx("date")}>{moment(view.content.regDate).format("YYYY.MM.DD HH:MM")}</span>
+                            <span className={cx("date")}>{moment(view.content.regDate).format("YYYY.MM.DD HH:MM")}</span>
                         </div>
 
                         <div className={cx("bbs_viewCont")}>
@@ -194,26 +194,33 @@ const BoardView = () => {
                                             showDownloadIcon: true
                                         }}
                                         onDownload={handleFileDownload}
-                                        // onPreview={handlePreview}
-                                        // onChange={changeFileList}
-                                        // previewFile={(e)=>{console.log(e)}}
                                     >
                                     </Upload>
                                 </div>
                             )
                         }
 
-                        <div className={cx("reply_box")}>
-                            <ReplyList list={reply.list} addNewReReply={addNewReReply}
-                                       changeAddReReply={changeAddReReply} newReReply={newReReply}
-                                       setShowInput={setShowInput} showInput={showInput}
-                                       handleUpdateReply={handleUpdateReply} showUpdateInput={showUpdateInput}
-                                       setShowUpdateInput={setShowUpdateInput} updateReplyValue={updateReplyValue}
-                                       changeUpdateReply={changeUpdateReply} handleDeleteReply={handleDeleteReply}
+                        {board.board.useComment && (
+                            <div className={cx("reply_box")}>
+                                <ReplyList list={reply.list} addNewReReply={addNewReReply}
+                                           changeAddReReply={changeAddReReply} newReReply={newReReply}
+                                           setShowInput={setShowInput} showInput={showInput}
+                                           handleUpdateReply={handleUpdateReply} showUpdateInput={showUpdateInput}
+                                           setShowUpdateInput={setShowUpdateInput} updateReplyValue={updateReplyValue}
+                                           changeUpdateReply={changeUpdateReply} handleDeleteReply={handleDeleteReply}
 
-                            />
-                            <ReplyAdd addNewReply={addNewReply} changeAddReply={changeAddReply} newReply={newReply}/>
-                        </div>
+                                />
+                                {user.login ? (
+                                    <div className={cx("add_box")}>
+                                        <ReplyAdd addNewReply={addNewReply} changeAddReply={changeAddReply} newReply={newReply}/>
+                                    </div>
+                                ):(
+                                    <div className={"txt_c"}>
+                                        <Link href={'/user/login'}><a>로그인 후 이용...</a></Link>
+                                    </div>
+                                )}
+                            </div>
+                        )}
 
                         <div className={cx("txt_c")}>
                             <Link href={`/board/${board.board.boardEnName}/list?${qs.stringify({

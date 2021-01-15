@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useRouter} from "next/router";
-import qs from "qs";
+import qs from 'query-string';
 
 const CounselFieldCateList = ({cx,list}) => {
     const router = useRouter();

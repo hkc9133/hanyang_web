@@ -5,6 +5,7 @@ import GalleryType01 from "./GalleryType01";
 import GalleryType02 from "./GalleryType02";
 import Calendar01 from "./Calendar01";
 import EventListType01 from "./EventListType01";
+import NoticeListType01 from "./NoticeListType01";
 
 const BoardSkinSelector = (props) => {
     const setSkin = () =>{
@@ -19,6 +20,8 @@ const BoardSkinSelector = (props) => {
                 return <GalleryType01 {...props}/>
             case 'GalleryType02':
                 return <GalleryType02 {...props}/>
+            case 'NoticeListType01':
+                return <NoticeListType01 {...props}/>
             case 'Calendar01':
                 return <Calendar01 {...props}/>
             case 'EventListType01':

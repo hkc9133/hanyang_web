@@ -6,6 +6,7 @@ const NaverLoginButton = ({handleSocialLogin}) => {
     return (
         <NaverLogin
             clientId="X1l09clZ_fftNuaDbjIz"
+            callbackUrl={`${url}${clientPort != null && `:${clientPort}`}`}
             redirectUri={`${url}${clientPort != null && `:${clientPort}`}`}
             render={(props) =>
                 <a href="#" onClick={props.onClick}>

@@ -8,7 +8,8 @@ import moment from 'moment';
 import BoardContentListTable from "../../admin/board/BoardContentListTable";
 import ScrollToTop from "../../common/ScrollToTop";
 import {useRouter} from "next/router";
-import qs from 'qs';
+import qs from 'query-string';
+
 
 const cx = classnames.bind(styles);
 

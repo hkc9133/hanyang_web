@@ -4,17 +4,14 @@ import Link from 'next/link'
 import styles from '../../../public/assets/styles/board/board.module.css';
 import classnames from "classnames/bind"
 import {Form, Input, Select} from "antd";
-import {applyCounsel} from "../../../store/mentoring/mentoring";
 import dynamic from "next/dynamic";
 import {useRouter} from "next/router";
-import wrapper from "../../../store/configureStore";
-import client from "../../../lib/api/client";
 import {addBoardContent, getBoard, getBoardContentList, getBoardInfoAll, initialize} from "../../../store/board/board";
-import {END} from "redux-saga";
 import {useDispatch, useSelector} from "react-redux";
 import Modal from "../../../component/common/Modal";
 import { Upload } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
+import AuthFail from "../../user/auth_fail";
 
 
 const QuillEditor = dynamic(() => import("../../../component/common/QuillEditor"), {
@@ -29,8 +26,14 @@ export async function getStaticPaths() {
     return {
         paths: [
             { params: { boardName: 'community' } },
+            { params: { boardName: 'data_room' } },
+            { params: { boardName: 'notice' } },
+            { params: { boardName: 'startup_info' } },
+            { params: { boardName: 'startup_news' } },
+            { params: { boardName: 'people' } },
+            { params: { boardName: 'online_content' } },
         ],
-        fallback: true
+        fallback: false
     };
 }
 
@@ -54,9 +57,10 @@ const Write = () => {
     const [fileList,setFileList] = useState([]);
     const [addResultModal, setAddResultModal] = useState(false)
 
-    const {board,add} = useSelector(({board,loading})=> ({
+    const {board,add,user} = useSelector(({board,auth,loading})=> ({
         board:board.board,
         add:board.add,
+        user:auth.user,
     }))
 
 
@@ -67,10 +71,8 @@ const Write = () => {
         };
     }, []);
 
-
     const changeWriteInfo = useCallback((e) =>{
         const {name, value} = e.target
-
 
         setWriteInfo(writeInfo =>({
             ...writeInfo,
@@ -130,95 +132,104 @@ const Write = () => {
             <div style={{ marginTop: 8 }}>Upload</div>
         </div>
     );
+
+
     return (
         <>
+        {board.board != null && board.board.writeRole != null && board.board.writeRole.indexOf(user.role) < 0 && user.role != 'ROLE_ADMIN' ? <AuthFail/> : (
             <section className={cx("sub_container")}>
                 <Form form={form} onFinish={(e) =>{submitApply(e)}}>
-                <h1 className={cx("sub_top_title")}>{board.board.boardKrName}</h1>
-                <p className={cx("sub_top_txt")}>{board.board.boardDesc != null  ? board.board.boardDesc : ""}</p>
-                <div className={cx("bbs_write")}>
-                    <table>
-                        <colgroup>
-                            <col style={{width:"18%"}}/>
-                            <col/>
-                        </colgroup>
-                        <tbody>
-                        {board.cate != null && (
+                    <h1 className={cx("sub_top_title")}>{board.board.boardKrName}</h1>
+                    <p className={cx("sub_top_txt")}>{board.board.boardDesc != null  ? board.board.boardDesc : ""}</p>
+                    <div className={cx("bbs_write")}>
+                        <table>
+                            <colgroup>
+                                <col style={{width:"18%"}}/>
+                                <col/>
+                            </colgroup>
+                            <tbody>
+                            {board.cate != null && (
+                                <tr>
+                                    <th scope="row">분류</th>
+                                    <td>
+                                        <Form.Item
+                                            name="categoryId"
+                                            rules={[
+                                                {
+                                                    required: true,
+                                                    message: '카테고리',
+                                                },
+                                            ]}
+                                        >
+                                            <Select size='large' className={cx("cate")} onChange={changeCategory}>
+                                                {board.cate.map((item) => {
+                                                    return <Option key={item.categoryCodeId} value={item.categoryCodeId}>{item.categoryCodeName}</Option>
+                                                })}
+                                            </Select>
+                                        </Form.Item>
+                                    </td>
+                                </tr>
+                            )}
                             <tr>
-                                <th scope="row">분류</th>
+                                <th scope="row">제목</th>
                                 <td>
                                     <Form.Item
-                                        name="categoryId"
+                                        name="title"
                                         rules={[
                                             {
                                                 required: true,
-                                                message: '카테고리',
+                                                message: '제목을 입력하세요.',
                                             },
                                         ]}
                                     >
-                                        <Select size='large' className={cx("cate")} onChange={changeCategory}>
-                                            {board.cate.map((item) => {
-                                                return <Option key={item.categoryCodeId} value={item.categoryCodeId}>{item.categoryCodeName}</Option>
-                                            })}
-                                        </Select>
+                                        <Input placeholder={"제목을 입력하세요."} name="title" value={writeInfo.title}
+                                               onChange={changeWriteInfo}/>
                                     </Form.Item>
+                                    {/*<input type="text" placeholder="제목을 입력하세요."/>*/}
                                 </td>
                             </tr>
-                        )}
-                        <tr>
-                            <th scope="row">제목</th>
-                            <td>
-                                <Form.Item
-                                    name="title"
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: '제목을 입력하세요.',
-                                        },
-                                    ]}
-                                >
-                                    <Input placeholder={"제목을 입력하세요."} name="title" value={writeInfo.title}
-                                           onChange={changeWriteInfo}/>
-                                </Form.Item>
-                                {/*<input type="text" placeholder="제목을 입력하세요."/>*/}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">내용</th>
-                            <td>
-                                <QuillEditor Contents={content} QuillChange={setContent}/>
-                            </td>
-                        </tr>
-                        {board.board.useFile && (
                             <tr>
-                                <th scope="row">첨부파일</th>
+                                <th scope="row">내용</th>
                                 <td>
-                                    <Upload
-                                        listType="picture-card"
-                                        fileList={writeInfo.attachFiles}
-                                        onPreview={handlePreview}
-                                        onChange={changeFileList}
-                                        // previewFile={(e)=>{console.log(e)}}
-                                    >
-                                        {writeInfo.attachFiles.length >= 8 ? null : uploadButton}
-                                    </Upload>
-                                    <span className={cx("title")}>첨부파일 (10MB 미만)</span>
+                                    <QuillEditor Contents={content} QuillChange={setContent}/>
                                 </td>
                             </tr>
-                        )}
-                        </tbody>
-                    </table>
+                            {board.board.useFile && (
+                                <tr>
+                                    <th scope="row">첨부파일</th>
+                                    <td>
+                                        <Upload
+                                            listType="picture-card"
+                                            fileList={writeInfo.attachFiles}
+                                            onPreview={handlePreview}
+                                            onChange={changeFileList}
+                                            // previewFile={(e)=>{console.log(e)}}
+                                        >
+                                            {writeInfo.attachFiles.length >= 8 ? null : uploadButton}
+                                        </Upload>
+                                        <span className={cx("title")}>첨부파일 (10MB 미만)</span>
+                                    </td>
+                                </tr>
+                            )}
+                            </tbody>
+                        </table>
 
-                    <div className={"txt_c"}>
-                        <button type="submit" className={cx("basic-btn02","btn-blue-bd")}>저장</button>
-                        <button type="button" className={cx("basic-btn02","btn-gray-bd")} onClick={router.back}>취소</button>
+                        <div className={"txt_c"}>
+                            <button type="submit" className={cx("basic-btn02","btn-blue-bd")}>저장</button>
+                            <button type="button" className={cx("basic-btn02","btn-gray-bd")} onClick={router.back}>취소</button>
+                        </div>
                     </div>
-                </div>
                 </Form>
                 <Modal visible={addResultModal} closable={true} maskClosable={true} onClose={() => {setAddResultModal(false);router.back();}} cx={cx} className={"add_result_popup"}>
                     <h1 className={cx("popup_title")}>글쓰기 완료</h1>
                 </Modal>
             </section>
+
+        )}
+            {/*if(board.board != null && board.board.writeRole != null && board.board.writeRole.indexOf(user.role) < 0){*/}
+            {/*     return <AuthFail/>*/}
+            {/*}*/}
+
 
         </>
     );

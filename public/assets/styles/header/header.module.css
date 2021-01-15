@@ -8,7 +8,7 @@
     transition: all 0.35s ease-out;
 }
 .gnb{display:inline-block; padding-top:32px; vertical-align:top; }
-.gnb>ul>li{position:relative; float:left; padding:0 30px; }
+.gnb>ul>li{position:relative; float:left; padding:0 22px; }
 .gnb>ul>li>a{position:relative; padding-bottom:30px; display:block; font-family:"s-core-dream-medium"; color:#fff; font-size:18px; }
 .gnb>ul>li>a:before{position:absolute; left:0; bottom:20px; width:100%; height:2px; display:block; background-color:#fff;  content:""; opacity:0;
     -webkit-transition: all 0.35s ease-out;

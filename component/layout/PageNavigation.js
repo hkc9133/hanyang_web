@@ -21,6 +21,7 @@ const dep1 = {
         link:"/startup_education/university_student",
         sub:{
             university_student:{name:"대학(원) 생 대상",link:"/startup_education/university_student"},
+            alumnus:{name:"동문대상",link:"/startup_education/alumnus"},
             teacher:{name:"교원대상",link:"/startup_education/teacher"},
             people:{name:"일반인대상",link:"/board/people/list"},
             online_content:{name:"온라인콘텐츠",link:"/board/online_content/list"},
@@ -46,7 +47,35 @@ const dep1 = {
             data_room: {name:'자료실',link:'/board/data_room/list'}
         }
     },
+    startup_h:{
+        name:'스타트업H',
+        link:"/startup_h/best_startup",
+        sub:{
+            best_startup: {name:'우수스타트업',link:'/startup_h/best_startup'},
+            startup_emissions: {name:'스타트업배출현황',link:'/startup_h/startup_emissions'},
+        }
+    },
+    investment:{
+        name:'투자연계',
+        link:"/investment/ir",
+        sub:{
+            ir: {name:'IR/ 투자 안내',link:'/investment/ir'},
+            investment_partners: {name:'국내/ 외 투자파트너스',link:'/investment/investment_partners'},
+        }
+    },
+    introduce:{
+        name:'창업지원단소개',
+        link:"/introduce/introduce",
+        sub:{
+            introduce: {name:'기관소개',link:'/introduce/introduce'},
+            system: {name:'창업지원체계',link:'/introduce/system'},
+            infra: {name:'인프라',link:'/introduce/infra/list'},
+            promotion: {name:'협력파트너스',link:'/introduce/promotion'},
+            location: {name:'오시는길',link:'/introduce/location'}
+        }
+    }
 }
+
 const board = {
     community:{parents:'startup_info'},
     data_room:{parents:'startup_info'},
@@ -57,7 +86,6 @@ const board = {
 
 const PageNavigation = () => {
 
-    console.log("navi")
     const [navi, setNavi] = useState(null);
     const [subNavi, setSubNavi] = useState({key:null,name:null});
     const router = useRouter();
@@ -65,9 +93,13 @@ const PageNavigation = () => {
     useEffect(() => {
         const arr = router.asPath.split("/");  // 구분자를 통해 나뉜 결과는 배열로 저장된다.
 
-        console.log(arr)
-        setNavi(arr[1] == 'board' ? dep1[board[arr[2]].parents] : dep1[arr[1]])
-        setSubNavi(arr[1] == 'board' ? dep1[board[arr[2]].parents].sub[arr[2]] : dep1[arr[1]].sub[arr[2]])
+
+        try{
+            setNavi(arr[1] == 'board' ? dep1[board[arr[2]].parents] : dep1[arr[1]])
+            setSubNavi(arr[1] == 'board' ? dep1[board[arr[2]].parents].sub[arr[2]] : dep1[arr[1]].sub[arr[2].split('?')[0]])
+        }catch(e){
+            return;
+        }
 
 
         // let keyV;

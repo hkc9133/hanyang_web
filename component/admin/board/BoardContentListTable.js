@@ -1,7 +1,10 @@
 import React from 'react';
 import moment from "moment";
+import {useRouter} from "next/router";
+import Link from 'next/link'
 
 const BoardContentListTable = ({cx, list,moveBoardContent}) => {
+    const router = useRouter();
     return (
         <div className={cx("tb_style_1","content_list")}>
             <table>
@@ -32,8 +35,10 @@ const BoardContentListTable = ({cx, list,moveBoardContent}) => {
                             <td>
                                 <span>{item.rownum}</span>
                             </td>
-                            <td className={cx("td_btn")} onClick={() => {moveBoardContent(item.contentId)}}>
-                                <span>{item.title}</span>
+                            <td className={cx("td_btn")}>
+                                <Link href={`/admin/board/content/${item.boardEnName}/${item.contentId}`}>
+                                    <span>{item.title}</span>
+                                </Link>
                             </td>
                             <td className={cx("td_btn")} onClick={() => {moveBoardContent(item.contentId)}}>
                                 <span>{item.categoryCodeName}</span>

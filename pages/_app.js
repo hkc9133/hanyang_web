@@ -58,9 +58,13 @@ const _App = ({Component, pageProps}) => {
 
     let allowed = true;
     if (router.pathname.startsWith("/admin") && role !== "ROLE_ADMIN") {
-        // allowed = false;
-    } else {
+        allowed = false;
+    } else if(router.pathname.startsWith("/mypage") && !user.login) {
+        allowed = false;
+    }else {
+
     }
+
     const ComponentToRender = allowed ? Component : AuthFail;
 
 
@@ -82,12 +86,11 @@ const _App = ({Component, pageProps}) => {
                             <AdminHeader/>
                             <ComponentToRender {...pageProps} />
                         </>
-
                         :
                         <ComponentToRender {...pageProps} />
                         : null
                     }
-                    {!router.pathname.startsWith("/admin") && allowed &&
+                    {(!router.pathname.startsWith("/admin") || !router.pathname.startsWith("/admin") ) ? allowed ?
                     <>
                         <style jsx global>
                             {GlobalStyles}
@@ -98,6 +101,9 @@ const _App = ({Component, pageProps}) => {
                         </div>
                         <Footer/>
                     </>
+                        :
+                        <ComponentToRender {...pageProps} />
+                        : null
                     }
                 </ScrollToTop>
             </div>
