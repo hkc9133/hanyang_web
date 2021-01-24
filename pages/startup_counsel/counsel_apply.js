@@ -101,7 +101,7 @@ const CounselApply = () => {
     const [hopeMentorList, setHopeMentorList] = useState([]);
 
     useEffect(() =>{
-        dispatch(getMentorList())
+        dispatch(getMentorList({pageSize:500}))
         dispatch(getCounselFieldCode())
         dispatch(getProgressItem())
         dispatch(getSortationItem())
@@ -252,18 +252,21 @@ const CounselApply = () => {
         }
     },[mentorList.list])
 
-    const changeHopeMentorField = useCallback((value) =>{
+
+    const changeHopeMentorField = (value) =>{
         setApplyForm(applyForm =>({
             ...applyForm,
             hopeMentor: null,
         }))
 
+        console.log(value)
         if(value == ""){
             setHopeMentorList(mentorList.list)
         }else{
             setHopeMentorList(mentorList.list.filter((mentor) =>mentor.mentorFieldList.indexOf(value) > -1))
         }
-    },[])
+
+    }
 
 
     const uploadFile = async options => {
@@ -304,6 +307,11 @@ const CounselApply = () => {
             content:content,
             uploadResultList:applyForm.uploadResultList.map((item) =>{return item.fileId})
         }
+        // data.hopeMentor == null || data.hopeMentor == '' && delete data.hopeMentor
+        if(data.hopeMentor == null || data.hopeMentor == ''){
+            delete data.hopeMentor
+        }
+        console.log(data)
         dispatch(applyCounsel(data));
     }
 
@@ -325,7 +333,7 @@ const CounselApply = () => {
                     <div className={cx("tab_style_2")}>
                         <ul>
                             <li className={cx("on")}><Link href="/startup_counsel/counsel_apply"><a>창업상담하기</a></Link></li>
-                            <li><Link href="/startup_counsel/counsel_apply_list"><a>창업신청현황</a></Link></li>
+                            {/*<li><Link href="/startup_counsel/counsel_apply_list"><a>창업신청현황</a></Link></li>*/}
                         </ul>
                     </div>
 
@@ -395,10 +403,7 @@ const CounselApply = () => {
 
                     <h2>희망 멘토</h2>
                     <div className={`${cx("hope_mentor")} clfx `}>
-                        {/*<select name="hopeMentor" onChange={changeCounselField}>*/}
-                        {/*    <option value="#">세무.회계</option>*/}
-                        {/*</select>*/}
-                        <Select defaultValue="" size='large' className={cx("mentor_field")} onChange={changeHopeMentorField}>
+                        <Select defaultValue="" size='large' className={cx("mentor_field")} onChange={(e) =>{changeHopeMentorField(e)}}>
                             <Option value="">전체</Option>
                             {
                                 counselField.list.map((item) =>{
@@ -421,8 +426,8 @@ const CounselApply = () => {
                                 optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
                             }
                         >
-                            {hopeMentorList.map((item) =>{
-                                return <Option value={item.mentorId}>{item.mentorName}</Option>
+                            {hopeMentorList.map((item,index) =>{
+                                return <Option value={item.mentorId} key={index}>{item.mentorName}</Option>
                             })}
                         </Select>
                         {/*<input type="text"/>*/}

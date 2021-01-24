@@ -106,22 +106,6 @@ const ContentEditView = () => {
     },[])
 
 
-    // const changeFileList = useCallback((fileInfo) =>{
-    //     if(fileInfo.file.status == "removed"){
-    //         setWriteInfo({
-    //             ...writeInfo,
-    //             removeFiles: writeInfo.removeFiles.concat(fileInfo.file),
-    //             attachFiles: writeInfo.attachFiles.filter((item)=> {return item.fileId != fileInfo.file.fileId})
-    //         })
-    //     }else{
-    //         setWriteInfo({
-    //             ...writeInfo,
-    //             // removeFiles: writeInfo.removeFiles.concat(fileInfo.file),
-    //             attachFiles: fileInfo.fileList
-    //         })
-    //     }
-    // },[writeInfo])
-
     const changeNewFileList = useCallback(({fileList}) =>{
         setNewFileList(fileList)
     },[newFileList])
@@ -164,7 +148,6 @@ const ContentEditView = () => {
             files:newFileList.map((item) => (item.originFileObj)),
             boardEnName:router.query.boardName
         }
-        console.log(data)
         dispatch(updateBoardContent(data));
     }
 
@@ -211,7 +194,7 @@ const ContentEditView = () => {
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>분류</td>
+                                    <th>분류</th>
                                     <td>
                                         <select name='categoryCodeId' className={cx("cate")} onChange={changeWriteInfo} value={writeInfo.categoryCodeId}>
                                             {board.categoryCode.map((item) => {
@@ -236,7 +219,7 @@ const ContentEditView = () => {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>공지</td>
+                                    <th>공지</th>
                                     <td>
                                         {/*<Form.Item*/}
                                         {/*>*/}
@@ -246,7 +229,7 @@ const ContentEditView = () => {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>제목</td>
+                                    <th>제목</th>
                                     <td>
                                         <input type="text" placeholder={"제목을 입력하세요."} name="title" value={writeInfo.title} onChange={changeWriteInfo}/>
                                         {/*<Form.Item*/}
@@ -263,14 +246,14 @@ const ContentEditView = () => {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>내용</td>
+                                    <th>내용</th>
                                     <td>
                                         <QuillEditor Contents={content} QuillChange={setContent}/>
                                     </td>
                                 </tr>
                                 {board.board.useFile && (
                                 <tr>
-                                    <td>첨부파일</td>
+                                    <th>첨부파일</th>
                                     <td>
                                         <Upload
                                             listType="picture-card"
@@ -311,8 +294,8 @@ const ContentEditView = () => {
                                 )}
                                 </tbody>
                             </table>
-                            <div className={"txt_c"}>
-                                <button type="submit" className={cx("basic-btn02","btn-blue-bd")}>저장</button>
+                            <div className={cx("btn-box01")}>
+                                <button className={cx("basic-btn01")}>저장</button>
                                 <button type="button" className={cx("basic-btn02","btn-gray-bd")} onClick={router.back}>취소</button>
                             </div>
                         </div>

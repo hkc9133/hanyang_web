@@ -129,19 +129,19 @@ const Edit = () => {
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>게시판 이름</td>
+                                    <th>게시판 이름</th>
                                     <td>
                                         <input className={cx("txt")} type="text" name="boardKrName" value={boardValue.boardKrName} onChange={(e)=>{changeBoardValue(e)}}/>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>설명</td>
+                                    <th>설명</th>
                                     <td>
                                         <input className={cx("txt")} type="text" name="boardDesc" value={boardValue.boardDesc} onChange={(e)=>{changeBoardValue(e)}}/>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>카테고리</td>
+                                    <th>카테고리</th>
                                     <td>
                                         <div>
                                             <select value={boardValue.categoryId} name="categoryId" onChange={(e)=>{changeBoardValue(e)}}>
@@ -164,7 +164,7 @@ const Edit = () => {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>첨부파일 사용</td>
+                                    <th>첨부파일 사용</th>
                                     <td>
                                         <select value={boardValue.useFile} name="useFile" onChange={(e)=>{changeBoardValue(e)}}>
                                             <option value={false}>사용안함</option>
@@ -173,7 +173,7 @@ const Edit = () => {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>댓글 사용</td>
+                                    <th>댓글 사용</th>
                                     <td>
                                         <select value={boardValue.useComment} name="useComment" onChange={(e)=>{changeBoardValue(e)}}>
                                             <option value={false}>사용안함</option>
@@ -183,9 +183,10 @@ const Edit = () => {
                                 </tr>
                                 </tbody>
                             </table>
-                            <div>
-                                <button onClick={(e) => {saveBoard();}}>저장</button>
-                                <button onClick={() => {router.push("/admin/board/list")}}>취소</button>
+
+                            <div className={cx("btn-box01")}>
+                                <button className={cx("basic-btn01")} onClick={(e) => {saveBoard();}}>저장</button>
+                                <button type="button" className={cx("basic-btn02","btn-gray-bd")} onClick={() => {router.push("/admin/board/list")}}>취소</button>
                             </div>
                         </div>
                     </div>

@@ -1,12 +1,12 @@
 import React from 'react';
 import KaKaoLogin from 'react-kakao-login';
-const KakaoLoginButton = ({handleSocialLogin}) => {
+const KakaoLoginButton = ({handleSocialLogin,onFormCheck}) => {
     return (
         <KaKaoLogin
 
             token='e30e8790c8207f560e3b47879051adb8'
             onSuccess={result => {
-                handleSocialLogin(result.profile.id, result.profile.kakao_account.email, result.profile.kakao_account.profile.nicname, "KAKAO")
+                handleSocialLogin(result.profile.id, result.profile.kakao_account.email, result.profile.kakao_account.profile.nickname, "KAKAO")
             }}
             onFail={(e) => {
             }}
@@ -16,7 +16,7 @@ const KakaoLoginButton = ({handleSocialLogin}) => {
                     <a
                         href="#"
                         onClick={(e) => {
-                            e.preventDefault();
+                            onFormCheck != undefined && onFormCheck(e);
                             onClick();
                         }}
                     >
@@ -28,4 +28,4 @@ const KakaoLoginButton = ({handleSocialLogin}) => {
     );
 };
 
-export default KakaoLoginButton;
+export default React.memo(KakaoLoginButton);

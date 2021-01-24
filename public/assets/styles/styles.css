@@ -174,7 +174,8 @@ input[type=file]::-webkit-file-upload-button{
 .ant-upload-picture-card-wrapper{width: auto;}
 
 
-.ant-picker-ranges .ant-picker-ok button{padding: 2px 5px;border-radius: 6px;}
+.ant-picker-ranges .ant-picker-ok button{padding: 2px 3px;border-radius: 6px;}
+/*.ant-picker-ranges .ant-picker-ok button{padding: 2px 5px;border-radius: 6px;}*/
 .ant-picker-ranges .ant-picker-ok button:hover span{}
 .ant-picker-ranges .ant-picker-ok button span{color:black;}
 .ant-picker-ranges .ant-picker-ok button span:hover{color:white;}

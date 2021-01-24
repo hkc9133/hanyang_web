@@ -2,11 +2,7 @@ import React, {useCallback, useEffect, useState} from 'react';
 import wrapper from "../../../../store/configureStore";
 import client from "../../../../lib/api/client";
 import {
-    addBoardContent,
-    getBoard,
-    getBoardContent,
     initialize,
-    updateBoardContent
 } from "../../../../store/board/adminBoard";
 import {END} from "redux-saga";
 import {Checkbox, Form, Input, Select, Tag, Upload} from "antd";
@@ -359,8 +355,8 @@ const ContentEditView = () => {
                                 </tr>
                                 </tbody>
                             </table>
-                            <div className={"txt_c"}>
-                                <button type="submit" className={cx("basic-btn02","btn-blue-bd")}>저장</button>
+                            <div className={cx("btn-box01")}>
+                                <button className={cx("basic-btn01")}>저장</button>
                                 <button type="button" className={cx("basic-btn02","btn-gray-bd")} onClick={router.back}>취소</button>
                             </div>
                         </div>

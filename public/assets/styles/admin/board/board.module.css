@@ -38,7 +38,7 @@
 .tb_style_1 th:before{position:absolute; left:0; top:50%; margin-top:-10px; width:1px; height:20px; background-color:#c8c8c8; display:block; content:"";}
 .tb_style_1 th:first-child:before{display:none;}
 .tb_style_1 td{padding:8px 5px; text-align:center; border-bottom:1px solid #d9e0e5; font-size:14px; color:#596475; }
-.tb_style_1 td:first-of-type{border-top:1px solid #d9e0e5;}
+.tb_style_1 tr:first-of-type td{border-top:1px solid #d9e0e5;}
 
 .tb_style_1 td .id_name{padding-left:36px; display:inline-block; line-height:30px; }
 .tb_style_1 td.td_btn:hover{cursor: pointer;}
@@ -84,6 +84,7 @@
 .paging a img{vertical-align:top;}
 .paging .on{border:1px solid #222; color:#222; }
 
+.btn-box01{text-align: right;margin:10px 0px;}
 .basic-btn01{background-color: #009bcb; padding:8px 18px; color:white;box-sizing: border-box;margin:3px;border-radius: 5px;}
 .basic-btn01:hover{color:white;}
 .basic-btn02{padding:8px 16px;border: 1px solid gray;box-sizing: border-box;margin:3px;border-radius: 5px;}

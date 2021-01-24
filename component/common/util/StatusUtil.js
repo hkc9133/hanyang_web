@@ -51,3 +51,14 @@ export const getUserType = (type) =>{
     }
 }
 
+
+export const getRentalType = (type) =>{
+    switch (type){
+        case 'APPLY':
+            return "신청"
+        case 'CANCEL':
+            return "취소"
+        case 'ACCEPT':
+            return "확정"
+    }
+}

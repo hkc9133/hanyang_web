@@ -192,7 +192,7 @@ const Infra = () => {
                     </div>
 
                     <div className={"txt_c"}>
-                        <Link href="#"><a className={cx("basic-btn03","btn-blue-bd")}>공간예약하기</a></Link>
+                        <Link href="/introduce/space_reservation"><a className={cx("basic-btn03","btn-blue-bd")}>공간예약하기</a></Link>
                     </div>
                 </div>
 

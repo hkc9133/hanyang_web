@@ -29,6 +29,7 @@ const Header = () => {
 
     const [showMenu, setShowMenu] = useState(false);
     const [currentMenuItem, setCurrentMenuItem] = useState(null);
+    const [mypage, setMypage] = useState("");
     const totalMenu = React.createRef();
 
 
@@ -41,7 +42,8 @@ const Header = () => {
     useEffect(()=> {
         setShowMenu(false)
         setCurrentMenuItem(null)
-    },[router.pathname])
+        setMypage(getMyPage(user.role))
+    },[router.pathname,user])
 
     useEffect(() => {
 
@@ -65,10 +67,13 @@ const Header = () => {
         let returnRole = "";
         switch (role){
             case "ROLE_SD":
-                returnRole = 'mentee'
+                returnRole = '/mypage/mentee'
                 break;
             case "ROLE_MT":
-                returnRole = 'mentor'
+                returnRole = '/mypage/mentor'
+                break;
+            case "ROLE_ADMIN":
+                returnRole = '/admin/dashboard'
                 break;
         }
         return returnRole;
@@ -103,7 +108,7 @@ const Header = () => {
                             <div className={cx("s_gnb")}>
                                 <ul>
                                     <li><Link href="/startup_counsel/counsel_process"><a>창업상담신청</a></Link></li>
-                                    <li><Link href="/startup_counsel/mentor_introduce"><a>멘토단소개</a></Link></li>
+                                    <li><Link href="/startup_counsel/mentor_introduce?pageSize=6"><a>멘토단소개</a></Link></li>
                                     <li><Link href="/startup_counsel/startup_procedure"><a>창업절차</a></Link></li>
                                 </ul>
                             </div>
@@ -124,7 +129,7 @@ const Header = () => {
                             <div className={cx("s_gnb")}>
                                 <ul>
                                     <li><Link href="/startup_h/best_startup"><a>우수스타트업</a></Link></li>
-                                    <li><Link href="/startup_h/startup_emissions"><a>스타트업배출현황</a></Link></li>
+                                    <li><Link href="/startup_h/startup_present"><a>스타트업배출현황</a></Link></li>
                                 </ul>
                             </div>
                         </li>
@@ -145,7 +150,17 @@ const Header = () => {
                                     <li><Link href="/introduce/system"><a>창업지원체계</a></Link></li>
                                     <li><Link href="/introduce/infra"><a>인프라</a></Link></li>
                                     <li><Link href="/introduce"><a>협력파트너스</a></Link></li>
-                                    <li><Link href="/introduce/promotion"><a>홍보</a></Link></li>
+                                    <li>
+                                        <Link href="/introduce/promotion"><a>홍보</a></Link>
+                                        <div className={cx("dep3")}>
+                                            <ul>
+                                                <li><a href="/introduce/notice/list">공지사항</a></li>
+                                                <li><Link href="/board/media_report/list"><a>언론보도</a></Link></li>
+                                                <li><Link href="/board/news/list"><a>뉴스레터</a></Link></li>
+                                                <li><Link href="/introduce/promotion"><a>소개자료</a></Link></li>
+                                            </ul>
+                                        </div>
+                                    </li>
                                     <li><Link href="/introduce/location"><a>오시는길</a></Link></li>
                                 </ul>
                             </div>
@@ -156,7 +171,7 @@ const Header = () => {
                 <div className={cx("login_box")}>
                     {user.login ?
                         <>
-                            <Link href={`/mypage/${getMyPage(user.role)}`}><a>관리</a></Link>
+                            <Link href={mypage}><a>관리</a></Link>
                         <Link href="#"><a href="#" onClick={() => {handleLogout()}}>로그아웃</a></Link>
                         </>
                         :
@@ -208,7 +223,7 @@ const Header = () => {
                             <div className={cx("s_menu",{show:currentMenuItem === 2})}>
                                 <ul>
                                     <li><Link href="/startup_counsel/counsel_process"><a>창업상담신청</a></Link></li>
-                                    <li><Link href="/startup_counsel/mentor_introduce"><a>멘토단소개</a></Link></li>
+                                    <li><Link href="/startup_counsel/mentor_introduce?pageSize=6"><a>멘토단소개</a></Link></li>
                                     <li><Link href="/startup_counsel/startup_procedure"><a>창업절차</a></Link></li>
                                 </ul>
                             </div>
@@ -229,7 +244,7 @@ const Header = () => {
                             <div className={cx("s_menu",{show:currentMenuItem === 4})}>
                                 <ul>
                                     <li><Link href="/startup_h/best_startup"><a>우수스타트업</a></Link></li>
-                                    <li><Link href="/startup_h/startup_emissions"><a>스타트업배출현황</a></Link></li>
+                                    <li><Link href="/startup_h/startup_present"><a>스타트업배출현황</a></Link></li>
                                 </ul>
                             </div>
                         </li>
@@ -250,7 +265,17 @@ const Header = () => {
                                     <li><Link href="/introduce/system"><a>창업지원체계</a></Link></li>
                                     <li><Link href="/introduce/infra"><a>인프라</a></Link></li>
                                     <li><Link href="/introduce"><a>협력파트너스</a></Link></li>
-                                    <li><Link href="/introduce/promotion"><a>홍보</a></Link></li>
+                                    <li>
+                                        <Link href="/introduce/promotion"><a>홍보</a></Link>
+                                        <div className={cx("dep3")}>
+                                            <ul>
+                                                <li><a href="/introduce/notice/list">공지사항</a></li>
+                                                <li><Link href="/board/media_report/list"><a>언론보도</a></Link></li>
+                                                <li><Link href="/board/news/list"><a>뉴스레터</a></Link></li>
+                                                <li><Link href="/introduce/promotion"><a>소개자료</a></Link></li>
+                                            </ul>
+                                        </div>
+                                    </li>
                                     <li><Link href="/introduce/location"><a>오시는길</a></Link></li>
                                 </ul>
                             </div>

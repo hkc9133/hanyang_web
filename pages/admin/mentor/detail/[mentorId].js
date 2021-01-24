@@ -1,162 +1,413 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {useRouter} from "next/router";
 import styles from '../../../../public/assets/styles/admin/mentor/mentor.module.css';
 import classnames from "classnames/bind"
 import {useDispatch, useSelector} from "react-redux";
-import {getMentor, initialize, updateMentor} from "../../../../store/mentoring/adminMentoring";
-import {Tag} from "antd";
-import client from'../../../../lib/api/client'
+import {getMentor, getCounselFieldCode, initialize, updateMentor} from "../../../../store/mentoring/adminMentoring";
+import {Button, Form, Input, Tag} from "antd";
+import client from '../../../../lib/api/client'
+import CheckableTag from "antd/lib/tag/CheckableTag";
+import KeywordBox from "../../../../component/stratup_counsel/mentor_apply/KeywordBox";
+import CareerBox from "../../../../component/stratup_counsel/mentor_apply/CareerBox";
+import Image from "next/image";
+import Modal from "../../../../component/common/Modal";
+
 const cx = classnames.bind(styles);
 
 const DetailView = () => {
     const router = useRouter();
     const dispatch = useDispatch();
+    const [form] = Form.useForm();
+    const profileImgInput = useRef();
 
-    const [mentorValue, setMentorValue] = useState(null);
+    const [mentorInfo, setMentorInfo] = useState(null);
+    const [image, setImage] = useState(null)
+    const [showResultModal,setShowResultModal] = useState(false);
 
-    const {mentor,update} = useSelector(({adminMentoring,loading})=> ({
-        mentor:adminMentoring.mentor,
-        update:adminMentoring.update,
+    const {mentor, counselFieldList, update} = useSelector(({adminMentoring, loading}) => ({
+        mentor: adminMentoring.mentor,
+        counselFieldList: adminMentoring.counselField,
+        update: adminMentoring.update,
     }))
 
-    useEffect(() =>{
-        if(mentor.mentor != null){
-            setMentorValue({
+    useEffect(() => {
+        if (mentor.mentor != null) {
+            setMentorInfo({
                 ...mentor.mentor,
             })
+            setImage(mentor.mentor.filePath != null && `${client.defaults.baseURL}/resource${mentor.mentor.filePath}/${mentor.mentor.fileName+mentor.mentor.fileExtension}`)
         }
-    },[mentor.mentor])
+    }, [mentor.mentor])
 
-    useEffect(() =>{
+    useEffect(() => {
         dispatch(getMentor(router.query.mentorId))
-        return () =>{
+        dispatch(getCounselFieldCode())
+        return () => {
             dispatch(initialize())
         }
-    },[])
+    }, [])
 
-    const changeMentorValue = (e) =>{
+    const changeMentorValue = (e) => {
         const {name, value} = e.target
-        setMentorValue({
-            ...mentorValue,
-            [name]:value
+
+        if (name == "profileImg") {
+            const {
+                target: {files},
+            } = e;
+            const theFile = files[0];
+            const reader = new FileReader();
+            reader.readAsDataURL(theFile);
+            reader.onloadend = (finishedEvent) => {
+                const {currentTarget: {result}} = finishedEvent;
+                setImage(result);
+            }
+            setMentorInfo({
+                ...mentorInfo,
+                profileImg: files[0]
+            })
+            return;
+        }
+
+        if (name == 'isBest') {
+            setMentorInfo({
+                ...mentorInfo,
+                isBest: e.target.checked,
+            })
+            return;
+        }
+
+        setMentorInfo({
+            ...mentorInfo,
+            [name]: value,
         })
     }
 
-    const saveMentor = () =>{
-        dispatch(updateMentor(mentorValue));
+    const changeMentorField = (tag, checked) => {
+        const nextSelectedTags = checked ? [...mentorInfo.mentorFieldList, tag.value] : mentorInfo.mentorFieldList.filter(t => t !== tag.value);
+
+        setMentorInfo({
+            ...mentorInfo,
+            mentorFieldList: nextSelectedTags
+        })
+    }
+
+    const saveMentor = () => {
+        console.log(mentorInfo)
+        dispatch(updateMentor(mentorInfo));
     }
 
     useEffect(() => {
-        if(update.result === true && update.error === null){
-            alert("업데이트 성공")
-            router.push("/admin/mentor")
+        if (update.result === true && update.error === null) {
+            // alert("업데이트 성공")
+            // router.push("/admin/mentor")
+            setShowResultModal(true)
         }
 
-    },[update])
+    }, [update])
 
     return (
         <>
-            {mentorValue == null ? <div>null...</div> : (
+            {mentorInfo == null ? <div>null...</div> : (
                 <section className={cx("container")}>
-                    <h1 className={cx("top_title")}>멘토</h1>
-                    <div className={cx("adm_container")}>
-                        {/*<div className={`${cx("mentor_info","box")} clfx `}>*/}
-                        {/*    <ul className={"clfx"}>*/}
-                        {/*        <li>*/}
-                        {/*            <span className={cx("title","icon_1")}>{mentorValue.mentorName}</span>*/}
-                        {/*        </li>*/}
-                        {/*    </ul>*/}
-                        {/*</div>*/}
+                    <h1 className={cx("top_title")}>멘토상세 페이지</h1>
+                    <Form form={form}
+                          onFinish={saveMentor}
+                          initialValues={{
+                              mentorName: mentor.mentor.mentorName,
+                              mentorCompany: mentor.mentor.mentorCompany,
+                              mentorPosition: mentor.mentor.mentorPosition,
+                              mentorPhoneNumber: mentor.mentor.mentorPhoneNumber,
+                              mentorEmail: mentor.mentor.mentorEmail
+                          }}
+                    >
+                        <div className={cx("adm_container")}>
+                            <div className={cx("box")}>
+                                <div className={cx("mentor_detail")}>
+                                    <h2>개인정보</h2>
+                                    <div className={cx("tb_style_2")}>
+                                        <table>
+                                            <colgroup>
+                                                <col style={{width: 240}}/>
+                                                <col style={{width: 600}}/>
+                                                <col style={{width: 220}}/>
+                                            </colgroup>
+                                            <tbody>
+                                            <tr>
+                                                <th scope="row">이름</th>
+                                                <td>
+                                                    <Form.Item
+                                                        name="mentorName"
+                                                        className={(cx("antd_input"))}
+                                                        rules={[
+                                                            {
+                                                                required: true,
+                                                                message: '이름은 필수 입니다.',
+                                                            },
+                                                        ]}
+                                                    >
+                                                        <Input placeholder={"이름"} name="mentorName"
+                                                               value={mentorInfo.mentorName} onChange={(e) => {
+                                                            changeMentorValue(e)
+                                                        }}/>
+                                                    </Form.Item>
+                                                </td>
+                                                <td rowSpan="6" className={cx("bd_left")}>
+                                                    <div className={cx("photoArea")}>
+                                                        <div className={cx("photo")}>
+                                                            <div className={cx("photo_img")}>
+                                                                <img src={image != null ? image : '/assets/image/mentor_photo.jpg'}/>
+                                                            </div>
+                                                            <Button className={cx("photo_open")} onClick={() => {
+                                                                profileImgInput.current.click();
+                                                            }} >
+                                                                <Image src="/assets/image/photo_btn.png" width={50} height={50}
+                                                                       alt="photo_btn"/>
+                                                                <input ref={profileImgInput} type="file" name="profileImg" hidden={true}
+                                                                       onChange={(e) => {
+                                                                           changeMentorValue(e)
+                                                                       }}
+                                                                />
+                                                            </Button>
+                                                        </div>
+                                                    </div>
+                                                    <div className={cx("photo_info")}>
+                                                        사진사이즈 200px X 200px
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">아이디</th>
+                                                <td>
+                                                    <input type="text" value={mentorInfo.userId} readOnly={true}/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">소속</th>
+                                                <td>
+                                                    <Form.Item
+                                                        name="mentorCompany"
+                                                        className={(cx("antd_input"))}
+                                                        rules={[
+                                                            {
+                                                                required: true,
+                                                                message: '소속은 필수 입니다.',
+                                                            },
+                                                        ]}
+                                                    >
+                                                        <Input placeholder={"소속"} name="mentorCompany"
+                                                               value={mentorInfo.mentorCompany} onChange={(e) => {
+                                                            changeMentorValue(e)
+                                                        }}/>
+                                                    </Form.Item>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">직위</th>
+                                                <td>
+                                                    <Form.Item
+                                                        name="mentorPosition"
+                                                        rules={[
+                                                            {
+                                                                required: true,
+                                                                message: '직위는 필수 입니다.',
+                                                            },
+                                                        ]}
+                                                    >
+                                                        <Input placeholder={"직위"} name="mentorPosition"
+                                                               value={mentorInfo.mentorPosition} onChange={(e) => {
+                                                            changeMentorValue(e)
+                                                        }}/>
+                                                    </Form.Item>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">이메일</th>
+                                                <td>
+                                                    <Form.Item
+                                                        name="mentorEmail"
+                                                        rules={[
+                                                            {
+                                                                required: true,
+                                                                type: 'email',
+                                                                message: 'E-MAIL은 필수 입니다.',
+                                                            },
+                                                        ]}
+                                                    >
+                                                        <Input placeholder={"E-MAIL"} name="mentorEmail"
+                                                               value={mentorInfo.mentorEmail} onChange={(e) => {
+                                                            changeMentorValue(e)
+                                                        }}/>
+                                                    </Form.Item>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">연락처</th>
+                                                <td>
+                                                    <Form.Item
+                                                        name="mentorPhoneNumber"
+                                                        rules={[
+                                                            {
+                                                                required: true,
+                                                                pattern: new RegExp(
+                                                                    /^-?\d*(\.\d*)?$/
+                                                                ),
+                                                                message: "'-' 없이 숫자만 입력 가능합니다",
+                                                            },
+                                                        ]}
+                                                    >
+                                                        <Input placeholder={"연락처"} name="mentorPhoneNumber"
+                                                               value={mentorInfo.mentorPhoneNumber} onChange={(e) => {
+                                                            changeMentorValue(e)
+                                                        }}/>
+                                                    </Form.Item>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
 
-                        <p className={cx("txt_style_1")}>
-                            {/*회원자료 삭제 시 다른 회원이 기존 회원아이디를 사용하지 못하도록 회원아이디, 이름, 닉네임은 삭제하지 않고 영구*/}
-                            {/*보관합니다.*/}
-                        </p>
+                                    <h2>멘토상세</h2>
+                                    <div className={cx("tb_style_2")}>
+                                        <table>
+                                            <colgroup>
+                                                <col style={{width: 240}}/>
+                                                <col/>
+                                                <col/>
+                                            </colgroup>
+                                            <tbody>
+                                            <tr>
+                                                <th scope="row">멘토링 분야</th>
+                                                <td>
+                                                    <div className={cx("clfx")}>
+                                                        <div className={cx("counsel_field_box")}>
+                                                            {counselFieldList.list.map(tag => (
+                                                                <CheckableTag
+                                                                    className={cx("tag", {checked: mentorInfo.mentorFieldList.indexOf(tag.value) > -1})}
+                                                                    key={tag.value}
+                                                                    checked={mentorInfo.mentorFieldList.indexOf(tag.value) > -1}
+                                                                    onChange={checked => {
+                                                                        changeMentorField(tag, checked)
+                                                                    }}
+                                                                >
+                                                                    {tag.label}
+                                                                </CheckableTag>
+                                                            ))}
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">멘토링 KEYWORD</th>
+                                                <td>
+                                                    <KeywordBox mentorInfo={mentorInfo} setMentorInfo={setMentorInfo}
+                                                                cx={cx}/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">주요경력</th>
+                                                <td>
+                                                    <div className={cx("career_box")}>
+                                                        <CareerBox mentorInfo={mentorInfo} setMentorInfo={setMentorInfo}
+                                                                   cx={cx}/>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">멘토 한마디</th>
+                                                <td>
+                                                    <Input.TextArea placeholder={"멘토 한마디"} name="mentorIntroduction"
+                                                                    value={mentorInfo.mentorIntroduction}
+                                                                    onChange={(e) => {
+                                                                        changeMentorValue(e)
+                                                                    }} id="startup_write_9" rows="10"/>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
 
-                        <div className={cx("admin_cont")}>
-                            <h2 className={cx("title_style_1")}><span>멘토 상세</span></h2>
-                            <div className={cx("photo_img")}>
-                                <img src={mentorValue.fileName ? `${client.defaults.baseURL}/resource${mentorValue.filePath}/${mentorValue.fileName+mentorValue.fileExtension}` : '/assets/image/mentor_photo.jpg'}/>
-                            </div>
-                            <div className={cx("tb_style_1","edit_form")}>
-                                <table>
-                                    <colgroup>
-                                        <col style={{width:"30%"}}/>
-                                        <col/>
-                                    </colgroup>
-                                    <thead>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>아이디</td>
-                                        <td>
-                                            {mentorValue.userId}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>이름</td>
-                                        <td>
-                                            {mentorValue.mentorName}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>핸드폰</td>
-                                        <td>
-                                            {mentorValue.mentorPhoneNumber}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>E-MAIL</td>
-                                        <td>
-                                            {mentorValue.mentorEmail}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>소속</td>
-                                        <td>
-                                            {mentorValue.mentorCompany}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>경력</td>
-                                        <td>
-                                            {mentorValue.mentorCareer.map((item,index) =>(
-                                                <Tag className={cx("mg_t10")} key={index}>{item}</Tag>
-                                            ))}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>키워드</td>
-                                        <td>
-                                            {mentorValue.mentorKeyword.map((item,index) =>(
-                                                <Tag className={cx("mg_t10")} key={index}>{item}</Tag>
-                                            ))}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>소개</td>
-                                        <td>
-                                            {mentorValue.mentorIntroduction}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>승인 상태</td>
-                                        <td>
-                                            <select value={mentorValue.mentorStatus} name="mentorStatus" onChange={(e)=>{changeMentorValue(e)}}>
-                                                <option value="ACCEPT">승인</option>
-                                                <option value="STANDBY">미승인</option>
-                                            </select>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                <div>
-                                    <button onClick={() =>{router.back()}}>뒤로가기</button>
-                                    <button onClick={() =>{saveMentor()}}>저장</button>
+                                    <h2>멘토 상태</h2>
+                                    <div className={cx("tb_style_2")}>
+                                        <table>
+                                            <colgroup>
+                                                <col style={{width: 240}}/>
+                                                <col/>
+                                            </colgroup>
+                                            <tbody>
+                                            <tr>
+                                                <th scope="row">현재 상태</th>
+                                                <td>
+                                                    <select value={mentorInfo.mentorStatus} name="mentorStatus" onChange={(e)=>{changeMentorValue(e)}}>
+                                                        <option value="ACCEPT">승인</option>
+                                                        <option value="STANDBY">미승인</option>
+                                                    </select>
+                                                    <span>
+                                                        <input id="isBest" type="checkbox" name="isBest" checked={mentorInfo.isBest} onChange={changeMentorValue}/>
+                                                        <label htmlFor="isBest">우수 멘토</label>
+									                </span>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    {/*<h2>위촉장 발행 리스트</h2>*/}
+                                    {/*<div className={cx("tb_style_1")}>*/}
+                                    {/*    <table>*/}
+                                    {/*        <colgroup>*/}
+                                    {/*            <col style={{width:195}}/>*/}
+                                    {/*            <col />*/}
+                                    {/*            <col style={{width:200}}/>*/}
+                                    {/*            <col style={{width:190}}/>*/}
+                                    {/*        </colgroup>*/}
+                                    {/*        <thead>*/}
+                                    {/*        <tr>*/}
+                                    {/*            <th scope="col">NO</th>*/}
+                                    {/*            <th scope="col">발급사유</th>*/}
+                                    {/*            <th scope="col">발급일</th>*/}
+                                    {/*            <th scope="col">다운로드</th>*/}
+                                    {/*        </tr>*/}
+                                    {/*        </thead>*/}
+                                    {/*        <tbody>*/}
+                                    {/*        <tr>*/}
+                                    {/*            <td>2</td>*/}
+                                    {/*            <td>공기관 제출용</td>*/}
+                                    {/*            <td>2020.11.24</td>*/}
+                                    {/*            <td>*/}
+                                    {/*                <button type="button"><img src="../img/btn_download.gif" alt=""/>*/}
+                                    {/*                </button>*/}
+                                    {/*            </td>*/}
+                                    {/*        </tr>*/}
+                                    {/*        <tr>*/}
+                                    {/*            <td>2</td>*/}
+                                    {/*            <td>공기관 제출용</td>*/}
+                                    {/*            <td>2020.11.24</td>*/}
+                                    {/*            <td>*/}
+                                    {/*                <button type="button"><img src="../img/btn_download.gif" alt=""/>*/}
+                                    {/*                </button>*/}
+                                    {/*            </td>*/}
+                                    {/*        </tr>*/}
+                                    {/*        </tbody>*/}
+                                    {/*    </table>*/}
+                                    {/*</div>*/}
+
+
+                                    <div className={cx("txt_c pt_60")}>
+                                        <button type="submit" className={cx("basic-btn02", "btn-gray-bg")}>저장하기</button>
+                                        <button type="button" className={cx("basic-btn02", "btn-gray-bd2")}>취소하기</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </Form>
+                    <Modal visible={showResultModal} closable={true} maskClosable={true} onClose={() => {
+                        setShowResultModal(false);
+                    }} cx={cx} className={"mentor_popup"}>
+                        <h2 className={cx("popup_title")}>저장이 완료되었습니다</h2>
+                        <div className={cx("btn_box")}>
+                            <button className={cx("basic-btn01","btn-gray-bg")} onClick={() =>{setShowResultModal(false);router.push("/admin/mentor")}}>확인</button>
+                        </div>
+                    </Modal>
                 </section>
             )}
         </>

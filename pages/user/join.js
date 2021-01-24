@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import styles from '../../public/assets/styles/user/user.module.css';
 import classnames from "classnames/bind"
 import PageNavigation from "../../component/layout/PageNavigation";
@@ -12,6 +12,7 @@ import GoogleLoginButton from "../../component/auth/GoogleLoginButton";
 import Modal from "../../component/common/Modal";
 import SignUpInfo from "../../component/auth/SignUpInfo";
 import JoinType from "../../component/auth/JoinType";
+import {Checkbox, Form} from "antd";
 
 const cx = classnames.bind(styles);
 
@@ -19,6 +20,13 @@ const Join = () => {
     const dispatch = useDispatch();
     const [showJoinInfoModal, setShowJoinInfoModal] = useState(false);
     const [showJoinSuccessModal, setShowJoinSuccessModal] = useState(false);
+    const [agree, setAgree] = useState({
+        terms:false,
+        personal:false
+    })
+    const [form] = Form.useForm();
+    const termsDev = useRef();
+    const personalDev = useRef();
 
     const router = useRouter();
 
@@ -31,13 +39,15 @@ const Join = () => {
         loading: loading
     }))
     useEffect(() => {
-        // dispatch(initializeForm(login.code))
+        return () =>{
+            dispatch(initializeForm('signup'))
+            dispatch(initializeForm('loginCode'))
+        }
 
     },[])
 
     useEffect(() => {
         if (!signUpLoading && signup.result == true && signup.error == null) {
-            console.log("가입 성공")
             setShowJoinSuccessModal(true)
             // router.push('/')
         }
@@ -45,17 +55,50 @@ const Join = () => {
     }, [signup, signUpLoading])
 
     useEffect(() => {
-        if (!loginLoading && user.login == false && loginCode == 401) {
+        if (user.login == false && loginCode == 401) {
             setShowJoinInfoModal(true);
         }
-        else if(!loginLoading && user.login == true && loginCode == 200){
+        else if(user.login == true && loginCode == 200){
             router.push('/')
         }
 
-    }, [user, loginLoading])
+    }, [user.login,loginCode])
 
-    const handleSocialLogin = (id, email, name, type) => {
+    // const handleSocialLogin = (id, email, name, type) => {
+    //     dispatch(socialLogin({id, email, name, type}))
+    // };
+
+    const handleSocialLogin = useCallback((id, email, name, type) =>{
         dispatch(socialLogin({id, email, name, type}))
+    },[])
+
+    const changeCheck = (e) =>{
+        const {name, checked} = e.target
+
+        if(name == 'all'){
+            setAgree({
+                terms:checked,
+                personal: checked
+            })
+        }else{
+            setAgree({
+                ...agree,
+                [name]:checked
+            })
+        }
+    }
+
+    const onFormCheck = async (e) => {
+        try {
+            const values = await form.validateFields();
+        } catch (errorInfo) {
+            if(errorInfo.errorFields[0].name[0] == 'terms'){
+                termsDev.current.scrollIntoView();
+            }else{
+                personalDev.current.scrollIntoView();
+            }
+            e.preventDefault()
+        }
     };
     const handleSignUp = (role) => {
         const signUpInfo = {
@@ -67,23 +110,37 @@ const Join = () => {
     return (
         <>
             <PageNavigation/>
-            <div className={`${cx("sub_container", "join_terms")} clfx`}>
-                <h1 className={cx("sub_top_title")}>회원가입</h1>
-                <p className={cx("sub_top_txt")}> 회원가입약관 및 개인정보처리방침안내의 내용에 동의하셔야 회원가입 하실 수 있습니다.</p>
-                <div className={cx("all_agree")}>
-                    <input type="checkbox" id="all_agree"/>
-                    <label htmlFor="all_agree">전체동의 </label>
-                </div>
 
-                <div className={cx("terms_box")}>
-                    <div className={cx("titleArea")}>
-                        <h2>회원가입약관</h2>
-                        <div className={cx("chk")}>
-                            <label htmlFor="terms_agree_1">회원가입약관의 내용에 동의 합니다.</label>
-                            <input type="checkbox" id="terms_agree_1"/>
-                        </div>
+            {!showJoinInfoModal ? (
+                <div className={`${cx("sub_container", "join_terms")} clfx`}>
+                    <Form form={form} onFinish={(e) =>{console.log(e)}} onFinishFailed={(e) =>{console.log(e)}}>
+                    <h1 className={cx("sub_top_title")}>회원가입</h1>
+                    <p className={cx("sub_top_txt")}> 회원가입약관 및 개인정보처리방침안내의 내용에 동의하셔야 회원가입 하실 수 있습니다.</p>
+                    <div className={cx("all_agree")}>
+                        <Checkbox name="all" onChange={(e)=>{changeCheck(e)}}>전체 동의</Checkbox>
                     </div>
-                    <div className={cx("terms_content")}>
+
+                    <div className={cx("terms_box")}>
+                        <div className={cx("titleArea")}>
+                            <h2>회원가입약관</h2>
+                            <div className={cx("chk")} ref={termsDev}>
+                                <Form.Item
+                                    name="terms"
+                                    rules={[
+                                        {
+                                            required: !agree.terms,
+                                            message: '회원가입약관의 내용에 동의는 필수입니다',
+                                        },
+                                    ]}
+                                >
+                                    <Checkbox name="terms" checked={agree.terms} onChange={(e)=>{changeCheck(e)}}>회원가입약관의 내용에 동의 합니다</Checkbox>
+                                </Form.Item>
+                                {/*<label htmlFor="terms_agree_1">회원가입약관의 내용에 동의 합니다.</label>*/}
+                                {/*<input type="checkbox" id="terms_agree_1" name='terms' onChange={(e) =>{changeCheck(e)}}/>*/}
+                                {/*{agree.terms.isShow && <p>{agree.terms.msg}</p>}*/}
+                            </div>
+                        </div>
+                        <div className={cx("terms_content")}>
 <pre>
 
 제 1 장 총칙
@@ -180,18 +237,30 @@ const Join = () => {
 10.기타 관련 법령이나 창업지원단이 정한 이용 조건에 위배되는 행위를 한 경우
 
 </pre>
-                    </div>
-                </div>
-
-                <div className={cx("terms_box")}>
-                    <div className={cx("titleArea")}>
-                        <h2>개인정보처리방침 </h2>
-                        <div className={cx("chk")}>
-                            <label htmlFor="terms_agree_2">개인정보처리방침 내용에 동의 합니다.</label>
-                            <input type="checkbox" id="terms_agree_2"/>
                         </div>
                     </div>
-                    <div className={cx("terms_content")}>
+
+                    <div className={cx("terms_box")}>
+                        <div className={cx("titleArea")}>
+                            <h2>개인정보처리방침 </h2>
+                            <div className={cx("chk")} ref={personalDev}>
+                                {/*<label htmlFor="terms_agree_2">개인정보처리방침 내용에 동의 합니다.</label>*/}
+                                {/*<input type="checkbox" id="terms_agree_2" name="personal"  onChange={(e) =>{changeCheck(e)}}/>*/}
+                                {/*{agree.personal.isShow && <p>{agree.personal.msg}</p>}*/}
+                                <Form.Item
+                                    name="personal"
+                                    rules={[
+                                        {
+                                            required: !agree.personal,
+                                            message: '개인정보처리방침 내용에 동의는 필수입니다.',
+                                        },
+                                    ]}
+                                >
+                                    <Checkbox name="personal" checked={agree.personal} onChange={(e)=>{changeCheck(e)}}>개인정보처리방침 내용에 동의 합니다.</Checkbox>
+                                </Form.Item>
+                            </div>
+                        </div>
+                        <div className={cx("terms_content")}>
 <pre>
 개인정보처리방침
  
@@ -210,42 +279,39 @@ const Join = () => {
 나. 각각의 개인정보 처리 및 보유기간은 다음과 같습니다.
 
 </pre>
+                        </div>
                     </div>
+
+                    <div className={cx("sns_login")}>
+                        <h2 className={cx("title_style_1")}>SNS 계정가입</h2>
+                        <ul className={cx("clfx")}>
+                            <li className={cx("")}>
+                                <a href="#">
+                                    <span>한양인 <br/>계정가입</span>
+                                </a>
+                            </li>
+                            <li className={cx("icon_1")}>
+                                <NaverLoginButton handleSocialLogin={handleSocialLogin} onFormCheck={onFormCheck}/>
+                            </li>
+                            <li className={cx("icon_2")}>
+                                <FaceBookLoginButton handleSocialLogin={handleSocialLogin} onFormCheck={onFormCheck}/>
+                            </li>
+                            <li className={cx("icon_3")}>
+                                <KakaoLoginButton handleSocialLogin={handleSocialLogin}  onFormCheck={onFormCheck}/>
+                            </li>
+                            <li className={cx("icon_4")}>
+                                <GoogleLoginButton handleSocialLogin={handleSocialLogin}  onFormCheck={onFormCheck}/>
+                            </li>
+                        </ul>
+                    </div>
+
+                    </Form>
                 </div>
+            ) : (
+                <JoinType handleSignUp={handleSignUp}/>
+            )}
+            {showJoinSuccessModal && <Modal visible={showJoinSuccessModal} closable={true} maskClosable={true} onClose={() => {setShowJoinSuccessModal(false);setShowJoinInfoModal(false);router.push('/')}}><div className={cx("popup_title")}>가입이 완료되었습니다</div></Modal>}
 
-                <div className={cx("sns_login")}>
-                    <h2 className={cx("title_style_1")}>SNS 계정가입</h2>
-                    <ul className={cx("clfx")}>
-                        <li className={cx("")}>
-                            <a href="#">
-                                <span>한양인 <br/>계정가입</span>
-                            </a>
-                        </li>
-                        <li className={cx("icon_1")}>
-                            <NaverLoginButton handleSocialLogin={handleSocialLogin}/>
-                        </li>
-                        <li className={cx("icon_2")}>
-                            <FaceBookLoginButton handleSocialLogin={handleSocialLogin}/>
-                        </li>
-                        <li className={cx("icon_3")}>
-                            <KakaoLoginButton handleSocialLogin={handleSocialLogin}/>
-                        </li>
-                        <li className={cx("icon_4")}>
-                            <GoogleLoginButton handleSocialLogin={handleSocialLogin}/>
-                        </li>
-                    </ul>
-                </div>
-
-                {showJoinInfoModal &&
-                    <JoinType handleSignUp={handleSignUp}/>
-                // <Modal visible={showJoinInfoModal} closable={true} maskClosable={true} onClose={() => setShowJoinInfoModal(false)}>
-                //     <SignUpInfo handleSignUp={handleSignUp}/>
-                //     {showJoinSuccessModal && <Modal visible={showJoinSuccessModal} closable={true} maskClosable={true} onClose={() => {setShowJoinSuccessModal(false);setShowJoinInfoModal(false);router.push('/')}}><div>가입 완료</div></Modal>}
-                // </Modal>
-                }
-                {showJoinSuccessModal && <Modal visible={showJoinSuccessModal} closable={true} maskClosable={true} onClose={() => {setShowJoinSuccessModal(false);setShowJoinInfoModal(false);router.push('/')}}><div>가입 완료</div></Modal>}
-
-            </div>
 
         </>
     );

@@ -69,6 +69,22 @@
 .mentor_group_write .personal_info .photoArea .photo{position:relative; margin-bottom:20px; display:inline-block; }
 .mentor_group_write .personal_info .photoArea .photo button{position: absolute;right: 0;bottom: 0;}
 .mentor_group_write .personal_info .photoArea .photo_img{width:198px; height:198px; border:1px solid #ddd; border-radius:50%;}
+.photo_img{
+    width: 200px;
+    height: 200px;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    margin:0 auto;
+}
+.photo_img img{
+    /*position: absolute;*/
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+}
 .mentor_group_write .personal_info .photoArea .photo_img img{border-radius: 100px;}
 .mentor_group_write .personal_info .photoArea a{position:absolute; right:0; bottom:0; }
 .mentor_group_write .personal_info .photoArea .size_info{font-size:15px; color:#888; line-height:1.8; }
@@ -510,7 +526,7 @@
 
     .mentor_group_write .list_5 label{margin:5px 0px; width:100%;}
     .mentor_group_write .personal_info .photoArea .photo_img{width:120px; height:120px; }
-    .mentor_group_write .personal_info .photoArea .photo_img img{width:60px; height:60px; }
+    /*.mentor_group_write .personal_info .photoArea .photo_img img{width:60px; height:60px; }*/
     .mentor_group_write .personal_info .photoArea .size_info{font-size:13px;}
     .mentor_group_write .mentor_detail label,
     .mentor_group_write .personal_info ul li label{font-size:14px; }

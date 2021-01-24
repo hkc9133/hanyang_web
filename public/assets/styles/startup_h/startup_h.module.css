@@ -48,6 +48,24 @@
 .startup_graph_right .list .title{margin-bottom:15px; font-size:18px; font-family: 's-core-dream-medium'; color:#222; }
 .startup_graph_right .list .txt{font-size:16px; }
 
+.bbs_tb_list{margin-bottom:50px; }
+.bbs_tb_list th{padding:15px 0; text-align:center; border-top:2px solid #333; border-bottom:1px solid #ddd;  font-size:16px; }
+.bbs_tb_list td{padding:14px 5px; text-align:center; border-bottom:1px solid #ddd; font-size:16px; word-break:break-all;}
+.bbs_tb_list td button,
+.bbs_tb_list td a{font-size:16px; }
+.bbs_tb_list td.icon img{width:20px; }
+
+.startup_support .bbs_tb_list{border-top:2px solid #222;}
+.bbs_tb_list .category{width:110px; height:40px; line-height:38px; display:inline-block; box-sizing:border-box; border:1px solid #93989c; color:#93989c; font-size:16px; border-radius:20px; }
+.bbs_tb_list .category.sky{border-color:#45a9ee; color:#45a9ee;}
+.bbs_tb_list .category.green{border-color:#58b256; color:#58b256;}
+.bbs_tb_list .category.purple{border-color:#9f58e1; color:#9f58e1;}
+.bbs_tb_list .category.red{border-color:#de627a; color:#de627a;}
+.bbs_tb_list .icon_notice{padding:0 20px; height:40px; line-height:40px; display:inline-block; border-radius:20px; background-color:#222; font-size:16px; color:#fff; }
+
+.icon_plus{padding-left:45px; min-height:27px; display:inline-block; margin:0 20px; background:url(../../image/icon_plus.png) no-repeat 0 center; font-size:16px; color:#222; }
+.icon_setting{padding-left:45px; min-height:27px; display:inline-block; margin:0 20px; background:url(../../image/icon_setting.png) no-repeat 0 center; font-size:16px; color:#222; }
+
 @media screen and (max-width: 1400px){
 
 
@@ -96,6 +114,14 @@
     .startup_graph_right .list .title{font-size:16px; }
     .startup_graph_right .list .txt{font-size:14px;}
     .startup_graph_right h2{padding-top:0; font-size:26px; }
+
+    .bbs_tb_list th{font-size:14px;}
+    .bbs_tb_list td button,
+    .bbs_tb_list td a,
+    .bbs_tb_list td{font-size:14px;}
+
+    .bbs_tb_list .icon_notice{padding:0 10px; height:30px; line-height:30px; font-size:12px; border-radius:20px; }
+    .bbs_tb_list .category{width:80px; height:30px; line-height:28px; font-size:14px; }
 }
 
 
@@ -138,5 +164,8 @@
     .startup_graph_right .list ul{padding-top:0;}
     .startup_graph_right .list .title{margin-bottom:10px; font-size:14px; }
     .startup_graph_right .list .txt{font-size:12px; }
+
+    .bbs_tb_list th{font-size:12px; }
+    .bbs_tb_list td button, .bbs_tb_list td a, .bbs_tb_list td{font-size:12px;}
 
 }

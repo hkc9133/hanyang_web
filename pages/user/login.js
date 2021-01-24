@@ -71,7 +71,6 @@ const Login = () => {
 
 
     useEffect(() => {
-        console.log(loginCode)
         if (!loginLoading && user.login == false && loginCode == 401) {
             dispatch(initializeForm('loginCode'))
             router.push('/user/join')

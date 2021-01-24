@@ -48,6 +48,23 @@
 .title_style_1{margin-bottom:30px; font-size:20px; font-family: 's-core-dream-medium';}
 .join_terms .sns_login ul li{float:left; margin-left:2.5%; width:18%; }
 .join_terms .sns_login ul li:first-child{margin-left:0;}
+
+.popup_title{font-size: 17px;}
+.popup_btn_box{margin-top: 20px;text-align: center;}
+.popup_btn_box .signup_btn{width:70px; height:30px; line-height:30px; border:1px solid #3d89f9; text-align:center; border-radius:5px; display:inline-block; color:#3D89F9; font-size:14px;margin:3px;
+    -webkit-transition: all 0.35s ease-out;
+    -moz-transition: all 0.35s ease-out;
+    -ms-transition: all 0.35s ease-out;
+    -o-transition: all 0.35s ease-out;
+    transition: all 0.35s ease-out;}
+.popup_btn_box .signup_btn:hover{background-color:#3d89f9; color:#fff; }
+.popup_btn_box .cancel_btn{width:70px; height:30px; line-height:30px; border:1px solid gray; text-align:center; border-radius:5px; display:inline-block; color:gray; font-size:14px;margin:3px;
+    -webkit-transition: all 0.35s ease-out;
+    -moz-transition: all 0.35s ease-out;
+    -ms-transition: all 0.35s ease-out;
+    -o-transition: all 0.35s ease-out;
+    transition: all 0.35s ease-out;}
+.popup_btn_box .cancel_btn:hover{background-color:gray; color:#fff; }
 /*pre{word-wrap: break-word; white-space: pre-wrap; line-height:1.6;  font-size:16px; }*/
 
 .join_type h2{margin-bottom:55px; font-size:32px; font-family: 's-core-dream-medium'; color:#222; }

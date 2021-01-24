@@ -237,8 +237,8 @@ const Write = () => {
                                     )}
                                     </tbody>
                                 </table>
-                                <div className={"txt_c"}>
-                                    <button type="submit" className={cx("basic-btn02","btn-blue-bd")}>저장</button>
+                                <div className={cx("btn-box01")}>
+                                    <button className={cx("basic-btn01")}>저장</button>
                                     <button type="button" className={cx("basic-btn02","btn-gray-bd")} onClick={router.back}>취소</button>
                                 </div>
                             </div>

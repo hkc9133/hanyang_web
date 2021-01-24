@@ -3,6 +3,7 @@ import {all} from 'redux-saga/effects'
 import main ,{mainSaga} from './main/main';
 import auth,{authSaga} from './auth/auth';
 import spaceRental,{spaceRentalSaga} from './spaceRental/spaceRental';
+import adminSpaceRental,{adminSpaceRentalSaga} from './spaceRental/adminSpaceRental';
 import mentoring ,{mentoringSaga} from './mentoring/mentoring';
 import adminMentoring ,{adminMentoringSaga} from './mentoring/adminMentoring';
 import board ,{boardSaga} from './board/board';
@@ -39,7 +40,7 @@ const rootReducer = (state, action) => {
             return action.payload;
         default: {
             const combinedReducer = combineReducers({
-                main,auth,file,spaceRental,mentoring,adminMentoring,board,adminBoard,user,notice,adminNotice,loading
+                main,auth,file,spaceRental,adminSpaceRental, mentoring,adminMentoring,board,adminBoard,user,notice,adminNotice,loading
             })
             return combinedReducer(state, action);
         }
@@ -74,7 +75,7 @@ const rootReducer = (state, action) => {
 //     }
 // }
 export function* rootSaga(){
-    yield all ([mainSaga(),authSaga(),fileSaga(),spaceRentalSaga(),mentoringSaga(),adminMentoringSaga(),boardSaga(),adminBoardSaga(),noticeSaga(),adminNoticeSaga(),userSaga()]);
+    yield all ([mainSaga(),authSaga(),fileSaga(),spaceRentalSaga(),adminSpaceRentalSaga(), mentoringSaga(),adminMentoringSaga(),boardSaga(),adminBoardSaga(),noticeSaga(),adminNoticeSaga(),userSaga()]);
 }
 
 export default rootReducer;

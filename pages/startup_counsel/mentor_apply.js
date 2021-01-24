@@ -8,7 +8,7 @@ import PageNavigation from "../../component/layout/PageNavigation";
 import {useSelector,useDispatch} from "react-redux";
 import KeywordBox from "../../component/stratup_counsel/mentor_apply/KeywordBox";
 import CareerBox from "../../component/stratup_counsel/mentor_apply/CareerBox";
-import {applyMentor, getMentor, initialize} from "../../store/mentoring/mentoring";
+import {applyMentor, getCounselFieldCode, getMentorCheck, initialize} from "../../store/mentoring/mentoring";
 import Modal from "../../component/common/Modal";
 import {useRouter} from "next/router";
 
@@ -32,9 +32,10 @@ const counselField = [
 ]
 const MentorApply = () => {
 
-    const {user,apply,mentorCheck} = useSelector(({auth,mentoring, loading}) => ({
+    const {user,apply,counselFieldList,mentorCheck} = useSelector(({auth,mentoring, loading}) => ({
         user: auth.user,
         apply:mentoring.apply,
+        counselFieldList:mentoring.counselField,
         mentorCheck:mentoring.mentorCheck
     }))
     const [form] = Form.useForm();
@@ -44,7 +45,6 @@ const MentorApply = () => {
 
     const [mentorInfo, setMentorInfo] = useState({
         mentorIntroduction: "",
-        // profileImg: null,
         mentorName: "",
         mentorCompany: "",
         mentorPhoneNumber: "",
@@ -66,7 +66,8 @@ const MentorApply = () => {
     const profileImgInput = useRef();
 
     useEffect(() =>{
-        dispatch(getMentor())
+        dispatch(getMentorCheck())
+        dispatch(getCounselFieldCode())
 
         return () =>{
             dispatch(initialize());
@@ -143,7 +144,7 @@ const MentorApply = () => {
     }
 
     const changeMentorField = (tag, checked) => {
-        const nextSelectedTags = checked ? [...mentorInfo.mentorFieldList, tag.fieldId] : mentorInfo.mentorFieldList.filter(t => t !== tag.fieldId);
+        const nextSelectedTags = checked ? [...mentorInfo.mentorFieldList, tag.value] : mentorInfo.mentorFieldList.filter(t => t !== tag.value);
 
         setMentorInfo({
             ...mentorInfo,
@@ -182,7 +183,6 @@ const MentorApply = () => {
                                         <div className={cx("photo_img")}>
                                             <Image src={image != null ? image : "/assets/image/mentor_photo.jpg"} layout={"fill"} alt="mentor_photo"/>
                                         </div>
-                                        {/*<Link href="#">*/}
                                         <Button onClick={() =>{profileImgInput.current.click();}}>
                                             <Image src="/assets/image/photo_btn.png" width={50} height={50} alt="photo_btn"/>
                                             <input ref={profileImgInput} type="file" name="profileImg" hidden={true}
@@ -191,7 +191,6 @@ const MentorApply = () => {
                                                    }}
                                             />
                                         </Button>
-                                        {/*</Link>*/}
                                     </div>
                                     <div className={cx("size_info")}>
                                         사진사이즈 <br/>200px X 200px
@@ -199,11 +198,7 @@ const MentorApply = () => {
                                 </div>
                                 <ul className={cx("clfx")}>
                                     <li>
-                                        {/*<label htmlFor="startup_write_1">이름</label>*/}
                                         <div>
-                                            {/*<input type="text"  name="mentorName" value={mentorInfo.mentorName} id="startup_write_1" value={mentorInfo.mentorName} onChange={(e) => {*/}
-                                            {/*    changeMentorValue(e);*/}
-                                            {/*}}/>*/}
                                             <Form.Item
                                                 label="이름"
                                                 name="mentorName"
@@ -220,12 +215,7 @@ const MentorApply = () => {
                                         </div>
                                     </li>
                                     <li>
-                                        {/*<label htmlFor="startup_write_2">소속</label>*/}
                                         <div>
-                                            {/*    <input type="text" name="mentorCompany" value={mentorInfo.mentorCompany} id="startup_write_2" value={mentorInfo.mentorCompany} onChange={(e) => {*/}
-                                            {/*        changeMentorValue(e);*/}
-                                            {/*    }}/>*/}
-                                            {/*</div>*/}
                                             <Form.Item
                                                 label="소속"
                                                 name="mentorCompany"
@@ -242,12 +232,7 @@ const MentorApply = () => {
                                         </div>
                                     </li>
                                     <li>
-                                        {/*<label htmlFor="startup_write_3">직위</label>*/}
                                         <div>
-                                            {/*    <input type="text" name="mentorPosition" value={mentorInfo.mentorPosition} id="startup_write_3" value={mentorInfo.mentorPosition} onChange={(e) => {*/}
-                                            {/*        changeMentorValue(e);*/}
-                                            {/*    }}/>*/}
-                                            {/*</div>*/}
                                             <Form.Item
                                                 label="직위"
                                                 name="mentorPosition"
@@ -263,7 +248,6 @@ const MentorApply = () => {
                                         </div>
                                     </li>
                                     <li>
-                                        {/*<label htmlFor="startup_write_4">연락처</label>*/}
                                         <div>
                                             <Form.Item
                                                 label="연락처"
@@ -280,13 +264,9 @@ const MentorApply = () => {
                                             >
                                                 <Input placeholder={"연락처"}  name="mentorPhoneNumber" value={mentorInfo.mentorPhoneNumber} onChange={(e)=>{changeMentorValue(e)}} />
                                             </Form.Item>
-                                            {/*<input type="text" name="mentorPhoneNumber" value={mentorInfo.mentorPhoneNumber} id="startup_write_4" value={mentorInfo.mentorPhoneNumber} onChange={(e) => {*/}
-                                            {/*    changeMentorValue(e);*/}
-                                            {/*}}/>*/}
                                         </div>
                                     </li>
                                     <li className={cx("email")}>
-                                        {/*<label htmlFor="startup_write_5">E-mail</label>*/}
                                         <div className={"clfx"}>
                                             <Form.Item
                                                 label="E-MAIL"
@@ -301,31 +281,6 @@ const MentorApply = () => {
                                             >
                                                 <Input placeholder={"E-MAIL"}  name="mentorEmail" value={mentorInfo.mentorEmail} onChange={(e)=>{changeMentorValue(e)}} />
                                             </Form.Item>
-                                            {/*<input type="text" id="startup_write_5" name="mentorEmailId"*/}
-                                            {/*       value={mentorInfo.mentorEmailId} onChange={(e) => {*/}
-                                            {/*    changeMentorValue(e)*/}
-                                            {/*}}/>*/}
-                                            {/*<span>@</span>*/}
-                                            {/*{mentorInfo.mentorEmailDomain == "" ? (*/}
-                                            {/*    <input type="text" name="mentorEmailDomainCustom"*/}
-                                            {/*           value={mentorInfo.mentorEmailDomainCustom}*/}
-                                            {/*           disabled={mentorInfo.mentorEmailDomain != ""} onChange={(e) => {*/}
-                                            {/*        changeMentorValue(e)*/}
-                                            {/*    }}/>*/}
-                                            {/*) : (*/}
-                                            {/*    <input type="text" name="mentorEmailDomain" value={mentorInfo.mentorEmailDomain}*/}
-                                            {/*           disabled={mentorInfo.mentorEmailDomain != ""} onChange={(e) => {*/}
-                                            {/*        changeMentorValue(e);*/}
-                                            {/*    }}/>*/}
-                                            {/*)}*/}
-                                            {/*<select name="mentorEmailDomain" value={mentorInfo.mentorEmailDomain}*/}
-                                            {/*        onChange={(e) => {*/}
-                                            {/*            changeMentorValue(e)*/}
-                                            {/*        }}>*/}
-                                            {/*    <option value="">직접 입력</option>*/}
-                                            {/*    <option value="google.com">google.com</option>*/}
-                                            {/*    <option value="naver.com">naver.com</option>*/}
-                                            {/*</select>*/}
                                         </div>
                                     </li>
                                 </ul>
@@ -366,16 +321,16 @@ const MentorApply = () => {
                                         <label htmlFor="startup_write_6">멘토링분야</label>
                                         <div className={cx("clfx")}>
                                             <div className={cx("counsel_field_box")}>
-                                                {counselField.map(tag => (
+                                                {counselFieldList.list.map(tag => (
                                                     <CheckableTag
-                                                        className={cx("tag", {checked: mentorInfo.mentorFieldList.indexOf(tag.fieldId) > -1})}
-                                                        key={tag.fieldId}
-                                                        checked={mentorInfo.mentorFieldList.indexOf(tag.fieldId) > -1}
+                                                        className={cx("tag", {checked: mentorInfo.mentorFieldList.indexOf(tag.value) > -1})}
+                                                        key={tag.value}
+                                                        checked={mentorInfo.mentorFieldList.indexOf(tag.value) > -1}
                                                         onChange={checked => {
                                                             changeMentorField(tag, checked)
                                                         }}
                                                     >
-                                                        {tag.fieldName}
+                                                        {tag.label}
                                                     </CheckableTag>
                                                 ))}
                                             </div>
@@ -383,26 +338,16 @@ const MentorApply = () => {
                                     </li>
                                     <li>
                                         <label htmlFor="startup_write_7">멘토링 KEYWORD</label>
-                                        {/*<input type="text" id="startup_write_7"/>*/}
                                         <KeywordBox mentorInfo={mentorInfo} setMentorInfo={setMentorInfo} cx={cx}/>
                                     </li>
                                     <li>
                                         <label htmlFor="startup_write_8">주요경력</label>
                                         <CareerBox mentorInfo={mentorInfo} setMentorInfo={setMentorInfo} cx={cx}/>
-                                        {/*<textarea name="career" value={mentorInfo.career} onChange={(e) => {*/}
-                                        {/*    changeMentorValue(e)*/}
-                                        {/*}} id="startup_write_8" cols="30" rows="10"></textarea>*/}
                                     </li>
                                 </ul>
                                 <div className={cx("in_word")}>
                                     <label htmlFor="startup_write_9">멘토 한마디</label>
                                     <Input.TextArea  placeholder={"멘토 한마디"}  name="mentorIntroduction" value={mentorInfo.mentorIntroduction} onChange={(e)=>{changeMentorValue(e)}}  id="startup_write_9" rows="10"/>
-                                    {/*<textarea name="mentorIntroduction" id="startup_write_9" cols="30" rows="10"*/}
-                                    {/*          value={mentorInfo.mentorIntroduction}*/}
-                                    {/*          onChange={(e) => {*/}
-                                    {/*              changeMentorValue(e)*/}
-                                    {/*          }}*/}
-                                    {/*          placeholder="500자 내외로 작성해 주세요."></textarea>*/}
                                 </div>
                             </div>
                             <div className={cx("txt_c")}>

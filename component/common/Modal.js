@@ -103,7 +103,7 @@ const ModalInner = styled.div`
   top: 50%;
   transform: translateY(-50%);
   margin: 0 auto;
-  padding: 40px;
+  padding: 20px 30px;
   outline:none;
 `
 

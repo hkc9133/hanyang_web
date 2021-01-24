@@ -39,7 +39,7 @@ const MentorCounselApplyListItem = React.memo(({item,handleShowAnswer,showAnswer
                             <li className={cx("w_2")}>{moment(item.regDate).format("YYYY.MM.DD")}</li>
                             <li className={cx("w_3")}>{item.title}</li>
                             <li className={cx("w_4")}>{getCounselStatus(item.applyStatus)}</li>
-                            <li className={cx("w_5")}>{item.mentorName}</li>
+                            <li className={cx("w_5")}>{item.menteeName}</li>
                         </ul>
                     </li>
                 </a>

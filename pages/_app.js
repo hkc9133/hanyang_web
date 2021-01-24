@@ -54,15 +54,17 @@ const _App = ({Component, pageProps}) => {
         if (user.login && user.info.role !== null) {
             setRole(user.info.role !== null ? user.info.role : null)
         }
-    }, [user])
+    }, [user,router.pathname])
 
     let allowed = true;
     if (router.pathname.startsWith("/admin") && role !== "ROLE_ADMIN") {
         allowed = false;
-    } else if(router.pathname.startsWith("/mypage") && !user.login) {
+    } else if((router.pathname.startsWith("/mypage/mentee") || router.pathname.startsWith("/startup_counsel/counsel_apply"))  && (user.login !== true || role != 'ROLE_SD')) {
         allowed = false;
-    }else {
-
+    }else if((router.pathname.startsWith("/mypage/mentor") || router.pathname.startsWith("/startup_counsel/mentor_apply")) && (user.login !== true || role != 'ROLE_MT')) {
+        allowed = false;
+    }else if(router.pathname.startsWith("/introduce/space_reservation") && role == null){
+        allowed = false;
     }
 
     const ComponentToRender = allowed ? Component : AuthFail;
@@ -90,7 +92,7 @@ const _App = ({Component, pageProps}) => {
                         <ComponentToRender {...pageProps} />
                         : null
                     }
-                    {(!router.pathname.startsWith("/admin") || !router.pathname.startsWith("/admin") ) ? allowed ?
+                    {(!router.pathname.startsWith("/admin/") || !router.pathname.startsWith("/admin/") ) ? allowed ?
                     <>
                         <style jsx global>
                             {GlobalStyles}

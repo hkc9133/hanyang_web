@@ -139,7 +139,9 @@ const List = () => {
 
                     <div className={cx("admin_cont")}>
                         <h2 className={cx("title_style_1")}><span>목록</span></h2>
-                        <Link href={"/admin/notice/write"}><a>글쓰기</a></Link>
+                        <div className={cx("btn-box01")}>
+                        <Link  href={"/admin/notice/write"}><a className={cx("basic-btn01")}>글쓰기</a></Link>
+                        </div>
                         {notice.list.length !== 0 &&
                         <NoticeListTable cx={cx} list={notice.list}/>
                         }

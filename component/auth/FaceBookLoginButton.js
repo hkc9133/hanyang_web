@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 
-const FaceBookLoginButton = ({handleSocialLogin}) => {
+const FaceBookLoginButton = ({handleSocialLogin,onFormCheck}) => {
 
     useEffect(() => {
         initFacebookSdk();
@@ -41,7 +41,7 @@ const FaceBookLoginButton = ({handleSocialLogin}) => {
     }
 
     return (
-        <a href="#" onClick={() => {fbLoginClick()}}>
+        <a href="#" onClick={(e) => {onFormCheck != undefined && onFormCheck(e);fbLoginClick()}}>
             <span>페이스북 <br/>로그인</span>
         </a>
     );

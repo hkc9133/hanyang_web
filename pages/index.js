@@ -270,7 +270,7 @@ const Index = () => {
                         <h1><Link href="/"><a>창업지원단 핫이슈</a></Link></h1>
                         <ul>
                             {mainData.notice.map( (item,index) =>
-                                    index < 5 && <li><Link href="/"><a>{item.title}</a></Link></li>
+                                    index < 5 && <li key={item.noticeId}><Link href="/"><a>{item.title}</a></Link></li>
 
                             )}
                         </ul>

@@ -35,6 +35,7 @@ const dep1 = {
             mentor_introduce: {name:'멘토단 소개',link:'/startup_counsel/mentor_introduce'},
             mentor_apply: {name:'멘토 신청',link:'/startup_counsel/mentor_apply'},
             counsel_apply: {name:'창업상담하기',link:'/startup_counsel/counsel_apply'},
+            startup_procedure: {name:'창업절차',link:'/startup_counsel/startup_procedure'},
         }
     },
     startup_info:{
@@ -52,7 +53,7 @@ const dep1 = {
         link:"/startup_h/best_startup",
         sub:{
             best_startup: {name:'우수스타트업',link:'/startup_h/best_startup'},
-            startup_emissions: {name:'스타트업배출현황',link:'/startup_h/startup_emissions'},
+            startup_present: {name:'스타트업배출현황',link:'/startup_h/startup_present'},
         }
     },
     investment:{
@@ -71,7 +72,10 @@ const dep1 = {
             system: {name:'창업지원체계',link:'/introduce/system'},
             infra: {name:'인프라',link:'/introduce/infra/list'},
             promotion: {name:'협력파트너스',link:'/introduce/promotion'},
-            location: {name:'오시는길',link:'/introduce/location'}
+            location: {name:'오시는길',link:'/introduce/location'},
+            notice: {name:'공지사항',link:'/introduce/notice'},
+            news: {name:'뉴스레터',link:'/board/news/list'},
+            media_report: {name:'언론보도',link:'/board/media_report/list'}
         }
     }
 }
@@ -82,6 +86,8 @@ const board = {
     startup_info:{parents:'startup_info'},
     people:{parents:'startup_education'},
     online_content:{parents:'startup_education'},
+    news:{parents:'introduce'},
+    media_report:{parents:'introduce'},
 }
 
 const PageNavigation = () => {

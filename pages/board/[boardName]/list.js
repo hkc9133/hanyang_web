@@ -113,14 +113,18 @@ const List = () => {
                     {currentBoard.board.boardEnName == 'notice' && (
                         <SearchBoxSelector skinName="SearchBoxStyle01" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
                     )}
+                    {currentBoard.board.boardEnName == 'news' && (
+                        <SearchBoxSelector skinName="SearchBoxStyle01" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
+                    )}
+                    {currentBoard.board.boardEnName == 'media_report' && (
+                        <SearchBoxSelector skinName="SearchBoxStyle01" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
+                    )}
                     {currentBoard.board.boardEnName == 'people' && (
                         <SearchBoxSelector skinName="SearchBoxStyle02" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
                     )}
                     {currentBoard.board.boardEnName == 'data_room' || currentBoard.board.boardEnName == 'community' || currentBoard.board.boardEnName == "startup_info" && (
                         <SearchBoxSelector skinName="SearchBoxStyle01" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
                     )}
-
-
                     {currentBoard.board.boardEnName == 'online_content' || currentBoard.board.boardEnName == 'community'  && (
                         <SearchBoxSelector skinName="SearchBoxStyle01" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
                     )}
@@ -135,6 +139,12 @@ const List = () => {
 
 
                     {currentBoard.board.boardEnName == 'notice' && (
+                        <BoardSkinSelector skinName="ListType02" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
+                    )}
+                    {currentBoard.board.boardEnName == 'news' && (
+                        <BoardSkinSelector skinName="ListType02" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
+                    )}
+                    {currentBoard.board.boardEnName == 'media_report' && (
                         <BoardSkinSelector skinName="ListType02" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
                     )}
                     {currentBoard.board.boardEnName == 'data_room' && (

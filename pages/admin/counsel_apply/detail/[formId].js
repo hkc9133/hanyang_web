@@ -21,6 +21,7 @@ import AssignMentorListTable from "../../../../component/admin/counsel_apply/Ass
 import Image from "next/image";
 import {getCounselStatus} from "../../../../component/common/util/StatusUtil";
 import {fileDownload} from "../../../../store/file/file";
+import Modal from "../../../../component/common/Modal";
 
 const cx = classnames.bind(styles);
 
@@ -33,6 +34,7 @@ const CounselApplyFormDetail = () => {
         searchField: "",
         searchValue: ""
     })
+    const [showResultModal,setShowResultModal] = useState(false);
     const [showMentorAssign, setShowMentorAssign] = useState(false);
     const [selectMentor, setSelectMentor] = useState({
         mentorId: null,
@@ -125,8 +127,9 @@ const CounselApplyFormDetail = () => {
 
     useEffect(() => {
         if(update.result === true && update.error === null){
-            alert("업데이트 성공")
-            router.push("/admin/counsel_apply")
+            setShowResultModal(true)
+            // alert("업데이트 성공")
+            // router.push("/admin/counsel_apply")
         }
 
     },[update])
@@ -134,10 +137,9 @@ const CounselApplyFormDetail = () => {
 
     const MentorAssignButton = () => {
         return (
-            <button onClick={() => {
-                setShowMentorAssign(!showMentorAssign)
-            }}>멘토 배정 하기</button>
+            <button className={cx("basic-btn01")} onClick={() => {setShowMentorAssign(!showMentorAssign)}}>멘토 배정 하기</button>
         )
+
     }
 
     const handleFileDownload = useCallback(({fileId}) => {
@@ -195,13 +197,13 @@ const CounselApplyFormDetail = () => {
                                                         {applyValue.assignMentorName != null &&
                                                         <>
                                                             {applyValue.assignMentorName}
-                                                            <button onClick={() =>{setApplyValue({...applyValue,assignMentorId:null,applyStatus:'APPLY'})}}>배정 취소</button>
+                                                            <button className={cx("basic-btn03")} onClick={() =>{setApplyValue({...applyValue,assignMentorId:null,assignMentorName:null,applyStatus:'APPLY'})}}>배정 취소</button>
                                                         </>
                                                         }
                                                         {applyValue.assignMentorId != null && applyValue.mentorName && (
                                                             <>
                                                                 <Link href={`/admin/mentor/detail/${applyValue.assignMentorId}`}><a>{applyValue.mentorName}</a></Link>
-                                                                <button onClick={() =>{setApplyValue({...applyValue,assignMentorId:null,applyStatus:'APPLY'})}}>배정 취소</button>
+                                                                <button className={cx("basic-btn03")}  onClick={() =>{setApplyValue({...applyValue,assignMentorId:null,assignMentorName:null,applyStatus:'APPLY'})}}>배정 취소</button>
                                                             </>
                                                         )}
                                                     </td>
@@ -298,12 +300,12 @@ const CounselApplyFormDetail = () => {
                                                 </tr>
                                                 </tbody>
                                             </table>
-                                            <div>
-                                                <button onClick={() => {
+                                            <div className={cx("btn-box01")}>
+                                                <button className={cx("basic-btn02", "btn-gray-bg")} onClick={() => {
                                                     router.back()
                                                 }}>뒤로가기
                                                 </button>
-                                                <button onClick={() => {
+                                                <button className={cx("basic-btn02", "btn-gray-bd2")} onClick={() => {
                                                     saveApply()
                                                 }}>저장
                                                 </button>
@@ -348,19 +350,30 @@ const CounselApplyFormDetail = () => {
                                                 />
                                             )}
                                         </div>
-                                        <button onClick={() => {
-                                            setShowMentorAssign(false)
-                                        }}>취소
-                                        </button>
-                                        <button onClick={() => {
-                                            assignMentor();
-                                        }}>배정
-                                        </button>
+                                        <div className={cx("btn-box01")}>
+
+                                            <button className={cx("basic-btn02", "btn-gray-bg")} onClick={() => {
+                                                setShowMentorAssign(false)
+                                            }}>취소
+                                            </button>
+                                            <button className={cx("basic-btn02", "btn-gray-bd2")} onClick={() => {
+                                                assignMentor();
+                                            }}>배정
+                                            </button>
+                                        </div>
                                     </div>
                                 }
                             </div>
                         </div>
                     </div>
+                    <Modal visible={showResultModal} closable={true} maskClosable={true} onClose={() => {
+                        setShowResultModal(false);
+                    }} cx={cx} className={"mentor_popup"}>
+                        <h2 className={cx("popup_title")}>저장이 완료되었습니다</h2>
+                        <div className={cx("btn_box")}>
+                            <button className={cx("basic-btn01","btn-gray-bg")} onClick={() =>{setShowResultModal(false);router.push("/admin/counsel_apply")}}>확인</button>
+                        </div>
+                    </Modal>
                 </section>
             )}
         </>

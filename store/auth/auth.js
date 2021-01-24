@@ -114,6 +114,7 @@ const auth = handleActions(
             produce(state, draft => {
                 draft.user.login = false;
                 draft.login.result = false;
+                draft.loginCode.code = error.response.code;
                 draft.login.error = error.response.data;
             }),
         [SOCIAL_SIGNUP_SUCCESS]: (state, {payload: response}) =>

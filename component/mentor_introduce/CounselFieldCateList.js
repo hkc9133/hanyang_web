@@ -1,30 +1,31 @@
 import React, {useEffect} from 'react';
 import {useRouter} from "next/router";
 import qs from 'query-string';
+import Link from 'next/link';
 
 const CounselFieldCateList = ({cx,list}) => {
     const router = useRouter();
     useEffect(() => {
-        console.log(list)
-        console.log(router.query.counselField)
+        // console.log(list)
+        // console.log(router.query.counselField)
     },[])
 
-    const changeCate = (counselField) => {
-
-        const {page = 1} = router.query;
-        const queryString = qs.stringify({
-            page, counselField
-        });
-
-        router.push(`${router.pathname}?${queryString}`)
-    }
+    // const changeCate = (counselField) => {
+    //
+    //     const {page = 1} = router.query;
+    //     const queryString = qs.stringify({
+    //         page, counselField,page
+    //     });
+    //
+    //     router.push(`${router.pathname}?${queryString}`)
+    // }
 
     return (
         <div className={cx("tab_style_1")}>
             <ul>
-                <li className={cx({on : router.query.counselField == "" || router.query.counselField == undefined})}><a href="#" onClick={(e) => {e.preventDefault();changeCate(null);}}><span>전체</span></a></li>
+                <li className={cx({on : router.query.counselField == "" || router.query.counselField == undefined})}><Link href={`${router.pathname}?pageSize=6`}><a><span>전체</span></a></Link></li>
                 {list.map((item) => {
-                    return <li key={item.value} className={cx({on : item.value == router.query.counselField})}><a href="#" onClick={(e) => {e.preventDefault();changeCate(item.value);}}><span>{item.label}</span></a></li>
+                    return <li key={item.value} className={cx({on : item.value == router.query.counselField})}><Link href={`${router.pathname}?pageSize=6&counselField=${item.value}`}><a><span>{item.label}</span></a></Link></li>
                 })}
                 {/*<li><a href="#"><span>세무·회계</span></a></li>*/}
                 {/*<li><a href="#"><span>법률·법무</span></a></li>*/}

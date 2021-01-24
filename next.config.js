@@ -2,14 +2,6 @@ const withImages = require("next-images")
 const withCSS = require("@zeit/next-css")
 const path = require('path');
 
-// module.exports = {
-//     env: {
-//         NODE_ENV: 'production',
-//     },
-//     // images: {
-//     //     domains: [url],
-//     // },
-// }
 module.exports = withCSS(
     withImages({
         webpack(config, options) {
@@ -39,6 +31,7 @@ module.exports = withCSS(
                     }
                 }
             })
+
 
             // config.module.rules.forEach(function (rule, index, array) {
             //     const test = rule.test && rule.test.toString() || ''
