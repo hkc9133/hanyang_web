@@ -3,10 +3,14 @@ import styles from '../../public/assets/styles/footer/footer.module.css';
 import classnames from "classnames/bind"
 import Link from "next/link";
 import Image from 'next/image'
+import {useSelector} from "react-redux";
 
 const cx = classnames.bind(styles);
 
 const Footer = () => {
+    const {mainData} = useSelector(({main, loading}) => ({
+        mainData: main.mainData
+    }))
     return (
         <section className={cx("footer_wrap")}>
             <div className={cx("footer_top")}>
@@ -41,9 +45,10 @@ const Footer = () => {
                     <div className={cx("footer_notice")}>
                         <h1>공지사항</h1>
                         <ul>
-                            <li><Link href="/"><a>홈페이지 결제관련 공지드립니다.</a></Link></li>
-                            <li><Link href="/"><a>직장인 이직성공까지’평균 4.3개월 걸린다.</a></Link></li>
-                            <li><Link href="/"><a>홈페이지 결제관련 공지드립니다.</a></Link></li>
+                            {mainData.notice.map( (item,index) =>
+                                index < 3 && <li key={item.noticeId}><Link href={`/introduce/notice/${item.noticeId}`}><a>{item.title}</a></Link></li>
+
+                            )}
                         </ul>
                     </div>
                 </div>
@@ -98,4 +103,4 @@ const Footer = () => {
     );
 };
 
-export default Footer;
+export default React.memo(Footer);

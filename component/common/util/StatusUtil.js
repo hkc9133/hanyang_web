@@ -60,5 +60,7 @@ export const getRentalType = (type) =>{
             return "취소"
         case 'ACCEPT':
             return "확정"
+        case 'RETURN':
+            return "반려"
     }
 }

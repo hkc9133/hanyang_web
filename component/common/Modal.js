@@ -1,7 +1,9 @@
 import React,{useEffect} from 'react'
 import styled from 'styled-components'
 import Portal from "./Portal";
-import CloseImage from '../../public/assets/image/popup_close.gif';
+import Image from "next/image";
+import client from "../../lib/api/client";
+// import CloseImage from '../../public/assets/image/popup_close.gif';
 
 
 // import styles from '../../public/assets/styles/common/modal.module.css.module.css';
@@ -9,7 +11,11 @@ import CloseImage from '../../public/assets/image/popup_close.gif';
 
 
 // const cx = classnames.bind(styles);
+import styles from '../../public/assets/styles/common/modal.module.css';
+import classnames from "classnames/bind"
 
+
+const cxMo = classnames.bind(styles);
 function Modal({className,onClose,maskClosable,closable,visible, children,cx}) {
     const onMaskClick = (e) => {
         if (e.target === e.currentTarget) {
@@ -56,7 +62,8 @@ function Modal({className,onClose,maskClosable,closable,visible, children,cx}) {
                     visible={visible}
                 >
                     <ModalInner tabIndex="0" className={`${cx !== undefined && cx("inner")} modal-inner`}>
-                        {closable && <CloseBtn className="modal-close" onClick={close} >X</CloseBtn>}
+                        {closable &&
+                        <img className={cxMo("popup_close")} src="/assets/image/popup_close.gif"  alt="alarm_icon"onClick={onClose}/>}
                         {children}
                     </ModalInner>
                 </ModalWrapper>
@@ -113,7 +120,7 @@ const CloseBtn = styled.button`
   top:10px;
   width:40px;
   height:40px;
-  background:url(${CloseImage}) no-repeat center center;
+  
   display:block;
   text-indent:-9999px; 
 `

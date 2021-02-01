@@ -36,6 +36,7 @@ const dep1 = {
             mentor_apply: {name:'멘토 신청',link:'/startup_counsel/mentor_apply'},
             counsel_apply: {name:'창업상담하기',link:'/startup_counsel/counsel_apply'},
             startup_procedure: {name:'창업절차',link:'/startup_counsel/startup_procedure'},
+            student_report: {name:'학생창업신고',link:'/startup_counsel/student_report'},
         }
     },
     startup_info:{
@@ -60,7 +61,7 @@ const dep1 = {
         name:'투자연계',
         link:"/investment/ir",
         sub:{
-            ir: {name:'IR/ 투자 안내',link:'/investment/ir'},
+            ir: {name:'IR/ 투자 안내',link:'/board/ir/list'},
             investment_partners: {name:'국내/ 외 투자파트너스',link:'/investment/investment_partners'},
         }
     },
@@ -75,7 +76,8 @@ const dep1 = {
             location: {name:'오시는길',link:'/introduce/location'},
             notice: {name:'공지사항',link:'/introduce/notice'},
             news: {name:'뉴스레터',link:'/board/news/list'},
-            media_report: {name:'언론보도',link:'/board/media_report/list'}
+            media_report: {name:'언론보도',link:'/board/media_report/list'},
+            ir: {name:'IR/ 투자 안내',link:'/board/ir/list'}
         }
     }
 }
@@ -150,15 +152,11 @@ const PageNavigation = () => {
         // });
 
 
-    },[])
+    },[router])
 
-    useEffect(() => {
-
-        console.log(navi)
-        console.log(subNavi)
-
-
-    },[navi,subNavi])
+    // useEffect(() => {
+    //
+    // },[navi,subNavi])
 
 
     return (

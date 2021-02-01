@@ -25,6 +25,10 @@ const Header = () => {
 
     const dispatch = useDispatch();
     const router = useRouter()
+    useEffect(() =>{
+
+
+    },[])
 
 
     const [showMenu, setShowMenu] = useState(false);
@@ -137,8 +141,8 @@ const Header = () => {
                             <a href="ir.html">투자연계</a>
                             <div className={cx("s_gnb")}>
                                 <ul>
-                                    <li><Link href="/investment/ir"><a>IR/ 투자 안내</a></Link></li>
-                                    <li><Link href="/investment/investment_partners"><a>국내/ 외 투자파트너스</a></Link></li>
+                                    <li><Link href="/board/ir/list"><a>IR/ 투자 안내</a></Link></li>
+                                    <li><Link href="/investment/investment_partners"><a>국내/ 외<br/> 투자파트너스</a></Link></li>
                                 </ul>
                             </div>
                         </li>
@@ -252,7 +256,7 @@ const Header = () => {
                             <a href="#" onClick={(e) => {e.preventDefault();handleShowMenuItem(5)}}>투자연계</a>
                             <div className={cx("s_menu",{show:currentMenuItem === 5})}>
                                 <ul>
-                                    <li><Link href="/investment/ir"><a>IR/ 투자 안</a></Link></li>
+                                    <li><Link href="/board/ir/list"><a>IR/ 투자 안내</a></Link></li>
                                     <li><Link href="/investment/investment_partners"><a>국내/ 외 투자파트너스</a></Link></li>
                                 </ul>
                             </div>
@@ -307,4 +311,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default React.memo(Header);

@@ -53,7 +53,7 @@
 .tb_style_2 th{padding:20px 15px; border-bottom:1px solid #d9e0e5; text-align:left; background-color:#f6f8f9; font-size:14px; color:#5d677b; font-weight:400; }
 .tb_style_2 td{padding:10px 15px; border-bottom:1px solid #d9e0e5;}
 .tb_style_2 td p{margin-left:20px; display:inline-block; font-size:14px; color:#596475;}
-.tb_style_2 td span{margin-left:10px; display:inline-block; font-size:14px; color:#596475; height:32px; line-height: 30px;}
+/*.tb_style_2 td span{margin-left:10px; display:inline-block; font-size:14px; color:#596475; height:32px; line-height: 30px;}*/
 .tb_style_2 td select,
 .tb_style_2 td input[type=text]{width:160px; height:32px; line-height:30px; box-sizing:border-box; vertical-align:top;}
 .tb_style_2 td input[type=text].w_60{width:60px; }
@@ -87,7 +87,7 @@
 .basic-btn02{padding:8px 16px;border: 1px solid gray;box-sizing: border-box;margin:3px;border-radius: 5px;}
 /*.basic-btn02:hover{color:black;}*/
 
-.basic-btn03{background-color: white; padding:8px 18px; color:#ff4d4f;box-sizing: border-box;margin:3px;border-radius: 5px;border: 1px solid #ff4d4f;}
+.basic-btn03{background-color: white; padding:8px 18px; color:#ff4d4f;box-sizing: border-box;margin:3px;border-radius: 5px;border: 1px solid #ff4d4f;margin-left: 10px;}
 .basic-btn03:hover{background-color: #ff4d4f;color:white}
 
 /*.basic-btn01{width:70px; height:35px; line-height:33px; text-align:center; border:1px solid #afb6c5; box-sizing:border-box; font-size:14px; font-weight:200; border-radius:3px; vertical-align:top;}*/

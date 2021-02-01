@@ -36,7 +36,7 @@ const bindMiddleware = (middleware) => {
 //
 //         const persistConfig = {
 //             key: "nextjs",
-//             whitelist: ["auth","spaceRental"],
+//             whitelist: ["auth","popup"],
 //             storage, // if needed, use a safer storage
 //         };
 //

@@ -125,7 +125,7 @@ const List = () => {
                     {currentBoard.board.boardEnName == 'data_room' || currentBoard.board.boardEnName == 'community' || currentBoard.board.boardEnName == "startup_info" && (
                         <SearchBoxSelector skinName="SearchBoxStyle01" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
                     )}
-                    {currentBoard.board.boardEnName == 'online_content' || currentBoard.board.boardEnName == 'community'  && (
+                    {(currentBoard.board.boardEnName == 'online_content' || currentBoard.board.boardEnName == 'community' || currentBoard.board.boardEnName == 'ir')  && (
                         <SearchBoxSelector skinName="SearchBoxStyle01" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
                     )}
 
@@ -159,7 +159,7 @@ const List = () => {
                     {currentBoard.board.boardEnName == 'people' && (
                         <BoardSkinSelector skinName="GalleryType01" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
                     )}
-                    {currentBoard.board.boardEnName == 'online_content' && (
+                    {(currentBoard.board.boardEnName == 'online_content' || currentBoard.board.boardEnName == 'ir' ) && (
                         <BoardSkinSelector skinName="GalleryType02" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
                     )}
 

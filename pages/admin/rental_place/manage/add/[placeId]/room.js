@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
-import {Form, Upload,TimePicker} from "antd";
+import {Form, Upload,TimePicker,Modal} from "antd";
 const { RangePicker } = TimePicker;
 import {fileDownload} from "../../../../../../store/file/file";
 import {PlusOutlined} from "@ant-design/icons";
@@ -9,7 +9,7 @@ import {getUUID} from "../../../../../../component/common/util/RandomVal";
 import {addRoom, initialize, updateRoom} from "../../../../../../store/spaceRental/adminSpaceRental";
 import moment from "moment";
 import locale from "antd/lib/date-picker/locale/ko_KR";
-import Modal from "../../../../../../component/common/Modal";
+// import Modal from "../../../../../../component/common/Modal";
 
 import styles from '../../../../../../public/assets/styles/admin/rental/rental.module.css';
 import classnames from "classnames/bind"
@@ -33,6 +33,7 @@ const RoomAdd = () => {
         roomDesc:"",
         capacity:0,
         possibleDay:"",
+        isActive:true,
         addRentalRoomTimeList:[],
         addAttachFileList:[],
     });
@@ -44,7 +45,7 @@ const RoomAdd = () => {
     const [showResultModal,setShowResultModal] = useState(false);
 
     useEffect(() =>{
-        console.log(roomInfo)
+
     },[roomInfo])
 
     useEffect(() =>{
@@ -176,7 +177,10 @@ const RoomAdd = () => {
 
     useEffect(() =>{
         if(add.result && add.error == null){
-            setShowResultModal(true)
+            Modal.success({
+                title: '저장이 완료되었습니다',
+                onOk:() =>{router.push("/admin/rental_place/manage")}
+            });
         }
 
     },[add])
@@ -379,14 +383,14 @@ const RoomAdd = () => {
                 </section>
             )}
 
-            <Modal visible={showResultModal} closable={true} maskClosable={true} onClose={() => {
-                setShowResultModal(false);
-            }} cx={cx} className={"rental_popup"}>
-                <h2 className={cx("popup_title")}>저장이 완료되었습니다</h2>
-                <div className={cx("btn_box")}>
-                    <button className={cx("close_btn")} onClick={() =>{setShowResultModal(false);router.push("/admin/rental_place/manage")}}>확인</button>
-                </div>
-            </Modal>
+            {/*<Modal visible={showResultModal} closable={true} maskClosable={true} onClose={() => {*/}
+            {/*    setShowResultModal(false);*/}
+            {/*}} cx={cx} className={"rental_popup"}>*/}
+            {/*    <h2 className={cx("popup_title")}>저장이 완료되었습니다</h2>*/}
+            {/*    <div className={cx("btn_box")}>*/}
+            {/*        <button className={cx("close_btn")} onClick={() =>{setShowResultModal(false);router.push("/admin/rental_place/manage")}}>확인</button>*/}
+            {/*    </div>*/}
+            {/*</Modal>*/}
         </>
     );
 };

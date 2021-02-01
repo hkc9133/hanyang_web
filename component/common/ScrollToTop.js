@@ -21,4 +21,4 @@ const ScrollToTop = ({ children}) => {
   return children;
 };
 
-export default ScrollToTop;
+export default React.memo(ScrollToTop);

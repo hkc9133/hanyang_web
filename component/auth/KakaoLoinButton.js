@@ -16,8 +16,8 @@ const KakaoLoginButton = ({handleSocialLogin,onFormCheck}) => {
                     <a
                         href="#"
                         onClick={(e) => {
-                            onFormCheck != undefined && onFormCheck(e);
-                            onClick();
+                            onFormCheck != undefined && onFormCheck(e,onClick);
+                            // onClick();
                         }}
                     >
                         <span>카카오 <br/>로그인</span>

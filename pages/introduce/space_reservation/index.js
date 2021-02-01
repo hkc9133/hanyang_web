@@ -71,9 +71,9 @@ const SpaceReservation = () => {
                                                                                                          }) => ({
         spaceInfo: spaceRental.spaceInfo,
         addSchedule: spaceRental.addSchedule,
-        spaceInfoLoading: loading['spaceRental/GET_SPACE_RENTAL_INFO_ALL'],
-        timeListLoading: loading['spaceRental/GET_AVAILABLE_ROOM_TIME_LIST'],
-        addScheduleLoading: loading['spaceRental/ADD_RENTAL_SCHEDULE']
+        spaceInfoLoading: loading['popup/GET_SPACE_RENTAL_INFO_ALL'],
+        timeListLoading: loading['popup/GET_AVAILABLE_ROOM_TIME_LIST'],
+        addScheduleLoading: loading['popup/ADD_RENTAL_SCHEDULE']
     }))
 
     useEffect(() => {

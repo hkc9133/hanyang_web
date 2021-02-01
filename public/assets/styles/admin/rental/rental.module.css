@@ -38,7 +38,7 @@
 .tb_style_1 td.c-blue{color:#4b8cf7;}
 .tb_style_1 td .state{padding:5px 24px; border-radius:20px; background-color:#dee9fb; color:#417dde;}
 .tb_style_1 td button{width: 64px; height: 32px; border: 1px solid #d9e0e5; box-sizing: border-box; }
-.tb_style_1 tr:last-child td button{color: #fff; background-color: #5d677b; border: 0; }
+.room_edit tr:last-child td button{color: #fff; background-color: #5d677b; border: 0; }
 
 
 .mentor_detail h2{margin-bottom:10px; font-size:16px; font-weight:400; color:#222; }
@@ -120,6 +120,43 @@
 .reservation_info_search ul li:first-child{padding-left:0;}
 .reservation_info_search ul li:first-child:before{display:none;}
 
+.reservation_info_tb table tr td:last-child button{margin-left: 2px;}
+
+
+.calendar_type p{color:#333;}
+.calendar_type .item_row{height: 30px;}
+.calendar_top{position:relative;border-bottom: 2px solid black; text-align:center;padding-bottom: 30px; }
+.calendar_top .category{display:inline-block; }
+.calendar_top .category:after{ clear: both; content: "."; display: block; height: 0; visibility: hidden; font-size: 0;}
+.calendar_top .category li{float:left;}
+.calendar_top .category li a{width:100px; height:50px; display:block; line-height:48px; border:1px solid #ddd; font-size:18px; color:#aaa; font-family: 's-core-dream-medium';}
+.calendar_top .category li a.on{color:#0069f8; border-color:#0069f8;}
+.calendar_top .calendar_year span{margin:0 25px; display:inline-block; font-size:36px; color:#222; font-family: 's-core-dream-bold';}
+.calendar_top .calendar_year button{
+    vertical-align: middle;
+    opacity:1;
+    -webkit-transition: all 0.35s ease-out;
+    -moz-transition: all 0.35s ease-out;
+    -ms-transition: all 0.35s ease-out;
+    -o-transition: all 0.35s ease-out;
+    transition: all 0.35s ease-out;
+}
+.calendar_top .calendar_year button:hover{opacity:0.3;}
+.calendar_top .type{position:absolute; right:0; top:10px; }
+.calendar_type .header{
+    padding: 10px 0;
+    text-align: center;
+    background-color: #f6f8f9;
+    color:#5d677b;
+    border-top: none;
+    font-size: 16px;
+    font-weight: 500;
+}
+.calendar_top .type li{float:left; margin-left:30px; }
+.calendar_top .type li button{min-height:27px; line-height:27px; font-size:16px; display:inline-block; }
+.calendar_top .type li.on button{color:#0353f4;}
+
+
 
 .progress{margin-bottom:30px; padding:20px; border:1px solid #ddd; }
 .progress .title{margin-right:20px; display:inline-block; font-size:14px; font-weight:400; color:#50555f;}
@@ -130,3 +167,5 @@
 /*.progress .range_box{margin-top: 15px;}*/
 /*.progress .range_box ul{width: 100%}*/
 .progress .search_btn{margin-top: 15px;}
+
+.progress .type_btn{margin-top:8px; margin-left:5px;}

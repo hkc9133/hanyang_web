@@ -155,7 +155,11 @@ const ContentEditView = () => {
     useEffect(() =>{
 
         if(update.result && update.error == null){
-            setUpdateResultModal(true);
+            Modal.success({
+                content: '저장이 완료되었습니다',
+                onOk:() => {router.back();}
+            });
+
         }
     },[update])
 
@@ -363,9 +367,9 @@ const ContentEditView = () => {
                         </Form>
                     </div>
                 </div>
-                <Modal visible={updateResultModal} closable={true} maskClosable={true} onClose={() => {setUpdateResultModal(false);router.back();}} cx={cx} className={"add_result_popup"}>
-                    <h1 className={cx("popup_title")}>글쓰기 완료</h1>
-                </Modal>
+                {/*<Modal visible={updateResultModal} closable={true} maskClosable={true} onClose={() => {setUpdateResultModal(false);router.back();}} cx={cx} className={"add_result_popup"}>*/}
+                {/*    <h1 className={cx("popup_title")}>글쓰기 완료</h1>*/}
+                {/*</Modal>*/}
             </section>
     );
 };

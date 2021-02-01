@@ -6,14 +6,14 @@ import * as spaceRentalAPI from '../../lib/api/spaceRental/spaceRental';
 import {HYDRATE} from 'next-redux-wrapper';
 
 
-const [GET_SPACE_RENTAL_INFO_ALL,GET_SPACE_RENTAL_INFO_ALL_SUCCESS, GET_SPACE_RENTAL_INFO_ALL_FAILURE] = createRequestActionTypes('spaceRental/GET_SPACE_RENTAL_INFO_ALL')
-const [GET_AVAILABLE_ROOM_TIME_LIST,GET_AVAILABLE_ROOM_TIME_LIST_SUCCESS, GET_AVAILABLE_ROOM_TIME_LIST_FAILURE] = createRequestActionTypes('spaceRental/GET_AVAILABLE_ROOM_TIME_LIST')
+const [GET_SPACE_RENTAL_INFO_ALL,GET_SPACE_RENTAL_INFO_ALL_SUCCESS, GET_SPACE_RENTAL_INFO_ALL_FAILURE] = createRequestActionTypes('popup/GET_SPACE_RENTAL_INFO_ALL')
+const [GET_AVAILABLE_ROOM_TIME_LIST,GET_AVAILABLE_ROOM_TIME_LIST_SUCCESS, GET_AVAILABLE_ROOM_TIME_LIST_FAILURE] = createRequestActionTypes('popup/GET_AVAILABLE_ROOM_TIME_LIST')
 
-const [ADD_RENTAL_SCHEDULE,ADD_RENTAL_SCHEDULE_SUCCESS, ADD_RENTAL_SCHEDULE_FAILURE] = createRequestActionTypes('spaceRental/ADD_RENTAL_SCHEDULE')
-const [UPDATE_RENTAL_SCHEDULE,UPDATE_RENTAL_SCHEDULE_SUCCESS, UPDATE_RENTAL_SCHEDULE_FAILURE] = createRequestActionTypes('spaceRental/UPDATE_RENTAL_SCHEDULE')
-const [GET_RENTAL_SCHEDULE_LIST,GET_RENTAL_SCHEDULE_LIST_SUCCESS, GET_RENTAL_SCHEDULE_LIST_FAILURE] = createRequestActionTypes('spaceRental/GET_RENTAL_SCHEDULE_LIST')
-const [GET_RENTAL_SCHEDULE,GET_RENTAL_SCHEDULE_SUCCESS, GET_RENTAL_SCHEDULE_FAILURE] = createRequestActionTypes('spaceRental/GET_RENTAL_SCHEDULE')
-const INITIALIZE = 'spaceRental/INITIALIZE';
+const [ADD_RENTAL_SCHEDULE,ADD_RENTAL_SCHEDULE_SUCCESS, ADD_RENTAL_SCHEDULE_FAILURE] = createRequestActionTypes('popup/ADD_RENTAL_SCHEDULE')
+const [UPDATE_RENTAL_SCHEDULE,UPDATE_RENTAL_SCHEDULE_SUCCESS, UPDATE_RENTAL_SCHEDULE_FAILURE] = createRequestActionTypes('popup/UPDATE_RENTAL_SCHEDULE')
+const [GET_RENTAL_SCHEDULE_LIST,GET_RENTAL_SCHEDULE_LIST_SUCCESS, GET_RENTAL_SCHEDULE_LIST_FAILURE] = createRequestActionTypes('popup/GET_RENTAL_SCHEDULE_LIST')
+const [GET_RENTAL_SCHEDULE,GET_RENTAL_SCHEDULE_SUCCESS, GET_RENTAL_SCHEDULE_FAILURE] = createRequestActionTypes('popup/GET_RENTAL_SCHEDULE')
+const INITIALIZE = 'popup/INITIALIZE';
 
 
 export const initialize = createAction(INITIALIZE);
@@ -72,8 +72,8 @@ const initialState = {
 const spaceRental = handleActions(
     {
         // [HYDRATE]: (state, action) => ({
-        //     ...state.spaceRental,
-        //     ...action.payload.spaceRental
+        //     ...state.popup,
+        //     ...action.payload.popup
         // }),
         [GET_SPACE_RENTAL_INFO_ALL_SUCCESS]: (state, {payload: response}) =>
             produce(state, draft => {

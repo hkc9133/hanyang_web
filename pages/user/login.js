@@ -6,9 +6,6 @@ import Modal from "../../component/common/Modal";
 import PageNavigation from "../../component/layout/PageNavigation";
 import SignUpInfo from "../../component/auth/SignUpInfo";
 import Link from "next/link";
-// import {initFacebookSdk} from "../../component/auth/initFacebookSdk";
-
-import {url, clientPort, port, serverAddr} from '../../lib/api/client';
 
 import Image from 'next/image'
 
@@ -69,6 +66,10 @@ const Login = () => {
         dispatch(socialSignUp(signUpInfo))
     };
 
+    const onFormCheck = async (e,onClick) => {
+        onClick();
+    };
+
 
     useEffect(() => {
         if (!loginLoading && user.login == false && loginCode == 401) {
@@ -79,6 +80,7 @@ const Login = () => {
         else if(!loginLoading && user.login == true && loginCode == 200){
             router.push('/')
         }else if(!normalLoginLoading && user.login == false && loginCode == 400){
+
             alert("에러 발생")
         }
     }, [user.login,loginCode,loginLoading, normalLoginLoading])
@@ -129,16 +131,16 @@ const Login = () => {
                                 <div className={cx("sns_login")}>
                                     <ul className={"clfx"}>
                                         <li className={cx("icon_1")}>
-                                            <NaverLoginButton handleSocialLogin={handleSocialLogin}/>
+                                            <NaverLoginButton handleSocialLogin={handleSocialLogin} onFormCheck={onFormCheck}/>
                                         </li>
                                         <li className={cx("icon_2")}>
-                                            <FaceBookLoginButton handleSocialLogin={handleSocialLogin}/>
+                                            <FaceBookLoginButton handleSocialLogin={handleSocialLogin} onFormCheck={onFormCheck}/>
                                         </li>
                                         <li className={cx("icon_3")}>
-                                            <KakaoLoginButton handleSocialLogin={handleSocialLogin}/>
+                                            <KakaoLoginButton handleSocialLogin={handleSocialLogin} onFormCheck={onFormCheck}/>
                                         </li>
                                         <li className={cx("icon_4")}>
-                                            <GoogleLoginButton handleSocialLogin={handleSocialLogin}/>
+                                            <GoogleLoginButton handleSocialLogin={handleSocialLogin} onFormCheck={onFormCheck}/>
                                         </li>
                                     </ul>
                                 </div>

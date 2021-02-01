@@ -9,7 +9,7 @@ const NaverLoginButton = ({handleSocialLogin,onFormCheck}) => {
             callbackUrl={`${url}${clientPort != null ? `:${clientPort}` : ''}/user/login`}
             redirectUri={`${url}${clientPort != null ? `:${clientPort}` : ''}/user/login`}
             render={(props) =>
-                <a href="#" onClick={(e) => {onFormCheck != undefined && onFormCheck(e);props.onClick()}}>
+                <a href="#" onClick={(e) => {onFormCheck != undefined && onFormCheck(e,props.onClick);}}>
                     <span>네이버 <br/>로그인</span>
                 </a>
             }

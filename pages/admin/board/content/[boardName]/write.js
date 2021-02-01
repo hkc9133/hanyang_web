@@ -1,14 +1,14 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useRouter} from "next/router";
 import {useDispatch, useSelector} from "react-redux";
-import {Checkbox, Form, Upload} from "antd";
+import {Checkbox, Form, Modal, Upload} from "antd";
 import {addBoardContent, getBoard, initialize} from "../../../../../store/board/adminBoard";
 import {PlusOutlined} from "@ant-design/icons";
 const QuillEditor = dynamic(() => import("../../../../../component/common/QuillEditor"), {
     ssr: false,
     loading: () => <p>Loading ...</p>,
 });
-import Modal from "../../../../../component/common/Modal";
+// import Modal from "../../../../../component/common/Modal";
 import dynamic from "next/dynamic";
 
 import styles from '../.././../../../public/assets/styles/admin/board/board.module.css';
@@ -100,7 +100,11 @@ const Write = () => {
     useEffect(() =>{
 
         if(add.result && add.error == null){
-            setAddResultModal(true);
+            Modal.success({
+                title:"글쓰기 완료",
+                onOk:() =>{router.back();}
+            });
+            // setAddResultModal(true);
         }
     },[add])
 
@@ -245,9 +249,9 @@ const Write = () => {
                         </Form>
                     </div>
                 </div>
-                <Modal visible={addResultModal} closable={true} maskClosable={true} onClose={() => {setAddResultModal(false);router.back();}} cx={cx} className={"add_result_popup"}>
-                    <h1 className={cx("popup_title")}>글쓰기 완료</h1>
-                </Modal>
+                {/*<Modal visible={addResultModal} closable={true} maskClosable={true} onClose={() => {setAddResultModal(false);router.back();}} cx={cx} className={"add_result_popup"}>*/}
+                {/*    <h1 className={cx("popup_title")}>글쓰기 완료</h1>*/}
+                {/*</Modal>*/}
             </section>
 
 

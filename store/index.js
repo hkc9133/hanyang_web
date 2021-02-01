@@ -12,6 +12,13 @@ import user ,{userSaga} from './user/user';
 import file ,{fileSaga} from './file/file';
 import notice ,{noticeSaga} from './notice/notice';
 import adminNotice, {adminNoticeSaga} from './notice/adminNotice';
+import popup , {popupSaga} from './popup/popup';
+import adminPopup, {adminPopupSaga} from './popup/adminPopup';
+import startupPresent , {startupPresentSaga} from './startupPresent/startupPresent';
+import adminStartupPresent, {adminStartupPresentSaga} from './startupPresent/adminStartupPresent';
+import studentReport , {studentReportSaga} from './studentReport/studentReport';
+import adminStudentReport, {adminStudentReportSaga} from './studentReport/adminStudentReport';
+
 import {HYDRATE} from 'next-redux-wrapper';
 import loading from './loading';
 
@@ -40,7 +47,9 @@ const rootReducer = (state, action) => {
             return action.payload;
         default: {
             const combinedReducer = combineReducers({
-                main,auth,file,spaceRental,adminSpaceRental, mentoring,adminMentoring,board,adminBoard,user,notice,adminNotice,loading
+                main,auth,file,spaceRental,adminSpaceRental, mentoring,adminMentoring,board,adminBoard,user,notice,adminNotice,popup,adminPopup,
+                startupPresent,adminStartupPresent,studentReport,adminStudentReport,
+                loading
             })
             return combinedReducer(state, action);
         }
@@ -75,7 +84,8 @@ const rootReducer = (state, action) => {
 //     }
 // }
 export function* rootSaga(){
-    yield all ([mainSaga(),authSaga(),fileSaga(),spaceRentalSaga(),adminSpaceRentalSaga(), mentoringSaga(),adminMentoringSaga(),boardSaga(),adminBoardSaga(),noticeSaga(),adminNoticeSaga(),userSaga()]);
+    yield all ([mainSaga(),authSaga(),fileSaga(),spaceRentalSaga(),adminSpaceRentalSaga(), mentoringSaga(),adminMentoringSaga(),
+        boardSaga(),adminBoardSaga(),noticeSaga(),adminNoticeSaga(),popupSaga(),adminPopupSaga(),userSaga(),startupPresentSaga(),adminStartupPresentSaga(),studentReportSaga(),adminStudentReportSaga()]);
 }
 
 export default rootReducer;

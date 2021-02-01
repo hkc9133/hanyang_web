@@ -9,7 +9,7 @@ const GoogleLoginButton = ({handleSocialLogin,onFormCheck}) => {
             // uxMode="redirect"
             // isSignedIn={true}
             render={(props) => (
-                <a href="#" onClick={(e) => {onFormCheck != undefined && onFormCheck(e);props.onClick()}}>
+                <a href="#" onClick={(e) => {onFormCheck != undefined && onFormCheck(e,props.onClick);}}>
                     <span>구글 <br/>로그인</span>
                 </a>
             )}

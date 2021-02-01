@@ -13,6 +13,7 @@ import {getCounselFieldCode, getMentorList} from "../../store/mentoring/mentorin
 import qs from 'query-string';
 import {useRouter} from "next/router";
 import Pagination from "../../component/common/Pagination";
+import client from "../../lib/api/client";
 
 
 const cx = classnames.bind(styles);
@@ -63,6 +64,10 @@ const MentorIntroduce = () => {
         setShowMentorDetail(true)
     }
 
+    const getProfileImage =(item) =>{
+
+    }
+
     return (
         <>
             <PageNavigation/>
@@ -77,7 +82,7 @@ const MentorIntroduce = () => {
                         {mentorList.list.map((item) =>(
                             <li>
                             <div className={`${cx("mentor_top")} clfx `}>
-                                <div className={cx("photo")}><Image src="/assets/image/mentor_group_photo.jpg" width={120} height={120} alt="mentor_group_photo"/></div>
+                                <div className={cx("photo")}><Image src={item.filePath != null ? `${client.defaults.baseURL}/resource${item.filePath}/${item.fileName+item.fileExtension}` : "/assets/image/mentor_group_photo.jpg"} width={120} height={120} alt="mentor_group_photo"/></div>
                                 <div className={cx("mentor")}>
                                     <strong className={cx("name")}>{item.mentorName}</strong>
                                     <span>{item.mentorPosition}</span>

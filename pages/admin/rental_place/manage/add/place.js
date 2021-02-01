@@ -1,11 +1,11 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
-import {Form, Upload} from "antd";
+import {Form, Upload,Modal} from "antd";
 import {addPlace, getPlace, initialize, updatePlace} from "../../../../../store/spaceRental/adminSpaceRental";
 import {fileDownload} from "../../../../../store/file/file";
 import {PlusOutlined} from "@ant-design/icons";
-import Modal from "../../../../../component/common/Modal";
+// import Modal from "../../../../../component/common/Modal";
 import styles from '../../../../../public/assets/styles/admin/rental/rental.module.css';
 import classnames from "classnames/bind"
 const cx = classnames.bind(styles);
@@ -17,7 +17,7 @@ const PlaceAdd = () => {
 
     const {add,loading} = useSelector(({adminSpaceRental, loading}) => ({
         add:adminSpaceRental.addPlace,
-        loading:loading['adminSpaceRental/GET_PLACE']
+        loading:loading['adminPopup/GET_PLACE']
     }))
 
     const [placeInfo, setPlaceInfo] = useState({
@@ -80,7 +80,10 @@ const PlaceAdd = () => {
 
     useEffect(() =>{
         if(add.result && add.error == null){
-            setShowResultModal(true)
+            Modal.success({
+                title: '저장이 완료되었습니다',
+                onOk:() =>{router.push("/admin/rental_place/manage")}
+            });
         }
 
     },[add])
@@ -174,14 +177,14 @@ const PlaceAdd = () => {
                             </div>
                         </div>
                     </Form>
-                    <Modal visible={showResultModal} closable={true} maskClosable={true} onClose={() => {
-                        setShowResultModal(false);
-                    }} cx={cx} className={"rental_popup"}>
-                        <h2 className={cx("popup_title")}>저장이 완료되었습니다</h2>
-                        <div className={cx("btn_box")}>
-                            <button className={cx("close_btn")} onClick={() =>{setShowResultModal(false);router.push("/admin/rental_place/manage")}}>확인</button>
-                        </div>
-                    </Modal>
+                    {/*<Modal visible={showResultModal} closable={true} maskClosable={true} onClose={() => {*/}
+                    {/*    setShowResultModal(false);*/}
+                    {/*}} cx={cx} className={"rental_popup"}>*/}
+                    {/*    <h2 className={cx("popup_title")}>저장이 완료되었습니다</h2>*/}
+                    {/*    <div className={cx("btn_box")}>*/}
+                    {/*        <button className={cx("close_btn")} onClick={() =>{setShowResultModal(false);router.push("/admin/rental_place/manage")}}>확인</button>*/}
+                    {/*    </div>*/}
+                    {/*</Modal>*/}
                 </section>
         </>
     );

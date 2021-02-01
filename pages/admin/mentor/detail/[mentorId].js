@@ -4,13 +4,13 @@ import styles from '../../../../public/assets/styles/admin/mentor/mentor.module.
 import classnames from "classnames/bind"
 import {useDispatch, useSelector} from "react-redux";
 import {getMentor, getCounselFieldCode, initialize, updateMentor} from "../../../../store/mentoring/adminMentoring";
-import {Button, Form, Input, Tag} from "antd";
+import {Button, Form, Input,Modal, Tag} from "antd";
 import client from '../../../../lib/api/client'
 import CheckableTag from "antd/lib/tag/CheckableTag";
 import KeywordBox from "../../../../component/stratup_counsel/mentor_apply/KeywordBox";
 import CareerBox from "../../../../component/stratup_counsel/mentor_apply/CareerBox";
 import Image from "next/image";
-import Modal from "../../../../component/common/Modal";
+// import Modal from "../../../../component/common/Modal";
 
 const cx = classnames.bind(styles);
 
@@ -100,7 +100,11 @@ const DetailView = () => {
         if (update.result === true && update.error === null) {
             // alert("업데이트 성공")
             // router.push("/admin/mentor")
-            setShowResultModal(true)
+            // setShowResultModal(true)
+            Modal.success({
+                content: '저장이 완료되었습니다',
+                onOk:() => {router.push("/admin/mentor")}
+            });
         }
 
     }, [update])
@@ -400,14 +404,14 @@ const DetailView = () => {
                             </div>
                         </div>
                     </Form>
-                    <Modal visible={showResultModal} closable={true} maskClosable={true} onClose={() => {
-                        setShowResultModal(false);
-                    }} cx={cx} className={"mentor_popup"}>
-                        <h2 className={cx("popup_title")}>저장이 완료되었습니다</h2>
-                        <div className={cx("btn_box")}>
-                            <button className={cx("basic-btn01","btn-gray-bg")} onClick={() =>{setShowResultModal(false);router.push("/admin/mentor")}}>확인</button>
-                        </div>
-                    </Modal>
+                    {/*<Modal visible={showResultModal} closable={true} maskClosable={true} onClose={() => {*/}
+                    {/*    setShowResultModal(false);*/}
+                    {/*}} cx={cx} className={"mentor_popup"}>*/}
+                    {/*    <h2 className={cx("popup_title")}>저장이 완료되었습니다</h2>*/}
+                    {/*    <div className={cx("btn_box")}>*/}
+                    {/*        <button className={cx("basic-btn01","btn-gray-bg")} onClick={() =>{setShowResultModal(false);router.push("/admin/mentor")}}>확인</button>*/}
+                    {/*    </div>*/}
+                    {/*</Modal>*/}
                 </section>
             )}
         </>

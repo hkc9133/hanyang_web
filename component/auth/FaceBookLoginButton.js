@@ -41,7 +41,7 @@ const FaceBookLoginButton = ({handleSocialLogin,onFormCheck}) => {
     }
 
     return (
-        <a href="#" onClick={(e) => {onFormCheck != undefined && onFormCheck(e);fbLoginClick()}}>
+        <a href="#" onClick={(e) => {onFormCheck != undefined && onFormCheck(e,fbLoginClick);}}>
             <span>페이스북 <br/>로그인</span>
         </a>
     );

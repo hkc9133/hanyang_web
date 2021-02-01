@@ -5,7 +5,7 @@ import {EditOutlined} from "@ant-design/icons";
 
 const NoticeListTable = ({list,cx}) => {
     return (
-        <div className={cx("tb_style_1","board_list")}>
+        <div className={cx("tb_style_1","popup_list")}>
             <table>
                 <colgroup>
                     <col style={{width: "4.6%"}}/>

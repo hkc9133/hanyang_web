@@ -9,8 +9,8 @@ import {
     updateBoardContent
 } from "../../../../../../store/board/adminBoard";
 import {END} from "redux-saga";
-import {Checkbox, Form, Input, Select, Tag, Upload} from "antd";
-import Modal from "../../../../../../component/common/Modal";
+import {Checkbox, Form, Input, Select, Tag, Upload,Modal} from "antd";
+// import Modal from "../../../../../../component/common/Modal";
 import {useRouter} from "next/router";
 import {useDispatch, useSelector} from "react-redux";
 import {PlusOutlined} from "@ant-design/icons";
@@ -84,10 +84,10 @@ const ContentEditView = () => {
 
     },[view])
 
-    useEffect(() =>{
-        console.log(writeInfo)
-
-    },[writeInfo])
+    // useEffect(() =>{
+    //     console.log(writeInfo)
+    //
+    // },[writeInfo])
 
     const changeWriteInfo = useCallback((e) =>{
         const {name, value} = e.target
@@ -133,7 +133,12 @@ const ContentEditView = () => {
     useEffect(() =>{
 
         if(update.result && update.error == null){
-            setUpdateResultModal(true);
+            // setUpdateResultModal(true);
+            Modal.success({
+                title:"글쓰기 완료",
+                onOk:() =>{router.back();}
+            });
+
         }
     },[update])
 
@@ -302,9 +307,9 @@ const ContentEditView = () => {
                         </Form>
                     </div>
                 </div>
-                <Modal visible={updateResultModal} closable={true} maskClosable={true} onClose={() => {setUpdateResultModal(false);router.back();}} cx={cx} className={"add_result_popup"}>
-                    <h1 className={cx("popup_title")}>글쓰기 완료</h1>
-                </Modal>
+                {/*<Modal visible={updateResultModal} closable={true} maskClosable={true} onClose={() => {setUpdateResultModal(false);router.back();}} cx={cx} className={"add_result_popup"}>*/}
+                {/*    <h1 className={cx("popup_title")}>글쓰기 완료</h1>*/}
+                {/*</Modal>*/}
             </section>
     );
 };

@@ -142,7 +142,7 @@ const CounselApplyListItem = React.memo(({item, handleShowAnswer, showAnswer, ha
                                             )
                                         }
                                     </div>
-                                </div> : "진행중"}
+                                </div> : counselApply.counselApply.applyStatus == "RETURN" ? "반려" : "진행중"}
                     </li>
                 )}
             </ul>

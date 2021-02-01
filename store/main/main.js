@@ -22,7 +22,8 @@ const initialState = {
     mainData:{
         result:null,
         notice:[],
-        startup_info:[]
+        startup_info:[],
+        popup:[]
     }
     // selectCompany:{
     //     companyId:null,
@@ -38,6 +39,7 @@ const main = handleActions(
                 draft.mainData.result = true;
                 draft.mainData.notice = response.data.notice;
                 draft.mainData.startup_info = response.data.startup_info;
+                draft.mainData.popup = response.data.popup;
             }),
 
         [GET_MAIN_DATA_FAILURE]: (state, {payload: error}) =>
@@ -45,6 +47,7 @@ const main = handleActions(
                 draft.mainData.result = false;
                 draft.mainData.notice = [];
                 draft.mainData.startup_info = [];
+                draft.mainData.popup = [];
             }),
         [INITIALIZE]: (state, {payload: form}) => ({
             ...initialState

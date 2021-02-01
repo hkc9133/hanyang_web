@@ -153,72 +153,6 @@ const CounselApply = () => {
     },[])
 
 
-    // const changeApplyFormValue = ((e) => {
-    //     const {name, value} = e.target
-    //
-    //     if (name == 'isAgree') {
-    //         setApplyForm((applyForm)=>({
-    //             ...applyForm,
-    //             isAgree: e.target.checked,
-    //
-    //         }))
-    //         return;
-    //     }
-    //
-    //     setApplyForm((applyForm)=>({
-    //         ...applyForm,
-    //         [name]: value,
-    //
-    //     }))
-    //
-    //     // if (name == 'isAgree') {
-    //     //     setApplyForm({
-    //     //         ...applyForm,
-    //     //         isAgree: e.target.checked,
-    //     //     })
-    //     //     return;
-    //     // }
-    //     // setApplyForm({
-    //     //     ...applyForm,
-    //     //     [name]: value,
-    //     // })
-    //
-    // },[])
-    // const changeApplyFormValue = (e) => {
-    //     const {name, value} = e.target
-    //
-    //
-    //     if (name == 'isAgree') {
-    //         setApplyForm({
-    //             ...applyForm,
-    //             isAgree: e.target.checked,
-    //         })
-    //         return;
-    //     }
-    //     setApplyForm({
-    //         ...applyForm,
-    //         [name]: value,
-    //     })
-    //
-    //     // const reg = /^-?\d*(\.\d*)?$/;
-    //     // if (name == 'menteePhoneNumber') {
-    //     //     if ((!isNaN(value) && reg.test(value)) || value === '' || value === '-') {
-    //     //         console.log("11")
-    //     //         setApplyForm({
-    //     //             ...applyForm,
-    //     //             menteePhoneNumber: value,
-    //     //         })
-    //     //     }
-    //     //     // return;
-    //     // } else if (name != "menteePhoneNumber") {
-    //     //     console.log("22")
-    //     //     setApplyForm({
-    //     //         ...applyForm,
-    //     //         [name]: value,
-    //     //     })
-    //     // }
-    // }
-
     const changeCounselField = (value) => {
         setApplyForm({
             ...applyForm,
@@ -430,25 +364,6 @@ const CounselApply = () => {
                                 return <Option value={item.mentorId} key={index}>{item.mentorName}</Option>
                             })}
                         </Select>
-                        {/*<input type="text"/>*/}
-                        {/*<button type="button" className={cx("btn-blue-bg2", "btn_search")}>검색</button>*/}
-                        {/*<span>OR</span>*/}
-                        {/*<span>*/}
-                        {/*    <Form.Item*/}
-                        {/*        label="제목"*/}
-                        {/*        name="title"*/}
-                        {/*        className={(cx("antd_input"))}*/}
-                        {/*        rules={[*/}
-                        {/*            {*/}
-                        {/*                required: true,*/}
-                        {/*                message: '제목은 필수 입니다.',*/}
-                        {/*            },*/}
-                        {/*        ]}*/}
-                        {/*    >*/}
-                        {/*    </Form.Item>*/}
-                        {/*    <input type="checkbox" id="none"/>*/}
-                        {/*    <label htmlFor="none">없음</label>*/}
-			            {/*</span>*/}
                     </div>
 
                     <h2>희망 상담 방식</h2>

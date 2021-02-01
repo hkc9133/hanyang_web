@@ -1,4 +1,4 @@
-import noImage from "../../../public/assets/image/gallery_list.jpg";
+// import noImage from "../../../public/assets/image/gallery_list.jpg";
 
 export const getThumbnail = (item) => {
     const strReg = new RegExp("(http|https)://*[^>]*\\.(jpg|gif|png)","gim");
@@ -6,7 +6,7 @@ export const getThumbnail = (item) => {
     if(imgSrc != null){
         return imgSrc[0];
     }else{
-        return noImage;
+        return "/assets/image/gallery_list.jpg";
     }
 
 }

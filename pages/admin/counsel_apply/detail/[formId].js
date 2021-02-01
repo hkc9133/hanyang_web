@@ -10,7 +10,7 @@ import {
 } from "../../../../store/mentoring/adminMentoring";
 import client from "../../../../lib/api/client";
 import Link from 'next/link';
-import {Tag, Upload} from "antd";
+import {Tag, Upload,Modal} from "antd";
 import moment from 'moment';
 import styles from '../../../../public/assets/styles/admin/mentor/mentor.module.css';
 import classnames from "classnames/bind"
@@ -21,7 +21,7 @@ import AssignMentorListTable from "../../../../component/admin/counsel_apply/Ass
 import Image from "next/image";
 import {getCounselStatus} from "../../../../component/common/util/StatusUtil";
 import {fileDownload} from "../../../../store/file/file";
-import Modal from "../../../../component/common/Modal";
+// import Modal from "../../../../component/common/Modal";
 
 const cx = classnames.bind(styles);
 
@@ -108,7 +108,6 @@ const CounselApplyFormDetail = () => {
 
     const assignMentor = () => {
         if (selectMentor != null) {
-            console.log(selectMentor)
             setApplyValue({
                 ...applyValue,
                 applyStatus:'ASSIGN',
@@ -127,9 +126,10 @@ const CounselApplyFormDetail = () => {
 
     useEffect(() => {
         if(update.result === true && update.error === null){
-            setShowResultModal(true)
-            // alert("업데이트 성공")
-            // router.push("/admin/counsel_apply")
+            Modal.success({
+                content: '저장이 완료되었습니다',
+                onOk:() => {router.push("/admin/counsel_apply");}
+            });
         }
 
     },[update])
@@ -169,25 +169,35 @@ const CounselApplyFormDetail = () => {
 
                         <div className={cx("admin_cont")}>
                             <h2 className={cx("title_style_1")}><span>신청서 상세</span></h2>
-                            <div className={cx("tb_style_1", "apply_form")}>
+                            <div className={cx("tb_style_2", "apply_form")}>
                                 {!showMentorAssign ? (
                                         <>
                                             <table>
                                                 <colgroup>
-                                                    <col style={{width: "30%"}}/>
+                                                    <col style={{width: "20%"}}/>
+                                                    <col style={{width: "20%"}}/>
+                                                    <col style={{width: "20%"}}/>
                                                     <col/>
                                                 </colgroup>
                                                 <thead>
                                                 </thead>
                                                 <tbody>
                                                 <tr>
-                                                    <td>신청 상태</td>
+                                                    <th>
+                                                        신청일
+                                                    </th>
+                                                    <td colSpan={5}>
+                                                        {moment(applyValue.regDatr).format("YYYY년 MM월 DD일 hh:mm")}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>신청 상태</th>
                                                     <td>
                                                         {getCounselStatus(applyValue.applyStatus)}
                                                     </td>
-                                                    <td>
+                                                    <th>
                                                         담당 멘토
-                                                    </td>
+                                                    </th>
                                                     <td>
                                                         {applyValue.applyStatus == "APPLY" &&
                                                         <>
@@ -207,32 +217,26 @@ const CounselApplyFormDetail = () => {
                                                             </>
                                                         )}
                                                     </td>
-                                                    <td>
-                                                        신청일
-                                                    </td>
-                                                    <td>
-                                                        {moment(applyValue.regDatr).format("YYYY년 MM월 DD일 hh:mm")}
-                                                    </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>아이디</td>
-                                                    <td colSpan={2}>
+                                                    <th>아이디</th>
+                                                    <td colSpan={1}>
                                                         {applyValue.userId}
                                                     </td>
-                                                    <td>
+                                                    <th>
                                                         이름
-                                                    </td>
-                                                    <td colSpan={2}>
+                                                    </th>
+                                                    <td colSpan={1}>
                                                         {applyValue.menteeName}
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>희망 멘토</td>
+                                                    <th>희망 멘토</th>
                                                     <td>
                                                         <Link
                                                             href={`/admin/mentor/detail/${applyValue.mentorId}`}><a>{applyValue.mentorName}</a></Link>
                                                     </td>
-                                                    <td>희망 멘토링 분야</td>
+                                                    <th>희망 멘토링 분야</th>
                                                     <td>
                                                         {applyValue.counselFieldList.map((item, index) => (
                                                             <Tag className={cx("mg_t10")} key={index}>{item.fieldName}</Tag>
@@ -240,37 +244,37 @@ const CounselApplyFormDetail = () => {
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>구분</td>
+                                                    <th>구분</th>
                                                     <td colSpan={5}>
                                                         {applyValue.formSortationItemName}
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>창업 진행 상황</td>
+                                                    <th>창업 진행 상황</th>
                                                     <td colSpan={5}>
                                                         {applyValue.formProgressItemName}
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>희망 상담 방식</td>
+                                                    <th>희망 상담 방식</th>
                                                     <td colSpan={5}>
                                                         {applyValue.formWayItemName}
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>상담 제목</td>
+                                                    <th>상담 제목</th>
                                                     <td colSpan={5}>
                                                         {applyValue.title}
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>상담 내용</td>
+                                                    <th>상담 내용</th>
                                                     <td colSpan={5}>
                                                         <div dangerouslySetInnerHTML={{__html: applyValue.content}}/>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>첨부파일</td>
+                                                    <th>첨부파일</th>
                                                     <td colSpan={5}>
                                                         {
                                                             applyValue.files.length > 0 && (
@@ -366,14 +370,14 @@ const CounselApplyFormDetail = () => {
                             </div>
                         </div>
                     </div>
-                    <Modal visible={showResultModal} closable={true} maskClosable={true} onClose={() => {
-                        setShowResultModal(false);
-                    }} cx={cx} className={"mentor_popup"}>
-                        <h2 className={cx("popup_title")}>저장이 완료되었습니다</h2>
-                        <div className={cx("btn_box")}>
-                            <button className={cx("basic-btn01","btn-gray-bg")} onClick={() =>{setShowResultModal(false);router.push("/admin/counsel_apply")}}>확인</button>
-                        </div>
-                    </Modal>
+                    {/*<Modal visible={showResultModal} closable={true} maskClosable={true} onClose={() => {*/}
+                    {/*    setShowResultModal(false);*/}
+                    {/*}} cx={cx} className={"mentor_popup"}>*/}
+                    {/*    <h2 className={cx("popup_title")}>저장이 완료되었습니다</h2>*/}
+                    {/*    <div className={cx("btn_box")}>*/}
+                    {/*        <button className={cx("basic-btn01","btn-gray-bg")} onClick={() =>{setShowResultModal(false);router.push("/admin/counsel_apply")}}>확인</button>*/}
+                    {/*    </div>*/}
+                    {/*</Modal>*/}
                 </section>
             )}
         </>

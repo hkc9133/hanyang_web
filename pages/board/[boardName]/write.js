@@ -33,7 +33,7 @@ export async function getStaticPaths() {
             { params: { boardName: 'people' } },
             { params: { boardName: 'online_content' } },
         ],
-        fallback: false
+        fallback: true
     };
 }
 
@@ -148,7 +148,7 @@ const Write = () => {
                                 <col/>
                             </colgroup>
                             <tbody>
-                            {board.cate != null && (
+                            {board.cate != null &&  board.cate.length > 0 && (
                                 <tr>
                                     <th scope="row">분류</th>
                                     <td>

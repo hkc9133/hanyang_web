@@ -2,13 +2,11 @@ import React, {useEffect, useState} from 'react';
 import Link from 'next/link';
 import styles from '../../../public/assets/styles/startup_info/startup_info.module.css';
 import classnames from "classnames/bind"
-import Image from 'next/image'
 import CounselApplyList from "./CounselApplyList";
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
 import {getCounselApply, getCounselApplyList, updateDiary} from "../../../store/mentoring/mentoring";
 import Pagination from "../../common/Pagination";
-import CounselApplyListTable from "../../stratup_counsel/counsel_apply_list/CounselApplyListTable";
 const cx = classnames.bind(styles);
 
 const CounselApplyHistoryList = () => {
@@ -76,7 +74,8 @@ const CounselApplyHistoryList = () => {
 
                     <div className={cx("tab_style_2")}>
                         <ul>
-                            <li className={cx("on")}><Link href="/mypage/mentee"><a>창업신청현황</a></Link></li>
+                            <li className={cx("on")}><Link href="/mypage/mentee"><a>멘토링 현황</a></Link></li>
+                            <li><Link href="/mypage/mentee/student_report"><a>학생창업신고 현황</a></Link></li>
                         </ul>
                     </div>
 
@@ -86,14 +85,6 @@ const CounselApplyHistoryList = () => {
                             <span className={cx("title")}>신청건수</span>
                             <span><strong>{counselApplyList.page != null && counselApplyList.page.totalCount}</strong>건</span>
                         </li>
-                        {/*<li>*/}
-                        {/*    <span className={cx("title")}>진행건수</span>*/}
-                        {/*    <span><strong>5</strong>건</span>*/}
-                        {/*</li>*/}
-                        {/*<li>*/}
-                        {/*    <span className={cx("title")}>완료건수</span>*/}
-                        {/*    <span><strong>5</strong>건</span>*/}
-                        {/*</li>*/}
                     </ul>
                     <div className={cx("th_title")}>
                         <ul>

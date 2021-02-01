@@ -69,6 +69,7 @@ const Join = () => {
     // };
 
     const handleSocialLogin = useCallback((id, email, name, type) =>{
+
         dispatch(socialLogin({id, email, name, type}))
     },[])
 
@@ -88,9 +89,10 @@ const Join = () => {
         }
     }
 
-    const onFormCheck = async (e) => {
+    const onFormCheck = async (e,onClick) => {
         try {
             const values = await form.validateFields();
+            onClick();
         } catch (errorInfo) {
             if(errorInfo.errorFields[0].name[0] == 'terms'){
                 termsDev.current.scrollIntoView();

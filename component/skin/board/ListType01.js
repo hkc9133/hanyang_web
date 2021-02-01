@@ -45,7 +45,7 @@ const ListType01 = ({content,board,moveContentDetail,pageChange,category}) => {
                         content.list.map((item)=>{
                             return (
                                 <tr key={item.rownum}>
-                                    <td>{item.rownum}</td>
+                                    <td>{item.rownum == 0 ? <strong className={cx("notice_icon")}>공지</strong> : item.rownum}</td>
                                     {category.length >0 && item.categoryCodeName != null &&(
                                         <td scope="col">{item.categoryCodeName}</td>
                                     )}

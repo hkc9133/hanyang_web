@@ -4,23 +4,32 @@ import produce from 'immer';
 import {takeLatest} from 'redux-saga/effects';
 import * as adminSpaceRentalAPI from '../../lib/api/admin/spaceRental/spaceRental';
 
-const [GET_PLACE,GET_PLACE_SUCCESS, GET_PLACE_FAILURE] = createRequestActionTypes('adminSpaceRental/GET_PLACE')
-const [ADD_PLACE,ADD_PLACE_SUCCESS, ADD_PLACE_FAILURE] = createRequestActionTypes('adminSpaceRental/ADD_PLACE')
-const [UPDATE_PLACE,UPDATE_PLACE_SUCCESS, UPDATE_PLACE_FAILURE] = createRequestActionTypes('adminSpaceRental/UPDATE_PLACE')
-const [DELETE_PLACE,DELETE_PLACE_SUCCESS, DELETE_PLACE_FAILURE] = createRequestActionTypes('adminSpaceRental/DELETE_PLACE')
+const [GET_STATUS_COUNT,GET_STATUS_COUNT_SUCCESS, GET_STATUS_COUNT_FAILURE] = createRequestActionTypes('adminPopup/GET_STATUS_COUNT')
 
-const [GET_ROOM,GET_ROOM_SUCCESS, GET_ROOM_FAILURE] = createRequestActionTypes('adminSpaceRental/GET_ROOM')
-const [ADD_ROOM,ADD_ROOM_SUCCESS, ADD_ROOM_FAILURE] = createRequestActionTypes('adminSpaceRental/ADD_ROOM')
-const [UPDATE_ROOM,UPDATE_ROOM_SUCCESS, UPDATE_ROOM_FAILURE] = createRequestActionTypes('adminSpaceRental/UPDATE_ROOM')
-const [DELETE_ROOM,DELETE_ROOM_SUCCESS, DELETE_ROOM_FAILURE] = createRequestActionTypes('adminSpaceRental/DELETE_ROOM')
 
-const [GET_RENTAL_SCHEDULE_LIST,GET_RENTAL_SCHEDULE_LIST_SUCCESS, GET_RENTAL_SCHEDULE_LIST_FAILURE] = createRequestActionTypes('adminSpaceRental/GET_RENTAL_SCHEDULE_LIST')
 
-const [GET_PLACE_INFO_ALL,GET_PLACE_INFO_ALL_SUCCESS, GET_PLACE_INFO_ALL_FAILURE] = createRequestActionTypes('adminSpaceRental/GET_PLACE_INFO_ALL')
-const INITIALIZE = 'adminSpaceRental/INITIALIZE';
+const [GET_PLACE,GET_PLACE_SUCCESS, GET_PLACE_FAILURE] = createRequestActionTypes('adminPopup/GET_PLACE')
+const [ADD_PLACE,ADD_PLACE_SUCCESS, ADD_PLACE_FAILURE] = createRequestActionTypes('adminPopup/ADD_PLACE')
+const [UPDATE_PLACE,UPDATE_PLACE_SUCCESS, UPDATE_PLACE_FAILURE] = createRequestActionTypes('adminPopup/UPDATE_PLACE')
+const [DELETE_PLACE,DELETE_PLACE_SUCCESS, DELETE_PLACE_FAILURE] = createRequestActionTypes('adminPopup/DELETE_PLACE')
+
+const [GET_ROOM,GET_ROOM_SUCCESS, GET_ROOM_FAILURE] = createRequestActionTypes('adminPopup/GET_ROOM')
+const [ADD_ROOM,ADD_ROOM_SUCCESS, ADD_ROOM_FAILURE] = createRequestActionTypes('adminPopup/ADD_ROOM')
+const [UPDATE_ROOM,UPDATE_ROOM_SUCCESS, UPDATE_ROOM_FAILURE] = createRequestActionTypes('adminPopup/UPDATE_ROOM')
+const [DELETE_ROOM,DELETE_ROOM_SUCCESS, DELETE_ROOM_FAILURE] = createRequestActionTypes('adminPopup/DELETE_ROOM')
+
+const [GET_RENTAL_SCHEDULE_LIST,GET_RENTAL_SCHEDULE_LIST_SUCCESS, GET_RENTAL_SCHEDULE_LIST_FAILURE] = createRequestActionTypes('adminPopup/GET_RENTAL_SCHEDULE_LIST')
+const [UPDATE_RENTAL_SCHEDULE,UPDATE_RENTAL_SCHEDULE_SUCCESS, UPDATE_RENTAL_SCHEDULE_FAILURE] = createRequestActionTypes('adminPopup/UPDATE_RENTAL_SCHEDULE')
+
+const [GET_PLACE_INFO_ALL,GET_PLACE_INFO_ALL_SUCCESS, GET_PLACE_INFO_ALL_FAILURE] = createRequestActionTypes('adminPopup/GET_PLACE_INFO_ALL')
+const INITIALIZE = 'adminPopup/INITIALIZE';
+const INITIALIZE_FORM  = 'adminPopup/INITIALIZE_FORM';
 
 
 export const initialize = createAction(INITIALIZE);
+export const initializeForm = createAction(INITIALIZE_FORM, from => from);
+
+export const getStatusCount = createAction(GET_STATUS_COUNT);
 
 export const getPlace = createAction(GET_PLACE);
 export const addPlace = createAction(ADD_PLACE, placeInfo => placeInfo);
@@ -34,9 +43,11 @@ export const deleteRoom = createAction(DELETE_ROOM, roomId => roomId);
 
 
 export const getRentalScheduleList = createAction(GET_RENTAL_SCHEDULE_LIST,data => data);
+export const updateRentalSchedule = createAction(UPDATE_RENTAL_SCHEDULE,data => data);
 
 export const getPlaceInfoAll = createAction(GET_PLACE_INFO_ALL);
 
+const getStatusCountSaga = createRequestSaga(GET_STATUS_COUNT, adminSpaceRentalAPI.getStatusCount);
 
 const getPlaceSaga = createRequestSaga(GET_PLACE, adminSpaceRentalAPI.getPlace);
 const addPlaceSaga = createRequestSaga(ADD_PLACE, adminSpaceRentalAPI.addPlace);
@@ -50,11 +61,15 @@ const deleteRoomSaga = createRequestSaga(DELETE_ROOM, adminSpaceRentalAPI.delete
 
 
 const getRentalScheduleListSaga = createRequestSaga(GET_RENTAL_SCHEDULE_LIST, adminSpaceRentalAPI.getRentalScheduleList);
+const updateRentalScheduleSaga = createRequestSaga(UPDATE_RENTAL_SCHEDULE, adminSpaceRentalAPI.updateRentalSchedule);
 
 
 const getPlaceInfoAllSaga = createRequestSaga(GET_PLACE_INFO_ALL, adminSpaceRentalAPI.getPlaceInfoAll);
 
 export function* adminSpaceRentalSaga(){
+
+
+    yield takeLatest(GET_STATUS_COUNT, getStatusCountSaga);
 
     yield takeLatest(ADD_PLACE, addPlaceSaga);
     yield takeLatest(GET_PLACE, getPlaceSaga);
@@ -67,6 +82,8 @@ export function* adminSpaceRentalSaga(){
     yield takeLatest(DELETE_ROOM, deleteRoomSaga);
 
     yield takeLatest(GET_RENTAL_SCHEDULE_LIST, getRentalScheduleListSaga);
+    yield takeLatest(UPDATE_RENTAL_SCHEDULE, updateRentalScheduleSaga);
+
 
 
     yield takeLatest(GET_PLACE_INFO_ALL, getPlaceInfoAllSaga);
@@ -75,6 +92,7 @@ export function* adminSpaceRentalSaga(){
 
 const initialState = {
     all:[],
+    getStatusCount:null,
     getPlace:null,
     addPlace:{
         result:null,
@@ -105,10 +123,19 @@ const initialState = {
         list:[],
         page:null
     },
+    updateScheduleStatus:null
 };
 
 const adminSpaceRental = handleActions(
     {
+        [GET_STATUS_COUNT_SUCCESS]: (state, {payload: response}) =>
+            produce(state, draft => {
+                draft.getStatusCount = response.data
+            }),
+        [GET_STATUS_COUNT_FAILURE]: (state, {payload: error}) =>
+            produce(state, draft => {
+                draft.getStatusCount = null
+            }),
         [GET_PLACE_SUCCESS]: (state, {payload: response}) =>
             produce(state, draft => {
                 draft.getPlace = response.data
@@ -207,9 +234,21 @@ const adminSpaceRental = handleActions(
                 draft.getRentalScheduleList.list = []
                 draft.getRentalScheduleList.page = null
             }),
+        [UPDATE_RENTAL_SCHEDULE_SUCCESS]: (state, {payload: response}) =>
+            produce(state, draft => {
+                draft.updateScheduleStatus = true
+            }),
+        [UPDATE_RENTAL_SCHEDULE_FAILURE]: (state, {payload: error}) =>
+            produce(state, draft => {
+                draft.updateScheduleStatus = false
+            }),
 
         [INITIALIZE]: (state, {payload: form}) => ({
             ...initialState
+        }),
+        [INITIALIZE_FORM]: (state, {payload: form}) => ({
+            ...state,
+            [form]: initialState[form],
         }),
     }
     ,

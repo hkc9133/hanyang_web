@@ -9,7 +9,7 @@
 .sub_cont{margin:0 auto; padding:60px 20px; max-width:1320px; }
 .sub_container{margin:0 auto; padding:120px 20px; max-width:1320px; }
 .sub_top_title{position:relative; z-index:2; margin-bottom:40px; line-height:1; font-size:42px; color:#222; font-family: 's-core-dream-bold';}
-.sub_top_txt{position:relative; z-index:2; margin-bottom:100px; font-size:24px; }
+.sub_top_txt{position:relative; z-index:2; margin-bottom:100px; font-size:24px;width:640px;}
 .sub_cont_top{position:relative; z-index:1; padding:120px 20px 60px; overflow:hidden;}
 .sub_cont_top:before{position:absolute; right:20px; top:25px; width:445px; height:288px; display:block; background:url(../../image/mentor_group_bg.jpg) no-repeat right 0; content:"";}
 .sub_container{position:relative; z-index:1; overflow:hidden;}
@@ -105,7 +105,7 @@
 
     .sub_container{padding:60px 20px; }
     .sub_top_title{margin-bottom:20px; font-size:26px; }
-    .sub_top_txt{margin-bottom:50px; font-size:14px; }
+    .sub_top_txt{margin-bottom:50px; font-size:14px;width:100%;}
 
     .bo_notice .notice_icon{margin-top:-7px; width:30px; height:24px; line-height:22px; font-size:12px;}
     .bbs_tb_list th{font-size:12px; }

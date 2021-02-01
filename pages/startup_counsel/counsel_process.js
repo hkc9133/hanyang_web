@@ -18,7 +18,7 @@ const CounselApply = () => {
                     원스톱 창업상담 플랫폼을 구축, 온오프라인 창업상담을 지원하고 있습니다.
                 </p>
                 <div className={cx("txt_c")}>
-                    <a href="#" className={`${cx("basic-btn03","btn-blue-bg2")} mr_10`}>멘토찾기</a>
+                    <Link href={"/startup_counsel/mentor_introduce"}><a className={`${cx("basic-btn03","btn-blue-bg2")} mr_10`}>멘토찾기</a></Link>
                     <Link href="/startup_counsel/counsel_apply"><a className={cx("basic-btn03","btn-blue-bd")}>창업 상담하기</a></Link>
                 </div>
 

@@ -3,18 +3,22 @@ import styles from '../public/assets/styles/index/index.module.css';
 import classnames from "classnames/bind"
 import Link from "next/link";
 import Image from 'next/image'
-import Slider from "react-slick";
+const Slider = dynamic(() => import("react-slick"), {
+    ssr: false,
+    loading: () => <p>Loading ...</p>,
+});
+// import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import wrapper from "../store/configureStore";
-import {getSpaceRentalInfoAll} from "../store/spaceRental/spaceRental";
 import {END} from "redux-saga";
 import Head from "next/head";
 import {useDispatch, useSelector} from "react-redux";
-import {getBoardContentList} from "../store/board/board";
 import {getMainData} from "../store/main/main";
-import {getThumbnail} from '../component/common/util/ThumbnailUtil';
 import moment from 'moment';
+import PopupItem from "../component/main/PopupItem";
+import client from "../lib/api/client";
+import dynamic from "next/dynamic";
 
 
 const cx = classnames.bind(styles);
@@ -61,7 +65,7 @@ const boardSliderSettings = {
                 slidesToShow: 3,
                 slidesToScroll: 1,
                 infinite: true,
-                dots: true
+                dots: true,
             }
         },
         {
@@ -75,7 +79,7 @@ const boardSliderSettings = {
             breakpoint: 480,
             settings: {
                 slidesToShow: 1,
-                slidesToScroll: 1
+                slidesToScroll: 1,
             }
         }
     ]
@@ -101,15 +105,23 @@ const logoSliderSettings = {
     ]
 }
 
-// export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
-//     store.dispatch(END);
-//     await store.sagaTask.toPromise();
-// })
+
+export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
+
+    const cookie = context.req && context.req.headers.cookie ? context.req.headers.cookie : '';
+    client.defaults.headers.Cookie = cookie;
+
+
+    // context.store.dispatch(getMainData());
+    context.store.dispatch(END);
+    await context.store.sagaTask.toPromise();
+})
 
 const Index = () => {
 
     const dispatch = useDispatch();
-    const logoSlider = React.createRef();
+    const logoSlider = React.useRef();
+    const borderSlider = React.useRef();
 
     const [showNotice,setShowNotice] = useState(true);
 
@@ -118,7 +130,7 @@ const Index = () => {
     }))
 
     useEffect(() => {
-        dispatch(getMainData())
+        // borderSlider.current.slickNext()
     }, [])
 
     const toggleNoticeSlider = () =>{
@@ -131,6 +143,9 @@ const Index = () => {
             <Head>
                 <title>한양대학교 창업지원단 메인</title>
             </Head>
+            {mainData.popup.map((popup) =>
+                <PopupItem key={popup.popupId} popup={popup} cx={cx}/>
+            )}
             <div className={cx("main_cont_1")}>
                 <div className={cx("main_cont")}>
                     <h1>나의 창업을 부탁해!<strong>무엇이 필요하신가요?</strong></h1>
@@ -270,7 +285,7 @@ const Index = () => {
                         <h1><Link href="/"><a>창업지원단 핫이슈</a></Link></h1>
                         <ul>
                             {mainData.notice.map( (item,index) =>
-                                    index < 5 && <li key={item.noticeId}><Link href="/"><a>{item.title}</a></Link></li>
+                                index < 5 && <li key={item.noticeId}><Link href={`/introduce/notice/${item.noticeId}`}><a>{item.title}</a></Link></li>
 
                             )}
                         </ul>
@@ -306,203 +321,81 @@ const Index = () => {
 
                     <div className={cx("main_board_list", "main_tabCont")}>
                         {/*공지사항*/}
-                        <Slider className={`${cx("slides",{hidden:!showNotice})} main_board_list`} {...boardSliderSettings}>
-                            {
-                                mainData.notice.map((item) => {
-                                    return (
-                                        <div className={cx("list")} key={item.noticeId}>
-                                            <div className={cx("img_area")}>
-                                                <Link href={`/introduce/notice/${item.noticeId}`}>
-                                                    <a>
-                                                        <Image src="/assets/image/main_notice_img.jpg" layout="fill"
-                                                               alt="main_notice_img"/>
-                                                    </a>
-                                                </Link>
+                        {mainData.notice.length >0 && (
+                            <Slider className={`${cx("slides",{hidden:!showNotice})} main_board_list`} {...boardSliderSettings} ref={borderSlider}>
+                                {
+                                    mainData.notice.map((item) => {
+                                        return (
+                                            <div className={cx("list")} key={item.noticeId}>
+                                                <div className={cx("img_area")}>
+                                                    <Link href={`/introduce/notice/${item.noticeId}`}>
+                                                        <a>
+                                                            <Image src="/assets/image/main_notice_img.jpg" layout="fill"
+                                                                   alt="main_notice_img"/>
+                                                        </a>
+                                                    </Link>
+                                                </div>
+                                                <div className={cx("txt_area")}>
+                                                    <Link href={`/introduce/notice/${item.noticeId}`}>
+                                                        <a>
+                                                            <div className={cx("title")}>
+                                                                {item.title}
+                                                            </div>
+                                                            <div className={cx("txt")}>
+                                                                <div dangerouslySetInnerHTML={{__html: item.content}}/>
+                                                            </div>
+                                                            <span
+                                                                className={cx("date")}>{moment(item.regDate).format("YYYY년 MM월 DD일")}</span>
+                                                        </a>
+                                                    </Link>
+                                                </div>
                                             </div>
-                                            <div className={cx("txt_area")}>
-                                                <Link href={`/introduce/notice/${item.noticeId}`}>
-                                                    <a>
-                                                        <div className={cx("title")}>
-                                                            {item.title}
-                                                        </div>
-                                                        <div className={cx("txt")}>
-                                                            <div dangerouslySetInnerHTML={{__html: item.content}}/>
-                                                        </div>
-                                                        <span
-                                                            className={cx("date")}>{moment(item.regDate).format("YYYY년 MM월 DD일")}</span>
-                                                    </a>
-                                                </Link>
-                                            </div>
-                                        </div>
 
-                                    )
-                                })
-                            }
-                        </Slider>
+                                        )
+                                    })
+                                }
+                            </Slider>
 
-                        <Slider className={`${cx("slides",{hidden:showNotice})} main_board_list`} {...boardSliderSettings}>
-                            {
-                                mainData.startup_info.map((item) => {
-                                    return (
-                                        <div className={cx("list")} key={item.contentId}>
-                                            <div className={cx("img_area")}>
-                                                <Link href={`/board/data_room/view/${item.contentId}`}>
-                                                    <a>
-                                                        <Image src="/assets/image/main_notice_img.jpg" layout="fill"
-                                                               alt="main_notice_img"/>
-                                                    </a>
-                                                </Link>
-                                            </div>
-                                            <div className={cx("txt_area")}>
-                                                <Link href={`/board/data_room/view/${item.contentId}`}>
-                                                    <a>
-                                                        <div className={cx("title")}>
-                                                            {item.title}
-                                                        </div>
-                                                        <div className={cx("txt")}>
-                                                            <div dangerouslySetInnerHTML={{__html: item.content.replace("<br>","")}}/>
-                                                        </div>
-                                                        <span
-                                                            className={cx("date")}>{moment(item.regDate).format("YYYY년 MM월 DD일")}</span>
-                                                    </a>
-                                                </Link>
-                                            </div>
-                                        </div>
 
-                                    )
-                                })
-                            }
-                        </Slider>
+                        )}
+                        {mainData.startup_info.length > 0 && (
+                            <Slider className={`${cx("slides",{hidden:showNotice})} main_board_list`} {...boardSliderSettings}>
+                                {
+                                    mainData.startup_info.map((item) => {
+                                        return (
+                                            <div className={cx("list")} key={item.contentId}>
+                                                <div className={cx("img_area")}>
+                                                    <Link href={`/board/data_room/view/${item.contentId}`}>
+                                                        <a>
+                                                            <Image src="/assets/image/main_notice_img.jpg" layout="fill"
+                                                                   alt="main_notice_img"/>
+                                                        </a>
+                                                    </Link>
+                                                </div>
+                                                <div className={cx("txt_area")}>
+                                                    <Link href={`/board/data_room/view/${item.contentId}`}>
+                                                        <a>
+                                                            <div className={cx("title")}>
+                                                                {item.title}
+                                                            </div>
+                                                            <div className={cx("txt")}>
+                                                                <div dangerouslySetInnerHTML={{__html: item.content.replace("<br>","")}}/>
+                                                            </div>
+                                                            <span
+                                                                className={cx("date")}>{moment(item.regDate).format("YYYY년 MM월 DD일")}</span>
+                                                        </a>
+                                                    </Link>
+                                                </div>
+                                            </div>
+
+                                        )
+                                    })
+                                }
+                            </Slider>
+                        )}
                         <div>
                         </div>
-                        {/*//공지사항*/}
 
-                        {/*창업지원정보*/}
-                        {/*<div>*/}
-                        {/*    <div className={cx("slides")}>*/}
-                        {/*        <div className={cx("list")}>*/}
-                        {/*            <div className={cx("img_area")}>*/}
-                        {/*                <Link href="/">*/}
-                        {/*                    <a>*/}
-                        {/*                        <Image src="/assets/image/main_notice_img.jpg" width={309} height={225}*/}
-                        {/*                               alt="main_notice_img"/>*/}
-                        {/*                    </a>*/}
-                        {/*                </Link>*/}
-                        {/*            </div>*/}
-                        {/*            <div className={cx("txt_area")}>*/}
-                        {/*                <Link href="/">*/}
-                        {/*                    <a>*/}
-                        {/*                        <div className={cx("title")}>*/}
-                        {/*                            2020 September Ent. Lunch Talk 미래과학기술지주 김판건 대표*/}
-                        {/*                        </div>*/}
-                        {/*                        <div className={cx("txt")}>*/}
-                        {/*                            2020년 9월 런치톡은 9월25일(금) 오후 2시 부터 3시까지 미래과학기술지주 김판건 대표님의 “투자자가 끌리는*/}
-                        {/*                            스타트업”이라는 주제로 줌 췌이나로 진행될 예정입니다.*/}
-                        {/*                        </div>*/}
-                        {/*                        <span className={cx("date")}>2020년 11월23일</span>*/}
-                        {/*                    </a>*/}
-                        {/*                </Link>*/}
-                        {/*            </div>*/}
-                        {/*        </div>*/}
-                        {/*        <div className={cx("list")}>*/}
-                        {/*            <div className={cx("img_area")}>*/}
-                        {/*                <Link href="/">*/}
-                        {/*                    <a>*/}
-                        {/*                        <Image src="/assets/image/main_notice_img.jpg" width={309} height={225}*/}
-                        {/*                               alt="main_notice_img"/>*/}
-                        {/*                    </a>*/}
-                        {/*                </Link>*/}
-                        {/*            </div>*/}
-                        {/*            <div className={cx("txt_area")}>*/}
-                        {/*                <Link href="/">*/}
-                        {/*                    <a>*/}
-                        {/*                        <div className={cx("title")}>*/}
-                        {/*                            2020 September Ent. Lunch Talk 미래과학기술지주 김판건 대표*/}
-                        {/*                        </div>*/}
-                        {/*                        <div className={cx("txt")}>*/}
-                        {/*                            2020년 9월 런치톡은 9월25일(금) 오후 2시 부터 3시까지 미래과학기술지주 김판건 대표님의 “투자자가 끌리는*/}
-                        {/*                            스타트업”이라는 주제로 줌 췌이나로 진행될 예정입니다.*/}
-                        {/*                        </div>*/}
-                        {/*                        <span className={cx("date")}>2020년 11월23일</span>*/}
-                        {/*                    </a>*/}
-                        {/*                </Link>*/}
-                        {/*            </div>*/}
-                        {/*        </div>*/}
-                        {/*        <div className={cx("list")}>*/}
-                        {/*            <div className={cx("img_area")}>*/}
-                        {/*                <Link href="/">*/}
-                        {/*                    <a>*/}
-                        {/*                        <Image src="/assets/image/main_notice_img.jpg" width={309} height={225}*/}
-                        {/*                               alt="main_notice_img"/>*/}
-                        {/*                    </a>*/}
-                        {/*                </Link>*/}
-                        {/*            </div>*/}
-                        {/*            <div className={cx("txt_area")}>*/}
-                        {/*                <Link href="/">*/}
-                        {/*                    <a>*/}
-                        {/*                        <div className={cx("title")}>*/}
-                        {/*                            2020 September Ent. Lunch Talk 미래과학기술지주 김판건 대표*/}
-                        {/*                        </div>*/}
-                        {/*                        <div className={cx("txt")}>*/}
-                        {/*                            2020년 9월 런치톡은 9월25일(금) 오후 2시 부터 3시까지 미래과학기술지주 김판건 대표님의 “투자자가 끌리는*/}
-                        {/*                            스타트업”이라는 주제로 줌 췌이나로 진행될 예정입니다.*/}
-                        {/*                        </div>*/}
-                        {/*                        <span className={cx("date")}>2020년 11월23일</span>*/}
-                        {/*                    </a>*/}
-                        {/*                </Link>*/}
-                        {/*            </div>*/}
-                        {/*        </div>*/}
-                        {/*        <div className={cx("list")}>*/}
-                        {/*            <div className={cx("img_area")}>*/}
-                        {/*                <Link href="/">*/}
-                        {/*                    <a>*/}
-                        {/*                        <Image src="/assets/image/main_notice_img.jpg" width={309} height={225}*/}
-                        {/*                               alt="main_notice_img"/>*/}
-                        {/*                    </a>*/}
-                        {/*                </Link>*/}
-                        {/*            </div>*/}
-                        {/*            <div className={cx("txt_area")}>*/}
-                        {/*                <Link href="/">*/}
-                        {/*                    <a>*/}
-                        {/*                        <div className={cx("title")}>*/}
-                        {/*                            2020 September Ent. Lunch Talk 미래과학기술지주 김판건 대표*/}
-                        {/*                        </div>*/}
-                        {/*                        <div className={cx("txt")}>*/}
-                        {/*                            2020년 9월 런치톡은 9월25일(금) 오후 2시 부터 3시까지 미래과학기술지주 김판건 대표님의 “투자자가 끌리는*/}
-                        {/*                            스타트업”이라는 주제로 줌 췌이나로 진행될 예정입니다.*/}
-                        {/*                        </div>*/}
-                        {/*                        <span className={cx("date")}>2020년 11월23일</span>*/}
-                        {/*                    </a>*/}
-                        {/*                </Link>*/}
-                        {/*            </div>*/}
-                        {/*        </div>*/}
-                        {/*        <div className={cx("list")}>*/}
-                        {/*            <div className={cx("img_area")}>*/}
-                        {/*                <Link href="/">*/}
-                        {/*                    <a>*/}
-                        {/*                        <Image src="/assets/image/main_notice_img.jpg" width={309} height={225}*/}
-                        {/*                               alt="main_notice_img"/>*/}
-                        {/*                    </a>*/}
-                        {/*                </Link>*/}
-                        {/*            </div>*/}
-                        {/*            <div className={cx("txt_area")}>*/}
-                        {/*                <Link href="/">*/}
-                        {/*                    <a>*/}
-                        {/*                        <div className={cx("title")}>*/}
-                        {/*                            2020 September Ent. Lunch Talk 미래과학기술지주 김판건 대표*/}
-                        {/*                        </div>*/}
-                        {/*                        <div className={cx("txt")}>*/}
-                        {/*                            2020년 9월 런치톡은 9월25일(금) 오후 2시 부터 3시까지 미래과학기술지주 김판건 대표님의 “투자자가 끌리는*/}
-                        {/*                            스타트업”이라는 주제로 줌 췌이나로 진행될 예정입니다.*/}
-                        {/*                        </div>*/}
-                        {/*                        <span className={cx("date")}>2020년 11월23일</span>*/}
-                        {/*                    </a>*/}
-                        {/*                </Link>*/}
-                        {/*            </div>*/}
-                        {/*        </div>*/}
-                        {/*    </div>*/}
-                        {/*</div>*/}
-                        {/*//창업지원정보*/}
                     </div>
                 </div>
             </div>

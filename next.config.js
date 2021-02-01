@@ -2,13 +2,19 @@ const withImages = require("next-images")
 const withCSS = require("@zeit/next-css")
 const path = require('path');
 
+// module.exports = {
+//     images: {
+//         domains: ['localhost'],
+//     },
+// }
+
 module.exports = withCSS(
     withImages({
         webpack(config, options) {
             // config.plugins.push(new CKEditorWebpackPlugin({ language: "ko",addMainLanguageTranslationsToAllAssets: true }));
 
             config.module.rules.push({
-                test: /\.(png|jpe?g|svg|eot|otf|ttf|woff|woff2)$/i,
+                test: /\.(png|jpe?g|gif|svg|eot|otf|ttf|woff|woff2)$/i,
                 loader: 'file-loader',
                 options: {
                     name: '[name][hash].[ext]',
@@ -20,7 +26,7 @@ module.exports = withCSS(
             })
 
             config.module.rules.push({
-                test: /\.(png|jpe?g|svg|eot|otf|ttf|woff|woff2)$/,
+                test: /\.(png|jpe?g|gif|svg|eot|otf|ttf|woff|woff2)$/,
                 use: {
                     loader: 'url-loader',
                     options: {
@@ -80,6 +86,12 @@ module.exports = withCSS(
 )
 
 module.exports = withImages()
+module.exports = {
+    images: {
+        domains: ['localhost'],
+    },
+}
+
 
 // module.exports = withImages({
 //     exclude: path.resolve(__dirname, 'assets/image'),

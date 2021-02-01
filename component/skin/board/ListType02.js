@@ -32,7 +32,7 @@ const ListType02 = ({content,board,loading,moveContentDetail,pageChange}) => {
                         {content.list.map((item) =>{
                             return (
                                 <tr key={item.contentId}>
-                                    <td>{item.rownum}</td>
+                                    <td>{item.rownum == 0 ? <strong className={cx("notice_icon")}>공지</strong> : item.rownum}</td>
                                     <td className={cx("txt_l")}><Link href={`/board/${board.boardEnName}/view/${item.contentId}?${qs.stringify(router.query)}`}><a>{item.title}</a></Link></td>
                                     {board.categoryId != null && (
                                         <td><span className={cx("category")} style={{borderColor:item.color,color:item.color}}>{item.categoryCodeName}</span></td>
@@ -56,7 +56,7 @@ const ListType02 = ({content,board,loading,moveContentDetail,pageChange}) => {
                 )}
             </>
         </>
-    );
+    )
 };
 
 export default React.memo(ListType02);

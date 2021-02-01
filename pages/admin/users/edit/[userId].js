@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {Checkbox, DatePicker, Form, Upload} from "antd";
+import {Checkbox, DatePicker, Form,Modal, Upload} from "antd";
 import locale from "antd/lib/date-picker/locale/ko_KR";
-import Modal from "../../../../component/common/Modal";
+// import Modal from "../../../../component/common/Modal";
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
 import {getUser, initialize, updateUser} from "../../../../store/user/user";
@@ -35,7 +35,11 @@ const UserDetail = () => {
 
     useEffect(() =>{
         if(update.result && update.error == null){
-            setUpdateResultModal(true);
+            // setUpdateResultModal(true);
+            Modal.success({
+                title: '사용자 저장 완료',
+                onOk:() =>{router.back();}
+            });
         }
     },[update])
 
@@ -170,9 +174,9 @@ const UserDetail = () => {
                             </Form>
                         </div>
                     </div>
-                    <Modal visible={updateResultModal} closable={true} maskClosable={true} onClose={() => {setUpdateResultModal(false);router.back();}} cx={cx} className={"add_result_popup"}>
-                        <h1 className={cx("popup_title")}>사용자 저장 완료</h1>
-                    </Modal>
+                    {/*<Modal visible={updateResultModal} closable={true} maskClosable={true} onClose={() => {setUpdateResultModal(false);router.back();}} cx={cx} className={"add_result_popup"}>*/}
+                    {/*    <h1 className={cx("popup_title")}>사용자 저장 완료</h1>*/}
+                    {/*</Modal>*/}
                 </section>
 
             )}

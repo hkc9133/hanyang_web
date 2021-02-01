@@ -28,6 +28,7 @@ import ScrollToTop from "../component/common/ScrollToTop";
 
 import GlobalStyles from '../public/assets/styles/global'
 import AdminGlobalStyles from '../public/assets/styles/admin_global'
+import {getMainData} from "../store/main/main";
 
 // "dev": "NODE_ENV='development' node server.js",
 
@@ -44,10 +45,12 @@ const _App = ({Component, pageProps}) => {
     const [role, setRole] = useState(null);
 
     useEffect(() => {
+
     }, [])
 
     useEffect(() => {
         dispatch(authCheck())
+        dispatch(getMainData())
     }, [Component])
 
     useEffect(() => {
@@ -59,7 +62,7 @@ const _App = ({Component, pageProps}) => {
     let allowed = true;
     if (router.pathname.startsWith("/admin") && role !== "ROLE_ADMIN") {
         allowed = false;
-    } else if((router.pathname.startsWith("/mypage/mentee") || router.pathname.startsWith("/startup_counsel/counsel_apply"))  && (user.login !== true || role != 'ROLE_SD')) {
+    } else if((router.pathname.startsWith("/mypage/mentee") || router.pathname.startsWith("/startup_counsel/counsel_apply") || router.pathname.startsWith("/startup_counsel/student_report") )   && (user.login !== true || role != 'ROLE_SD')) {
         allowed = false;
     }else if((router.pathname.startsWith("/mypage/mentor") || router.pathname.startsWith("/startup_counsel/mentor_apply")) && (user.login !== true || role != 'ROLE_MT')) {
         allowed = false;

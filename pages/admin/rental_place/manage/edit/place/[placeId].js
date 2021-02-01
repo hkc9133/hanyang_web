@@ -4,10 +4,10 @@ import classnames from "classnames/bind"
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
 import {deletePlace, getPlace, initialize, updatePlace} from "../../../../../../store/spaceRental/adminSpaceRental";
-import {Form, Upload} from "antd";
+import {Form, Upload, Modal, Button} from "antd";
 import {PlusOutlined} from "@ant-design/icons";
 import {fileDownload} from "../../../../../../store/file/file";
-import Modal from "../../../../../../component/common/Modal";
+// import Modal from "../../../../../../component/common/Modal";
 const cx = classnames.bind(styles);
 const PlaceDetail = () => {
     const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const PlaceDetail = () => {
         place: adminSpaceRental.getPlace,
         update:adminSpaceRental.updatePlace,
         deletePlaceResult:adminSpaceRental.deletePlace,
-        loading:loading['adminSpaceRental/GET_PLACE']
+        loading:loading['adminPopup/GET_PLACE']
     }))
 
     const [placeInfo, setPlaceInfo] = useState({
@@ -119,10 +119,23 @@ const PlaceDetail = () => {
 
     useEffect(() =>{
         if(update.result && update.error == null){
-            setShowResultModal(true)
+            Modal.success({
+                title: '저장이 완료되었습니다',
+                onOk:() =>{router.push("/admin/rental_place/manage");}
+            });
         }
 
     },[update])
+
+    useEffect(() =>{
+        if(deletePlaceResult.result && deletePlaceResult.error == null){
+            Modal.success({
+                title: '삭제가 완료되었습니다',
+                onOk:() =>{router.push("/admin/rental_place/manage")}
+            });
+        }
+    },[deletePlaceResult])
+
 
     // useEffect(() =>{
     //     if(update.result && update.error == null){
@@ -249,36 +262,50 @@ const PlaceDetail = () => {
                             </div>
                         </div>
                     </Form>
-                    <Modal visible={showResultModal} closable={true} maskClosable={true} onClose={() => {
-                        setShowResultModal(false);
-                    }} cx={cx} className={"rental_popup"}>
-                        <h2 className={cx("popup_title")}>저장이 완료되었습니다</h2>
-                        <div className={cx("btn_box")}>
-                            <button className={cx("basic-btn02","btn-gray-bg")} onClick={() =>{setShowResultModal(false);router.push("/admin/rental_place/manage")}}>확인</button>
-                        </div>
+                    <Modal
+                        title="삭제하시겠습니까?"
+                        visible={showRemoveModal}
+                        onOk={() =>{removePlace()}}
+                        // confirmLoading={deletePlaceResult.result}
+                        onCancel={() =>{setShowRemoveModal(false)}}
+                        footer={[
+                            <button className={cx("basic-btn01","btn-red-bg")} onClick={() =>{removePlace()}}>삭제</button>,
+                            <button className={cx("basic-btn01","btn-gray-bg")} onClick={() =>{setShowRemoveModal(false);}}>취소</button>
+                        ]}
+                    >
+                        <p className={cx("warning")}>삭제 시 관련 장소, 시간 정보가 모두 삭제 됩니다.</p>
+                        {/*<p>{modalText}</p>*/}
                     </Modal>
+                    {/*<Modal visible={showResultModal} closable={true} maskClosable={true} onClose={() => {*/}
+                    {/*    setShowResultModal(false);*/}
+                    {/*}} cx={cx} className={"rental_popup"}>*/}
+                    {/*    <h2 className={cx("popup_title")}>저장이 완료되었습니다</h2>*/}
+                    {/*    <div className={cx("btn_box")}>*/}
+                    {/*        <button className={cx("basic-btn02","btn-gray-bg")} onClick={() =>{setShowResultModal(false);router.push("/admin/rental_place/manage")}}>확인</button>*/}
+                    {/*    </div>*/}
+                    {/*</Modal>*/}
 
-                    <Modal visible={showRemoveModal} closable={true} maskClosable={true} onClose={() => {
-                        setShowRemoveModal(false);
-                    }} cx={cx} className={"rental_popup"}>
-                        {deletePlaceResult.result ?  (
-                            <>
-                                <h2 className={cx("popup_title")}>삭제가 완료되었습니다</h2>
-                                <div className={cx("btn_box")}>
-                                        <button className={cx("basic-btn01","btn-gray-bg")} onClick={() =>{router.push("/admin/rental_place/manage")}}>확인</button>
-                                </div>
-                            </>
-                        ) : (
-                            <>
-                                <h2 className={cx("popup_title")}>삭제하시겠습니까?</h2>
-                                <p className={cx("warning")}>삭제 시 관련 장소, 시간 정보가 모두 삭제 됩니다.</p>
-                                <div className={cx("btn_box")}>
-                                    <button className={cx("basic-btn01","btn-red-bg")} onClick={() =>{removePlace()}}>삭제</button>
-                                    <button className={cx("basic-btn01","btn-gray-bg")} onClick={() =>{setShowRemoveModal(false);}}>취소</button>
-                                </div>
-                            </>
-                        )}
-                    </Modal>
+                    {/*<Modal visible={showRemoveModal} closable={true} maskClosable={true} onClose={() => {*/}
+                    {/*    setShowRemoveModal(false);*/}
+                    {/*}} cx={cx} className={"rental_popup"}>*/}
+                    {/*    {deletePlaceResult.result ?  (*/}
+                    {/*        <>*/}
+                    {/*            <h2 className={cx("popup_title")}>삭제가 완료되었습니다</h2>*/}
+                    {/*            <div className={cx("btn_box")}>*/}
+                    {/*                    <button className={cx("basic-btn01","btn-gray-bg")} onClick={() =>{router.push("/admin/rental_place/manage")}}>확인</button>*/}
+                    {/*            </div>*/}
+                    {/*        </>*/}
+                    {/*    ) : (*/}
+                    {/*        <>*/}
+                    {/*            <h2 className={cx("popup_title")}>삭제하시겠습니까?</h2>*/}
+                    {/*            <p className={cx("warning")}>삭제 시 관련 장소, 시간 정보가 모두 삭제 됩니다.</p>*/}
+                    {/*            <div className={cx("btn_box")}>*/}
+                    {/*                <button className={cx("basic-btn01","btn-red-bg")} onClick={() =>{removePlace()}}>삭제</button>*/}
+                    {/*                <button className={cx("basic-btn01","btn-gray-bg")} onClick={() =>{setShowRemoveModal(false);}}>취소</button>*/}
+                    {/*            </div>*/}
+                    {/*        </>*/}
+                    {/*    )}*/}
+                    {/*</Modal>*/}
 
                 </section>
 
