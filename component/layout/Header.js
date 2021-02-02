@@ -31,6 +31,7 @@ const Header = () => {
     },[])
 
 
+    const [isLogin, setIsLogin] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
     const [currentMenuItem, setCurrentMenuItem] = useState(null);
     const [mypage, setMypage] = useState("");
@@ -47,7 +48,18 @@ const Header = () => {
         setShowMenu(false)
         setCurrentMenuItem(null)
         setMypage(getMyPage(user.role))
+        if(user.login !== null && user.login){
+            setIsLogin(true)
+        }else{
+            setIsLogin(false)
+        }
     },[router.pathname,user])
+
+    useEffect(()=> {
+        console.log(isLogin)
+    },[isLogin])
+
+
 
     useEffect(() => {
 
@@ -85,8 +97,8 @@ const Header = () => {
     }
 
     const handleLogout = () => {
-        dispatch(logout())
         router.push("/")
+        dispatch(logout())
     }
 
     return (
@@ -112,7 +124,7 @@ const Header = () => {
                             <div className={cx("s_gnb")}>
                                 <ul>
                                     <li><Link href="/startup_counsel/counsel_process"><a>창업상담신청</a></Link></li>
-                                    <li><Link href="/startup_counsel/mentor_introduce?pageSize=6"><a>멘토단소개</a></Link></li>
+                                    <li><Link href="/startup_counsel/mentor_introduce?pageSize=1"><a>멘토단소개</a></Link></li>
                                     <li><Link href="/startup_counsel/startup_procedure"><a>창업절차</a></Link></li>
                                 </ul>
                             </div>
@@ -173,7 +185,7 @@ const Header = () => {
                 </div>
 
                 <div className={cx("login_box")}>
-                    {user.login ?
+                    {isLogin ?
                         <>
                             <Link href={mypage}><a>관리</a></Link>
                         <Link href="#"><a href="#" onClick={() => {handleLogout()}}>로그아웃</a></Link>
@@ -227,7 +239,7 @@ const Header = () => {
                             <div className={cx("s_menu",{show:currentMenuItem === 2})}>
                                 <ul>
                                     <li><Link href="/startup_counsel/counsel_process"><a>창업상담신청</a></Link></li>
-                                    <li><Link href="/startup_counsel/mentor_introduce?pageSize=6"><a>멘토단소개</a></Link></li>
+                                    <li><Link href="/startup_counsel/mentor_introduce?pageSize=1"><a>멘토단소개</a></Link></li>
                                     <li><Link href="/startup_counsel/startup_procedure"><a>창업절차</a></Link></li>
                                 </ul>
                             </div>

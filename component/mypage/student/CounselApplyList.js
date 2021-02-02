@@ -62,12 +62,22 @@ const CounselApplyListItem = React.memo(({item, handleShowAnswer, showAnswer, ha
                     <li className={cx("answer", {show: showAnswer == item.formId, hidden: showAnswer != item.formId})}>
                         <div className={cx("info")}>
                             <ul className={"clfx"}>
-                                <li>구분 : {counselApply.counselApply.formSortationItemName}</li>
+                                <li>구분 </li>
+                                    <ul className={cx("dep_2")}>
+                                        {counselApply.counselApply.sortationItemList.map((item) =>{
+                                            return <li key={item.itemId}>-{item.item}</li>
+                                        })}
+                                    </ul>
                                 <li>상담멘토 : {counselApply.counselApply.mentorName}</li>
                                 <li>창업진행상황 : {counselApply.counselApply.formProgressItemName}</li>
-                                <li>희망상담방식 : {counselApply.counselApply.formWayItemName}</li>
+                                <li>희망상담방식 :</li>
+                                    <ul className={cx("dep_2")}>
+                                    {counselApply.counselApply.wayItemList.map((item) =>{
+                                        return <li key={item.itemId}>-{item.item}</li>
+                                    })}
+                                    </ul>
                                 <li>희망멘토링분야
-                                    : {counselApply.counselApply.counselFieldList.map((item) => (item.fieldName + ","))}</li>
+                                    : {counselApply.counselApply.fieldName}</li>
                                 <li className={cx("counsel_content")}>문의 내용
                                     <div dangerouslySetInnerHTML={{__html: counselApply.counselApply.content}}/>
                                 </li>

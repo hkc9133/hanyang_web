@@ -51,7 +51,7 @@ const _App = ({Component, pageProps}) => {
     useEffect(() => {
         dispatch(authCheck())
         dispatch(getMainData())
-    }, [Component])
+    }, [router])
 
     useEffect(() => {
         if (user.login && user.info.role !== null) {

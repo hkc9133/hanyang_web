@@ -2,6 +2,7 @@ import React from 'react';
 import SearchBoxStyle01 from "./SearchBoxStyle01";
 import SearchBoxStyle02 from "./SearchBoxStyle02";
 import SearchBoxStyle03 from "./SearchBoxStyle03";
+import SearchBoxStyle04 from "./SearchBoxStyle04";
 
 const SearchBoxSelector = (props) => {
     const setSkin = () =>{
@@ -14,6 +15,8 @@ const SearchBoxSelector = (props) => {
                 return <SearchBoxStyle02 {...props}/>
             case 'SearchBoxStyle03':
                 return <SearchBoxStyle03 {...props}/>
+            case 'SearchBoxStyle04':
+                return <SearchBoxStyle04 {...props}/>
         }
     }
     return (

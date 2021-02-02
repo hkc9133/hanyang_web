@@ -176,27 +176,11 @@ const CounselApplyDetail = () => {
                         <div className={cx("mentoring_applicants")}>
                             <ul className={"clfx"}>
                                 <li>
-                                    <label htmlFor="mentoring_applicants_info1">구분</label>
-                                    <input type="text" id="mentoring_applicants_info1"
-                                           value={apply.formSortationItemName} readOnly={true}/>
-                                </li>
-                                <li>
-                                    <label htmlFor="mentoring_applicants_info2">희망분야</label>
-                                    <div className={cx("apply_value_box")}>
-                                        {apply.counselFieldList != null && apply.counselFieldList.map((item) => (item.fieldName))}
-                                    </div>
-                                </li>
-                                <li>
                                     <label htmlFor="mentoring_applicants_info3">이름</label>
                                     <input type="text" id="mentoring_applicants_info3" value={apply.menteeName}
                                            readOnly={true}/>
                                 </li>
                                 <li>
-                                    <label htmlFor="mentoring_applicants_info4">창업진행상황</label>
-                                    <input type="text" id="mentoring_applicants_info4"
-                                           value={apply.formProgressItemName} readOnly={true}/>
-                                </li>
-                                <li className={cx("w_50")}>
                                     <label htmlFor="mentoring_applicants_info5">E-mail </label>
                                     <div className={cx("email")}>
                                         <input type="text" id="mentoring_applicants_info5" value={apply.menteeEmail}
@@ -204,9 +188,28 @@ const CounselApplyDetail = () => {
                                     </div>
                                 </li>
                                 <li>
+                                    <label htmlFor="mentoring_applicants_info2">희망분야</label>
+                                    <div className={cx("apply_value_box")}>
+                                        {/*{apply.counselFieldList != null && apply.counselFieldList.map((item) => (item.fieldName))}*/}
+                                        {apply.fieldName}
+                                    </div>
+                                </li>
+                                <li>
+                                    <label htmlFor="mentoring_applicants_info4">창업진행상황</label>
+                                    <input type="text" id="mentoring_applicants_info4"
+                                           value={apply.formProgressItemName} readOnly={true}/>
+                                </li>
+                                <li className={cx("w_50")}>
+                                    <label htmlFor="mentoring_applicants_info1">구분</label>
+                                    {apply.sortationItemList.map((item) =>{
+                                        return <input type="text" className={cx("bor_no")} id="mentoring_applicants_info1" value={item.item} readOnly={true}/>
+                                    })}
+                                </li>
+                                <li className={cx("w_50","gubun")}>
                                     <label htmlFor="mentoring_applicants_info6">희망상담방식</label>
-                                    <input type="text" id="mentoring_applicants_info6" value={apply.formWayItemName}
-                                           readOnly={true}/>
+                                    {apply.wayItemList.map((item) =>{
+                                        return <input className={cx("bor_no")} type="text" id="mentoring_applicants_info1" value={item.item} readOnly={true}/>
+                                    })}
                                 </li>
                             </ul>
                         </div>
