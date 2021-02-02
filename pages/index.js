@@ -206,7 +206,7 @@ const Index = () => {
                         </li>
                     </ul>
                     <div className={cx("main_search_area")}>
-                        <input type="text"/>
+                        <input type="text" placeholder="검색어를 입력하세요."/>
                         <button type="button" className={cx("btn_search")}>검색</button>
                     </div>
                     <div className={cx("searchWord")}>

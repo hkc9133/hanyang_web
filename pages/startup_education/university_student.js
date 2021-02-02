@@ -19,9 +19,9 @@ const UniversityStudent = () => {
 
                     <div className={cx("tab_style_2")}>
                         <ul>
-                            <li className={cx("on")}><Link href="#"><a>학부정규교과</a></Link></li>
-                            <li><Link href="#"><a>학부창업융합전공</a></Link></li>
-                            <li><Link href="#"><a>대학원정규교과</a></Link></li>
+                            <li className={cx("on")}><Link href="#"><a>학부 정규교과</a></Link></li>
+                            <li><Link href="#"><a>학부 창업융합전공</a></Link></li>
+                            <li><Link href="#"><a>대학원 정규교과</a></Link></li>
                         </ul>
                     </div>
                 </div>
@@ -30,8 +30,8 @@ const UniversityStudent = () => {
                     <div className={cx("sub_cont")}>
                         <h1 className={cx("title_style_3")}>학부정규교과</h1>
                         <p>
-                            한양대학교는 기업가정신을 지닌 창의적융합인재 양성을 위하여 체계적인 창업교육 커리큘럼을 운영 하고있습니다. <br/>창업융합전공 미신청학생도 교양으로 강의를 수강 할
-                            수 있습니다. (일부강좌 제외)
+                            한양대학교는 기업가정신을 지닌 창의적융합인재 양성을 위하여 체계적인 창업교육 커리큘럼을 운영하고 있습니다. <br/>창업융합전공 미신청 학생도 교양으로 강의를 수강할
+                            수 있습니다. (일부 강좌 제외)
                         </p>
                         <div className={cx("university_student_step")}>
                             <ul className={"clfx"}>
@@ -40,20 +40,20 @@ const UniversityStudent = () => {
                                     <span>기업가정신 함양</span>
                                 </li>
                                 <li>
-                                    <Image src="/assets/image/university_student_icon_1.jpg" width={186}height={186} alt="university_student_icon_2"/>
+                                    <Image src="/assets/image/university_student_icon_2.jpg" width={186}height={186} alt="university_student_icon_2"/>
                                     <span>사업 아이디어 구상</span>
                                 </li>
                                 <li>
-                                    <Image src="/assets/image/university_student_icon_1.jpg" width={186}height={186} alt="university_student_icon_3"/>
+                                    <Image src="/assets/image/university_student_icon_3.jpg" width={186}height={186} alt="university_student_icon_3"/>
                                     <span>초기 사업모델 구축</span>
                                 </li>
                                 <li>
-                                    <Image src="/assets/image/university_student_icon_1.jpg" width={186}height={186} alt="university_student_icon_4"/>
-                                    <span>창업역량강화</span>
+                                    <Image src="/assets/image/university_student_icon_4.jpg" width={186}height={186} alt="university_student_icon_4"/>
+                                    <span>창업 역량 강화</span>
                                 </li>
                                 <li>
-                                    <Image src="/assets/image/university_student_icon_1.jpg" width={186}height={186} alt="university_student_icon_5"/>
-                                    <span>창업단계실행</span>
+                                    <Image src="/assets/image/university_student_icon_5.jpg" width={186}height={186} alt="university_student_icon_5"/>
+                                    <span>실전 창업 준비</span>
                                 </li>
                             </ul>
                         </div>
@@ -71,7 +71,7 @@ const UniversityStudent = () => {
                                 <ul>
                                     <li>
                                         <div className={cx("question")}>
-                                            2021학년도 1학기 개설강좌현황
+                                            2021학년도 1학기 개설 강좌현황
                                         </div>
                                         <div className={cx("answer")}>
 
@@ -79,7 +79,7 @@ const UniversityStudent = () => {
                                     </li>
                                     <li>
                                         <div className={cx("question")}>
-                                            2021학년도 2학기 개설강좌현황
+                                            2021학년도 2학기 개설 강좌현황
                                         </div>
                                         <div className={cx("answer")}>
 
@@ -91,7 +91,7 @@ const UniversityStudent = () => {
                     </div>
                     <div className={cx("txt_style_1")}>
                         <div className={cx("left_title")}>
-                            <h1 className={cx("title_style_2")}>나에게맞는창업강좌는? <br/>창업강좌추천 <strong>Roadmap</strong></h1>
+                            <h1 className={cx("title_style_2")}>나에게 맞는 창업강좌는? <br/>창업강좌 추천 <strong>Roadmap</strong></h1>
                             <p>화살표를 누르면 표를 확인하실 수 있습니다.</p>
                         </div>
                         <div className={cx("txtArea")}>
@@ -114,7 +114,7 @@ const UniversityStudent = () => {
                                         </div>
                                     </li>
                                 </ul>
-                                <p>교양으로 창업강좌를 수강하는 학생들은 가장최근 교육과정의 로드맵을, 융합전공생은 본인에게 해당하는교 육과정표를 확인해주세요.</p>
+                                <p>교양으로 창업강좌를 수강하는 학생들은 가장 최근 교육과정의 로드맵을,<br/>융합전공생은 본인에게 해당하는 교육과정표를 확인해 주세요.</p>
                             </div>
                         </div>
                     </div>
@@ -124,14 +124,14 @@ const UniversityStudent = () => {
                     <div className={cx("sub_cont")}>
                         <div className={cx("txt_style_1")}>
                             <div className={cx("left_title")}>
-                                <h1 className={cx("title_style_3")}><strong>학부창업융합전공</strong></h1>
+                                <h1 className={cx("title_style_3")}><strong>학부 창업융합전공</strong></h1>
                             </div>
                             <div className={cx("txtArea")}>
                                 <div className={cx("list_style_1")}>
                                     <ul>
                                         <li>
-                                            <span className={cx("title")}>목적창의융합인재양성 </span>
-                                            주전공의 전문성에 창업교육커리큘럼을 접목하여 전문성을 갖춘 창의융합 인재양성
+                                            <span className={cx("title")}>목적</span>
+                                            주전공의 전문성에 창업교육 커리큘럼을 접목하여 전문성을 갖춘 창의융합 인재 양성
                                         </li>
                                         <li>
                                             <span className={cx("title")}>수여학위</span>
@@ -139,8 +139,8 @@ const UniversityStudent = () => {
                                         </li>
                                         <li>
                                             <span className={cx("title")}>신청대상 </span>
-                                            창업에 관심있는학생(학부성적제한없음) <br/>
-                                            1학년2학기(1학기이상성적유효) 이상의 서울캠퍼스 재학생
+                                            창업에 관심있는 학생(학부성적 제한없음) <br/>
+                                            1학년 2학기(1학기 이상 성적유효) 이상의 서울캠퍼스 재학생
                                         </li>
                                         <li>
                                             <span className={cx("title")}>이수학점</span>
@@ -173,27 +173,26 @@ const UniversityStudent = () => {
                         </div>
                         <div className={cx("txtArea")}>
                             <p>
-                                융합전공교육과정(2016-2019 또는2020-2023) 확인 후 <br/>본인에게 해당하는 교육과정표를 확인해주세요.
-                                <span className={cx("f-16","c-blue")}>* 교육과정계산식: 융합전공신청년도–신청학년+ 1</span>
+                                융합전공교육과정(2016-2019 또는 2020-2023) 확인 후 <br/>본인에게 해당하는 교육과정표를 확인해 주세요.
+                                <span className={cx("f-16","c-blue")}>* 교육과정 계산식: 융합전공신청연도–신청학년+ 1</span>
                             </p>
-                            <h2 className={cx("title_style_4")}>교육과정표확인시주의사항</h2>
+                            <h2 className={cx("title_style_4")}>교육과정표 확인 시 주의사항</h2>
                             <ul className={cx("list_style_2")}>
                                 <li><span className={cx("number")}>1)</span> 교육과정표의 이수구분은 창업융합전공을 다중전공, 부전공으로 이수하는 학생에게만
                                     해당합니다.
                                 </li>
-                                <li><span className={cx("number")}>2)</span> 해당 학기개설 강좌목록은 페이지상단 ‘1학기강좌자세히보기’, ‘2학기강좌자세히보기’
-                                    링크를 참고하시기 바랍니다.
+                                <li><span className={cx("number")}>2)</span> 해당 학기 개설 강좌 목록은 페이지 상단 ‘개설강좌 현황’ 표를 참고하시기 바랍니다.
                                 </li>
-                                <li><span className={cx("number")}>3)</span> 타단과 대관장수업은 해당학과의 전공생 수강신청 진행후 여석이 있는 경우에 수강신청이
+                                <li><span className={cx("number")}>3)</span> 타 단과 대관장수업은 해당 학과의 전공생 수강신청 진행 후 여석이 있는 경우에 수강신청이
                                     가능합니다.
                                 </li>
-                                <li><span className={cx("number")}>4)</span> 장기창업 현장실습은 최대 15학점까지 인정되며 창업융합전공 전공심화학점으로는 최대
-                                    9학점까지 인정됩니다. <br/>(학점은주전공학 부에서심사)
+                                <li><span className={cx("number")}>4)</span> 장기창업 현장실습은 최대 15학점까지 인정되며 창업융합전공 전공심화 학점으로는 최대
+                                    9학점까지 인정됩니다. <br/>(학점은 주전공 학부에서 심사)
                                 </li>
-                                <li><span className={cx("number")}>5)</span> 단기창업현장실습은 창업융합 전공전공심화학점으로 3학점까지 이수 가능합니다.</li>
-                                <li><span className={cx("number")}>6)</span> 창업대체학점제도의 일환인 장/단기창업 현장실습과 창업실습:스타트랙1 강좌를 통해
+                                <li><span className={cx("number")}>5)</span> 단기창업현장실습은 창업융합전공 전공심화 학점으로 3학점까지 이수 가능합니다.</li>
+                                {/*<li><span className={cx("number")}>6)</span> 창업대체학점제도의 일환인 장/단기창업 현장실습과 창업실습:스타트랙1 강좌를 통해
                                     최대18학점까지 이수 가능합니다.
-                                </li>
+    </li>*/}
                             </ul>
                         </div>
                     </div>
@@ -204,7 +203,7 @@ const UniversityStudent = () => {
                         </div>
                         <div className={cx("txtArea")}>
                             <ul className={cx("info")}>
-                                <li>Tel. 02-2220-2866</li>
+                                <li>Tel. 02-2220-2533</li>
                                 <li>E-mail. startup@hanyang.ac.kr</li>
                             </ul>
                             <span className={cx("kakao")}>카카오톡채널. 한양스타트업톡톡 </span>
@@ -216,29 +215,29 @@ const UniversityStudent = () => {
                     <div className={cx("sub_cont","university_studentCont_5")}>
                         <div className={cx("txt_style_1")}>
                             <div className={cx("left_title")}>
-                                <h1 className={cx("title_style_3")}><strong>대학원정규교과</strong></h1>
+                                <h1 className={cx("title_style_3")}><strong>대학원 정규교과</strong></h1>
                             </div>
                             <div className={cx("txtArea")}>
                                 <div className={cx("list_style_3")}>
                                     <ul>
                                         <li>
-                                            <span className={cx("title")}><b>01.</b> 기업가 역량개발</span>
+                                            <span className={cx("title")}><b>01.</b> 기업가 역량 개발</span>
                                             벤처창업의 이해, 데이터분석방법론, 리더쉽과 커뮤니케이션
                                         </li>
                                         <li>
                                             <span className={cx("title")}><b>02.</b> 사업기회 포착과 사업계획 수립</span>
-                                            글로벌창업트렌드, 창업기업론, 자금조달과 투자유치, 비지니스 모델 개발과 평가, 신제품개발론, 비지니스 모델 개발과 평가
+                                            글로벌창업트렌드, 창업기업론, 자금조달과 투자유치, 비즈니스 모델 개발과 평가, 신제품개발론
                                         </li>
                                         <li>
-                                            <span className={cx("title")}><b>03.</b> 창업기업경영</span>
-                                            창업기업 운영 특록, 창업기업 법률과 지적재산권, 창업기업 세무과 회계, 창업기업 지속가능 경영론
+                                            <span className={cx("title")}><b>03.</b> 창업기업 경영</span>
+                                            창업기업 운영 특론, 창업기업 법률과 지적재산권, 창업기업 세무와 회계,<br/>창업기업 지속가능 경영론
                                         </li>
                                         <li>
                                             <span className={cx("title")}><b>04.</b> 성장과 회수</span>
                                             창업기업과 성장전략
                                         </li>
                                         <li>
-                                            <span className={cx("title")}><b>05.</b> 실전주심과목</span>
+                                            <span className={cx("title")}><b>05.</b> 실전중심과목</span>
                                             디자인씽킹과 린스타트업, 창업인턴쉽
                                         </li>
                                         <li>
@@ -255,10 +254,11 @@ const UniversityStudent = () => {
                 <div className={cx("sub_cont","university_studentCont_6")}>
                     <div className={cx("tab_style_1","tabTitle")}>
                         <ul>
-                            <li className={cx("on")}><Link href="#"><a><span>기업가역량개발</span></a></Link></li>
+                            <li className={cx("on")}><Link href="#"><a><span>기업가 역량 개발</span></a></Link></li>
                             <li><Link href="#"><a><span>사업기회 포착/​사업계획 수립​</span></a></Link></li>
-                            <li><Link href="#"><a><span>창업기업경영</span></a></Link></li>
+                            <li><Link href="#"><a><span>창업기업 경영</span></a></Link></li>
                             <li><Link href="#"><a><span>성장과 회수</span></a></Link></li>
+                            <li><Link href="#"><a><span>실전중심과목</span></a></Link></li>
                             <li><Link href="#"><a><span>연구중심과목</span></a></Link></li>
                         </ul>
                     </div>
@@ -271,36 +271,36 @@ const UniversityStudent = () => {
                             <div className={cx("txtArea")}>
                                 <ul>
                                     <li>
-                                        <h2 className={cx("title_style_4")}>벤처창업의이해</h2>
+                                        <h2 className={cx("title_style_4")}>벤처창업의 이해</h2>
                                         <p>
-                                            본과목은 벤처창업에 대한 입문 과목으로 창업생태계 및 창업과 관련된 일련의 프로세스와 활동들에 관하여 다룬다. 구체적으로 본과목은 기업가
-                                            정신과 벤처기업가, 벤처기업과 산업환경, 벤처 기업전략, 사업 기회발견, 자금조달과 관리, 벤처캐피털, 벤처마케팅, 벤처조직 및
-                                            인사관리, M&A와 기업공개, 벤처의 글로벌화 등 벤처창업에 관한 전반적인 내용을 포함한다. 이를 통하여 학생들은 각분야의 심화 교과목
-                                            으로 들어가기전에 벤처창업의 전반적인 프로세스와 주요 내용을 이해 할수있다.
+                                            본 과목은 벤처창업에 대한 입문 과목으로 창업생태계 및 창업과 관련된 일련의 프로세스와 활동들에 관하여 다룬다. 구체적으로 본 과목은 기업가
+                                            정신과 벤처기업가, 벤처기업과 산업환경, 벤처 기업전략, 사업 기회 발견, 자금조달과 관리, 벤처캐피털, 벤처마케팅, 벤처조직 및
+                                            인사관리, M&A와 기업공개, 벤처의 글로벌화 등 벤처창업에 관한 전반적인 내용을 포함한다. 이를 통하여 학생들은 각 분야의 심화 교과목
+                                            으로 들어가기전에 벤처창업의 전반적인 프로세스와 주요 내용을 이해할 수 있다.
                                         </p>
                                     </li>
                                     <li>
-                                        <h2 className={cx("title_style_4")}>창업가의난제 </h2>
+                                        <h2 className={cx("title_style_4")}>창업가의 난제 </h2>
                                         <p>
-                                            창업가는 창업과정과창업기업을경영하며자금조달과관리, 인력관리, 리더십, 시장니즈검증, EXIT등과 관련된 다양한 어려움 에 봉착하게 된
-                                            다. 본 과목을 통해 학생들은 창업시 빈번하게 발생하고 있는 구체적인 문제상황을 인지하고 문제해결을 위하여 여러 관련된
+                                            창업가는 창업과정과 창업기업을 경영하며 자금조달과 관리, 인력 관리, 리더십, 시장 니즈 검증, EXIT 등과 관련된 다양한 어려움에 봉착하게 된다.
+                                            본 과목을 통해 학생들은 창업 시 빈번하게 발생하고 있는 구체적인 문제상황을 인지하고 문제 해결을 위하여 여러 관련된
                                             stakeholder의 입장이 되어 토론을 수행한다. 이러한 과정을 통하여 학생들은 창업기업의 난제에 대한 간접 경험을 할 수 있고
-                                            문제해결 역량을 기를 수 있다. ​
+                                            문제 해결 역량을 기를 수 있다. ​
                                         </p>
                                     </li>
                                     <li>
-                                        <h2 className={cx("title_style_4")}>데이터분석방법론</h2>
+                                        <h2 className={cx("title_style_4")}>데이터 분석방법론</h2>
                                         <p>
                                             창업가들의 데이터 분석능력과 분석결과 해석을 통한 통찰력을 배양하기 위하여 다양한 데이터 분석방법과 해석방법을 다룬다. 구체적으로
-                                            데이터의이해, 데이터처리기술의이해, 데이터분석과기획, 데이터분석방법론 및 데이터시각화등에 관하여 학습한다.
+                                            데이터의 이해, 데이터처리기술의 이해, 데이터분석과 기획, 데이터 분석방법론 및 데이터 시각화 등에 관하여 학습한다.
                                         </p>
                                     </li>
                                     <li>
-                                        <h2 className={cx("title_style_4")}>리더십과커뮤니케이션</h2>
+                                        <h2 className={cx("title_style_4")}>창업가의 난제</h2>
                                         <p>
-                                            본 과목은 창업가의 리더십과 커뮤니케이션 능력을 배양하는 것을 목표로 한다. 성공적인 창업가가 되기 위한 기초적 역량중에 하나가 리더
-                                            십과 커뮤니케이션 스킬로서,본 과목에서는 창업가의 리더십 및 커뮤니케이션 능력개발을 위하여 각개인의 리더십 형태와 커뮤니케이션 방 법을
-                                            진단하고 리더로서의 자질개발 및 비즈니스커뮤니케이션 역량증진을 위한 각종 실전적 프로그램을 수행한다.
+                                            본 과목은 창업가의 리더십과 커뮤니케이션 능력을 배양하는 것을 목표로 한다. 성공적인 창업가가 되기 위한 기초적 역량 중에 하나가 리더
+                                            십과 커뮤니케이션 스킬로서 본 과목에서는 창업가의 리더십 및 커뮤니케이션 능력 개발을 위하여 각 개인의 리더십 형태와 커뮤니케이션 방법을
+                                            진단하고 리더로서의 자질 개발 및 비즈니스 커뮤니케이션 역량 증진을 위한 각종 실전적 프로그램을 수행한다.
                                         </p>
                                     </li>
                                 </ul>
@@ -488,16 +488,15 @@ const UniversityStudent = () => {
                                 <li>
                                     <h2 className={cx("title_style_4")}>창업경진대회 </h2>
                                     <ul>
-                                        <li>벤처창업 경진대회 : 대학 원 생들의 창의적 · 혁신적인 비즈니스모델 조기발굴 및 육성을 위한 전국 창업경진대회​</li>
+                                        <li>벤처창업경진대회 : 대학(원)생들의 창의적 · 혁신적인 비즈니스모델 조기 발굴 및 육성을 위한 창업경진대회​</li>
                                         <li>라이언컵 경진대회 : 당해 창업경진대회 수상자 중 최고의 혁신 아이템을 선발하는 창업경진대회 왕중왕전​</li>
                                         <li>캠퍼스 CEO 창업경진대회 : 창업강좌 수강생들이 한 학기동안 발굴한 참신한 사업 아이디어를 점검하는 교내 창업경진대회​</li>
-                                        <li>소프트웨어 창업아이디어 경진대회 : 대학생 개발자 , 디자이너 , 마케터 등이 한 팀을 구성해 소프트웨어 기반 혁신 창업 아이디어를 발굴
-                                            하는 창업경진대회
+                                        <li>소프트웨어 창업아이디어 경진대회 : 대학생 개발자 , 디자이너 , 마케터 등이 한 팀을 구성해 소프트웨어 기반 혁신 창업 아이디어를<br/>발굴하는 창업경진대회
                                         </li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <h2 className={cx("title_style_4")}>창업인턴십 </h2>
+                                    <h2 className={cx("title_style_4")}>창업 인턴십 </h2>
                                     <ul>
                                         <li>내가 바로 CEO: 사업계획서 집중 멘토링 , 비즈니스모델 고도화 등 사업아이템 검증을 위한 실전 창업캠프 창업인턴십​</li>
                                         <li>국내 창업인턴십 : 창업교육을 통해 쌓은 지식을 활용하여 스타트업 등 국내 기업에서 직접 창업실무 경험​</li>
@@ -507,8 +506,8 @@ const UniversityStudent = () => {
                                 <li>
                                     <h2 className={cx("title_style_4")}>학생창업보육 </h2>
                                     <ul>
-                                        <li>창업동아리 : 한양대학교 재 휴 학생 중 참신한 아이디어를 보유한 3 인 이상의 팀을 선발하여 사업화지원금 , 학생창업준비공간공용 ),
-                                            창업교육 , 멘토링 등 지원​
+                                        <li>창업동아리 : 한양대학교 · 재휴학생 중 참신한 아이디어를 보유한 3인 이상의 팀을 선발하여 사업화지원금, 학생창업준비공간(공용),
+                                            창업교육, 멘토링 등 지원​
                                         </li>
                                         <li>247 스타트업 돔 : 24시간 주 7일 내내 창업을 꿈꾸는 학생들을 위한 기숙형 창업 공간으로 입사생 대상 특별교육, 전담멘토링 등
                                             지원​
@@ -516,10 +515,10 @@ const UniversityStudent = () => {
                                     </ul>
                                 </li>
                             </ul>
-                            <div className={cx("btn_area")}>
+                            {/*<div className={cx("btn_area")}>
                                 <a href="http://entrepreneurship.hanyang.ac.kr/" className={cx("btn_more")} target="_blank">자세히
                                     알아보기</a>
-                            </div>
+                                            </div>*/}
                         </div>
                     </div>
 
