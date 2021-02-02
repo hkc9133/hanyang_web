@@ -11,15 +11,14 @@ const CounselApply = () => {
         <>
             <PageNavigation/>
             <section className={cx("sub_container","consultation")}>
-                <h1 className={cx("sub_top_title")}>창업상담신청</h1>
+                <h1 className={cx("sub_top_title")}>창업상담</h1>
                 <p className={cx("sub_top_txt")}>
-                    한양대학교는 (예비)창업자가 창업과정에서 겪는 다양한 문제점을 <br/>
-                    해결하고 창업자의 사업화 수준별 맞춤형 컨설팅을 제공하기 위한 <br/>
-                    원스톱 창업상담 플랫폼을 구축, 온오프라인 창업상담을 지원하고 있습니다.
+                    (예비)창업자의 기술·경영 애로사항을 해결하기 위해<br/>
+                    온오프라인 창업상담 프로그램을 운영합니다.
                 </p>
                 <div className={cx("txt_c")}>
                     <Link href={"/startup_counsel/mentor_introduce"}><a className={`${cx("basic-btn03","btn-blue-bg2")} mr_10`}>멘토찾기</a></Link>
-                    <Link href="/startup_counsel/counsel_apply"><a className={cx("basic-btn03","btn-blue-bd")}>창업 상담하기</a></Link>
+                    <Link href="/startup_counsel/counsel_apply"><a className={cx("basic-btn03","btn-blue-bd")}>창업상담 신청하기</a></Link>
                 </div>
 
 
@@ -27,7 +26,7 @@ const CounselApply = () => {
                     <div className={cx("title")}>
                         <h2>이달의 멘토</h2>
                         <p>
-                            멘티로 부터 추천을 받은 <br/>이달의 멘토
+                            멘티로부터 추천받은 <br/>이달의 멘토
                         </p>
                     </div>
                     <div className={cx("photoArea")}>

@@ -20,11 +20,11 @@ const dep1 = {
         name:'창업교육',
         link:"/startup_education/university_student",
         sub:{
-            university_student:{name:"대학(원) 생 대상",link:"/startup_education/university_student"},
-            alumnus:{name:"동문대상",link:"/startup_education/alumnus"},
-            teacher:{name:"교원대상",link:"/startup_education/teacher"},
-            people:{name:"일반인대상",link:"/board/people/list"},
-            online_content:{name:"온라인콘텐츠",link:"/board/online_content/list"},
+            university_student:{name:"대학(원)생 대상",link:"/startup_education/university_student"},
+            alumnus:{name:"동문 대상",link:"/startup_education/alumnus"},
+            teacher:{name:"교원 대상",link:"/startup_education/teacher"},
+            people:{name:"일반인 대상",link:"/board/people/list"},
+            online_content:{name:"온라인 콘텐츠",link:"/board/online_content/list"},
         }
     },
     startup_counsel:{

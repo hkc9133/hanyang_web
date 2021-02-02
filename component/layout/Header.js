@@ -111,11 +111,11 @@ const Header = () => {
                             <a href="university_student.html">창업교육</a>
                             <div className={cx("s_gnb")}>
                                 <ul>
-                                    <li><Link href="/startup_education/university_student"><a>대학(원) 생 대상</a></Link></li>
+                                    <li><Link href="/startup_education/university_student"><a>대학(원)생 대상</a></Link></li>
                                     <li><Link href="/startup_education/teacher"><a>교원 대상</a></Link></li>
-                                    <li><Link href="/startup_education/alumnus"><a>동문대상</a></Link></li>
-                                    <li><Link href="/board/people/list"><a>일반인대상</a></Link></li>
-                                    <li><Link href="/board/online_content/list"><a>온라인콘텐츠</a></Link></li>
+                                    <li><Link href="/startup_education/alumnus"><a>동문 대상</a></Link></li>
+                                    <li><Link href="/board/people/list"><a>일반인 대상</a></Link></li>
+                                    <li><Link href="/board/online_content/list"><a>온라인 콘텐츠</a></Link></li>
                                 </ul>
                             </div>
                         </li>
@@ -226,11 +226,11 @@ const Header = () => {
                             <a href="#" onClick={(e) => {e.preventDefault();handleShowMenuItem(1)}}>창업교육</a>
                             <div className={cx("s_menu",{show:currentMenuItem === 1})}>
                                 <ul>
-                                    <li><Link href="/startup_education/university_student"><a>대학(원) 생 대상</a></Link></li>
+                                    <li><Link href="/startup_education/university_student"><a>대학(원)생 대상</a></Link></li>
                                     <li><Link href="/startup_education/teacher"><a>교원 대상</a></Link></li>
-                                    <li><Link href="/startup_education/alumnus"><a>동문대상</a></Link></li>
-                                    <li><Link href="/board/people/list"><a>일반인대상</a></Link></li>
-                                    <li><Link href="/board/online_content/list"><a>온라인콘텐츠</a></Link></li>
+                                    <li><Link href="/startup_education/alumnus"><a>동문 대상</a></Link></li>
+                                    <li><Link href="/board/people/list"><a>일반인 대상</a></Link></li>
+                                    <li><Link href="/board/online_content/list"><a>온라인 콘텐츠</a></Link></li>
                                 </ul>
                             </div>
                         </li>
