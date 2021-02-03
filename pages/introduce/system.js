@@ -14,7 +14,7 @@ const System = () => {
         <section className={cx("container")}>
             <div className={cx("sub_container","startup_support_step")}>
                 <h1 className={cx("sub_top_title")}>창업지원단 지원체계</h1>
-                <p className={cx("sub_top_txt")}>한양대학교는 창업지원단을 중심으로 창업준비부터 창업실행, <br/>EXIT까지 창업 전주기 지원체계를 구축하고 있습니다.</p>
+                <p className={cx("sub_top_txt")}> 창업준비부터 창업실행, EXIT까지 창업 전주기 맞춤형 지원체계를 구축하고 있습니다</p>
 
                 <ol>
                     <li>
@@ -41,11 +41,11 @@ const System = () => {
                                     <ul>
                                         <li>
                                             <span className={cx("s_title")}>프로그램</span>
-                                            창업경진대회, 기술창업자양성프로그램, 글로벌기업가정신 함양 프로그램 (글로벌 트랙), 창업캠프
+                                            창업경진대회, 기술창업자 양성 프로그램, 글로벌기업가정신 함양 프로그램 (글로벌 트랙),<br/> 창업캠프
                                         </li>
                                         <li>
                                             <span className={cx("s_title")}>제도</span>
-                                            기술창업스카우터, 국내.외 창업인턴십
+                                            기술창업 스카우터, 국내·외 창업인턴십
                                         </li>
                                     </ul>
                                 </li>
@@ -54,10 +54,10 @@ const System = () => {
                                     <ul>
                                         <li>
                                             <span className={cx("s_title")}>프로그램</span>
-                                            시장.기술 검증 프로그램
+                                            시장·기술 검증 프로그램
                                         </li>
                                         <li>
-                                            <span className={cx("s_title")}>제도</span>
+                                            <span className={cx("s_title")}>시제품 제작</span>
                                             3D프린터, 레이저컷팅기, CNC 등 장비활용 지원
                                         </li>
                                     </ul>

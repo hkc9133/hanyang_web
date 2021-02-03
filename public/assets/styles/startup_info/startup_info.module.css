@@ -303,7 +303,17 @@
 
 
 
+/*search_result*/
+.search_num{font-size: 22px; }
+.search_num strong{color: #f05000; text-decoration: underline; }
+.search_list_wrap{border-top: 1px solid #525252; margin-top: 35px; margin-bottom: 35px; border-bottom: 1px solid #525252; }
+.search_list_wrap li{padding: 35px 0; max-width: 1130px; margin: 0 auto; border-bottom: 1px dashed #525252; }
+.search_list_wrap li:last-child{border-bottom: 0; }
+.search_list_wrap li h3{font-size: 20px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.search_list_wrap li p{font-size: 18px; font-weight: 200;  color: #818181; margin-bottom: 15px; margin-top: 15px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.search_list_wrap li span{font-size: 16px; color: #818181; }
 
+.search_list_wrap .search_list_content{height: 100px;overflow: hidden;}
 
 @media screen and (max-width: 1400px){
 

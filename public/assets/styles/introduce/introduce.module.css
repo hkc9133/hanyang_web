@@ -104,8 +104,8 @@
     transition: all 0.35s ease-out;
 }
 .location_wrap .left_title .btn_area a:hover{background-color:#222; color:#fff;}
-.location_wrap .map_area{margin-bottom:40px; }
-.location_wrap .map_area iframe{width:100%; height:480px; }
+.location_wrap .map_area{width:100%; height:480px;margin-top:200px;margin-bottom: 40px;}
+/*.location_wrap .map_area iframe{width:100%; height:480px; }*/
 .location_wrap .location h4{margin-bottom:10px; font-size:18px; color:#222; font-family: 's-core-dream-medium';}
 .location_wrap .location address{margin-bottom:5px; font-size:16px; }
 .location_wrap .location .info{margin-bottom:30px; }
@@ -307,7 +307,7 @@
     .location_wrap .left_title h3{font-size:22px; }
     .location_wrap .left_title .btn_area a{width:150px; font-size:14px; }
     .location_wrap .left_title .btn_area li{margin-bottom:0;}
-    .location_wrap .map_area iframe{height:260px; }
+    .location_wrap .map_area{height:260px; margin-top:0;margin-bottom: 20px;}
     .location_wrap .location address{font-size:14px; }
     .location_wrap .location .info li{display:block; font-size:14px; }
     .location_wrap .transportation li{font-size:14px;}
