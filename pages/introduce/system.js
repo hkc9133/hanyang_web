@@ -41,11 +41,11 @@ const System = () => {
                                     <ul>
                                         <li>
                                             <span className={cx("s_title")}>프로그램</span>
-                                            창업경진대회, 기술창업자 양성 프로그램, 글로벌기업가정신 함양 프로그램 (글로벌 트랙),<br/> 창업캠프
+                                            창업경진대회, 기술창업자양성프로그램, 글로벌기업가정신 함양 프로그램 (글로벌 트랙), 창업캠프
                                         </li>
                                         <li>
                                             <span className={cx("s_title")}>제도</span>
-                                            기술창업 스카우터, 국내·외 창업인턴십
+                                            기술창업스카우터, 국내.외 창업인턴십
                                         </li>
                                     </ul>
                                 </li>
@@ -54,10 +54,10 @@ const System = () => {
                                     <ul>
                                         <li>
                                             <span className={cx("s_title")}>프로그램</span>
-                                            시장·기술 검증 프로그램
+                                            시장.기술 검증 프로그램
                                         </li>
                                         <li>
-                                            <span className={cx("s_title")}>시제품 제작</span>
+                                            <span className={cx("s_title")}>제도</span>
                                             3D프린터, 레이저컷팅기, CNC 등 장비활용 지원
                                         </li>
                                     </ul>

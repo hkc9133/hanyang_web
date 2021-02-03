@@ -17,7 +17,7 @@ const CounselApply = () => {
                     온오프라인 창업상담 프로그램을 운영합니다.
                 </p>
                 <div className={cx("txt_c")}>
-                    <Link href={"/startup_counsel/mentor_introduce"}><a className={`${cx("basic-btn03","btn-blue-bg2")} mr_10`}>멘토찾기</a></Link>
+                    <Link href={"/startup_counsel/mentor_introduce"}><a className={`${cx("basic-btn03","btn-blue-bg2")} mr_20`}>멘토찾기</a></Link>
                     <Link href="/startup_counsel/counsel_apply"><a className={cx("basic-btn03","btn-blue-bd")}>창업상담 신청하기</a></Link>
                 </div>
 
@@ -59,7 +59,7 @@ const CounselApply = () => {
                         <ul className={`${cx("icon_list")} clfx`}>
                             <li className={cx("icon_1")}>
                                 <a href="#">
-                                    세무, 회계 <br/>기본지식 알고가기
+                                    세무,회계 <br/>기본지식 알고가기
                                 </a>
                             </li>
                             <li className={cx("icon_2")}>
@@ -115,7 +115,7 @@ const CounselApply = () => {
                                             한양사이버대학교 재학생
                                         </li>
                                         <li><span>상담분야: </span>세무,회계 / 법률법무 / 지식재산권 / 마케팅판로 / 노무 / 투자 / 초기 창업자금 조달 /
-                                            비즈니스모델링 / 시제품개발 / 글로벌진출 / 스케일업(코스닥 CEO등) / 민간 기술자문(대기업 임직원) / 또래CEO
+                                            비즈니스모델링 / 시제품개발 /<br/>글로벌진출 / 스케일업(코스닥 CEO등) / 민간 기술자문(대기업 임직원) / 또래CEO
                                         </li>
                                     </ul>
                                 </li>
@@ -126,21 +126,21 @@ const CounselApply = () => {
                                     </p>
                                 </li>
                                 <li>
-                                    <span className={cx("number")}><strong>03.</strong> 만족도 조사</span>
+                                    <span className={cx("number")}><strong>03.</strong> 상담일정조율</span>
                                     <p>
-                                        최종 배정된 멘토가 멘티에게 연락해 가능한 상담 일정을 조율합니다.
+                                        최종 배정된 멘토가 멘티에게 연락하여 상담일, 시간, 장소, 멘토링 방법 등을 조율합니다.
                                     </p>
                                 </li>
                                 <li>
-                                    <span className={cx("number")}><strong>04.</strong> 상담일정 조율</span>
+                                    <span className={cx("number")}><strong>04.</strong> 멘토링 진행</span>
                                     <p>
-                                        온라인(회상), 오프라인 전화, 이메일 등 다양한 방식으로 상담을 진행합니다.
+                                        온라인(화상), 오프라인, 유선, 이메일 등 다양한 방식으로 상담을 진행할 수 있습니다.
                                     </p>
                                 </li>
                                 <li>
-                                    <span className={cx("number")}><strong>05.</strong> 멘토링 진행</span>
+                                    <span className={cx("number")}><strong>05.</strong> 만족도 조사</span>
                                     <p>
-                                        양질의 멘토링 서비스 제공을 위해 멘토링 만족도를 조사합니다. <br/>
+                                        양질의 멘토링 서비스 제공을 위해 멘토링 만족도를 조사합니다.<br/>
                                         만족도 조사 후에 멘토의 종합의견을 열람할 수 있습니다.
                                     </p>
                                 </li>

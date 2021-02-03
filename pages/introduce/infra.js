@@ -14,7 +14,7 @@ const Infra = () => {
         <section className={cx("container")}>
             <div className={cx("sub_container", "infrastructure")}>
                 <h1 className={cx("sub_top_title")}>인프라</h1>
-                <p className={cx("sub_top_txt")}>창업 실행시 필요한 시제품 제작, 제품디자인, 기술디자인, 투자  등 인프라를 지원하고 있습니다.</p>
+                <p className={cx("sub_top_txt")}>창업 실행시 필요한 시제품 제작, 제품디자인, 기술디자인, 투자 등<br/>인프라를 지원하고 있습니다 .</p>
                 <div className={cx("infrastructure_top")}>
                     <div className={cx("img_area")}>
                         <img src="/assets/image/infrastructure_img.jpg" alt="infrastructure_img"/>
@@ -24,7 +24,7 @@ const Infra = () => {
                             <div className={cx("title")}>아이디어 고도화</div>
                             <ul>
                                 <li>
-                                    <span className={cx("s_title")}>휴온스팹랩</span>
+                                    <span className={cx("s_title")}>창업강좌</span>
                                     -시제품 디자인 및 제작지원
                                 </li>
                                 <li>
@@ -33,13 +33,13 @@ const Infra = () => {
 
                                 </li>
                                 <li>
-                                    <span className={cx("s_title")}>Imagine Lab</span>
+                                    <span className={cx("s_title")}>창업강좌</span>
                                     -가상 3D설계 및 3D프린팅기술지원
 
                                 </li>
                                 <li>
                                     <span className={cx("s_title")}>Design Lab</span>
-                                    -융합캡스톤디자인/아이디어고도화
+                                    -융합캠스톤디자인/아이디어고도화
                                 </li>
                             </ul>
                         </li>
