@@ -13,9 +13,7 @@ const InvestmentPartners = () => {
         <section className={cx("sub_container","irWrap")}>
             <h1 className={cx("sub_top_title")}>국내외 투자파트너스</h1>
             <p className={cx("sub_top_txt")}>
-                한양대는 국내 VC 네트워크와 협업하여 유망 창업기업 발굴 <br/>
-                해외 현지 액셀러레이터와 협력관계를 구축하고, 현지 시장 분석 제공, <br/>
-                창업기업의 글로벌 진출을 위한 발판 마련에 힘쓰고 있습니다.
+                한양대는 국내외 VC 및 액셀러레이터와 협업하여 유망 창업기업을 지원합니다.
             </p>
 
             <div className={cx("search_type_2")}>

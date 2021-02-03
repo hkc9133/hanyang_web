@@ -76,6 +76,12 @@ const Alumnus = () => {
                                 <ul>
                                     <li>- 정부 정책 자금 조달 및 활용법</li>
                                     <li>- 자금조달과 투자유치 , 데모데이, 네트워킹 데이</li>
+                                    {/*<li>- 교육생 간 정보 교류 및 역량 강화를 위한 실습교육, 네트워킹 프로그램 등 진행</li>*/}
+                                </ul>
+                            </li>
+                            <li>
+                                <span className={cx("title")}>네트워킹 데이</span>
+                                <ul>
                                     <li>- 교육생 간 정보 교류 및 역량 강화를 위한 실습교육, 네트워킹 프로그램 등 진행</li>
                                 </ul>
                             </li>
@@ -228,7 +234,8 @@ const Alumnus = () => {
             <div className={cx("sub_cont", "alumnusCont_6")}>
                 <div className={cx("txt_style_1")}>
                     <div className={cx("left_title")}>
-                        <h1 className={cx("title_style_2")}>History <br/>&amp;원우회</h1>
+                        <h1 className={cx("title_style_2")}>History&amp;원우회</h1>
+                        <span>화살표를 누르면 표를 확인하실 수 있습니다.</span>
                     </div>
                     <div className={cx("txtArea")}>
                         <div className={cx("qa_list")}>
