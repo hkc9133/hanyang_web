@@ -24,7 +24,7 @@ const Introduce = () => {
                             <div className={cx("ceo_img")}>
                                 <img src="/assets/image/ceo.jpg" alt="ceo"/>
                             </div>
-                            <div className={cx("info")}>
+                            {/*<div className={cx("info")}>
                                 <span className={cx("name")}>류 창 완</span>
                                 <ul>
                                     <li>창업지원단장</li>
@@ -43,13 +43,13 @@ const Introduce = () => {
                                     <a href="https://brunch.co.kr/@bidulgi2dbs#articles" target="_blank">류창완 교수의 브런치
                                         바로가기</a>
                                 </div>
-                            </div>
+    </div>*/}
                         </div>
                         <div className={cx("ceo_txt")}>
-                            <p className={cx("txt_1")}>
+                            {/*<p className={cx("txt_1")}>
                                 120세 시대를 살아가야 할 청년들에게 기업가정신 교육은 미래를 대비하는 Life Skill 이요 ,필수 교양입니다 . 또한 , 자신의 삶을 도전적이고 자기
                                 주도적으로 설계할 수 있는 역량을 키워줄 뿐 아니라 몰입의 경험을 제공하고 , 자신의 새로운 잠재력을 발견할 수 있게 합니다 .
-                            </p>
+    </p>*/}
                             <p>
                                 실용인재를 육성해 우리나라 경제 발전의 큰 축을 담당해 온 한양대학교는 국내에서 창업기업가를 가장 많이 양성하는 대학입니다 . 창업지원단은 창직과 창업을 통한
                                 산업구조 고도화라는 시대적 요구에 부응하고, CEO 사관학교’로서 우리 대학의 전통을 능동적으로 계승 , 발전시키기 위해 2009 년 국내 대학 최초로
@@ -67,7 +67,7 @@ const Introduce = () => {
                             </p>
                             <p>
                                 또한 , 학부와 일반대학원에 창업융합학과를 설치해 창업 단계별 맞춤형 교육체계를 정립했으며 , 미국 실리콘밸리 · 뉴욕, 중국 상하이 · 북경 , 베트남
-                                하노이 등에 글로벌 창업센터를 개소하고 스타트업 기업의 해외 시장 진출도 적극 지원하고 있습니다.
+                                하노이 등에 글로벌 창업센터를 소개하고 스타트업 기업의 해외 시장 진출도 적극 지원하고 있습니다.
                             </p>
                             <p>
                                 평생 직장도, 평생 직업도 없는 21 세기에는 누구나 한 번 이상은 창업의 기회를 마주하게 될 것입니다 . 아이디어나 기술만으로도 창업에 도전할 수 있지만,
@@ -76,6 +76,9 @@ const Introduce = () => {
                             <p>
                                 창업지원단을 통해 많은 학생들이 120 세 시대를 사는 지혜’를 터득하고 역량 있는 기업가로 성장하여 국가발전의 주역이 되기를 기원합니다 . <br/>감사합니다.
                             </p>
+                        </div>
+                        <div className={cx("ceo_name")}>
+                            <img src="/assets/image/ceo_name.png" alt="ceo이름" />
                         </div>
                     </div>
                 </div>

@@ -17,7 +17,7 @@ const CounselApply = () => {
                     온오프라인 창업상담 프로그램을 운영합니다.
                 </p>
                 <div className={cx("txt_c")}>
-                    <Link href={"/startup_counsel/mentor_introduce"}><a className={`${cx("basic-btn03","btn-blue-bg2")} mr_10`}>멘토찾기</a></Link>
+                    <Link href={"/startup_counsel/mentor_introduce"}><a className={`${cx("basic-btn03","btn-blue-bg2")} mr_20`}>멘토찾기</a></Link>
                     <Link href="/startup_counsel/counsel_apply"><a className={cx("basic-btn03","btn-blue-bd")}>창업상담 신청하기</a></Link>
                 </div>
 
@@ -59,7 +59,7 @@ const CounselApply = () => {
                         <ul className={`${cx("icon_list")} clfx`}>
                             <li className={cx("icon_1")}>
                                 <a href="#">
-                                    세무,회계 <br/>기본지식 알고가기
+                                    세무,<br/>회계
                                 </a>
                             </li>
                             <li className={cx("icon_2")}>

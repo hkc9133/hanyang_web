@@ -19,14 +19,14 @@ const UniversityStudent = () => {
 
                     <div className={cx("tab_style_2")}>
                         <ul>
-                            <li className={cx("on")}><Link href="#"><a>학부 정규교과</a></Link></li>
-                            <li><Link href="#"><a>학부 창업융합전공</a></Link></li>
-                            <li><Link href="#"><a>대학원 정규교과</a></Link></li>
+                            <li className={cx("on")}><a href="#hakbu_1">학부 정규교과</a></li>
+                            <li><a href="#hakbu_2">학부 창업융합전공</a></li>
+                            <li><a href="#hakbu_3">대학원 정규교과</a></li>
                         </ul>
                     </div>
                 </div>
 
-                <div className={cx("gray_bg","university_studentCont_1")}>
+                <div className={cx("gray_bg","university_studentCont_1")} id="hakbu_1">
                     <div className={cx("sub_cont")}>
                         <h1 className={cx("title_style_3")}>학부정규교과</h1>
                         <p>
@@ -120,7 +120,7 @@ const UniversityStudent = () => {
                     </div>
                 </div>
 
-                <div className={cx("gray_bg","university_studentCont_3")}>
+                <div className={cx("gray_bg","university_studentCont_3")} id="hakbu_2">
                     <div className={cx("sub_cont")}>
                         <div className={cx("txt_style_1")}>
                             <div className={cx("left_title")}>
@@ -211,7 +211,7 @@ const UniversityStudent = () => {
                     </div>
                 </div>
 
-                <div className={cx("gray_bg")}>
+                <div className={cx("gray_bg")} id="hakbu_3">
                     <div className={cx("sub_cont","university_studentCont_5")}>
                         <div className={cx("txt_style_1")}>
                             <div className={cx("left_title")}>
