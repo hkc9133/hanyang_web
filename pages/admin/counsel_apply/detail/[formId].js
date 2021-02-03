@@ -279,7 +279,7 @@ const CounselApplyFormDetail = () => {
                                                 <tr>
                                                     <th>상담 내용</th>
                                                     <td colSpan={5}>
-                                                        <div dangerouslySetInnerHTML={{__html: applyValue.content}}/>
+                                                        <div className={"ql-editor"} dangerouslySetInnerHTML={{__html: applyValue.content}}/>
                                                     </td>
                                                 </tr>
                                                 <tr>

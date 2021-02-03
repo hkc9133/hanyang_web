@@ -41,7 +41,7 @@ const AdminHeader = () => {
                         <li><Link href="/admin/startup_present"><a><Image src="/assets/image/admin/adm_menu_3.png" width={38} height={38} alt="adm_menu"/></a></Link></li>
                         <li><Link href="/admin/student_report"><a><Image src="/assets/image/admin/adm_menu_3.png" width={38} height={38} alt="adm_menu"/></a></Link></li>
                         <li><Link href="/admin/popup"><a><Image src="/assets/image/admin/popup.png" width={38} height={38} alt="adm_menu"/></a></Link></li>
-                        <li><Link href="/admin/search_keyword"><a><Image src="/assets/image/admin/popup.png" width={38} height={38} alt="adm_menu"/></a></Link></li>
+                        <li><Link href="/admin/keyword"><a><Image src="/assets/image/admin/popup.png" width={38} height={38} alt="adm_menu"/></a></Link></li>
                     </ul>
                 </div>
                 <AdminHeaderDetail/>

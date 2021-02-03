@@ -22,6 +22,7 @@ import "../public/assets/styles/styles.css";
 import "react-datepicker/dist/react-datepicker.css";
 import '../public/assets/styles/slick.css'
 import "../public/assets/styles/date-picker.css"
+import 'react-quill/dist/quill.snow.css';
 import Head from "next/head";
 
 import ScrollToTop from "../component/common/ScrollToTop";

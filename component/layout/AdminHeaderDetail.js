@@ -129,7 +129,7 @@ const AdminHeaderDetail = () => {
                     </ul>
                 </>
             )}
-            {router.pathname.startsWith("/admin/search_keyword") && (
+            {router.pathname.startsWith("/admin/keyword") && (
                 <>
                     <div className={cx("adm_menu_head")}>
                         <div className={cx("adm_menu_icon")}>
@@ -138,7 +138,7 @@ const AdminHeaderDetail = () => {
                         <h3 className={cx("adm_menu_title")}>검색어 관리</h3>
                     </div>
                     <ul>
-                        <li><Link href="/admin/search_keyword"><a>검색어 관리</a></Link></li>
+                        <li><Link href="/admin/keyword"><a>검색어 관리</a></Link></li>
                     </ul>
                 </>
             )}

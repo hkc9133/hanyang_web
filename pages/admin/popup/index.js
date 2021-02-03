@@ -1,18 +1,13 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
-import {getNoticeList} from "../../../store/notice/adminNotice";
 import qs from "query-string";
-import Image from "next/image";
-import locale from "antd/lib/date-picker/locale/ko_KR";
 import Link from "next/link";
-import NoticeListTable from "../../../component/admin/notice/NoticeListTable";
 import Pagination from "../../../component/common/Pagination";
 
 import styles from '../../../public/assets/styles/admin/popup/popup.module.css';
 import classnames from "classnames/bind"
 import {getPopupList} from "../../../store/popup/adminPopup";
-import moment from "moment";
 const cx = classnames.bind(styles);
 
 const PopupManagePage = () => {
@@ -88,30 +83,6 @@ const PopupManagePage = () => {
                             </li>
                         </ul>
 
-                        {/*<div className={`${cx("popup_id_search","startup_event_search")} clfx`}>*/}
-                        {/*    <select name="categoryCodeId" value={searchInfo.categoryCodeId} onChange={(e) => {changeSearchInfo(e)}}>*/}
-                        {/*        <option value={""}>분류</option>*/}
-                        {/*        {*/}
-                        {/*            notice.cate.map((cate)=>(*/}
-                        {/*                <option key={cate.categoryCodeId} value={cate.categoryCodeId}>{cate.categoryCodeName}</option>*/}
-                        {/*            ))*/}
-                        {/*        }*/}
-                        {/*    </select>*/}
-                        {/*    <select name="progressStatus" value={searchInfo.progressStatus} onChange={(e) => {changeSearchInfo(e)}}>*/}
-                        {/*        <option value="">상태</option>*/}
-                        {/*        <option value="OPEN">진행</option>*/}
-                        {/*        <option value="CLOSE">마감</option>*/}
-                        {/*    </select>*/}
-                        {/*    <select name="searchField" value={searchInfo.searchField} onChange={(e) =>{changeSearchInfo(e)}}>*/}
-                        {/*        <option value="">검색조건</option>*/}
-                        {/*        <option value="eventName">행사명</option>*/}
-                        {/*    </select>*/}
-                        {/*    <input type="text" name="searchValue" value={searchInfo.searchValue} onChange={(e) => {changeSearchInfo(e)}}/>*/}
-                        {/*    <button type="button" className={cx("btn_search")} onClick={()=>{searchEvent()}}>*/}
-                        {/*        <Image src="/assets/image/admin/btn_search.gif" width={40} height={33} alt="검색하기"/>*/}
-                        {/*    </button>*/}
-                        {/*    <RangePicker className={cx("date_range")} placeholder={["기간 시작","기간 종료"]} locale={locale} onChange={changeSearchDate} />*/}
-                        {/*</div>*/}
                     </div>
 
                     <p className={cx("txt_style_1")}>

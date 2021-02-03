@@ -223,7 +223,7 @@ const CounselApplyDetail = () => {
                             <li>
                                 <label htmlFor="counseling_txt" className={cx("title")}>상담내용</label>
                                 <div className={cx("apply_content_box")}>
-                                    <div dangerouslySetInnerHTML={{__html: apply.content}}/>
+                                    <div className={"ql-editor"} dangerouslySetInnerHTML={{__html: apply.content}}/>
                                 </div>
                             </li>
                             <li>

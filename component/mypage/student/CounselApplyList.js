@@ -79,7 +79,7 @@ const CounselApplyListItem = React.memo(({item, handleShowAnswer, showAnswer, ha
                                 <li>희망멘토링분야
                                     : {counselApply.counselApply.fieldName}</li>
                                 <li className={cx("counsel_content")}>문의 내용
-                                    <div dangerouslySetInnerHTML={{__html: counselApply.counselApply.content}}/>
+                                    <div className={"ql-editor"} dangerouslySetInnerHTML={{__html: counselApply.counselApply.content}}/>
                                 </li>
                             </ul>
                             {
@@ -124,7 +124,7 @@ const CounselApplyListItem = React.memo(({item, handleShowAnswer, showAnswer, ha
                                 <div className={cx("mentors_opinion")} style={{display: 'block'}}>
                                     <h3>멘토의견</h3>
                                     <div className={cx("mentors_opinion_content")}>
-                                        <div dangerouslySetInnerHTML={{__html: counselApply.counselApply.answer}}/>
+                                        <div className={"ql-editor"} dangerouslySetInnerHTML={{__html: counselApply.counselApply.answer}}/>
                                         <Rate allowHalf value={counselApply.counselApply.score} disabled/>
                                     </div>
                                     <div className={cx("attached_file")}>

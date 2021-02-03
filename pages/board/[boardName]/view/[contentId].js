@@ -173,7 +173,7 @@ const BoardView = () => {
                         </div>
 
                         <div className={cx("bbs_viewCont")}>
-                            <div dangerouslySetInnerHTML={{__html: view.content.content}}/>
+                            <div className={"ql-editor"} dangerouslySetInnerHTML={{__html: view.content.content}}/>
                         </div>
                         {
                             board.board.useFile && view.files.length > 0 && (

@@ -201,7 +201,7 @@ const ContentView = () => {
                                     </tr>
                                     <tr>
                                         <td>
-                                            <div dangerouslySetInnerHTML={{__html: view.notice.content}}/>
+                                            <div className={"ql-editor"} angerouslySetInnerHTML={{__html: view.notice.content}}/>
                                         </td>
                                     </tr>
                                     {

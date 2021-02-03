@@ -108,7 +108,7 @@ const Header = () => {
                 <div className={cx("gnb")}>
                     <ul className={"clfx"}>
                         <li>
-                            <Link href="/startup_education/university_student"><a>대학(원)생 대상</a></Link>
+                            <Link href="/startup_education/university_student"><a>창업교육</a></Link>
                             <div className={cx("s_gnb")}>
                                 <ul>
                                     <li><Link href="/startup_education/university_student"><a>대학(원)생 대상</a></Link></li>
@@ -188,7 +188,7 @@ const Header = () => {
                 <div className={cx("login_box")}>
                     {isLogin ?
                         <>
-                            <Link href={mypage}><a>{user.role == 'ROLE_SD' ? '창업상담 신청현황' : user.role == 'ROLE_ADMIN' ? "괸라자" : "관리"}</a></Link>
+                            <Link href={mypage}><a>{user.role == 'ROLE_SD' ? '창업상담 신청현황' : user.role == 'ROLE_ADMIN' ? "관리자" : "관리"}</a></Link>
                         <Link href="#"><a href="#" onClick={() => {handleLogout()}}>로그아웃</a></Link>
                         </>
                         :

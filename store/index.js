@@ -18,6 +18,7 @@ import startupPresent , {startupPresentSaga} from './startupPresent/startupPrese
 import adminStartupPresent, {adminStartupPresentSaga} from './startupPresent/adminStartupPresent';
 import studentReport , {studentReportSaga} from './studentReport/studentReport';
 import adminStudentReport, {adminStudentReportSaga} from './studentReport/adminStudentReport';
+import adminKeyword, {adminKeywordSaga} from './keyword/adminKeyword';
 
 import {HYDRATE} from 'next-redux-wrapper';
 import loading from './loading';
@@ -48,7 +49,7 @@ const rootReducer = (state, action) => {
         default: {
             const combinedReducer = combineReducers({
                 main,auth,file,spaceRental,adminSpaceRental, mentoring,adminMentoring,board,adminBoard,user,notice,adminNotice,popup,adminPopup,
-                startupPresent,adminStartupPresent,studentReport,adminStudentReport,
+                startupPresent,adminStartupPresent,studentReport,adminStudentReport,adminKeyword,
                 loading
             })
             return combinedReducer(state, action);
@@ -85,7 +86,7 @@ const rootReducer = (state, action) => {
 // }
 export function* rootSaga(){
     yield all ([mainSaga(),authSaga(),fileSaga(),spaceRentalSaga(),adminSpaceRentalSaga(), mentoringSaga(),adminMentoringSaga(),
-        boardSaga(),adminBoardSaga(),noticeSaga(),adminNoticeSaga(),popupSaga(),adminPopupSaga(),userSaga(),startupPresentSaga(),adminStartupPresentSaga(),studentReportSaga(),adminStudentReportSaga()]);
+        boardSaga(),adminBoardSaga(),noticeSaga(),adminNoticeSaga(),popupSaga(),adminPopupSaga(),userSaga(),startupPresentSaga(),adminStartupPresentSaga(),studentReportSaga(),adminStudentReportSaga(),adminKeywordSaga()]);
 }
 
 export default rootReducer;
