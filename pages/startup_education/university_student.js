@@ -82,26 +82,6 @@ const UniversityStudent = () => {
                         </div>
                         <div className={cx("txtArea")}>
                             <div className={cx("qa_list")}>
-<<<<<<< HEAD
-                                <ul>
-                                    <li>
-                                        <div className={cx("question")}>
-                                            2021학년도 1학기 개설 강좌현황
-                                        </div>
-                                        <div className={cx("answer")}>
-                                            
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div className={cx("question")}>
-                                            2021학년도 2학기 개설 강좌현황
-                                        </div>
-                                        <div className={cx("answer")}>
-
-                                        </div>
-                                    </li>
-                                </ul>
-=======
                                 <Menu
                                     mode="inline"
                                     selectable={false}
@@ -119,7 +99,6 @@ const UniversityStudent = () => {
                                         </Menu.Item>
                                     </SubMenu>
                                 </Menu>
->>>>>>> 4fca32971f34540574a539ab943f595ee2a63ac8
                             </div>
                         </div>
                     </div>
