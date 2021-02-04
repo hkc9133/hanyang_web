@@ -366,8 +366,8 @@ const Introduce = () => {
                             </tr>
                             <tr>
                                 <td>예비창업패키지 사업화지원</td>
-                                <td>2857, 2863</td>
-                                <td className={cx("c-sky")}>mindhaje@hanyang.ac.kr, sunhae@hanyang.ac.kr</td>
+                                <td>2857, 2982, 2852</td>
+                                <td className={cx("c-sky")}>mindhaje@hanyang.ac.kr, stella0815@hanyang.ac.kr, areumj@hanyang.ac.kr</td>
                             </tr>
                             <tr>
                                 <td>글로벌 창업지원 프로그램 운영</td>
@@ -386,8 +386,8 @@ const Introduce = () => {
                             </tr>
                             <tr>
                                 <td>홍보, 마케팅</td>
-                                <td>2864</td>
-                                <td className={cx("c-sky")}>parkmj909@hanyang.ac.kr</td>
+                                <td>2871</td>
+                                <td className={cx("c-sky")}>sgch77@hanyang.ac.kr</td>
                             </tr>
                             </tbody>
                         </table>

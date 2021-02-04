@@ -74,7 +74,7 @@ const UniversityStudent = () => {
                                             2021학년도 1학기 개설 강좌현황
                                         </div>
                                         <div className={cx("answer")}>
-
+                                            
                                         </div>
                                     </li>
                                     <li>

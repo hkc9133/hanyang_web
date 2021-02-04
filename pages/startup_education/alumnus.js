@@ -209,22 +209,22 @@ const Alumnus = () => {
                     <div className={cx("txtArea")}>
                         <ul>
                             <li>
-                                <div className={cx("img_area")}><img src="/assets/image/alumnus_img.jpg" alt=""/></div>
+                                <div className={cx("img_area")}><img src="/assets/image/alumnus_img_13.jpg" alt=""/></div>
                             </li>
                             <li>
-                                <div className={cx("img_area")}><img src="/assets/image/alumnus_img.jpg" alt=""/></div>
+                                <div className={cx("img_area")}><img src="/assets/image/alumnus_img_12.jpg" alt=""/></div>
                             </li>
                             <li>
-                                <div className={cx("img_area")}><img src="/assets/image/alumnus_img.jpg" alt=""/></div>
+                                <div className={cx("img_area")}><img src="/assets/image/alumnus_img_11.jpg" alt=""/></div>
                             </li>
                             <li>
-                                <div className={cx("img_area")}><img src="/assets/image/alumnus_img.jpg" alt=""/></div>
+                                <div className={cx("img_area")}><img src="/assets/image/alumnus_img_9_10.jpg" alt=""/></div>
                             </li>
                             <li>
-                                <div className={cx("img_area")}><img src="/assets/image/alumnus_img.jpg" alt=""/></div>
+                                <div className={cx("img_area")}><img src="/assets/image/alumnus_img_8.jpg" alt=""/></div>
                             </li>
                             <li>
-                                <div className={cx("img_area")}><img src="/assets/image/alumnus_img.jpg" alt=""/></div>
+                                <div className={cx("img_area")}><img src="/assets/image/alumnus_img_7.jpg" alt=""/></div>
                             </li>
                         </ul>
                     </div>

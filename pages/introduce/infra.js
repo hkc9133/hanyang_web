@@ -142,10 +142,10 @@ const Infra = () => {
                             <h2>코맥스 스타트업타운</h2>
                             <ul>
                                 <li>
-                                    <img src="/assets/image/infrastructure_sum.jpg" alt="infrastructure_sum"/>
+                                    <img src="/assets/image/infra_town_1.jpg" alt="infra_town_1"/>
                                 </li>
                                 <li>
-                                    <img src="/assets/image/infrastructure_sum.jpg" alt="infrastructure_sum" />
+                                    <img src="/assets/image/infra_town_2.jpg" alt="infra_town_2" />
                                 </li>
                             </ul>
                             <span className={cx("txt")}>학생창업자, 창업동아리를 위한 전용공간(면적 468.6㎡)</span>
@@ -154,10 +154,10 @@ const Infra = () => {
                             <h2>247 스타트업 돔</h2>
                             <ul>
                                 <li>
-                                    <img src="/assets/image/infrastructure_sum.jpg" alt="infrastructure_sum"/>
+                                    <img src="/assets/image/infra_dom_1.jpg" alt="infra_dom_1"/>
                                 </li>
                                 <li>
-                                    <img src="/assets/image/infrastructure_sum.jpg" alt="infrastructure_sum" />
+                                    <img src="/assets/image/infra_dom_2.jpg" alt="infra_dom_2" />
                                 </li>
                             </ul>
                             <span className={cx("txt")}>코워킹스페이스, 기숙사(10개실), 회의실 등 (면적 637㎡)</span>
@@ -169,10 +169,10 @@ const Infra = () => {
                             <h2>휴온스팹랩</h2>
                             <ul>
                                 <li>
-                                    <img src="/assets/image/infrastructure_sum.jpg" alt="infrastructure_sum"/>
+                                    <img src="/assets/image/infra_lab_1.jpg" alt="infra_lab_1"/>
                                 </li>
                                 <li>
-                                    <img src="/assets/image/infrastructure_sum.jpg" alt="infrastructure_sum" />
+                                    <img src="/assets/image/infra_lab_2.jpg" alt="infra_lab_2" />
                                 </li>
                             </ul>
                             <span className={cx("txt")}>학생창업자를 위한 시제품 구현공간(면적 941㎡)</span>
@@ -181,10 +181,10 @@ const Infra = () => {
                             <h2>창업보육센터</h2>
                             <ul>
                                 <li>
-                                    <img src="/assets/image/infrastructure_sum.jpg" alt="infrastructure_sum"/>
+                                    <img src="/assets/image/infra_center_1.jpg" alt="infra_center_1"/>
                                 </li>
                                 <li>
-                                    <img src="/assets/image/infrastructure_sum.jpg" alt="infrastructure_sum" />
+                                    <img src="/assets/image/infra_center_2.jpg" alt="infra_center_2" />
                                 </li>
                             </ul>
                             <span className={cx("txt")}>창업자인큐베이팅을 위한 전용공간(면적 1,459㎡)</span>
