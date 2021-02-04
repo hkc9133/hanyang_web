@@ -17,9 +17,9 @@
 
 .tab_style_1{margin-bottom:60px; }
 .tab_style_1 ul:after{ clear: both; content: "."; display: block; height: 0; visibility: hidden; font-size: 0;}
-.tab_style_1 ul li{position:Relative; float:left; margin:-1px 0 0 -1px; width:20%; border:1px solid #d8d8d8; box-sizing:border-box; }
-.tab_style_1 ul li span{display:table-cell; vertical-align:middle; font-size:18px; font-family: 's-core-dream-medium'; color:#aaa; }
-.tab_style_1 ul li a{padding:0 5px; box-sizing:border-box; width:100%; height:60px; display:table; text-align:center; }
+.tab_style_1 ul li{position:Relative; float:left; margin:-1px 0 0 -1px; width:16.7%; border:1px solid #d8d8d8; box-sizing:border-box; }
+.tab_style_1 ul li span{vertical-align:middle;font-size: 16px; font-family: 's-core-dream-medium'; color:#aaa; }
+.tab_style_1 ul li button{padding:0 5px; box-sizing:border-box; width:100%; height:60px; display:table; text-align:center; }
 .tab_style_1 ul li.on:before{position:absolute; left:0; top:0; bottom:0; width:100%; height:100%; border:1px solid #3d89f9; box-sizing:border-box; display:block; content:""; }
 .tab_style_1 ul li.on a span{color:#3d89f9;}
 
@@ -51,7 +51,10 @@
 .university_studentCont_2 .txtArea p{padding-top:30px; font-size:16px; color:#1b67ae;}
 .qa_list{border-top:1px solid #afafaf;}
 .qa_list>ul>li{border-bottom:1px solid #afafaf;}
-.qa_list .question{padding:20px 80px 20px 0; font-size:18px; font-family: 's-core-dream-medium'; background:url(../../image/arrow.png) no-repeat right 30px center; cursor:pointer;}
+.qa_list .dropdown_title{padding: 5px 0px;}
+.qa_list .dropdown_content{height: auto;}
+
+.qa_list .question{padding:0px 80px 0px 0; font-size:18px; font-family: 's-core-dream-medium'; background:url(../../image/arrow.png) no-repeat right 5px center; cursor:pointer;}
 .qa_list .answer{padding:20px; border-top:1px solid #afafaf; display:none;}
 .list_style_1 ul li a{padding-right:20px; background:url(../../image/arrow2.gif) no-repeat right center; font-size:18px; }
 .list_style_1 ul li{position:relative; margin-bottom:22px; padding-left:235px; font-size:18px; }
@@ -76,7 +79,7 @@
 .btn_more{position:relative; padding:0 90px 0 30px; height:52px; line-height:52px; display:inline-block; border:1px solid #ddd; font-size:18px; border-radius:5px; }
 .btn_more:after{position:absolute; right:5%; top:50%; margin-top:-5px; width:59px; height:9px; display:block; background:url(../../image/btn_arrow.png) no-repeat right center; content:"";}
 .tabCont>div{display:none;}
-.tabCont>div:first-child{display:block;}
+.tabCont>div.show{display:block;}
 .university_studentCont_6 .txtArea ul li ul{margin-bottom:0;}
 .university_studentCont_6 .txtArea ul li li{margin-bottom:10px; padding:0 0 0 10px; position:Relative; font-size:16px; color:#222; border-bottom:none;}
 .university_studentCont_6 .txtArea ul li li:before{position:absolute; left:0; top:10px; width:6px; height:2px; background-color:#000; display:block; content:"";}

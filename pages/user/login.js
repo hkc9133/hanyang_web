@@ -6,6 +6,7 @@ import Modal from "../../component/common/Modal";
 import PageNavigation from "../../component/layout/PageNavigation";
 import SignUpInfo from "../../component/auth/SignUpInfo";
 import Link from "next/link";
+import {Modal as AntdModal} from 'antd';
 
 import Image from 'next/image'
 
@@ -68,6 +69,7 @@ const Login = () => {
 
     const onFormCheck = async (e,onClick) => {
         onClick();
+
     };
 
 
@@ -80,8 +82,10 @@ const Login = () => {
         else if(!loginLoading && user.login == true && loginCode == 200){
             router.push('/')
         }else if(!normalLoginLoading && user.login == false && loginCode == 400){
-
-            alert("에러 발생")
+            AntdModal.warning({
+                title: '로그인 실패',
+                content:"일치하는 정보가 없습니다"
+            });
         }
     }, [user.login,loginCode,loginLoading, normalLoginLoading])
 

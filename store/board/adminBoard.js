@@ -10,6 +10,7 @@ const [GET_BOARD_LIST,GET_BOARD_LIST_SUCCESS, GET_BOARD_LIST_FAILURE] = createRe
 const [GET_BOARD,GET_BOARD_SUCCESS, GET_BOARD_FAILURE] = createRequestActionTypes('adminBoard/GET_BOARD')
 const [ADD_BOARD_CONTENT,ADD_BOARD_CONTENT_SUCCESS, ADD_BOARD_CONTENT_FAILURE] = createRequestActionTypes('adminBoard/ADD_BOARD_CONTENT')
 const [UPDATE_BOARD_CONTENT,UPDATE_BOARD_CONTENT_SUCCESS, UPDATE_BOARD_CONTENT_FAILURE] = createRequestActionTypes('adminBoard/UPDATE_BOARD_CONTENT')
+const [DELETE_BOARD_CONTENT,DELETE_BOARD_CONTENT_SUCCESS, DELETE_BOARD_CONTENT_FAILURE] = createRequestActionTypes('adminBoard/DELETE_BOARD_CONTENT')
 const [GET_BOARD_CONTENT,GET_BOARD_CONTENT_SUCCESS, GET_BOARD_CONTENT_FAILURE] = createRequestActionTypes('adminBoard/GET_BOARD_CONTENT')
 const [UPDATE_BOARD,UPDATE_BOARD_SUCCESS, UPDATE_BOARD_FAILURE] = createRequestActionTypes('adminBoard/UPDATE_BOARD')
 const [GET_BOARD_INFO_ALL,GET_BOARD_INFO_ALL_SUCCESS, GET_BOARD_INFO_ALL_FAILURE] = createRequestActionTypes('adminBoard/GET_BOARD_INFO_ALL')
@@ -30,6 +31,7 @@ export const getBoard = createAction(GET_BOARD,boardName =>boardName);
 export const getBoardContent = createAction(GET_BOARD_CONTENT, contentId => contentId);
 export const addBoardContent = createAction(ADD_BOARD_CONTENT,contentInfo =>contentInfo);
 export const updateBoardContent = createAction(UPDATE_BOARD_CONTENT,contentInfo =>contentInfo);
+export const deleteBoardContent = createAction(DELETE_BOARD_CONTENT,contentId =>contentId);
 
 //카테고리,카테고리 코드 전체
 export const getBoardInfoAll = createAction(GET_BOARD_INFO_ALL);
@@ -53,6 +55,7 @@ const getBoardContentListSaga = createRequestSaga(GET_BOARD_CONTENT_LIST, adminB
 const getBoardContentSaga = createRequestSaga(GET_BOARD_CONTENT, adminBoardAPI.getBoardContent);
 const addBoardContentSaga = createRequestSaga(ADD_BOARD_CONTENT, adminBoardAPI.addBoardContent);
 const updateBoardContentSaga = createRequestSaga(UPDATE_BOARD_CONTENT, adminBoardAPI.updateBoardContent);
+const deleteBoardContentSaga = createRequestSaga(DELETE_BOARD_CONTENT, adminBoardAPI.deleteBoardContent);
 
 const addReplySaga = createRequestSaga(ADD_REPLY, adminBoardAPI.addReply);
 const updateReplySaga = createRequestSaga(UPDATE_REPLY, adminBoardAPI.updateReply);
@@ -70,6 +73,8 @@ export function* adminBoardSaga(){
     yield takeLatest(GET_BOARD_CONTENT_LIST, getBoardContentListSaga);
     yield takeLatest(ADD_BOARD_CONTENT, addBoardContentSaga);
     yield takeLatest(UPDATE_BOARD_CONTENT, updateBoardContentSaga);
+    yield takeLatest(DELETE_BOARD_CONTENT, deleteBoardContentSaga);
+
 
     yield takeLatest(ADD_REPLY, addReplySaga);
     yield takeLatest(UPDATE_REPLY, updateReplySaga);
@@ -100,6 +105,11 @@ const initialState = {
     update:{
         result:null,
         error:null
+    },
+    delete:{
+        result:null,
+        error:null
+
     },
     content:{
         result:null,
@@ -197,6 +207,16 @@ const adminBoard = handleActions(
             produce(state, draft => {
                 draft.update.result = false
                 draft.update.error = error.response.data
+            }),
+        [DELETE_BOARD_CONTENT_SUCCESS]: (state, {payload: response}) =>
+            produce(state, draft => {
+                draft.delete.result = true
+                draft.delete.error = null
+            }),
+        [DELETE_BOARD_CONTENT_FAILURE]: (state, {payload: error}) =>
+            produce(state, draft => {
+                draft.delete.result = false
+                draft.delete.error = error.response.data
             }),
         [GET_BOARD_CONTENT_LIST_SUCCESS]: (state, {payload: response}) =>
             produce(state, draft => {

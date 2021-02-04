@@ -23,3 +23,12 @@
 }
 .adm_menu>ul>li>a:hover{background-color:#4b6edb;}
 .adm_menu>ul>li.on>a{background-color:#4b6edb;}
+
+.adm_menu_detail{position: absolute; top: 70px; left: 70px; width: 210px; height: calc(100% - 70px); background-color: #fff; box-shadow: 2px 2px 3px 2px rgb(150 150 150 / 10%); }
+.adm_menu_head{margin-top: 40px; margin-bottom: 40px; }
+.adm_menu_head h3{font-size: 25px; color: #222; font-weight: 400; text-align: center; }
+.adm_menu_icon{width: 80px; height: 80px; /*background-color: #000;*/ margin: 0 auto 20px; }
+.adm_menu_detail ul{width: 90%; margin: 0 auto; padding-top: 30px; border-top: 1px solid #ebf0f9; }
+.adm_menu_detail ul li{margin-bottom: 15px; }
+.adm_menu_detail ul li a{font-size: 18px; font-weight: 200; }
+.adm_menu_detail ul li.on a{color: #4b8cf7; font-weight: 400; }

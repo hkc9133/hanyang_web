@@ -12,6 +12,7 @@ const [GET_PROGRESS_ITEM,GET_PROGRESS_ITEM_SUCCESS, GET_PROGRESS_ITEM_FAILURE] =
 const [GET_SORTATION_ITEM,GET_SORTATION_ITEM_SUCCESS, GET_SORTATION_ITEM_FAILURE] = createRequestActionTypes('mentoring/GET_SORTATION_ITEM')
 const [GET_WAY_ITEM,GET_WAY_ITEM_SUCCESS, GET_WAY_ITEM_FAILURE] = createRequestActionTypes('mentoring/GET_WAY_ITEM')
 const [GET_MENTOR,GET_MENTOR_SUCCESS, GET_MENTOR_FAILURE] = createRequestActionTypes('mentoring/GET_MENTOR')
+const [GET_BEST_MENTOR,GET_BEST_MENTOR_SUCCESS, GET_BEST_MENTOR_FAILURE] = createRequestActionTypes('mentoring/GET_BEST_MENTOR')
 const [GET_MENTOR_CHECK,GET_MENTOR_CHECK_SUCCESS, GET_MENTOR_CHECK_FAILURE] = createRequestActionTypes('mentoring/GET_MENTOR_CHECK')
 const [GET_MENTOR_LIST,GET_MENTOR_LIST_SUCCESS, GET_MENTOR_LIST_FAILURE] = createRequestActionTypes('mentoring/GET_MENTOR_LIST')
 const [APPLY_MENTOR,APPLY_MENTOR_SUCCESS, APPLY_MENTOR_FAILURE] = createRequestActionTypes('mentoring/APPLY_MENTOR')
@@ -36,6 +37,7 @@ export const initialize = createAction(INITIALIZE);
 export const changeMentorList = createAction(CHANGE_MENTOR_LIST);
 
 export const getMentor = createAction(GET_MENTOR);
+export const getBestMentor = createAction(GET_BEST_MENTOR);
 export const getMentorCheck = createAction(GET_MENTOR_CHECK);
 export const getMentorList = createAction(GET_MENTOR_LIST, form => form);
 export const applyMentor = createAction(APPLY_MENTOR, form => form);
@@ -59,6 +61,7 @@ export const updateDiary = createAction(UPDATE_DIARY,form =>form);
 
 
 const getMentorSaga = createRequestSaga(GET_MENTOR, mentoringAPI.getMentor);
+const getBestMentorSaga = createRequestSaga(GET_BEST_MENTOR, mentoringAPI.getBestMentor);
 const getMentorCheckSaga = createRequestSaga(GET_MENTOR_CHECK, mentoringAPI.getMentorCheck);
 const getMentorListSaga = createRequestSaga(GET_MENTOR_LIST, mentoringAPI.getMentorList);
 const getCounselFieldCodeSaga = createRequestSaga(GET_COUNSEL_FIELD_CODE, mentoringAPI.getCounselFieldCode);
@@ -91,6 +94,7 @@ export function* mentoringSaga(){
 
 
     yield takeLatest(GET_MENTOR, getMentorSaga);
+    yield takeLatest(GET_BEST_MENTOR, getBestMentorSaga);
     yield takeLatest(GET_MENTOR_CHECK, getMentorCheckSaga);
     yield takeLatest(GET_MENTOR_LIST, getMentorListSaga);
 
@@ -112,6 +116,7 @@ export function* mentoringSaga(){
 
 const initialState = {
     mentor:null,
+    bestMentor:null,
     mentorUpdate:{
         result:null,
         error:null,
@@ -253,6 +258,14 @@ const mentoring = handleActions(
         [GET_MENTOR_FAILURE]: (state, {payload: error}) =>
             produce(state, draft => {
                 draft.mentor = null
+            }),
+        [GET_BEST_MENTOR_SUCCESS]: (state, {payload: response}) =>
+            produce(state, draft => {
+                draft.bestMentor = response.data
+            }),
+        [GET_BEST_MENTOR_FAILURE]: (state, {payload: error}) =>
+            produce(state, draft => {
+                draft.bestMentor = null
             }),
         [GET_MENTOR_CHECK_SUCCESS]: (state, {payload: response}) =>
             produce(state, draft => {

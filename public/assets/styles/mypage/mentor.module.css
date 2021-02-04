@@ -40,7 +40,9 @@
 .mentor_group_write .mentoring_applicants ul li{float:left; margin:0 0 20px 3.33%; width:22.5%;}
 .mentor_group_write .mentoring_applicants ul li:first-child{margin-left:0;}
 .mentor_group_write .mentoring_applicants ul li label{display:block; margin-bottom:10px; color:#222; font-family: 's-core-dream-medium'; font-size:16px;}
-.mentor_group_write .mentoring_applicants ul li.w_50{margin:0; width:48.5%;}
+.mentor_group_write .mentoring_applicants ul li.w_50{margin:0; width:48.3%;}
+.mentor_group_write .mentoring_applicants ul li .bor_no{margin-bottom: 3px;}
+.mentor_group_write .mentoring_applicants ul li.w_50.gubun{margin: 0 0 20px 3.33%;}
 .mentor_group_write .mentoring_applicants ul li .email{width:100%; }
 .mentor_group_write .mentoring_applicants ul li .email:after{ clear: both; content: "."; display: block; height: 0; visibility: hidden; font-size: 0;}
 .mentor_group_write .mentoring_applicants ul li .email input[type=text]{float:left; width:100%; font-size:16px; }
@@ -228,6 +230,7 @@
     .mentor_group_write .mentoring_applicants ul li{float:none; width:100%; }
     .mentor_group_write .mentoring_applicants ul li label{font-size:14px; }
     .mentor_group_write .mentoring_applicants ul li.w_50{float:none; width:100%; }
+    .mentor_group_write .mentoring_applicants ul li.w_50.gubun{margin: 0 0 10px}
     .mentor_group_write .mentoring_applicants ul li .email select,
     .mentor_group_write .mentoring_applicants ul li .email input[type=text]{font-size:14px; }
     .mentor_group_write .mentoring_applicants ul.w_2 li,

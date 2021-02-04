@@ -1,4 +1,4 @@
-.container{padding:40px 0 50px 90px; min-width:1290px; max-width:1290px; background-color:#f9faff; box-sizing:border-box; }
+.container{padding:40px 0 50px 300px; min-width:/*1290px*/ 1500px; max-width:/*1290px*/ 1500px; background-color:#f9faff; box-sizing:border-box; }
 .top_title{margin-bottom:20px; font-size:25px; color:#222; line-height:1; font-weight:400; }
 .box{padding:20px; box-shadow:2px 2px 3px 2px rgba(150,150,150,0.1); background-color:#fff; }
 .mentor_info{margin-bottom:25px; }

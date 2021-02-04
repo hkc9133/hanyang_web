@@ -2,17 +2,16 @@ import React, {useCallback, useEffect, useRef, useState} from 'react';
 import styles from '../../public/assets/styles/startup_info/startup_info.module.css';
 import classnames from "classnames/bind"
 import Link from 'next/link'
-import {Input, Tag, Button, Select, Form, Radio, Checkbox, Upload, Progress, Typography} from 'antd';
+import {Input, Tag, Button, Select, Form, Radio, Checkbox, Upload, Progress, Typography, Modal} from 'antd';
 const { Option } = Select;
 
 import client from '../../lib/api/client';
 
 
 const {CheckableTag} = Tag;
-import Image from "next/image";
 import PageNavigation from "../../component/layout/PageNavigation";
 import {useSelector, useDispatch} from "react-redux";
-import Modal from "../../component/common/Modal";
+// import Modal from "../../component/common/Modal";
 import {useRouter} from "next/router";
 import {
     applyCounsel,
@@ -82,8 +81,8 @@ const CounselApply = () => {
         content: "",
         formNum: "",
         formProgressItem: 1,
-        formSortationItem: 1,
-        formWayItem: 1,
+        sortationIdList: [],
+        wayIdList: [],
         menteeName: "",
         menteeEmail: "",
         menteePhoneNumber: "",
@@ -135,37 +134,55 @@ const CounselApply = () => {
     const changeApplyFormValue = useCallback((e) =>{
         const {name, value} = e.target
 
-        if (name == 'isAgree') {
+        if(name == 'isAgree'){
             setApplyForm(applyForm =>({
                 ...applyForm,
                 isAgree: e.target.checked,
 
             }))
             return;
+
+        }else{
+            setApplyForm(applyForm =>({
+                ...applyForm,
+                [name]: value,
+
+            }))
+
         }
-
-        setApplyForm(applyForm =>({
-            ...applyForm,
-            [name]: value,
-
-        }))
 
     },[])
 
 
     const changeCounselField = (value) => {
+        console.log(value)
         setApplyForm({
             ...applyForm,
             counselFieldIdList: value
         })
     }
 
+    const changeCounselSortation = (value) => {
+
+        setApplyForm({
+            ...applyForm,
+            sortationIdList: value
+        })
+    }
+
     const changeCounselWay = (value) => {
         setApplyForm({
             ...applyForm,
-            formWayItem: value
+            wayIdList: value
         })
     }
+
+    // const changeCounselWay = (value) => {
+    //     setApplyForm({
+    //         ...applyForm,
+    //         formWayItem: value
+    //     })
+    // }
     // const changeContent = (value) => {
     //     setApplyForm({
     //         ...applyForm,
@@ -192,8 +209,6 @@ const CounselApply = () => {
             ...applyForm,
             hopeMentor: null,
         }))
-
-        console.log(value)
         if(value == ""){
             setHopeMentorList(mentorList.list)
         }else{
@@ -228,7 +243,7 @@ const CounselApply = () => {
             })
             setLoading(false)
         } catch (err) {
-            console.log(err)
+            // console.log(err)
             setError("업로드 중 에러가 발생하였습니다");
             setLoading(false)
             onError({ err });
@@ -245,21 +260,32 @@ const CounselApply = () => {
         if(data.hopeMentor == null || data.hopeMentor == ''){
             delete data.hopeMentor
         }
-        console.log(data)
         dispatch(applyCounsel(data));
     }
 
     useEffect(() =>{
         if(counselApply.result && counselApply.error == null){
             setApplyResultModal(true);
+            Modal.success({
+                title: '상담 신청이 완료되었습니다',
+                onOk: () => {
+                    router.back()
+                }
+            });
+        }else if(!counselApply.result && counselApply.error != null){
+            Modal.warning({
+                title: '상담 신청 중 에러가 발생하였습니다.',
+                content:"관리자에게 문의하세요."
+            });
+
         }
     },[counselApply])
 
     return (
         <>
-            <PageNavigation/>
+            {/*<PageNavigation/>*/}
             <section className={cx("container")}>
-                <Form form={form} onFinish={(e) =>{submitApply(e)}} onFinishFailed={(e) =>{personalDev.current.scrollIntoView();}}>
+                <Form form={form} onFinish={(e) =>{submitApply(e)}} onFinishFailed={(e) =>{personalDev.current.scrollIntoView()}}>
                 <div className={cx("sub_container", "mentor_group_write")}>
                     <h1 className={cx("sub_top_title")}>멘토단 소개</h1>
                     <p className={cx("sub_top_txt")}>전문 멘토로부터 듣는 창업 알짜 정보 예비창업자를 위한 <br/>창업 전문 상담코너입니다.</p>
@@ -305,7 +331,17 @@ const CounselApply = () => {
                     <h2>구분</h2>
                     <div className={cx("form_style_1")}>
                         <ul className={cx("list_2")}>
-                            <Radio.Group name="formSortationItem" options={sortationItem.list} value={applyForm.formSortationItem} defaultValue={1} onChange={changeApplyFormValue} />
+                            <Form.Item
+                                name="formSortationItem"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: '1개 이상 선택',
+                                    },
+                                ]}
+                            >
+                                <Checkbox.Group name="formSortationItem" options={sortationItem.list} value={applyForm.sortationIdList} onChange={changeCounselSortation} />
+                            </Form.Item>
                         </ul>
                     </div>
 
@@ -320,7 +356,7 @@ const CounselApply = () => {
                     <div className={cx("form_style_1")}>
                         <ul className={cx("list_5")}>
                             <Form.Item
-                                name="counselFieldIdList"
+                                name="fieldId"
                                 rules={[
                                     {
                                         required: true,
@@ -328,8 +364,8 @@ const CounselApply = () => {
                                     },
                                 ]}
                             >
-                                <Checkbox.Group name="counselFieldIdList" options={counselField.list} onChange={(e) => {
-                                    changeCounselField(e);
+                                <Radio.Group name="fieldId" options={counselField.list} onChange={(e) => {
+                                    changeApplyFormValue(e);
                                 }}/>
                             </Form.Item>
                         </ul>
@@ -369,10 +405,17 @@ const CounselApply = () => {
                     <h2>희망 상담 방식</h2>
                     <div className={cx("form_style_1")}>
                         <ul className={cx("list_5","way")}>
-                            <Radio.Group name="formWayItem" options={wayItem.list} value={applyForm.formWayItem} defaultValue={1}  onChange={(e) => {
-                                changeApplyFormValue(e)
-                            }} />
-                            {/*<Checkbox.Group name="formWayItem" options={wayItem.list} onChange={(e) =>{changeCounselWay(e);}} />*/}
+                            <Form.Item
+                                name="formWayItem"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: '1개 이상 선택',
+                                    },
+                                ]}
+                            >
+                                <Checkbox.Group name="formWayItem" options={wayItem.list}  value={applyForm.wayIdList} onChange={changeCounselWay} />
+                            </Form.Item>
                         </ul>
                     </div>
 
@@ -427,9 +470,9 @@ const CounselApply = () => {
                     </div>
                 </div>
                 </Form>
-                <Modal visible={applyResultModal} closable={true} maskClosable={true} onClose={() => {setApplyResultModal(false);router.back();}} cx={cx} className={"counsel_apply_popup"}>
-                    <h2 className={cx("popup_title")}>상담 신청이 완료되었습니다</h2>
-                </Modal>
+                {/*<Modal visible={applyResultModal} closable={true} maskClosable={true} onClose={() => {setApplyResultModal(false);router.back();}} cx={cx} className={"counsel_apply_popup"}>*/}
+                {/*    <h2 className={cx("popup_title")}>상담 신청이 완료되었습니다</h2>*/}
+                {/*</Modal>*/}
             </section>
         </>
     );

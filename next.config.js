@@ -12,6 +12,16 @@ module.exports = withCSS(
     withImages({
         webpack(config, options) {
             // config.plugins.push(new CKEditorWebpackPlugin({ language: "ko",addMainLanguageTranslationsToAllAssets: true }));
+            config.module.rules.push({
+                test: /\.js$/,
+                exclude: /node_modules(?!\/quill-image-drop-module|quill-image-resize-module)/,
+                loader: 'babel-loader',
+            })
+
+            config.plugins.push(new webpack.ProvidePlugin({
+                'window.Quill': 'quill'
+            }))
+
 
             config.module.rules.push({
                 test: /\.(png|jpe?g|gif|svg|eot|otf|ttf|woff|woff2)$/i,

@@ -1,12 +1,38 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import PageNavigation from "../../component/layout/PageNavigation";
 import Link from 'next/link'
 import styles from '../../public/assets/styles/mentor/mentor.module.css';
 import classnames from "classnames/bind"
 import Image from "next/image";
+import {useDispatch, useSelector} from "react-redux";
+import client from "../../lib/api/client";
+import {getBestMentor} from "../../store/mentoring/mentoring";
 const cx = classnames.bind(styles);
 
 const CounselApply = () => {
+
+    const dispatch = useDispatch();
+
+    const {bestMentor} = useSelector(({mentoring, loading}) => ({
+        bestMentor:mentoring.bestMentor
+    }))
+
+    const [image, setImage] = useState(null)
+    const [mentorInfo, setMentorInfo] = useState(null)
+
+    useEffect(() => {
+        dispatch(getBestMentor())
+    }, [])
+
+    useEffect(() => {
+        if(bestMentor != null){
+            setMentorInfo({...mentorInfo,...bestMentor})
+            setImage(bestMentor.filePath != null ? `${client.defaults.baseURL}/resource${bestMentor.filePath}/${bestMentor.fileName+bestMentor.fileExtension}` : null)
+        }
+
+    }, [bestMentor])
+
+
     return (
         <>
             <PageNavigation/>
@@ -22,34 +48,36 @@ const CounselApply = () => {
                 </div>
 
 
-                <div className={`${cx("mentor_month")} clfx`}>
-                    <div className={cx("title")}>
-                        <h2>이달의 멘토</h2>
-                        <p>
-                            멘티로부터 추천받은 <br/>이달의 멘토
-                        </p>
-                    </div>
-                    <div className={cx("photoArea")}>
-                        <div className={cx("photo")}>
-                            <Image src="/assets/image/mentor_photo.jpg" width={198} height={198} alt="mentor_photo"/>
+
+                {bestMentor != null && (
+                    <div className={`${cx("mentor_month")} clfx`}>
+                        <div className={cx("title")}>
+                            <h2>이달의 멘토</h2>
+                            <p>
+                                멘티로부터 추천받은 <br/>이달의 멘토
+                            </p>
                         </div>
-                        <span className={cx("name")}>류창한</span>
-                        <span className={cx("job")}>한양대학교 창업지원 단장</span>
+                        <div className={cx("photoArea")}>
+                            <div className={cx("photo")}>
+                                {/*<img src={image != null ? image : '/assets/image/mentor_photo.jpg'}/>*/}
+                                <Image src={image != null ? image : '/assets/image/mentor_photo.jpg'} width={198} height={198} alt="mentor_photo"/>
+                            </div>
+                            <span className={cx("name")}>{bestMentor.mentorName}</span>
+                            <span className={cx("job")}>{bestMentor.mentorPosition}</span>
+                        </div>
+                        <div className={cx("txt_area")}>
+                            <div className={cx("tag")}>{bestMentor.mentorKeyword.map((keyword)=>(`#${keyword} `))}</div>
+                            <ul>
+                                {bestMentor.mentorCareer.map((career)=>(
+                                    <li>{career}</li>
+                                ))}
+                            </ul>
+                            <p>
+                                {bestMentor.mentorIntroduction}
+                            </p>
+                        </div>
                     </div>
-                    <div className={cx("txt_area")}>
-                        <div className={cx("tag")}>#엔젤투자 #비즈니스모델 #사업계획 수립</div>
-                        <ul>
-                            <li>現한양대학교창업지원단장</li>
-                            <li>現대학원창업융합학과주임교수</li>
-                            <li>前(주)데이콤사이버패스창업 및 KOSDAQ</li>
-                        </ul>
-                        <p>
-                            “평생 직장도, 평생 직업도 없는 21세기에는 누구나 한번 이상은 창업의 기회를 마주하게 될 것입니다. <br/>
-                            아이디어나 기술만으로도 창업에 도전할 수 있지만 지속 가능한 성공을 위해서는 체계적인 교육과 훈련이 필요합니다. <br/>
-                            다양한 문야의 전문지식을 알아야 하고 실전 경험을 통해 취득해야 합니다. “
-                        </p>
-                    </div>
-                </div>
+                )}
 
                 <div className={cx("before_counseling","txt_style_1")}>
                     <div className={cx("left_title")}>
@@ -59,7 +87,7 @@ const CounselApply = () => {
                         <ul className={`${cx("icon_list")} clfx`}>
                             <li className={cx("icon_1")}>
                                 <a href="#">
-                                    세무,<br/>회계
+                                    세무,회계 <br/>기본지식 알고가기
                                 </a>
                             </li>
                             <li className={cx("icon_2")}>

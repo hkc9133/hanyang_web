@@ -24,7 +24,7 @@ const Infra = () => {
                             <div className={cx("title")}>아이디어 고도화</div>
                             <ul>
                                 <li>
-                                    <span className={cx("s_title")}>휴온스팹랩</span>
+                                    <span className={cx("s_title")}>창업강좌</span>
                                     -시제품 디자인 및 제작지원
                                 </li>
                                 <li>
@@ -33,13 +33,13 @@ const Infra = () => {
 
                                 </li>
                                 <li>
-                                    <span className={cx("s_title")}>Imagine Lab</span>
+                                    <span className={cx("s_title")}>창업강좌</span>
                                     -가상 3D설계 및 3D프린팅기술지원
 
                                 </li>
                                 <li>
                                     <span className={cx("s_title")}>Design Lab</span>
-                                    -융합캡스톤디자인/아이디어고도화
+                                    -융합캠스톤디자인/아이디어고도화
                                 </li>
                             </ul>
                         </li>

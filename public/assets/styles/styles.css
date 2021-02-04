@@ -52,7 +52,7 @@ textarea{padding:15px; width:100%; border:1px solid #ddd; box-sizing:border-box;
 button:focus,textarea:focus,input:focus{outline:none;}
 
 
-#wrap{min-height:100vh;}
+#wrap{min-height:115vh;}
 .container{min-height:500px;}
 
 .hid{display:none;}
@@ -161,7 +161,12 @@ button:focus,textarea:focus,input:focus{outline:none;}
 /*    content: '16px';*/
 /*    font-size: 16px !important;*/
 /*}*/
-
+.ql-toolbar.ql-snow .ql-formats{
+    margin-right: 5px !important;
+}
+.ql-showHtml:after {
+    content: "#";
+}
 .ql-snow .ql-picker.ql-size .ql-picker-label::before{
     content: attr(data-value) !important;
 }
@@ -170,7 +175,7 @@ button:focus,textarea:focus,input:focus{outline:none;}
 }
 .ql-toolbar.ql-snow + .ql-container.ql-snow{min-height: 400px;}
 .ql-editor p, .ql-editor ol, .ql-editor ul, .ql-editor pre, .ql-editor blockquote, .ql-editor h1, .ql-editor h2, .ql-editor h3, .ql-editor h4, .ql-editor h5, .ql-editor h6{padding: 0 !important;}
-
+.ql-editor .ql-video{width: 640px;height: 360px;}
 .ant-btn{
     height: auto;
     padding:0;
@@ -215,6 +220,8 @@ input[type=file]::-webkit-file-upload-button{
 .ant-picker-ranges .ant-picker-ok button:hover span{}
 .ant-picker-ranges .ant-picker-ok button span{color:black;}
 .ant-picker-ranges .ant-picker-ok button span:hover{color:white;}
+
+.ant-menu-submenu-arrow{display: none;}
 
 .mentoring_applicants .ant-picker{height: 50px;width:100%}
 /*캘린더*/
@@ -384,4 +391,9 @@ input[type=file]::-webkit-file-upload-button{
 @media screen and (max-width: 768px){
 
     .paging a{margin:0 1px; width:40px; line-height:38px; height:40px; font-size:14px;}
+}
+
+@media screen and (max-width: 500px){
+
+    .ql-editor .ql-video{height: 170px;}
 }

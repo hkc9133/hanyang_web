@@ -94,7 +94,7 @@ const StudentReportPage = () => {
 
     return (
         <>
-            <PageNavigation/>
+            {/*<PageNavigation/>*/}
             <section className={cx("container")}>
                 <Form form={form} onFinish={(e) =>{submitApply(e)}} onFinishFailed={(e) =>{}}>
                 <div className={cx("sub_container","mentor_group_write","student_report")}>

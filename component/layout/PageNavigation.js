@@ -31,12 +31,12 @@ const dep1 = {
         name:'창업상담',
         link:"/startup_counsel/counsel_process",
         sub:{
-            counsel_process: {name:'창업상담신청',link:'/startup_counsel/counsel_process'},
+            counsel_process: {name:'창업상담 신청',link:'/startup_counsel/counsel_process'},
             mentor_introduce: {name:'멘토단 소개',link:'/startup_counsel/mentor_introduce'},
             mentor_apply: {name:'멘토 신청',link:'/startup_counsel/mentor_apply'},
-            counsel_apply: {name:'창업상담하기',link:'/startup_counsel/counsel_apply'},
+            // counsel_apply: {name:'창업상담하기',link:'/startup_counsel/counsel_apply'},
             startup_procedure: {name:'창업절차',link:'/startup_counsel/startup_procedure'},
-            student_report: {name:'학생창업신고',link:'/startup_counsel/student_report'},
+            // student_report: {name:'학생창업신고',link:'/startup_counsel/student_report'},
         }
     },
     startup_info:{
@@ -46,7 +46,8 @@ const dep1 = {
             startup_info: {name:'창업지원정보',link:'/board/startup_info/list'},
             startup_event: {name:'창업행사',link:'/startup_info/startup_event'},
             community: {name:'커뮤니티',link:'/board/community/list'},
-            data_room: {name:'자료실',link:'/board/data_room/list'}
+            data_room: {name:'자료실',link:'/board/data_room/list'},
+            notice: {name:'공지사항',link:'/introduce/notice'},
         }
     },
     startup_h:{
@@ -61,20 +62,19 @@ const dep1 = {
         name:'투자연계',
         link:"/investment/ir",
         sub:{
-            ir: {name:'IR/ 투자 안내',link:'/board/ir/list'},
-            investment_partners: {name:'국내/ 외 투자파트너스',link:'/investment/investment_partners'},
+            ir: {name:'IR/투자 안내',link:'/board/ir/list'},
+            investment_partners: {name:'국내외 투자파트너스',link:'/investment/investment_partners'},
         }
     },
     introduce:{
-        name:'창업지원단소개',
+        name:'창업지원단 소개',
         link:"/introduce/introduce",
         sub:{
-            introduce: {name:'기관소개',link:'/introduce/introduce'},
-            system: {name:'창업지원체계',link:'/introduce/system'},
-            infra: {name:'인프라',link:'/introduce/infra/list'},
-            promotion: {name:'협력파트너스',link:'/introduce/promotion'},
+            introduce: {name:'기관 소개',link:'/introduce/introduce'},
+            system: {name:'창업지원 체계',link:'/introduce/system'},
+            infra: {name:'인프라',link:'/introduce/infra'},
+            promotion: {name:'협력 파트너스',link:'/introduce/promotion'},
             location: {name:'오시는길',link:'/introduce/location'},
-            notice: {name:'공지사항',link:'/introduce/notice'},
             news: {name:'뉴스레터',link:'/board/news/list'},
             media_report: {name:'언론보도',link:'/board/media_report/list'},
             ir: {name:'IR/ 투자 안내',link:'/board/ir/list'}
@@ -99,8 +99,16 @@ const PageNavigation = () => {
     const router = useRouter();
 
     useEffect(() => {
-        const arr = router.asPath.split("/");  // 구분자를 통해 나뉜 결과는 배열로 저장된다.
 
+        console.log(router.asPath.substr(router.asPath.indexOf("#"),router.asPath.length))
+        let str = "";
+        if(router.asPath.indexOf("#") > 0){
+            str = router.asPath.replace(router.asPath.substr(router.asPath.indexOf("#"),router.asPath.length),"");
+        }else{
+            str = router.asPath
+
+        }
+        const arr = str.split("/");  // 구분자를 통해 나뉜 결과는 배열로 저장된다.
 
         try{
             setNavi(arr[1] == 'board' ? dep1[board[arr[2]].parents] : dep1[arr[1]])

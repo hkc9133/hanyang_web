@@ -238,15 +238,20 @@ const CounselApplyFormDetail = () => {
                                                     </td>
                                                     <th>희망 멘토링 분야</th>
                                                     <td>
-                                                        {applyValue.counselFieldList.map((item, index) => (
-                                                            <Tag className={cx("mg_t10")} key={index}>{item.fieldName}</Tag>
-                                                        ))}
+                                                        {/*{applyValue.counselFieldList.map((item, index) => (*/}
+                                                        {/*    <Tag className={cx("mg_t10")} key={index}>{item.fieldName}</Tag>*/}
+                                                        {/*))}*/}
+                                                        {applyValue.fieldName}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>구분</th>
                                                     <td colSpan={5}>
-                                                        {applyValue.formSortationItemName}
+                                                        <ul>
+                                                        {applyValue.sortationItemList.map((item) =>{
+                                                            return <li key={item.itemId}>{item.item}</li>
+                                                        })}
+                                                        </ul>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -258,7 +263,11 @@ const CounselApplyFormDetail = () => {
                                                 <tr>
                                                     <th>희망 상담 방식</th>
                                                     <td colSpan={5}>
-                                                        {applyValue.formWayItemName}
+                                                        <ul>
+                                                            {applyValue.wayItemList.map((item) =>{
+                                                                return <li key={item.itemId}>{item.item}</li>
+                                                            })}
+                                                        </ul>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -270,7 +279,7 @@ const CounselApplyFormDetail = () => {
                                                 <tr>
                                                     <th>상담 내용</th>
                                                     <td colSpan={5}>
-                                                        <div dangerouslySetInnerHTML={{__html: applyValue.content}}/>
+                                                        <div className={"ql-editor"} dangerouslySetInnerHTML={{__html: applyValue.content}}/>
                                                     </td>
                                                 </tr>
                                                 <tr>

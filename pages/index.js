@@ -19,6 +19,7 @@ import moment from 'moment';
 import PopupItem from "../component/main/PopupItem";
 import client from "../lib/api/client";
 import dynamic from "next/dynamic";
+import {useRouter} from "next/router";
 
 
 const cx = classnames.bind(styles);
@@ -122,8 +123,10 @@ const Index = () => {
     const dispatch = useDispatch();
     const logoSlider = React.useRef();
     const borderSlider = React.useRef();
+    const router = useRouter();
 
     const [showNotice,setShowNotice] = useState(true);
+    const [searchValue,setSearchValue] = useState("");
 
     const {mainData} = useSelector(({main, loading}) => ({
         mainData: main.mainData
@@ -136,7 +139,9 @@ const Index = () => {
     const toggleNoticeSlider = () =>{
         setShowNotice(!showNotice)
     }
-
+    const searchBoard = () =>{
+        router.push(`/search?page&searchField=title&searchValue=${searchValue}`)
+    }
 
     return (
         <>
@@ -206,23 +211,16 @@ const Index = () => {
                         </li>
                     </ul>
                     <div className={cx("main_search_area")}>
-                        <input type="text" placeholder="검색어를 입력하세요."/>
-                        <button type="button" className={cx("btn_search")}>검색</button>
+                        <input type="text" placeholder="검색어를 입력하세요." value={searchValue} onChange={(e) =>{setSearchValue(e.target.value)}}/>
+                        <button type="button" className={cx("btn_search")} onClick={() =>searchBoard()}>검색</button>
                     </div>
                     <div className={cx("searchWord")}>
                         <ul>
-                            <li>
-                                <button type="button"># 창업도움</button>
-                            </li>
-                            <li>
-                                <button type="button"># 창업체계</button>
-                            </li>
-                            <li>
-                                <button type="button"># 창업제도</button>
-                            </li>
-                            <li>
-                                <button type="button"># 멘토링</button>
-                            </li>
+                            {mainData.keyword.map((item) =>(
+                                <li key={item.keywordId}>
+                                    <Link href={`/search?page&searchField=title&searchValue=${item.keyword}`}><button type="button"># {item.keyword}</button></Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 </div>

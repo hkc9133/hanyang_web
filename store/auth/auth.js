@@ -155,10 +155,8 @@ const auth = handleActions(
                 draft.user.info = response.data.user;
                 draft.user.role = response.data.user.role;
                 draft.loginCode.code = response.code;
-                // draft.user.token = response.data.token;
                 draft.login.result = true;
                 draft.login.error = null;
-                // localStorage.setItem('token',draft.user.token = response.data.token);
             }),
         [LOGIN_FAILURE]: (state, {payload: error}) =>
             produce(state, draft => {

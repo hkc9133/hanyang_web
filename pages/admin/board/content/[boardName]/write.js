@@ -29,7 +29,7 @@ export async function getStaticPaths() {
             { params: { boardName: 'online_content' } },
             { params: { boardName: 'startup_support_coverage' } },
         ],
-        fallback: false
+        fallback: true
     };
 }
 

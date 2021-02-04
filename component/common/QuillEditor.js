@@ -1,11 +1,13 @@
-import React,{useRef,useEffect} from 'react';
+import React, {useRef, useEffect, useState, useCallback} from 'react';
 import axios from 'axios'
 import 'react-quill/dist/quill.snow.css';
 import {url,port,serverAddr} from '../../lib/api/client';
-
-
+import styles from '../../public/assets/styles/quill.module.css';
+import classnames from "classnames/bind"
+const cx = classnames.bind(styles);
 const QuillEditor = ({QuillChange,Contents}) => {
 
+    const [showHtml, setShowHtml] = useState(false);
     let Quill = typeof window === "object" ? require("quill") : () => false;
 
     const quillElement = useRef(); // quill을 넣을 div
@@ -16,15 +18,17 @@ const QuillEditor = ({QuillChange,Contents}) => {
     const BackgroundStyle = Quill.import('attributors/style/background');
     const ColorStyle = Quill.import('attributors/style/color');
     const SizeStyle = Quill.import('attributors/style/size');
+
     SizeStyle.whitelist = fontSizeArr;
     Quill.register(BackgroundStyle, true);
     Quill.register(ColorStyle, true);
-    Quill.register(SizeStyle, true);
+    Quill.register(SizeStyle, true)
+
     const formats = [
         'header', 'font', 'size','color','background',
         'bold', 'italic', 'underline', 'strike', 'blockquote',
         'list', 'bullet','align', 'indent',
-        'link', 'image', 'video'
+        'link', 'image', 'video','showHtml'
     ]
 
     const modules = {
@@ -38,8 +42,23 @@ const QuillEditor = ({QuillChange,Contents}) => {
                 [{'list': 'ordered'}, {'list': 'bullet'},
                     {'indent': '-1'}, {'indent': '+1'}],
                 [{align:[]}],
-                ['link', 'image', 'video']
+                ['link', 'image', 'video','showHtml'],
             ],
+            handlers: {
+                showHtml: function(value) {
+                    if (quillInstance.current.txtArea.style.display === "") {
+                        const html = quillInstance.current.txtArea.value;
+                        if (html === '<p><br/></p>') {
+                            quillInstance.current.html = null;
+                        } else {
+                            quillInstance.current.html = html.replace(new RegExp('<p><br/>', 'g'), '<p>')
+                        }
+                        quillInstance.current.pasteHTML(html);
+                    }
+                    quillInstance.current.txtArea.style.display =
+                        quillInstance.current.txtArea.style.display === "none" ? "" : "none";
+                }
+            }
         },
     }
 
@@ -65,7 +84,31 @@ const QuillEditor = ({QuillChange,Contents}) => {
 
             // 이미지 핸들링을 위한 커스텀 핸들러
             const toolbar = quill.getModule("toolbar");
+            // toolbar.addHandler("showHtml", onClickShowHtmlBtn);
             toolbar.addHandler("image", onClickImageBtn);
+
+
+            if (Quill.prototype.pasteHTML == undefined)
+                Quill.prototype.pasteHTML = function(html) {
+                    {
+                        this.container.firstChild.innerHTML = html;
+                    }
+                }
+
+            quill.txtArea = document.createElement("textarea");
+            quill.txtArea.style.cssText =
+                "width: 100%;margin: 0px;background: white;box-sizing: border-box;color: black;font-size: 15px;outline: none;padding: 20px;line-height: 24px;position: absolute;top: 0;bottom: 0;border: none;display:none;resize: none;";
+
+            var htmlEditor = quill.addContainer("ql-custom");
+            htmlEditor.appendChild(quill.txtArea);
+
+            quill.on("text-change", (delta, oldDelta, source) => {
+                var html = quillInstance.current.root.innerHTML;
+                quill.txtArea.value = html;
+            });
+
+            quill.txtArea.value = quillInstance.current.root.innerHTML;
+
         }
 
         return () =>{
@@ -79,6 +122,7 @@ const QuillEditor = ({QuillChange,Contents}) => {
         mounted.current = true;
         quillInstance.current.root.innerHTML = Contents;
     }, [Contents]);
+
 
     const onClickImageBtn = () => {
         const input = document.createElement("input");
@@ -115,9 +159,12 @@ const QuillEditor = ({QuillChange,Contents}) => {
     };
 
     return (
+        <>
         <div>
-            <div ref={quillElement}></div>
+            <div className={cx({hidden:showHtml})} ref={quillElement}></div>
+            <textarea className={cx("html_view",{hidden:!showHtml})} value={Contents} onChange={(e) =>{QuillChange(e.target.value)}}/>
         </div>
+        </>
     );
 };
 

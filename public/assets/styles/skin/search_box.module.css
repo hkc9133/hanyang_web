@@ -12,6 +12,44 @@
 .tab_style_3 li.on a:before{position:absolute; left:0; bottom:0; width:100%; height:3px; background-color:#0069f8; display:block; content:"";}
 .tab_style_3 li a strong{margin-bottom:10px; display:block; font-size:32px; font-family: 's-core-dream-medium';}
 
+.tab_style_4 ul{margin-bottom: 20px;}
+.tab_style_4{margin-bottom:100px; text-align:center; }
+.tab_style_4 li{    position: Relative;
+    float: left;
+    margin: -1px 0 0 -1px;
+    width: 20%;
+    border: 1px solid #d8d8d8;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;}
+.tab_style_4 li a{    padding: 0 5px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    height: 60px;
+    display: table;}
+
+.tab_style_4 li a span{display: table-cell;
+    vertical-align: middle;
+    font-size: 18px;
+    font-family: 's-core-dream-medium';
+    color: #aaa;}
+.tab_style_4 li.on:before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #3d89f9;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: block;
+    content: "";
+}
+.tab_style_4 .search input[type=text]{width:80%;}
+/*.tab_style_4 li.on a:before{position:absolute; left:0; bottom:0; width:100%; height:3px; background-color:#0069f8; display:block; content:"";}*/
+/*.tab_style_4 li a strong{margin-bottom:10px; display:block; font-size:32px; font-family: 's-core-dream-medium';}*/
+
 
 @media screen and (max-width: 1400px){
 

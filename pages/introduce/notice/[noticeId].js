@@ -59,7 +59,7 @@ const NoticeView = () => {
                         </div>
 
                         <div className={cx("bbs_viewCont")}>
-                            <div dangerouslySetInnerHTML={{__html: view.notice.content}}/>
+                            <div className={"ql-editor"} dangerouslySetInnerHTML={{__html: view.notice.content}}/>
                         </div>
                         {view.files.length > 0 && (
                             <div className={cx("bbs_attach_file")}>

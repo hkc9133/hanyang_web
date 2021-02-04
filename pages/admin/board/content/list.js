@@ -88,7 +88,7 @@ const List = () => {
     }
 
     const searchContent = (e) =>{
-        const queryString = qs.stringify(searchInfo);
+        const queryString = qs.stringify({...searchInfo,page:1});
         router.push(`${router.pathname}?${queryString}`)
     }
 

@@ -13,7 +13,7 @@ const InvestmentPartners = () => {
         <section className={cx("sub_container","irWrap")}>
             <h1 className={cx("sub_top_title")}>국내외 투자파트너스</h1>
             <p className={cx("sub_top_txt")}>
-                한양대는 국내외 VC 및 액셀러레이터와 협업하여 유망 창업기업을 지원합니다.
+                국내외 VC 및 액셀러레이터와 협업하여 유망 창업기업을 지원합니다.
             </p>
 
             <div className={cx("search_type_2")}>
