@@ -78,6 +78,11 @@ const Introduce = () => {
                             </p>
                         </div>
                     </div>
+
+                    <div className={cx("ceo_name")}>
+                        <img src="/assets/image/ceo_name.png" alt="ceo_name"/>
+                    </div>
+
                 </div>
 
                 <div className={cx("history")}>

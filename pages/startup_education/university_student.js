@@ -115,10 +115,14 @@ const UniversityStudent = () => {
                                     style={{height: '100%', borderRight: 'none'}}
                                 >
                                     <SubMenu key="sub3" className={cx("dropdown_title")} title={<div className={cx("question")}>2016년~2019년 교육과정</div>}>
-                                        <Menu.Item key="2"></Menu.Item>
+                                        <Menu.Item key="2">
+
+                                        </Menu.Item>
                                     </SubMenu>
                                     <SubMenu key="sub4" className={cx("dropdown_title")} title={<div className={cx("question")}>2020년~2023년 교육과정</div>}>
-                                        <Menu.Item key="3"></Menu.Item>
+                                        <Menu.Item key="3">
+                                            
+                                        </Menu.Item>
                                     </SubMenu>
                                 </Menu>
                                 <p>교양으로 창업강좌를 수강하는 학생들은 가장 최근 교육과정의 로드맵을,<br/>융합전공생은 본인에게 해당하는 교육과정표를 확인해 주세요.</p>
