@@ -52,7 +52,7 @@ textarea{padding:15px; width:100%; border:1px solid #ddd; box-sizing:border-box;
 button:focus,textarea:focus,input:focus{outline:none;}
 
 
-#wrap{min-height:100vh;}
+#wrap{min-height:115vh;}
 .container{min-height:500px;}
 
 .hid{display:none;}
@@ -220,6 +220,8 @@ input[type=file]::-webkit-file-upload-button{
 .ant-picker-ranges .ant-picker-ok button:hover span{}
 .ant-picker-ranges .ant-picker-ok button span{color:black;}
 .ant-picker-ranges .ant-picker-ok button span:hover{color:white;}
+
+.ant-menu-submenu-arrow{display: none;}
 
 .mentoring_applicants .ant-picker{height: 50px;width:100%}
 /*캘린더*/

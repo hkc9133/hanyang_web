@@ -62,7 +62,7 @@ const MentorProfile = () => {
     useEffect(() => {
         if(mentor != null){
             setMentorInfo({...mentorInfo,...mentor})
-            setImage(mentor.filePath != null && `${client.defaults.baseURL}/resource${mentor.filePath}/${mentor.fileName+mentor.fileExtension}`)
+            setImage(mentor.filePath != null ? `${client.defaults.baseURL}/resource${mentor.filePath}/${mentor.fileName+mentor.fileExtension}` : null)
         }
 
     }, [mentor])

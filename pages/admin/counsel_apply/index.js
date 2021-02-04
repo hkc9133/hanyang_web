@@ -60,7 +60,7 @@ const CounselApplyListPage = () => {
     }
     return (
         <section className={cx("container")}>
-            <h1 className={cx("top_title")}>상담신청 관리</h1>
+            <h1 className={cx("top_title")}>상담신청서 관리</h1>
             <div className={cx("adm_container")}>
                 <div className={`${cx("mentor_info","box")} clfx `}>
                     <ul className={"clfx"}>

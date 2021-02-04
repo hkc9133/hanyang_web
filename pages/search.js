@@ -57,14 +57,19 @@ const SearchPage = () => {
 
 
     useEffect(() => {
-        const { page = 1,boardEnName = router.query.boardEnName,searchValue = null,searchField = null} = router.query
-        const data = {
-            page:page,
-            boardEnName:boardEnName,
-            searchValue:searchValue,
-            searchField:searchField
+        console.log("aaaa")
+        if(boardSearch.list.length != 0){
+            console.log(boardSearch.list.length)
+            console.log("222")
+            const { page = 1,boardEnName = router.query.boardEnName,searchValue = null,searchField = null} = router.query
+            const data = {
+                page:page,
+                boardEnName:boardEnName,
+                searchValue:searchValue,
+                searchField:searchField
+            }
+            // dispatch(getBoardSearchList(data));
         }
-        dispatch(getBoardSearchList(data));
 
     },[router.query])
 

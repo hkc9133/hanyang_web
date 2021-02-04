@@ -99,8 +99,16 @@ const PageNavigation = () => {
     const router = useRouter();
 
     useEffect(() => {
-        const arr = router.asPath.split("/");  // 구분자를 통해 나뉜 결과는 배열로 저장된다.
 
+        console.log(router.asPath.substr(router.asPath.indexOf("#"),router.asPath.length))
+        let str = "";
+        if(router.asPath.indexOf("#") > 0){
+            str = router.asPath.replace(router.asPath.substr(router.asPath.indexOf("#"),router.asPath.length),"");
+        }else{
+            str = router.asPath
+
+        }
+        const arr = str.split("/");  // 구분자를 통해 나뉜 결과는 배열로 저장된다.
 
         try{
             setNavi(arr[1] == 'board' ? dep1[board[arr[2]].parents] : dep1[arr[1]])

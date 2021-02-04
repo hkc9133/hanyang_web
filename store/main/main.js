@@ -27,7 +27,8 @@ const initialState = {
         result:null,
         notice:[],
         startup_info:[],
-        popup:[]
+        popup:[],
+        keyword:[],
     },
     boardSearch:{
         list:[],
@@ -50,6 +51,7 @@ const main = handleActions(
                 draft.mainData.notice = response.data.notice;
                 draft.mainData.startup_info = response.data.startup_info;
                 draft.mainData.popup = response.data.popup;
+                draft.mainData.keyword = response.data.keyword;
             }),
 
         [GET_MAIN_DATA_FAILURE]: (state, {payload: error}) =>
@@ -58,6 +60,7 @@ const main = handleActions(
                 draft.mainData.notice = [];
                 draft.mainData.startup_info = [];
                 draft.mainData.popup = [];
+                draft.mainData.keyword = [];
             }),
         [GET_BOARD_SEARCH_LIST_SUCCESS]: (state, {payload: response}) =>
             produce(state,draft => {

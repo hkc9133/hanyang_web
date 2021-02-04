@@ -1,14 +1,14 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import wrapper from "../../../../../store/configureStore";
 import client from "../../../../../lib/api/client";
-import {getBoard, getBoardContent} from "../../../../../store/board/adminBoard";
+import {deleteBoardContent, getBoard, getBoardContent, initialize} from "../../../../../store/board/adminBoard";
 import {END} from "redux-saga";
 import {useRouter} from "next/router";
 import {useDispatch, useSelector} from "react-redux";
 import {fileDownload} from "../../../../../store/file/file";
 import {addReply, deleteReply, updateReply} from "../../../../../store/board/adminBoard";
 import moment from "moment";
-import {Checkbox, Form, Input, Select, Upload} from "antd";
+import {Checkbox, Form, Input, Modal, Select, Upload} from "antd";
 import ReplyList from "../../../../../component/admin/board/reply/ReplyList";
 import ReplyAdd from "../../../../../component/admin/board/reply/ReplyAdd";
 import Link from "next/link";
@@ -51,10 +51,12 @@ const ContentView = () => {
 
     const [showInput, setShowInput] = useState(null);
     const [showUpdateInput, setShowUpdateInput] = useState(null);
+    const [showRemoveModal, setShowRemoveModal] = useState(false);
 
-    const {board, view, reply} = useSelector(({adminBoard, loading}) => ({
+    const {board, view,deleteResult,reply} = useSelector(({adminBoard, loading}) => ({
         board: adminBoard.board,
         view: adminBoard.view,
+        deleteResult:adminBoard.delete,
         reply: adminBoard.reply
     }))
 
@@ -147,6 +149,25 @@ const ContentView = () => {
         setShowUpdateInput(null);
     }
 
+    const handleDeleteContent = () =>{
+        dispatch(deleteBoardContent(view.content.contentId))
+    }
+
+    useEffect(() =>{
+        if(deleteResult.result && deleteResult.error == null){
+            Modal.success({
+                content: '글 삭제 완료되었습니다',
+                onOk:() => {dispatch(initialize());router.back();}
+            });
+        }else if(deleteResult.result == false && deleteResult.error != null){
+            Modal.warning({
+                title: '삭제 중 에러가 발생하였습니다'
+            });
+            // dispatch(initialize())
+        }
+
+    },[deleteResult])
+
     const handleDeleteReply = (replyId) => {
         const data = {
             replyId: replyId,
@@ -182,6 +203,7 @@ const ContentView = () => {
                                 <div className={cx("btn_box")}>
                                     <Link href={`/admin/board/content/list?boardEnName=${router.query.boardName}`}><a className={cx("basic-btn01")}>목록</a></Link>
                                     <Link href={`/admin/board/content/${view.content.boardEnName}/edit/${view.content.contentId}`}><a className={cx("basic-btn02")}>수정</a></Link>
+                                    <button onClick={() =>{setShowRemoveModal(true)}} className={cx("basic-btn02","btn-red-bg")}>삭제</button>
                                 </div>
                                 <table>
                                     <colgroup>
@@ -278,91 +300,20 @@ const ContentView = () => {
                     </div>
                 </div>
             </section>
-
-            {/*<section className={cx("container")}>*/}
-            {/*    <div className={cx("sub_container", "board_view")}>*/}
-            {/*        <h1 className={cx("sub_top_title")}>{board.board.boardKrName}</h1>*/}
-            {/*        <p className={cx("sub_top_txt")}>{board.board.boardDesc}</p>*/}
-
-            {/*        <div className={cx("bbs_view")}>*/}
-            {/*            <div className={cx("topTitleArea")}>*/}
-            {/*                <h2>{view.content.title}</h2>*/}
-            {/*                <span className={cx("date")}>{moment(view.content.regDate).format("YYYY.MM.DD HH:MM")}</span>*/}
-            {/*                <span className={cx("date")}>조회수 {view.content.viewCnt}</span>*/}
-            {/*            </div>*/}
-
-            {/*            <div className={cx("bbs_viewCont")}>*/}
-            {/*                <div dangerouslySetInnerHTML={{__html: view.content.content}}/>*/}
-            {/*            </div>*/}
-            {/*            {*/}
-            {/*                board.board.useFile && view.files.length > 0 && (*/}
-            {/*                    <div className={cx("bbs_attach_file")}>*/}
-            {/*                        <Upload*/}
-            {/*                            listType="picture-card"*/}
-            {/*                            fileList={view.files.map((file) => {*/}
-            {/*                                return {*/}
-            {/*                                    uid: file.fileName,*/}
-            {/*                                    name: file.fileOriginName,*/}
-            {/*                                    status: 'done',*/}
-            {/*                                    fileId: file.fileId*/}
-            {/*                                }*/}
-            {/*                            })}*/}
-            {/*                            showUploadList={{*/}
-            {/*                                showPreviewIcon: false,*/}
-            {/*                                showRemoveIcon: false,*/}
-            {/*                                showDownloadIcon: true*/}
-            {/*                            }}*/}
-            {/*                            onDownload={handleFileDownload}*/}
-            {/*                        >*/}
-            {/*                        </Upload>*/}
-            {/*                    </div>*/}
-            {/*                )*/}
-            {/*            }*/}
-
-            {/*            {board.board.useComment && (*/}
-            {/*                <div className={cx("reply_box")}>*/}
-            {/*                    <ReplyList list={reply.list} addNewReReply={addNewReReply}*/}
-            {/*                               changeAddReReply={changeAddReReply} newReReply={newReReply}*/}
-            {/*                               setShowInput={setShowInput} showInput={showInput}*/}
-            {/*                               handleUpdateReply={handleUpdateReply} showUpdateInput={showUpdateInput}*/}
-            {/*                               setShowUpdateInput={setShowUpdateInput} updateReplyValue={updateReplyValue}*/}
-            {/*                               changeUpdateReply={changeUpdateReply} handleDeleteReply={handleDeleteReply}*/}
-
-            {/*                    />*/}
-            {/*                    <ReplyAdd addNewReply={addNewReply} changeAddReply={changeAddReply} newReply={newReply}/>*/}
-            {/*                </div>*/}
-            {/*            )}*/}
-
-            {/*            <div className={cx("txt_c")}>*/}
-            {/*                <Link href={`/admin/board/content/list?boardEnName=${router.query.boardName}`}><a className={cx("basic-btn04", "btn-black-bd")}>목록보기</a></Link>*/}
-            {/*                <Link href={`/admin/board/content/${view.content.boardEnName}/edit/${view.content.contentId}`}><a className={cx("basic-btn04", "btn-black-bd")}>수정</a></Link>*/}
-            {/*            </div>*/}
-
-            {/*            <div className={cx("prev_next")}>*/}
-            {/*                <ul>*/}
-            {/*                    {view.next != null && (*/}
-            {/*                        <li>*/}
-            {/*                            <span className={cx("title")}>다음글</span>*/}
-            {/*                            <Link*/}
-            {/*                                href={`/board/${router.query.boardName}/view/${view.next.contentId}`}><a>{view.next.title}</a></Link>*/}
-            {/*                            <span*/}
-            {/*                                className={cx("date")}>{moment(view.next.regDate).format("YYYY.MM.DD")}</span>*/}
-            {/*                        </li>*/}
-            {/*                    )}*/}
-            {/*                    {view.prev != null && (*/}
-            {/*                        <li>*/}
-            {/*                            <span className={cx("title")}>이전글</span>*/}
-            {/*                            <Link*/}
-            {/*                                href={`/board/${router.query.boardName}/view/${view.prev.contentId}`}><a>{view.prev.title}</a></Link>*/}
-            {/*                            <span*/}
-            {/*                                className={cx("date")}>{moment(view.prev.regDate).format("YYYY.MM.DD")}</span>*/}
-            {/*                        </li>*/}
-            {/*                    )}*/}
-            {/*                </ul>*/}
-            {/*            </div>*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*</section>*/}
+                <Modal
+                    title="삭제하시겠습니까?"
+                    visible={showRemoveModal}
+                    // onOk={() =>{handleDeleteContent}}
+                    // confirmLoading={deletePlaceResult.result}
+                    onCancel={() =>{setShowRemoveModal(false)}}
+                    footer={[
+                        <button className={cx("basic-btn01","btn-gray-bg")} onClick={() =>{setShowRemoveModal(false);}}>취소</button>,
+                        <button className={cx("basic-btn02","btn-red-bg")} onClick={handleDeleteContent}>삭제</button>
+                    ]}
+                >
+                    <p className={cx("warning")}>{view.content.title}</p>
+                    {/*<p>{modalText}</p>*/}
+                </Modal>
             </>
         )
     );

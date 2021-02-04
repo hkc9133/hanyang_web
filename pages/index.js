@@ -216,18 +216,11 @@ const Index = () => {
                     </div>
                     <div className={cx("searchWord")}>
                         <ul>
-                            <li>
-                                <button type="button"># 창업도움</button>
-                            </li>
-                            <li>
-                                <button type="button"># 창업체계</button>
-                            </li>
-                            <li>
-                                <button type="button"># 창업제도</button>
-                            </li>
-                            <li>
-                                <button type="button"># 멘토링</button>
-                            </li>
+                            {mainData.keyword.map((item) =>(
+                                <li key={item.keywordId}>
+                                    <Link href={`/search?page&searchField=title&searchValue=${item.keyword}`}><button type="button"># {item.keyword}</button></Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 </div>

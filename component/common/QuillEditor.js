@@ -5,7 +5,6 @@ import {url,port,serverAddr} from '../../lib/api/client';
 import styles from '../../public/assets/styles/quill.module.css';
 import classnames from "classnames/bind"
 const cx = classnames.bind(styles);
-
 const QuillEditor = ({QuillChange,Contents}) => {
 
     const [showHtml, setShowHtml] = useState(false);
@@ -19,10 +18,12 @@ const QuillEditor = ({QuillChange,Contents}) => {
     const BackgroundStyle = Quill.import('attributors/style/background');
     const ColorStyle = Quill.import('attributors/style/color');
     const SizeStyle = Quill.import('attributors/style/size');
+
     SizeStyle.whitelist = fontSizeArr;
     Quill.register(BackgroundStyle, true);
     Quill.register(ColorStyle, true);
-    Quill.register(SizeStyle, true);
+    Quill.register(SizeStyle, true)
+
     const formats = [
         'header', 'font', 'size','color','background',
         'bold', 'italic', 'underline', 'strike', 'blockquote',
@@ -122,14 +123,6 @@ const QuillEditor = ({QuillChange,Contents}) => {
         quillInstance.current.root.innerHTML = Contents;
     }, [Contents]);
 
-
-    const onClickShowHtmlBtn = useCallback((e) => {
-        setShowHtml(showHtml =>(
-            !showHtml
-        ))
-        quillInstance.current.root.innerHTML = Contents;
-
-    }, [showHtml,Contents])
 
     const onClickImageBtn = () => {
         const input = document.createElement("input");

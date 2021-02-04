@@ -6,7 +6,14 @@ import {useRouter} from "next/router";
 import qs from "query-string";
 import Link from "next/link";
 import Pagination from "../../../component/common/Pagination";
-import {addKeyword, getKeyword, getKeywordList, initialize} from "../../../store/keyword/adminKeyword";
+import {
+    addKeyword,
+    deleteKeyword,
+    getKeyword,
+    getKeywordList,
+    initialize,
+    updateKeyword
+} from "../../../store/keyword/adminKeyword";
 const cx = classnames.bind(styles);
 import {DatePicker, Form, Input, Modal} from 'antd';
 import moment from "moment";
@@ -37,13 +44,15 @@ const KeywordManagePage = () => {
         searchValue:"",
     })
 
-    const {keywordList,keyword,addResult,addLoading,editResult,editLoading} = useSelector(({adminKeyword,loading})=> ({
+    const {keywordList,keyword,addResult,addLoading,editResult,editLoading,deleteResult,deleteLoading} = useSelector(({adminKeyword,loading})=> ({
         keywordList:adminKeyword.getKeywordList,
         keyword:adminKeyword.getKeyword,
         addResult:adminKeyword.addKeyword,
         addLoading:loading['adminKeyword/ADD_KEYWORD'],
         editResult:adminKeyword.updateKeyword,
-        editLoading:loading['adminKeyword/UPDATE_KEYWORD']
+        editLoading:loading['adminKeyword/UPDATE_KEYWORD'],
+        deleteResult:adminKeyword.deleteKeyword,
+        deleteLoading:loading['adminKeyword/DELETE_KEYWORD']
     }))
 
     const getList = () =>{
@@ -66,6 +75,7 @@ const KeywordManagePage = () => {
     useEffect(() =>{
         if(keyword != null){
             setEditInfo({...keyword})
+            setShowEditModal(true)
         }
 
     },[keyword])
@@ -142,7 +152,7 @@ const KeywordManagePage = () => {
 
     const handleShowEditModal = (keywordId) =>{
         dispatch(getKeyword(keywordId))
-        setShowEditModal(true)
+        // setShowEditModal(true)
     }
 
 
@@ -175,8 +185,42 @@ const KeywordManagePage = () => {
     },[addResult])
 
     const editSubmit = () =>{
-        console.log("edit submit")
+        dispatch(updateKeyword(editInfo))
     }
+
+    useEffect(() =>{
+        if(editResult.result && editResult.error == null){
+            Modal.success({
+                content: '키워드 수정이 완료되었습니다',
+                onOk:() => {handleEditCancel();getList();dispatch(initialize());}
+            });
+        }else if(editResult.result == false && editResult.error != null){
+            Modal.warning({
+                title: '수정 중 에러가 발생하였습니다'
+            });
+            dispatch(initialize())
+        }
+
+    },[editResult])
+
+    const deleteSubmit = () =>{
+        dispatch(deleteKeyword(editInfo.keywordId))
+    }
+
+    useEffect(() =>{
+        if(deleteResult.result && deleteResult.error == null){
+            Modal.success({
+                content: '키워드 삭제 완료되었습니다',
+                onOk:() => {handleEditCancel();getList();dispatch(initialize());}
+            });
+        }else if(deleteResult.result == false && deleteResult.error != null){
+            Modal.warning({
+                title: '삭제 중 에러가 발생하였습니다'
+            });
+            dispatch(initialize())
+        }
+
+    },[deleteResult])
 
     return (
         <>
@@ -303,11 +347,11 @@ const KeywordManagePage = () => {
                     </Form>
                 </Modal>
 
-                <Modal key="edit" title="키워드 수정" visible={showEditModal} onOk={editForm.submit} onCancel={handleEditCancel}
+                <Modal key="edit" title="키워드 수정" visible={showEditModal} onCancel={handleEditCancel}
                        footer={[
-                           <button key="removeBtn" className={cx("basic-btn01","btn-red-bg")} onClick={handleEditCancel}>삭제</button>,
+                           <button key="removeBtn" className={cx("basic-btn01","btn-red-bg")} onClick={deleteSubmit}>삭제</button>,
                            <button key="cancelBtn" className={cx("basic-btn01","btn-gray2-bg")} onClick={handleEditCancel}>취소</button>,
-                           <button key="addBtn" className={cx("basic-btn01","btn-blue-bg")} onClick={editForm.submit} disabled={editLoading}>확인</button>
+                           <button key="editBtn" className={cx("basic-btn01","btn-blue-bg")} onClick={editForm.submit} disabled={editLoading}>확인</button>
                        ]}
                 >
                     {keyword != null && (
