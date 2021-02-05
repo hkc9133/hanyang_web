@@ -149,13 +149,13 @@ class Pagination extends Component {
                     if (page === LEFT_PAGE)
                         return (
                             <button key={page} onClick={this.handleMoveLeft}>
-                                <Image src="/assets/image/admin/page_prev.gif" width={40} height={40} alt="page_prev"/>
+                                <img src="/assets/image/admin/page_prev.gif"  alt="page_prev"/>
                             </button>
                         );
                     if (page === RIGHT_PAGE)
                         return (
                             <button key={page} onClick={this.handleMoveRight}>
-                                <Image src="/assets/image/admin/page_next.gif" width={40} height={40} alt="page_next"/>
+                                <img src="/assets/image/admin/page_next.gif" alt="page_next"/>
                             </button>
                         );
                     return (

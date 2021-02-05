@@ -133,12 +133,10 @@ const ContentEditView = () => {
     useEffect(() =>{
 
         if(update.result && update.error == null){
-            // setUpdateResultModal(true);
             Modal.success({
                 title:"글쓰기 완료",
                 onOk:() =>{router.back();}
             });
-
         }
     },[update])
 

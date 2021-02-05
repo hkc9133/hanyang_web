@@ -28,6 +28,7 @@ export async function getStaticPaths() {
             { params: { boardName: 'people' } },
             { params: { boardName: 'online_content' } },
             { params: { boardName: 'startup_support_coverage' } },
+            { params: { boardName: 'ir' } },
         ],
         fallback: true
     };
@@ -38,7 +39,7 @@ export async function getStaticProps(context) {
         props: { boardName: context.params.boardName },
     };
 }
-const Write = () => {
+const Write = (props) => {
 
     const router = useRouter();
     const dispatch = useDispatch();
@@ -152,10 +153,6 @@ const Write = () => {
 
                     <div className={cx("admin_cont")}>
                         <Form form={form} onFinish={(e) =>{submitApply(e)}}
-                            // initialValues={{
-                            //     ["title"]:view.content.title,
-                            //     // ["categoryCodeId"]:view.content.categoryCodeId
-                            // }}
                         >
                             <h2 className={cx("title_style_1")}><span>작성</span></h2>
                             <div className={cx("tb_style_1","edit_form","content")}>
@@ -176,21 +173,6 @@ const Write = () => {
                                                 })}
                                             </select>
 
-                                            {/*<Form.Item*/}
-                                            {/*    name="categoryId"*/}
-                                            {/*    rules={[*/}
-                                            {/*        {*/}
-                                            {/*            required: true,*/}
-                                            {/*            message: '카테고리',*/}
-                                            {/*        },*/}
-                                            {/*    ]}*/}
-                                            {/*>*/}
-                                            {/*    <Select size='large' className={cx("cate")} onChange={changeCategory}>*/}
-                                            {/*        {board.categoryCode.map((item) => {*/}
-                                            {/*            return <Option key={item.categoryCodeId} value={item.categoryCodeId}>{item.categoryCodeName}</Option>*/}
-                                            {/*        })}*/}
-                                            {/*    </Select>*/}
-                                            {/*</Form.Item>*/}
                                         </td>
                                     </tr>
                                     <tr>
@@ -203,19 +185,24 @@ const Write = () => {
                                         <td>제목</td>
                                         <td>
                                             <input type="text" placeholder={"제목을 입력하세요."} name="title" value={writeInfo.title} onChange={changeWriteInfo}/>
-                                            {/*<Form.Item*/}
-                                            {/*    name="title"*/}
-                                            {/*    rules={[*/}
-                                            {/*        {*/}
-                                            {/*            required: true,*/}
-                                            {/*            message: '제목을 입력하세요.',*/}
-                                            {/*        },*/}
-                                            {/*    ]}*/}
-                                            {/*>*/}
-                                            {/*    <Input placeholder={"제목을 입력하세요."} name="title" value={writeInfo.title} onChange={changeWriteInfo}/>*/}
-                                            {/*</Form.Item>*/}
                                         </td>
                                     </tr>
+                                    {board.board.subName01 != "" && board.board.subName01 != null &&(
+                                        <tr>
+                                            <td>{board.board.subName01}</td>
+                                            <td>
+                                                <input type="text" placeholder={""} name="sub01" value={writeInfo.sub01 == null ? "" : writeInfo.sub01} onChange={changeWriteInfo}/>
+                                            </td>
+                                        </tr>
+                                    )}
+                                    {board.board.subName02 != "" && board.board.subName02 != null &&(
+                                        <tr>
+                                            <td>{board.board.subName02}</td>
+                                            <td>
+                                                <input type="text" placeholder={""} name="sub02" value={writeInfo.sub02 == null ? "" : writeInfo.sub02} onChange={changeWriteInfo}/>
+                                            </td>
+                                        </tr>
+                                    )}
                                     <tr>
                                         <td>내용</td>
                                         <td>
@@ -249,108 +236,8 @@ const Write = () => {
                         </Form>
                     </div>
                 </div>
-                {/*<Modal visible={addResultModal} closable={true} maskClosable={true} onClose={() => {setAddResultModal(false);router.back();}} cx={cx} className={"add_result_popup"}>*/}
-                {/*    <h1 className={cx("popup_title")}>글쓰기 완료</h1>*/}
-                {/*</Modal>*/}
             </section>
 
-
-        {/*<section className={cx("sub_container")}>*/}
-        {/*    <Form form={form} onFinish={(e) =>{submitApply(e)}}>*/}
-        {/*        <h1 className={cx("sub_top_title")}>{board.board.boardKrName}</h1>*/}
-        {/*        <p className={cx("sub_top_txt")}>{board.board.boardDesc != null  ? board.board.boardDesc : ""}</p>*/}
-        {/*        <div className={cx("bbs_write")}>*/}
-        {/*            <table>*/}
-        {/*                <colgroup>*/}
-        {/*                    <col style={{width:"18%"}}/>*/}
-        {/*                    <col/>*/}
-        {/*                </colgroup>*/}
-        {/*                <tbody>*/}
-        {/*                {board.categoryCode != null && board.board.categoryId != null && (*/}
-        {/*                    <tr>*/}
-        {/*                        <th scope="row">분류</th>*/}
-        {/*                        <td>*/}
-        {/*                            <Form.Item*/}
-        {/*                                name="categoryId"*/}
-        {/*                                rules={[*/}
-        {/*                                    {*/}
-        {/*                                        required: true,*/}
-        {/*                                        message: '카테고리',*/}
-        {/*                                    },*/}
-        {/*                                ]}*/}
-        {/*                            >*/}
-        {/*                                <Select size='large' className={cx("cate")} onChange={changeCategory}>*/}
-        {/*                                    {board.categoryCode.map((item) => {*/}
-        {/*                                        return <Option key={item.categoryCodeId} value={item.categoryCodeId}>{item.categoryCodeName}</Option>*/}
-        {/*                                    })}*/}
-        {/*                                </Select>*/}
-        {/*                            </Form.Item>*/}
-        {/*                        </td>*/}
-        {/*                    </tr>*/}
-        {/*                )}*/}
-        {/*                <tr>*/}
-        {/*                    <th scope="row">공지</th>*/}
-        {/*                    <td>*/}
-        {/*                        <Form.Item*/}
-        {/*                        >*/}
-        {/*                            <Checkbox checked={writeInfo.isNotice} onChange={(e) =>{setWriteInfo({...writeInfo,isNotice: e.target.checked})}}/>*/}
-        {/*                        </Form.Item>*/}
-        {/*                    </td>*/}
-        {/*                </tr>*/}
-        {/*                <tr>*/}
-        {/*                    <th scope="row">제목</th>*/}
-        {/*                    <td>*/}
-        {/*                        <Form.Item*/}
-        {/*                            name="title"*/}
-        {/*                            rules={[*/}
-        {/*                                {*/}
-        {/*                                    required: true,*/}
-        {/*                                    message: '제목을 입력하세요.',*/}
-        {/*                                },*/}
-        {/*                            ]}*/}
-        {/*                        >*/}
-        {/*                            <Input placeholder={"제목을 입력하세요."} name="title" value={writeInfo.title}*/}
-        {/*                                   onChange={changeWriteInfo}/>*/}
-        {/*                        </Form.Item>*/}
-        {/*                        /!*<input type="text" placeholder="제목을 입력하세요."/>*!/*/}
-        {/*                    </td>*/}
-        {/*                </tr>*/}
-        {/*                <tr>*/}
-        {/*                    <th scope="row">내용</th>*/}
-        {/*                    <td>*/}
-        {/*                        <QuillEditor Contents={content} QuillChange={setContent}/>*/}
-        {/*                    </td>*/}
-        {/*                </tr>*/}
-        {/*                {board.board.useFile && (*/}
-        {/*                    <tr>*/}
-        {/*                        <th scope="row">첨부파일</th>*/}
-        {/*                        <td>*/}
-        {/*                            <Upload*/}
-        {/*                                listType="picture-card"*/}
-        {/*                                fileList={writeInfo.attachFiles}*/}
-        {/*                                onPreview={handlePreview}*/}
-        {/*                                onChange={changeFileList}*/}
-        {/*                                // previewFile={(e)=>{console.log(e)}}*/}
-        {/*                            >*/}
-        {/*                                {writeInfo.attachFiles.length >= 8 ? null : uploadButton}*/}
-        {/*                            </Upload>*/}
-        {/*                            <span className={cx("title")}>첨부파일 (10MB 미만)</span>*/}
-        {/*                        </td>*/}
-        {/*                    </tr>*/}
-        {/*                )}*/}
-        {/*                </tbody>*/}
-        {/*            </table>*/}
-
-        {/*            <div className={"txt_c"}>*/}
-        {/*                <button type="submit" className={cx("basic-btn02","btn-blue-bd")}>저장</button>*/}
-        {/*                <button type="button" className={cx("basic-btn02","btn-gray-bd")} onClick={router.back}>취소</button>*/}
-        {/*            </div>*/}
-        {/*        </div>*/}
-        {/*    </Form>*/}
-        {/*    <Modal visible={addResultModal} closable={true} maskClosable={true} onClose={() => {setAddResultModal(false);router.back();}} cx={cx} className={"add_result_popup"}>*/}
-        {/*        <h1 className={cx("popup_title")}>글쓰기 완료</h1>*/}
-        {/*    </Modal>*/}
-        {/*</section>*/}
         </>
 
     );

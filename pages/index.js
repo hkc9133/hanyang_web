@@ -3,11 +3,11 @@ import styles from '../public/assets/styles/index/index.module.css';
 import classnames from "classnames/bind"
 import Link from "next/link";
 import Image from 'next/image'
-const Slider = dynamic(() => import("react-slick"), {
-    ssr: false,
-    loading: () => <p>Loading ...</p>,
-});
-// import Slider from "react-slick";
+// const Slider = dynamic(() => import("react-slick"), {
+//     ssr: false,
+//     loading: () => <p>Loading ...</p>,
+// });
+import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import wrapper from "../store/configureStore";
@@ -143,6 +143,13 @@ const Index = () => {
         router.push(`/search?page&searchField=title&searchValue=${searchValue}`)
     }
 
+    const handleEnter = (e) =>{
+        if(e.key == "Enter"){
+            searchBoard();
+        }
+
+    }
+
     return (
         <>
             <Head>
@@ -211,7 +218,7 @@ const Index = () => {
                         </li>
                     </ul>
                     <div className={cx("main_search_area")}>
-                        <input type="text" placeholder="검색어를 입력하세요." value={searchValue} onChange={(e) =>{setSearchValue(e.target.value)}}/>
+                        <input type="text" placeholder="검색어를 입력하세요." value={searchValue} onChange={(e) =>{setSearchValue(e.target.value)}} onKeyPress={handleEnter}/>
                         <button type="button" className={cx("btn_search")} onClick={() =>searchBoard()}>검색</button>
                     </div>
                     <div className={cx("searchWord")}>
@@ -508,10 +515,9 @@ const Index = () => {
                                               alt="family_site_stop"/></button>
                                 </li>
                                 <li>
-                                    <button type="button" className={cx("slick_next")} onClick={() => {
-                                        logoSlider.current.slickNext()
-                                    }}><Image src="/assets/image/family_site_next.jpg" width={44} height={46}
-                                              alt="family_site_next"/></button>
+                                    <button type="button" className={cx("slick_next")} onClick={() =>{logoSlider.current.slickNext()}}>
+                                        <Image src="/assets/image/family_site_next.jpg" width={44} height={46} alt="family_site_next"/>
+                                    </button>
                                 </li>
                             </ul>
                         </div>
