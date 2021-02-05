@@ -37,7 +37,7 @@ const UniversityStudent = () => {
 
                 <div className={cx("gray_bg", "university_studentCont_1")} id="hakbu_1">
                     <div className={cx("sub_cont")}>
-                        <h1 className={cx("title_style_3")}>학부 정규교과</h1>
+                        <h1 className={cx("title_style_3")}>학부정규교과</h1>
                         <p>
                             한양대학교는 기업가정신을 지닌 창의적융합인재 양성을 위하여 체계적인 창업교육 커리큘럼을 운영하고 있습니다. <br/>창업융합전공 미신청 학생도 교양으로 강의를 수강할
                             수 있습니다. (일부 강좌 제외)
@@ -238,27 +238,27 @@ const UniversityStudent = () => {
                                     <ul>
                                         <li>
                                             <span className={cx("title")}><b>01.</b> 기업가 역량 개발</span>
-                                            벤처창업의 이해, 데이터 분석방법론, 창업가의 난제, 리더십과 커뮤니케이션, 사회적기업가정신
+                                            벤처창업의 이해, 데이터분석방법론, 리더쉽과 커뮤니케이션, 창업가의 난제
                                         </li>
                                         <li>
                                             <span className={cx("title")}><b>02.</b> 사업기회 포착과 사업계획 수립</span>
-                                            글로벌창업트렌드, 창업기회론, 비즈니스모델 개발과 평가, 신제품개발론
+                                            글로벌창업트렌드, 창업기업론, 자금조달과 투자유치, 비즈니스 모델 개발과 평가, 신제품개발론
                                         </li>
                                         <li>
                                             <span className={cx("title")}><b>03.</b> 창업기업 경영</span>
-                                            창업기업 운영 특론, 창업마케팅
+                                            창업기업 운영 특론, 창업기업 법률과 지적재산권, 창업기업 세무와 회계,<br/>창업기업 지속가능 경영론
                                         </li>
                                         <li>
                                             <span className={cx("title")}><b>04.</b> 성장과 회수</span>
-                                            창업기업과 성장전략, 자금조달과 투자유치
+                                            창업기업과 성장전략
                                         </li>
                                         <li>
                                             <span className={cx("title")}><b>05.</b> 실전중심과목</span>
-                                            디자인씽킹과 린스타트업, 창업인턴쉽 1,2
+                                            디자인씽킹과 린스타트업, 창업인턴쉽
                                         </li>
                                         <li>
                                             <span className={cx("title")}><b>06.</b> 연구중심과목</span>
-                                            창업융합연구세미나, 창업정책세미나, 연구조사방법론, 석사논문연구
+                                            연구조사방법론, 창업융합연구세미나
                                         </li>
                                     </ul>
                                 </div>
@@ -565,7 +565,48 @@ const UniversityStudent = () => {
                                             </div>*/}
                             </div>
                         </div>
-
+                    </div>
+                    <div className={cx("txt_style_1","university_studentCont_6_list")}>
+                        <div className={cx("left_title")}>
+                            <h1 className={cx("title_style_2")}>비교과 프로그램</h1>
+                        </div>
+                        <div className={cx("txtArea")}>
+                            <ul>
+                                <li>
+                                    <h2 className={cx("title_style_4")}>창업경진대회 </h2>
+                                    <ul>
+                                        <li>벤처창업경진대회 : 대학(원)생들의 창의적 · 혁신적인 비즈니스모델 조기 발굴 및 육성을 위한 창업경진대회​</li>
+                                        <li>라이언컵 경진대회 : 당해 창업경진대회 수상자 중 최고의 혁신 아이템을 선발하는 창업경진대회 왕중왕전​</li>
+                                        <li>캠퍼스 CEO 창업경진대회 : 창업강좌 수강생들이 한 학기동안 발굴한 참신한 사업 아이디어를 점검하는 교내 창업경진대회​</li>
+                                        <li>소프트웨어 창업아이디어 경진대회 : 대학생 개발자 , 디자이너 , 마케터 등이 한 팀을 구성해 소프트웨어 기반 혁신 창업 아이디어를<br/>발굴하는 창업경진대회
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <h2 className={cx("title_style_4")}>창업 인턴십 </h2>
+                                    <ul>
+                                        <li>내가 바로 CEO: 사업계획서 집중 멘토링 , 비즈니스모델 고도화 등 사업아이템 검증을 위한 실전 창업캠프 창업인턴십​</li>
+                                        <li>국내 창업인턴십 : 창업교육을 통해 쌓은 지식을 활용하여 스타트업 등 국내 기업에서 직접 창업실무 경험​</li>
+                                        <li>글로벌 창업인턴십 : 해외 기업인들과 함께 현지 시장조사 , 사업기회 발굴 등의 미션을 수행하며 글로벌 창업과정 체험</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <h2 className={cx("title_style_4")}>학생창업보육 </h2>
+                                    <ul>
+                                        <li>창업동아리 : 한양대학교 재·휴학생 중 참신한 아이디어를 보유한 3인 이상의 팀을 선발하여 사업화지원금, 학생창업준비공간(공용),
+                                            창업교육, 멘토링 등 지원​
+                                        </li>
+                                        <li>247 스타트업 돔 : 24시간 주 7일 내내 창업을 꿈꾸는 학생들을 위한 기숙형 창업 공간으로 입사생 대상 특별교육, 전담멘토링 등
+                                            지원​
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            {/*<div className={cx("btn_area")}>
+                                <a href="http://entrepreneurship.hanyang.ac.kr/" className={cx("btn_more")} target="_blank">자세히
+                                    알아보기</a>
+                                            </div>*/}
+                        </div>
                     </div>
 
 
