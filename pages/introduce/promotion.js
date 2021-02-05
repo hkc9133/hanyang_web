@@ -11,7 +11,7 @@ const Promotion = () => {
     return (
         <>
             <PageNavigation/>
-            ㅋ <section className={cx("container")}>
+            <section className={cx("container")}>
             <div className={cx("sub_container", "promotion")}>
                 <h1 className={cx("sub_top_title")}>홍보자료</h1>
                 <p className={cx("sub_top_txt")}>한양대학교 창업지원단 홍보영상 , 브로슈어, CI를 소개합니다 .</p>
@@ -27,24 +27,24 @@ const Promotion = () => {
 
                 <div className={cx("txt_style_1")}>
                     <div className={cx("left_title")}>
-                        <span>한양대학교 창업지원단 </span>
+                        {/*<span>한양대학교 창업지원단 </span>*/}
                         <h3>브로슈어</h3>
                     </div>
                     <ul className={`${cx("brochure_list")} clfx `}>
                         <li>
                             <span>브로슈어 국문</span>
-                            <Link href="#"><a>PDF로 보기</a></Link>
+                            <Link href="/assets/pdf/bro_kor.pdf"><a target="_blank">PDF로 보기</a></Link>
                         </li>
                         <li>
                             <span>브로슈어 영문</span>
-                            <Link href="#"><a>PDF로 보기</a></Link>
+                            <Link href="/assets/pdf/bro_eng.pdf"><a target="_blank">PDF로 보기</a></Link>
                         </li>
                     </ul>
                 </div>
 
                 <div className={cx("txt_style_1")}>
                     <div className={cx("left_title")}>
-                        <span>한양대학교 창업지원단 </span>
+                        {/*<span>한양대학교 창업지원단 </span>*/}
                         <h3>C.I</h3>
                     </div>
                     <div className={`${cx("ci_list")} clfx `}>
