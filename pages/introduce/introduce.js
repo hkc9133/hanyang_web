@@ -429,6 +429,10 @@ const Introduce = () => {
                             </tr>
                             </tbody>
                         </table>
+
+                        <div className={cx("btn_area")}>
+                            <button type="button"><Link href="#"><a><span>더보기</span></a></Link></button>
+                        </div>
                     </div>
                 </div>
             </div>

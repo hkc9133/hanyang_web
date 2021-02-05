@@ -316,7 +316,7 @@
     .list_style_3 li .title, .list_style_3 li, .qa_list .question, .university_studentCont_4 .info li, .university_studentCont_4 p, .list_style_1 ul li,.list_style_1 ul li a{font-size:14px;}
     .university_studentCont_4 p .f-16{font-size:14px;}
     .list_style_3 li{padding-left:0; }
-    .list_style_3 li .title{position:relative; width:100%; margin-bottom:10px; }
+    .list_style_3 li .title{position:relative; display: block; width:100%; margin-bottom:10px; }
     .university_studentCont_6 .txtArea ul li{padding:15px 0;}
     .university_studentCont_6 .txtArea p{font-size:13px;}
     .btn_more{height:46px; line-height:46px; font-size:14px;}

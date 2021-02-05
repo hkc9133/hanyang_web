@@ -37,7 +37,7 @@ const UniversityStudent = () => {
 
                 <div className={cx("gray_bg", "university_studentCont_1")} id="hakbu_1">
                     <div className={cx("sub_cont")}>
-                        <h1 className={cx("title_style_3")}>학부정규교과</h1>
+                        <h1 className={cx("title_style_3")}>학부 정규교과</h1>
                         <p>
                             한양대학교는 기업가정신을 지닌 창의적융합인재 양성을 위하여 체계적인 창업교육 커리큘럼을 운영하고 있습니다. <br/>창업융합전공 미신청 학생도 교양으로 강의를 수강할
                             수 있습니다. (일부 강좌 제외)
@@ -115,10 +115,14 @@ const UniversityStudent = () => {
                                     style={{height: '100%', borderRight: 'none'}}
                                 >
                                     <SubMenu key="sub3" className={cx("dropdown_title")} title={<div className={cx("question")}>2016년~2019년 교육과정</div>}>
-                                        <Menu.Item key="2"></Menu.Item>
+                                        <Menu.Item key="2">
+
+                                        </Menu.Item>
                                     </SubMenu>
                                     <SubMenu key="sub4" className={cx("dropdown_title")} title={<div className={cx("question")}>2020년~2023년 교육과정</div>}>
-                                        <Menu.Item key="3"></Menu.Item>
+                                        <Menu.Item key="3">
+
+                                        </Menu.Item>
                                     </SubMenu>
                                 </Menu>
                                 <p>교양으로 창업강좌를 수강하는 학생들은 가장 최근 교육과정의 로드맵을,<br/>융합전공생은 본인에게 해당하는 교육과정표를 확인해 주세요.</p>
@@ -234,27 +238,27 @@ const UniversityStudent = () => {
                                     <ul>
                                         <li>
                                             <span className={cx("title")}><b>01.</b> 기업가 역량 개발</span>
-                                            벤처창업의 이해, 데이터분석방법론, 리더쉽과 커뮤니케이션, 창업가의 난제
+                                            벤처창업의 이해, 데이터 분석방법론, 창업가의 난제, 리더십과 커뮤니케이션, 사회적기업가정신
                                         </li>
                                         <li>
                                             <span className={cx("title")}><b>02.</b> 사업기회 포착과 사업계획 수립</span>
-                                            글로벌창업트렌드, 창업기업론, 자금조달과 투자유치, 비즈니스 모델 개발과 평가, 신제품개발론
+                                            글로벌창업트렌드, 창업기회론, 비즈니스모델 개발과 평가, 신제품개발론
                                         </li>
                                         <li>
                                             <span className={cx("title")}><b>03.</b> 창업기업 경영</span>
-                                            창업기업 운영 특론, 창업기업 법률과 지적재산권, 창업기업 세무와 회계,<br/>창업기업 지속가능 경영론
+                                            창업기업 운영 특론, 창업마케팅
                                         </li>
                                         <li>
                                             <span className={cx("title")}><b>04.</b> 성장과 회수</span>
-                                            창업기업과 성장전략
+                                            창업기업과 성장전략, 자금조달과 투자유치
                                         </li>
                                         <li>
                                             <span className={cx("title")}><b>05.</b> 실전중심과목</span>
-                                            디자인씽킹과 린스타트업, 창업인턴쉽
+                                            디자인씽킹과 린스타트업, 창업인턴쉽 1,2
                                         </li>
                                         <li>
                                             <span className={cx("title")}><b>06.</b> 연구중심과목</span>
-                                            연구조사방법론, 창업융합연구세미나
+                                            창업융합연구세미나, 창업정책세미나, 연구조사방법론, 석사논문연구
                                         </li>
                                     </ul>
                                 </div>

@@ -89,9 +89,12 @@
 .vision_list>li.icon_5{background:url(../../image/mission_icon_5.jpg) no-repeat 20px 10px; }
 .vision_list>li .c-sky{color:#0069f8; font-weight:normal;}
 .organization .img_area{margin:-30px 0 35px;}
-.introduction table{margin-bottom:60px; border-top:2px solid #000;}
+.introduction table{margin-bottom:20px; border-top:2px solid #000;}
 .introduction td{padding:20px 5px;  border:1px solid #dedede; text-align:center; font-size:16px; border-right:none; }
 .introduction td:first-child{border-left:none; }
+.organization .btn_area{text-align:right; }
+.organization .btn_area button{width:120px; height:40px; line-height:40px; display:inline-block; text-align:center; border:1px solid #000; border-radius:5px; }
+.organization .btn_area button span{line-height:40px;  display:inline-block; font-size:16px; }
 
 
 
