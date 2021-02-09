@@ -290,7 +290,7 @@ const Index = () => {
                     </div>
 
                     <div className={cx("main_Elearning")}>
-                        <h1><Link href="/"><a>E-러닝 컨텐츠</a></Link></h1>
+                        <h1><Link href="/"><a>온라인 콘텐츠</a></Link></h1>
                         <div className={cx("e_learning_slide")}>
                             <div className={cx("list")}>
                                 <Link href="/">
@@ -444,28 +444,27 @@ const Index = () => {
 
             <div className={cx("main_cont_6")}>
                 <div className={cx("main_cont")}>
-                    <h1>국내 제1의 스타트업 대학, 한양대학교</h1>
+                    <h1>국내 제1위 창업대학의 비결은 '혁신'</h1>
                     <ul className={'clfx'}>
                         <li className={cx("icon_1")}>
-                            <span className={cx("txt_1")}>국내 최고의 창업교육 역량</span>
-                            <span className={cx("txt_2")}>Student Startup</span>
+                            <span className={cx("txt_1")}>최고 창업교육 우수대학</span>
+                            {/*<span className={cx("txt_2")}>Student Startup</span>*/}
                             <p className={cx("txt_3")}>
-                                창업교육 최우수대학 선정 <br/>교육부 장관상 수상
+                                창업교육 우수대학 선정 <br/>벤처창업진흥 유공 국무총리 표창<br/>창업강좌수 1위, 비교과 창업활동 1위
                             </p>
                         </li>
                         <li className={cx("icon_2")}>
-                            <span className={cx("txt_1")}>혁신창업을 선도하는 한양</span>
-                            <span className={cx("txt_2")}>hanyang Startup</span>
+                            <span className={cx("txt_1")}>국내 1위 벤처창업 CEO 배출 대학</span>
+                            {/*<span className={cx("txt_2")}>hanyang Startup</span>*/}
                             <p className={cx("txt_3")}>
-                                학생창업기업 배출 국내 대학1위 <br/>동문CEO 기업 10,213개 내용
+                                학생 창업자수 1위, 벤처 CEO 배출 1위 <br/>한양대 출신 CEO 기업 13,447개<br/>2019년 매출 607조, 국내 GDP 31.7%
                             </p>
                         </li>
                         <li className={cx("icon_3")}>
-                            <span className={cx("txt_1")}>Startup, Scale Up!</span>
-                            <span className={cx("txt_2")}>hanyang Startup</span>
+                            <span className={cx("txt_1")}>최고 산학협력 및 기술사업화 대학</span>
+                            {/*<span className={cx("txt_2")}>hanyang Startup</span>*/}
                             <p className={cx("txt_3")}>
-                                글로벌 창업거점센터 설립 <br/>
-                                글로벌 스타트업 멘토단 운영
+                                국내 사립대 최초 산학협력단 설립<br/>국내 대학 최초 기술지주회사 설립<br/>국내 대학 최고의 기술·이전 사업화 역량과 인프라 보유
                             </p>
                         </li>
                     </ul>
@@ -484,10 +483,10 @@ const Index = () => {
                                                                height={88} alt="family_site"/></div>
                             <div className={cx("list")}><Image src="/assets/image/family_site_4.jpg" width={86}
                                                                height={88} alt="family_site"/></div>
-                            <div className={cx("list")}><Image src="/assets/image/family_site_5.jpg" width={120}
+                            {/*<div className={cx("list")}><Image src="/assets/image/family_site_5.jpg" width={120}
                                                                height={88} alt="family_site"/></div>
                             <div className={cx("list")}><Image src="/assets/image/family_site_6.jpg" width={126}
-                                                               height={88} alt="family_site"/></div>
+                            height={88} alt="family_site"/></div>*/}
                             <div className={cx("list")}><Image src="/assets/image/family_site_1.jpg" width={150}
                                                                height={88} alt="family_site"/></div>
                             <div className={cx("list")}><Image src="/assets/image/family_site_2.jpg" width={126}

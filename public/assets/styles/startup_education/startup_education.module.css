@@ -54,6 +54,11 @@
 .qa_list .dropdown_title{padding: 5px 0px;}
 .qa_list .dropdown_content{height: auto;}
 
+.university_studentCont_2 .tb_style_1:first-child{margin-bottom: 35px;}
+.university_studentCont_2 .tb_style_1 h3{font-size: 24px; text-align: center; margin-bottom: 10px;}
+.university_studentCont_2 .tb_style_1 td{font-size: 14px; line-height: 18px;}
+.university_studentCont_2 .tb_style_1 td:last-child{font-size: 12px;}
+
 .qa_list .question{padding:0px 80px 0px 0; font-size:18px; font-family: 's-core-dream-medium'; background:url(../../image/arrow.png) no-repeat right 5px center; cursor:pointer;}
 .qa_list .answer{padding:20px; border-top:1px solid #afafaf; display:none;}
 .list_style_1 ul li a{padding-right:20px; background:url(../../image/arrow2.gif) no-repeat right center; font-size:18px; }
@@ -70,6 +75,7 @@
 .university_studentCont_4 .info{/*padding-top:50px;*/ margin-bottom:10px; }
 .university_studentCont_4 .info li{margin-right:10px; display:inline-block; font-size:18px; }
 .university_studentCont_4 .kakao{padding-left:40px; background:url(../../image/icon_kakao.png) no-repeat 0 center; font-size:18px;}
+
 .university_studentCont_6 .txtArea p{font-size:16px; line-height:1.6; }
 .university_studentCont_6 .txtArea ul{margin-bottom:50px; }
 .university_studentCont_6 .txtArea ul li:first-child{border-top:1px solid #ddd; }

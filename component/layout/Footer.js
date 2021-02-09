@@ -17,13 +17,13 @@ const Footer = () => {
                 <div className={cx("footer","clfx")}>
                     <div className={cx("cs_center")}>
                         <h1>원스톱 창업상담실</h1>
-                        <div className={cx("tel")}>2220-3000</div>
+                        <div className={cx("tel")}>02-<br/>2220-3000</div>
                     </div>
                     <div className={cx("business_hours")}>
                         <ul>
                             <li>
                                 <span>평일</span>
-                                09:00 - 18:00
+                                10:00 - 17:00
                             </li>
                             <li>
                                 <span>휴일</span>
@@ -43,7 +43,7 @@ const Footer = () => {
                         </ul>
                     </div>
                     <div className={cx("footer_notice")}>
-                        <h1>공지사항</h1>
+                        <h1>아이디어 제안</h1>
                         <ul>
                             {mainData.notice.map( (item,index) =>
                                 index < 3 && <li key={item.noticeId}><Link href={`/introduce/notice/${item.noticeId}`}><a>{item.title}</a></Link></li>
@@ -56,7 +56,7 @@ const Footer = () => {
             <div className={cx("footer_menu")}>
                 <div className={cx("footer")}>
                     <ul>
-                        <li className={cx("mb_hide")}><Link href="/"><a>한양대학 교창업지원단 소개</a></Link></li>
+                        <li className={cx("mb_hide")}><Link href="/"><a>한양대학교 창업지원단 소개</a></Link></li>
                         <li><Link href="/"><a><strong>개인정보처리방침</strong></a></Link></li>
                         <li><Link href="/"><a>이용약관</a></Link></li>
                         <li><Link href="/"><a>이메일 주소무단 수집거부</a></Link></li>
@@ -92,9 +92,9 @@ const Footer = () => {
                     </div>
                     <div className={cx("footer_logo")}><Image src="/assets/image/footer_logo.png"  width={238} height={38} alt="한양대학교 창업지원단"/></div>
                     <div className={cx("footer_cont")}>
-                        <address>한양대학교창업지원단 주소: 04763 서울특별시 성동구 왕십리로 222 한양대학교 HIT 103호</address>
-                        <p>홈페이지 책임자 : 류창완 / 관리자 : 구태용 / 담당자 : 박민정 startup@hanyang.ac.kr </p>
-                        <p className={cx("copyright")}>&copy; 2015. Startup Support Foundation, Hanyang University. All rights
+                        <address>주소: (04763) 서울특별시 성동구 왕십리로 222 한양대학교 HIT 103호</address>
+                        <p>홈페이지 책임자 : 구태용 / 관리자(담당자) : 장상길 / startup@hanyang.ac.kr </p>
+                        <p className={cx("copyright")}>&copy; 2021. Startup Support Foundation, Hanyang University. All rights
                             reserved.</p>
                     </div>
                 </div>

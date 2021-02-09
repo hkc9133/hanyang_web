@@ -222,6 +222,9 @@ input[type=file]::-webkit-file-upload-button{
 .ant-picker-ranges .ant-picker-ok button span:hover{color:white;}
 
 .ant-menu-submenu-arrow{display: none;}
+.ant-menu-item:hover, .ant-menu-item-active, .ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open, .ant-menu-submenu-active:hover{
+    color:rgba(0, 0, 0, 0.85);
+}
 
 .mentoring_applicants .ant-picker{height: 50px;width:100%}
 /*캘린더*/
