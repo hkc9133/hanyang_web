@@ -307,8 +307,8 @@ const ContentView = () => {
                     // confirmLoading={deletePlaceResult.result}
                     onCancel={() =>{setShowRemoveModal(false)}}
                     footer={[
-                        <button className={cx("basic-btn01","btn-gray-bg")} onClick={() =>{setShowRemoveModal(false);}}>취소</button>,
-                        <button className={cx("basic-btn02","btn-red-bg")} onClick={handleDeleteContent}>삭제</button>
+                        <button key={"cancel_btn"} className={cx("basic-btn01","btn-gray-bg")} onClick={() =>{setShowRemoveModal(false);}}>취소</button>,
+                        <button key={"delete_btn"} className={cx("basic-btn02","btn-red-bg")} onClick={handleDeleteContent}>삭제</button>
                     ]}
                 >
                     <p className={cx("warning")}>{view.content.title}</p>

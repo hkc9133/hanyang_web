@@ -69,6 +69,12 @@
 .total_menu .logoArea{padding:25px 20px 0; height:90px; background-color:#3d89f9; box-sizing:border-box; }
 .total_menu>ul>li{border-bottom:1px solid #e0e1e5;}
 .total_menu>ul>li>a{position:relative; padding:20px; display:block; font-size:15px; font-family:"s-core-dream-medium";}
+.total_menu .mypage_link{position: relative;
+    padding: 20px;
+    display: block;
+    font-size: 15px;
+    margin-top: 20px;
+    font-family: "s-core-dream-medium";}
 .total_menu>ul>li>a:before{position:absolute; right:15px; top:50%; width:7px; height:1px; display:block; background-color:#333; content:""; transform: rotate( -45deg );}
 .total_menu>ul>li>a:after{position:absolute; right:20px; top:50%; width:7px; height:1px; display:block; background-color:#333; content:""; transform: rotate( 45deg );}
 .total_menu .s_menu{background-color:#fff;
@@ -115,6 +121,8 @@
 @media screen and (min-width: 1400px){
     .gnb:hover:before{height:350px; }
     .gnb:hover .s_gnb{height:auto; }
+
+    .login_box .top_mypage{display: none;}
 }
 @media screen and (max-width: 1400px){
 

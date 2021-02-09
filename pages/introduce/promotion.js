@@ -65,8 +65,8 @@ const Promotion = () => {
                     </div>
                     <div className={cx("btn_area")}>
                         <ul className={`${cx("brochure_list")} clfx `}>
-                            <li><Link href="#"><a>JPG 다운로드</a></Link></li>
-                            <li><Link href="#"><a>AI 다운로드</a></Link></li>
+                            <li><Link href="/assets/한양대학교 창업지원단 로고.zip" target="_blank" download>JPG 다운로드</Link></li>
+                            <li><Link href="/assets/한양대학교 창업지원단 로고.zip" target="_blank" download>AI 다운로드</Link></li>
                         </ul>
                     </div>
                 </div>

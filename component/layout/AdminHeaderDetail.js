@@ -43,26 +43,27 @@ const AdminHeaderDetail = () => {
                         <div className={cx("adm_menu_icon")}>
                             <Image src="/assets/image/admin/adm_detail_3.png" width={80} height={80} alt="adm_menu"/>
                         </div>
-                        <h3 className={cx("adm_menu_title")}>게시판 관리</h3>
+                        <h3 className={cx("adm_menu_title")}>사이트 관리</h3>
                     </div>
                     <ul>
+                        <li><Link href="/admin/notice/list"><a>공지사항 관리</a></Link></li>
                         <li><Link href="/admin/board/list"><a>게시판 관리</a></Link></li>
                     </ul>
                 </>
             )}
-            {router.pathname.startsWith("/admin/notice/list") && (
-                <>
-                    <div className={cx("adm_menu_head")}>
-                        <div className={cx("adm_menu_icon")}>
-                            <Image src="/assets/image/admin/adm_detail_1.png" width={80} height={80} alt="adm_menu"/>
-                        </div>
-                        <h3 className={cx("adm_menu_title")}>공지사항 관리</h3>
-                    </div>
-                    <ul>
-                        <li><Link href="/admin/notice/list"><a>공지사항 관리</a></Link></li>
-                    </ul>
-                </>
-            )}
+            {/*{router.pathname.startsWith("/admin/notice/list") && (*/}
+            {/*    <>*/}
+            {/*        <div className={cx("adm_menu_head")}>*/}
+            {/*            <div className={cx("adm_menu_icon")}>*/}
+            {/*                <Image src="/assets/image/admin/adm_detail_1.png" width={80} height={80} alt="adm_menu"/>*/}
+            {/*            </div>*/}
+            {/*            <h3 className={cx("adm_menu_title")}>공지사항 관리</h3>*/}
+            {/*        </div>*/}
+            {/*        <ul>*/}
+            {/*            <li><Link href="/admin/notice/list"><a>공지사항 관리</a></Link></li>*/}
+            {/*        </ul>*/}
+            {/*    </>*/}
+            {/*)}*/}
 
             {(router.pathname.startsWith("/admin/mentor") || router.pathname.startsWith("/admin/counsel_apply"))  && (
                 <>
@@ -75,6 +76,8 @@ const AdminHeaderDetail = () => {
                     <ul>
                         <li><Link href="/admin/mentor"><a>멘토 관리</a></Link></li>
                         <li><Link href="/admin/counsel_apply"><a>상담 신청서 관리</a></Link></li>
+                        <li><Link href="/admin/popup"><a>팝언 관리</a></Link></li>
+                        <li><Link href="/admin/keyword"><a>검색어 관리</a></Link></li>
                     </ul>
                 </>
             )}
@@ -105,19 +108,6 @@ const AdminHeaderDetail = () => {
                     </ul>
                 </>
             )}
-            {router.pathname.startsWith("/admin/popup") && (
-                <>
-                    <div className={cx("adm_menu_head")}>
-                        <div className={cx("adm_menu_icon")}>
-                            <Image src="/assets/image/admin/adm_detail_3.png" width={80} height={80} alt="adm_menu"/>
-                        </div>
-                        <h3 className={cx("adm_menu_title")}>팝업</h3>
-                    </div>
-                    <ul>
-                        <li><Link href="/admin/popup"><a>팝업 관리</a></Link></li>
-                    </ul>
-                </>
-            )}
             {(router.pathname.startsWith("/admin/student_report") || router.pathname.startsWith("/admin/startup_present")) && (
                 <>
                     <div className={cx("adm_menu_head")}>
@@ -132,19 +122,32 @@ const AdminHeaderDetail = () => {
                     </ul>
                 </>
             )}
-            {router.pathname.startsWith("/admin/keyword") && (
-                <>
-                    <div className={cx("adm_menu_head")}>
-                        <div className={cx("adm_menu_icon")}>
-                            <Image src="/assets/image/admin/adm_detail_3.png" width={80} height={80} alt="adm_menu"/>
-                        </div>
-                        <h3 className={cx("adm_menu_title")}>검색어 관리</h3>
-                    </div>
-                    <ul>
-                        <li><Link href="/admin/keyword"><a>검색어 관리</a></Link></li>
-                    </ul>
-                </>
-            )}
+            {/*{router.pathname.startsWith("/admin/popup") && (*/}
+            {/*    <>*/}
+            {/*        <div className={cx("adm_menu_head")}>*/}
+            {/*            <div className={cx("adm_menu_icon")}>*/}
+            {/*                <Image src="/assets/image/admin/adm_detail_3.png" width={80} height={80} alt="adm_menu"/>*/}
+            {/*            </div>*/}
+            {/*            <h3 className={cx("adm_menu_title")}>팝업</h3>*/}
+            {/*        </div>*/}
+            {/*        <ul>*/}
+            {/*            <li><Link href="/admin/popup"><a>팝업 관리</a></Link></li>*/}
+            {/*        </ul>*/}
+            {/*    </>*/}
+            {/*)}*/}
+            {/*{router.pathname.startsWith("/admin/keyword") && (*/}
+            {/*    <>*/}
+            {/*        <div className={cx("adm_menu_head")}>*/}
+            {/*            <div className={cx("adm_menu_icon")}>*/}
+            {/*                <Image src="/assets/image/admin/adm_detail_3.png" width={80} height={80} alt="adm_menu"/>*/}
+            {/*            </div>*/}
+            {/*            <h3 className={cx("adm_menu_title")}>검색어 관리</h3>*/}
+            {/*        </div>*/}
+            {/*        <ul>*/}
+            {/*            <li><Link href="/admin/keyword"><a>검색어 관리</a></Link></li>*/}
+            {/*        </ul>*/}
+            {/*    </>*/}
+            {/*)}*/}
         </div>
     );
 };

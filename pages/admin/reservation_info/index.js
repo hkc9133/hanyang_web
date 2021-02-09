@@ -136,9 +136,7 @@ const ReservationInfo = () => {
                 Modal.success({
                     title: '저장이 완료되었습니다',
                     mask:false,
-                    // content: 'some messages...some messages...',
                 });
-                // setShowResultModal(true)
             }else{
                 Modal.error({
                     title: '작업 중 에러가 발생하였습니다'

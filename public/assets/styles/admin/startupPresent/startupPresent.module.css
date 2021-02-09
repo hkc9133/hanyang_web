@@ -30,7 +30,7 @@
 /*.tb_style_2 td p{margin-left:20px; display:inline-block; font-size:14px; color:#596475;}*/
 /*.tb_style_2 td span{margin-left:10px; display:inline-block; font-size:14px; color:#596475;}*/
 .tb_style_2 td select,
-.tb_style_2 td input[type=text]{width:160px; height:32px; line-height:30px; box-sizing:border-box; vertical-align:top;}
+.tb_style_2 td input{width:95%; line-height:30px; box-sizing:border-box; vertical-align:top;}
 .tb_style_2 td input[type=text].w_60{width:60px; }
 .tb_style_2 td input[type=text].w_100p{width:100%;}
 .tb_style_2 td .photoArea{margin:0 auto; position:relative; margin-bottom:20px; width:200px; height:200px; }

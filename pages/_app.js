@@ -51,7 +51,10 @@ const _App = ({Component, pageProps}) => {
 
     useEffect(() => {
         dispatch(authCheck())
-        dispatch(getMainData())
+
+        if(!router.pathname.startsWith("/admin")){
+            dispatch(getMainData())
+        }
     }, [router])
 
     useEffect(() => {

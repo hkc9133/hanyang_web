@@ -1,14 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {useRouter} from "next/router";
 import {useSelector,useDispatch} from "react-redux";
-import {getBoard, initializeForm, updateBoard} from "../../../../store/board/adminBoard";
+import {getBoard, initialize, initializeForm, updateBoard} from "../../../../store/board/adminBoard";
 
 import styles from '../.././../../public/assets/styles/admin/board/board.module.css';
 import classnames from "classnames/bind"
 import wrapper from "../../../../store/configureStore";
 import client from "../../../../lib/api/client";
 import {END} from "redux-saga";
-import { Tag } from 'antd';
+import {Modal, Tag} from 'antd';
 import 'antd/dist/antd.css';
 
 const cx = classnames.bind(styles);
@@ -30,7 +30,9 @@ const Edit = () => {
     const [boardValue, setBoardValue] = useState({
         boardKrName:"",
         boardDesc:"",
-        categoryId:""
+        categoryId:"",
+        subName01:"",
+        subName02:"",
     })
     const [categoryValue, setCategoryValue] = useState(null)
     const [categoryCodeValue, setCategoryCodeValue] = useState(null)
@@ -44,7 +46,6 @@ const Edit = () => {
     }))
 
     useEffect(() =>{
-        console.log(router)
         if(router.params == undefined){
             return
         }else{
@@ -70,9 +71,15 @@ const Edit = () => {
     },[board])
 
     useEffect(() => {
-        if(update.result === true && update.error === null){
-            alert("업데이트 성공")
-            router.push("/admin/board/list")
+        console.log(boardValue)
+    },[boardValue])
+
+    useEffect(() => {
+        if(update.result && update.error == null){
+            Modal.success({
+                title:"수정 완료",
+                onOk:() =>{dispatch(initialize());router.back();}
+            });
         }
 
     },[update])
@@ -94,7 +101,6 @@ const Edit = () => {
     }
 
     const saveBoard = (e) =>{
-        console.log(boardValue)
         dispatch(updateBoard(boardValue))
     }
 
@@ -179,6 +185,18 @@ const Edit = () => {
                                             <option value={false}>사용안함</option>
                                             <option value={true}>사용</option>
                                         </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>서브 1</th>
+                                    <td>
+                                        <input className={cx("txt")} type="text" name="subName01" value={boardValue.subName01} onChange={(e)=>{changeBoardValue(e)}}/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>서브 2</th>
+                                    <td>
+                                        <input className={cx("txt")} type="text" name="subName02" value={boardValue.subName02} onChange={(e)=>{changeBoardValue(e)}}/>
                                     </td>
                                 </tr>
                                 </tbody>

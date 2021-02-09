@@ -18,6 +18,7 @@ const StartupPresentManagePage = () => {
     const [searchInfo, setSearchInfo] = useState({
         searchField:"",
         searchValue:"",
+        page:1
     })
 
     const {startupPresentList} = useSelector(({adminStartupPresent,loading})=> ({
@@ -25,18 +26,21 @@ const StartupPresentManagePage = () => {
     }))
 
 
+    const search = (data) => {
+        dispatch(getStartupPresentList(data))
+    }
+
     useEffect(() => {
 
-        const { page = 1,searchValue = null,searchField = null} = router.query
 
         const data = {
-            page:page,
-            searchValue:searchValue,
-            searchField:searchField,
+            page:1,
+            searchValue:"",
+            searchField:"",
         }
 
         dispatch(getStartupPresentList(data))
-    },[router.query])
+    },[])
 
     const pageChange = useCallback((page) =>{
         const {} = router.query
@@ -125,41 +129,42 @@ const StartupPresentManagePage = () => {
                                 <colgroup>
                                     <col style={{width: "4.6%"}}/>
                                     <col/>
-                                    <col style={{width: "25.5%"}}/>
+                                    {/*<col style={{width: "1.5%"}}/>*/}
                                     <col/>
                                 </colgroup>
                                 <thead>
                                 <tr>
                                     <th scope="col">NO</th>
-                                    <th scope="col">이름</th>
-                                    <th scope="col">기간</th>
-                                    <th scope="col">PC</th>
-                                    <th scope="col">MOBILE</th>
-                                    <th scope="col">등록일</th>
+                                    <th scope="col">구분</th>
+                                    <th scope="col">회사명</th>
+                                    <th scope="col">비지니스 분야</th>
+                                    <th scope="col">활용 기술</th>
+                                    <th scope="col">대표자명</th>
+                                    <th scope="col">회사 번호</th>
+                                    <th scope="col">회사 페이지</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 {startupPresentList.list.map((item) => {
                                     return (
-                                        <tr key={item.popupId}>
-                                            {/*<td>*/}
-                                            {/*    {item.rownum}*/}
-                                            {/*</td>*/}
-                                            {/*<td>*/}
-                                            {/*    <Link href={`${router.pathname}/${item.popupId}`}><a>{item.title}</a></Link>*/}
-                                            {/*</td>*/}
-                                            {/*<td>*/}
-                                            {/*    {`${item.start} ~ ${item.end}`}*/}
-                                            {/*</td>*/}
-                                            {/*<td>*/}
-                                            {/*    {item.isPc ? "사용" : '미사용'}*/}
-                                            {/*</td>*/}
-                                            {/*<td>*/}
-                                            {/*    {item.isMobile ? "사용" : '미사용'}*/}
-                                            {/*</td>*/}
-                                            {/*<td>*/}
-                                            {/*    {item.regDate}*/}
-                                            {/*</td>*/}
+                                        <tr key={item.rownum}>
+                                            <td>{item.rownum}</td>
+                                            <td>{item.gubun}</td>
+                                            <td><Link href={`${router.pathname}/${item.startupId}`}><a>{item.companyName}</a></Link></td>
+                                            <td>
+                                                {item.businessFieldList.map((field,i) =>(
+                                                    `${field.businessName} ${i != item.businessFieldList.length-1 ? '|' :  ''} `
+                                                ))}
+                                            </td>
+                                            <td>
+                                                {item.techFieldList.map((field,i) =>(
+                                                    `${field.techName} ${i != item.techFieldList.length-1 ? '|' :  ''} `
+                                                ))}
+                                            </td>
+                                            <td>{item.companyOwner}</td>
+                                            <td>{item.companyPhoneNum}</td>
+                                            <td>{item.homepage}</td>
+
                                         </tr>
                                     )
                                 })}
