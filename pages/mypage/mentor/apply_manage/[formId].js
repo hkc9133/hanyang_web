@@ -6,17 +6,20 @@ import {useDispatch, useSelector} from "react-redux";
 import {
     addDiary,
     getMentorCounselApply,
-    getMentorCounselApplyList,
+    getMentorCounselApplyList, getWayItem,
     initialize, initializeForm,
     updateCounselApplyStatus
 } from "../../../../store/mentoring/mentoring";
 import {useRouter} from "next/router";
 import dynamic from "next/dynamic";
-import {Form, Upload} from "antd";
+import {Checkbox, Form, Upload,DatePicker} from "antd";
 import {fileDownload} from "../../../../store/file/file";
 import {PlusOutlined} from "@ant-design/icons";
 import {addBoardContent} from "../../../../store/board/board";
 import Modal from "../../../../component/common/Modal";
+import moment from "moment";
+import locale from "antd/lib/date-picker/locale/ko_KR";
+const {RangePicker} = DatePicker;
 
 const QuillEditor = dynamic(() => import("../../../../component/common/QuillEditor"), {
     ssr: false,
@@ -35,16 +38,20 @@ const CounselApplyDetail = () => {
     const [applyStatus, setApplyStatus] = useState(null);
     const [answer, setAnswer] = useState({
         attachFiles: [],
+        wayIdList:[],
+        place:""
     });
     const [content, setContent] = useState("");
-    const {user, counselApply, statusUpdate, addDiaryResult} = useSelector(({auth, mentoring, loading}) => ({
+    const {user, counselApply, statusUpdate, addDiaryResult,wayItem} = useSelector(({auth, mentoring, loading}) => ({
         user: auth.user,
         counselApply: mentoring.getCounselApply,
         statusUpdate: mentoring.statusUpdate,
-        addDiaryResult: mentoring.addDiary
+        addDiaryResult: mentoring.addDiary,
+        wayItem:mentoring.wayItem,
     }))
 
     useEffect(() => {
+        dispatch(getWayItem())
         dispatch(getMentorCounselApply(router.query.formId))
         return () => {
             dispatch(initialize());
@@ -82,11 +89,19 @@ const CounselApplyDetail = () => {
 
     const changeAnswer = useCallback((e) => {
         const {name, value} = e.target;
+
         setAnswer(answer => ({
             ...answer,
             [name]: value
         }))
     }, [])
+
+    const changeWayItem = (e) =>{
+        setAnswer(answer => ({
+            ...answer,
+            wayIdList: e
+        }))
+    }
 
     const changeFileList = useCallback(({fileList}) => {
         setAnswer(answer => ({
@@ -116,6 +131,15 @@ const CounselApplyDetail = () => {
         dispatch(updateCounselApplyStatus(data));
     }
 
+
+    const changeDate = (value) => {
+        setAnswer({
+            ...answer,
+            start: value[0],
+            end: value[1],
+        })
+    }
+
     const submitAnswer = (e) => {
         if (counselApply.counselApply.applyStatus != 'PROCESS') {
             setShowAlertModal(true);
@@ -124,6 +148,8 @@ const CounselApplyDetail = () => {
                 ...answer,
                 formId: apply.formId,
                 answer: content,
+                start: answer.start.format("YYYY-MM-DD HH:mm").toString(),
+                end: answer.end.format("YYYY-MM-DD HH:mm").toString(),
                 files: answer.attachFiles.map((item) => (item.originFileObj)),
             }
             dispatch(addDiary(data))
@@ -151,7 +177,7 @@ const CounselApplyDetail = () => {
                         <div className={cx("my_mentoring")}>
                             <ul>
                                 <li>창업지원단 관리자가 멘토님께 배정된 멘토링 진행 건 입니다.</li>
-                                <li>요청시간 및 요건이 맞지 않으시면 반려, 가능하시다면 승인를 선택 후 저장 부탁 드립니다.</li>
+                                <li>요청시간 및 요건이 맞지 않으시면 반려, 가능하시다면 상담 진행중을 선택 후 저장 부탁 드립니다.</li>
                             </ul>
                             <div className={cx("progressArea")}>
                                 <label htmlFor="progress">진행상태</label>
@@ -162,7 +188,7 @@ const CounselApplyDetail = () => {
                                     {counselApply.counselApply.applyStatus != 'COMPLETED' && (
                                         <option value="RETURN">반려</option>
                                     )}
-                                    <option value="PROCESS">상담 진행중</option>
+                                    <option value="PROCESS" disabled={counselApply.counselApply.applyStatus == 'COMPLETED'}>상담 진행중</option>
                                     <option value="COMPLETED" disabled={true}>완료</option>
                                 </select>
                                 <button type="button" className={cx("btn_save")} onClick={() => {
@@ -257,23 +283,6 @@ const CounselApplyDetail = () => {
                             </li>
                         </ul>
 
-                        {/*<h2>멘토링 일지 <span>(멘티)</span></h2>*/}
-                        {/*<div className={cx("mentoring_applicants")}>*/}
-                        {/*    <ul className={"clfx w_3 mb_50"}>*/}
-                        {/*        <li>*/}
-                        {/*            <label htmlFor="mentoring_diary_1">소속</label>*/}
-                        {/*            <input type="text" id="mentoring_diary_1"/>*/}
-                        {/*        </li>*/}
-                        {/*        <li>*/}
-                        {/*            <label htmlFor="mentoring_diary_2">이름 </label>*/}
-                        {/*            <input type="text" id="mentoring_diary_2"/>*/}
-                        {/*        </li>*/}
-                        {/*        <li>*/}
-                        {/*            <label htmlFor="mentoring_diary_3">아이템 </label>*/}
-                        {/*            <input type="text" id="mentoring_diary_3"/>*/}
-                        {/*        </li>*/}
-                        {/*    </ul>*/}
-                        {/*</div>*/}
 
                         <h2>멘토링 일지 <span>(멘토)</span></h2>
                         <Form form={form} onFinish={(e) => {
@@ -281,14 +290,72 @@ const CounselApplyDetail = () => {
                         }}>
                             <div className={cx("mentoring_applicants")}>
                                 <ul className={"clfx w_2"}>
-                                    <li>
-                                        <label htmlFor="mentoring_diary_8">멘토링 방법 </label>
+                                    <li className={cx("w_100","counsel")}>
+                                        <label htmlFor="mentoring_diary_8" className={cx("title")}>멘토링 방법 </label>
                                         {counselApply.counselApply.applyStatus == 'COMPLETED' ? (
-                                            <input type="text" id="mentoring_diary_8"
-                                                   value={counselApply.counselApply.answerWay} readOnly={true}/>
+                                            // <input type="text" id="mentoring_diary_8"
+                                            //        value={counselApply.counselApply.answerWay} readOnly={true}/>
+                                            <Checkbox.Group name="formWayItem" options={wayItem.list}  value={counselApply.wayItemList.map((item) =>(item.itemId))} disabled={true}/>
                                         ) : (
-                                            <input type="text" id="mentoring_diary_8" value={answer.way} name="way"
-                                                   onChange={changeAnswer}/>
+                                            <Form.Item
+                                                name="formWayItem"
+                                                rules={[
+                                                    {
+                                                        required: true,
+                                                        message: '1개 이상 선택',
+                                                    },
+                                                ]}
+                                            >
+                                                <Checkbox.Group name="formWayItem" options={wayItem.list}  value={answer.wayIdList} onChange={changeWayItem} />
+                                            </Form.Item>
+                                            // <input type="text" id="mentoring_diary_8" value={answer.way} name="way"
+                                            //        onChange={changeAnswer}/>
+                                        )}
+                                    </li>
+                                    <li className={cx("w_100","counsel")}>
+                                        <label htmlFor="mentoring_diary_8" className={cx("title")}>멘토링 장소</label>
+                                        {counselApply.counselApply.applyStatus == 'COMPLETED' ? (
+                                            <input type="text" id=""
+                                                   value={counselApply.counselApply.place} disabled={true}/>
+                                        ) : (
+                                            <Form.Item
+                                                name="place"
+                                                rules={[
+                                                    {
+                                                        required: true,
+                                                        message: '장소를 입력해주세요',
+                                                    },
+                                                ]}
+                                            >
+                                                <input className={cx("place_input")} type="text" id="" value={answer.place} name="place" onChange={changeAnswer}/>
+                                            </Form.Item>
+                                        )}
+                                    </li>
+                                    <li className={cx("w_100","counsel","date")}>
+                                        <label htmlFor="mentoring_diary_8" className={cx("title")}>멘토링 일시</label>
+                                        {counselApply.counselApply.applyStatus == 'COMPLETED' ? (
+                                            <DatePicker.RangePicker showTime locale={locale}
+                                                                    className={cx("date_picker")}
+                                                                    disabled={true}
+                                                                    value={[moment(counselApply.counselApply.start),moment(counselApply.counselApply.end)]}
+                                                                    format="YYYY-MM-DD HH"/>
+                                        ) : (
+                                            <Form.Item
+                                                name="start"
+                                                className={(cx("antd_input"))}
+                                                rules={[
+                                                    {
+                                                        required: true,
+                                                        message: '시간은 필수입니다',
+                                                    },
+                                                ]}
+                                            >
+                                                <DatePicker.RangePicker showTime locale={locale}
+                                                                        className={cx("date_picker")}
+                                                                        value={[answer.start, answer.end]}
+                                                                        onOk={changeDate}
+                                                                        format="YYYY-MM-DD HH"/>
+                                            </Form.Item>
                                         )}
                                     </li>
                                 </ul>
@@ -303,7 +370,21 @@ const CounselApplyDetail = () => {
                                             <div dangerouslySetInnerHTML={{__html: counselApply.counselApply.answer}}/>
                                         </div>
                                     ) : (
-                                        <QuillEditor Contents={content} QuillChange={setContent}/>
+                                        <Form.Item
+                                            name="answer"
+                                            rules={[
+                                                ({ getFieldValue }) => ({
+                                                    validator(rule, value) {
+                                                        if(content == null || content == ""){
+                                                            return Promise.reject('내용을 입력해주세요')
+                                                        }
+                                                        return Promise.resolve()
+                                                    }
+                                                })
+                                            ]}
+                                        >
+                                            <QuillEditor Contents={content} QuillChange={setContent}/>
+                                        </Form.Item>
                                     )}
                                 </li>
                                 <li>
@@ -330,16 +411,32 @@ const CounselApplyDetail = () => {
                                             </Upload>
                                         )
                                     ) : (
-                                        <Upload
-                                            listType="picture-card"
-                                            fileList={answer.attachFiles}
-                                            onPreview={handlePreview}
-                                            onChange={changeFileList}
+                                        <Form.Item
+                                            name="answer"
+                                            rules={[
+                                                ({ getFieldValue }) => ({
+                                                    validator(rule, value) {
+                                                        if(answer.attachFiles.length < 2){
+                                                            return Promise.reject('사진 2매 필수')
+
+                                                        }
+                                                        return Promise.resolve()
+                                                    }
+                                                })
+                                            ]}
                                         >
-                                            {answer.attachFiles.length >= 2 ? null : uploadButton}
-                                        </Upload>
+                                            <Upload
+                                                listType="picture-card"
+                                                fileList={answer.attachFiles}
+                                                onPreview={handlePreview}
+                                                onChange={changeFileList}
+                                            >
+                                                {answer.attachFiles.length >= 2 ? null : uploadButton}
+                                            </Upload>
+                                        </Form.Item>
                                     )}
-                                    <p className={cx("help_txt")}>※ 멘토링 사진 첨부 (사진은 2매 첨부 부탁드리며, 옆사진과 다른 각도의 사진 요망)</p>
+                                    <p className={cx("help_txt")}>※ 대면 상담시 멘토링 사진(다른 각도의 사진 2매) 첨부</p>
+                                    <p className={cx("help_txt")}>※ 비대면 상담시 통화내역 캡쳐화면 등 증빙사진 첨부</p>
                                 </li>
                             </ul>
                             <div className={cx("txt_c")}>

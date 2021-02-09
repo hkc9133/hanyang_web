@@ -29,31 +29,6 @@ import PersonalInfoForm from "../../component/stratup_counsel/counsel_apply/Pers
 
 const cx = classnames.bind(styles);
 
-// const counselField = [
-//     {value: 1, label: "세무·회계"},
-//     {value: 2, label: "법률·법무"},
-//     {value: 3, label: "지식재산권"},
-//     {value: 4, label: "마케팅·판로"},
-//     {value: 5, label: "노무"},
-//     {value: 6, label: "투자"},
-//     {value: 7, label: "초기 창업자금 조달"},
-//     {value: 8, label: "비즈니스모델링"},
-//     {value: 9, label: "시제품·개발"},
-//     {value: 10, label: "글로벌 진출"},
-//     {value: 11, label: "스케일업(코스탁 CEO등)"},
-//     {value: 12, label: "캠퍼스 기술자문(교수)"},
-//     {value: 13, label: "민간기술자문(대기업 임직원)"},
-//     {value: 14, label: "또래 CEO"}
-// ]
-
-// const progressItem = [{value:1,label:"아이템 구상단계"},{value:2,label:"사업화 단계"},{value:3,label:"경영 단계"}]
-//
-// const sortationItem = [{value:1,label:"한양대학교(원)재(휴)학생"},{value:2,label:"한양대학교(원) 졸업동문"},{value:3,label:"초기창업폐키지(창업선도대학) 수혜기업"}
-//     ,{value:4,label:"한양사이버대학교 재(휴)학생"},{value:5,label:"서울소재 대학재(휴)학생 서울 지역 소재 창업기업대표 서울지역 거주자"},{value:6,label:"기타(한양대창업지원단창업지원사업및프로그램수혜내역기재)"}]
-//
-// const wayItem = [{value:1,label:"오프라인"},{value:2,label:"온라인"},{value:3,label:"전화"},{value:4,label:"E-MAIL"}]
-
-
 
 const CounselApply = () => {
 
@@ -110,9 +85,6 @@ const CounselApply = () => {
         }
     },[])
 
-    const changeContent = useCallback((e) =>{
-        setContent(e)
-    },[])
 
     function formatNumber(value) {
         value += '';
@@ -470,9 +442,6 @@ const CounselApply = () => {
                     </div>
                 </div>
                 </Form>
-                {/*<Modal visible={applyResultModal} closable={true} maskClosable={true} onClose={() => {setApplyResultModal(false);router.back();}} cx={cx} className={"counsel_apply_popup"}>*/}
-                {/*    <h2 className={cx("popup_title")}>상담 신청이 완료되었습니다</h2>*/}
-                {/*</Modal>*/}
             </section>
         </>
     );

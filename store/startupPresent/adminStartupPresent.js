@@ -4,6 +4,7 @@ import produce from 'immer';
 import {takeLatest} from 'redux-saga/effects';
 import * as adminStartupPresentAPI from '../../lib/api/admin/startupPresent/startupPresent';
 
+const [GET_FIELD_LIST,GET_FIELD_LIST_SUCCESS, GET_FIELD_LIST_FAILURE] = createRequestActionTypes('adminStartupPresent/GET_FIELD_LIST')
 const [GET_STARTUP_PRESENT,GET_STARTUP_PRESENT_SUCCESS, GET_STARTUP_PRESENT_FAILURE] = createRequestActionTypes('adminStartupPresent/GET_STARTUP_PRESENT')
 const [GET_STARTUP_PRESENT_LIST,GET_STARTUP_PRESENT_LIST_SUCCESS, GET_STARTUP_PRESENT_LIST_FAILURE] = createRequestActionTypes('adminStartupPresent/GET_STARTUP_PRESENT_LIST')
 const [ADD_STARTUP_PRESENT,ADD_STARTUP_PRESENT_SUCCESS, ADD_STARTUP_PRESENT_FAILURE] = createRequestActionTypes('adminStartupPresent/ADD_STARTUP_PRESENT')
@@ -19,13 +20,15 @@ export const initialize = createAction(INITIALIZE);
 export const initializeForm = createAction(INITIALIZE_FORM, from => from);
 
 
-export const getStartupPresent = createAction(GET_STARTUP_PRESENT);
+export const getFieldList = createAction(GET_FIELD_LIST);
+export const getStartupPresent = createAction(GET_STARTUP_PRESENT, startupId => startupId);
 export const getStartupPresentList = createAction(GET_STARTUP_PRESENT_LIST, startupPresentInfo => startupPresentInfo);
 export const addStartupPresent = createAction(ADD_STARTUP_PRESENT, startupPresentInfo => startupPresentInfo);
-export const updateStartupPresent = createAction(UPDATE_STARTUP_PRESENT, startupPresentInfo => startupPresentInfo);
+export const updateStartupPresent = createAction(UPDATE_STARTUP_PRESENT, startupInfo => startupInfo);
 export const deleteStartupPresent = createAction(DELETE_STARTUP_PRESENT, startupPresentId => startupPresentId);
 
 
+const getFieldListSaga = createRequestSaga(GET_FIELD_LIST, adminStartupPresentAPI.getFieldList);
 const getStartupPresentListSaga = createRequestSaga(GET_STARTUP_PRESENT_LIST, adminStartupPresentAPI.getStartupPresentList);
 const getStartupPresentSaga = createRequestSaga(GET_STARTUP_PRESENT, adminStartupPresentAPI.getStartupPresent);
 const addStartupPresentSaga = createRequestSaga(ADD_STARTUP_PRESENT, adminStartupPresentAPI.addStartupPresent);
@@ -36,6 +39,7 @@ const deleteStartupPresentSaga = createRequestSaga(DELETE_STARTUP_PRESENT, admin
 export function* adminStartupPresentSaga(){
 
 
+    yield takeLatest(GET_FIELD_LIST, getFieldListSaga);
     yield takeLatest(ADD_STARTUP_PRESENT, addStartupPresentSaga);
     yield takeLatest(GET_STARTUP_PRESENT, getStartupPresentSaga);
     yield takeLatest(GET_STARTUP_PRESENT_LIST, getStartupPresentListSaga);
@@ -46,6 +50,10 @@ export function* adminStartupPresentSaga(){
 
 const initialState = {
 
+    getFieldList:{
+        business:[],
+        tech:[]
+    },
     getStartupPresent:null,
     getStartupPresentList:{
         list:[],
@@ -67,6 +75,16 @@ const initialState = {
 
 const adminStartupPresent = handleActions(
     {
+        [GET_FIELD_LIST_SUCCESS]: (state, {payload: response}) =>
+            produce(state, draft => {
+                draft.getFieldList.business = response.data.business
+                draft.getFieldList.tech = response.data.tech
+            }),
+        [GET_FIELD_LIST_FAILURE]: (state, {payload: error}) =>
+            produce(state, draft => {
+                draft.getFieldList.business = []
+                draft.getFieldList.tech = []
+            }),
         [GET_STARTUP_PRESENT_LIST_SUCCESS]: (state, {payload: response}) =>
             produce(state, draft => {
                 draft.getStartupPresentList.list = response.data.list

@@ -16,17 +16,6 @@ const SearchBoxStyle04 = ({searchContent,changeSearchInfo,category,searchInfo}) 
     },[])
     return (
         <div className={cx("tab_style_4")}>
-            <ul className={"clfx"}>
-                {category.map((item)=>
-                    <li key={item.categoryCodeId} className={cx({on:router.query.categoryCodeId == item.categoryCodeId})}>
-                        <Link href={`/board/${router.query.boardName}/list?categoryCodeId=${item.categoryCodeId}`}>
-                            <a>
-                                <span>{item.categoryCodeName}</span>
-                            </a>
-                        </Link>
-                    </li>
-                )}
-            </ul>
             <div className={cx("search")}>
                 <select name="searchField" value={searchInfo.searchField} style={{width:category !== null ? "19%" : "38%"}} onChange={changeSearchInfo}>
                     <option value="title">제목</option>
@@ -39,6 +28,17 @@ const SearchBoxStyle04 = ({searchContent,changeSearchInfo,category,searchInfo}) 
                     <button type="button" value="검색" className={cx("btn_search")} onClick={() => {searchContent();}}>검색</button>
                 </div>
             </div>
+            <ul className={"clfx"}>
+                {category.map((item)=>
+                    <li key={item.categoryCodeId} className={cx({on:router.query.categoryCodeId == item.categoryCodeId})}>
+                        <Link href={`/board/${router.query.boardName}/list?categoryCodeId=${item.categoryCodeId}`}>
+                            <a>
+                                <span>{item.categoryCodeName}</span>
+                            </a>
+                        </Link>
+                    </li>
+                )}
+            </ul>
         </div>
     );
 };

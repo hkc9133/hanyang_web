@@ -155,7 +155,7 @@ const Header = () => {
                             <Link href="/board/ir/list"><a>투자연계</a></Link>
                             <div className={cx("s_gnb")}>
                                 <ul>
-                                    <li><Link href="/board/ir/list"><a>IR/투자 안내</a></Link></li>
+                                    <li><Link href="/investment/ir"><a>IR/투자 안내</a></Link></li>
                                     <li><Link href="/investment/investment_partners"><a>국내외<br/> 투자파트너스</a></Link></li>
                                 </ul>
                             </div>
@@ -188,7 +188,7 @@ const Header = () => {
                 <div className={cx("login_box")}>
                     {isLogin ?
                         <>
-                            <Link href={mypage}><a>{user.role == 'ROLE_SD' ? '창업상담 신청현황' : user.role == 'ROLE_ADMIN' ? "관리자" : "관리"}</a></Link>
+                            <Link href={mypage}><a className={cx("top_mypage")}>{user.role == 'ROLE_SD' ? '창업상담 신청현황' : user.role == 'ROLE_ADMIN' ? "관리자" : "관리"}</a></Link>
                         <Link href="#"><a href="#" onClick={() => {handleLogout()}}>로그아웃</a></Link>
                         </>
                         :
@@ -271,7 +271,7 @@ const Header = () => {
                             <a href="#" onClick={(e) => {e.preventDefault();handleShowMenuItem(5)}}>투자연계</a>
                             <div className={cx("s_menu",{show:currentMenuItem === 5})}>
                                 <ul>
-                                    <li><Link href="/board/ir/list"><a>IR/투자 안내</a></Link></li>
+                                    <li><Link href="/investment/ir"><a>IR/투자 안내</a></Link></li>
                                     <li><Link href="/investment/investment_partners"><a>국내외 투자파트너스</a></Link></li>
                                 </ul>
                             </div>
@@ -300,6 +300,9 @@ const Header = () => {
                             </div>
                         </li>
                     </ul>
+                    {isLogin &&
+                        <Link href={mypage}><a className={cx("mypage_link")}>{user.role == 'ROLE_SD' ? '창업상담 신청현황' : user.role == 'ROLE_ADMIN' ? "관리자" : "관리"}</a></Link>
+                    }
                 </div>
             </div>
         </div>

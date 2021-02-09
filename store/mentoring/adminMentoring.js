@@ -81,6 +81,8 @@ const initialState = {
     counselApply:{
         result:false,
         counselApply:null,
+        wayItemList:[],
+        answerFiles:[],
         files:[],
         error:null
     },
@@ -145,12 +147,16 @@ const adminMentoring = handleActions(
             produce(state, draft => {
                 draft.counselApply.result = true
                 draft.counselApply.counselApply = response.data.counselApply
+                draft.counselApply.wayItemList = response.data.wayItemList
+                draft.counselApply.answerFiles = response.data.answerFiles
                 draft.counselApply.files = response.data.files
             }),
         [GET_COUNSEL_APPLY_FAILURE]: (state, {payload: error}) =>
             produce(state, draft => {
                 draft.counselApply.result = false
                 draft.counselApply.error = error.response.data
+                draft.counselApply.wayItemList = []
+                draft.counselApply.answerFiles = []
                 draft.counselApply.files = []
             }),
         [UPDATE_COUNSEL_APPLY_SUCCESS]: (state, {payload: response}) =>

@@ -7,6 +7,9 @@ import classnames from "classnames/bind"
 import {Menu, Dropdown} from 'antd';
 
 const {SubMenu} = Menu;
+import {
+    isMobile
+} from "react-device-detect";
 
 
 const cx = classnames.bind(styles);
@@ -174,8 +177,13 @@ const UniversityStudent = () => {
                             <h1 className={cx("title_style_2")}>신청방법</h1>
                         </div>
                         <div className={cx("txtArea")}>
-                            <Image src="/assets/image/university_student_img.jpg" width={920} height={394}
-                                   alt="university_student_img"/>
+                            {isMobile ? (
+                                <Image src="/assets/image/university_student_img_mo.jpg" width={619} height={394}
+                                       alt="university_student_img"/>
+                            ) : (
+                                <Image src="/assets/image/university_student_img.jpg" width={920} height={394}
+                                       alt="university_student_img"/>
+                            )}
                         </div>
                     </div>
 

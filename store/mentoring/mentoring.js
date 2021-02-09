@@ -163,6 +163,7 @@ const initialState = {
         counselApply:null,
         files:[],
         answerFiles:[],
+        wayItemList:[],
         error:null
     },
     mentorCheck:{
@@ -293,6 +294,7 @@ const mentoring = handleActions(
             produce(state, draft => {
                 draft.getCounselApply.result = true
                 draft.getCounselApply.counselApply = response.data.counselApply
+                draft.getCounselApply.wayItemList = response.data.wayItemList
                 draft.getCounselApply.files = response.data.files
                 draft.getCounselApply.answerFiles = response.data.counselApply.applyStatus == 'COMPLETED' && response.data.answerFiles
             }),
@@ -300,6 +302,7 @@ const mentoring = handleActions(
             produce(state, draft => {
                 draft.getCounselApply.result = false
                 draft.getCounselApply.counselApply = null
+                draft.getCounselApply.wayItemList = []
                 draft.getCounselApply.files = []
                 draft.getCounselApply.answerFiles = []
                 draft.getCounselApply.error = error.response.data
@@ -317,6 +320,7 @@ const mentoring = handleActions(
             produce(state, draft => {
                 draft.getCounselApply.result = true
                 draft.getCounselApply.counselApply = response.data.counselApply
+                draft.getCounselApply.wayItemList = response.data.wayItemList
                 draft.getCounselApply.files = response.data.files
                 draft.getCounselApply.answerFiles = response.data.counselApply.applyStatus == 'COMPLETED' && response.data.answerFiles
             }),
@@ -324,6 +328,7 @@ const mentoring = handleActions(
             produce(state, draft => {
                 draft.getCounselApply.result = false
                 draft.getCounselApply.counselApply = null
+                draft.getCounselApply.wayItemList = []
                 draft.getCounselApply.files = []
                 draft.getCounselApply.answerFiles = []
                 draft.getCounselApply.error = error.response.data

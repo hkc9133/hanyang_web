@@ -3,7 +3,8 @@ import Link from 'next/link'
 import styles from '../../public/assets/styles/startup_education/startup_education.module.css';
 import classnames from "classnames/bind"
 import PageNavigation from "../../component/layout/PageNavigation";
-
+import {Menu} from "antd";
+const {SubMenu} = Menu;
 
 const cx = classnames.bind(styles);
 const Alumnus = () => {
@@ -239,90 +240,175 @@ const Alumnus = () => {
                     </div>
                     <div className={cx("txtArea")}>
                         <div className={cx("qa_list")}>
-                            <ul>
-                                <li>
-                                    <div className={cx("question")}>
-                                        한양스타트업아카데미 HISTORY
-                                    </div>
-                                    <div className={cx("answer")}>
+                            <Menu
+                                mode="inline"
+                                selectable={false}
+                                style={{height: '100%', borderRight: 'none'}}
+                            >
+                                <SubMenu key="sub1" className={cx("dropdown_title")} title={<div className={cx("question")}>한양스타트업아카데미 HISTORY</div>}>
+                                    <Menu.Item key="0" className={cx("dropdown_content")} style={{height: 'auto'}}>
+                                    </Menu.Item>
+                                </SubMenu>
+                                <SubMenu key="sub2" className={cx("dropdown_title")} title={<div className={cx("question")}>한양스타트업아카데미 원우회</div>}>
+                                    <Menu.Item key="1" className={cx("dropdown_content")}
+                                               style={{height: 'auto', padding: 10}}>
+                                                <div className={cx("answer")}>
+                                                    <p className={cx("txt_1")}>
+                                                        한양 스타트업 아카데미 수료생이 중심이 되어원우회가 운영되고있습니다. <br/>
+                                                        2019년기준 770여명의 원우회원이 활동중입니다.
+                                                    </p>
+                                                    <div className={cx("txt_c mb_30")}>
 
-                                    </div>
-                                </li>
-                                <li>
-                                    <div className={cx("question")}>
-                                        한양스타트업아카데미 원우회
-                                    </div>
-                                    <div className={cx("answer")}>
-                                        <p className={cx("txt_1")}>
-                                            한양 스타트업 아카데미 수료생이 중심이 되어원우회가 운영되고있습니다. <br/>
-                                            2019년기준 770여명의 원우회원이 활동중입니다.
-                                        </p>
-                                        <div className={cx("txt_c mb_30")}>
+                                                        <img src="/assets/image/alumnus_organization.jpg" alt=""/>
+                                                    </div>
+                                                    <h2 className={cx("title_style_4")}>원우회운영진명단(2020년)</h2>
+                                                    <table>
+                                                        <colgroup>
 
-                                            <img src="/assets/image/alumnus_organization.jpg" alt=""/>
-                                        </div>
-                                        <h2 className={cx("title_style_4")}>원우회운영진명단(2020년)</h2>
-                                        <table>
-                                            <colgroup>
+                                                            <col style={{width:"33.33%"}}/>
+                                                            <col style={{width:"33.33%"}}/>
+                                                            <col style={{width:"33.33%"}}/>
+                                                        </colgroup>
+                                                        <thead>
+                                                        <tr>
+                                                            <th scope="col">운영위원회 직위</th>
+                                                            <th scope="col">기수</th>
+                                                            <th scope="col">성명</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr>
+                                                            <td>회장</td>
+                                                            <td>1기</td>
+                                                            <td>조상용</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>고문</td>
+                                                            <td>1기</td>
+                                                            <td>조상용</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>고문</td>
+                                                            <td>1기</td>
+                                                            <td>조상용</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>고문</td>
+                                                            <td>1기</td>
+                                                            <td>조상용</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>고문</td>
+                                                            <td>1기</td>
+                                                            <td>조상용</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>고문</td>
+                                                            <td>1기</td>
+                                                            <td>조상용</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
 
-                                                <col style={{width:"33.33%"}}/>
-                                                <col style={{width:"33.33%"}}/>
-                                                <col style={{width:"33.33%"}}/>
-                                            </colgroup>
-                                            <thead>
-                                            <tr>
-                                                <th scope="col">운영위원회 직위</th>
-                                                <th scope="col">기수</th>
-                                                <th scope="col">성명</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td>회장</td>
-                                                <td>1기</td>
-                                                <td>조상용</td>
-                                            </tr>
-                                            <tr>
-                                                <td>고문</td>
-                                                <td>1기</td>
-                                                <td>조상용</td>
-                                            </tr>
-                                            <tr>
-                                                <td>고문</td>
-                                                <td>1기</td>
-                                                <td>조상용</td>
-                                            </tr>
-                                            <tr>
-                                                <td>고문</td>
-                                                <td>1기</td>
-                                                <td>조상용</td>
-                                            </tr>
-                                            <tr>
-                                                <td>고문</td>
-                                                <td>1기</td>
-                                                <td>조상용</td>
-                                            </tr>
-                                            <tr>
-                                                <td>고문</td>
-                                                <td>1기</td>
-                                                <td>조상용</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
+                                                    <h2 className={cx("title_style_4")}>연간활동사항</h2>
+                                                    <ul className={cx("list_1")}>
+                                                        <li>- 한양스타트업아카데미교육생네트워킹, 멘토링등지원</li>
+                                                        <li>- 한양스타트업포럼운영(연4회)</li>
+                                                        <li>- 정부지원사업설명회</li>
+                                                        <li>- 원우회조직구성</li>
+                                                        <li>- 원우회자체세미나, 체육활동등</li>
+                                                        <li>- 원우기업성과조사</li>
+                                                        <li>- 기타원우회활동</li>
+                                                    </ul>
+                                                </div>
+                                    </Menu.Item>
+                                </SubMenu>
+                            </Menu>
 
-                                        <h2 className={cx("title_style_4")}>연간활동사항</h2>
-                                        <ul className={cx("list_1")}>
-                                            <li>- 한양스타트업아카데미교육생네트워킹, 멘토링등지원</li>
-                                            <li>- 한양스타트업포럼운영(연4회)</li>
-                                            <li>- 정부지원사업설명회</li>
-                                            <li>- 원우회조직구성</li>
-                                            <li>- 원우회자체세미나, 체육활동등</li>
-                                            <li>- 원우기업성과조사</li>
-                                            <li>- 기타원우회활동</li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
+                            {/*<ul>*/}
+                            {/*    <li>*/}
+                            {/*        <div className={cx("question")}>*/}
+                            {/*            한양스타트업아카데미 HISTORY*/}
+                            {/*        </div>*/}
+                            {/*        <div className={cx("answer")}>*/}
+
+                            {/*        </div>*/}
+                            {/*    </li>*/}
+                            {/*    <li>*/}
+                            {/*        <div className={cx("question")}>*/}
+                            {/*            한양스타트업아카데미 원우회*/}
+                            {/*        </div>*/}
+                            {/*        <div className={cx("answer")}>*/}
+                            {/*            <p className={cx("txt_1")}>*/}
+                            {/*                한양 스타트업 아카데미 수료생이 중심이 되어원우회가 운영되고있습니다. <br/>*/}
+                            {/*                2019년기준 770여명의 원우회원이 활동중입니다.*/}
+                            {/*            </p>*/}
+                            {/*            <div className={cx("txt_c mb_30")}>*/}
+
+                            {/*                <img src="/assets/image/alumnus_organization.jpg" alt=""/>*/}
+                            {/*            </div>*/}
+                            {/*            <h2 className={cx("title_style_4")}>원우회운영진명단(2020년)</h2>*/}
+                            {/*            <table>*/}
+                            {/*                <colgroup>*/}
+
+                            {/*                    <col style={{width:"33.33%"}}/>*/}
+                            {/*                    <col style={{width:"33.33%"}}/>*/}
+                            {/*                    <col style={{width:"33.33%"}}/>*/}
+                            {/*                </colgroup>*/}
+                            {/*                <thead>*/}
+                            {/*                <tr>*/}
+                            {/*                    <th scope="col">운영위원회 직위</th>*/}
+                            {/*                    <th scope="col">기수</th>*/}
+                            {/*                    <th scope="col">성명</th>*/}
+                            {/*                </tr>*/}
+                            {/*                </thead>*/}
+                            {/*                <tbody>*/}
+                            {/*                <tr>*/}
+                            {/*                    <td>회장</td>*/}
+                            {/*                    <td>1기</td>*/}
+                            {/*                    <td>조상용</td>*/}
+                            {/*                </tr>*/}
+                            {/*                <tr>*/}
+                            {/*                    <td>고문</td>*/}
+                            {/*                    <td>1기</td>*/}
+                            {/*                    <td>조상용</td>*/}
+                            {/*                </tr>*/}
+                            {/*                <tr>*/}
+                            {/*                    <td>고문</td>*/}
+                            {/*                    <td>1기</td>*/}
+                            {/*                    <td>조상용</td>*/}
+                            {/*                </tr>*/}
+                            {/*                <tr>*/}
+                            {/*                    <td>고문</td>*/}
+                            {/*                    <td>1기</td>*/}
+                            {/*                    <td>조상용</td>*/}
+                            {/*                </tr>*/}
+                            {/*                <tr>*/}
+                            {/*                    <td>고문</td>*/}
+                            {/*                    <td>1기</td>*/}
+                            {/*                    <td>조상용</td>*/}
+                            {/*                </tr>*/}
+                            {/*                <tr>*/}
+                            {/*                    <td>고문</td>*/}
+                            {/*                    <td>1기</td>*/}
+                            {/*                    <td>조상용</td>*/}
+                            {/*                </tr>*/}
+                            {/*                </tbody>*/}
+                            {/*            </table>*/}
+
+                            {/*            <h2 className={cx("title_style_4")}>연간활동사항</h2>*/}
+                            {/*            <ul className={cx("list_1")}>*/}
+                            {/*                <li>- 한양스타트업아카데미교육생네트워킹, 멘토링등지원</li>*/}
+                            {/*                <li>- 한양스타트업포럼운영(연4회)</li>*/}
+                            {/*                <li>- 정부지원사업설명회</li>*/}
+                            {/*                <li>- 원우회조직구성</li>*/}
+                            {/*                <li>- 원우회자체세미나, 체육활동등</li>*/}
+                            {/*                <li>- 원우기업성과조사</li>*/}
+                            {/*                <li>- 기타원우회활동</li>*/}
+                            {/*            </ul>*/}
+                            {/*        </div>*/}
+                            {/*    </li>*/}
+                            {/*</ul>*/}
                         </div>
                     </div>
                 </div>

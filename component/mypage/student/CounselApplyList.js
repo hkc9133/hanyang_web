@@ -122,6 +122,19 @@ const CounselApplyListItem = React.memo(({item, handleShowAnswer, showAnswer, ha
                             </div>
                             : (counselApply.counselApply.applyStatus == "COMPLETED") ?
                                 <div className={cx("mentors_opinion")} style={{display: 'block'}}>
+                                    <h3>일시</h3>
+                                    <div className={cx("mentors_opinion_content")}>{`${moment(counselApply.counselApply.start).format("YYYY년 MM월 DD일 hh")} ~ ${moment(counselApply.counselApply.end).format("YYYY년 MM월 DD일 hh")}`}</div>
+                                    <h3>방법</h3>
+                                    <div className={cx("mentors_opinion_content")}>
+                                        {counselApply.wayItemList.map((item) =>(
+                                            <li key={item.itemId}>{item.item}</li>
+                                        ))}
+                                    </div>
+                                    <h3>장소</h3>
+                                    <div className={cx("mentors_opinion_content")}>
+                                        {counselApply.counselApply.place}
+                                    </div>
+
                                     <h3>멘토의견</h3>
                                     <div className={cx("mentors_opinion_content")}>
                                         <div className={"ql-editor"} dangerouslySetInnerHTML={{__html: counselApply.counselApply.answer}}/>

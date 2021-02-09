@@ -49,20 +49,6 @@ const StudentReportAddPage = () => {
 
     }, [])
 
-    // useEffect(() => {
-    //
-    //     if (report != null) {
-    //         setreportForm({
-    //             ...reportForm,
-    //             ...report,
-    //             createDate:moment(report.createDate,'YYYY-MM-DD')
-    //         })
-    //     }
-    //
-    // }, [report])
-
-
-
     const changeReportFormValue = useCallback((e) =>{
         const {name, value} = e.target
 
@@ -109,7 +95,7 @@ const StudentReportAddPage = () => {
                         <div className={cx("adm_container")}>
                             <div className={cx("box")}>
                                 <div className={cx("student_report_detail")}>
-                                    <h2>팝업 정보</h2>
+                                    {/*<h2>팝업 정보</h2>*/}
                                     <div className={cx("tb_style_2")}>
                                         <table>
                                             <colgroup>

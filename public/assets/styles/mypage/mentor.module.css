@@ -56,6 +56,14 @@
 .mentor_group_write .mentoring_applicants .time span{float:left; width:4%; text-align:center; display:block; line-height:40px;}
 .mentor_group_write .mentoring_applicants ul li.w_100{width:100%; }
 
+
+.mentor_group_write .mentoring_applicants ul li.counsel{margin:0;margin-bottom: 30px;}
+.mentor_group_write .mentoring_applicants ul li.counsel .place_input{width: 50%;}
+
+.mentor_group_write .mentoring_applicants ul li.counsel label{display: inline-block;width: 20%;}
+/*.mentor_group_write .mentoring_applicants ul li.counsel_way.date{margin:0;}*/
+.mentor_group_write .mentoring_applicants ul li.counsel.date .date_picker{width: 50%;height: 50px;line-height: 48px;border-radius: 5px;}
+
 .mentor_group_write .consultation_details{border-bottom:1px solid #ddd; }
 .mentor_group_write .apply_value_box{
     padding-left: 10px;

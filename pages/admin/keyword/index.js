@@ -258,7 +258,7 @@ const KeywordManagePage = () => {
                                 </colgroup>
                                 <thead>
                                 <tr>
-                                    <th scope="col">NO</th>
+                                    {/*<th scope="col">NO</th>*/}
                                     <th scope="col">키워드</th>
                                     <th scope="col">검색 수</th>
                                 </tr>
@@ -267,9 +267,9 @@ const KeywordManagePage = () => {
                                 {keywordList.list.map((item) => {
                                     return (
                                         <tr key={item.keywordId}>
-                                            <td>
-                                                {item.rownum}
-                                            </td>
+                                            {/*<td>*/}
+                                            {/*    {item.rownum}*/}
+                                            {/*</td>*/}
                                             <td>
                                                 <a onClick={() =>{handleShowEditModal(item.keywordId)}}>{item.keyword}</a>
                                             </td>

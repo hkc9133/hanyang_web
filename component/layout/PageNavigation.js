@@ -21,8 +21,8 @@ const dep1 = {
         link:"/startup_education/university_student",
         sub:{
             university_student:{name:"대학(원)생 대상",link:"/startup_education/university_student"},
-            alumnus:{name:"동문 대상",link:"/startup_education/alumnus"},
             teacher:{name:"교원 대상",link:"/startup_education/teacher"},
+            alumnus:{name:"동문 대상",link:"/startup_education/alumnus"},
             people:{name:"일반인 대상",link:"/board/people/list"},
             online_content:{name:"온라인 콘텐츠",link:"/board/online_content/list"},
         }
@@ -62,7 +62,7 @@ const dep1 = {
         name:'투자연계',
         link:"/investment/ir",
         sub:{
-            ir: {name:'IR/투자 안내',link:'/board/ir/list'},
+            ir: {name:'IR/투자 안내',link:'/investment/ir'},
             investment_partners: {name:'국내외 투자파트너스',link:'/investment/investment_partners'},
         }
     },
@@ -77,7 +77,7 @@ const dep1 = {
             location: {name:'오시는길',link:'/introduce/location'},
             news: {name:'뉴스레터',link:'/board/news/list'},
             media_report: {name:'언론보도',link:'/board/media_report/list'},
-            ir: {name:'IR/ 투자 안내',link:'/board/ir/list'}
+            // ir: {name:'IR/ 투자 안내',link:'/board/ir/list'}
         }
     }
 }
