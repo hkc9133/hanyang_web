@@ -411,9 +411,9 @@ const Index = () => {
                     <ul className={'clfx'}>
                         <li>
                             <div className={cx("left_area")}>
-                                <span className={cx("txt_1")}>Student Startup</span>
+                                <span className={cx("txt_1")}>Student Startups</span>
                                 <p className={cx("txt_2")}>
-                                    우리는 함께합니다. <br/>미래를 위해 준비합니다.
+                                    학생들의 성공적인 <br/>창업을 도와드립니다.
                                 </p>
                                 <span className={cx("txt_3")}>학생 창업기업 수</span>
                             </div>
@@ -421,23 +421,23 @@ const Index = () => {
                         </li>
                         <li>
                             <div className={cx("left_area")}>
-                                <span className={cx("txt_1")}>hanyang Startup</span>
+                                <span className={cx("txt_1")}>Startup Academy</span>
                                 <p className={cx("txt_2")}>
-                                    한양스타트업 아카데미 <br/>에서 창업을 함께해요!
+                                    선배 CEO가 창업 시행착오 <br/>줄이는 법을 알려드립니다.
                                 </p>
                                 <span className={cx("txt_3")}>아카데미 창업기업 수</span>
                             </div>
-                            <span className={cx("number")}>1021</span>
+                            <span className={cx("number")}>428</span>
                         </li>
                         <li>
                             <div className={cx("left_area")}>
-                                <span className={cx("txt_1")}>hanyang Startup</span>
+                                <span className={cx("txt_1")}>Alumni Startups</span>
                                 <p className={cx("txt_2")}>
                                     함께 하는 미래 <br/>우리는 한양인입니다.
                                 </p>
-                                <span className={cx("txt_3")}>동문 창업기업 수</span>
+                                <span className={cx("txt_3")}>동문 CEO 기업 수</span>
                             </div>
-                            <span className={cx("number")}>10,234</span>
+                            <span className={cx("number")}>13,447</span>
                         </li>
                     </ul>
                 </div>
@@ -482,22 +482,56 @@ const Index = () => {
                 <div className={cx("main_cont")}>
                     <div className={cx("main_logo_rolling_list")}>
                         <Slider className={cx("slide")} {...logoSliderSettings} ref={logoSlider}>
-                            <div className={cx("list")}><Image src="/assets/image/family_site_1.jpg" width={150}
-                                                               height={88} alt="family_site"/></div>
-                            <div className={cx("list")}><Image src="/assets/image/family_site_2.jpg" width={126}
-                                                               height={88} alt="family_site"/></div>
-                            <div className={cx("list")}><Image src="/assets/image/family_site_3.jpg" width={114}
-                                                               height={88} alt="family_site"/></div>
-                            <div className={cx("list")}><Image src="/assets/image/family_site_4.jpg" width={86}
-                                                               height={88} alt="family_site"/></div>
-                            {/*<div className={cx("list")}><Image src="/assets/image/family_site_5.jpg" width={120}
-                                                               height={88} alt="family_site"/></div>
-                            <div className={cx("list")}><Image src="/assets/image/family_site_6.jpg" width={126}
-                            height={88} alt="family_site"/></div>*/}
-                            <div className={cx("list")}><Image src="/assets/image/family_site_1.jpg" width={150}
-                                                               height={88} alt="family_site"/></div>
-                            <div className={cx("list")}><Image src="/assets/image/family_site_2.jpg" width={126}
-                                                               height={88} alt="family_site"/></div>
+                            <div className={cx("list")}>
+                                <Link href="https://www.moe.go.kr/main.do?s=moe"><a target="_blank">
+                                    <Image src="/assets/image/family_site_8.jpg" width={170} height={88} alt="family_site"/>
+                                </a></Link>
+                            </div>
+                            <div className={cx("list")}>
+                                <Link href="https://www.mss.go.kr/site/smba/main.do"><a target="_blank">
+                                <Image src="/assets/image/family_site_1.jpg" width={150} height={88} alt="family_site"/>
+                                </a></Link>
+                            </div>
+                            <div className={cx("list")}>
+                                <Link href="https://www.kised.or.kr/"><a target="_blank">
+                                    <Image src="/assets/image/family_site_3.jpg" width={114} height={88} alt="family_site"/>
+                                </a></Link>
+                            </div>
+                            <div className={cx("list")}>
+                                <Link href="https://www.k-startup.go.kr/main.do"><a target="_blank">
+                                    <Image src="/assets/image/family_site_2.jpg" width={126} height={88} alt="family_site"/>
+                                </a></Link> 
+                            </div>
+                            <div className={cx("list")}>
+                                <Link href="https://new.sba.kr/user/main.do"><a target="_blank">
+                                    <Image src="/assets/image/family_site_5.jpg" width={170} height={88} alt="family_site"/>
+                                </a></Link>
+                            </div>
+                            <div className={cx("list")}>
+                                <Link href="https://seoulstartuphub.com/"><a target="_blank">
+                                    <Image src="/assets/image/family_site_6.jpg" width={170} height={88} alt="family_site"/>
+                                </a></Link>
+                            </div>
+                            <div className={cx("list")}>
+                                <Link href="https://ccei.creativekorea.or.kr/seoul/main.do"><a target="_blank">
+                                    <Image src="/assets/image/family_site_7.jpg" width={170} height={88} alt="family_site"/>
+                                </a></Link>
+                            </div>
+                            <div className={cx("list")}>
+                                <Link href="https://www.kocca.kr"><a target="_blank">
+                                    <Image src="/assets/image/family_site_4.jpg" width={86} height={88} alt="family_site"/>
+                                </a></Link>
+                            </div>
+                            <div className={cx("list")}>
+                                <Link href="https://www.nipa.kr/"><a target="_blank">
+                                    <Image src="/assets/image/family_site_9.jpg" width={170} height={88} alt="family_site"/>
+                                </a></Link>
+                            </div>
+                            <div className={cx("list")}>
+                                <Link href="https://www.kita.net/"><a target="_blank">
+                                    <Image src="/assets/image/family_site_10.jpg" width={170} height={88} alt="family_site"/>
+                                </a></Link>
+                            </div>
                         </Slider>
                         <div className={cx("slick_controller")}>
                             <ul className={'clfx'}>

@@ -56,7 +56,7 @@ const Footer = () => {
             <div className={cx("footer_menu")}>
                 <div className={cx("footer")}>
                     <ul>
-                        <li className={cx("mb_hide")}><Link href="/"><a>한양대학교 창업지원단 소개</a></Link></li>
+                        <li className={cx("mb_hide")}><Link href="/"><a>한양대학교 창업지원단</a></Link></li>
                         <li><Link href="/"><a><strong>개인정보처리방침</strong></a></Link></li>
                         <li><Link href="/"><a>이용약관</a></Link></li>
                         <li><Link href="/"><a>이메일 주소무단 수집거부</a></Link></li>
