@@ -25,7 +25,7 @@ export const getStartupPresent = createAction(GET_STARTUP_PRESENT, startupId => 
 export const getStartupPresentList = createAction(GET_STARTUP_PRESENT_LIST, startupPresentInfo => startupPresentInfo);
 export const addStartupPresent = createAction(ADD_STARTUP_PRESENT, startupPresentInfo => startupPresentInfo);
 export const updateStartupPresent = createAction(UPDATE_STARTUP_PRESENT, startupInfo => startupInfo);
-export const deleteStartupPresent = createAction(DELETE_STARTUP_PRESENT, startupPresentId => startupPresentId);
+export const deleteStartupPresent = createAction(DELETE_STARTUP_PRESENT, startupId => startupId);
 
 
 const getFieldListSaga = createRequestSaga(GET_FIELD_LIST, adminStartupPresentAPI.getFieldList);

@@ -17,7 +17,7 @@ const Footer = () => {
                 <div className={cx("footer","clfx")}>
                     <div className={cx("cs_center")}>
                         <h1>원스톱 창업상담실</h1>
-                        <div className={cx("tel")}>02-<br/>2220-3000</div>
+                        <div className={cx("tel")}>02-2220-3000</div>
                     </div>
                     <div className={cx("business_hours")}>
                         <ul>

@@ -30,7 +30,7 @@
 /*.tb_style_2 td p{margin-left:20px; display:inline-block; font-size:14px; color:#596475;}*/
 /*.tb_style_2 td span{margin-left:10px; display:inline-block; font-size:14px; color:#596475;}*/
 .tb_style_2 td select,
-.tb_style_2 td input{width:95%; line-height:30px; box-sizing:border-box; vertical-align:top;}
+.tb_style_2 td input{width:100%; line-height:30px; box-sizing:border-box; vertical-align:top;}
 .tb_style_2 td input[type=text].w_60{width:60px; }
 .tb_style_2 td input[type=text].w_100p{width:100%;}
 .tb_style_2 td .photoArea{margin:0 auto; position:relative; margin-bottom:20px; width:200px; height:200px; }
@@ -57,14 +57,43 @@
 .startup_present_info>ul>li .icon_4{padding-left:34px; background:url(../../../image/admin/adm_menu_3.png) no-repeat 0 center; }
 .startup_present_info>ul>li .number{float:right; margin-left:30px; line-height:1; display:block; font-size:14px; font-weight:200; }
 .startup_present_info>ul>li .number strong{font-size:24px; font-weight:400; vertical-align:bottom;}
-.startup_present_info .startup_present_id_search{float:right; position:relative; width:840px;text-align: right; }
-.startup_present_info .startup_present_id_search select{width:17.83%; height:35px; line-height:33px; background-color:#ebf0f9;margin-right: 0.5%; }
-.startup_present_info .startup_present_id_search input[type=text]{float:right; padding-right:39px;width:45%; height:35px; line-height:33px; box-sizing:border-box;}
-.startup_present_info .startup_present_id_search .btn_search{position:absolute; right:1px; top:1px; width:40px; height:33px; }
+.startup_present_info .startup_present_search{float:right; position:relative; width:840px;text-align: right; }
+.startup_present_info .startup_present_search select{width:17.83%; height:35px; line-height:33px; background-color:#ebf0f9;margin-right: 0.5%; }
+.startup_present_info .startup_present_search input[type=text]{float:right; padding-right:39px;width:45%; height:35px; line-height:33px; box-sizing:border-box;}
+.startup_present_info .startup_present_search .btn_search{position:absolute; right:1px; top:1px; width:40px; height:33px; }
 
-.startup_present_info .startup_event_search select{width:32.8%}
-.startup_present_info .startup_event_search .btn_search{position:absolute; right:1px; top:41px; width:40px; height:33px; }
-.startup_present_info .startup_event_search input[type=text]{margin-top: 5px;}
+
+.startup_present_info .search_01{    height: 35px;
+    line-height: 33px;
+    background-color: #ebf0f9;
+    display: inline-block;
+    margin-bottom: 3px;
+    margin-right: 5px;
+    width: 120px;
+    padding-left: 10px;
+    text-align: left;
+    border: 0.5px solid lightgray;}
+/*.startup_present_info select{float:left; margin-right:0.93%; width:16.5%; height:56px; line-height:54px; font-size:18px; }*/
+.startup_present_info select.long{width:22%;}
+/*.startup_present_info input[type=text]{float:left; width:42.2%; height:56px; line-height:54px; font-size:18px; }*/
+/*.startup_present_info .btn_search{position:absolute; right:0; top:0; width:120px; height:56px; line-height:54px; text-align:center; border:1px solid #0069f8; font-size:18px; color:#0069f8; font-family: 's-core-dream-medium'; border-radius:5px; }*/
+
+/*.startup_present_info .startup_event_search select{width:32.8%}*/
+.startup_present_info .startup_event_search .btn_search{position:absolute; right:1px; top:1px; width:40px; height:33px; }
+/*.startup_present_info .startup_event_search input[type=text]{margin-top: 5px;}*/
+
+.startup_present_info .tag{border:1px solid lightgray;}
+
+
+.checkbox_g{display: block;width: 400px;border: 1px solid gray;
+    background-color: white;
+    padding: 10px;
+    box-sizing: border-box;
+    vertical-align: middle;
+    border: solid 1px #ddd;}
+.checkbox_g label{width: 32%;
+    padding-left: 10px;
+    margin-right: 0px;}
 
 
 .btn-box01{text-align: right;margin:10px 0px;}

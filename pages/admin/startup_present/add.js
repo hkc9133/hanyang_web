@@ -33,6 +33,7 @@ const StartUpAddPage = () => {
         companyKind:"",
         homepage:"",
         createDate:null,
+        item:"",
         businessIdList:[],
         techIdList:[],
         addAttachFileList:[]
@@ -139,7 +140,7 @@ const StartUpAddPage = () => {
                                         <tbody>
                                         <tr>
                                             <th scope="row">기업명</th>
-                                            <td>
+                                            <td colSpan={3}>
                                                 <Form.Item
                                                     name="companyName"
                                                     className={(cx("antd_input"))}
@@ -152,21 +153,6 @@ const StartUpAddPage = () => {
                                                 >
                                                     <Input placeholder={"기업명"} name="companyName" value={startUpForm.companyName}
                                                            onChange={(e) => {changeStartUpFormValue(e)}}/>
-                                                </Form.Item>
-                                            </td>
-                                            <th scope="row">설립일</th>
-                                            <td>
-                                                <Form.Item
-                                                    name="createDate"
-                                                    className={(cx("antd_input"))}
-                                                    rules={[
-                                                        {
-                                                            required: true,
-                                                            message: "필수입력 입니다",
-                                                        },
-                                                    ]}
-                                                >
-                                                    <DatePicker locale={locale} format={"YYYY-MM-DD"} value={startUpForm.createDate} onChange={(v) =>{setStartUpForm({...startUpForm,createDate:v})}}/>
                                                 </Form.Item>
                                             </td>
                                         </tr>
@@ -189,8 +175,26 @@ const StartUpAddPage = () => {
                                                            }}/>
                                                 </Form.Item>
                                             </td>
-                                            <th scope="row">홈페이지</th>
+                                            <th scope="row">설립일</th>
                                             <td>
+                                                <Form.Item
+                                                    name="createDate"
+                                                    className={(cx("antd_input"))}
+                                                    rules={[
+                                                        {
+                                                            required: true,
+                                                            message: "필수입력 입니다",
+                                                        },
+                                                    ]}
+                                                >
+                                                    <DatePicker locale={locale} format={"YYYY-MM-DD"} value={startUpForm.createDate} onChange={(v) =>{setStartUpForm({...startUpForm,createDate:v})}}/>
+                                                </Form.Item>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">홈페이지</th>
+                                            <td colSpan={3}>
                                                 <Form.Item
                                                     name="homepage"
                                                     className={(cx("antd_input"))}
@@ -375,6 +379,26 @@ const StartUpAddPage = () => {
                                                             {tag.techName}
                                                         </CheckableTag>
                                                     ))}
+                                                </Form.Item>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">사업 아이템</th>
+                                            <td colSpan={3}>
+                                                <Form.Item
+                                                    name="item"
+                                                    className={(cx("antd_input"))}
+                                                    rules={[
+                                                        {
+                                                            required: false,
+                                                            message: '',
+                                                        },
+                                                    ]}
+                                                >
+                                                    <Input placeholder={"사업 아이템"} name="item" value={startUpForm.item}
+                                                           onChange={(e) => {
+                                                               changeStartUpFormValue(e)
+                                                           }}/>
                                                 </Form.Item>
                                             </td>
                                         </tr>

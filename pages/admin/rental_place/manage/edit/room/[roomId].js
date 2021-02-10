@@ -209,21 +209,12 @@ const RoomDetail = () => {
         delete data.roomAttachFileList;
         delete data.possibleDayArray;
 
-
-        console.log(data)
         dispatch(updateRoom(data));
     }
 
     const removeRoom = () =>{
         dispatch(deleteRoom(roomInfo.roomId))
     }
-
-    // useEffect(() =>{
-    //     if(update.result && update.error == null){
-    //         setShowResultModal(true)
-    //     }
-    //
-    // },[update])
 
     useEffect(() =>{
         if(update.result && update.error == null){

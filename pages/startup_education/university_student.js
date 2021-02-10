@@ -50,16 +50,19 @@ const UniversityStudent = () => {
                                     <Image src="/assets/image/university_student_icon_1.jpg" width={186} height={186}
                                            alt="university_student_icon_1"/>
                                     <span>기업가정신 함양</span>
+                                    <br/>
                                 </li>
                                 <li>
                                     <Image src="/assets/image/university_student_icon_2.jpg" width={186} height={186}
                                            alt="university_student_icon_2"/>
                                     <span>사업 아이디어 구상</span>
+                                    <br/>
                                 </li>
                                 <li>
                                     <Image src="/assets/image/university_student_icon_3.jpg" width={186} height={186}
                                            alt="university_student_icon_3"/>
                                     <span>초기 사업모델 구축</span>
+                                    <br/>
                                 </li>
                                 <li>
                                     <Image src="/assets/image/university_student_icon_4.jpg" width={186} height={186}
@@ -70,6 +73,7 @@ const UniversityStudent = () => {
                                     <Image src="/assets/image/university_student_icon_5.jpg" width={186} height={186}
                                            alt="university_student_icon_5"/>
                                     <span>창업실행</span>
+                                    <br/>
                                 </li>
                             </ul>
                         </div>

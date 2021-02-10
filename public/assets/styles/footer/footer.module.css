@@ -4,7 +4,7 @@
 .footer:after{ clear: both; content: "."; display: block; height: 0; visibility: hidden; font-size: 0;}
 .footer .cs_center{float:left; padding-left:4.2%; width:18.93%; box-sizing:border-box;}
 .footer .cs_center h1{margin-bottom:15px; font-size:14px; font-family:"MalgunGothic"; font-weight:bold; }
-.footer .cs_center .tel{line-height:1; font-size:36px; font-weight:600; font-family:"noto"; letter-spacing:-2px;}
+.footer .cs_center .tel{line-height:1; font-size:28px; font-weight:600; font-family:"noto"; letter-spacing:-2px;}
 .footer .business_hours{float:left; padding:0 10px; width:18.18%; box-sizing:border-box;}
 .footer .business_hours ul li{position:relative; margin-bottom:8px; padding-left:50px;  font-family:"MalgunGothic"; font-size:14px; word-break:break-all;}
 .footer .business_hours ul li span{position:absolute; left:0; top:0; }

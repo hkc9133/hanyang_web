@@ -5,7 +5,7 @@ import {PlusOutlined} from "@ant-design/icons";
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
 import {
-    addStartupPresent,
+    addStartupPresent, deleteStartupPresent,
     getFieldList,
     getStartupPresent,
     initialize, updateStartupPresent
@@ -39,12 +39,13 @@ const StartupEditPage = () => {
     const dispatch = useDispatch();
     const router = useRouter();
 
-    const {startup,fieldList,addResult} = useSelector(({adminStartupPresent,loading})=> ({
+    const {startup,fieldList,updateResult,deleteResult} = useSelector(({adminStartupPresent,loading})=> ({
         startup:adminStartupPresent.getStartupPresent,
         fieldList:adminStartupPresent.getFieldList,
-        addResult:adminStartupPresent.addStartupPresent
+        updateResult:adminStartupPresent.updateStartupPresent,
+        deleteResult:adminStartupPresent.deleteStartupPresent
     }))
-
+    const [showRemoveModal,setShowRemoveModal] = useState(false);
     const [startUpForm, setStartUpForm] = useState({
         companyName:"",
         companyOwner:"",
@@ -54,6 +55,7 @@ const StartupEditPage = () => {
         gubun:"",
         companyKind:"",
         homepage:"",
+        item:"",
         createDate:null,
         businessIdList:[],
         techIdList:[],
@@ -167,19 +169,36 @@ const StartupEditPage = () => {
     }
 
     useEffect(() =>{
-        if(addResult.result && addResult.error == null){
+        if(updateResult.result && updateResult.error == null){
+            dispatch(initialize());
             Modal.success({
                 title:'수정이 완료되었습니다',
                 onOk:() => {router.back();}
             });
-        }else if(addResult.result == false && addResult.error != null){
+        }else if(updateResult.result == false && updateResult.error != null){
             Modal.warning({
                 title: '수정 중 에러가 발생하였습니다'
             });
-            dispatch(initialize())
         }
 
-    },[addResult])
+    },[updateResult])
+
+    const removeStartup = () =>{
+        dispatch(deleteStartupPresent(startup.startupId))
+    }
+    useEffect(() =>{
+        if(deleteResult.result && deleteResult.error == null){
+            Modal.success({
+                title: '삭제가 완료되었습니다',
+                onOk:() =>{router.push("/admin/startup_present")},
+            });
+        }else if(deleteResult.result == false && deleteResult.error != null){
+            Modal.warning({
+                title: '삭제 중 에러가 발생하였습니다'
+            });
+        }
+    },[deleteResult])
+
 
     const uploadButton = (
         <div>
@@ -227,20 +246,9 @@ const StartupEditPage = () => {
                                                                onChange={(e) => {changeStartUpFormValue(e)}}/>
                                                     </Form.Item>
                                                 </td>
-                                                <th scope="row">설립일</th>
+                                                <th scope="row">관리</th>
                                                 <td>
-                                                    <Form.Item
-                                                        name="createDate"
-                                                        className={(cx("antd_input"))}
-                                                        rules={[
-                                                            {
-                                                                required: true,
-                                                                message: "필수입력 입니다",
-                                                            },
-                                                        ]}
-                                                    >
-                                                        <DatePicker locale={locale} format={"YYYY-MM-DD"} value={startUpForm.createDate} onChange={(v) =>{setStartUpForm({...startUpForm,createDate:v})}}/>
-                                                    </Form.Item>
+                                                    <button type="button" className={cx("basic-btn01","btn-red-bg")} onClick={() =>{setShowRemoveModal(true)}}>삭제</button>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -262,8 +270,25 @@ const StartupEditPage = () => {
                                                                }}/>
                                                     </Form.Item>
                                                 </td>
-                                                <th scope="row">홈페이지</th>
+                                                <th scope="row">설립일</th>
                                                 <td>
+                                                    <Form.Item
+                                                        name="createDate"
+                                                        className={(cx("antd_input"))}
+                                                        rules={[
+                                                            {
+                                                                required: true,
+                                                                message: "필수입력 입니다",
+                                                            },
+                                                        ]}
+                                                    >
+                                                        <DatePicker locale={locale} format={"YYYY-MM-DD"} value={startUpForm.createDate} onChange={(v) =>{setStartUpForm({...startUpForm,createDate:v})}}/>
+                                                    </Form.Item>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">홈페이지</th>
+                                                <td colSpan={3}>
                                                     <Form.Item
                                                         name="homepage"
                                                         className={(cx("antd_input"))}
@@ -452,6 +477,26 @@ const StartupEditPage = () => {
                                                 </td>
                                             </tr>
                                             <tr>
+                                                <th scope="row">사업 아이템</th>
+                                                <td colSpan={3}>
+                                                    <Form.Item
+                                                        name="item"
+                                                        className={(cx("antd_input"))}
+                                                        rules={[
+                                                            {
+                                                                required: false,
+                                                                message: '',
+                                                            },
+                                                        ]}
+                                                    >
+                                                        <Input placeholder={"사업 아이템"} name="item" value={startUpForm.item}
+                                                               onChange={(e) => {
+                                                                   changeStartUpFormValue(e)
+                                                               }}/>
+                                                    </Form.Item>
+                                                </td>
+                                            </tr>
+                                            <tr>
                                                 <th scope="row">기업 로고</th>
                                                 <td colSpan={3}>
                                                     <Form.Item
@@ -514,6 +559,19 @@ const StartupEditPage = () => {
                             </div>
                         </div>
                     </Form>
+                    <Modal
+                        title="삭제하시겠습니까?"
+                        visible={showRemoveModal}
+                        // confirmLoading={deletePlaceResult.result}
+                        onCancel={() =>{setShowRemoveModal(false)}}
+                        footer={[
+                            <button className={cx("basic-btn01","btn-red-bg")} onClick={() =>{removeStartup()}}>삭제</button>,
+                            <button className={cx("basic-btn01","btn-gray-bg")} onClick={() =>{setShowRemoveModal(false);}}>취소</button>
+                        ]}
+                    >
+                        <p className={cx("warning")}></p>
+                        {/*<p>{modalText}</p>*/}
+                    </Modal>
                 </section>
             )}
 
