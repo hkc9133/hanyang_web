@@ -25,7 +25,7 @@ const cx = classnames.bind(styles);
 export async function getStaticPaths() {
     return {
         paths: [
-            { params: { boardName: 'community' } },
+            { params: { boardName: 'idea' } },
             { params: { boardName: 'data_room' } },
             { params: { boardName: 'notice' } },
             { params: { boardName: 'startup_info' } },

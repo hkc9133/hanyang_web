@@ -7,6 +7,7 @@ import * as adminNoticeAPI from '../../lib/api/admin/notice/adminNotice';
 const [GET_NOTICE,GET_NOTICE_SUCCESS, GET_NOTICE_FAILURE] = createRequestActionTypes('adminNotice/GET_NOTICE')
 const [ADD_NOTICE,ADD_NOTICE_SUCCESS, ADD_NOTICE_FAILURE] = createRequestActionTypes('adminNotice/ADD_NOTICE')
 const [UPDATE_NOTICE,UPDATE_NOTICE_SUCCESS, UPDATE_NOTICE_FAILURE] = createRequestActionTypes('adminBoard/UPDATE_NOTICE')
+const [DELETE_NOTICE,DELETE_NOTICE_SUCCESS, DELETE_NOTICE_FAILURE] = createRequestActionTypes('adminBoard/DELETE_NOTICE')
 const [GET_NOTICE_LIST,GET_NOTICE_LIST_SUCCESS, GET_NOTICE_LIST_FAILURE] = createRequestActionTypes('adminNotice/GET_NOTICE_LIST')
 const [GET_NOTICE_CATEGORY_CODE_LIST,GET_NOTICE_CATEGORY_CODE_LIST_SUCCESS, GET_NOTICE_CATEGORY_CODE_LIST_FAILURE] = createRequestActionTypes('adminNotice/GET_NOTICE_CATEGORY_CODE_LIST')
 
@@ -19,11 +20,13 @@ export const initializeForm = createAction(INITIALIZE_FORM);
 export const getNotice = createAction(GET_NOTICE,noticeId =>noticeId);
 export const addNotice = createAction(ADD_NOTICE,form =>form);
 export const updateNotice = createAction(UPDATE_NOTICE,form =>form);
+export const deleteNotice = createAction(DELETE_NOTICE,noticeId =>noticeId);
 export const getNoticeList = createAction(GET_NOTICE_LIST,data =>data);
 export const getNoticeCategoryCodeList = createAction(GET_NOTICE_CATEGORY_CODE_LIST);
 
 const getNoticeSaga = createRequestSaga(GET_NOTICE, adminNoticeAPI.getNotice);
 const updateNoticeSaga = createRequestSaga(UPDATE_NOTICE, adminNoticeAPI.updateNotice);
+const deleteNoticeSaga = createRequestSaga(DELETE_NOTICE, adminNoticeAPI.deleteNotice);
 const addNoticeSaga = createRequestSaga(ADD_NOTICE, adminNoticeAPI.addNotice);
 const getNoticeListSaga = createRequestSaga(GET_NOTICE_LIST, adminNoticeAPI.getNoticeList);
 const getNoticeCategoryCodeListSaga = createRequestSaga(GET_NOTICE_CATEGORY_CODE_LIST, adminNoticeAPI.getNoticeCategoryCodeList);
@@ -33,6 +36,7 @@ export function* adminNoticeSaga(){
     yield takeLatest(GET_NOTICE, getNoticeSaga);
     yield takeLatest(ADD_NOTICE, addNoticeSaga);
     yield takeLatest(UPDATE_NOTICE, updateNoticeSaga);
+    yield takeLatest(DELETE_NOTICE, deleteNoticeSaga);
     yield takeLatest(GET_NOTICE_LIST, getNoticeListSaga);
     yield takeLatest(GET_NOTICE_CATEGORY_CODE_LIST, getNoticeCategoryCodeListSaga);
 }
@@ -56,6 +60,10 @@ const initialState = {
         error:null
     },
     update:{
+        result:null,
+        error:null
+    },
+    delete:{
         result:null,
         error:null
     },
@@ -113,6 +121,16 @@ const adminNotice = handleActions(
             produce(state, draft => {
                 draft.update.result = false
                 draft.update.error = 'error'
+            }),
+        [DELETE_NOTICE_SUCCESS]: (state, {payload: response}) =>
+            produce(state, draft => {
+                draft.delete.result = true
+                draft.delete.error = null
+            }),
+        [DELETE_NOTICE_FAILURE]: (state, {payload: error}) =>
+            produce(state, draft => {
+                draft.delete.result = false
+                draft.delete.error = 'error'
             }),
         [GET_NOTICE_CATEGORY_CODE_LIST_SUCCESS]: (state, {payload: response}) =>
             produce(state, draft => {

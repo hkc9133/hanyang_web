@@ -80,7 +80,7 @@ const MentorIntroduce = () => {
                 <div className={cx("mentor_group_list")}>
                     <ul>
                         {mentorList.list.map((item) =>(
-                            <li>
+                            <li key={item.mentorId}>
                             <div className={`${cx("mentor_top")} clfx `}>
                                 <div className={cx("photo")}><Image src={item.filePath != null ? `${client.defaults.baseURL}/resource${item.filePath}/${item.fileName+item.fileExtension}` : "/assets/image/mentor_group_photo.jpg"} width={120} height={120} alt="mentor_group_photo"/></div>
                                 <div className={cx("mentor")}>
@@ -94,7 +94,7 @@ const MentorIntroduce = () => {
                             </div>
                             <ul>
                                 {item.mentorCareer.map((career)=>(
-                                    <li>{career}</li>
+                                    <li key={career}>{career}</li>
                                 ))}
                             </ul>
                             <div className={cx("btn_area")}>
@@ -115,7 +115,7 @@ const MentorIntroduce = () => {
                         <div className={cx("career")}>
                             <ul>
                                 {mentorDetail.mentorCareer.map((career)=>(
-                                    <li>{career}</li>
+                                    <li key={career}>{career}</li>
                                 ))}
                             </ul>
                         </div>

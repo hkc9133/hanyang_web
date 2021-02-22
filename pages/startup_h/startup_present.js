@@ -1,11 +1,156 @@
-import React from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import Link from 'next/link'
 import styles from '../../public/assets/styles/startup_h/startup_h.module.css';
 import classnames from "classnames/bind"
 import PageNavigation from "../../component/layout/PageNavigation";
+import {useDispatch, useSelector} from "react-redux";
+import {getFieldList, getStartupPresentList} from "../../store/startupPresent/startupPresent";
+import qs from "query-string";
+import {useRouter} from "next/router";
+import {Menu, Checkbox, Button, Modal, Dropdown} from "antd";
+const {SubMenu} = Menu;
+import { DownOutlined } from '@ant-design/icons';
+
+import { Select } from 'antd';
+import moment from "moment";
+import Pagination from "../../component/common/Pagination";
+
+const { Option } = Select;
+
+const children = [];
+for (let i = 10; i < 36; i++) {
+    children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
+}
 
 const cx = classnames.bind(styles);
+
+
+const plainOptions = ['Apple', 'Pear', 'Orange'];
+
 const StartupPresent = () => {
+
+    const dispatch = useDispatch();
+    const router = useRouter();
+
+    const {startupPresentList,fieldList} = useSelector(({startupPresent,loading})=> ({
+        startupPresentList:startupPresent.getStartupPresentList,
+        fieldList:startupPresent.getFieldList
+    }))
+
+    const [field, setFields] = useState({business:[],tech:[]})
+
+    const [showBusinessField, setShowBusinessField] = useState(false)
+    const [showTechField, setShowTechField] = useState(false)
+
+    const [businessAll, setBusinessAll] = useState(false)
+    const [techAll, setTechAll] = useState(false)
+
+    const [searchInfo, setSearchInfo] = useState({
+        searchValue:"",
+        searchField:"company_name",
+        businessIdList:[],
+        techIdList:[],
+        pageNo:1,
+    })
+    useEffect(() => {
+
+        const data = {
+            ...searchInfo
+        }
+        dispatch(getFieldList())
+        dispatch(getStartupPresentList(data))
+    },[])
+
+    useEffect(() => {
+        const {pageNo = 1,searchField = null, searchValue = null} = router.query
+
+        const data = {
+            ...searchInfo,
+            pageNo:pageNo
+        }
+
+        dispatch(getStartupPresentList(data))
+    },[router.query])
+
+    useEffect(() =>{
+        setFields({
+            business:fieldList.business.map((item) =>({label:item.businessName,value:item.businessId})),
+            tech:fieldList.tech.map((item) =>({label:item.techName,value:item.techId})),
+        })
+    },[fieldList])
+
+    const searchSubmit = () =>{
+        const data = {
+            pageNo:1,
+            searchValue:searchInfo.searchValue,
+            searchField:searchInfo.searchField
+        }
+        const queryString = qs.stringify(data);
+        router.push(`${router.pathname}?${queryString}`)
+
+    }
+
+    const pageChange = useCallback((pageNo) =>{
+        const data = {
+            pageNo:pageNo,
+        }
+        const queryString = qs.stringify(data);
+        router.push(`${router.pathname}?${queryString}`)
+    },[searchInfo])
+
+
+    const changeBusiness = (value) =>{
+        setSearchInfo({
+            ...searchInfo,
+            businessIdList: value
+        })
+        setBusinessAll(false)
+
+    }
+    const changeTech = (value) =>{
+        setSearchInfo({
+            ...searchInfo,
+            techIdList: value
+        })
+        setTechAll(false)
+    }
+
+    const changeBusinessAll = (e) =>{
+        setSearchInfo({
+            ...searchInfo,
+            businessIdList: e.target.checked ? fieldList.business.map((item) =>(item.businessId)) : []
+        })
+        setBusinessAll(e.target.checked)
+
+    }
+    const changeTechAll = (e) =>{
+        setSearchInfo({
+            ...searchInfo,
+            techIdList: e.target.checked ? fieldList.tech.map((item) =>(item.techId)) : []
+        })
+        setTechAll(e.target.checked)
+
+    }
+
+
+    const businessList = (
+        <div className={cx("checkbox_g")} >
+            <Checkbox checked={businessAll} onChange={changeBusinessAll}>
+                전체
+            </Checkbox>
+            <Checkbox.Group options={field.business} value={searchInfo.businessIdList} onChange={changeBusiness}/>
+        </div>
+    )
+
+    const techList = (
+        <div className={cx("checkbox_g")} >
+            <Checkbox checked={techAll} onChange={changeTechAll}>
+                전체
+            </Checkbox>
+            <Checkbox.Group options={field.tech} value={searchInfo.techIdList} onChange={changeTech}/>
+        </div>
+    )
+
     return (
         <>
             <section className={cx("sub_container","startup_emissions")}>
@@ -14,138 +159,78 @@ const StartupPresent = () => {
                     수 있습니다. </p>
 
                 <div className={cx("search_type_2")}>
-                    <select name="" id="" className={cx("long")}>
-                        <option value="#">학생창업기업</option>
-                    </select>
-                    <select name="" id="">
-                        <option value="#">IT</option>
-                    </select>
-                    <select name="" id="">
-                        <option value="#">2020</option>
-                    </select>
-                    <input type="text" placeholder="검색어를 입력하세요."/>
-                    <button type="button" className={cx("btn_search")}>검색</button>
-                </div>
+                    <Dropdown className={cx("search_01")} overlay={businessList} trigger={['click']} visible={showBusinessField} onVisibleChange={() =>{setShowBusinessField(!showBusinessField)}}>
+                        <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                            비지니스 분야<DownOutlined style={{marginLeft:10}}/>
+                        </a>
+                    </Dropdown>
 
-                <div className={cx("txt_r mb_20")}>
-                    <button type="button" className={cx("icon_plus")} onClick="popup_open('.startup_emissions_popup');">추가</button>
-                    <Link href="#"><a className={cx("icon_setting")}>설정</a></Link>
+                    <Dropdown className={cx("search_01")} overlay={techList} trigger={['click']} visible={showTechField} onVisibleChange={() =>{setShowTechField(!showTechField)}}>
+                        <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                            활용 기술<DownOutlined style={{marginLeft:10}}/>
+                        </a>
+                    </Dropdown>
+                    <select name="searchField" value={searchInfo.searchField} onChange={(e) =>{setSearchInfo({...searchInfo,searchField: e.target.value})}}>
+                        <option value="company_name">기업명</option>
+                        <option value="item">아이템</option>
+                    </select>
+                    <input type="text" placeholder="검색어를 입력하세요." value={searchInfo.searchValue} onChange={(e) =>{setSearchInfo({...searchInfo,searchValue: e.target.value})}}/>
+                    <button type="button" className={cx("btn_search")} onClick={() =>{searchSubmit()}}>검색</button>
                 </div>
 
                 <div className={cx("bbs_tb_list")}>
                     <table>
                         <colgroup>
-                            <col style={{width:"10%"}}/>
+                            <col style={{width:"5%"}}/>
                             <col style={{width:"14.3%"}}/>
                             <col style={{width:"16.3%"}}/>
                             <col style={{width:"15.15%"}}/>
                             <col/>
-                            <col style={{width:"18%"}}/>
+                            <col/>
                         </colgroup>
                         <thead>
                         <tr>
                             <th scope="col">NO</th>
                             <th scope="col">기업명</th>
-                            <th scope="col">아이템 소개</th>
-                            <th scope="col">키워드</th>
-                            <th scope="col">홈페이지</th>
-                            <th scope="col">관련기사</th>
+                            <th scope="col">비지니스 분야</th>
+                            <th scope="col">활용 기술</th>
+                            <th scope="col">사업 아이템</th>
+                            <th scope="col">링크</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>20</td>
-                            <td>창업닷컴</td>
-                            <td>재무∙회계</td>
-                            <td>스마트팜</td>
-                            <td>www.changup.com</td>
-                            <td><Link href="#"><a>버즈분석</a></Link></td>
-                        </tr>
-                        <tr>
-                            <td>20</td>
-                            <td>창업닷컴</td>
-                            <td>재무∙회계</td>
-                            <td>스마트팜</td>
-                            <td>www.changup.com</td>
-                            <td><Link href="#"><a>버즈분석</a></Link></td>
-                        </tr>
-                        <tr>
-                            <td>20</td>
-                            <td>창업닷컴</td>
-                            <td>재무∙회계</td>
-                            <td>스마트팜</td>
-                            <td>www.changup.com</td>
-                            <td><Link href="#"><a>버즈분석</a></Link></td>
-                        </tr>
-                        <tr>
-                            <td>20</td>
-                            <td>창업닷컴</td>
-                            <td>재무∙회계</td>
-                            <td>스마트팜</td>
-                            <td>www.changup.com</td>
-                            <td><Link href="#"><a>버즈분석</a></Link></td>
-                        </tr>
-                        <tr>
-                            <td>20</td>
-                            <td>창업닷컴</td>
-                            <td>재무∙회계</td>
-                            <td>스마트팜</td>
-                            <td>www.changup.com</td>
-                            <td><Link href="#"><a>버즈분석</a></Link></td>
-                        </tr>
-                        <tr>
-                            <td>20</td>
-                            <td>창업닷컴</td>
-                            <td>재무∙회계</td>
-                            <td>스마트팜</td>
-                            <td>www.changup.com</td>
-                            <td><Link href="#"><a>버즈분석</a></Link></td>
-                        </tr>
-                        <tr>
-                            <td>20</td>
-                            <td>창업닷컴</td>
-                            <td>재무∙회계</td>
-                            <td>스마트팜</td>
-                            <td>www.changup.com</td>
-                            <td><Link href="#"><a>버즈분석</a></Link></td>
-                        </tr>
-                        <tr>
-                            <td>20</td>
-                            <td>창업닷컴</td>
-                            <td>재무∙회계</td>
-                            <td>스마트팜</td>
-                            <td>www.changup.com</td>
-                            <td><Link href="#"><a>버즈분석</a></Link></td>
-                        </tr>
-                        <tr>
-                            <td>20</td>
-                            <td>창업닷컴</td>
-                            <td>재무∙회계</td>
-                            <td>스마트팜</td>
-                            <td>www.changup.com</td>
-                            <td><Link href="#"><a>버즈분석</a></Link></td>
-                        </tr>
-                        <tr>
-                            <td>20</td>
-                            <td>창업닷컴</td>
-                            <td>재무∙회계</td>
-                            <td>스마트팜</td>
-                            <td>www.changup.com</td>
-                            <td><Link href="#"><a>버즈분석</a></Link></td>
-                        </tr>
+                        {startupPresentList.list.map((item) =>(
+                            <tr key={item.rownum}>
+                                <td>{item.rownum}</td>
+                                <td>{item.companyName}</td>
+                                <td>
+                                    {item.businessFieldList.map((field,i) =>(
+                                        `${field.businessName} ${i != item.businessFieldList.length-1 ? '|' :  ''} `
+                                    ))}
+                                </td>
+                                <td>
+                                    {item.techFieldList.map((field,i) =>(
+                                        `${field.techName} ${i != item.techFieldList.length-1 ? '|' :  ''} `
+                                    ))}
+                                </td>
+                                <td>{item.item}</td>
+                                <td>{item.homepage}</td>
+                            </tr>
+                        ))}
+
                         </tbody>
                     </table>
                 </div>
+                {startupPresentList.page != null && (
+                    <Pagination
+                        totalRecords={startupPresentList.page.totalCount}
+                        pageLimit={startupPresentList.page.pageSize}
+                        pageNeighbours={1}
+                        currentPage={startupPresentList.page.pageNo}
+                        onPageChanged={pageChange}
+                    />
+                )}
 
-                <div className={cx("paging")}>
-                    <Link href="#"><a><img src="/assets/image/page_prev.gif" alt=""/></a></Link>
-                    <Link href="#" className={cx("on")}><a>1</a></Link>
-                    <Link href="#"><a>2</a></Link>
-                    <Link href="#"><a>3</a></Link>
-                    <Link href="#"><a>4</a></Link>
-                    <Link href="#"><a>5</a></Link>
-                    <Link href="#"><a><img src="/assets/image/page_next.gif" alt=""/></a></Link>
-                </div>
             </section>
 
         </>

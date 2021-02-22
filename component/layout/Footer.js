@@ -8,16 +8,17 @@ import {useSelector} from "react-redux";
 const cx = classnames.bind(styles);
 
 const Footer = () => {
-    const {mainData} = useSelector(({main, loading}) => ({
-        mainData: main.mainData
+    const {noticeList} = useSelector(({main, loading}) => ({
+        noticeList: main.getNoticeList
     }))
+
     return (
         <section className={cx("footer_wrap")}>
             <div className={cx("footer_top")}>
                 <div className={cx("footer","clfx")}>
                     <div className={cx("cs_center")}>
                         <h1>원스톱 창업상담실</h1>
-                        <div className={cx("tel")}>02-<br/>2220-3000</div>
+                        <div className={cx("tel")}>02-2220-3000</div>
                     </div>
                     <div className={cx("business_hours")}>
                         <ul>
@@ -45,7 +46,7 @@ const Footer = () => {
                     <div className={cx("footer_notice")}>
                         <h1>아이디어 제안</h1>
                         <ul>
-                            {mainData.notice.map( (item,index) =>
+                            {noticeList.map( (item,index) =>
                                 index < 3 && <li key={item.noticeId}><Link href={`/introduce/notice/${item.noticeId}`}><a>{item.title}</a></Link></li>
 
                             )}

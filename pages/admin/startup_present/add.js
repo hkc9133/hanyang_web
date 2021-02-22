@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {DatePicker, Form, Input, Modal, Tag, Upload} from "antd";
+import {Checkbox, DatePicker, Form, Input, Modal, Tag, Upload} from "antd";
 import locale from "antd/lib/date-picker/locale/ko_KR";
 
 import styles from '../../../public/assets/styles/admin/startupPresent/startupPresent.module.css';
@@ -33,6 +33,11 @@ const StartUpAddPage = () => {
         companyKind:"",
         homepage:"",
         createDate:null,
+        item:"",
+        insta:"",
+        facebook:"",
+        naverBlog:"",
+        twitter:"",
         businessIdList:[],
         techIdList:[],
         addAttachFileList:[]
@@ -138,8 +143,24 @@ const StartUpAddPage = () => {
                                         </colgroup>
                                         <tbody>
                                         <tr>
+                                            <th scope="row">우수 스타트업</th>
+                                            <td colSpan={3}>
+                                                <Form.Item
+                                                    name="isBest"
+                                                    className={(cx("antd_input"))}
+                                                    rules={[
+                                                        {
+                                                            required: false,
+                                                        },
+                                                    ]}
+                                                >
+                                                    <Checkbox checked={startUpForm.isBest} onChange={(e) =>{setStartUpForm({...startUpForm,isBest: e.target.checked})}}/>
+                                                </Form.Item>
+                                            </td>
+                                        </tr>
+                                        <tr>
                                             <th scope="row">기업명</th>
-                                            <td>
+                                            <td colSpan={3}>
                                                 <Form.Item
                                                     name="companyName"
                                                     className={(cx("antd_input"))}
@@ -152,21 +173,6 @@ const StartUpAddPage = () => {
                                                 >
                                                     <Input placeholder={"기업명"} name="companyName" value={startUpForm.companyName}
                                                            onChange={(e) => {changeStartUpFormValue(e)}}/>
-                                                </Form.Item>
-                                            </td>
-                                            <th scope="row">설립일</th>
-                                            <td>
-                                                <Form.Item
-                                                    name="createDate"
-                                                    className={(cx("antd_input"))}
-                                                    rules={[
-                                                        {
-                                                            required: true,
-                                                            message: "필수입력 입니다",
-                                                        },
-                                                    ]}
-                                                >
-                                                    <DatePicker locale={locale} format={"YYYY-MM-DD"} value={startUpForm.createDate} onChange={(v) =>{setStartUpForm({...startUpForm,createDate:v})}}/>
                                                 </Form.Item>
                                             </td>
                                         </tr>
@@ -189,8 +195,26 @@ const StartUpAddPage = () => {
                                                            }}/>
                                                 </Form.Item>
                                             </td>
-                                            <th scope="row">홈페이지</th>
+                                            <th scope="row">설립일</th>
                                             <td>
+                                                <Form.Item
+                                                    name="createDate"
+                                                    className={(cx("antd_input"))}
+                                                    rules={[
+                                                        {
+                                                            required: true,
+                                                            message: "필수입력 입니다",
+                                                        },
+                                                    ]}
+                                                >
+                                                    <DatePicker locale={locale} format={"YYYY-MM-DD"} value={startUpForm.createDate} onChange={(v) =>{setStartUpForm({...startUpForm,createDate:v})}}/>
+                                                </Form.Item>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">홈페이지</th>
+                                            <td colSpan={3}>
                                                 <Form.Item
                                                     name="homepage"
                                                     className={(cx("antd_input"))}
@@ -202,6 +226,82 @@ const StartUpAddPage = () => {
                                                     ]}
                                                 >
                                                     <Input placeholder={"https://....."} name="homepage" value={startUpForm.homepage}
+                                                           onChange={(e) => {
+                                                               changeStartUpFormValue(e)
+                                                           }}/>
+                                                </Form.Item>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">인스타그램</th>
+                                            <td>
+                                                <Form.Item
+                                                    name="insta"
+                                                    className={(cx("antd_input"))}
+                                                    rules={[
+                                                        {
+                                                            required: false,
+                                                            message: '',
+                                                        },
+                                                    ]}
+                                                >
+                                                    <Input placeholder={"https://....."} name="insta" value={startUpForm.insta}
+                                                           onChange={(e) => {
+                                                               changeStartUpFormValue(e)
+                                                           }}/>
+                                                </Form.Item>
+                                            </td>
+                                            <th scope="row">페이스북</th>
+                                            <td>
+                                                <Form.Item
+                                                    name="facebook"
+                                                    className={(cx("antd_input"))}
+                                                    rules={[
+                                                        {
+                                                            required: false,
+                                                            message: '',
+                                                        },
+                                                    ]}
+                                                >
+                                                    <Input placeholder={"https://....."} name="facebook" value={startUpForm.facebook}
+                                                           onChange={(e) => {
+                                                               changeStartUpFormValue(e)
+                                                           }}/>
+                                                </Form.Item>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">네이버 블로그</th>
+                                            <td>
+                                                <Form.Item
+                                                    name="naverBlog"
+                                                    className={(cx("antd_input"))}
+                                                    rules={[
+                                                        {
+                                                            required: false,
+                                                            message: '',
+                                                        },
+                                                    ]}
+                                                >
+                                                    <Input placeholder={"https://....."} name="naverBlog" value={startUpForm.naverBlog}
+                                                           onChange={(e) => {
+                                                               changeStartUpFormValue(e)
+                                                           }}/>
+                                                </Form.Item>
+                                            </td>
+                                            <th scope="row">트위터</th>
+                                            <td>
+                                                <Form.Item
+                                                    name="twitter"
+                                                    className={(cx("antd_input"))}
+                                                    rules={[
+                                                        {
+                                                            required: false,
+                                                            message: '',
+                                                        },
+                                                    ]}
+                                                >
+                                                    <Input placeholder={"https://....."} name="twitter" value={startUpForm.twitter}
                                                            onChange={(e) => {
                                                                changeStartUpFormValue(e)
                                                            }}/>
@@ -379,6 +479,26 @@ const StartUpAddPage = () => {
                                             </td>
                                         </tr>
                                         <tr>
+                                            <th scope="row">사업 아이템</th>
+                                            <td colSpan={3}>
+                                                <Form.Item
+                                                    name="item"
+                                                    className={(cx("antd_input"))}
+                                                    rules={[
+                                                        {
+                                                            required: false,
+                                                            message: '',
+                                                        },
+                                                    ]}
+                                                >
+                                                    <Input placeholder={"사업 아이템"} name="item" value={startUpForm.item}
+                                                           onChange={(e) => {
+                                                               changeStartUpFormValue(e)
+                                                           }}/>
+                                                </Form.Item>
+                                            </td>
+                                        </tr>
+                                        <tr>
                                             <th scope="row">기업 로고</th>
                                             <td colSpan={3}>
                                                 <Form.Item
@@ -416,7 +536,7 @@ const StartUpAddPage = () => {
                                     <button type="submit" className={cx("basic-btn02", "btn-gray-bg")}>저장</button>
                                     <button type="button" className={cx("basic-btn02", "btn-gray-bd2")}
                                             onClick={() => {
-                                                router.push("/admin/student_report")
+                                                router.push("/admin/startup_present")
                                             }}>목록
                                     </button>
                                 </div>

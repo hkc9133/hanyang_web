@@ -303,8 +303,6 @@ const ContentView = () => {
                 <Modal
                     title="삭제하시겠습니까?"
                     visible={showRemoveModal}
-                    // onOk={() =>{handleDeleteContent}}
-                    // confirmLoading={deletePlaceResult.result}
                     onCancel={() =>{setShowRemoveModal(false)}}
                     footer={[
                         <button key={"cancel_btn"} className={cx("basic-btn01","btn-gray-bg")} onClick={() =>{setShowRemoveModal(false);}}>취소</button>,
@@ -312,7 +310,6 @@ const ContentView = () => {
                     ]}
                 >
                     <p className={cx("warning")}>{view.content.title}</p>
-                    {/*<p>{modalText}</p>*/}
                 </Modal>
             </>
         )

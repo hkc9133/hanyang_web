@@ -41,11 +41,11 @@ const dep1 = {
     },
     startup_info:{
         name:'창업지원정보',
-        link:"/board/community/list",
+        link:"/board/idea/list",
         sub:{
             startup_info: {name:'창업지원정보',link:'/board/startup_info/list'},
             startup_event: {name:'창업행사',link:'/startup_info/startup_event'},
-            community: {name:'커뮤니티',link:'/board/community/list'},
+            idea: {name:'아이디어 제안',link:'/board/idea/list'},
             data_room: {name:'자료실',link:'/board/data_room/list'},
             notice: {name:'공지사항',link:'/introduce/notice'},
         }
@@ -83,7 +83,7 @@ const dep1 = {
 }
 
 const board = {
-    community:{parents:'startup_info'},
+    idea:{parents:'startup_info'},
     data_room:{parents:'startup_info'},
     startup_info:{parents:'startup_info'},
     people:{parents:'startup_education'},

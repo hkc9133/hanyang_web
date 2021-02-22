@@ -209,13 +209,39 @@ const Write = () => {
                                     <tr>
                                         <th scope="row">제목</th>
                                         <td>
+                                            <Form.Item
+                                                name="title"
+                                                className={(cx("antd_input"))}
+                                                rules={[
+                                                    {
+                                                        required: true,
+                                                        message: '제목은 필수 입니다.',
+                                                    },
+                                                ]}
+                                            >
                                             <input type="text" placeholder={"제목을 입력하세요."} name="title" value={writeInfo.title} onChange={changeWriteInfo}/>
+                                            </Form.Item>
                                         </td>
                                     </tr>
                                     <tr>
                                         <th scope="row">내용</th>
                                         <td>
-                                            <QuillEditor Contents={content} QuillChange={setContent}/>
+                                            <Form.Item
+                                                name="content"
+                                                className={(cx("antd_input"))}
+                                                rules={[
+                                                    ({ getFieldValue }) => ({
+                                                        validator(rule, value) {
+                                                            if(content == null || content == ""){
+                                                                return Promise.reject('내용을 입력해주세요')
+                                                            }
+                                                            return Promise.resolve()
+                                                        }
+                                                    })
+                                                ]}
+                                            >
+                                                <QuillEditor Contents={content} QuillChange={setContent}/>
+                                            </Form.Item>
                                         </td>
                                     </tr>
                                         <tr>

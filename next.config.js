@@ -98,7 +98,7 @@ module.exports = withCSS(
 module.exports = withImages()
 module.exports = {
     images: {
-        domains: ['localhost'],
+        domains: ['localhost','49.50.167.168'],
     },
 }
 

@@ -242,7 +242,7 @@
 
 .mentor_groupList ul li.w_1{width:11.36%;}
 .mentor_groupList ul li.w_2{width:14.4%;}
-.mentor_groupList ul li.w_3{width:36.76%;}
+.mentor_groupList ul li.w_3{width:36.76%; }
 .mentor_groupList ul li.w_4{width:14%;}
 .mentor_groupList ul li.w_5{width:23.48%;}
 .review .star{margin-right:8px; width:18px; height:18px; display:inline-block; vertical-align:top; background:url(../../image/star_off.png) no-repeat center center; cursor:pointer;}
@@ -640,6 +640,11 @@
     .mentor_groupList .td_content .question ul li.w_3,
     .mentor_groupList .td_content .question ul li.w_4,
     .mentor_groupList .td_content .question ul li.w_5{width:20%;text-align: center;display: inline-block }
+    .mentor_groupList .td_content .question ul li.w_3{text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;}
+
+
     .mentor_groupList .td_content .info{padding-right:0; }
     .mentor_groupList .td_content .info .basic-btn02{position:relative; width:100%; height:40px; line-height:38px; font-size:14px; }
     .mentor_groupList .td_content .info li{float:none; width:100%; }
