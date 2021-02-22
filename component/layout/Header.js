@@ -89,7 +89,7 @@ const Header = () => {
                 returnRole = '/mypage/mentor'
                 break;
             case "ROLE_ADMIN":
-                returnRole = '/admin/dashboard'
+                returnRole = '/admin/users'
                 break;
         }
         return returnRole;
@@ -137,7 +137,7 @@ const Header = () => {
                                     <li><Link href="/board/startup_info/list"><a>창업지원정보</a></Link></li>
                                     <li><Link href="/startup_info/startup_event"><a>창업행사</a></Link></li>
                                     <li><Link href="/board/data_room/list"><a>자료실</a></Link></li>
-                                    <li><Link href="/board/community/list"><a>아이디어 제안</a></Link></li>
+                                    <li><Link href="/board/idea/list"><a>아이디어 제안</a></Link></li>
                                     <li><Link href="/introduce/notice/list"><a>공지사항</a></Link></li>
                                 </ul>
                             </div>
@@ -253,7 +253,7 @@ const Header = () => {
                                     <li><Link href="/board/startup_info/list"><a>창업지원정보</a></Link></li>
                                     <li><Link href="/startup_info/startup_event"><a>창업행사</a></Link></li>
                                     <li><Link href="/board/data_room/list"><a>자료실</a></Link></li>
-                                    <li><Link href="/board/community/list"><a>아이디어 제안</a></Link></li>
+                                    <li><Link href="/board/idea/list"><a>아이디어 제안</a></Link></li>
                                     <li><Link href="/introduce/notice/list"><a>공지사항</a></Link></li>
                                 </ul>
                             </div>
@@ -301,7 +301,7 @@ const Header = () => {
                         </li>
                     </ul>
                     {isLogin &&
-                        <Link href={mypage}><a className={cx("mypage_link")}>{user.role == 'ROLE_SD' ? '창업상담 신청현황' : user.role == 'ROLE_ADMIN' ? "관리자" : "관리"}</a></Link>
+                        <Link href={mypage}><a className={cx("mypage_link")}>{user.role == 'ROLE_SD' ? '창업상담 신청현황' : user.role == 'ROLE_ADMIN' ? "관리자콘솔" : "관리"}</a></Link>
                     }
                 </div>
             </div>

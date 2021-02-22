@@ -5,14 +5,16 @@ import {takeLatest} from 'redux-saga/effects';
 import * as startupPresentAPI from "../../lib/api/startupPresent/startupPresent";
 import * as adminStartupPresentAPI from "../../lib/api/admin/startupPresent/startupPresent";
 
-const [GET_FIELD_LIST,GET_FIELD_LIST_SUCCESS, GET_FIELD_LIST_FAILURE] = createRequestActionTypes('startupPresent/GET_FIELD_LIST')
-const [GET_BEST_STARTUP_LIST,GET_BEST_STARTUP_LIST_SUCCESS, GET_BEST_STARTUP_LIST_FAILURE] = createRequestActionTypes('startupPresent/GET_BEST_STARTUP_LIST')
-const [GET_STARTUP_PRESENT,GET_STARTUP_PRESENT_SUCCESS, GET_STARTUP_PRESENT_FAILURE] = createRequestActionTypes('startupPresent/GET_STARTUP_PRESENT')
-const [GET_STARTUP_PRESENT_LIST,GET_STARTUP_PRESENT_LIST_SUCCESS, GET_STARTUP_PRESENT_LIST_FAILURE] = createRequestActionTypes('startupPresent/GET_STARTUP_PRESENT_LIST')
-const INITIALIZE = 'startupPresent/INITIALIZE';
+const [GET_FIELD_LIST,GET_FIELD_LIST_SUCCESS, GET_FIELD_LIST_FAILURE] = createRequestActionTypes('partner/GET_FIELD_LIST')
+const [GET_BEST_STARTUP_LIST,GET_BEST_STARTUP_LIST_SUCCESS, GET_BEST_STARTUP_LIST_FAILURE] = createRequestActionTypes('partner/GET_BEST_STARTUP_LIST')
+const [GET_STARTUP_PRESENT,GET_STARTUP_PRESENT_SUCCESS, GET_STARTUP_PRESENT_FAILURE] = createRequestActionTypes('partner/GET_STARTUP_PRESENT')
+const [GET_STARTUP_PRESENT_LIST,GET_STARTUP_PRESENT_LIST_SUCCESS, GET_STARTUP_PRESENT_LIST_FAILURE] = createRequestActionTypes('partner/GET_STARTUP_PRESENT_LIST')
+const INITIALIZE = 'partner/INITIALIZE';
+const INITIALIZE_FORM  = 'partner/INITIALIZE_FORM';
 
 
 export const initialize = createAction(INITIALIZE);
+export const initializeForm = createAction(INITIALIZE_FORM, from => from);
 
 export const getBestStartupList = createAction(GET_BEST_STARTUP_LIST);
 export const getFieldList = createAction(GET_FIELD_LIST);
@@ -94,6 +96,10 @@ const startupPresent = handleActions(
             }),
         [INITIALIZE]: (state, {payload: form}) => ({
             ...initialState
+        }),
+        [INITIALIZE_FORM]: (state, {payload: form}) => ({
+            ...state,
+            [form]: initialState[form],
         }),
     }
     ,

@@ -8,9 +8,10 @@ import {useSelector} from "react-redux";
 const cx = classnames.bind(styles);
 
 const Footer = () => {
-    const {mainData} = useSelector(({main, loading}) => ({
-        mainData: main.mainData
+    const {noticeList} = useSelector(({main, loading}) => ({
+        noticeList: main.getNoticeList
     }))
+
     return (
         <section className={cx("footer_wrap")}>
             <div className={cx("footer_top")}>
@@ -45,7 +46,7 @@ const Footer = () => {
                     <div className={cx("footer_notice")}>
                         <h1>아이디어 제안</h1>
                         <ul>
-                            {mainData.notice.map( (item,index) =>
+                            {noticeList.map( (item,index) =>
                                 index < 3 && <li key={item.noticeId}><Link href={`/introduce/notice/${item.noticeId}`}><a>{item.title}</a></Link></li>
 
                             )}

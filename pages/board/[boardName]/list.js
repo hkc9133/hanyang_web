@@ -122,10 +122,10 @@ const List = () => {
                     {currentBoard.board.boardEnName == 'people' && (
                         <SearchBoxSelector skinName="SearchBoxStyle02" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
                     )}
-                    {currentBoard.board.boardEnName == 'data_room' || currentBoard.board.boardEnName == 'community' || currentBoard.board.boardEnName == "startup_info" && (
+                    {currentBoard.board.boardEnName == 'data_room' || currentBoard.board.boardEnName == 'idea' || currentBoard.board.boardEnName == "startup_info" && (
                         <SearchBoxSelector skinName="SearchBoxStyle01" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
                     )}
-                    {(currentBoard.board.boardEnName == 'community' || currentBoard.board.boardEnName == 'ir')  && (
+                    {(currentBoard.board.boardEnName == 'idea' || currentBoard.board.boardEnName == 'ir')  && (
                         <SearchBoxSelector skinName="SearchBoxStyle01" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
                     )}
                     {(currentBoard.board.boardEnName == 'online_content') && (
@@ -153,7 +153,7 @@ const List = () => {
                     {currentBoard.board.boardEnName == 'data_room' && (
                         <BoardSkinSelector skinName="ListType01" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
                     )}
-                    {currentBoard.board.boardEnName == 'community' && (
+                    {currentBoard.board.boardEnName == 'idea' && (
                         <BoardSkinSelector skinName="ListType02" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
                     )}
                     {currentBoard.board.boardEnName == 'startup_info' && (

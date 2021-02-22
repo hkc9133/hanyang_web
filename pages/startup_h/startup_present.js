@@ -200,7 +200,7 @@ const StartupPresent = () => {
                         </thead>
                         <tbody>
                         {startupPresentList.list.map((item) =>(
-                            <tr>
+                            <tr key={item.rownum}>
                                 <td>{item.rownum}</td>
                                 <td>{item.companyName}</td>
                                 <td>

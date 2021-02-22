@@ -29,7 +29,7 @@ import ScrollToTop from "../component/common/ScrollToTop";
 
 import GlobalStyles from '../public/assets/styles/global'
 import AdminGlobalStyles from '../public/assets/styles/admin_global'
-import {getMainData} from "../store/main/main";
+import {getMainData, getNoticeList} from "../store/main/main";
 
 // "dev": "NODE_ENV='development' node server.js",
 
@@ -53,7 +53,7 @@ const _App = ({Component, pageProps}) => {
         dispatch(authCheck())
 
         if(!router.pathname.startsWith("/admin")){
-            dispatch(getMainData())
+            dispatch(getNoticeList())
         }
     }, [router])
 

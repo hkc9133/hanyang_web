@@ -37,7 +37,7 @@ const AdminHeaderDetail = () => {
                     </ul>
                 </>
             )}
-            {router.pathname.startsWith("/admin/board/list") && (
+            {(router.pathname.startsWith("/admin/board") || router.pathname.startsWith("/admin/notice") || router.pathname.startsWith("/admin/popup") || router.pathname.startsWith("/admin/keyword")) && (
                 <>
                     <div className={cx("adm_menu_head")}>
                         <div className={cx("adm_menu_icon")}>
@@ -48,6 +48,8 @@ const AdminHeaderDetail = () => {
                     <ul>
                         <li><Link href="/admin/notice/list"><a>공지사항 관리</a></Link></li>
                         <li><Link href="/admin/board/list"><a>게시판 관리</a></Link></li>
+                        <li><Link href="/admin/popup"><a>팝업 관리</a></Link></li>
+                        <li><Link href="/admin/keyword"><a>검색어 관리</a></Link></li>
                     </ul>
                 </>
             )}
@@ -76,8 +78,6 @@ const AdminHeaderDetail = () => {
                     <ul>
                         <li><Link href="/admin/mentor"><a>멘토 관리</a></Link></li>
                         <li><Link href="/admin/counsel_apply"><a>상담 신청서 관리</a></Link></li>
-                        <li><Link href="/admin/popup"><a>팝언 관리</a></Link></li>
-                        <li><Link href="/admin/keyword"><a>검색어 관리</a></Link></li>
                     </ul>
                 </>
             )}
@@ -108,7 +108,7 @@ const AdminHeaderDetail = () => {
                     </ul>
                 </>
             )}
-            {(router.pathname.startsWith("/admin/student_report") || router.pathname.startsWith("/admin/startup_present")) && (
+            {(router.pathname.startsWith("/admin/student_report") || router.pathname.startsWith("/admin/startup_present")|| router.pathname.startsWith("/admin/partner")) && (
                 <>
                     <div className={cx("adm_menu_head")}>
                         <div className={cx("adm_menu_icon")}>
@@ -119,6 +119,7 @@ const AdminHeaderDetail = () => {
                     <ul>
                         <li><Link href="/admin/student_report"><a>학생 창업 신고 목록</a></Link></li>
                         <li><Link href="/admin/startup_present"><a>스타트업 배출 목록</a></Link></li>
+                        <li><Link href="/admin/partner"><a>국내외 투자파트너스</a></Link></li>
                     </ul>
                 </>
             )}

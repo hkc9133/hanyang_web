@@ -70,11 +70,24 @@
 .total_menu>ul>li{border-bottom:1px solid #e0e1e5;}
 .total_menu>ul>li>a{position:relative; padding:20px; display:block; font-size:15px; font-family:"s-core-dream-medium";}
 .total_menu .mypage_link{position: relative;
-    padding: 20px;
+    /*padding: 20px;*/
     display: block;
     font-size: 15px;
     margin-top: 20px;
-    font-family: "s-core-dream-medium";}
+    font-family: "s-core-dream-medium";
+    color: white;
+    background-color: #1890ff;
+    width: 90%;
+    margin: 20px auto;}
+
+.mypage_link{position:relative; padding:0 50px 0 40px; height:52px; line-height:52px; display:inline-block; border:1px solid #ddd; font-size:18px; border-radius:2px; font-family: "s-core-dream-medium";}
+.mypage_link:after{position:absolute; right: 50px;
+    top: 45%;
+    margin-top: -5px;
+    width: 59px;
+    height: 12px; display:block; background:url(../../image/mypage_arrow.png) no-repeat right center; content:"";}
+
+
 .total_menu>ul>li>a:before{position:absolute; right:15px; top:50%; width:7px; height:1px; display:block; background-color:#333; content:""; transform: rotate( -45deg );}
 .total_menu>ul>li>a:after{position:absolute; right:20px; top:50%; width:7px; height:1px; display:block; background-color:#333; content:""; transform: rotate( 45deg );}
 .total_menu .s_menu{background-color:#fff;
@@ -122,12 +135,12 @@
     .gnb:hover:before{height:350px; }
     .gnb:hover .s_gnb{height:auto; }
 
-    .login_box .top_mypage{display: none;}
 }
 @media screen and (max-width: 1400px){
 
     /*header*/
     .gnb{display:none;}
+    .login_box .top_mypage{display: none;}
 }
 
 

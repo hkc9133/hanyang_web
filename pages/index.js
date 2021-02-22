@@ -20,6 +20,7 @@ import PopupItem from "../component/main/PopupItem";
 import client from "../lib/api/client";
 import dynamic from "next/dynamic";
 import {useRouter} from "next/router";
+import {getThumbnail} from "../component/common/util/ThumbnailUtil";
 
 
 const cx = classnames.bind(styles);
@@ -125,26 +126,26 @@ const Index = () => {
     const borderSlider = React.useRef();
     const router = useRouter();
 
-    const [showNotice,setShowNotice] = useState(true);
-    const [searchValue,setSearchValue] = useState("");
+    const [showNotice, setShowNotice] = useState(true);
+    const [searchValue, setSearchValue] = useState("");
 
     const {mainData} = useSelector(({main, loading}) => ({
         mainData: main.mainData
     }))
 
     useEffect(() => {
-        // borderSlider.current.slickNext()
-    }, [])
+        dispatch(getMainData())
+    }, [router])
 
-    const toggleNoticeSlider = () =>{
+    const toggleNoticeSlider = () => {
         setShowNotice(!showNotice)
     }
-    const searchBoard = () =>{
+    const searchBoard = () => {
         router.push(`/search?page&searchField=title&searchValue=${searchValue}`)
     }
 
-    const handleEnter = (e) =>{
-        if(e.key == "Enter"){
+    const handleEnter = (e) => {
+        if (e.key == "Enter") {
             searchBoard();
         }
 
@@ -218,14 +219,18 @@ const Index = () => {
                         </li>
                     </ul>
                     <div className={cx("main_search_area")}>
-                        <input type="text" placeholder="검색어를 입력하세요." value={searchValue} onChange={(e) =>{setSearchValue(e.target.value)}} onKeyPress={handleEnter}/>
-                        <button type="button" className={cx("btn_search")} onClick={() =>searchBoard()}>검색</button>
+                        <input type="text" placeholder="검색어를 입력하세요." value={searchValue} onChange={(e) => {
+                            setSearchValue(e.target.value)
+                        }} onKeyPress={handleEnter}/>
+                        <button type="button" className={cx("btn_search")} onClick={() => searchBoard()}>검색</button>
                     </div>
                     <div className={cx("searchWord")}>
                         <ul>
-                            {mainData.keyword.map((item) =>(
+                            {mainData.keyword.map((item) => (
                                 <li key={item.keywordId}>
-                                    <Link href={`/search?page&searchField=title&searchValue=${item.keyword}`}><button type="button"># {item.keyword}</button></Link>
+                                    <Link href={`/search?page&searchField=title&searchValue=${item.keyword}`}>
+                                        <button type="button"># {item.keyword}</button>
+                                    </Link>
                                 </li>
                             ))}
                         </ul>
@@ -289,9 +294,9 @@ const Index = () => {
                     <div className={cx("main_hotissue")}>
                         <h1><Link href="/"><a>창업지원단 핫이슈</a></Link></h1>
                         <ul>
-                            {mainData.notice.map( (item,index) =>
-                                index < 5 && <li key={item.noticeId}><Link href={`/introduce/notice/${item.noticeId}`}><a>{item.title}</a></Link></li>
-
+                            {mainData.notice.map((item, index) =>
+                                index < 5 && <li key={item.noticeId}><Link
+                                    href={`/introduce/notice/${item.noticeId}`}><a>{item.title}</a></Link></li>
                             )}
                         </ul>
                     </div>
@@ -300,11 +305,21 @@ const Index = () => {
                         <h1><Link href="/"><a>온라인 콘텐츠</a></Link></h1>
                         <div className={cx("e_learning_slide")}>
                             <div className={cx("list")}>
-                                <Link href="/">
-                                    <a>
-                                        <Image src="/assets/image/main_banner.jpg" layout="fill" alt="main_banner"/>
-                                    </a>
-                                </Link>
+                                {mainData.online_content.map((item, index) => {
+                                        return (
+                                            <Link href={`/board/online_content/view/${item.contentId}`}>
+                                                <a>
+                                                    <Image src={getThumbnail(item.content)} layout="fill" alt="온라인 콘텐츠"/>
+                                                </a>
+                                            </Link>
+                                        )
+                                    }
+                                )}
+                                {/*<Link href="/">*/}
+                                {/*    <a>*/}
+                                {/*        <Image src="/assets/image/main_banner.jpg" layout="fill" alt="main_banner"/>*/}
+                                {/*    </a>*/}
+                                {/*</Link>*/}
                             </div>
                         </div>
                     </div>
@@ -315,19 +330,27 @@ const Index = () => {
                 <div className={cx("main_cont")}>
                     <div className={cx("main_tab")}>
                         <ul>
-                            <li className={cx({on:showNotice})}>
-                                <button type="button" onClick={() =>{toggleNoticeSlider()}}>공지사항</button>
+                            <li className={cx({on: showNotice})}>
+                                <button type="button" onClick={() => {
+                                    toggleNoticeSlider()
+                                }}>공지사항
+                                </button>
                             </li>
-                            <li className={cx({on:!showNotice})}>
-                                <button type="button" onClick={() =>{toggleNoticeSlider()}}>창업지원정보</button>
+                            <li className={cx({on: !showNotice})}>
+                                <button type="button" onClick={() => {
+                                    toggleNoticeSlider()
+                                }}>창업지원정보
+                                </button>
                             </li>
                         </ul>
                     </div>
 
                     <div className={cx("main_board_list", "main_tabCont")}>
                         {/*공지사항*/}
-                        {mainData.notice.length >0 && (
-                            <Slider className={`${cx("slides",{hidden:!showNotice})} main_board_list`} {...boardSliderSettings} ref={borderSlider}>
+                        {mainData.notice.length > 0 && (
+                            <Slider
+                                className={`${cx("slides", {hidden: !showNotice})} main_board_list`} {...boardSliderSettings}
+                                ref={borderSlider}>
                                 {
                                     mainData.notice.map((item) => {
                                         return (
@@ -364,7 +387,8 @@ const Index = () => {
 
                         )}
                         {mainData.startup_info.length > 0 && (
-                            <Slider className={`${cx("slides",{hidden:showNotice})} main_board_list`} {...boardSliderSettings}>
+                            <Slider
+                                className={`${cx("slides", {hidden: showNotice})} main_board_list`} {...boardSliderSettings}>
                                 {
                                     mainData.startup_info.map((item) => {
                                         return (
@@ -384,7 +408,8 @@ const Index = () => {
                                                                 {item.title}
                                                             </div>
                                                             <div className={cx("txt")}>
-                                                                <div dangerouslySetInnerHTML={{__html: item.content.replace("<br>","")}}/>
+                                                                <div
+                                                                    dangerouslySetInnerHTML={{__html: item.content.replace("<br>", "")}}/>
                                                             </div>
                                                             <span
                                                                 className={cx("date")}>{moment(item.regDate).format("YYYY년 MM월 DD일")}</span>
@@ -444,7 +469,7 @@ const Index = () => {
             </div>
 
             <div className={cx("main_cont_5")}>
-                <h1>Startup Network</h1>
+                <h1>Global Network</h1>
                 <div className={cx("img_area")}><Image src="/assets/image/main_network.png" width={1531} height={492}
                                                        alt="main_network"/></div>
             </div>
@@ -484,52 +509,62 @@ const Index = () => {
                         <Slider className={cx("slide")} {...logoSliderSettings} ref={logoSlider}>
                             <div className={cx("list")}>
                                 <Link href="https://www.moe.go.kr/main.do?s=moe"><a target="_blank">
-                                    <Image src="/assets/image/family_site_8.jpg" width={170} height={88} alt="family_site"/>
+                                    <Image src="/assets/image/family_site_8.jpg" width={170} height={88}
+                                           alt="family_site"/>
                                 </a></Link>
                             </div>
                             <div className={cx("list")}>
                                 <Link href="https://www.mss.go.kr/site/smba/main.do"><a target="_blank">
-                                <Image src="/assets/image/family_site_1.jpg" width={150} height={88} alt="family_site"/>
+                                    <Image src="/assets/image/family_site_1.jpg" width={150} height={88}
+                                           alt="family_site"/>
                                 </a></Link>
                             </div>
                             <div className={cx("list")}>
                                 <Link href="https://www.kised.or.kr/"><a target="_blank">
-                                    <Image src="/assets/image/family_site_3.jpg" width={114} height={88} alt="family_site"/>
+                                    <Image src="/assets/image/family_site_3.jpg" width={114} height={88}
+                                           alt="family_site"/>
                                 </a></Link>
                             </div>
                             <div className={cx("list")}>
                                 <Link href="https://www.k-startup.go.kr/main.do"><a target="_blank">
-                                    <Image src="/assets/image/family_site_2.jpg" width={126} height={88} alt="family_site"/>
-                                </a></Link> 
+                                    <Image src="/assets/image/family_site_2.jpg" width={126} height={88}
+                                           alt="family_site"/>
+                                </a></Link>
                             </div>
                             <div className={cx("list")}>
                                 <Link href="https://new.sba.kr/user/main.do"><a target="_blank">
-                                    <Image src="/assets/image/family_site_5.jpg" width={170} height={88} alt="family_site"/>
+                                    <Image src="/assets/image/family_site_5.jpg" width={170} height={88}
+                                           alt="family_site"/>
                                 </a></Link>
                             </div>
                             <div className={cx("list")}>
                                 <Link href="https://seoulstartuphub.com/"><a target="_blank">
-                                    <Image src="/assets/image/family_site_6.jpg" width={170} height={88} alt="family_site"/>
+                                    <Image src="/assets/image/family_site_6.jpg" width={170} height={88}
+                                           alt="family_site"/>
                                 </a></Link>
                             </div>
                             <div className={cx("list")}>
                                 <Link href="https://ccei.creativekorea.or.kr/seoul/main.do"><a target="_blank">
-                                    <Image src="/assets/image/family_site_7.jpg" width={170} height={88} alt="family_site"/>
+                                    <Image src="/assets/image/family_site_7.jpg" width={170} height={88}
+                                           alt="family_site"/>
                                 </a></Link>
                             </div>
                             <div className={cx("list")}>
                                 <Link href="https://www.kocca.kr"><a target="_blank">
-                                    <Image src="/assets/image/family_site_4.jpg" width={86} height={88} alt="family_site"/>
+                                    <Image src="/assets/image/family_site_4.jpg" width={86} height={88}
+                                           alt="family_site"/>
                                 </a></Link>
                             </div>
                             <div className={cx("list")}>
                                 <Link href="https://www.nipa.kr/"><a target="_blank">
-                                    <Image src="/assets/image/family_site_9.jpg" width={170} height={88} alt="family_site"/>
+                                    <Image src="/assets/image/family_site_9.jpg" width={170} height={88}
+                                           alt="family_site"/>
                                 </a></Link>
                             </div>
                             <div className={cx("list")}>
                                 <Link href="https://www.kita.net/"><a target="_blank">
-                                    <Image src="/assets/image/family_site_10.jpg" width={170} height={88} alt="family_site"/>
+                                    <Image src="/assets/image/family_site_10.jpg" width={170} height={88}
+                                           alt="family_site"/>
                                 </a></Link>
                             </div>
                         </Slider>
@@ -548,8 +583,11 @@ const Index = () => {
                                               alt="family_site_stop"/></button>
                                 </li>
                                 <li>
-                                    <button type="button" className={cx("slick_next")} onClick={() =>{logoSlider.current.slickNext()}}>
-                                        <Image src="/assets/image/family_site_next.jpg" width={44} height={46} alt="family_site_next"/>
+                                    <button type="button" className={cx("slick_next")} onClick={() => {
+                                        logoSlider.current.slickNext()
+                                    }}>
+                                        <Image src="/assets/image/family_site_next.jpg" width={44} height={46}
+                                               alt="family_site_next"/>
                                     </button>
                                 </li>
                             </ul>

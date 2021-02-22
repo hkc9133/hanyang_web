@@ -5,8 +5,8 @@ import {
     initialize,
 } from "../../../../store/board/adminBoard";
 import {END} from "redux-saga";
-import {Checkbox, Form, Input, Select, Tag, Upload} from "antd";
-import Modal from "../../../../component/common/Modal";
+import {Checkbox, Form, Input, Select, Tag, Upload,Modal} from "antd";
+// import Modal from "../../../../component/common/Modal";
 import {useRouter} from "next/router";
 import {useDispatch, useSelector} from "react-redux";
 import {PlusOutlined} from "@ant-design/icons";
@@ -89,6 +89,7 @@ const ContentEditView = () => {
             // form.setFieldsValue({
             //     categoryCodeId:view.content.categoryCodeId
             // })
+            console.log(writeInfo)
             setContent(view.notice.content)
         }
 
@@ -153,13 +154,16 @@ const ContentEditView = () => {
     }
 
     useEffect(() =>{
-
         if(update.result && update.error == null){
+            // dispatch(initialize());
             Modal.success({
-                content: '저장이 완료되었습니다',
+                title: '수정이 완료되었습니다',
                 onOk:() => {router.back();}
             });
-
+        }else if(update.result == false && update.error != null){
+            Modal.warning({
+                title: '수정 중 에러가 발생하였습니다'
+            });
         }
     },[update])
 
@@ -222,10 +226,9 @@ const ContentEditView = () => {
 
                     <div className={cx("admin_cont")}>
                         <Form form={form} onFinish={(e) =>{submitApply(e)}}
-                              // initialValues={{
-                              //     ["title"]:view.content.title,
-                              //     // ["categoryCodeId"]:view.content.categoryCodeId
-                              // }}
+                              initialValues={{
+                                  title:view.notice.title
+                              }}
                         >
                         <h2 className={cx("title_style_1")}><span>수정</span></h2>
                         <div className={cx("tb_style_1","edit_form","content")}>
@@ -298,24 +301,39 @@ const ContentEditView = () => {
                                 <tr>
                                     <th scope="row">제목</th>
                                     <td>
+                                        <Form.Item
+                                            name="title"
+                                            className={(cx("antd_input"))}
+                                            rules={[
+                                                {
+                                                    required: true,
+                                                    message: '제목은 필수 입니다.',
+                                                },
+                                            ]}
+                                        >
                                         <input type="text" placeholder={"제목을 입력하세요."} name="title" value={writeInfo.title} onChange={changeWriteInfo}/>
-                                        {/*<Form.Item*/}
-                                        {/*    name="title"*/}
-                                        {/*    rules={[*/}
-                                        {/*        {*/}
-                                        {/*            required: true,*/}
-                                        {/*            message: '제목을 입력하세요.',*/}
-                                        {/*        },*/}
-                                        {/*    ]}*/}
-                                        {/*>*/}
-                                        {/*    <Input placeholder={"제목을 입력하세요."} name="title" value={writeInfo.title} onChange={changeWriteInfo}/>*/}
-                                        {/*</Form.Item>*/}
+                                        </Form.Item>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">내용</th>
                                     <td>
+                                        <Form.Item
+                                            name="content"
+                                            className={(cx("antd_input"))}
+                                            rules={[
+                                                ({ getFieldValue }) => ({
+                                                    validator(rule, value) {
+                                                        if(content == null || content == ""){
+                                                            return Promise.reject('내용을 입력해주세요')
+                                                        }
+                                                        return Promise.resolve()
+                                                    }
+                                                })
+                                            ]}
+                                        >
                                         <QuillEditor Contents={content} QuillChange={setContent}/>
+                                        </Form.Item>
                                     </td>
                                 </tr>
                                 <tr>

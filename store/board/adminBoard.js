@@ -109,7 +109,6 @@ const initialState = {
     delete:{
         result:null,
         error:null
-
     },
     content:{
         result:null,

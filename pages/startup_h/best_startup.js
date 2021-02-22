@@ -5,16 +5,41 @@ import classnames from "classnames/bind"
 import PageNavigation from "../../component/layout/PageNavigation";
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
-import {getBestStartupList, initialize} from "../../store/startupPresent/startupPresent";
+import {
+    getBestStartupList,
+    getStartupPresent,
+    initialize,
+    initializeForm
+} from "../../store/startupPresent/startupPresent";
+import wrapper from "../../store/configureStore";
+import client from "../../lib/api/client";
+import {getNotice} from "../../store/notice/adminNotice";
+import {END} from "redux-saga";
+import {FileImageOutlined} from "@ant-design/icons";
+import Modal from "../../component/common/Modal";
 
 const cx = classnames.bind(styles);
+
+export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
+
+    const cookie = context.req && context.req.headers.cookie ? context.req.headers.cookie : '';
+    client.defaults.headers.Cookie = cookie;
+
+    context.store.dispatch(getBestStartupList());
+    context.store.dispatch(END);
+    await context.store.sagaTask.toPromise();
+})
+
 const BestStartup = () => {
     const dispatch = useDispatch();
     const router = useRouter();
 
-    const {bestStartupList} = useSelector(({startupPresent, loading}) => ({
+    const {bestStartupList,bestStartup} = useSelector(({startupPresent, loading}) => ({
         bestStartupList: startupPresent.getBestStartupList,
+        bestStartup: startupPresent.getStartupPresent,
     }))
+
+    const [showStartupDetail, setShowStartupDetail] = useState(false);
 
     const [best, setBest] = useState({
         st: [],
@@ -30,7 +55,6 @@ const BestStartup = () => {
     });
 
     useEffect(() => {
-        dispatch(getBestStartupList())
 
         return () => {
             dispatch(initialize())
@@ -40,7 +64,6 @@ const BestStartup = () => {
 
     useEffect(() => {
 
-        console.log(bestStartupList)
         let list = {
             st: [],
             al: [],
@@ -94,6 +117,17 @@ const BestStartup = () => {
         setStartupCount(countList)
 
     }, [bestStartupList])
+
+    const handleDetailModal = (startupId) =>{
+        if(!showStartupDetail){
+            dispatch(getStartupPresent(startupId))
+            setShowStartupDetail(!showStartupDetail);
+        }else{
+            dispatch(initializeForm('getStartupPresent'))
+            setShowStartupDetail(!showStartupDetail);
+        }
+
+    }
     return (
         <>
             <PageNavigation/>
@@ -104,23 +138,6 @@ const BestStartup = () => {
                     할 수
                     있습니다.</p>
 
-                {/*<div className={cx("search_type_2")}>*/}
-                {/*    <select name="" id="" className={cx("long")}>*/}
-                {/*        <option value="#">학생창업기업</option>*/}
-                {/*    </select>*/}
-                {/*    <select name="" id="">*/}
-                {/*        <option value="#">IT</option>*/}
-                {/*    </select>*/}
-                {/*    <select name="" id="">*/}
-                {/*        <option value="#">2020</option>*/}
-                {/*    </select>*/}
-                {/*    <input type="text" placeholder="검색어를 입력하세요."/>*/}
-                {/*    <button type="button" className={cx("btn_search")}>검색</button>*/}
-                {/*</div>*/}
-
-                {/*<div className={cx("graph_area")}>*/}
-                {/*    <Image src="/assets/image/best_startup_graph.jpg" width={1318} height={288} alt="best_startup_graph"/>*/}
-                {/*</div>*/}
 
                 <div className={cx("best_startup_list")}>
                     <div className={cx("box")}>
@@ -132,20 +149,14 @@ const BestStartup = () => {
                             <span className={cx("number")}><strong>{startupCount.st}</strong>개</span>
                         </div>
 
-                        {/*<div className={cx("info")}>*/}
-                        {/*    <ul>*/}
-                        {/*        <li>매출액 382억원</li>*/}
-                        {/*        <li>고용인원 382명</li>*/}
-                        {/*        <li>투자유치 392억원</li>*/}
-                        {/*    </ul>*/}
-                        {/*</div>*/}
-
                         <div className={cx("logo_list")}>
                             <ul>
                                 {best.st.map((item) => (
-                                    <li key={item.startupId}>
+                                    <li key={item.startupId} onClick={() =>{handleDetailModal(item.startupId)}}>
                                         <div className={cx("logo")}>
-                                            <img src="/assets/image/best_startup_logo1.jpg" alt=""/>
+                                            {item.attachFile != null ? <img src={`${client.defaults.baseURL}/resource${item.attachFile.filePath}/${item.attachFile.fileName+item.attachFile.fileExtension}`} width={38} height={38} alt={"LOGO"}/> : (
+                                                <FileImageOutlined style={{fontSize:33,verticalAlign:'middle'}}/>
+                                            ) }
                                         </div>
                                         <span className={cx("name")}>{item.companyName}</span>
                                     </li>
@@ -157,26 +168,19 @@ const BestStartup = () => {
                     <div className={cx("box")}>
                         <div className={cx("title_area")}>
                             <h2>동문 창업기업</h2>
-                            <span className={cx("txt_1")}>
-					한양대학교 배출 <br/>동문 창업기업
-				</span>
+                            <span className={cx("txt_1")}>한양대학교 배출 <br/>동문 창업기업
+                            </span>
                             <span className={cx("number")}><strong>{startupCount.al}</strong>개</span>
                         </div>
-
-                        {/*<div className={cx("info")}>*/}
-                        {/*    <ul>*/}
-                        {/*        <li>매출액 382억원</li>*/}
-                        {/*        <li>고용인원 382명</li>*/}
-                        {/*        <li>투자유치 392억원</li>*/}
-                        {/*    </ul>*/}
-                        {/*</div>*/}
 
                         <div className={cx("logo_list")}>
                             <ul>
                                 {best.al.map((item) => (
-                                    <li key={item.startupId}>
+                                    <li key={item.startupId} onClick={() =>{handleDetailModal(item.startupId)}}>
                                         <div className={cx("logo")}>
-                                            <img src="/assets/image/best_startup_logo1.jpg" alt=""/>
+                                            {item.attachFile != null ? <img src={`${client.defaults.baseURL}/resource${item.attachFile.filePath}/${item.attachFile.fileName+item.attachFile.fileExtension}`} width={38} height={38} alt={"LOGO"}/> : (
+                                                <FileImageOutlined style={{fontSize:33,verticalAlign:'middle'}}/>
+                                            ) }
                                         </div>
                                         <span className={cx("name")}>{item.companyName}</span>
                                     </li>
@@ -197,9 +201,11 @@ const BestStartup = () => {
                         <div className={cx("logo_list")}>
                             <ul>
                                 {best.tc.map((item) =>(
-                                    <li key={item.startupId}>
+                                    <li key={item.startupId} onClick={() =>{handleDetailModal(item.startupId)}}>
                                         <div className={cx("logo")}>
-                                            <img src="/assets/image/best_startup_logo1.jpg" alt=""/>
+                                            {item.attachFile != null ? <img src={`${client.defaults.baseURL}/resource${item.attachFile.filePath}/${item.attachFile.fileName+item.attachFile.fileExtension}`} width={38} height={38} alt={"LOGO"}/> : (
+                                                <FileImageOutlined style={{fontSize:33,verticalAlign:'middle'}}/>
+                                            ) }
                                         </div>
                                         <span className={cx("name")}>{item.companyName}</span>
                                     </li>
@@ -219,9 +225,11 @@ const BestStartup = () => {
                         <div className={cx("logo_list")}>
                             <ul>
                                 {best.gn.map((item) =>(
-                                    <li key={item.startupId}>
+                                    <li key={item.startupId} onClick={() =>{handleDetailModal(item.startupId)}}>
                                         <div className={cx("logo")}>
-                                            <img src="/assets/image/best_startup_logo1.jpg" alt=""/>
+                                            {item.attachFile != null ? <img src={`${client.defaults.baseURL}/resource${item.attachFile.filePath}/${item.attachFile.fileName+item.attachFile.fileExtension}`} width={38} height={38} alt={"LOGO"}/> : (
+                                                <FileImageOutlined style={{fontSize:33,verticalAlign:'middle'}}/>
+                                            ) }
                                         </div>
                                         <span className={cx("name")}>{item.companyName}</span>
                                     </li>
@@ -230,7 +238,42 @@ const BestStartup = () => {
                         </div>
                     </div>
                 </div>
-
+                    <Modal visible={showStartupDetail} closable={true} maskClosable={true} onClose={() => handleDetailModal(null)} cx={cx} className={cx("startup_popup")}>
+                        {bestStartup != null ? (
+                        <div className={cx("inner")}>
+                            <div className={cx("logo")}>
+                                {bestStartup.attachFile != null ? <img src={`${client.defaults.baseURL}/resource${bestStartup.attachFile.filePath}/${bestStartup.attachFile.fileName+bestStartup.attachFile.fileExtension}`} width={180} height={180} alt={"LOGO"}/> : (
+                                    <FileImageOutlined style={{fontSize:170,verticalAlign:'middle'}}/>
+                                ) }
+                            </div>
+                            <div className={cx("content")}>
+                                <strong>{bestStartup.companyName}</strong>
+                                <h3>기업 정보</h3>
+                                <ul className={cx("company_info")}>
+                                    <li>대표자명 : {bestStartup.companyOwner}</li>
+                                    <li>홈페이지 : <a href={bestStartup.homepage} target="_blank">{bestStartup.homepage}</a></li>
+                                    <li className={cx("sns_list")}>SNS :
+                                        {bestStartup.insta != null && <a href={bestStartup.insta} target="_blank"><Image src="/assets/image/startup_insta.png" width={25} height={25} alt="sns_logo"/></a>}
+                                        {bestStartup.facebook != null && <a href={bestStartup.facebook} target="_blank"><Image src="/assets/image/startup_facebook.png" width={25} height={25} alt="sns_logo"/></a>}
+                                        {bestStartup.naverBlog != null && <a href={bestStartup.naverBlog} target="_blank"><Image src="/assets/image/startup_naver_blog.png" width={25} height={25} alt="sns_logo"/></a>}
+                                        {bestStartup.twitter != null && <a href={bestStartup.twitter} target="_blank"><Image src="/assets/image/startup_twitter.png" width={25} height={25} alt="sns_logo"/></a>}
+                                    </li>
+                                    <li>비지니스 분야 : {bestStartup.businessFieldList.map((field,i) =>(
+                                        `${field.businessName} ${i != bestStartup.businessFieldList.length-1 ? '|' :  ''} `
+                                    ))}
+                                    </li>
+                                    <li>활용 기술 : {bestStartup.techFieldList.map((field,i) =>(
+                                        `${field.techName} ${i != bestStartup.techFieldList.length-1 ? '|' :  ''} `
+                                    ))}</li>
+                                </ul>
+                            </div>
+                            <div className={cx("item")}>
+                                <h3>사업 아이템</h3>
+                                <p>{bestStartup.item}</p>
+                            </div>
+                        </div>
+                        ): <div style={{height:200}}>loading....</div>}
+                    </Modal>
             </section>
         </>
     );
