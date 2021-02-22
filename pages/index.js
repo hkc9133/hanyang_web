@@ -444,7 +444,7 @@ const Index = () => {
             </div>
 
             <div className={cx("main_cont_5")}>
-                <h1>Startup Network</h1>
+                <h1>"Global Network"</h1>
                 <div className={cx("img_area")}><Image src="/assets/image/main_network.png" width={1531} height={492}
                                                        alt="main_network"/></div>
             </div>
