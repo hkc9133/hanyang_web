@@ -12,8 +12,8 @@ const IR = () => {
         <>
             <PageNavigation/>
             <section className={cx("sub_container","irWrap")}>
-                <h1 className={cx("sub_top_title")}>IR/투자안내</h1>
-                <p className={cx("sub_top_txt")}>HYU Holdings는 아이템에 대한 확신과 사업 성공의 역량을 지닌 <br/>기술기반 창업 기업과의 동반 성장을 추구합니다.</p>
+                <h1 className={cx("sub_top_title")}>IR/투자 안내</h1>
+                <p className={cx("sub_top_txt")}>유망 스타트업을 대상으로 IR 및 투자를 지원합니다.</p>
 
                 <div className={cx("ir_box")}>
 

@@ -46,10 +46,6 @@ const Introduce = () => {
     </div>*/}
                         </div>
                         <div className={cx("ceo_txt")}>
-                            <p className={cx("txt_1")}>
-                                120세 시대를 살아가야 할 청년들에게 기업가정신 교육은 미래를 대비하는 Life Skill 이요 ,필수 교양입니다 . 또한 , 자신의 삶을 도전적이고 자기
-                                주도적으로 설계할 수 있는 역량을 키워줄 뿐 아니라 몰입의 경험을 제공하고 , 자신의 새로운 잠재력을 발견할 수 있게 합니다 .
-                            </p>
                             <p>
                                 실용인재를 육성해 우리나라 경제 발전의 큰 축을 담당해 온 한양대학교는 국내에서 창업기업가를 가장 많이 양성하는 대학입니다 . 창업지원단은 창직과 창업을 통한
                                 산업구조 고도화라는 시대적 요구에 부응하고, CEO 사관학교’로서 우리 대학의 전통을 능동적으로 계승 , 발전시키기 위해 2009 년 국내 대학 최초로
@@ -182,7 +178,7 @@ const Introduce = () => {
                                         <li>학생창업자배출전국대학1위선정(2018 대학정보공시)</li>
                                         <li>실험실특화형창업선도대학지원사업선정</li>
                                         <li>미국실리콘밸리글로벌스타트업멘토단2기위촉</li>
-                                        <li className={cx("c-blue")}>베트남하노이아세안진출지원거점사무소개소></li>
+                                        <li className={cx("c-blue")}>베트남하노이아세안진출지원거점사무소개소</li>
                                         <li>글로벌액셀러레이터(34개사)와업무협약체결</li>
                                         <li>2018 벤처창업진흥유공국무총리표창수상</li>
                                         <li>청년드림베스트프랙티스창업지원분야고용노동부장관상수상</li>
@@ -283,7 +279,7 @@ const Introduce = () => {
 
                 <div className={cx("vision")}>
                     <div className={cx("sub_cont")}>
-                        <h2>비젼 &amp; 미션</h2>
+                        <h2>비젼 &amp; 목표</h2>
                         <div className={cx("img_area")}>
                             <img src="/assets/image/mission_img.jpg" alt="mission_img"/>
                         </div>
@@ -394,7 +390,7 @@ const Introduce = () => {
                             </tbody>
                         </table>
 
-                        <h2>IAB 자문위원회</h2>
+                        <h2>IAB 자문위원</h2>
                         <table>
                             <colgroup>
                                 <col style={{width:"34%"}}/>
@@ -431,7 +427,7 @@ const Introduce = () => {
                         </table>
 
                         <div className={cx("btn_area")}>
-                            <button type="button"><Link href="#"><a><span>더보기</span></a></Link></button>
+                            <button type="button"><Link href="/assets/pdf/IAB-member.xlsx" download><a><span>더보기</span></a></Link></button>
                         </div>
                     </div>
                 </div>

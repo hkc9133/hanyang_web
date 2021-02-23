@@ -133,16 +133,13 @@ const BestStartup = () => {
             <PageNavigation/>
             <section className={cx("sub_container", "best_startup")}>
                 <h1 className={cx("sub_top_title")}>우수스타트업</h1>
-                <p className={cx("sub_top_txt")}>한양대학교는 창업기업은 3939개 기업과 함께하고 있습니다. <br/>검색 버튼을 활용하면 한양대학교와 함께하는 창업기업들을
-                    모두 확인
-                    할 수
-                    있습니다.</p>
+                <p className={cx("sub_top_txt")}>한양대학교 우수 스타트업을 소개합니다.</p>
 
 
                 <div className={cx("best_startup_list")}>
                     <div className={cx("box")}>
                         <div className={cx("title_area")}>
-                            <h2>학생 창업기업</h2>
+                            <h2>학생</h2>
                             <span className={cx("txt_1")}>
 					한양대학교 배출 <br/>학생 창업기업
 				</span>
@@ -167,7 +164,7 @@ const BestStartup = () => {
 
                     <div className={cx("box")}>
                         <div className={cx("title_area")}>
-                            <h2>동문 창업기업</h2>
+                            <h2>동문</h2>
                             <span className={cx("txt_1")}>한양대학교 배출 <br/>동문 창업기업
                             </span>
                             <span className={cx("number")}><strong>{startupCount.al}</strong>개</span>
@@ -191,7 +188,7 @@ const BestStartup = () => {
 
                     <div className={cx("box")}>
                         <div className={cx("title_area")}>
-                            <h2>교원 창업기업</h2>
+                            <h2>교원</h2>
                             <span className={cx("txt_1")}>
 					한양대학교 배출 <br/>교원 창업기업
 				</span>
@@ -215,7 +212,7 @@ const BestStartup = () => {
                     </div>
                     <div className={cx("box")}>
                         <div className={cx("title_area")}>
-                            <h2>일반인 창업기업</h2>
+                            <h2>일반인</h2>
                             <span className={cx("txt_1")}>
 					한양대학교 배출 <br/>일반인 창업기업
 				</span>
