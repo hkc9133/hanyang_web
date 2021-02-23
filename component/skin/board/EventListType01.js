@@ -43,7 +43,7 @@ const EventListType01 = ({list,cateList,page,pageChange,changeCategory,changeTyp
                         <col style={{width:"12%"}}/>
                         <col/>
                         <col style={{width:"15%"}}/>
-                        <col style={{width:"20%"}}/>
+                        {/*<col style={{width:"20%"}}/>*/}
                     </colgroup>
                     <thead>
                     <tr>
@@ -51,7 +51,6 @@ const EventListType01 = ({list,cateList,page,pageChange,changeCategory,changeTyp
                         <th scope="col">진행</th>
                         <th scope="col">행사명</th>
                         <th scope="col">일시</th>
-                        <th scope="col">신청기간</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -63,15 +62,15 @@ const EventListType01 = ({list,cateList,page,pageChange,changeCategory,changeTyp
                                     <td><span className={cx("category",{red:item.progressStatus == "OPEN"})}>{item.progressStatus == "OPEN" ? "진행중" : "마감"}</span></td>
                                     <td className={cx("txt_l")}><Link href="#"><a>{item.title}</a></Link></td>
                                     <td>{item.eventDate != null && moment(item.eventDate).format("YYYY-MM-DD HH시mm분")}</td>
-                                    <td>
-                                        {
-                                            `
-                                            ${moment(item.applyStartDate).format("YYYY-MM-DD")} 
-                                            ~
-                                             ${moment(item.applyEndDate).format("YYYY-MM-DD")}
-                                             `
-                                        }
-                                    </td>
+                                    {/*<td>*/}
+                                    {/*    {*/}
+                                    {/*        `*/}
+                                    {/*        ${moment(item.applyStartDate).format("YYYY-MM-DD")} */}
+                                    {/*        ~*/}
+                                    {/*         ${moment(item.applyEndDate).format("YYYY-MM-DD")}*/}
+                                    {/*         `*/}
+                                    {/*    }*/}
+                                    {/*</td>*/}
                                 </tr>
                             )
                         })

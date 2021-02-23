@@ -40,7 +40,7 @@ const CounselApply = () => {
                 <h1 className={cx("sub_top_title")}>창업상담</h1>
                 <p className={cx("sub_top_txt")}>
                     (예비)창업자의 기술·경영 애로사항을 해결하기 위해<br/>
-                    온오프라인 창업상담 프로그램을 운영합니다.
+                    온·오프라인 창업상담 프로그램을 운영합니다.
                 </p>
                 <div className={cx("txt_c")}>
                     <Link href={"/startup_counsel/mentor_introduce"}><a className={`${cx("basic-btn03","btn-blue-bg2")} mr_20`}>멘토찾기</a></Link>
@@ -131,7 +131,7 @@ const CounselApply = () => {
                         <div className={cx("left_title")}>
                             <h2 className={cx("title_style_3")}>상담절차</h2>
                             <p>
-                                온오프라인 창업상담을 <br/>지원하고 있습니다.
+                                온·오프라인 창업상담을 <br/>지원하고 있습니다.
                             </p>
                         </div>
                         <div className={cx("txtArea")}>

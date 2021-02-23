@@ -43,11 +43,11 @@ const dep1 = {
         name:'창업지원정보',
         link:"/board/idea/list",
         sub:{
-            startup_info: {name:'창업지원정보',link:'/board/startup_info/list'},
-            startup_event: {name:'창업행사',link:'/startup_info/startup_event'},
-            idea: {name:'아이디어 제안',link:'/board/idea/list'},
-            data_room: {name:'자료실',link:'/board/data_room/list'},
             notice: {name:'공지사항',link:'/introduce/notice'},
+            startup_event: {name:'창업캘린더',link:'/startup_info/startup_event'},
+            startup_info: {name:'신규사업공고',link:'/board/startup_info/list'},
+            idea: {name:'창업지원단 커뮤니티',link:'/board/idea/list'},
+            data_room: {name:'자료실',link:'/board/data_room/list'},
         }
     },
     startup_h:{
@@ -56,6 +56,7 @@ const dep1 = {
         sub:{
             best_startup: {name:'우수스타트업',link:'/startup_h/best_startup'},
             startup_present: {name:'스타트업배출현황',link:'/startup_h/startup_present'},
+            corp_press: {name:'기업언론보도',link:'/board/corp_press/list'},
         }
     },
     investment:{
@@ -73,10 +74,10 @@ const dep1 = {
             introduce: {name:'기관 소개',link:'/introduce/introduce'},
             system: {name:'창업지원 체계',link:'/introduce/system'},
             infra: {name:'인프라',link:'/introduce/infra'},
-            promotion: {name:'협력 파트너스',link:'/introduce/promotion'},
-            location: {name:'오시는길',link:'/introduce/location'},
-            news: {name:'뉴스레터',link:'/board/news/list'},
             media_report: {name:'언론보도',link:'/board/media_report/list'},
+            news: {name:'뉴스레터',link:'/board/news/list'},
+            promotion: {name:'소개자료',link:'/introduce/promotion'},
+            location: {name:'오시는길',link:'/introduce/location'},
             // ir: {name:'IR/ 투자 안내',link:'/board/ir/list'}
         }
     }
@@ -90,6 +91,7 @@ const board = {
     online_content:{parents:'startup_education'},
     news:{parents:'introduce'},
     media_report:{parents:'introduce'},
+    corp_press:{parents:'startup_h'},
 }
 
 const PageNavigation = () => {

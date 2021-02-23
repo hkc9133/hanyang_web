@@ -66,7 +66,9 @@
 .language_open{padding-right:15px; background:url(../../image/language_arrow.gif) no-repeat right center; font-size:15px; color:#ddd; }
 .language_list{display:none;}
 .total_menu{position:fixed; right:-350px; top:0; bottom:0; width:300px; height:100%; z-index:10; background-color:#f7f8fa; text-align:left; overflow:auto; box-shadow:5px 5px 5px 5px rgba(150,150,150,0.4);}
-.total_menu .logoArea{padding:25px 20px 0; height:90px; background-color:#3d89f9; box-sizing:border-box; }
+.total_menu .logoArea{padding:25px 20px 0; height:90px; background-color:#3d89f9; box-sizing:border-box; position: fixed;
+    width: 100%;
+    z-index: 999;}
 .total_menu>ul>li{border-bottom:1px solid #e0e1e5;}
 .total_menu>ul>li>a{position:relative; padding:20px; display:block; font-size:15px; font-family:"s-core-dream-medium";}
 .total_menu .mypage_link{position: relative;

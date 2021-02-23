@@ -33,7 +33,7 @@ const StartupProcedure = () => {
                             </div>
                             <div className={cx("txt_2")}>학생창업자 신고 후 다양한 한양대학교 학생창업 지원 혜택을 누리세요.</div>
                             <div className={cx("txt_c")}>
-                                <Link href="#" ><a className={cx("basic-btn04","btn-blue-bd")}>한양대학교 학생창업 지원사항 안내서</a></Link>
+                                <Link href="/assets/pdf/한양대학교 학생창업자 지원 사항 안내.pdf" ><a className={cx("basic-btn04","btn-blue-bd")} target="_blank">한양대학교 학생창업 지원사항 안내서</a></Link>
                                 <Link href="/startup_counsel/student_report" ><a className={cx("basic-btn04", "btn-black-bd")}>학생창업자
                                     신고</a></Link>
                             </div>
@@ -46,7 +46,7 @@ const StartupProcedure = () => {
                             </div>
                             <div className={cx("txt_2")}></div>
                             <div className="txt_c">
-                                <a className={cx("basic-btn04","btn-blue-bd")}><span>실험실 창업 교내 프로세스 안내</span></a>
+                                <Link href="/assets/pdf/2020 실험실창업 교내 프로세스 안내.pdf" ><a className={cx("basic-btn04","btn-blue-bd")}target="_blank">실험실 창업 교내 프로세스 안내</a></Link>
                             </div>
                         </>
                     )}

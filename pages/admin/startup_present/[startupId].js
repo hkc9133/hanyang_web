@@ -225,10 +225,10 @@ const StartupEditPage = () => {
                                     <div className={cx("tb_style_2")}>
                                         <table>
                                             <colgroup>
-                                                {/*<col style={{width: 270}}/>*/}
-                                                {/*<col style={{width: 400}}/>*/}
-                                                {/*<col  style={{width: 270}}/>*/}
-                                                {/*<col/>*/}
+                                                <col style={{width: 270}}/>
+                                                <col style={{width: 400}}/>
+                                                <col  style={{width: 270}}/>
+                                                <col/>
                                             </colgroup>
                                             <tbody>
                                             <tr>
@@ -505,7 +505,7 @@ const StartupEditPage = () => {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th scope="row">비지니스 분야</th>
+                                                <th scope="row">비즈니스 분야</th>
                                                 <td colSpan={3}>
                                                     <Form.Item
                                                         name="businessIdList"

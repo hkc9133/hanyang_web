@@ -78,6 +78,9 @@ const ContentEditView = () => {
                 progressStatus:view.notice.progressStatus,
                 categoryCodeId:view.notice.categoryCodeId,
                 isNotice: view.notice.isNotice,
+                showNotice: view.notice.showNotice,
+                showCalendar: view.notice.showCalendar,
+                showHot: view.notice.showHot,
                 attachFiles: view.files,
                 applyStartDate:moment(view.notice.applyStartDate),
                 applyEndDate:moment(view.notice.applyEndDate),
@@ -111,23 +114,6 @@ const ContentEditView = () => {
             categoryCodeId: value,
         }))
     },[])
-
-
-    // const changeFileList = useCallback((fileInfo) =>{
-    //     if(fileInfo.file.status == "removed"){
-    //         setWriteInfo({
-    //             ...writeInfo,
-    //             removeFiles: writeInfo.removeFiles.concat(fileInfo.file),
-    //             attachFiles: writeInfo.attachFiles.filter((item)=> {return item.fileId != fileInfo.file.fileId})
-    //         })
-    //     }else{
-    //         setWriteInfo({
-    //             ...writeInfo,
-    //             // removeFiles: writeInfo.removeFiles.concat(fileInfo.file),
-    //             attachFiles: fileInfo.fileList
-    //         })
-    //     }
-    // },[writeInfo])
 
     const changeNewFileList = useCallback(({fileList}) =>{
         setNewFileList(fileList)
@@ -195,6 +181,7 @@ const ContentEditView = () => {
         delete data.eventDate;
         delete data.applyStartDate;
         delete data.applyEndDate;
+        console.log("aaa")
         console.log(data)
         dispatch(updateNotice(data));
     }
@@ -241,6 +228,17 @@ const ContentEditView = () => {
                                 </thead>
                                 <tbody>
                                 <tr>
+                                    <th scope="row">게시판</th>
+                                    <td>
+                                        <label style={{marginLeft:10}}>공지사항</label>
+                                        <Checkbox checked={writeInfo.showNotice} onChange={(e) =>{setWriteInfo({...writeInfo,showNotice: e.target.checked})}}/>
+                                        <label style={{marginLeft:10}}>핫이슈</label>
+                                        <Checkbox checked={writeInfo.showHot} onChange={(e) =>{setWriteInfo({...writeInfo,showHot: e.target.checked})}}/>
+                                        <label style={{marginLeft:10}}>창업캘린터</label>
+                                        <Checkbox checked={writeInfo.showCalendar} onChange={(e) =>{setWriteInfo({...writeInfo,showCalendar: e.target.checked})}}/>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th scope="row">분류</th>
                                     <td>
                                         <select name='categoryCodeId' className={cx("cate")} onChange={changeWriteInfo} value={writeInfo.categoryCodeId}>
@@ -248,21 +246,6 @@ const ContentEditView = () => {
                                                 return <option key={item.categoryCodeId} value={item.categoryCodeId}>{item.categoryCodeName}</option>
                                             })}
                                         </select>
-                                        {/*<Form.Item*/}
-                                        {/*    name="categoryCodeId"*/}
-                                        {/*    rules={[*/}
-                                        {/*        {*/}
-                                        {/*            required: true,*/}
-                                        {/*            message: '카테고리',*/}
-                                        {/*        },*/}
-                                        {/*    ]}*/}
-                                        {/*>*/}
-                                        {/*    <Select size='large' name='categoryCodeId' className={cx("cate")} onChange={changeCategory}>*/}
-                                        {/*        {board.categoryCode.map((item) => {*/}
-                                        {/*            return <Option key={item.categoryCodeId} value={item.categoryCodeId}>{item.categoryCodeName}</Option>*/}
-                                        {/*        })}*/}
-                                        {/*    </Select>*/}
-                                        {/*</Form.Item>*/}
                                     </td>
                                 </tr>
                                 <tr>

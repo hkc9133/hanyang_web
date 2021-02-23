@@ -74,12 +74,12 @@ const CounselApplyHistoryList = () => {
 
                     <div className={cx("tab_style_2")}>
                         <ul>
-                            <li className={cx("on")}><Link href="/mypage/mentee"><a>멘토링 현황</a></Link></li>
+                            <li className={cx("on")}><Link href="/mypage/mentee"><a>창업상담 현황</a></Link></li>
                             <li><Link href="/mypage/mentee/student_report"><a>학생창업신고 현황</a></Link></li>
                         </ul>
                     </div>
 
-                    <h2>나의 멘토링 현황</h2>
+                    <h2>나의 창업상담 현황</h2>
                     <ul className={cx("current_situation")}>
                         <li>
                             <span className={cx("title")}>신청건수</span>

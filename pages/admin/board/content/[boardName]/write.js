@@ -164,17 +164,21 @@ const Write = (props) => {
                                     <thead>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>분류</td>
-                                        <td>
-                                            <select name='categoryCodeId' className={cx("cate")} onChange={changeWriteInfo} value={writeInfo.categoryCodeId}>
-                                                {board.categoryCode.map((item) => {
-                                                    return <option key={item.categoryCodeId} value={item.categoryCodeId}>{item.categoryCodeName}</option>
-                                                })}
-                                            </select>
+                                    {board.board.categoryId != null && (
+                                        <tr>
+                                            <td>분류</td>
+                                            <td>
+                                                <select name='categoryCodeId' className={cx("cate")} onChange={changeWriteInfo} value={writeInfo.categoryCodeId}>
+                                                    {board.categoryCode.map((item) => {
+                                                        if(board.board.categoryId == item.categoryId){
+                                                            return <option key={item.categoryCodeId} value={item.categoryCodeId}>{item.categoryCodeName}</option>
+                                                        }
+                                                    })}}
+                                                </select>
 
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
+                                    )}
                                     <tr>
                                         <td>공지</td>
                                         <td>

@@ -164,12 +164,22 @@ const Write = () => {
                                     </thead>
                                     <tbody>
                                     <tr>
+                                        <th scope="row">게시판</th>
+                                        <td>
+                                            <label style={{marginLeft:10}}>공지사항</label>
+                                            <Checkbox checked={writeInfo.showNotice} onChange={(e) =>{setWriteInfo({...writeInfo,showNotice: e.target.checked})}}/>
+                                            <label style={{marginLeft:10}}>핫이슈</label>
+                                            <Checkbox checked={writeInfo.showHot} onChange={(e) =>{setWriteInfo({...writeInfo,showHot: e.target.checked})}}/>
+                                            <label style={{marginLeft:10}}>창업캘린터</label>
+                                            <Checkbox checked={writeInfo.showCalendar} onChange={(e) =>{setWriteInfo({...writeInfo,showCalendar: e.target.checked})}}/>
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <th scope="row">분류</th>
                                         <td>
-                                            <select name='categoryCodeId' className={cx("cate")} onChange={changeWriteInfo} value={writeInfo.categoryCodeId}>
-                                                {cate.map((item) => {
-                                                    return <option key={item.categoryCodeId} value={item.categoryCodeId} >{item.categoryCodeName}</option>
-                                                })}
+                                            <select name='progressStatus' className={cx("cate")} onChange={changeWriteInfo} value={writeInfo.progressStatus}>
+                                                <option value={"OPEN"}>진행중</option>
+                                                <option value={"CLOSE"}>마감</option>
                                             </select>
                                         </td>
                                     </tr>

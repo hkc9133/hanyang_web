@@ -137,7 +137,6 @@ const ContentView = () => {
         const data = {
             ...updateReplyValue,
             replyId: replyId
-
         }
         dispatch(updateReply(data));
 
@@ -147,6 +146,8 @@ const ContentView = () => {
             replyId: ""
         })
         setShowUpdateInput(null);
+
+        dispatch(getBoardContent(view.content.contentId))
     }
 
     const handleDeleteContent = () =>{

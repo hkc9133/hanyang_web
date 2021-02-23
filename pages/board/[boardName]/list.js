@@ -125,7 +125,7 @@ const List = () => {
                     {currentBoard.board.boardEnName == 'data_room' || currentBoard.board.boardEnName == 'idea' || currentBoard.board.boardEnName == "startup_info" && (
                         <SearchBoxSelector skinName="SearchBoxStyle01" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
                     )}
-                    {(currentBoard.board.boardEnName == 'idea' || currentBoard.board.boardEnName == 'ir')  && (
+                    {(currentBoard.board.boardEnName == 'idea' || currentBoard.board.boardEnName == 'ir' || currentBoard.board.boardEnName == 'corp_press')  && (
                         <SearchBoxSelector skinName="SearchBoxStyle01" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
                     )}
                     {(currentBoard.board.boardEnName == 'online_content') && (
@@ -153,11 +153,14 @@ const List = () => {
                     {currentBoard.board.boardEnName == 'data_room' && (
                         <BoardSkinSelector skinName="ListType01" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
                     )}
-                    {currentBoard.board.boardEnName == 'idea' && (
-                        <BoardSkinSelector skinName="ListType02" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
-                    )}
                     {currentBoard.board.boardEnName == 'startup_info' && (
                         <BoardSkinSelector skinName="ListType02" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
+                    )}
+                    {currentBoard.board.boardEnName == 'idea' && (
+                        <BoardSkinSelector skinName="ListType03" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
+                    )}
+                    {currentBoard.board.boardEnName == 'corp_press' && (
+                        <BoardSkinSelector skinName="ListType04" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
                     )}
                     {currentBoard.board.boardEnName == 'people' && (
                         <BoardSkinSelector skinName="GalleryType01" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>

@@ -159,7 +159,7 @@ const StartupPresentManagePage = () => {
                                 setShowBusinessField(!showBusinessField)
                             }}>
                                 <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-                                    비지니스 분야<DownOutlined style={{marginLeft: 10}}/>
+                                    비즈니스 분야<DownOutlined style={{marginLeft: 10}}/>
                                 </a>
                             </Dropdown>
 
@@ -238,7 +238,7 @@ const StartupPresentManagePage = () => {
                                     <th scope="col">NO</th>
                                     <th scope="col">구분</th>
                                     <th scope="col">회사명</th>
-                                    <th scope="col">비지니스 분야</th>
+                                    <th scope="col">비즈니스 분야</th>
                                     <th scope="col">활용 기술</th>
                                     <th scope="col">대표자명</th>
                                     <th scope="col">회사 번호</th>

@@ -242,61 +242,30 @@ const Index = () => {
                 <div className={`${cx("main_cont")} clfx`}>
                     <div className={cx("main_calendar")}>
                         <h1>창업캘린더</h1>
+                        {mainData.calendar.length > 0 ?
                         <Slider className="main_calendar" {...calendarSliderSettings}>
-                            <div className={cx("list")}>
-                                <a>
-                                    <span className={cx("day")}>21</span>
-                                    <span className={cx("date")}>2020.11.21</span>
-                                    <p>
-                                        캠퍼스타운 프로그램 최종선정 결과 안내
-                                    </p>
-                                </a>
-                            </div>
-                            <div className={cx("list")}>
-                                <a>
-                                    <span className={cx("day")}>21</span>
-                                    <span className={cx("date")}>2020.11.21</span>
-                                    <p>
-                                        캠퍼스타운 프로그램 최종선정 결과 안내
-                                    </p>
-                                </a>
-                            </div>
-                            <div className={cx("list")}>
-                                <a>
-                                    <span className={cx("day")}>21</span>
-                                    <span className={cx("date")}>2020.11.21</span>
-                                    <p>
-                                        캠퍼스타운 프로그램 최종선정 결과 안내
-                                    </p>
-                                </a>
-                            </div>
-                            <div className={cx("list")}>
-                                <a>
-                                    <span className={cx("day")}>21</span>
-                                    <span className={cx("date")}>2020.11.21</span>
-                                    <p>
-                                        캠퍼스타운 프로그램 최종선정 결과 안내
-                                    </p>
-                                </a>
-                            </div>
-                            <div className={cx("list")}>
-                                <a>
-                                    <span className={cx("day")}>21</span>
-                                    <span className={cx("date")}>2020.11.21</span>
-                                    <p>
-                                        캠퍼스타운 프로그램 최종선정 결과 안내
-                                    </p>
-                                </a>
-                            </div>
-                        </Slider>
+                            {mainData.calendar.map((item, index) => (
+                                <Link href={`/startup_info/startup_event?page=1&type=L`}>
+                                    <div className={cx("list")}>
+                                        <a>
+                                            <span className={cx("day")}>{moment(item.eventDate).format("DD").toString()}</span>
+                                            <span className={cx("date")}>{moment(item.eventDate).format("YYYY.MM.DD").toString()}</span>
+                                            <p>
+                                                {item.title}
+                                            </p>
+                                        </a>
+                                    </div>
+                                </Link>
+                            ))}
+                        </Slider> : "LOADING"
+                        }
                     </div>
 
                     <div className={cx("main_hotissue")}>
                         <h1><Link href="/"><a>창업지원단 핫이슈</a></Link></h1>
                         <ul>
-                            {mainData.notice.map((item, index) =>
-                                index < 5 && <li key={item.noticeId}><Link
-                                    href={`/introduce/notice/${item.noticeId}`}><a>{item.title}</a></Link></li>
+                            {mainData.hot.map((item, index) =>
+                                index < 5 && <li key={item.noticeId}><Link href={`/introduce/notice/${item.noticeId}`}><a>{item.title}</a></Link></li>
                             )}
                         </ul>
                     </div>
@@ -315,11 +284,6 @@ const Index = () => {
                                         )
                                     }
                                 )}
-                                {/*<Link href="/">*/}
-                                {/*    <a>*/}
-                                {/*        <Image src="/assets/image/main_banner.jpg" layout="fill" alt="main_banner"/>*/}
-                                {/*    </a>*/}
-                                {/*</Link>*/}
                             </div>
                         </div>
                     </div>
@@ -347,7 +311,7 @@ const Index = () => {
 
                     <div className={cx("main_board_list", "main_tabCont")}>
                         {/*공지사항*/}
-                        {mainData.notice.length > 0 && (
+                        {mainData.notice.length > 0 ? (
                             <Slider
                                 className={`${cx("slides", {hidden: !showNotice})} main_board_list`} {...boardSliderSettings}
                                 ref={borderSlider}>
@@ -385,8 +349,8 @@ const Index = () => {
                             </Slider>
 
 
-                        )}
-                        {mainData.startup_info.length > 0 && (
+                        ) : "LOADING"}
+                        {mainData.startup_info.length > 0 ? (
                             <Slider
                                 className={`${cx("slides", {hidden: showNotice})} main_board_list`} {...boardSliderSettings}>
                                 {
@@ -422,7 +386,7 @@ const Index = () => {
                                     })
                                 }
                             </Slider>
-                        )}
+                        ) : "LOADING"}
                         <div>
                         </div>
 

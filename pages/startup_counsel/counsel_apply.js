@@ -259,8 +259,8 @@ const CounselApply = () => {
             <section className={cx("container")}>
                 <Form form={form} onFinish={(e) =>{submitApply(e)}} onFinishFailed={(e) =>{personalDev.current.scrollIntoView()}}>
                 <div className={cx("sub_container", "mentor_group_write")}>
-                    <h1 className={cx("sub_top_title")}>멘토단 소개</h1>
-                    <p className={cx("sub_top_txt")}>전문 멘토로부터 듣는 창업 알짜 정보 예비창업자를 위한 <br/>창업 전문 상담코너입니다.</p>
+                    <h1 className={cx("sub_top_title")}>창업 상담</h1>
+                    <p className={cx("sub_top_txt")}>(예비)창업자의 기술‧경영 애로사항을 해결하기 위해 <br/>온·오프라인 창업상담 프로그램을 운영합니다.</p>
 
                     <div className={cx("tab_style_2")}>
                         <ul>

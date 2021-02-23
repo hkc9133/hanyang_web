@@ -9,11 +9,12 @@ import qs from "query-string";
 import {useRouter} from "next/router";
 import {Menu, Checkbox, Button, Modal, Dropdown} from "antd";
 const {SubMenu} = Menu;
-import { DownOutlined } from '@ant-design/icons';
+import {DownOutlined, FileImageOutlined} from '@ant-design/icons';
 
 import { Select } from 'antd';
 import moment from "moment";
 import Pagination from "../../component/common/Pagination";
+import client from "../../lib/api/client";
 
 const { Option } = Select;
 
@@ -161,7 +162,7 @@ const StartupPresent = () => {
                 <div className={cx("search_type_2")}>
                     <Dropdown className={cx("search_01")} overlay={businessList} trigger={['click']} visible={showBusinessField} onVisibleChange={() =>{setShowBusinessField(!showBusinessField)}}>
                         <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-                            비지니스 분야<DownOutlined style={{marginLeft:10}}/>
+                            비즈니스 분야<DownOutlined style={{marginLeft:10}}/>
                         </a>
                     </Dropdown>
 
@@ -190,9 +191,9 @@ const StartupPresent = () => {
                         </colgroup>
                         <thead>
                         <tr>
-                            <th scope="col">NO</th>
+                            <th scope="col">번호</th>
                             <th scope="col">기업명</th>
-                            <th scope="col">비지니스 분야</th>
+                            <th scope="col">비즈니스 분야</th>
                             <th scope="col">활용 기술</th>
                             <th scope="col">사업 아이템</th>
                             <th scope="col">링크</th>
@@ -214,7 +215,13 @@ const StartupPresent = () => {
                                     ))}
                                 </td>
                                 <td>{item.item}</td>
-                                <td>{item.homepage}</td>
+                                <td>
+                                    <a href={item.homepage} target="_blank">
+                                    {item.attachFile != null ? <img src={`${client.defaults.baseURL}/resource${item.attachFile.filePath}/${item.attachFile.fileName+item.attachFile.fileExtension}`} width={35} height={35} alt={"LOGO"}/> : (
+                                        <FileImageOutlined style={{fontSize:30,verticalAlign:'middle'}}/>
+                                    ) }
+                                    </a>
+                                </td>
                             </tr>
                         ))}
 

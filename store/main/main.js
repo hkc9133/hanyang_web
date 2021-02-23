@@ -30,6 +30,8 @@ const initialState = {
     mainData:{
         result:null,
         notice:[],
+        calendar:[],
+        hot:[],
         startup_info:[],
         popup:[],
         keyword:[],
@@ -55,6 +57,8 @@ const main = handleActions(
             produce(state,draft => {
                 draft.mainData.result = true;
                 draft.mainData.notice = response.data.notice;
+                draft.mainData.calendar = response.data.calendar;
+                draft.mainData.hot = response.data.hot;
                 draft.mainData.startup_info = response.data.startup_info;
                 draft.mainData.popup = response.data.popup;
                 draft.mainData.keyword = response.data.keyword;
@@ -65,6 +69,8 @@ const main = handleActions(
             produce(state, draft => {
                 draft.mainData.result = false;
                 draft.mainData.notice = [];
+                draft.mainData.calendar = [];
+                draft.mainData.hot = [];
                 draft.mainData.startup_info = [];
                 draft.mainData.popup = [];
                 draft.mainData.keyword = [];

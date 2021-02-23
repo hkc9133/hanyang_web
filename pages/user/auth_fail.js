@@ -18,9 +18,9 @@ const AuthFail =() => {
             setMsg("권한이 없습니다")
         } else if(router.pathname.startsWith("/mypage/mentee") || router.pathname.startsWith("/startup_counsel/counsel_apply") || router.pathname.startsWith("/startup_counsel/student_report")) {
             setMsg("학생 권한이 아닙니다")
-        }else if(router.pathname.startsWith("/mypage/mentor") || router.pathname.startsWith("/startup_counsel/mentor_apply")) {
+        }else if(router.pathname.startsWith("/mypage/mentor")) {
             setMsg("멘토 권한이 아닙니다")
-        }else if(router.pathname.startsWith("/introduce/space_reservation")){
+        }else if(router.pathname.startsWith("/introduce/space_reservation") || router.pathname.startsWith("/startup_counsel/mentor_apply")){
             setMsg("로그인 후 이용 가능합니다")
         }
 

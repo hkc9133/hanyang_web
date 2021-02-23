@@ -283,7 +283,7 @@ const CounselApplyFormDetail = () => {
                                                     <th>첨부파일</th>
                                                     <td colSpan={5}>
                                                         {
-                                                            applyValue.files.length > 0 && (
+                                                            applyValue.files != null && applyValue.files.length > 0 && (
                                                                     <Upload
                                                                         listType="picture-card"
                                                                         fileList={applyValue.files.map((file) => {
@@ -392,7 +392,7 @@ const CounselApplyFormDetail = () => {
                                         <tr>
                                             <th>멘토링 방법</th>
                                             <td colSpan={1}>
-                                                {counselApply.wayItemList.map((item) =>(
+                                                {applyValue.wayItemList.map((item) =>(
                                                     <li key={item.itemId}>{item.item}</li>
                                                 ))}
                                             </td>
@@ -413,10 +413,10 @@ const CounselApplyFormDetail = () => {
                                             <th>첨부파일</th>
                                             <td colSpan={5}>
                                                 {
-                                                    counselApply.answerFiles.length > 0 && (
+                                                    applyValue.answerFiles != null && applyValue.answerFiles.length > 0 && (
                                                         <Upload
                                                             listType="picture-card"
-                                                            fileList={counselApply.answerFiles.map((file) => {
+                                                            fileList={applyValue.answerFiles.map((file) => {
                                                                 return {
                                                                     uid: file.fileName,
                                                                     name: file.fileOriginName,

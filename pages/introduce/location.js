@@ -18,7 +18,7 @@ const Location = () => {
         s.setAttribute("src", "https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=b348wme6ql");
         s.onload = function () {
             let mapOptions = {
-                center: new window.naver.maps.LatLng(37.556861738392726, 1.04835502516103),
+                center: new window.naver.maps.LatLng(37.5553142, 127.0426254),
                 zoom: 15
             };
             let map = new naver.maps.Map(mapArea.current, mapOptions);

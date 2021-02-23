@@ -134,11 +134,11 @@ const Header = () => {
                             <Link href="/board/startup_info/list"><a>창업지원정보</a></Link>
                             <div className={cx("s_gnb")}>
                                 <ul>
-                                    <li><Link href="/board/startup_info/list"><a>창업지원정보</a></Link></li>
-                                    <li><Link href="/startup_info/startup_event"><a>창업행사</a></Link></li>
-                                    <li><Link href="/board/data_room/list"><a>자료실</a></Link></li>
-                                    <li><Link href="/board/idea/list"><a>아이디어 제안</a></Link></li>
                                     <li><Link href="/introduce/notice/list"><a>공지사항</a></Link></li>
+                                    <li><Link href="/startup_info/startup_event"><a>창업캘린더</a></Link></li>
+                                    <li><Link href="/board/startup_info/list"><a>신규사업공고</a></Link></li>
+                                    <li><Link href="/board/idea/list"><a>창업지원단 커뮤니티</a></Link></li>
+                                    <li><Link href="/board/data_room/list"><a>자료실</a></Link></li>
                                 </ul>
                             </div>
                         </li>
@@ -148,6 +148,7 @@ const Header = () => {
                                 <ul>
                                     <li><Link href="/startup_h/best_startup"><a>우수스타트업</a></Link></li>
                                     <li><Link href="/startup_h/startup_present"><a>스타트업배출현황</a></Link></li>
+                                    <li><Link href="/board/corp_press/list"><a>기업언론보도</a></Link></li>
                                 </ul>
                             </div>
                         </li>
@@ -167,17 +168,20 @@ const Header = () => {
                                     <li><Link href="/introduce/introduce"><a>기관 소개</a></Link></li>
                                     <li><Link href="/introduce/system"><a>창업지원 체계</a></Link></li>
                                     <li><Link href="/introduce/infra"><a>인프라</a></Link></li>
-                                    <li><Link href="/introduce"><a>협력 파트너스</a></Link></li>
-                                    <li>
-                                        <Link href="/introduce/promotion"><a>홍보자료</a></Link>
-                                        <div className={cx("dep3")}>
-                                            <ul>
-                                                <li><Link href="/board/media_report/list"><a>언론보도</a></Link></li>
-                                                <li><Link href="/board/news/list"><a>뉴스레터</a></Link></li>
-                                                <li><Link href="/introduce/promotion"><a>소개자료</a></Link></li>
-                                            </ul>
-                                        </div>
-                                    </li>
+                                    {/*<li><Link href="/introduce"><a>협력 파트너스</a></Link></li>*/}
+                                    <li><Link href="/board/media_report/list"><a>언론보도</a></Link></li>
+                                    <li><Link href="/board/news/list"><a>뉴스레터</a></Link></li>
+                                    <li><Link href="/introduce/promotion"><a>소개자료</a></Link></li>
+                                    {/*<li>*/}
+                                    {/*    <Link href="/introduce/promotion"><a>홍보자료</a></Link>*/}
+                                    {/*    <div className={cx("dep3")}>*/}
+                                    {/*        <ul>*/}
+                                    {/*            <li><Link href="/board/media_report/list"><a>언론보도</a></Link></li>*/}
+                                    {/*            <li><Link href="/board/news/list"><a>뉴스레터</a></Link></li>*/}
+                                    {/*            <li><Link href="/introduce/promotion"><a>소개자료</a></Link></li>*/}
+                                    {/*        </ul>*/}
+                                    {/*    </div>*/}
+                                    {/*</li>*/}
                                     <li><Link href="/introduce/location"><a>오시는 길</a></Link></li>
                                 </ul>
                             </div>
@@ -225,7 +229,7 @@ const Header = () => {
                     <ul className={"clfx"}>
                         <li>
                             <a href="#" onClick={(e) => {e.preventDefault();handleShowMenuItem(1)}}>창업교육</a>
-                            <div className={cx("s_menu",{show:currentMenuItem === 1})}>
+                            <div className={cx("s_menu","show")}>
                                 <ul>
                                     <li><Link href="/startup_education/university_student"><a>대학(원)생 대상</a></Link></li>
                                     <li><Link href="/startup_education/teacher"><a>교원 대상</a></Link></li>
@@ -237,7 +241,7 @@ const Header = () => {
                         </li>
                         <li>
                             <a href="#" onClick={(e) => {e.preventDefault();handleShowMenuItem(2)}}>창업상담</a>
-                            <div className={cx("s_menu",{show:currentMenuItem === 2})}>
+                            <div className={cx("s_menu","show")}>
                                 <ul>
                                     <li><Link href="/startup_counsel/counsel_process"><a>창업상담신청</a></Link></li>
                                     <li><Link href="/startup_counsel/mentor_introduce?pageSize=1"><a>멘토단소개</a></Link></li>
@@ -248,28 +252,29 @@ const Header = () => {
                         </li>
                         <li>
                             <a href="#" onClick={(e) => {e.preventDefault();handleShowMenuItem(3)}}>창업지원정보</a>
-                            <div className={cx("s_menu",{show:currentMenuItem === 3})}>
+                            <div className={cx("s_menu","show")}>
                                 <ul>
-                                    <li><Link href="/board/startup_info/list"><a>창업지원정보</a></Link></li>
-                                    <li><Link href="/startup_info/startup_event"><a>창업행사</a></Link></li>
-                                    <li><Link href="/board/data_room/list"><a>자료실</a></Link></li>
-                                    <li><Link href="/board/idea/list"><a>아이디어 제안</a></Link></li>
                                     <li><Link href="/introduce/notice/list"><a>공지사항</a></Link></li>
+                                    <li><Link href="/startup_info/startup_event"><a>창업캘린더</a></Link></li>
+                                    <li><Link href="/board/startup_info/list"><a>신규사업공고</a></Link></li>
+                                    <li><Link href="/board/idea/list"><a>창업지원단 커뮤니티</a></Link></li>
+                                    <li><Link href="/board/data_room/list"><a>자료실</a></Link></li>
                                 </ul>
                             </div>
                         </li>
                         <li>
                             <a href="#" onClick={(e) => {e.preventDefault();handleShowMenuItem(4)}}>스타트업H</a>
-                            <div className={cx("s_menu",{show:currentMenuItem === 4})}>
+                            <div className={cx("s_menu","show")}>
                                 <ul>
                                     <li><Link href="/startup_h/best_startup"><a>우수스타트업</a></Link></li>
                                     <li><Link href="/startup_h/startup_present"><a>스타트업배출현황</a></Link></li>
+                                    <li><Link href="/board/corp_press/list"><a>기업언론보도</a></Link></li>
                                 </ul>
                             </div>
                         </li>
                         <li>
                             <a href="#" onClick={(e) => {e.preventDefault();handleShowMenuItem(5)}}>투자연계</a>
-                            <div className={cx("s_menu",{show:currentMenuItem === 5})}>
+                            <div className={cx("s_menu","show")}>
                                 <ul>
                                     <li><Link href="/investment/ir"><a>IR/투자 안내</a></Link></li>
                                     <li><Link href="/investment/investment_partners"><a>국내외 투자파트너스</a></Link></li>
@@ -278,23 +283,26 @@ const Header = () => {
                         </li>
                         <li>
                             <a href="#" onClick={(e) => {e.preventDefault();handleShowMenuItem(6)}}>창업지원단 소개</a>
-                            <div className={cx("s_menu",{show:currentMenuItem === 6})}>
+                            <div className={cx("s_menu","show")}>
                                 <ul>
                                     <li><Link href="/introduce/introduce"><a>기관 소개</a></Link></li>
                                     <li><Link href="/introduce/system"><a>창업지원 체계</a></Link></li>
                                     <li><Link href="/introduce/infra"><a>인프라</a></Link></li>
-                                    <li><Link href="/introduce"><a>협력 파트너스</a></Link></li>
-                                    <li>
-                                        <Link href="/introduce/promotion"><a>홍보자료</a></Link>
-                                        <div className={cx("dep3")}>
-                                            <ul>
-                                                {/*<li><a href="/introduce/notice/list">공지사항</a></li>*/}
-                                                <li><Link href="/board/media_report/list"><a>언론보도</a></Link></li>
-                                                <li><Link href="/board/news/list"><a>뉴스레터</a></Link></li>
-                                                <li><Link href="/introduce/promotion"><a>소개자료</a></Link></li>
-                                            </ul>
-                                        </div>
-                                    </li>
+                                    {/*<li><Link href="/introduce"><a>협력 파트너스</a></Link></li>*/}
+                                    <li><Link href="/board/media_report/list"><a>언론보도</a></Link></li>
+                                    <li><Link href="/board/news/list"><a>뉴스레터</a></Link></li>
+                                    <li><Link href="/introduce/promotion"><a>소개자료</a></Link></li>
+                                    {/*<li>*/}
+                                    {/*    <Link href="/introduce/promotion"><a>홍보자료</a></Link>*/}
+                                    {/*    <div className={cx("dep3")}>*/}
+                                    {/*        <ul>*/}
+                                    {/*            /!*<li><a href="/introduce/notice/list">공지사항</a></li>*!/*/}
+                                    {/*            <li><Link href="/board/media_report/list"><a>언론보도</a></Link></li>*/}
+                                    {/*            <li><Link href="/board/news/list"><a>뉴스레터</a></Link></li>*/}
+                                    {/*            <li><Link href="/introduce/promotion"><a>소개자료</a></Link></li>*/}
+                                    {/*        </ul>*/}
+                                    {/*    </div>*/}
+                                    {/*</li>*/}
                                     <li><Link href="/introduce/location"><a>오시는 길</a></Link></li>
                                 </ul>
                             </div>

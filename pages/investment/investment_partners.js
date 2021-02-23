@@ -134,7 +134,7 @@ const InvestmentPartners = () => {
                         <th scope="col">구분</th>
                         <th scope="col">기관명</th>
                         <th scope="col">홈페이지</th>
-                        <th scope="col">국가/지역</th>
+                        <th scope="col">{router.query.continentId == 1 ? "지역" : "국가/지역" }</th>
                         <th scope="col">분야</th>
                     </tr>
                     </thead>

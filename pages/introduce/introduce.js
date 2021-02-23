@@ -16,7 +16,7 @@ const Introduce = () => {
                 <div className={cx("sub_cont")}>
                     <h1 className={cx("sub_top_title")}>기관소개</h1>
                     <p className={cx("sub_top_txt")}>한양대학교는 (예비)창업자가 창업과정에서 겪는 다양한 문제점을 <br/>해결하고 창업자의 사업화 수준별 맞춤형 컨설팅을 제공하기
-                        위한 <br/>원스톱 창업상담 플랫폼을 구축, 온오프라인 창업상담을 지원하고 있습니다. </p>
+                        위한 <br/>원스톱 창업상담 플랫폼을 구축, 온·오프라인 창업상담을 지원하고 있습니다. </p>
 
                     <div className={"clfx"}>
                         <div className={cx("ceo_info")}>

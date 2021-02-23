@@ -68,9 +68,9 @@ const _App = ({Component, pageProps}) => {
         allowed = false;
     } else if((router.pathname.startsWith("/mypage/mentee") || router.pathname.startsWith("/startup_counsel/counsel_apply") || router.pathname.startsWith("/startup_counsel/student_report") )   && (user.login !== true || role != 'ROLE_SD')) {
         allowed = false;
-    }else if((router.pathname.startsWith("/mypage/mentor") || router.pathname.startsWith("/startup_counsel/mentor_apply")) && (user.login !== true || role != 'ROLE_MT')) {
+    }else if((router.pathname.startsWith("/mypage/mentor")) && (user.login !== true || role != 'ROLE_MT')) {
         allowed = false;
-    }else if(router.pathname.startsWith("/introduce/space_reservation") && role == null){
+    }else if((router.pathname.startsWith("/introduce/space_reservation") || router.pathname.startsWith("/startup_counsel/mentor_apply")) && role == null){
         allowed = false;
     }
 

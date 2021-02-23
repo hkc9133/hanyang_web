@@ -44,12 +44,12 @@ const StudentReportManagePage = () => {
 
                         <div className={cx("tab_style_2")}>
                             <ul>
-                                <li><Link href="/mypage/mentee"><a>멘토링 현황</a></Link></li>
+                                <li><Link href="/mypage/mentee"><a>창업상담 현황</a></Link></li>
                                 <li className={cx("on")}><Link href="/mypage/mentee/student_report"><a>학생창업신고 현황</a></Link></li>
                             </ul>
                         </div>
 
-                        <h2>나의 멘토링 현황</h2>
+                        <h2>학생창업신고 현황</h2>
                         <ul className={cx("current_situation")}>
                             <li>
                                 <span className={cx("title")}>신청건수</span>
@@ -58,7 +58,7 @@ const StudentReportManagePage = () => {
                         </ul>
                         <div className={cx("th_title")}>
                             <ul>
-                                <li className={cx("w_1")}>NO</li>
+                                <li className={cx("w_1")}>번호</li>
                                 <li className={cx("w_1")}>기업명</li>
                                 <li className={cx("w_1")}>사업자 유형</li>
                                 <li className={cx("w_1")}>연락처</li>

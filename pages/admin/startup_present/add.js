@@ -413,7 +413,7 @@ const StartUpAddPage = () => {
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th scope="row">비지니스 분야</th>
+                                            <th scope="row">비즈니스 분야</th>
                                             <td colSpan={3}>
                                                 <Form.Item
                                                     name="businessIdList"

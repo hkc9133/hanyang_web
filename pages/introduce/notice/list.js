@@ -24,7 +24,8 @@ export const getServerSideProps = wrapper.getServerSideProps(async (context) => 
         page:page,
         categoryCodeId:categoryCodeId,
         searchValue:searchValue,
-        searchField:searchField
+        searchField:searchField,
+        showNotice:true
     }
     context.store.dispatch(getNoticeList(data));
     context.store.dispatch(END);
@@ -61,7 +62,9 @@ const List = () => {
                 page:page,
                 categoryCodeId:categoryCodeId,
                 searchValue:searchValue,
-                searchField:searchField
+                searchField:searchField,
+                showNotice:true
+
             }
             dispatch(getNoticeList(data));
     },[router.query])
