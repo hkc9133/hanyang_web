@@ -164,33 +164,33 @@ const Index = () => {
                     <h1>나의 창업을 부탁해!<strong>무엇이 필요하신가요?</strong></h1>
                     <ul className={`${cx("link_list")} clfx `}>
                         <li className={cx("icon_1")}>
-                            <Link href="/">
+                            <Link href="/startup_counsel/counsel_process">
                                 <a><span>창업상담</span></a>
                             </Link>
                         </li>
                         <li className={cx("icon_2")}>
-                            <Link href="/">
+                            <Link href="/startup_education/university_student">
                                 <a>
                                     <span>창업강좌</span>
                                 </a>
                             </Link>
                         </li>
                         <li className={cx("icon_3")}>
-                            <Link href="/">
-                                <a>
+                            <Link href="https://scdp.hanyang.ac.kr/">
+                                <a target="_blank">
                                     <span>창업역량 진단검사</span>
                                 </a>
                             </Link>
                         </li>
                         <li className={cx("icon_4")}>
-                            <Link href="/">
+                            <Link href="/introduce/system">
                                 <a>
                                     <span>창업지원 체계</span>
                                 </a>
                             </Link>
                         </li>
                         <li className={cx("icon_5")}>
-                            <Link href="/">
+                            <Link href="/introduce/infra">
                                 <a>
                                     <span>창업인프라</span>
                                 </a>
@@ -460,7 +460,7 @@ const Index = () => {
                             <span className={cx("txt_1")}>최고 산학협력 및 기술사업화 대학</span>
                             {/*<span className={cx("txt_2")}>hanyang Startup</span>*/}
                             <p className={cx("txt_3")}>
-                                국내 사립대 최초 산학협력단 설립<br/>국내 대학 최초 기술지주회사 설립<br/>국내 대학 최고의 기술·이전 사업화 역량과 인프라 보유
+                                국내 사립대 최초 산학협력단 설립<br/>국내 대학 최초 기술지주회사 설립<br/>국내 대학 최고 기술이전 및 사업화 역량
                             </p>
                         </li>
                     </ul>

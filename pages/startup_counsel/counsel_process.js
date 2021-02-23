@@ -87,7 +87,7 @@ const CounselApply = () => {
                         <ul className={`${cx("icon_list")} clfx`}>
                             <li className={cx("icon_1")}>
                                 <a href="#">
-                                    세무,회계 <br/>기본지식 알고가기
+                                    세무, 회계 <br/>기본지식 알고가기
                                 </a>
                             </li>
                             <li className={cx("icon_2")}>

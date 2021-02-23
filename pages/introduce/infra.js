@@ -160,7 +160,7 @@ const Infra = () => {
                                     <img src="/assets/image/infra_dom_2.jpg" alt="infra_dom_2" />
                                 </li>
                             </ul>
-                            <span className={cx("txt")}>코워킹스페이스, 기숙사(10개실), 회의실 등 (면적 637㎡)</span>
+                            <span className={cx("txt")}>코워킹스페이스, 기숙사(11개실), 회의실 등 (면적 637㎡)</span>
                         </div>
                     </div>
 
@@ -178,7 +178,7 @@ const Infra = () => {
                             <span className={cx("txt")}>학생창업자를 위한 시제품 구현공간(면적 941㎡)</span>
                         </div>
                         <div className={cx("right_area")}>
-                            <h2>창업보육센터</h2>
+                            <h2>학생창업보육센터</h2>
                             <ul>
                                 <li>
                                     <img src="/assets/image/infra_center_1.jpg" alt="infra_center_1"/>

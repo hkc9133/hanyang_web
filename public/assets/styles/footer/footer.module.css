@@ -31,6 +31,7 @@
 .footer_menu{padding:25px 0; text-align:center; background-color:#fafafa; border-top:1px solid #ddd; }
 .footer_menu ul li{margin:0 35px 5px; display:inline-block; }
 .footer_menu ul li a{font-family:"MalgunGothic"; font-size:15px; }
+.footer_menu ul li:first-child a:hover{color: blue;}
 .footer_inner{padding:35px 0 80px; background-color:#495161;}
 .footer_logo{float:left; margin-right:35px; }
 .footer_right{position:absolute; right:20px; top:0;  text-align:right; }

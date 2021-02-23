@@ -121,7 +121,7 @@
 .location_wrap .transportation li.blue_bus{background:url(../../image/icon_bus_blue.gif) no-repeat 0 0; }
 
 
-.promotion .left_title h3{font-size:42px; font-family: 's-core-dream-medium';}
+.promotion .left_title h3{font-size:32px; font-family: 's-core-dream-medium';}
 .promotion .left_title span{display:block; font-size:24px; color:#0069f8; font-family: 's-core-dream-medium';}
 .promotion .vedioArea{position:relative; max-width:854px; padding-bottom:56.2%; display:block; }
 .promotion .vedioArea img, .promotion .vedioArea iframe{position:absolute; left:0; top:0; bottom:0; width:100%; height:100%;}
