@@ -98,7 +98,7 @@ const Footer = () => {
                         <ul className={cx("clfx")}>
                             <li className={cx("icon_1")}><Link href="/board/faq/list"><a>FAQ</a></Link></li>
                             <li className={cx("icon_2")}><Link href="/"><a>Q&amp;A</a></Link></li>
-                            <li className={cx("icon_3")}><Link href="/"><a>1:1문의</a></Link></li>
+                            <li className={cx("icon_3")}><Link href="https://pf.kakao.com/_fWsJd/chat"><a>1:1문의</a></Link></li>
                         </ul>
                     </div>
                     {/*<div className={cx("footer_notice")}>*/}

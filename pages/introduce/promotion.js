@@ -21,9 +21,8 @@ const Promotion = () => {
                         <h3>소개 동영상</h3>
                     </div>
                     <div className={cx("vedioArea")}>
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/ojWuGZAVjV0" frameBorder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen></iframe>
+                        {/*<img src="/assets/image/promotion_vedio.jpg" alt=""/>*/}
+                        <iframe src="https://www.youtube.com/embed/ojWuGZAVjV0" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                 </div>
 
@@ -67,9 +66,8 @@ const Promotion = () => {
                     </div>
                     <div className={cx("btn_area")}>
                         <ul className={`${cx("brochure_list")} clfx `}>
-                            <button type="button"><Link href="/assets/pdf/IAB-member.xlsx" download><a><span>더보기</span></a></Link></button>
-                            <li><Link href="/assets/한양대학교 창업지원단 로고.zip" download><a>JPG 다운로드</a></Link></li>
-                            <li><Link href="/assets/한양대학교 창업지원단 로고.zip" download><a>AI 다운로드</a></Link></li>
+                            <li><Link href="/assets/한양대학교 창업지원단 로고.zip" target="_blank" download>JPG 다운로드</Link></li>
+                            <li><Link href="/assets/한양대학교 창업지원단 로고.zip" target="_blank" download>AI 다운로드</Link></li>
                         </ul>
                     </div>
                 </div>

@@ -409,7 +409,7 @@ const Introduce = () => {
                                 <td>팀장</td>
                             </tr>
                             <tr>
-                                <td>김영복</td>
+                                <td>김영록</td>
                                 <td>㈜넥스트챌린지</td>
                                 <td>대표이사</td>
                             </tr>
@@ -422,6 +422,76 @@ const Introduce = () => {
                                 <td>한정수</td>
                                 <td>서울창조경제혁신센터</td>
                                 <td>센터장</td>
+                            </tr>
+                            <tr>
+                                <td>정석현</td>
+                                <td>수산중공업</td>
+                                <td>회장</td>
+                            </tr>
+                            <tr>
+                                <td>양형남</td>
+                                <td>에듀윌</td>
+                                <td>회장</td>
+                            </tr>
+                            <tr>
+                                <td>윤성태</td>
+                                <td>휴온스글로벌</td>
+                                <td>부회장</td>
+                            </tr>
+                            <tr>
+                                <td>이임성</td>
+                                <td>법무법인 대원법률</td>
+                                <td>대표변호사</td>
+                            </tr>
+                            <tr>
+                                <td>이재만</td>
+                                <td>K-ICT 창업멘토링센터</td>
+                                <td>CEO멘토</td>
+                            </tr>
+                            <tr>
+                                <td>이성균</td>
+                                <td>유인케어</td>
+                                <td>대표이사</td>
+                            </tr>
+                            <tr>
+                                <td>임정욱</td>
+                                <td>스타트업 얼라이언스</td>
+                                <td>센터장</td>
+                            </tr>
+                            <tr>
+                                <td>송은강</td>
+                                <td>캡스톤파트너스</td>
+                                <td>대표이사</td>
+                            </tr>
+                            <tr>
+                                <td>정남이</td>
+                                <td>아산나눔재단</td>
+                                <td>상임이사</td>
+                            </tr>
+                            <tr>
+                                <td>변우석</td>
+                                <td>코맥스벤처러스</td>
+                                <td>대표이사</td>
+                            </tr>
+                            <tr>
+                                <td>이종훈</td>
+                                <td>롯데액셀러레이터</td>
+                                <td>투자본부장</td>
+                            </tr>
+                            <tr>
+                                <td>김진</td>
+                                <td>머니매그넷</td>
+                                <td>대표이사</td>
+                            </tr>
+                            <tr>
+                                <td>도현명</td>
+                                <td>임팩트스퀘어</td>
+                                <td>대표이사</td>
+                            </tr>
+                            <tr>
+                                <td>김태호</td>
+                                <td>Campus K</td>
+                                <td>대표이사</td>
                             </tr>
                             </tbody>
                         </table>
