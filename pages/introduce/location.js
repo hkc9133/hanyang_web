@@ -54,7 +54,7 @@ const Location = () => {
                             {/*<h3>오시는 길</h3>*/}
                             <div className={cx("btn_area")}>
                                 <ul>
-                                    <li><Link href="#"><a>약도 이미지 다운로드</a></Link></li>
+                                    <li><Link href="/assets/image/location_map.png" download><a>약도 이미지 다운로드</a></Link></li>
                                     <li><Link href="#"><a>약도 공유하기</a></Link></li>
                                 </ul>
                             </div>

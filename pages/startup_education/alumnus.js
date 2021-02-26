@@ -4,6 +4,8 @@ import styles from '../../public/assets/styles/startup_education/startup_educati
 import classnames from "classnames/bind"
 import PageNavigation from "../../component/layout/PageNavigation";
 import {Menu} from "antd";
+import AcaHistory from '../../component/startup_education/AcaHistory';
+import ForumHistory from '../../component/startup_education/ForumHistory';
 const {SubMenu} = Menu;
 
 const cx = classnames.bind(styles);
@@ -247,6 +249,7 @@ const Alumnus = () => {
                             >
                                 <SubMenu key="sub1" className={cx("dropdown_title")} title={<div className={cx("question")}>한양스타트업아카데미 HISTORY</div>}>
                                     <Menu.Item key="0" className={cx("dropdown_content")} style={{height: 'auto'}}>
+                                        <AcaHistory cx={cx}/>
                                     </Menu.Item>
                                 </SubMenu>
                                 <SubMenu key="sub2" className={cx("dropdown_title")} title={<div className={cx("question")}>한양스타트업아카데미 원우회</div>}>
@@ -284,28 +287,28 @@ const Alumnus = () => {
                                                         </tr>
                                                         <tr>
                                                             <td>고문</td>
-                                                            <td>1기</td>
-                                                            <td>조상용</td>
+                                                            <td>3기</td>
+                                                            <td>유해정</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>고문</td>
-                                                            <td>1기</td>
-                                                            <td>조상용</td>
+                                                            <td>부회장</td>
+                                                            <td>8기</td>
+                                                            <td>정혜영</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>고문</td>
-                                                            <td>1기</td>
-                                                            <td>조상용</td>
+                                                            <td>부회장</td>
+                                                            <td>3기</td>
+                                                            <td>방장혁</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>고문</td>
+                                                            <td>사무총장</td>
                                                             <td>1기</td>
-                                                            <td>조상용</td>
+                                                            <td>한성원</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>고문</td>
-                                                            <td>1기</td>
-                                                            <td>조상용</td>
+                                                            <td>사무차장</td>
+                                                            <td>12기</td>
+                                                            <td>김하영</td>
                                                         </tr>
                                                         </tbody>
                                                     </table>
@@ -409,6 +412,44 @@ const Alumnus = () => {
                             {/*        </div>*/}
                             {/*    </li>*/}
                             {/*</ul>*/}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className={cx("sub_cont", "alumnusCont_1")}>
+                <div className={cx("txt_style_1")}>
+                    <div className={cx("left_title")}>
+                        <h1 className={cx("title_style_2")}>한양스타트업포럼</h1>
+                    </div>
+                    <div className={cx("txtArea")}>
+                        <p className={cx("txt_1")}>
+                            한양스타트업포럼은 선배기업인, 교수, 예비창업자가 함께 참여하는 이슈 중심의 세미나로 기업간 협업 촉진을 위한 교류 및 지식 공유의 장을 제공합니다.
+                        </p>
+                        <div className={cx("list_style_1")}>
+                            <ul>
+                                <li>
+                                    <span className={cx("title")}>모집대상 </span>
+                                    한양스타트업아카데미 수료생 및 차기 교육생 후보군 100여명 (온라인 참여는 누구나 가능)
+                                </li>
+                                <li>
+                                    <span className={cx("title")}>일정</span>
+                                    연 4회 분기별 개최
+                                </li>
+                            </ul>
+                            <div className={cx("qa_list")}>
+                                <Menu
+                                    mode="inline"
+                                    selectable={false}
+                                    style={{height: '100%', borderRight: 'none'}}
+                                >
+                                    <SubMenu key="sub3" className={cx("dropdown_title")} title={<div className={cx("question")}>한양스타트업포럼 HISTORY</div>}>
+                                        <Menu.Item key="2" className={cx("dropdown_content")} style={{height: 'auto', padding: 10}}>
+                                            <ForumHistory cx={cx}/>
+                                        </Menu.Item>
+                                    </SubMenu>
+                                </Menu>
+                            </div>
                         </div>
                     </div>
                 </div>
