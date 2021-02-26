@@ -85,7 +85,7 @@
 .btn_more{position:relative; padding:0 90px 0 30px; height:52px; line-height:52px; display:inline-block; border:1px solid #ddd; font-size:18px; border-radius:5px; }
 .btn_more:after{position:absolute; right:5%; top:50%; margin-top:-5px; width:59px; height:9px; display:block; background:url(../../image/btn_arrow.png) no-repeat right center; content:"";}
 .tabCont>div{display:none;}
-.tabCont>div.show{display:block;}
+.tabCont>div.show{display:block;margin-bottom: 40px;}
 .university_studentCont_6 .txtArea ul li ul{margin-bottom:0;}
 .university_studentCont_6 .txtArea ul li li{margin-bottom:10px; padding:0 0 0 10px; position:Relative; font-size:16px; color:#222; border-bottom:none;}
 .university_studentCont_6 .txtArea ul li li:before{position:absolute; left:0; top:10px; width:6px; height:2px; background-color:#000; display:block; content:"";}
@@ -179,6 +179,20 @@
 .alumnus .sub_cont{padding:30px 20px;}
 .alumnus .txt_style_1{margin:0; }
 .alumnus{padding-bottom:100px; }
+
+
+.friendlyCont .sub_container{padding-bottom: 30px; }
+.friendlyCont .tb_style_1 tr:first-child{border-top: 1px solid #ddd; }
+.friendly_2 .txtArea .list_style_1 a{background: none; padding-right: 0; color: #1890ff; }
+
+
+.privacyPolicy .sub_cont h2{font-size: 24px; margin: 20px 0 0; }
+.privacyPolicy .sub_cont h3{font-size: 16px; font-weight: 600; margin: 20px 0 10px; }
+.privacyPolicy .sub_cont p{font-size: 14px; }
+.privacyPolicy .sub_cont .tb_style_1{margin: 20px 0; }
+.privacyPolicy .sub_cont .tb_style_1 th{font-size: 16px; }
+.privacyPolicy .sub_cont .tb_style_1 td{font-size: 14px; text-align: center; }
+.privacyPolicy .sub_cont .tb_style_1 td:last-child{padding-left: 5px; }
 
 @media screen and (max-width: 1400px){
 
@@ -308,7 +322,7 @@
     .sub_cont{padding:40px 20px;}
     .sub_cont_top{padding:60px 20px 30px; }
     .sub_top_txt{margin-bottom:30px;}
-    .tab_style_2 li{margin:0 10px;}
+    .tab_style_2 li{margin:0 9px;}
     .tab_style_2 li a{padding-bottom:10px; font-size:14px;}
     .title_style_3{font-size:22px; }
     .university_studentCont_1 p{margin-bottom:20px; font-size:14px; }

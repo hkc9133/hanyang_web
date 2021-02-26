@@ -37,7 +37,7 @@ const AdminHeaderDetail = () => {
                     </ul>
                 </>
             )}
-            {(router.pathname.startsWith("/admin/board") || router.pathname.startsWith("/admin/notice") || router.pathname.startsWith("/admin/popup") || router.pathname.startsWith("/admin/keyword")) && (
+            {(router.pathname.startsWith("/admin/board") || router.pathname.startsWith("/admin/startupCalendar") || router.pathname.startsWith("/admin/popup") || router.pathname.startsWith("/admin/keyword")) && (
                 <>
                     <div className={cx("adm_menu_head")}>
                         <div className={cx("adm_menu_icon")}>
@@ -46,14 +46,14 @@ const AdminHeaderDetail = () => {
                         <h3 className={cx("adm_menu_title")}>사이트 관리</h3>
                     </div>
                     <ul>
-                        <li><Link href="/admin/notice/list"><a>공지사항 관리</a></Link></li>
                         <li><Link href="/admin/board/list"><a>게시판 관리</a></Link></li>
+                        <li><Link href="/admin/startupCalendar/list"><a>창업캘린더 관리</a></Link></li>
                         <li><Link href="/admin/popup"><a>팝업 관리</a></Link></li>
                         <li><Link href="/admin/keyword"><a>검색어 관리</a></Link></li>
                     </ul>
                 </>
             )}
-            {/*{router.pathname.startsWith("/admin/notice/list") && (*/}
+            {/*{router.pathname.startsWith("/admin/startupCalendar/list") && (*/}
             {/*    <>*/}
             {/*        <div className={cx("adm_menu_head")}>*/}
             {/*            <div className={cx("adm_menu_icon")}>*/}
@@ -62,7 +62,7 @@ const AdminHeaderDetail = () => {
             {/*            <h3 className={cx("adm_menu_title")}>공지사항 관리</h3>*/}
             {/*        </div>*/}
             {/*        <ul>*/}
-            {/*            <li><Link href="/admin/notice/list"><a>공지사항 관리</a></Link></li>*/}
+            {/*            <li><Link href="/admin/startupCalendar/list"><a>공지사항 관리</a></Link></li>*/}
             {/*        </ul>*/}
             {/*    </>*/}
             {/*)}*/}

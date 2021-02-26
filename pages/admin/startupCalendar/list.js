@@ -6,8 +6,8 @@ import classnames from "classnames/bind"
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
 import qs from 'query-string';
-import {getNoticeList} from "../../../store/notice/adminNotice";
-import NoticeListTable from "../../../component/admin/notice/NoticeListTable";
+import {getStartupCalendarList} from "../../../store/startupCalendar/adminStartupCalendar";
+import StartupCalendarListTable from "../../../component/admin/startupCalendar/StartupCalendarListTable";
 import Pagination from "../../../component/common/Pagination";
 import { DatePicker } from 'antd';
 const {RangePicker} = DatePicker;
@@ -29,8 +29,8 @@ const List = () => {
         progressStatus:""
     })
 
-    const {notice} = useSelector(({adminNotice,loading})=> ({
-        notice:adminNotice.notice,
+    const {startupCalendar} = useSelector(({adminStartupCalendar,loading})=> ({
+        startupCalendar:adminStartupCalendar.startupCalendar,
     }))
 
 
@@ -55,7 +55,7 @@ const List = () => {
             endDate:endDate
         }
 
-        dispatch(getNoticeList(data))
+        dispatch(getStartupCalendarList(data))
     },[router.query])
 
     const pageChange = useCallback((page) =>{
@@ -94,14 +94,14 @@ const List = () => {
         return (
         <>
             <section className={cx("container")}>
-                <h1 className={cx("top_title")}>공지사항 목록</h1>
+                <h1 className={cx("top_title")}>창업캘린더 목록</h1>
                 <div className={cx("adm_container")}>
                     <div className={`${cx("member_info","box")} clfx `}>
                         <ul className={"clfx"}>
                             <li>
                                 <span className={cx("title","icon_1")}>공지</span>
                                 <div className={cx("number")}>
-                                    <strong>{notice.page !== null && notice.page.totalCount}</strong>개
+                                    <strong>{startupCalendar.page !== null && startupCalendar.page.totalCount}</strong>개
                                 </div>
                             </li>
                         </ul>
@@ -110,7 +110,7 @@ const List = () => {
                             <select name="categoryCodeId" value={searchInfo.categoryCodeId} onChange={(e) => {changeSearchInfo(e)}}>
                                 <option value={""}>분류</option>
                                 {
-                                    notice.cate.map((cate)=>(
+                                    startupCalendar.cate.map((cate)=>(
                                         <option key={cate.categoryCodeId} value={cate.categoryCodeId}>{cate.categoryCodeName}</option>
                                     ))
                                 }
@@ -140,18 +140,18 @@ const List = () => {
                     <div className={cx("admin_cont")}>
                         <h2 className={cx("title_style_1")}><span>목록</span></h2>
                         <div className={cx("btn-box01")}>
-                        <Link  href={"/admin/notice/write"}><a className={cx("basic-btn01")}>글쓰기</a></Link>
+                        <Link  href={"/admin/startupCalendar/write"}><a className={cx("basic-btn01")}>글쓰기</a></Link>
                         </div>
-                        {notice.list.length !== 0 &&
-                        <NoticeListTable cx={cx} list={notice.list}/>
+                        {startupCalendar.list.length !== 0 &&
+                        <StartupCalendarListTable cx={cx} list={startupCalendar.list}/>
                         }
 
-                        {notice.page != null && (
+                        {startupCalendar.page != null && (
                             <Pagination
-                                totalRecords={notice.page.totalCount}
-                                pageLimit={notice.page.pageSize}
+                                totalRecords={startupCalendar.page.totalCount}
+                                pageLimit={startupCalendar.page.pageSize}
                                 pageNeighbours={1}
-                                currentPage={notice.page.pageNo}
+                                currentPage={startupCalendar.page.pageNo}
                                 onPageChanged={pageChange}
                             />
                         )}

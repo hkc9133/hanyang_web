@@ -7,8 +7,9 @@ const PersonalInfoForm = ({cx,changeApplyFormValue,applyForm}) => {
             <ul className={"clfx"}>
                 <li>
                     <div>
+                        {/*<span>*</span>*/}
                         <Form.Item
-                            label="이름"
+                            label={<span><span style={{color:'red'}}>*</span>이름</span>}
                             className={(cx("antd_input"))}
                             name="menteeName"
                             rules={[
@@ -26,7 +27,7 @@ const PersonalInfoForm = ({cx,changeApplyFormValue,applyForm}) => {
                 <li>
                     <div>
                         <Form.Item
-                            label="연락처"
+                            label={<span><span style={{color:'red'}}>*</span>연락처</span>}
                             name="menteePhoneNumber"
                             className={(cx("antd_input"))}
                             rules={[
@@ -47,7 +48,7 @@ const PersonalInfoForm = ({cx,changeApplyFormValue,applyForm}) => {
                 <li className={cx("email")}>
                     <div className={cx("clfx")}>
                         <Form.Item
-                            label="E-MAIL"
+                            label={<span><span style={{color:'red'}}>*</span>E-MAIL</span>}
                             name="menteeEmail"
                             rules={[
                                 {

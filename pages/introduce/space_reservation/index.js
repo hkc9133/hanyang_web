@@ -335,7 +335,7 @@ const SpaceReservation = () => {
                 <Modal visible={showResultModal} closable={true} maskClosable={true} onClose={() => {
                     setShowResultModal(false);
                 }} cx={cx} className={"rental_popup"}>
-                    <h2 className={cx("popup_title")}>신청이 완료되었습니다</h2>
+                    <h2 className={cx("popup_title")}>예약이 완료되었습니다</h2>
                     <div className={cx("btn_box")}>
                         <button className={cx("basic-btn01","btn-gray-bg")} onClick={() =>{setShowResultModal(false);}}>확인</button>
                     </div>

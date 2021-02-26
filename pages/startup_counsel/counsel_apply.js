@@ -273,7 +273,7 @@ const CounselApply = () => {
                     <PersonalInfoForm cx={cx} changeApplyFormValue={changeApplyFormValue} applyForm={applyForm}/>
 
                     <div className={cx("termsArea")}>
-                        <h3>개인정보처리방침</h3>
+                        <h3><span style={{color:'red'}}>*</span>개인정보처리방침</h3>
                         <div className={cx("terms_box")}>
 <pre>
 한양대학교 창업지원단 개인정보 처리방침
@@ -300,7 +300,7 @@ const CounselApply = () => {
                         </div>
                     </div>
 
-                    <h2>구분</h2>
+                    <h2><span style={{color:'red'}}>*</span>구분</h2>
                     <div className={cx("form_style_1")}>
                         <ul className={cx("list_2")}>
                             <Form.Item
@@ -317,14 +317,14 @@ const CounselApply = () => {
                         </ul>
                     </div>
 
-                    <h2>창업진행 상황</h2>
+                    <h2><span style={{color:'red'}}>*</span>창업진행 상황</h2>
                     <div className={cx("form_style_1")}>
                         <ul className={cx("list_3")}>
                             <Radio.Group name="formProgressItem" options={progressItem.list} value={applyForm.formProgressItem} defaultValue={1}  onChange={changeApplyFormValue} />
                         </ul>
                     </div>
 
-                    <h2>희망 멘토링 분야</h2>
+                    <h2><span style={{color:'red'}}>*</span>희망 멘토링 분야</h2>
                     <div className={cx("form_style_1")}>
                         <ul className={cx("list_5")}>
                             <Form.Item
@@ -374,7 +374,7 @@ const CounselApply = () => {
                         </Select>
                     </div>
 
-                    <h2>희망 상담 방식</h2>
+                    <h2><span style={{color:'red'}}>*</span>희망 상담 방식</h2>
                     <div className={cx("form_style_1")}>
                         <ul className={cx("list_5","way")}>
                             <Form.Item
@@ -395,7 +395,7 @@ const CounselApply = () => {
                     <ul className={cx("consultation_details")}>
                         <li>
                             <Form.Item
-                                label="제목"
+                                label={<span><span style={{color:'red'}}>*</span>제목</span>}
                                 name="title"
                                 className={(cx("antd_input"))}
                                 rules={[

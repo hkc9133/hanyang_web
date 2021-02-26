@@ -328,7 +328,7 @@ const StudentStartupReport = () => {
                     <ul className={`${cx("w_2")} clfx `}>
                         <li>
                             <Form.Item
-                                label="당해 연도 매출액(해당하는 경우에만 입력)"
+                                label="당해 연도 매출액(해당하는 경우에만 입력, 단위:원)"
                                 name="sales"
                                 rules={[
                                     {

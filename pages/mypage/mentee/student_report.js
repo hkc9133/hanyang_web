@@ -5,6 +5,12 @@ import classnames from "classnames/bind"
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
 import {getStudentReportList, initialize} from "../../../store/studentReport/studentReport";
+import {
+    BrowserView,
+    MobileView,
+    isBrowser,
+    isMobile
+} from "react-device-detect";
 
 import moment from "moment";
 import Pagination from "../../../component/common/Pagination";
@@ -77,8 +83,12 @@ const StudentReportManagePage = () => {
                                                 <li className={cx("w_1")}>{item.rownum}</li>
                                                 <li className={cx("w_1")}>{item.companyName}</li>
                                                 <li className={cx("w_1")}>{item.companyKind}</li>
-                                                <li className={cx("w_1")}>{item.studentPhoneNum}</li>
-                                                <li className={cx("w_1")}>{item.studentEmail}</li>
+                                                {!isMobile && (
+                                                    <>
+                                                        <li className={cx("w_1")}>{item.studentPhoneNum}</li>
+                                                        <li className={cx("w_1")}>{item.studentEmail}</li>
+                                                    </>
+                                                )}
                                                 <li className={cx("w_1")}>{item.createDate}</li>
                                                 <li className={cx("w_1")}>{moment(item.regDate).format("YYYY-MM-DD")}</li>
                                             </ul>

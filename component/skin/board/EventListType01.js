@@ -11,7 +11,7 @@ import Pagination from "../../common/Pagination";
 
 const cx = classnames.bind(styles);
 
-const EventListType01 = ({list,cateList,page,pageChange,changeCategory,changeType}) => {
+const EventListType01 = ({list,cateList,page,pageChange,changeCategory,changeType,handleShowContent}) => {
     const router = useRouter();
     return (
         <>
@@ -60,17 +60,8 @@ const EventListType01 = ({list,cateList,page,pageChange,changeCategory,changeTyp
                                 <tr key={item.noticeId}>
                                     <td>{item.rownum}</td>
                                     <td><span className={cx("category",{red:item.progressStatus == "OPEN"})}>{item.progressStatus == "OPEN" ? "진행중" : "마감"}</span></td>
-                                    <td className={cx("txt_l")}><Link href="#"><a>{item.title}</a></Link></td>
+                                    <td className={cx("txt_l")}><a onClick={(e) =>{e.preventDefault();handleShowContent(item)}}>{item.title}</a></td>
                                     <td>{item.eventDate != null && moment(item.eventDate).format("YYYY-MM-DD HH시mm분")}</td>
-                                    {/*<td>*/}
-                                    {/*    {*/}
-                                    {/*        `*/}
-                                    {/*        ${moment(item.applyStartDate).format("YYYY-MM-DD")} */}
-                                    {/*        ~*/}
-                                    {/*         ${moment(item.applyEndDate).format("YYYY-MM-DD")}*/}
-                                    {/*         `*/}
-                                    {/*    }*/}
-                                    {/*</td>*/}
                                 </tr>
                             )
                         })

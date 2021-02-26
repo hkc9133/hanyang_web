@@ -6,7 +6,6 @@ import {
 } from "../../../../store/board/adminBoard";
 import {END} from "redux-saga";
 import {Checkbox, Form, Input, Select, Tag, Upload,Modal} from "antd";
-// import Modal from "../../../../component/common/Modal";
 import {useRouter} from "next/router";
 import {useDispatch, useSelector} from "react-redux";
 import {PlusOutlined} from "@ant-design/icons";
@@ -14,7 +13,7 @@ import styles from '../.././../../public/assets/styles/admin/board/board.module.
 import classnames from "classnames/bind"
 import dynamic from "next/dynamic";
 import {fileDownload} from "../../../../store/file/file";
-import {getNotice, getNoticeCategoryCodeList, updateNotice} from "../../../../store/notice/adminNotice";
+import {getStartupCalendar, getStartupCalendarCategoryCodeList, updateStartupCalendar} from "../../../../store/startupCalendar/adminStartupCalendar";
 import locale from "antd/lib/date-picker/locale/ko_KR";
 import moment from "moment";
 const QuillEditor = dynamic(() => import("../../../../component/common/QuillEditor"), {
@@ -32,8 +31,8 @@ export const getServerSideProps = wrapper.getServerSideProps(async (context) => 
     const cookie = context.req && context.req.headers.cookie ? context.req.headers.cookie : '';
     client.defaults.headers.Cookie = cookie;
 
-    context.store.dispatch(getNoticeCategoryCodeList());
-    context.store.dispatch(getNotice(context.params.contentId));
+    context.store.dispatch(getStartupCalendarCategoryCodeList());
+    context.store.dispatch(getStartupCalendar(context.params.contentId));
     context.store.dispatch(END);
     await context.store.sagaTask.toPromise();
 })
@@ -54,10 +53,10 @@ const ContentEditView = () => {
     const [newFileList,setNewFileList] = useState([]);
     const [updateResultModal, setUpdateResultModal] = useState(false)
 
-    const {view,update,cate,user} = useSelector(({adminNotice,auth,loading})=> ({
-        view: adminNotice.view,
-        update:adminNotice.update,
-        cate:adminNotice.cate,
+    const {view,update,cate,user} = useSelector(({adminStartupCalendar,auth,loading})=> ({
+        view: adminStartupCalendar.view,
+        update:adminStartupCalendar.update,
+        cate:adminStartupCalendar.cate,
         user:auth.user,
     }))
 
@@ -70,30 +69,26 @@ const ContentEditView = () => {
     }, []);
 
     useEffect(() =>{
-        if(view.notice != null){
+        if(view.startupCalendar != null){
             setWriteInfo({
                 ...writeInfo,
-                noticeId:view.notice.noticeId,
-                title:view.notice.title,
-                progressStatus:view.notice.progressStatus,
-                categoryCodeId:view.notice.categoryCodeId,
-                isNotice: view.notice.isNotice,
-                showNotice: view.notice.showNotice,
-                showCalendar: view.notice.showCalendar,
-                showHot: view.notice.showHot,
+                startupCalendarId:view.startupCalendar.startupCalendarId,
+                title:view.startupCalendar.title,
+                progressStatus:view.startupCalendar.progressStatus,
+                categoryCodeId:view.startupCalendar.categoryCodeId,
+                isNotice: view.startupCalendar.isNotice,
                 attachFiles: view.files,
-                applyStartDate:moment(view.notice.applyStartDate),
-                applyEndDate:moment(view.notice.applyEndDate),
-                eventDate:moment(view.notice.eventDate),
-                applyStartDateStr:moment(view.notice.applyStartDate).format("YYYY-MM-DD HH:mm:ss").toString(),
-                applyEndDateStr:moment(view.notice.applyEndDate).format("YYYY-MM-DD HH:mm:ss").toString(),
-                eventDateStr:moment(view.notice.eventDate).format("YYYY-MM-DD HH:mm:ss").toString(),
+                applyStartDate:moment(view.startupCalendar.applyStartDate),
+                applyEndDate:moment(view.startupCalendar.applyEndDate),
+                eventDate:moment(view.startupCalendar.eventDate),
+                applyStartDateStr:moment(view.startupCalendar.applyStartDate).format("YYYY-MM-DD HH:mm:ss").toString(),
+                applyEndDateStr:moment(view.startupCalendar.applyEndDate).format("YYYY-MM-DD HH:mm:ss").toString(),
+                eventDateStr:moment(view.startupCalendar.eventDate).format("YYYY-MM-DD HH:mm:ss").toString(),
             })
             // form.setFieldsValue({
             //     categoryCodeId:view.content.categoryCodeId
             // })
-            console.log(writeInfo)
-            setContent(view.notice.content)
+            setContent(view.startupCalendar.content)
         }
 
     },[view])
@@ -174,7 +169,7 @@ const ContentEditView = () => {
     const submitApply = (e) => {
         const data = {
             ...writeInfo,
-            // noticeId:view.notice.noticeId,
+            // startupCalendarId:view.startupCalendar.startupCalendarId,
             content:content,
             files:newFileList.map((item) => (item.originFileObj)),
         }
@@ -183,7 +178,7 @@ const ContentEditView = () => {
         delete data.applyEndDate;
         console.log("aaa")
         console.log(data)
-        dispatch(updateNotice(data));
+        dispatch(updateStartupCalendar(data));
     }
 
 
@@ -214,7 +209,7 @@ const ContentEditView = () => {
                     <div className={cx("admin_cont")}>
                         <Form form={form} onFinish={(e) =>{submitApply(e)}}
                               initialValues={{
-                                  title:view.notice.title
+                                  title:view.startupCalendar.title
                               }}
                         >
                         <h2 className={cx("title_style_1")}><span>수정</span></h2>
@@ -227,17 +222,6 @@ const ContentEditView = () => {
                                 <thead>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <th scope="row">게시판</th>
-                                    <td>
-                                        <label style={{marginLeft:10}}>공지사항</label>
-                                        <Checkbox checked={writeInfo.showNotice} onChange={(e) =>{setWriteInfo({...writeInfo,showNotice: e.target.checked})}}/>
-                                        <label style={{marginLeft:10}}>핫이슈</label>
-                                        <Checkbox checked={writeInfo.showHot} onChange={(e) =>{setWriteInfo({...writeInfo,showHot: e.target.checked})}}/>
-                                        <label style={{marginLeft:10}}>창업캘린터</label>
-                                        <Checkbox checked={writeInfo.showCalendar} onChange={(e) =>{setWriteInfo({...writeInfo,showCalendar: e.target.checked})}}/>
-                                    </td>
-                                </tr>
                                 <tr>
                                     <th scope="row">분류</th>
                                     <td>

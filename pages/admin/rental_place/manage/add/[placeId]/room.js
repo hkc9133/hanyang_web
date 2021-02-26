@@ -278,7 +278,7 @@ const RoomAdd = () => {
                                                     <input id="role02" name="rentalRole02" checked={roomInfo.rentalRole.includes("ROLE_MT;")} type='checkbox' value={"ROLE_MT;"} onChange={changeRoomInfo}/>
                                                     <label htmlFor="role03">학생</label>
                                                     <input id="role03" name="rentalRole03" checked={roomInfo.rentalRole.includes("ROLE_SD;")} type='checkbox' value={"ROLE_SD;"} onChange={changeRoomInfo}/>
-                                                    <label htmlFor="role04">교사</label>
+                                                    <label htmlFor="role04">교직원</label>
                                                     <input id="role04" name="rentalRole04" checked={roomInfo.rentalRole.includes("ROLE_TC;")} type='checkbox' value={"ROLE_TC;"} onChange={changeRoomInfo}/>
                                                 </td>
                                             </tr>

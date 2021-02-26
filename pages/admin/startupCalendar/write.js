@@ -2,7 +2,6 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {useRouter} from "next/router";
 import {useDispatch, useSelector} from "react-redux";
 import {Checkbox, Form, Upload,Modal} from "antd";
-import {addBoardContent, getBoard, initialize} from "../../../store/board/adminBoard";
 import {PlusOutlined} from "@ant-design/icons";
 const QuillEditor = dynamic(() => import("../../../component/common/QuillEditor"), {
     ssr: false,
@@ -15,7 +14,7 @@ const { RangePicker } = DatePicker;
 
 import styles from '../.././../public/assets/styles/admin/board/board.module.css';
 import classnames from "classnames/bind"
-import {addNotice, getNoticeCategoryCodeList} from "../../../store/notice/adminNotice";
+import {addStartupCalendar, getStartupCalendarCategoryCodeList,initialize} from "../../../store/startupCalendar/adminStartupCalendar";
 import locale from "antd/lib/date-picker/locale/ko_KR";
 
 const cx = classnames.bind(styles);
@@ -34,14 +33,14 @@ const Write = () => {
     const [content,setContent] = useState("");
     const [addResultModal, setAddResultModal] = useState(false)
 
-    const {cate,add} = useSelector(({adminNotice,auth,loading})=> ({
-        cate:adminNotice.cate,
-        add:adminNotice.add,
+    const {cate,add} = useSelector(({adminStartupCalendar,auth,loading})=> ({
+        cate:adminStartupCalendar.cate,
+        add:adminStartupCalendar.add,
     }))
 
 
     useEffect(() => {
-        dispatch(getNoticeCategoryCodeList())
+        dispatch(getStartupCalendarCategoryCodeList())
 
         return () => {
             dispatch(initialize());
@@ -91,7 +90,7 @@ const Write = () => {
         if(add.result && add.error == null){
             Modal.success({
                 title: '글쓰기 완료',
-                onOk:() =>{router.push("/admin/notice/list")}
+                onOk:() =>{router.push("/admin/startupCalendar/list")}
             });
         }
     },[add])
@@ -104,7 +103,7 @@ const Write = () => {
             content:content,
             files:writeInfo.attachFiles.map((item) => (item.originFileObj)),
         }
-        dispatch(addNotice(data));
+        dispatch(addStartupCalendar(data));
     }
 
     const uploadButton = (
@@ -164,22 +163,12 @@ const Write = () => {
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <th scope="row">게시판</th>
-                                        <td>
-                                            <label style={{marginLeft:10}}>공지사항</label>
-                                            <Checkbox checked={writeInfo.showNotice} onChange={(e) =>{setWriteInfo({...writeInfo,showNotice: e.target.checked})}}/>
-                                            <label style={{marginLeft:10}}>핫이슈</label>
-                                            <Checkbox checked={writeInfo.showHot} onChange={(e) =>{setWriteInfo({...writeInfo,showHot: e.target.checked})}}/>
-                                            <label style={{marginLeft:10}}>창업캘린터</label>
-                                            <Checkbox checked={writeInfo.showCalendar} onChange={(e) =>{setWriteInfo({...writeInfo,showCalendar: e.target.checked})}}/>
-                                        </td>
-                                    </tr>
-                                    <tr>
                                         <th scope="row">분류</th>
                                         <td>
-                                            <select name='progressStatus' className={cx("cate")} onChange={changeWriteInfo} value={writeInfo.progressStatus}>
-                                                <option value={"OPEN"}>진행중</option>
-                                                <option value={"CLOSE"}>마감</option>
+                                            <select name='categoryCodeId' className={cx("cate")} onChange={changeWriteInfo} value={writeInfo.categoryCodeId}>
+                                                {cate.map((item) => {
+                                                    return <option key={item.categoryCodeId} value={item.categoryCodeId}>{item.categoryCodeName}</option>
+                                                })}
                                             </select>
                                         </td>
                                     </tr>
@@ -279,7 +268,7 @@ const Write = () => {
                         </Form>
                     </div>
                 </div>
-                {/*<Modal visible={addResultModal} closable={true} maskClosable={true} onClose={() => {setAddResultModal(false);router.push("/admin/notice/list");}} cx={cx} className={"add_result_popup"}>*/}
+                {/*<Modal visible={addResultModal} closable={true} maskClosable={true} onClose={() => {setAddResultModal(false);router.push("/admin/startupCalendar/list");}} cx={cx} className={"add_result_popup"}>*/}
                 {/*    <h1 className={cx("popup_title")}>글쓰기 완료</h1>*/}
                 {/*</Modal>*/}
             </section>

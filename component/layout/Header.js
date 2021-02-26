@@ -56,7 +56,7 @@ const Header = () => {
     },[router.pathname,user])
 
     useEffect(()=> {
-        console.log(isLogin)
+        // console.log(isLogin)
     },[isLogin])
 
 
@@ -97,8 +97,8 @@ const Header = () => {
     }
 
     const handleLogout = () => {
-        router.push("/")
         dispatch(logout())
+        // router.push("/")
     }
 
     return (
@@ -134,7 +134,7 @@ const Header = () => {
                             <Link href="/board/startup_info/list"><a>창업지원정보</a></Link>
                             <div className={cx("s_gnb")}>
                                 <ul>
-                                    <li><Link href="/introduce/notice/list"><a>공지사항</a></Link></li>
+                                    <li><Link href="/board/notice/list"><a>공지사항</a></Link></li>
                                     <li><Link href="/startup_info/startup_event"><a>창업캘린더</a></Link></li>
                                     <li><Link href="/board/startup_info/list"><a>신규사업공고</a></Link></li>
                                     <li><Link href="/board/idea/list"><a>창업지원단 커뮤니티</a></Link></li>
@@ -166,8 +166,8 @@ const Header = () => {
                             <div className={cx("s_gnb")}>
                                 <ul>
                                     <li><Link href="/introduce/introduce"><a>기관 소개</a></Link></li>
-                                    <li><Link href="/introduce/system"><a>창업지원 체계</a></Link></li>
                                     <li><Link href="/introduce/infra"><a>인프라</a></Link></li>
+                                    <li><Link href="/introduce/system"><a>창업지원 체계</a></Link></li>
                                     {/*<li><Link href="/introduce"><a>협력 파트너스</a></Link></li>*/}
                                     <li><Link href="/board/media_report/list"><a>언론보도</a></Link></li>
                                     <li><Link href="/board/news/list"><a>뉴스레터</a></Link></li>
@@ -254,7 +254,7 @@ const Header = () => {
                             <a href="#" onClick={(e) => {e.preventDefault();handleShowMenuItem(3)}}>창업지원정보</a>
                             <div className={cx("s_menu","show")}>
                                 <ul>
-                                    <li><Link href="/introduce/notice/list"><a>공지사항</a></Link></li>
+                                    <li><Link href="/board/notice/list"><a>공지사항</a></Link></li>
                                     <li><Link href="/startup_info/startup_event"><a>창업캘린더</a></Link></li>
                                     <li><Link href="/board/startup_info/list"><a>신규사업공고</a></Link></li>
                                     <li><Link href="/board/idea/list"><a>창업지원단 커뮤니티</a></Link></li>
@@ -286,8 +286,8 @@ const Header = () => {
                             <div className={cx("s_menu","show")}>
                                 <ul>
                                     <li><Link href="/introduce/introduce"><a>기관 소개</a></Link></li>
-                                    <li><Link href="/introduce/system"><a>창업지원 체계</a></Link></li>
                                     <li><Link href="/introduce/infra"><a>인프라</a></Link></li>
+                                    <li><Link href="/introduce/system"><a>창업지원 체계</a></Link></li>
                                     {/*<li><Link href="/introduce"><a>협력 파트너스</a></Link></li>*/}
                                     <li><Link href="/board/media_report/list"><a>언론보도</a></Link></li>
                                     <li><Link href="/board/news/list"><a>뉴스레터</a></Link></li>
@@ -296,7 +296,7 @@ const Header = () => {
                                     {/*    <Link href="/introduce/promotion"><a>홍보자료</a></Link>*/}
                                     {/*    <div className={cx("dep3")}>*/}
                                     {/*        <ul>*/}
-                                    {/*            /!*<li><a href="/introduce/notice/list">공지사항</a></li>*!/*/}
+                                    {/*            /!*<li><a href="/introduce/startupCalendar/list">공지사항</a></li>*!/*/}
                                     {/*            <li><Link href="/board/media_report/list"><a>언론보도</a></Link></li>*/}
                                     {/*            <li><Link href="/board/news/list"><a>뉴스레터</a></Link></li>*/}
                                     {/*            <li><Link href="/introduce/promotion"><a>소개자료</a></Link></li>*/}

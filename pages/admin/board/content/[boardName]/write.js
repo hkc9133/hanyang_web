@@ -69,12 +69,11 @@ const Write = (props) => {
 
     const changeWriteInfo = useCallback((e) =>{
         const {name, value} = e.target
-
         setWriteInfo(writeInfo =>({
             ...writeInfo,
             [name]: value,
         }))
-    },[])
+    },[writeInfo,content])
 
     // const changeCategory = useCallback((value) =>{
     //     setWriteInfo(writeInfo =>({
@@ -116,7 +115,8 @@ const Write = (props) => {
             ...writeInfo,
             content:content,
             files:writeInfo.attachFiles.map((item) => (item.originFileObj)),
-            boardEnName:router.query.boardName
+            boardEnName:router.query.boardName,
+            categoryCodeId:board.categoryCode.length == 1 ? board.categoryCode[0].categoryCodeId : writeInfo.categoryCodeId
         }
         dispatch(addBoardContent(data));
     }
@@ -207,12 +207,14 @@ const Write = (props) => {
                                             </td>
                                         </tr>
                                     )}
-                                    <tr>
-                                        <td>내용</td>
-                                        <td>
-                                            <QuillEditor Contents={content} QuillChange={setContent}/>
-                                        </td>
-                                    </tr>
+                                    {board.board.boardEnName != 'corp_press' && (
+                                        <tr>
+                                            <td>내용</td>
+                                            <td>
+                                                <QuillEditor Contents={content} QuillChange={setContent}/>
+                                            </td>
+                                        </tr>
+                                    )}
                                     {board.board.useFile && (
                                         <tr>
                                             <th scope="row">첨부파일</th>

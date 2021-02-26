@@ -20,7 +20,7 @@ import PopupItem from "../component/main/PopupItem";
 import client from "../lib/api/client";
 import dynamic from "next/dynamic";
 import {useRouter} from "next/router";
-import {getThumbnail} from "../component/common/util/ThumbnailUtil";
+import {getNoticeRanThumbnail, getThumbnail} from "../component/common/util/ThumbnailUtil";
 
 
 const cx = classnames.bind(styles);
@@ -51,6 +51,33 @@ const calendarSliderSettings = {
             }
         },
     ]
+};
+
+const onlineSliderSettings = {
+    dots: true,
+    infinite: false,
+    arrows: false,
+    speed: 300,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    // responsive: [
+    //     {
+    //         breakpoint: 1024,
+    //         settings: {
+    //             slidesToShow: 3,
+    //             slidesToScroll: 1,
+    //             infinite: true,
+    //             dots: true
+    //         }
+    //     },
+    //     {
+    //         breakpoint: 600,
+    //         settings: {
+    //             slidesToShow: 3,
+    //             slidesToScroll: 1
+    //         }
+    //     },
+    // ]
 };
 
 const boardSliderSettings = {
@@ -204,14 +231,14 @@ const Index = () => {
                             </Link>
                         </li>
                         <li className={cx("icon_7")}>
-                            <Link href="/">
+                            <Link href="/introduce/space_reservation">
                                 <a>
                                     <span>공간예약</span>
                                 </a>
                             </Link>
                         </li>
                         <li className={cx("icon_8")}>
-                            <Link href="/">
+                            <Link href="/startup_counsel/student_report">
                                 <a>
                                     <span>학생창업자 신고</span>
                                 </a>
@@ -241,7 +268,7 @@ const Index = () => {
             <div className={cx("main_cont_2")}>
                 <div className={`${cx("main_cont")} clfx`}>
                     <div className={cx("main_calendar")}>
-                        <h1>창업캘린더</h1>
+                        <h1>창업캘린더 <Link href={"/startup_info/startup_event?"}><a className={cx("all")}>전체일정 보기</a></Link></h1>
                         {mainData.calendar.length > 0 ?
                         <Slider className="main_calendar" {...calendarSliderSettings}>
                             {mainData.calendar.map((item, index) => (
@@ -262,10 +289,10 @@ const Index = () => {
                     </div>
 
                     <div className={cx("main_hotissue")}>
-                        <h1><Link href="/"><a>창업지원단 핫이슈</a></Link></h1>
+                        <h1>창업지원단 핫이슈</h1>
                         <ul>
-                            {mainData.hot.map((item, index) =>
-                                index < 5 && <li key={item.noticeId}><Link href={`/introduce/notice/${item.noticeId}`}><a>{item.title}</a></Link></li>
+                            {mainData.issue.map((item, index) =>
+                                index < 5 && <li key={item.contentId}><Link href={`/board/issue/${item.contentId}`}><a>{item.title}</a></Link></li>
                             )}
                         </ul>
                     </div>
@@ -274,15 +301,19 @@ const Index = () => {
                         <h1><Link href="/"><a>온라인 콘텐츠</a></Link></h1>
                         <div className={cx("e_learning_slide")}>
                             <div className={cx("list")}>
-                                {mainData.online_content.map((item, index) => {
-                                        return (
-                                            <Link href={`/board/online_content/view/${item.contentId}`}>
-                                                <a>
-                                                    <Image src={getThumbnail(item.content)} layout="fill" alt="온라인 콘텐츠"/>
-                                                </a>
-                                            </Link>
-                                        )
-                                    }
+                                {mainData.online_content.length > 0 && (
+                                    <Slider className="online_content" {...onlineSliderSettings}>
+                                        {mainData.online_content.map((item, index) => {
+                                                return (
+                                                    <Link href={`/board/online_content/view/${item.contentId}`}>
+                                                        <a>
+                                                            <Image src={getThumbnail(item.content)} layout="fill" alt="온라인 콘텐츠"/>
+                                                        </a>
+                                                    </Link>
+                                                )
+                                            }
+                                        )}
+                                    </Slider>
                                 )}
                             </div>
                         </div>
@@ -303,7 +334,7 @@ const Index = () => {
                             <li className={cx({on: !showNotice})}>
                                 <button type="button" onClick={() => {
                                     toggleNoticeSlider()
-                                }}>창업지원정보
+                                }}>신규사업공고
                                 </button>
                             </li>
                         </ul>
@@ -316,19 +347,18 @@ const Index = () => {
                                 className={`${cx("slides", {hidden: !showNotice})} main_board_list`} {...boardSliderSettings}
                                 ref={borderSlider}>
                                 {
-                                    mainData.notice.map((item) => {
+                                    mainData.notice.map((item,index) => {
                                         return (
-                                            <div className={cx("list")} key={item.noticeId}>
+                                            <div className={cx("list")} key={item.contentId}>
                                                 <div className={cx("img_area")}>
-                                                    <Link href={`/introduce/notice/${item.noticeId}`}>
+                                                    <Link href={`/board/notice/${item.contentId}`}>
                                                         <a>
-                                                            <Image src="/assets/image/main_notice_img.jpg" layout="fill"
-                                                                   alt="main_notice_img"/>
+                                                            <Image src={getNoticeRanThumbnail()} layout="fill" alt="main_notice_img"/>
                                                         </a>
                                                     </Link>
                                                 </div>
                                                 <div className={cx("txt_area")}>
-                                                    <Link href={`/introduce/notice/${item.noticeId}`}>
+                                                    <Link href={`/board/notice/${item.contentId}`}>
                                                         <a>
                                                             <div className={cx("title")}>
                                                                 {item.title}
@@ -358,7 +388,7 @@ const Index = () => {
                                         return (
                                             <div className={cx("list")} key={item.contentId}>
                                                 <div className={cx("img_area")}>
-                                                    <Link href={`/board/data_room/view/${item.contentId}`}>
+                                                    <Link href={`/board/startup_info/view/${item.contentId}`}>
                                                         <a>
                                                             <Image src="/assets/image/main_notice_img.jpg" layout="fill"
                                                                    alt="main_notice_img"/>
@@ -366,7 +396,7 @@ const Index = () => {
                                                     </Link>
                                                 </div>
                                                 <div className={cx("txt_area")}>
-                                                    <Link href={`/board/data_room/view/${item.contentId}`}>
+                                                    <Link href={`/board/startup_info/view/${item.contentId}`}>
                                                         <a>
                                                             <div className={cx("title")}>
                                                                 {item.title}

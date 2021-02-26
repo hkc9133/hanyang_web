@@ -4,6 +4,7 @@ import classnames from "classnames/bind"
 import Link from "next/link";
 import Image from 'next/image'
 import {useSelector} from "react-redux";
+import {Dropdown, Menu} from "antd";
 
 const cx = classnames.bind(styles);
 
@@ -11,6 +12,66 @@ const Footer = () => {
     const {noticeList} = useSelector(({main, loading}) => ({
         noticeList: main.getNoticeList
     }))
+
+    // const menu = (
+    //     <Menu>
+    //         <Menu.Item>
+    //             <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
+    //                 1st menu item
+    //             </a>
+    //         </Menu.Item>
+    //         <Menu.Item>
+    //             <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">
+    //                 2nd menu item
+    //             </a>
+    //         </Menu.Item>
+    //         <Menu.Item>
+    //             <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">
+    //                 3rd menu item
+    //             </a>
+    //         </Menu.Item>
+    //     </Menu>
+    // );
+    const siteList = (
+        <Menu>
+            <Menu.Item>
+                <li><Link href="https://www.hanyang.ac.kr/"><a>한양대학교</a></Link></li>
+            </Menu.Item>
+            <Menu.Item>
+                <li><Link href="http://research.hanyang.ac.kr/"><a>서울산학협력단</a></Link></li>
+            </Menu.Item>
+            <Menu.Item>
+                <li><Link href="http://hyuholdings.com/html/"><a>기술지주회사</a></Link></li>
+            </Menu.Item>
+            <Menu.Item>
+                <li><Link href="http://cbi.hanyang.ac.kr/"><a>보육센터</a></Link></li>
+            </Menu.Item>
+            <Menu.Item>
+                <li><Link href="http://hmcc.hanyang.ac.kr/main/main.php"><a>서울공동기기원</a></Link></li>
+            </Menu.Item>
+            <Menu.Item>
+                <li><Link href="http://fablab.hanyang.ac.kr/"><a>휴온스팹랩</a></Link></li>
+            </Menu.Item>
+            <Menu.Item>
+                <li><Link href="http://lincplus.hanyang.ac.kr/"><a>링크사업단</a></Link></li>
+            </Menu.Item>
+            <Menu.Item>
+                <li><Link href="https://www.hycu.ac.kr/user/index.do"><a>한양사이버대학교</a></Link></li>
+            </Menu.Item>
+            <Menu.Item>
+                <li><Link href="https://hywep.hanyang.ac.kr/index.do"><a>현장실습지원센터</a></Link></li>
+            </Menu.Item>
+            <Menu.Item>
+                <li><Link href="http://ericaresearch.hanyang.ac.kr/"><a>에리카 산학협력단</a></Link></li>
+            </Menu.Item>
+            <Menu.Item>
+                <li><Link href="http://eec.hanyang.ac.kr/"><a>에리카 창업교육센터</a></Link></li>
+            </Menu.Item>
+            <Menu.Item>
+                <li><Link href="http://hbi.hanyang.ac.kr/"><a>에리카 창업보육센터</a></Link></li>
+            </Menu.Item>
+        </Menu>
+    );
 
     return (
         <section className={cx("footer_wrap")}>
@@ -23,47 +84,40 @@ const Footer = () => {
                     <div className={cx("business_hours")}>
                         <ul>
                             <li>
-                                <span>평일</span>
-                                10:00 - 17:00
+                                상담시간(월~금)&nbsp; 10:00-17:00
                             </li>
                             <li>
-                                <span>휴일</span>
-                                10:00 - 17:00
+                                주말·공휴일 제외
                             </li>
                             <li>
-                                <span>E-mail</span>
-                                startup@hanyang.ac.kr
+                                E-mail&nbsp;&nbsp;startup@hanyang.ac.kr
                             </li>
                         </ul>
                     </div>
                     <div className={cx("footer_link")}>
                         <ul className={cx("clfx")}>
-                            <li className={cx("icon_1")}><Link href="/"><a>FAQ</a></Link></li>
+                            <li className={cx("icon_1")}><Link href="/board/faq/list"><a>FAQ</a></Link></li>
                             <li className={cx("icon_2")}><Link href="/"><a>Q&amp;A</a></Link></li>
                             <li className={cx("icon_3")}><Link href="/"><a>1:1문의</a></Link></li>
                         </ul>
                     </div>
-                    <div className={cx("footer_notice")}>
-                        <h1>아이디어 제안</h1>
-                        <ul>
-                            {noticeList.map( (item,index) =>
-                                index < 3 && <li key={item.noticeId}><Link href={`/introduce/notice/${item.noticeId}`}><a>{item.title}</a></Link></li>
+                    {/*<div className={cx("footer_notice")}>*/}
+                    {/*    <h1>아이디어 제안</h1>*/}
+                    {/*    <ul>*/}
+                    {/*        {noticeList.map( (item,index) =>*/}
+                    {/*            index < 3 && <li key={item.noticeId}><Link href={`/introduce/startupCalendar/${item.noticeId}`}><a>{item.title}</a></Link></li>*/}
 
-                            )}
-                        </ul>
-                    </div>
+                    {/*        )}*/}
+                    {/*    </ul>*/}
+                    {/*</div>*/}
                 </div>
             </div>
             <div className={cx("footer_menu")}>
                 <div className={cx("footer")}>
                     <ul>
-                        {/*<li className={cx("mb_hide")}><Link href="/"><a>한양대학교 창업지원단</a></Link></li>*/}
-                        <li><Link href="/"><a><strong>개인정보처리방침</strong></a></Link></li>
-                        <li><Link href="/"><a>이용약관</a></Link></li>
-                        <li><Link href="/"><a>이메일 주소무단 수집거부</a></Link></li>
-                        {/*<li className={cx("mb_hide")}><Link href="/"><a>공지사항</a></Link></li>
-                        <li className={cx("mb_hide")}><Link href="/"><a>고객센터</a></Link></li>
-                            <li className={cx("mb_hide")}><Link href="/"><a>뉴스레터</a></Link></li>*/}
+                        <li><Link href="/privacy_policy"><a><strong>개인정보처리방침</strong></a></Link></li>
+                        <li><Link href="/terms"><a>이용약관</a></Link></li>
+                        <li><Link href="/email_policy"><a>이메일 주소무단 수집거부</a></Link></li>
                     </ul>
                 </div>
             </div>
@@ -72,23 +126,9 @@ const Footer = () => {
 
                     <div className={cx("footer_right")}>
                         <div className={cx("footer_family_site")}>
-                            <button type="button" className={cx("open_footer_family_site")}>사이트바로가기</button>
-                            <div className={cx("footer_family_list")}>
-                                <ul>
-                                    <li><Link href="https://www.hanyang.ac.kr/"><a>한양대학교</a></Link></li>
-                                    <li><Link href="http://research.hanyang.ac.kr/"><a>서울산학협력단</a></Link></li>
-                                    <li><Link href="http://hyuholdings.com/html/"><a>기술지주회사</a></Link></li>
-                                    <li><Link href="http://cbi.hanyang.ac.kr/"><a>보육센터</a></Link></li>
-                                    <li><Link href="http://hmcc.hanyang.ac.kr/main/main.php"><a>서울공동기기원</a></Link></li>
-                                    <li><Link href="http://fablab.hanyang.ac.kr/"><a>휴온스팹랩</a></Link></li>
-                                    <li><Link href="http://lincplus.hanyang.ac.kr/"><a>링크사업단</a></Link></li>
-                                    <li><Link href="https://www.hycu.ac.kr/user/index.do"><a>한양사이버대학교</a></Link></li>
-                                    <li><Link href="https://hywep.hanyang.ac.kr/index.do"><a>현장실습지원센터</a></Link></li>
-                                    <li><Link href="http://ericaresearch.hanyang.ac.kr/"><a>에리카 산학협력단</a></Link></li>
-                                    <li><Link href="http://eec.hanyang.ac.kr/"><a>에리카 창업교육센터</a></Link></li>
-                                    <li><Link href="http://hbi.hanyang.ac.kr/"><a>에리카 창업보육센터</a></Link></li>
-                                </ul>
-                            </div>
+                            <Dropdown overlay={siteList} placement="topCenter">
+                                <button type="button" className={cx("open_footer_family_site")}>사이트 바로가기</button>
+                            </Dropdown>
                         </div>
                         <div className={cx("footer_sns")}>
                             <ul>

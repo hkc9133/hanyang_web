@@ -350,7 +350,7 @@ const StudentReportEditPage = () =>{
                                 </ul>
                                 <ul className={`${cx("w_2")} clfx `}>
                                     <li>
-                                        <label htmlFor="">당해 연도 매출액(해당하는 경우에만 입력)</label>
+                                        <label htmlFor="">당해 연도 매출액(해당하는 경우에만 입력, 단위:원)</label>
                                         <Form.Item
                                             name="sales"
                                             className={(cx("antd_input"))}
@@ -364,7 +364,7 @@ const StudentReportEditPage = () =>{
                                                 },
                                             ]}
                                         >
-                                            <Input placeholder={"당해 연도 매출액(해당하는 경우에만 입력)"} name="sales" value={reportForm.sales}
+                                            <Input placeholder={"당해 연도 매출액(해당하는 경우에만 입력, 단위:원)"} name="sales" value={reportForm.sales}
                                                    onChange={(e) => {
                                                        changeReportFormValue(e)
                                                    }}/>

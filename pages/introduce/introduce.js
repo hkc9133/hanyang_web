@@ -205,9 +205,9 @@ const Introduce = () => {
                                 </li>
                             </ul>
                         </div>
-                        <div className={cx("btn_area")}>
-                            <button type="button"><span>접기</span></button>
-                        </div>
+                        {/*<div className={cx("btn_area")}>*/}
+                        {/*    <button type="button"><span>접기</span></button>*/}
+                        {/*</div>*/}
                     </div>
                 </div>
 

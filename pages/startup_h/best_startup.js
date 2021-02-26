@@ -13,10 +13,10 @@ import {
 } from "../../store/startupPresent/startupPresent";
 import wrapper from "../../store/configureStore";
 import client from "../../lib/api/client";
-import {getNotice} from "../../store/notice/adminNotice";
 import {END} from "redux-saga";
 import {FileImageOutlined} from "@ant-design/icons";
 import Modal from "../../component/common/Modal";
+import Link from 'next/link';
 
 const cx = classnames.bind(styles);
 
@@ -156,6 +156,8 @@ const BestStartup = () => {
                                             ) }
                                         </div>
                                         <span className={cx("name")}>{item.companyName}</span>
+                                        <br/>
+                                        <span className={cx("item")}>{item.item}</span>
                                     </li>
                                 ))}
                             </ul>
@@ -180,6 +182,8 @@ const BestStartup = () => {
                                             ) }
                                         </div>
                                         <span className={cx("name")}>{item.companyName}</span>
+                                        <br/>
+                                        <span className={cx("item")}>{item.item}</span>
                                     </li>
                                 ))}
                             </ul>
@@ -205,6 +209,8 @@ const BestStartup = () => {
                                             ) }
                                         </div>
                                         <span className={cx("name")}>{item.companyName}</span>
+                                        <br/>
+                                        <span className={cx("item")}>{item.item}</span>
                                     </li>
                                 ))}
                             </ul>
@@ -229,18 +235,23 @@ const BestStartup = () => {
                                             ) }
                                         </div>
                                         <span className={cx("name")}>{item.companyName}</span>
-                                        <span className={cx("name")}>{item.item}</span>
+                                        <br/>
+                                        <span className={cx("item")}>{item.item}</span>
                                     </li>
                                 ))}
                             </ul>
                         </div>
+                    </div>
+
+                    <div className={cx("btn_box")}>
+                        <Link href={"/startup_h/startup_present"}><a className={cx("btn-01")}>스타트업 더보기</a></Link>
                     </div>
                 </div>
                     <Modal visible={showStartupDetail} closable={true} maskClosable={true} onClose={() => handleDetailModal(null)} cx={cx} className={cx("startup_popup")}>
                         {bestStartup != null ? (
                         <div className={cx("inner")}>
                             <div className={cx("logo")}>
-                                {bestStartup.attachFile != null ? <img src={`${client.defaults.baseURL}/resource${bestStartup.attachFile.filePath}/${bestStartup.attachFile.fileName+bestStartup.attachFile.fileExtension}`} width={180} height={180} alt={"LOGO"}/> : (
+                                {bestStartup.attachFile != null ? <img src={`${client.defaults.baseURL}/resource${bestStartup.attachFile.filePath}/${bestStartup.attachFile.fileName+bestStartup.attachFile.fileExtension}`} width={120} height={120}  alt={"LOGO"}/> : (
                                     <FileImageOutlined style={{fontSize:170,verticalAlign:'middle'}}/>
                                 ) }
                             </div>
@@ -251,10 +262,10 @@ const BestStartup = () => {
                                     <li>대표자명 : {bestStartup.companyOwner}</li>
                                     <li>홈페이지 : <a href={bestStartup.homepage} target="_blank">{bestStartup.homepage}</a></li>
                                     <li className={cx("sns_list")}>SNS :
-                                        {bestStartup.insta != null && <a href={bestStartup.insta} target="_blank"><Image src="/assets/image/startup_insta.png" width={25} height={25} alt="sns_logo"/></a>}
-                                        {bestStartup.facebook != null && <a href={bestStartup.facebook} target="_blank"><Image src="/assets/image/startup_facebook.png" width={25} height={25} alt="sns_logo"/></a>}
-                                        {bestStartup.naverBlog != null && <a href={bestStartup.naverBlog} target="_blank"><Image src="/assets/image/startup_naver_blog.png" width={25} height={25} alt="sns_logo"/></a>}
-                                        {bestStartup.twitter != null && <a href={bestStartup.twitter} target="_blank"><Image src="/assets/image/startup_twitter.png" width={25} height={25} alt="sns_logo"/></a>}
+                                        {bestStartup.insta != null || bestStartup.insta != "" && <a href={bestStartup.insta} target="_blank"><Image src="/assets/image/startup_insta.png" width={25} height={25} alt="sns_logo"/></a>}
+                                        {bestStartup.facebook != null || bestStartup.facebook != "" && <a href={bestStartup.facebook} target="_blank"><Image src="/assets/image/startup_facebook.png" width={25} height={25} alt="sns_logo"/></a>}
+                                        {bestStartup.naverBlog != null || bestStartup.naverBlog != "" && <a href={bestStartup.naverBlog} target="_blank"><Image src="/assets/image/startup_naver_blog.png" width={25} height={25} alt="sns_logo"/></a>}
+                                        {bestStartup.twitter != null || bestStartup.twitter != "" && <a href={bestStartup.twitter} target="_blank"><Image src="/assets/image/startup_twitter.png" width={25} height={25} alt="sns_logo"/></a>}
                                     </li>
                                     <li>비즈니스 분야 : {bestStartup.businessFieldList.map((field,i) =>(
                                         `${field.businessName} ${i != bestStartup.businessFieldList.length-1 ? '|' :  ''} `

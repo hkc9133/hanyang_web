@@ -1,7 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import wrapper from "../../../store/configureStore";
 import client from "../../../lib/api/client";
-import {deleteBoardContent, getBoard, getBoardContent} from "../../../store/board/adminBoard";
 import {END} from "redux-saga";
 import {useRouter} from "next/router";
 import {useDispatch, useSelector} from "react-redux";
@@ -12,7 +11,10 @@ import Link from "next/link";
 
 import styles from '../../../public/assets/styles/admin/board/board.module.css';
 import classnames from "classnames/bind"
-import {deleteNotice, getNotice,initialize} from "../../../store/notice/adminNotice";
+import {deleteStartupCalendar, getStartupCalendar,initialize} from "../../../store/startupCalendar/adminStartupCalendar";
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+
+
 
 const cx = classnames.bind(styles);
 
@@ -22,7 +24,7 @@ export const getServerSideProps = wrapper.getServerSideProps(async (context) => 
     const cookie = context.req && context.req.headers.cookie ? context.req.headers.cookie : '';
     client.defaults.headers.Cookie = cookie;
 
-    context.store.dispatch(getNotice(context.params.contentId));
+    context.store.dispatch(getStartupCalendar(context.params.contentId));
     context.store.dispatch(END);
     await context.store.sagaTask.toPromise();
 })
@@ -31,9 +33,9 @@ const ContentView = () => {
     const router = useRouter();
     const dispatch = useDispatch();
 
-    const {view,deleteResult} = useSelector(({adminNotice, loading}) => ({
-        view: adminNotice.view,
-        deleteResult:adminNotice.delete
+    const {view,deleteResult} = useSelector(({adminStartupCalendar, loading}) => ({
+        view: adminStartupCalendar.view,
+        deleteResult:adminStartupCalendar.delete
     }))
     const [showRemoveModal, setShowRemoveModal] = useState(false);
 
@@ -50,8 +52,7 @@ const ContentView = () => {
     }, [])
 
     const handleDeleteContent = () =>{
-        console.log("asdasd")
-        dispatch(deleteNotice(view.notice.noticeId))
+        dispatch(deleteStartupCalendar(view.startupCalendar.startupCalendarId))
     }
 
     useEffect(() =>{
@@ -69,8 +70,10 @@ const ContentView = () => {
 
     },[deleteResult])
 
+
+
     return (
-        view.notice != null && (
+        view.startupCalendar != null && (
             <>
             <section className={cx("container","board_container")}>
                 <h1 className={cx("top_title")}>글 내용</h1>
@@ -92,8 +95,8 @@ const ContentView = () => {
                             <h2 className={cx("title_style_1")}><span>내용</span></h2>
                             <div className={cx("tb_style_2","edit_form")}>
                                 <div className={cx("btn_box")}>
-                                    <Link href={`/admin/notice/list`}><a className={cx("basic-btn01")}>목록</a></Link>
-                                    <Link href={`/admin/notice/edit/${view.notice.noticeId}`}><a className={cx("basic-btn02")}>수정</a></Link>
+                                    <Link href={`/admin/startupCalendar/list`}><a className={cx("basic-btn01")}>목록</a></Link>
+                                    <Link href={`/admin/startupCalendar/edit/${view.startupCalendar.startupCalendarId}`}><a className={cx("basic-btn02")}>수정</a></Link>
                                     <button onClick={() =>{setShowRemoveModal(true)}} className={cx("basic-btn02","btn-red-bg")}>삭제</button>
                                 </div>
                                 <table>
@@ -107,19 +110,20 @@ const ContentView = () => {
                                     <tr>
                                         <td className={cx("title_box")}>
                                             <h1 className={cx("title")}>
-                                                {view.notice.isNotice && (
-                                                    <span className={cx("notice_icon")}>공지</span>
+                                                {view.startupCalendar.isNotice && (
+                                                   <span className={cx("notice_icon")}>공지</span>
                                                 )}
-                                                {view.notice.title}
+                                                {view.startupCalendar.title}
                                             </h1>
-                                            <span className={cx("cate")}>{view.notice.categoryCodeName}</span>
-                                            <span className={cx("date")}>작성일: {moment(view.notice.regDate).format("YYYY.MM.DD HH:MM")}</span>
-                                            <span className={cx("view_cnt")}>조회수: {view.notice.viewCnt}</span>
+                                            <span className={cx("cate")}>{view.startupCalendar.categoryCodeName}</span>
+                                            <span className={cx("date")}>작성일: {moment(view.startupCalendar.regDate).format("YYYY.MM.DD HH:MM")}</span>
+                                            <span className={cx("view_cnt")}>조회수: {view.startupCalendar.viewCnt}</span>a
                                         </td>
                                     </tr>
+
                                     <tr>
                                         <td>
-                                            <div className={"ql-editor"} dangerouslySetInnerHTML={{__html: view.notice.content}}/>
+                                            <div className={"ql-editor"} dangerouslySetInnerHTML={{__html: view.startupCalendar.content}}/>
                                         </td>
                                     </tr>
                                     {
@@ -156,7 +160,7 @@ const ContentView = () => {
                                             <li>
                                                 <span className={cx("title")}>다음글</span>
                                                 <Link
-                                                    href={`/admin/notice/${view.next.noticeId}`}><a>{view.next.title}</a></Link>
+                                                    href={`/admin/startupCalendar/${view.next.startupCalendarId}`}><a>{view.next.title}</a></Link>
                                                 <span
                                                     className={cx("date")}>{moment(view.next.regDate).format("YYYY.MM.DD")}</span>
                                             </li>
@@ -165,7 +169,7 @@ const ContentView = () => {
                                             <li>
                                                 <span className={cx("title")}>이전글</span>
                                                 <Link
-                                                    href={`/admin/notice/${view.prev.noticeId}`}><a>{view.prev.title}</a></Link>
+                                                    href={`/admin/startupCalendar/${view.prev.startupCalendarId}`}><a>{view.prev.title}</a></Link>
                                                 <span
                                                     className={cx("date")}>{moment(view.prev.regDate).format("YYYY.MM.DD")}</span>
                                             </li>
@@ -184,7 +188,7 @@ const ContentView = () => {
                         <button key={"delete_btn"} className={cx("basic-btn02","btn-red-bg")} onClick={handleDeleteContent}>삭제</button>
                     ]}
                 >
-                    <p className={cx("warning")}>{view.notice.title}</p>
+                    <p className={cx("warning")}>{view.startupCalendar.title}</p>
                 </Modal>
             </section>
 

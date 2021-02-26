@@ -116,7 +116,7 @@
 .mentor_group_write .personal_info ul li.email{width:100%; }
 .mentor_group_write .personal_info ul li.email input[type=text]{float:left; width:100%;}
 .mentor_group_write .personal_info ul li.email select{float:right; width:33.33%; font-size:16px; }
-.mentor_group_write .personal_info ul li.email span{float:left; width:5%; text-align:center; line-height:50px; display:block; font-size:16px; color:#888;}
+/*.mentor_group_write .personal_info ul li.email span{float:left; width:5%; text-align:center; line-height:50px; display:block; font-size:16px; color:#888;}*/
 .mentor_group_write select{width:100%; height:50px; line-height:48px; border-radius:5px; }
 .mentor_group_write input[type=text]{width:100%; height:50px; line-height:48px; border-radius:5px;margin-bottom: 5px;}
 .mentor_group_write h3{padding-bottom:20px; font-size:16px; font-family: 's-core-dream-medium'; color:#222; }
@@ -204,7 +204,10 @@
 .mentor_groupList .th_title ul{display:table; width:100%;}
 .mentor_groupList .td_content ul{display:table; width:100%;}
 .mentor_groupList .th_title ul li{padding:18px 0; display:table-cell; text-align:center; font-family: 's-core-dream-medium'; color:#222; border-bottom:1px solid #ddd; border-top:2px solid #222; font-size:18px;}
-.mentor_groupList .td_content .question ul li{padding:24px 0; display:table-cell; text-align:center; color:#222; border-bottom:1px solid #ddd; font-size:16px;}
+.mentor_groupList .td_content .question ul li{padding:24px 0; display:table-cell; text-align:center; color:#222; border-bottom:1px solid #ddd; font-size:16px;text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+    overflow: hidden;}
 .mentor_groupList .td_content .answer{padding:40px; background-color:#fafafa;}
 .mentor_groupList .td_content .answer .counsel_content{width: 100%;}
 .mentor_groupList .td_content .answer .counsel_content div{padding:20px 0px;}

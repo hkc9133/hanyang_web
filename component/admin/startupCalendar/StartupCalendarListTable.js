@@ -3,7 +3,7 @@ import moment from "moment";
 import Link from "next/link";
 import {EditOutlined} from "@ant-design/icons";
 
-const NoticeListTable = ({list,cx}) => {
+const StartupCalendarListTable = ({list,cx}) => {
     return (
         <div className={cx("tb_style_1","popup_list")}>
             <table>
@@ -26,7 +26,7 @@ const NoticeListTable = ({list,cx}) => {
                 <tbody>
                 {list.map((item) => {
                     return (
-                        <tr key={item.noticeId}>
+                        <tr key={item.startupCalendarId}>
                             <td>
                                 {item.rownum}
                             </td>
@@ -37,7 +37,7 @@ const NoticeListTable = ({list,cx}) => {
                                 }
                             </td>
                             <td>
-                                <Link href={`/admin/notice/${item.noticeId}`}><a>{item.title}</a></Link>
+                                <Link href={`/admin/startupCalendar/${item.startupCalendarId}`}><a>{item.title}</a></Link>
                             </td>
                             <td>
                                 {item.categoryCodeName}
@@ -58,4 +58,4 @@ const NoticeListTable = ({list,cx}) => {
     );
 };
 
-export default NoticeListTable;
+export default StartupCalendarListTable;

@@ -11,6 +11,7 @@ import Pagination from "../../component/common/Pagination";
 import {getBoardContentList} from "../../store/board/board";
 import client from "../../lib/api/client";
 import {FileImageOutlined} from "@ant-design/icons";
+import Image from "next/image";
 
 const cx = classnames.bind(styles);
 
@@ -48,10 +49,10 @@ const InvestmentPartners = () => {
             ...router.query
         }))
 
-        const { page = 1,continentId = null,searchValue = null,searchField = null} = router.query
+        const { pageNo = 1,continentId = null,searchValue = null,searchField = null} = router.query
 
         const data = {
-            page:page,
+            pageNo:pageNo,
             continentId:continentId,
             searchValue:searchValue,
             searchField:searchField,
@@ -143,16 +144,17 @@ const InvestmentPartners = () => {
                         <tr key={item.partnerId}>
                             <td>{item.continent.continentName}</td>
                             <td>
-                                <div className={cx("logo")}>
-                                {item.attachFile != null ? <img src={`${client.defaults.baseURL}/resource${item.attachFile.filePath}/${item.attachFile.fileName+item.attachFile.fileExtension}`} width={38} height={38} alt={"LOGO"}/> : (
-                                    <FileImageOutlined style={{fontSize:33,verticalAlign:'middle'}}/>
-                                ) }
-                                </div>
+                                {/*<div className={cx("logo")}>*/}
+                                {/*{item.attachFile != null ? <img src={`${client.defaults.baseURL}/resource${item.attachFile.filePath}/${item.attachFile.fileName+item.attachFile.fileExtension}`}  alt={"LOGO"}/> : (*/}
+                                {/*    <FileImageOutlined style={{fontSize:33,verticalAlign:'middle'}}/>*/}
+                                {/*) }*/}
+                                {/*</div>*/}
+                                {/*<br/>*/}
                                 <span>{item.companyName}</span>
                             </td>
-                            <td>{item.homepage}</td>
                             <td>{item.location}</td>
                             <td>{item.field}</td>
+                            <td><Link href={item.homepage}><a target="_blank"><Image src="/assets/image/icon_navi.gif" width={16} height={14} alt="home" /></a></Link></td>
                         </tr>
                     ))}
                     </tbody>

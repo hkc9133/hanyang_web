@@ -16,7 +16,6 @@ import styles from '../../../public/assets/styles/admin/startupPresent/startupPr
 import classnames from "classnames/bind"
 import wrapper from "../../../store/configureStore";
 import client from "../../../lib/api/client";
-import {getNotice, getNoticeCategoryCodeList} from "../../../store/notice/adminNotice";
 import {END} from "redux-saga";
 import moment from "moment";
 import {fileDownload} from "../../../store/file/file";

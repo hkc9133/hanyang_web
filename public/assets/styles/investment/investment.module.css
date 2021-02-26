@@ -10,10 +10,10 @@
 
 .search_type_2{position:relative; margin:0 auto; padding-right:130px;  max-width:1220px; box-sizing:border-box; text-align: center;margin-bottom: 20px;}
 .search_type_2:after{ clear: both; content: "."; display: block; height: 0; visibility: hidden; font-size: 0;}
-.search_type_2 select{margin-right:0.93%; width:16.5%; height:56px; line-height:54px; font-size:18px; }
+.search_type_2 select{margin-right:0.93%; width:16.5%; height:55px; line-height:54px; font-size:18px; }
 .search_type_2 select.long{width:22%;}
 .search_type_2 input[type=text]{width:42.2%; height:56px; line-height:54px; font-size:18px; }
-.search_type_2 .btn_search{width:120px; height:56px; line-height:54px; text-align:center; border:1px solid #0069f8; font-size:18px; color:#0069f8; font-family: 's-core-dream-medium'; border-radius:5px; }
+.search_type_2 .btn_search{width:120px; height:56px; line-height:54px; text-align:center; border:1px solid #0069f8; font-size:18px; color:#0069f8; font-family: 's-core-dream-medium'; border-radius:5px;margin-left: 10px; }
 
 .basic-btn03{width:200px; height:60px; line-height:58px; display:inline-block; text-align:center; border-radius:5px; font-size:18px; box-sizing:border-box; vertical-align:top; font-family: 's-core-dream-medium';cursor:pointer;
     -webkit-transition: all 0.35s ease-out;

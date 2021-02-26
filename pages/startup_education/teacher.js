@@ -146,7 +146,7 @@ const Teacher = () => {
                     </div>
 
                     <div className={`${cx("pt_80")} txt_c`}>
-                        <Link href="#"><a className={cx("basic-btn01","btn-gray-bd")}>창업친화적 인사제도</a></Link>
+                        <Link href="/introduce/friendly"><a className={cx("basic-btn01","btn-gray-bd")}>창업친화적 인사제도</a></Link>
                         <Link href="#"><a className={cx("basic-btn01","btn-blue-bg")}>교원창업 절차</a></Link>
                     </div>
                 </div>

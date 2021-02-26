@@ -29,24 +29,11 @@ const file = handleActions(
 
         [FILE_DOWNLOAD]: (state, {payload: fileId}) =>
             produce(state, draft => {
-                // console.log(res)
-                // const url = window.URL.createObjectURL(new Blob([res.data]));
                 const link = document.createElement('a');
-                // const contentDisposition = res.headers['content-disposition']; // 파일 이름
-                // let fileName = 'unknown.png';
-                // if (contentDisposition) {
-                //     const [ fileNameMatch ] = contentDisposition.split(';').filter(str => str.includes('filename'));
-                //     if (fileNameMatch)
-                //         [ , fileName ] = fileNameMatch.split('=');
-                // }
                 link.href = `${client.defaults.baseURL}/resource/download/${fileId}`;
-                // link.setAttribute('download', `${fileName}`);
-                // link.style.cssText = 'display:none';
-                // document.body.appendChild(link);
                 link.click();
                 link.remove();
             }),
-
     }
     ,
     initialState

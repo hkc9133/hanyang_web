@@ -18,7 +18,7 @@ import {Button, Modal} from "antd";
 const cx = classnames.bind(styles);
 
 
-const Calendar01 = ({events,cateList,changeCategory,changeType}) => {
+const Calendar01 = ({events,cateList,changeCategory,changeType,handleShowContent}) => {
 
     const router = useRouter();
 
@@ -47,7 +47,7 @@ const Calendar01 = ({events,cateList,changeCategory,changeType}) => {
     useEffect(() =>{
         let result = [];
         const a = events.map((item)=>{
-            return [{id:item.noticeId,title:item.title+" 신청기간",start:item.applyStartDate,end:item.applyEndDate},{id:item.noticeId,title:item.title,start:item.eventDate,end:item.eventDate}]
+            return [{id:item.startupCalendarId,title:item.title+" 신청기간",content:item.content,start:item.applyStartDate,end:item.applyEndDate},{id:item.startupCalendarId,title:item.title,content:item.content,start:item.eventDate,end:item.eventDate}]
         })
         a.forEach((item) =>{
             item.forEach((event) =>{
@@ -82,7 +82,7 @@ const Calendar01 = ({events,cateList,changeCategory,changeType}) => {
         return (
             <ul>
                 <li>
-                    <a className={cx("event_title")}>{event.title}</a>
+                    <a className={cx("event_title")} onClick={(e) =>{e.preventDefault();handleShowContent(event.event)}}>{event.title}</a>
                 </li>
             </ul>
         )
@@ -174,11 +174,13 @@ const Calendar01 = ({events,cateList,changeCategory,changeType}) => {
                        </Button>,
                    ]}
             >
+                <ul>
                 {
                     moreEvent.events.map((event) =>
-                        <div key={event.id}>{event.title}</div>
+                        {return <li><button key={event.id} onClick={() =>{handleShowContent(event)}}>{event.title}</button></li>;}
                     )
                 }
+                </ul>
             </Modal>
         </div>
     );

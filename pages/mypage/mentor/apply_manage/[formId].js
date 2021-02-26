@@ -364,7 +364,7 @@ const CounselApplyDetail = () => {
                             <h2>주요내용</h2>
                             <ul className={`${cx("consultation_details")} mb_50 `}>
                                 <li>
-                                    <label htmlFor="counseling_txt" className={cx("title")}>주요내용</label>
+                                    <label htmlFor="counseling_txt" className={cx("title")}>주요내용<span style={{color:'gray',fontSize:13,marginLeft:4}}>※멘티에게 보여지는 내용입니다</span></label>
                                     {counselApply.counselApply.applyStatus == 'COMPLETED' ? (
                                         <div className={cx("apply_content_box")}>
                                             <div dangerouslySetInnerHTML={{__html: counselApply.counselApply.answer}}/>
@@ -388,7 +388,7 @@ const CounselApplyDetail = () => {
                                     )}
                                 </li>
                                 <li>
-                                    <span className={cx("title")}>첨부파일</span>
+                                    <span className={cx("title")}>멘토일지<span style={{color:'gray',fontSize:13,marginLeft:4}}>※관리자만 확인하는 내용입니다</span></span>
                                     {counselApply.counselApply.applyStatus == 'COMPLETED' ? (
                                         counselApply.answerFiles.length > 0 && (
                                             <Upload
@@ -462,9 +462,9 @@ const CounselApplyDetail = () => {
                         {applyStatus == "RETURN" && <p>반려 신청 시 상담 신청 리스트에서 확인 할 수 없습니다.</p>}
                         {statusUpdate.result && <p>변경 완료되었습니다</p>}
                         {!statusUpdate.result ? (
-                            <button onClick={() => {
-                                changeStatus()
-                            }}>변경</button>
+                            <div style={{textAlign:'center',marginTop:7}}>
+                                <button style={{fontSize:14,padding:'4px 8px',border:'1px solid gray',borderRadius:4}} onClick={() => {changeStatus()}}>확인</button>
+                            </div>
                         ) : (
                             <button onClick={() => {
                                 setShowStatusConfirmModal(false);

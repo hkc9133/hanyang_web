@@ -248,12 +248,14 @@ const ContentEditView = () => {
                                         {/*</Form.Item>*/}
                                     </td>
                                 </tr>
-                                <tr>
-                                    <th>내용</th>
-                                    <td>
-                                        <QuillEditor Contents={content} QuillChange={setContent}/>
-                                    </td>
-                                </tr>
+                                {board.board.boardEnName != 'corp_press' && (
+                                    <tr>
+                                        <th>내용</th>
+                                        <td>
+                                            <QuillEditor Contents={content} QuillChange={setContent}/>
+                                        </td>
+                                    </tr>
+                                )}
                                 {board.board.useFile && (
                                 <tr>
                                     <th>첨부파일</th>

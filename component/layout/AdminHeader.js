@@ -14,15 +14,15 @@ const AdminHeader = () => {
             <div className={`${cx("header_inner")} clfx `}>
                 <div className={cx("logo")}><Link  href="/"><a><Image src="/assets/image/admin/logo.png" width={273} height={33} alt="한양대학교 창업지원단"/></a></Link></div>
                 <div className={`${cx("util_menu")} clfx `}>
-                    <div className={cx("alarm")}>
-                        <Link href="/">
-                            <a>
-                                <Image src="/assets/image/admin/alarm_icon.png" width={18} height={22} alt="alarm_icon"/>
-                                <span className={cx("number")}>12</span>
-                            </a>
-                        </Link>
-                    </div>
-                    <div className={cx("photo")}><Link  href="/"><a><Image src="/assets/image/admin/adm_photo.png" width={39} height={39} alt="admin_photo"/></a></Link></div>
+                    {/*<div className={cx("alarm")}>*/}
+                    {/*    <Link href="/">*/}
+                    {/*        <a>*/}
+                    {/*            <Image src="/assets/image/admin/alarm_icon.png" width={18} height={22} alt="alarm_icon"/>*/}
+                    {/*            <span className={cx("number")}>12</span>*/}
+                    {/*        </a>*/}
+                    {/*    </Link>*/}
+                    {/*</div>*/}
+                    {/*<div className={cx("photo")}><Link  href="/"><a><Image src="/assets/image/admin/adm_photo.png" width={39} height={39} alt="admin_photo"/></a></Link></div>*/}
                 </div>
             </div>
 

@@ -3,6 +3,8 @@ import styles from '../../public/assets/styles/startup_info/startup_info.module.
 import classnames from "classnames/bind"
 import Link from 'next/link'
 import PageNavigation from "../../component/layout/PageNavigation";
+import {isMobile} from "react-device-detect";
+import Image from "next/image";
 
 const cx = classnames.bind(styles);
 const StartupProcedure = () => {
@@ -42,7 +44,7 @@ const StartupProcedure = () => {
                     {tab == 1 && (
                         <>
                             <div className="img_area">
-                                <img src="/assets/image/teacher_startup.jpg" alt=""/>
+                                {isMobile ? <img src="/assets/image/teacher_startup_mo.jpg" alt=""/> : <img src="/assets/image/teacher_startup.jpg" alt=""/>}
                             </div>
                             <div className={cx("txt_2")}></div>
                             <div className="txt_c">

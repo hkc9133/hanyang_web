@@ -136,7 +136,7 @@ const auth = handleActions(
             }),
         [AUTH_CHECK_SUCCESS]: (state, {payload: response}) =>
             produce(state, draft => {
-                draft.user.login = true
+                draft.user.login = response.code == 200 ? true : false
                 draft.user.info = response.data;
                 draft.user.role = response.data.role;
                 // draft.user.code = response.code;

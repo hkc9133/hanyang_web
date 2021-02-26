@@ -37,15 +37,17 @@ const GalleryType01 = ({content,board, pageChange}) => {
                     })}
                 </ul>
             </div>
-            {content.page != null && (
-                <Pagination
-                    totalRecords={content.page.totalCount}
-                    pageLimit={content.page.pageSize}
-                    pageNeighbours={1}
-                    currentPage={content.page.pageNo}
-                    onPageChanged={pageChange}
-                />
-            )}
+            <div className={cx("paging_box")}>
+                {content.page != null && (
+                    <Pagination
+                        totalRecords={content.page.totalCount}
+                        pageLimit={content.page.pageSize}
+                        pageNeighbours={1}
+                        currentPage={content.page.pageNo}
+                        onPageChanged={pageChange}
+                    />
+                )}
+            </div>
         </>
     );
 };

@@ -22,7 +22,7 @@
 .main_search_area .btn_search{position:absolute; right:12px; top:11px; width:40px; height:40px; background:url(../../image/btn_search.jpg) no-repeat center center; text-indent:-9999px; display:block; }
 .searchWord{text-align:center; }
 .searchWord ul li{margin:0 5px; display:inline-block; }
-.searchWord ul li button{padding:0 20px; height:40px; line-height:40px; background-color:#f5f5f5; border-radius:20px; font-size:14px; color:#4e4e4e; font-family: 's-core-dream-light';
+.searchWord ul li button{padding:0 20px; height:30px; line-height:30px; background-color:#f5f5f5; border-radius:20px; font-size:14px; color:#4e4e4e; font-family: 's-core-dream-light';
     -webkit-transition: all 0.35s ease-out;
     -moz-transition: all 0.35s ease-out;
     -ms-transition: all 0.35s ease-out;
@@ -36,10 +36,18 @@
 .main_hotissue{position:relative; float:left; padding:0 20px 0 40px; width:31.28%; box-sizing:border-box;}
 .main_Elearning{position:relative; float:left; padding-right:60px; width:24.82%; box-sizing:border-box;}
 .main_calendar h1{margin-bottom:10px; font-size:18px; font-family: 's-core-dream-medium';}
+.main_calendar .all{
+    border: 1px solid #333;
+    background:url(../../image/main_link_arrow.gif) no-repeat 90% center;
+    padding: 4px 30px 4px 9px;
+    border-radius: 12px;
+    margin-left: 10px;
+}
+.main_calendar .all:hover{cursor: pointer;}
 .main_Elearning h1,
 .main_hotissue h1{margin-bottom:30px; }
-.main_Elearning h1 a,
-.main_hotissue h1 a{padding-right:10px; display:inline-block; vertical-align:top; background:url(../../image/main_link_arrow.gif) no-repeat right center;  font-size:18px; font-family: 's-core-dream-medium';}
+.main_hotissue h1{padding-right:10px; display:inline-block; vertical-align:top;  font-size:18px; font-family: 's-core-dream-medium';}
+.main_Elearning h1 a{padding-right:10px; display:inline-block; vertical-align:top; background:url(../../image/main_link_arrow.gif) no-repeat right center;  font-size:18px; font-family: 's-core-dream-medium';}
 .main_calendar .list{padding:0 10px; display:none; box-sizing:border-box; }
 .main_calendar .list:first-child{display:block;}
 .main_calendar .list .day{margin-bottom:10px; padding:7px 7px 7px 0;  text-align:center; line-height:70px; width:78px; height:84px; box-sizing:border-box; background:url(../../image/main_calendar.png) no-repeat 0 0; display:block; font-size:30px; color:#0069f8; font-family: 's-core-dream-bold';}

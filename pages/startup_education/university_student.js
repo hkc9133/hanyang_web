@@ -7,7 +7,9 @@ import classnames from "classnames/bind"
 import {Menu, Dropdown} from 'antd';
 import Edu2030 from '../../component/startup_education/Edu2030';
 import Edu1619 from '../../component/startup_education/Edu1619';
-
+import {
+    isMobile
+} from "react-device-detect";
 const {SubMenu} = Menu;
 
 
@@ -185,8 +187,9 @@ const UniversityStudent = () => {
                             <h1 className={cx("title_style_2")}>신청방법</h1>
                         </div>
                         <div className={cx("txtArea")}>
-                            <Image src="/assets/image/university_student_img.jpg" width={920} height={394}
-                                   alt="university_student_img"/>
+                            {isMobile ? <Image src="/assets/image/university_student_img_mo.jpg" width={375} height={394}
+                                               alt="university_student_img"/> : <Image src="/assets/image/university_student_img.jpg" width={920} height={394}
+                                                                                       alt="university_student_img"/>}
                         </div>
                     </div>
 
@@ -576,7 +579,47 @@ const UniversityStudent = () => {
                             </div>
                         </div>
 
+
+                        <div className={`${cx({show: true})} txt_style_1 `}>
+                            <div className={cx("left_title")}>
+                                <h1 className={cx("title_style_2")}>비교과 프로그램</h1>
+                            </div>
+                            <div className={cx("txtArea")}>
+                                <ul>
+                                    <li>
+                                        <h2 className={cx("title_style_4")}>창업경진대회 </h2>
+                                        <ul>
+                                            <li>벤처창업경진대회 : 대학(원)생들의 창의적 · 혁신적인 비즈니스모델 조기 발굴 및 육성을 위한 창업경진대회​</li>
+                                            <li>라이언컵 경진대회 : 당해 창업경진대회 수상자 중 최고의 혁신 아이템을 선발하는 창업경진대회 왕중왕전​</li>
+                                            <li>캠퍼스 CEO 창업경진대회 : 창업강좌 수강생들이 한 학기동안 발굴한 참신한 사업 아이디어를 점검하는 교내 창업경진대회​</li>
+                                            <li>소프트웨어 창업아이디어 경진대회 : 대학생 개발자 , 디자이너 , 마케터 등이 한 팀을 구성해 소프트웨어 기반 혁신 창업 아이디어를<br/>발굴하는 창업경진대회
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <h2 className={cx("title_style_4")}>창업 인턴십 </h2>
+                                        <ul>
+                                            <li>내가 바로 CEO: 사업계획서 집중 멘토링 , 비즈니스모델 고도화 등 사업아이템 검증을 위한 실전 창업캠프 창업인턴십​</li>
+                                            <li>국내 창업인턴십 : 창업교육을 통해 쌓은 지식을 활용하여 스타트업 등 국내 기업에서 직접 창업실무 경험​</li>
+                                            <li>글로벌 창업인턴십 : 해외 기업인들과 함께 현지 시장조사 , 사업기회 발굴 등의 미션을 수행하며 글로벌 창업과정 체험</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <h2 className={cx("title_style_4")}>학생창업보육 </h2>
+                                        <ul>
+                                            <li>창업동아리 : 한양대학교 · 재휴학생 중 참신한 아이디어를 보유한 3인 이상의 팀을 선발하여 사업화지원금, 학생창업준비공간(공용),
+                                                창업교육, 멘토링 등 지원​
+                                            </li>
+                                            <li>247 스타트업 돔 : 24시간 주 7일 내내 창업을 꿈꾸는 학생들을 위한 기숙형 창업 공간으로 입사생 대상 특별교육, 전담멘토링 등
+                                                지원​
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
+
 
 
                 </div>

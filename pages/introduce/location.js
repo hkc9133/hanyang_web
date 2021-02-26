@@ -1,18 +1,29 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 
 import Link from 'next/link';
 import styles from '../../public/assets/styles/introduce/introduce.module.css';
 import classnames from "classnames/bind"
 import PageNavigation from "../../component/layout/PageNavigation";
+import { url,port} from "../../lib/api/client";
+import Modal from "../../component/common/Modal";
+import Image from "next/image";
+import {Dropdown,Menu} from "antd";
 
 
 const cx = classnames.bind(styles);
 
+const mapUrl = 'http://naver.me/FbRQpJoM';
+const imageUrl = `http://61.109.248.203${port != null ? `:${port}` : ''}/api/image/hanyang_logo.png`
+
 const Location = () => {
 
     const mapArea = useRef();
+    const [showModal,setShowModal] = useState(false);
+
+
 
     useEffect(() => {
+        initFacebookSdk();
 
         let s = document.createElement("script");
         s.setAttribute("src", "https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=b348wme6ql");
@@ -22,25 +33,151 @@ const Location = () => {
                 zoom: 15
             };
             let map = new naver.maps.Map(mapArea.current, mapOptions);
-            // console.log(mapDiv)
 
             let marker = new naver.maps.Marker({
                 position: new naver.maps.LatLng(37.556861738392726, 127.04835502516103),
                 map: map,
-                // title: 'Unary Spot!!',
-                // icon: {
-                //     content: '<div>한양대학교</div>',
-                //     size: new naver.maps.Size(22, 35),
-                //     anchor: new naver.maps.Point(11, 35)
-                // }
             });
         }
         document.head.appendChild(s);
+
+        console.log(`${'http://61.109.248.203'}${port != null ? `:${port}` : ''}/api/image/logo.png`)
+
+        let k = document.createElement("script");
+        k.setAttribute("src", "https://developers.kakao.com/sdk/js/kakao.min.js");
+        k.onload = function () {
+            window.Kakao.init('e30e8790c8207f560e3b47879051adb8');
+            window.Kakao.Link.createDefaultButton({
+                container: '#kakao_share',
+                objectType: 'feed',
+                content: {
+                    title: '한양대학교 창업지원단',
+                    // description: '#케익 #딸기 #삼평동 #카페 #분위기 #소개팅',
+                    imageUrl: imageUrl,
+                    link: {
+                        mobileWebUrl: mapUrl,
+                        webUrl: mapUrl,
+                    }
+                },
+                buttons: [
+                    // {
+                    //     title: '웹으로 보기',
+                    //     link: {
+                    //         mobileWebUrl: mapUrl,
+                    //         webUrl: mapUrl,
+                    //     }
+                    // },
+                    // {
+                    //     title: '앱으로 보기',
+                    //     link: {
+                    //         mobileWebUrl: 'http://61.109.248.203',
+                    //         webUrl: 'http://61.109.248.203',
+                    //     }
+                    // }
+                ],
+                //
+                // objectType: 'feed',
+                // content: {
+                //     title: '한양대학교 창업지원단',
+                //     description: '창업지원단 지도',
+                //     imageUrl:
+                //         `${'http://61.109.248.203'}${port != null ? `:${port}` : ''}/api/image/logo.png`,
+                //     link: {
+                //         mobileWebUrl: 'https://map.naver.com/v5/entry/place/13341941?c=14110671.9385277,4513759.3942962,14,0,0,0,dh&placePath=%2Fhome%3Fentry=plt',
+                //     },
+                // },
+                // buttons: [
+                //     {
+                //         title: '네이버 지도 확인',
+                //         link: {
+                //             mobileWebUrl: 'https://map.naver.com/v5/entry/place/13341941?c=14110671.9385277,4513759.3942962,14,0,0,0,dh&placePath=%2Fhome%3Fentry=plt',
+                //         },
+                //     },
+                // ]
+            });
+
+        }
+
+        document.head.appendChild(k);
+
         return () =>{
             s.remove();
         }
     }, [])
 
+    const initFacebookSdk = () =>{
+        return new Promise(resolve => {
+            // wait for facebook sdk to initialize before starting the react app
+            window.fbAsyncInit = function () {
+                window.FB.init({
+                    appId: 718848628746534,
+                    cookie: true,
+                    xfbml: true,
+                    version: 'v9.0'
+                });
+            };
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) { return; }
+                js = d.createElement(s); js.id = id;
+                js.src = "https://connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        });
+    }
+
+
+    const facebookShare = () =>{
+        let currentUrl = window.document.location.href;
+
+        window.FB.ui({
+                method: 'share',
+                href: mapUrl
+            }, function (response) {
+                if (response && !response.error_code) {
+                    // alert('공유 완료');
+                } else {
+                    // alert('공유 실패');
+                }
+            }
+        );
+    }
+
+    const naverShare = () =>{
+        let url = encodeURI(encodeURIComponent(mapUrl));
+        let title = encodeURI("한양대학교 창업지원단");
+        let shareURL = "https://share.naver.com/web/shareView?url=" + url + "&title=" + title;
+        document.location = shareURL;
+    }
+
+    const kakaoShare = () =>{
+        window.Kakao.Link.sendDefault({
+            // container: '.kakao_share',
+            objectType: 'feed',
+            content: {
+                title: '한양대학교 창업지원단',
+                // description: '#케익 #딸기 #삼평동 #카페 #분위기 #소개팅',
+                imageUrl: imageUrl,
+                link: {
+                    mobileWebUrl: mapUrl,
+                    webUrl: mapUrl,
+                }
+            },
+        });
+    }
+
+
+    const menu = (
+        <Menu>
+            <Menu.Item>
+                <div style={{display: 'flex', justifyContent: 'space-between',padding:'0px 20px'}}>
+                    <button onClick={() =>{naverShare()}}><Image src="/assets/image/startup_naver_blog.png" width={40} height={40} alt="sns_logo"/></button>
+                    <button onClick={() =>{facebookShare()}}><Image src="/assets/image/startup_facebook.png" width={40} height={40} alt="sns_logo"/></button>
+                    <button id="kakao_share" onClick={kakaoShare} ><Image src="/assets/image/startup_kakao.png" width={40} height={40} alt="sns_logo"/></button>
+                </div>
+            </Menu.Item>
+        </Menu>
+    );
 
     return (
         <>
@@ -54,8 +191,12 @@ const Location = () => {
                             {/*<h3>오시는 길</h3>*/}
                             <div className={cx("btn_area")}>
                                 <ul>
-                                    <li><Link href="#"><a>약도 이미지 다운로드</a></Link></li>
-                                    <li><Link href="#"><a>약도 공유하기</a></Link></li>
+                                    <li><Link href="/assets/naver_map_download.png" download><a>약도 이미지 다운로드</a></Link></li>
+                                    <li>
+                                    <Dropdown overlay={menu} trigger={['click']} placement="bottomCenter" arrow>
+                                        <a onClick={(e)=>{e.preventDefault();}}>약도 공유하기</a>
+                                    </Dropdown>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -88,4 +229,6 @@ const Location = () => {
     );
 };
 
+
 export default Location;
+

@@ -192,7 +192,7 @@ const StartupPresentManagePage = () => {
                             {/*    <select name="categoryCodeId" value={searchInfo.categoryCodeId} onChange={(e) => {changeSearchInfo(e)}}>*/}
                             {/*        <option value={""}>분류</option>*/}
                             {/*        {*/}
-                            {/*            notice.cate.map((cate)=>(*/}
+                            {/*            startupCalendar.cate.map((cate)=>(*/}
                             {/*                <option key={cate.categoryCodeId} value={cate.categoryCodeId}>{cate.categoryCodeName}</option>*/}
                             {/*            ))*/}
                             {/*        }*/}

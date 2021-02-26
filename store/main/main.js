@@ -31,7 +31,7 @@ const initialState = {
         result:null,
         notice:[],
         calendar:[],
-        hot:[],
+        issue:[],
         startup_info:[],
         popup:[],
         keyword:[],
@@ -58,7 +58,7 @@ const main = handleActions(
                 draft.mainData.result = true;
                 draft.mainData.notice = response.data.notice;
                 draft.mainData.calendar = response.data.calendar;
-                draft.mainData.hot = response.data.hot;
+                draft.mainData.issue = response.data.issue;
                 draft.mainData.startup_info = response.data.startup_info;
                 draft.mainData.popup = response.data.popup;
                 draft.mainData.keyword = response.data.keyword;
@@ -70,7 +70,7 @@ const main = handleActions(
                 draft.mainData.result = false;
                 draft.mainData.notice = [];
                 draft.mainData.calendar = [];
-                draft.mainData.hot = [];
+                draft.mainData.issue = [];
                 draft.mainData.startup_info = [];
                 draft.mainData.popup = [];
                 draft.mainData.keyword = [];

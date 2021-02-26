@@ -7,7 +7,19 @@ import Image from "next/image";
 import {useDispatch, useSelector} from "react-redux";
 import client from "../../lib/api/client";
 import {getBestMentor} from "../../store/mentoring/mentoring";
+import Slider from "react-slick";
 const cx = classnames.bind(styles);
+
+
+const mentorSliderSettings = {
+    dots: false,
+    infinite: true,
+    arrows: false,
+    autoplay: true,
+    autoplaySpeed:2000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+};
 
 const CounselApply = () => {
 
@@ -48,36 +60,43 @@ const CounselApply = () => {
                 </div>
 
 
-
-                {bestMentor != null && (
-                    <div className={`${cx("mentor_month")} clfx`}>
-                        <div className={cx("title")}>
-                            <h2>이달의 멘토</h2>
-                            <p>
-                                멘티로부터 추천받은 <br/>이달의 멘토
-                            </p>
-                        </div>
-                        <div className={cx("photoArea")}>
-                            <div className={cx("photo")}>
-                                {/*<img src={image != null ? image : '/assets/image/mentor_photo.jpg'}/>*/}
-                                <Image src={image != null ? image : '/assets/image/mentor_photo.jpg'} width={198} height={198} alt="mentor_photo"/>
-                            </div>
-                            <span className={cx("name")}>{bestMentor.mentorName}</span>
-                            <span className={cx("job")}>{bestMentor.mentorPosition}</span>
-                        </div>
-                        <div className={cx("txt_area")}>
-                            <div className={cx("tag")}>{bestMentor.mentorKeyword.map((keyword)=>(`#${keyword} `))}</div>
-                            <ul>
-                                {bestMentor.mentorCareer.map((career)=>(
-                                    <li>{career}</li>
-                                ))}
-                            </ul>
-                            <p>
-                                {bestMentor.mentorIntroduction}
-                            </p>
-                        </div>
-                    </div>
-                )}
+                <div className={`${cx("mentor_month")} clfx`}>
+                {bestMentor.length  != 0 &&
+                    <Slider className="mentor_slider" {...mentorSliderSettings}>
+                        {
+                            bestMentor.map((item) =>(
+                                    <>
+                                        <div className={cx("title")}>
+                                            <h2>우수 멘토</h2>
+                                            <p>
+                                                멘티로부터 추천받은 <br/>우수 멘토
+                                            </p>
+                                        </div>
+                                        <div className={cx("photoArea")}>
+                                            <div className={cx("photo")}>
+                                                <Image src={item.filePath != null ? `${client.defaults.baseURL}/resource${item.filePath}/${item.fileName+item.fileExtension}`: '/assets/image/mentor_photo.jpg'} width={198} height={198} alt="mentor_photo"/>
+                                            </div>
+                                            <span className={cx("name")}>{item.mentorName}</span>
+                                            <span className={cx("job")}>{item.mentorPosition}</span>
+                                        </div>
+                                        <div className={cx("txt_area")}>
+                                            <div className={cx("tag")}>{item.mentorKeyword.map((keyword)=>(`#${keyword} `))}</div>
+                                            <ul>
+                                                {item.mentorCareer.map((career)=>(
+                                                    <li>{career}</li>
+                                                ))}
+                                            </ul>
+                                            <p>
+                                                {item.mentorIntroduction}
+                                            </p>
+                                        </div>
+                                    </>
+                                )
+                            )
+                        }
+                    </Slider>
+                }
+                </div>
 
                 <div className={cx("before_counseling","txt_style_1")}>
                     <div className={cx("left_title")}>
