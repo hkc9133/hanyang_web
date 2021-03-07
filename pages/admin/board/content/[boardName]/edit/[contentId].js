@@ -45,7 +45,7 @@ const ContentEditView = () => {
         title: "",
         attachFiles:[],
         removeFiles:[],
-        categoryCodeId:"",
+        categoryCodeId:null,
         isNotice:false
     })
     const [content,setContent] = useState("");
@@ -151,6 +151,9 @@ const ContentEditView = () => {
             files:newFileList.map((item) => (item.originFileObj)),
             boardEnName:router.query.boardName
         }
+        if(data.categoryCodeId == null){
+            delete data.categoryCodeId
+        }
         dispatch(updateBoardContent(data));
     }
 
@@ -196,31 +199,18 @@ const ContentEditView = () => {
                                 <thead>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <th>분류</th>
-                                    <td>
-                                        <select name='categoryCodeId' className={cx("cate")} onChange={changeWriteInfo} value={writeInfo.categoryCodeId}>
-                                            {board.categoryCode.map((item) => {
-                                                return <option key={item.categoryCodeId} value={item.categoryCodeId}>{item.categoryCodeName}</option>
-                                            })}
-                                        </select>
-                                        {/*<Form.Item*/}
-                                        {/*    name="categoryCodeId"*/}
-                                        {/*    rules={[*/}
-                                        {/*        {*/}
-                                        {/*            required: true,*/}
-                                        {/*            message: '카테고리',*/}
-                                        {/*        },*/}
-                                        {/*    ]}*/}
-                                        {/*>*/}
-                                        {/*    <Select size='large' name='categoryCodeId' className={cx("cate")} onChange={changeCategory}>*/}
-                                        {/*        {board.categoryCode.map((item) => {*/}
-                                        {/*            return <Option key={item.categoryCodeId} value={item.categoryCodeId}>{item.categoryCodeName}</Option>*/}
-                                        {/*        })}*/}
-                                        {/*    </Select>*/}
-                                        {/*</Form.Item>*/}
-                                    </td>
-                                </tr>
+                                {board.categoryId != null &&(
+                                    <tr>
+                                        <th>분류</th>
+                                        <td>
+                                            <select name='categoryCodeId' className={cx("cate")} onChange={changeWriteInfo} value={writeInfo.categoryCodeId}>
+                                                {board.categoryCode.map((item) => {
+                                                    return <option key={item.categoryCodeId} value={item.categoryCodeId}>{item.categoryCodeName}</option>
+                                                })}
+                                            </select>
+                                        </td>
+                                    </tr>
+                                )}
                                 <tr>
                                     <th>공지</th>
                                     <td>

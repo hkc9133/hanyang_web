@@ -3,6 +3,7 @@ import ListType01 from "./ListType01";
 import ListType02 from "./ListType02";
 import ListType03 from "./ListType03";
 import ListType04 from "./ListType04";
+import ListType05 from "./ListType05";
 import GalleryType01 from "./GalleryType01";
 import GalleryType02 from "./GalleryType02";
 import Calendar01 from "./Calendar01";
@@ -22,6 +23,8 @@ const BoardSkinSelector = (props) => {
                 return <ListType03 {...props}/>
             case 'ListType04':
                 return <ListType04 {...props}/>
+            case 'ListType05':
+                return <ListType05 {...props}/>
             case 'GalleryType01':
                 return <GalleryType01 {...props}/>
             case 'GalleryType02':

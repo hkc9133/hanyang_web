@@ -91,7 +91,6 @@ const Login = () => {
 
     useEffect(() => {
         if (!signUpLoading && signup.result == true && signup.error == null) {
-            console.log("가입 성공")
             router.push('/')
         }
     }, [signup, signUpLoading])

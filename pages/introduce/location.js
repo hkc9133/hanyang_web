@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef,useState} from 'react';
 
 import Link from 'next/link';
 import styles from '../../public/assets/styles/introduce/introduce.module.css';
@@ -8,6 +8,7 @@ import { url,port} from "../../lib/api/client";
 import Modal from "../../component/common/Modal";
 import Image from "next/image";
 import {Dropdown,Menu} from "antd";
+import client from '../../lib/api/client';
 
 
 const cx = classnames.bind(styles);
@@ -40,8 +41,6 @@ const Location = () => {
             });
         }
         document.head.appendChild(s);
-
-        console.log(`${'http://61.109.248.203'}${port != null ? `:${port}` : ''}/api/image/logo.png`)
 
         let k = document.createElement("script");
         k.setAttribute("src", "https://developers.kakao.com/sdk/js/kakao.min.js");
@@ -191,7 +190,7 @@ const Location = () => {
                             {/*<h3>오시는 길</h3>*/}
                             <div className={cx("btn_area")}>
                                 <ul>
-                                    <li><Link href="/assets/naver_map_download.png" download><a>약도 이미지 다운로드</a></Link></li>
+                                    <li><Link href="/assets/image/location_map.png" ><a target="_blank" download>약도 이미지 다운로드</a></Link></li>
                                     <li>
                                     <Dropdown overlay={menu} trigger={['click']} placement="bottomCenter" arrow>
                                         <a onClick={(e)=>{e.preventDefault();}}>약도 공유하기</a>

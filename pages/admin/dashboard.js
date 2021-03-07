@@ -29,9 +29,6 @@ import {END} from 'redux-saga';
 
 const Dashboard = () => {
     const auth = useSelector(state => state.auth);
-    console.log("111")
-    console.log(auth)
-    console.log("111")
 
     const dispatch = useDispatch();
     useEffect(() => {

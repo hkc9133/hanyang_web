@@ -73,8 +73,9 @@ const dep1 = {
         link:"/introduce/introduce",
         sub:{
             introduce: {name:'기관 소개',link:'/introduce/introduce'},
-            infra: {name:'인프라',link:'/introduce/infra'},
             system: {name:'창업지원 체계',link:'/introduce/system'},
+            infra: {name:'인프라',link:'/introduce/infra'},
+            friendly: {name:'창업친화적 제도',link:'/introduce/friendly'},
             media_report: {name:'언론보도',link:'/board/media_report/list'},
             news: {name:'뉴스레터',link:'/board/news/list'},
             promotion: {name:'소개자료',link:'/introduce/promotion'},

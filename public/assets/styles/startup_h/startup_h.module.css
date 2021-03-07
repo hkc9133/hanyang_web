@@ -8,7 +8,8 @@
 
 .search_type_2{position:relative; margin:0 auto 40px; padding-right:130px;  max-width:1220px; box-sizing:border-box; }
 .search_type_2:after{ clear: both; content: "."; display: block; height: 0; visibility: hidden; font-size: 0;}
-.search_type_2 .search_01{float:left; margin-right:0.93%; width:19%; height:56px; line-height:54px; font-size:18px; border: 1px solid lightgray;padding-left: 20px;}
+.search_type_2 .search_01{float:left; margin-right:0.93%; width:19%; height:56px; line-height:54px; font-size:18px; border: 1px solid lightgray;padding-left: 10px;}
+
 .search_type_2 select{float:left; margin-right:0.93%; width:16.5%; height:56px; line-height:54px; font-size:18px; }
 .search_type_2 select.long{width:22%;}
 .search_type_2 input[type=text]{float:left; width:42.2%; height:56px; line-height:54px; font-size:18px; }
@@ -185,7 +186,8 @@ display: inline-block;
 
 
     .search_type_2{padding-right:0;}
-    .search_type_2 select{margin:0 0 0 2%; width:32%; height:40px; line-height:38px; font-size:14px; }
+    .search_type_2 .search_01{ width:32%; height:40px; line-height:38px; font-size:14px; }
+    .search_type_2 select{width: 33.2%;height:40px; line-height:38px; font-size:14px; }
     .search_type_2 select.long{margin:0; width:32%; }
     .search_type_2 input[type=text]{float:none; margin:5px 0; width:100%; height:40px; line-height:38px; font-size:14px; }
     .search_type_2 .btn_search{position:relative; width:100%; height:40px; line-height:38px; font-size:14px; }

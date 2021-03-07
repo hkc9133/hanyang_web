@@ -18,6 +18,7 @@ const cx = classnames.bind(styles);
 const UniversityStudent = () => {
 
     const [tabNum, setTabNum] = useState(0)
+    const [showScore, setShowScore] = useState(false)
 
     useEffect(() => {
         console.log(tabNum)
@@ -85,7 +86,7 @@ const UniversityStudent = () => {
                 <div className={cx("sub_cont", "university_studentCont_2")}>
                     <div className={cx("txt_style_1")}>
                         <div className={cx("left_title")}>
-                            <h1 className={cx("title_style_2")}><strong>개설강좌</strong></h1>
+                            <h1 className={cx("title_style_2")}><strong>운영강좌</strong></h1>
                             <p>화살표를 누르면 표를 확인하실 수 있습니다.</p>
                         </div>
                         <div className={cx("txtArea")}>
@@ -138,7 +139,7 @@ const UniversityStudent = () => {
                                         </Menu.Item>
                                     </SubMenu>
                                 </Menu>
-                                <p>교양으로 창업강좌를 수강하는 학생들은 가장 최근 교육과정의 로드맵을, 융합전공생은 본인에게 해당하는 교육과정표를 확인해 주세요.</p>
+                                <p>교양으로 창업강좌를 수강하는 학생들은 가장 최근 교육과정의 로드맵을, 융합전공생은 본인에게 해당하는 교육과정표를 확인해주세요.</p>
                             </div>
                         </div>
                     </div>
@@ -168,15 +169,20 @@ const UniversityStudent = () => {
                                         </li>
                                         <li>
                                             <span className={cx("title")}>이수학점</span>
-                                            <Link href="#"><a>이수학점 보기</a></Link>
+                                            <a onClick={(e) =>{e.preventDefault();setShowScore(!showScore)}}>이수학점 보기</a>
                                             <br/>
-                                            <p>[2016~2019 교육과정 적용]</p>
-                                            <p>- 제 2전공 : 전공핵심 21학점, 전공심화 6학점 포함하여 전공과목 36학점 이상 이수<br/>
-                                            - 부전공 : 전공핵심 12학점 포함하여 전공과목 21학점 이상 이수</p>
-                                            <br/>
-                                            <p>[2020~2023 교육과정 적용]</p>
-                                            <p>- 제 2전공 : 200~300단위 21학점, 400단위 6학점, 자율선택 9학점 전체 36학점 이상 이수<br/>
-                                            - 부전공 : 200~300단위 12학점, 자율선택 9학점, 전체 21학점 이상 이수</p>
+                                            {showScore && (
+                                                <div>
+                                                    <br/>
+                                                    <p>[2016~2019 교육과정 적용]</p>
+                                                    <p>- 제 2전공 : 전공핵심 21학점, 전공심화 6학점 포함하여 전공과목 36학점 이상 이수<br/>
+                                                        - 부전공 : 전공핵심 12학점 포함하여 전공과목 21학점 이상 이수</p>
+                                                    <br/>
+                                                    <p>[2020~2023 교육과정 적용]</p>
+                                                    <p>- 제 2전공 : 200~300단위 21학점, 400단위 6학점, 자율선택 9학점 전체 36학점 이상 이수<br/>
+                                                        - 부전공 : 200~300단위 12학점, 자율선택 9학점, 전체 21학점 이상 이수</p>
+                                                </div>
+                                            )}
                                         </li>
                                         <li>
                                             <span className={cx("title")}>신청기간</span>
@@ -199,6 +205,7 @@ const UniversityStudent = () => {
                                                alt="university_student_img"/> : <Image src="/assets/image/university_student_img.jpg" width={920} height={394}
                                                                                        alt="university_student_img"/>}
                         </div>
+                        <span className={cx("f-16", "c-blue")}>※ 자기소개서 다운로드<a style={{marginLeft:8}}><Image src="/assets/image/icon_download.gif" width={22} height={26} alt="다운로드"/></a></span>
                     </div>
 
                     <div className={cx("txt_style_1")}>
@@ -207,9 +214,30 @@ const UniversityStudent = () => {
                         </div>
                         <div className={cx("txtArea")}>
                             <p>
-                                융합전공교육과정(2016-2019 또는 2020-2023) 확인 후 <br/>본인에게 해당하는 교육과정표를 확인해 주세요.
+                                융합전공교육과정(2016-2019 또는 2020-2023) 확인 후 <br/>본인에게 해당하는 교육과정표를 확인해주세요.
                                 <span className={cx("f-16", "c-blue")}>* 교육과정 계산식: 융합전공신청연도–신청학년+ 1</span>
                             </p>
+
+                            <div className={cx("qa_list")} style={{marginBottom:15}}>
+                            <Menu
+                                mode="inline"
+                                selectable={false}
+                                style={{height: '100%', borderRight: 'none'}}
+                            >
+                                <SubMenu key="sub2" className={cx("dropdown_title")} title={<div className={cx("question")}>2016년~2019년 교육과정</div>}>
+                                    <Menu.Item key="2" className={cx("dropdown_content")}
+                                               style={{height: 'auto', padding: 10}}>
+                                        <Edu1619 cx={cx}/>
+                                    </Menu.Item>
+                                </SubMenu>
+                                <SubMenu key="sub1" className={cx("dropdown_title")} title={<div className={cx("question")}>2020년~2023년 교육과정</div>}>
+                                    <Menu.Item key="1" className={cx("dropdown_content")} style={{height: 'auto', padding: 10}}>
+                                        <Edu2030 cx={cx}/>
+                                    </Menu.Item>
+                                </SubMenu>
+                            </Menu>
+                            </div>
+
                             <h2 className={cx("title_style_4")}>교육과정표 확인 시 주의사항</h2>
                             <ul className={cx("list_style_2")}>
                                 <li><span className={cx("number")}>1)</span> 교육과정표의 이수구분은 창업융합전공을 다중전공, 부전공으로 이수하는 학생에게만
@@ -245,6 +273,93 @@ const UniversityStudent = () => {
                                 <li>E-mail. startup@hanyang.ac.kr</li>
                             </ul>
                             <span className={cx("kakao")}>카카오톡채널. 한양스타트업톡톡 </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div className={cx("gray_bg", "university_studentCont_3")} id="hakbu_2">
+                    <div className={cx("sub_cont")}>
+                        <div className={cx("txt_style_1")}>
+                            <div className={cx("left_title")}>
+                                <h1 className={cx("title_style_3")}><strong>학부 창업융합전공</strong></h1>
+                            </div>
+                            <div className={cx("txtArea")}>
+                                <div className={cx("list_style_1")}>
+                                    <ul>
+                                        <li>
+                                            <span className={cx("title")}>목적</span>
+                                            주전공의 전문성에 창업교육 커리큘럼을 접목하여 전문성을 갖춘 창의융합 인재 양성
+                                        </li>
+                                        <li>
+                                            <span className={cx("title")}>수여학위</span>
+                                            벤처창업학사(제2전공)
+                                        </li>
+                                        <li>
+                                            <span className={cx("title")}>신청대상 </span>
+                                            창업에 관심있는 학생(학부성적 제한없음) <br/>
+                                            1학년 2학기(1학기 이상 성적유효) 이상의 서울캠퍼스 재학생
+                                        </li>
+                                        <li>
+                                            <span className={cx("title")}>이수학점</span>
+                                            <a onClick={(e) =>{e.preventDefault();setShowScore(!showScore)}}>이수학점 보기</a>
+                                            <br/>
+                                            {showScore && (
+                                                <div>
+                                                    <br/>
+                                                    <p>[2016~2019 교육과정 적용]</p>
+                                                    <p>- 제 2전공 : 전공핵심 21학점, 전공심화 6학점 포함하여 전공과목 36학점 이상 이수<br/>
+                                                        - 부전공 : 전공핵심 12학점 포함하여 전공과목 21학점 이상 이수</p>
+                                                    <br/>
+                                                    <p>[2020~2023 교육과정 적용]</p>
+                                                    <p>- 제 2전공 : 200~300단위 21학점, 400단위 6학점, 자율선택 9학점 전체 36학점 이상 이수<br/>
+                                                        - 부전공 : 200~300단위 12학점, 자율선택 9학점, 전체 21학점 이상 이수</p>
+                                                </div>
+                                            )}
+                                        </li>
+                                        <li>
+                                            <span className={cx("title")}>신청기간</span>
+                                            5월, 11월
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className={cx("university_studentCont_4")} id="hakbu_2">
+                    <div className={cx("sub_cont")}>
+                        <div className={cx("txt_style_1")}>
+                            <div className={cx("left_title")}>
+                                <h1 className={cx("title_style_3")}><strong>학부 4차산업혁명창업<br/><br/> 마이크로전공</strong></h1>
+                            </div>
+                            <div className={cx("txtArea")}>
+                                <div className={cx("list_style_1")}>
+                                    <ul>
+                                        <li>
+                                            <span className={cx("title")}>목적</span>
+                                            미래 산업 분야의 핵심 기술을 선도할 수 있는 창의융합 인재 양성
+                                        </li>
+                                        <li>
+                                            <span className={cx("title")}>수여학위</span>
+                                            부여되지않음(성적증명서에만 표시)
+                                        </li>
+                                        <li>
+                                            <span className={cx("title")}>신청대상 </span>
+                                            창업에 관심있는 서울캠퍼스 재학생(학년, 학부성적 제한없음)
+                                        </li>
+                                        <li>
+                                            <span className={cx("title")}>이수학점</span>
+                                            12학점
+                                        </li>
+                                        <li>
+                                            <span className={cx("title")}>신청기간</span>
+                                            5월, 11월
+                                        </li>
+                                    </ul>
+                                    <span className={cx("f-16", "c-blue")}>※ 운영 및 신청방법 매뉴얼 참고<a style={{marginLeft:8}}><Image src="/assets/image/icon_download.gif" width={22} height={26} alt="다운로드"/></a></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

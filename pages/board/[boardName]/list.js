@@ -59,6 +59,7 @@ const List = () => {
             ...router.query
         }))
 
+        console.log(board.board)
         setCurrentBoard(currentBoard =>({
             ...currentBoard,
             board: board.board,
@@ -81,6 +82,10 @@ const List = () => {
         }
     },[board,router.query])
 
+
+    useEffect(() =>{
+        console.log(board.board)
+    },[])
 
     const changeSearchInfo = (e) =>{
 
@@ -110,7 +115,7 @@ const List = () => {
                     <h1 className={cx("sub_top_title")}>{currentBoard.board.boardKrName}</h1>
                     <p className={cx("sub_top_txt")}>{currentBoard.board.boardDesc}</p>
 
-                    {currentBoard.board.boardEnName == 'notice' && (
+                    {(currentBoard.board.boardEnName == 'notice' || currentBoard.board.boardEnName == 'faq' || currentBoard.board.boardEnName == 'qna')  && (
                         <SearchBoxSelector skinName="SearchBoxStyle03" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
                     )}
                     {currentBoard.board.boardEnName == 'news' && (
@@ -133,9 +138,9 @@ const List = () => {
                     )}
 
                     {
-                        currentBoard.board.writeRole != null && currentBoard.board.writeRole.indexOf(user.role) > 0 || user.role == 'ROLE_ADMIN' && (
+                        board.board.writeRole != null && (board.board.writeRole.indexOf(user.role) > 0 || user.role == 'ROLE_ADMIN') && (
                             <div className={cx("btn_box")}>
-                                <Link href={`/board/${currentBoard.board.boardEnName}/write`}><a className={cx("basic-btn03","write_btn")}>글쓰기</a></Link>
+                                <Link href={`/board/${board.board.boardEnName}/write`}><a className={cx("basic-btn03","write_btn")}>글쓰기</a></Link>
                             </div>
                         )
                     }
@@ -156,8 +161,11 @@ const List = () => {
                     {currentBoard.board.boardEnName == 'startup_info' && (
                         <BoardSkinSelector skinName="ListType02" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
                     )}
-                    {currentBoard.board.boardEnName == 'faq' && (
+                    {(currentBoard.board.boardEnName == 'faq') && (
                         <BoardSkinSelector skinName="ListType02" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
+                    )}
+                    {(currentBoard.board.boardEnName == 'qna') && (
+                        <BoardSkinSelector skinName="ListType05" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
                     )}
                     {currentBoard.board.boardEnName == 'idea' && (
                         <BoardSkinSelector skinName="ListType03" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
@@ -171,6 +179,7 @@ const List = () => {
                     {(currentBoard.board.boardEnName == 'online_content' || currentBoard.board.boardEnName == 'ir' ) && (
                         <BoardSkinSelector skinName="GalleryType02" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
                     )}
+
 
                 </section>
             )}

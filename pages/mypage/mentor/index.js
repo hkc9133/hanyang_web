@@ -68,7 +68,7 @@ const MyComponent = () => {
                         <ul>
                             <li className={cx("on")}><Link href="/mypage/mentor"><a>나의 멘토링현황</a></Link></li>
                             <li><Link href="/mypage/mentor/profile"><a>프로필 변경</a></Link></li>
-                            <li><Link href={`${client.defaults.baseURL}/test`} download ><a>위촉장 발급</a></Link></li>
+                            <li><a href={`${client.defaults.baseURL}/mentoring/commission`}>위촉장 발급</a></li>
                         </ul>
                     </div>
 

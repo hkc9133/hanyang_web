@@ -12,7 +12,7 @@ const Friendly = () => {
 
     return (
         <>
-            {/*<PageNavigation/>*/}
+            <PageNavigation/>
             <section className={cx("container","friendlyCont")}>
                 <div className={cx("sub_container","startup_procedure")}>
                     <h1 className={cx("sub_top_title")}>창업친화적 제도</h1>
@@ -76,10 +76,16 @@ const Friendly = () => {
                                                                 (창업융합전공, 교양, 일반선택)<br/>
                                                                 - 매 계절학기 중 1회, 재학 중 최대 2회 허용
                                                             </td>
-
                                                         </tr>
+                                                        {/*<tr>*/}
+                                                        {/*    <td></td>*/}
+                                                        {/*    <td>*/}
+                                                        {/*        ※ 창업실습은 장기, 단기 포함하여 최대 18학점까지 인정 가능*/}
+                                                        {/*    </td>*/}
+                                                        {/*</tr>*/}
                                                         </tbody>
                                                     </table>
+                                                    <p style={{marginTop:10}}>※ 창업실습은 장기, 단기 포함하여 최대 18학점까지 인정 가능</p>
                                                 </div>
                                             </li>
                                         </ul>
@@ -116,18 +122,40 @@ const Friendly = () => {
                                 </div>
                             </div>
                         </div>
-
                         <div className={cx("sub_cont")}>
                             <div className={cx("txt_style_1")}>
                                 <div className={cx("left_title")}>
-                                    <h1 className={cx("title_style_2")}>창업융합전공</h1>
+                                    <h1 className={cx("title_style_2")}>4차 산업혁명 창업<br/> 마이크로 전공</h1>
                                 </div>
                                 <div className={cx("txtArea")}>
                                     <div className={cx("list_style_1")}>
                                         <ul>
                                             <li>
                                                 <span className={cx("title")}>목적 </span>
-                                                창업활동이 활발하고 역량이 우수한 (예비)창업자를 선발하여 장학금을 지급
+                                                미래 산업 분야의 핵심 기술을 선도할 수 있는 창의융합 인재 양성(성적증명서에만 표시)
+                                            </li>
+                                            <li>
+                                                <span className={cx("title")}>신청자격 </span>
+                                                학년, 학부성적 제한없음
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className={cx("gray_bg")}>
+                        <div className={cx("sub_cont")}>
+                            <div className={cx("txt_style_1")}>
+                                <div className={cx("left_title")}>
+                                    <h1 className={cx("title_style_2")}>창업장학금</h1>
+                                </div>
+                                <div className={cx("txtArea")}>
+                                    <div className={cx("list_style_1")}>
+                                        <ul>
+                                            <li>
+                                                <span className={cx("title")}>목적 </span>
+                                                미래 성장 잠재력이 높고 우수한 창업아이디어를 가진 학생들을 발굴해 대학 창업지원사업·인프라를 연계해 “미래 스타창업·벤처”로 육성
                                             </li>
                                             <li>
                                                 <span className={cx("title")}>신청자격 </span>
@@ -135,12 +163,13 @@ const Friendly = () => {
                                             </li>
                                             <li>
                                                 <span className={cx("title")}>혜택 </span>
-                                                최대 1,500만원의 창업장학금 지원
+                                                1인당 1,984,000원(1년)의 창업기숙사 장학금 지원
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         </div>
                     </div>
                 ) : (

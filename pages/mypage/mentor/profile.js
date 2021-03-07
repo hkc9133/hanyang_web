@@ -147,7 +147,7 @@ const MentorProfile = () => {
                         <ul>
                             <li><Link href="/mypage/mentor"><a>나의 멘토링현황</a></Link></li>
                             <li className={cx("on")}><Link href="/mypage/mentor/profile"><a>프로필 변경</a></Link></li>
-                            <li><a onClick={handleDownload}>위촉장 발급</a></li>
+                            <li><a href={`${client.defaults.baseURL}/mentoring/commission`}>위촉장 발급</a></li>
                         </ul>
                     </div>
                     {mentor != null && (

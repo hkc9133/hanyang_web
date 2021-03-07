@@ -37,7 +37,7 @@ const StartupProcedure = () => {
                             <div className={cx("txt_c")}>
                                 <Link href="/assets/pdf/한양대학교 학생창업자 지원 사항 안내.pdf" ><a className={cx("basic-btn04","btn-blue-bd")} target="_blank">한양대학교 학생창업 지원사항 안내서</a></Link>
                                 <Link href="/startup_counsel/student_report" ><a className={cx("basic-btn04", "btn-black-bd")}>학생창업자
-                                    신고</a></Link>
+                                    신고</a></Link>내
                             </div>
                         </>
                     )}

@@ -56,7 +56,6 @@ const Header = () => {
     },[router.pathname,user])
 
     useEffect(()=> {
-        // console.log(isLogin)
     },[isLogin])
 
 
@@ -166,9 +165,9 @@ const Header = () => {
                             <div className={cx("s_gnb")}>
                                 <ul>
                                     <li><Link href="/introduce/introduce"><a>기관 소개</a></Link></li>
-                                    <li><Link href="/introduce/infra"><a>인프라</a></Link></li>
                                     <li><Link href="/introduce/system"><a>창업지원 체계</a></Link></li>
-                                    {/*<li><Link href="/introduce"><a>협력 파트너스</a></Link></li>*/}
+                                    <li><Link href="/introduce/infra"><a>인프라</a></Link></li>
+                                    <li><Link href="/introduce/friendly"><a>창업친화적 제도</a></Link></li>
                                     <li><Link href="/board/media_report/list"><a>언론보도</a></Link></li>
                                     <li><Link href="/board/news/list"><a>뉴스레터</a></Link></li>
                                     <li><Link href="/introduce/promotion"><a>소개자료</a></Link></li>
@@ -239,7 +238,7 @@ const Header = () => {
                                 </ul>
                             </div>
                         </li>
-                        <li>
+                        <li style={{marginTop:90}}>
                             <a href="#" onClick={(e) => {e.preventDefault();handleShowMenuItem(2)}}>창업상담</a>
                             <div className={cx("s_menu","show")}>
                                 <ul>
@@ -274,7 +273,7 @@ const Header = () => {
                         </li>
                         <li>
                             <a href="#" onClick={(e) => {e.preventDefault();handleShowMenuItem(5)}}>투자연계</a>
-                            <div className={cx("s_menu","show")}>
+                            <div className={cx("s_menu","show")} style={{height:230}}>
                                 <ul>
                                     <li><Link href="/investment/ir"><a>IR/투자 안내</a></Link></li>
                                     <li><Link href="/investment/investment_partners"><a>국내외 투자파트너스</a></Link></li>
@@ -283,7 +282,7 @@ const Header = () => {
                         </li>
                         <li>
                             <a href="#" onClick={(e) => {e.preventDefault();handleShowMenuItem(6)}}>창업지원단 소개</a>
-                            <div className={cx("s_menu","show")}>
+                            <div className={cx("s_menu","show")} style={{height:230}}>
                                 <ul>
                                     <li><Link href="/introduce/introduce"><a>기관 소개</a></Link></li>
                                     <li><Link href="/introduce/infra"><a>인프라</a></Link></li>

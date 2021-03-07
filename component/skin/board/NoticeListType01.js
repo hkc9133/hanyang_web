@@ -26,9 +26,9 @@ const NoticeListType01 = ({content,pageChange,category}) => {
                     <tbody>
                     {content.list.map((item) =>{
                         return (
-                            <tr key={item.noticeId}>
+                            <tr key={item.contentId}>
                                 <td>{item.rownum}</td>
-                                <td className={cx("txt_l")}><Link href={`/introduce/notice/${item.noticeId}?${qs.stringify(router.query)}`}><a>{item.title}</a></Link></td>
+                                <td className={cx("txt_l")}><Link href={`/board/notice/view/${item.contentId}?${qs.stringify(router.query)}`}><a>{item.title}</a></Link></td>
                                 <td><span className={cx("category")} style={{borderColor:item.color,color:item.color}}>{item.categoryCodeName}</span></td>
                                 <td>{moment(item.regDate).format("YYYY.MM.DD")}</td>
                             </tr>

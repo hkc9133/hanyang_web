@@ -51,12 +51,24 @@
     -o-transition: all 0.35s ease-out;
     transition: all 0.35s ease-out;
 }
+.basic-btn05{float:right; padding:0 10px; height:30px;line-height:30px; display:inline-block; text-align:center; border-radius:5px; font-size:14px; box-sizing:border-box; vertical-align:top; font-family: 's-core-dream-medium';cursor:pointer;
+    -webkit-transition: all 0.35s ease-out;
+    -moz-transition: all 0.35s ease-out;
+    -ms-transition: all 0.35s ease-out;
+    -o-transition: all 0.35s ease-out;
+    transition: all 0.35s ease-out;
+}
+
 .btn-gray-bd{ border:1px solid #adadad;}
 .btn-blue-bg{ background-color:#4b8cf7; color:#fff;}
 .btn-blue-bd{ border:1px solid #4b8cf7; color:#4b8cf7;margin-right: 4px;}
 .btn-blue-bd:hover{background-color:#4b8cf7; color:#fff; }
 .btn-black-bd{border:1px solid #222; }
 .btn-black-bd:hover{background-color:#222; color:#fff; }
+
+.btn-red-bd{border:1px solid red; color:red}
+.btn-red-bd:hover{background-color:red; color:#fff; }
+
 
 
 
@@ -109,6 +121,14 @@
 
 .reply_box .reply_content_btn_box{margin-top:5px;}
 .reply_box .reply_content_btn_box button{margin-right: 8px;color:gray;}
+
+.btn-box06{text-align: right;margin:10px 0px;}
+.basic-btn06{background-color: #009bcb; padding:8px 18px; color:white;box-sizing: border-box;margin:3px;border-radius: 5px;}
+.basic-btn06:hover{color:white;}
+.basic-btn07{padding:8px 16px;border: 1px solid gray;box-sizing: border-box;margin:3px;border-radius: 5px;}
+.basic-btn07:hover{color:black;}
+.btn-red-bg{background-color:white; color:#FF5733; border-color: #FF5733;margin-right: 8px;}
+.btn-red-bg:hover{color:red;}
 
 @media screen and (max-width: 1024px){
     .bbs_view .topTitleArea{padding:30px 0; }

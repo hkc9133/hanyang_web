@@ -182,7 +182,7 @@ const StartupPresent = () => {
                 <div className={cx("bbs_tb_list")}>
                     <table>
                         <colgroup>
-                            <col style={{width:"5%"}}/>
+                            <col style={{width:"12%"}}/>
                             <col style={{width:"14.3%"}}/>
                             <col style={{width:"16.3%"}}/>
                             <col style={{width:"15.15%"}}/>

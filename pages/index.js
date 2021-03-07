@@ -20,7 +20,7 @@ import PopupItem from "../component/main/PopupItem";
 import client from "../lib/api/client";
 import dynamic from "next/dynamic";
 import {useRouter} from "next/router";
-import {getNoticeRanThumbnail, getThumbnail} from "../component/common/util/ThumbnailUtil";
+import {getNoticeRanThumbnail, getThumbnail, getBoardThumbnail} from "../component/common/util/ThumbnailUtil";
 
 
 const cx = classnames.bind(styles);
@@ -81,6 +81,40 @@ const onlineSliderSettings = {
 };
 
 const boardSliderSettings = {
+    dots: true,
+    infinite: false,
+    arrows: false,
+    speed: 300,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    responsive: [
+        {
+            breakpoint: 1024,
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                infinite: true,
+                dots: true,
+            }
+        },
+        {
+            breakpoint: 600,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1
+            }
+        },
+        {
+            breakpoint: 480,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+            }
+        }
+    ]
+};
+
+const hubSliderSettings = {
     dots: true,
     infinite: false,
     arrows: false,
@@ -224,7 +258,7 @@ const Index = () => {
                             </Link>
                         </li>
                         <li className={cx("icon_6")}>
-                            <Link href="/">
+                            <Link href="/introduce/friendly">
                                 <a>
                                     <span>창업친화적제도</span>
                                 </a>
@@ -268,23 +302,26 @@ const Index = () => {
             <div className={cx("main_cont_2")}>
                 <div className={`${cx("main_cont")} clfx`}>
                     <div className={cx("main_calendar")}>
-                        <h1>창업캘린더 <Link href={"/startup_info/startup_event?"}><a className={cx("all")}>전체일정 보기</a></Link></h1>
+                        <h1>창업캘린더 <Link href={"/startup_info/startup_event?"}><a className={cx("all")}>전체일정
+                            보기</a></Link></h1>
                         {mainData.calendar.length > 0 ?
-                        <Slider className="main_calendar" {...calendarSliderSettings}>
-                            {mainData.calendar.map((item, index) => (
-                                <Link href={`/startup_info/startup_event?page=1&type=L`}>
-                                    <div className={cx("list")}>
-                                        <a>
-                                            <span className={cx("day")}>{moment(item.eventDate).format("DD").toString()}</span>
-                                            <span className={cx("date")}>{moment(item.eventDate).format("YYYY.MM.DD").toString()}</span>
-                                            <p>
-                                                {item.title}
-                                            </p>
-                                        </a>
-                                    </div>
-                                </Link>
-                            ))}
-                        </Slider> : "LOADING"
+                            <Slider className="main_calendar" {...calendarSliderSettings}>
+                                {mainData.calendar.map((item, index) => (
+                                    <Link href={`/startup_info/startup_event?page=1&type=L`}>
+                                        <div className={cx("list")}>
+                                            <a>
+                                                <span
+                                                    className={cx("day")}>{moment(item.eventDate).format("DD").toString()}</span>
+                                                <span
+                                                    className={cx("date")}>{moment(item.eventDate).format("YYYY.MM.DD").toString()}</span>
+                                                <p>
+                                                    {item.title}
+                                                </p>
+                                            </a>
+                                        </div>
+                                    </Link>
+                                ))}
+                            </Slider> : "LOADING"
                         }
                     </div>
 
@@ -292,7 +329,8 @@ const Index = () => {
                         <h1>창업지원단 핫이슈</h1>
                         <ul>
                             {mainData.issue.map((item, index) =>
-                                index < 5 && <li key={item.contentId}><Link href={`/board/issue/${item.contentId}`}><a>{item.title}</a></Link></li>
+                                index < 5 && <li key={item.contentId}><Link
+                                    href={`/board/issue/view/${item.contentId}`}><a>{item.title}</a></Link></li>
                             )}
                         </ul>
                     </div>
@@ -307,7 +345,8 @@ const Index = () => {
                                                 return (
                                                     <Link href={`/board/online_content/view/${item.contentId}`}>
                                                         <a>
-                                                            <Image src={getThumbnail(item.content)} layout="fill" alt="온라인 콘텐츠"/>
+                                                            <Image src={getThumbnail(item.content)} layout="fill"
+                                                                   alt="온라인 콘텐츠"/>
                                                         </a>
                                                     </Link>
                                                 )
@@ -347,18 +386,19 @@ const Index = () => {
                                 className={`${cx("slides", {hidden: !showNotice})} main_board_list`} {...boardSliderSettings}
                                 ref={borderSlider}>
                                 {
-                                    mainData.notice.map((item,index) => {
+                                    mainData.notice.map((item, index) => {
                                         return (
                                             <div className={cx("list")} key={item.contentId}>
                                                 <div className={cx("img_area")}>
-                                                    <Link href={`/board/notice/${item.contentId}`}>
+                                                    <Link href={`/board/notice/view/${item.contentId}`}>
                                                         <a>
-                                                            <Image src={getNoticeRanThumbnail()} layout="fill" alt="main_notice_img"/>
+                                                            <Image src={getNoticeRanThumbnail()} layout="fill"
+                                                                   alt="main_notice_img"/>
                                                         </a>
                                                     </Link>
                                                 </div>
                                                 <div className={cx("txt_area")}>
-                                                    <Link href={`/board/notice/${item.contentId}`}>
+                                                    <Link href={`/board/notice/view/${item.contentId}`}>
                                                         <a>
                                                             <div className={cx("title")}>
                                                                 {item.title}
@@ -496,6 +536,62 @@ const Index = () => {
                     </ul>
                 </div>
             </div>
+
+            <div className={cx("main_cont_3")}>
+                <div className={cx("main_cont")}>
+                    <div className={cx("main_tab")}>
+                        <ul>
+                            <li className={cx("on")}>
+                                <button type="button">허브 네트워크</button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div className={cx("main_board_list", "main_tabCont")}>
+                        {/*허브*/}
+                        {mainData.hub.length > 0 ? (
+                            <Slider
+                                className={`${cx("slides")} main_board_list`} {...hubSliderSettings}>
+                                {
+                                    mainData.hub.map((item, index) => {
+                                        return (
+                                            <div className={cx("list")} key={item.contentId}>
+                                                <div className={cx("img_area")}>
+                                                    <Link href={`/board/hub/view/${item.contentId}`}>
+                                                        <a>
+                                                            <Image src={getBoardThumbnail(item.content)} layout="fill"
+                                                                   alt="main_notice_img"/>
+                                                        </a>
+                                                    </Link>
+                                                </div>
+                                                <div className={cx("txt_area")}>
+                                                    <Link href={`/board/hub/view/${item.contentId}`}>
+                                                        <a>
+                                                            <div className={cx("title")}>
+                                                                {item.title}
+                                                            </div>
+                                                            <div className={cx("txt")}>
+                                                                <div dangerouslySetInnerHTML={{__html: item.content}}/>
+                                                            </div>
+                                                            <span
+                                                                className={cx("date")}>{moment(item.regDate).format("YYYY년 MM월 DD일")}</span>
+                                                        </a>
+                                                    </Link>
+                                                </div>
+                                            </div>
+
+                                        )
+                                    })
+                                }
+                            </Slider>
+                        ) : "LOADING"}
+                        <div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
 
             <div className={cx("main_logo_rolling")}>
                 <div className={cx("main_cont")}>
