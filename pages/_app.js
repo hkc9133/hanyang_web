@@ -1,5 +1,6 @@
-import 'react-app-polyfill/ie9';
+import "@babel/polyfill";
 import 'react-app-polyfill/ie11';
+import 'react-app-polyfill/stable';
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector, useStore} from "react-redux";
 import wrapper from '../store/configureStore';
@@ -8,7 +9,6 @@ import client, {port} from '../lib/api/client'
 import {registerLocale} from "react-datepicker";
 import ko from 'date-fns/locale/ko';
 import "react-big-calendar/lib/css/react-big-calendar.css";
-// import '../public/assets/styles/antd.less'
 registerLocale('ko', ko)
 import AuthFail from "./user/auth_fail";
 import AdminHeader from "../component/layout/AdminHeader";
@@ -32,6 +32,8 @@ import ScrollToTop from "../component/common/ScrollToTop";
 import GlobalStyles from '../public/assets/styles/global'
 import AdminGlobalStyles from '../public/assets/styles/admin_global'
 import {getMainData, getMediaList} from "../store/main/main";
+
+// import Favicon from '../public/assets/image/favicon.ico';
 
 // "dev": "NODE_ENV='development' node server.js",
 
@@ -124,6 +126,11 @@ const _App = ({Component, pageProps}) => {
                                 <ComponentToRender {...pageProps} />
                             </div>
                             <Footer/>
+                            <div className="kakao_menu">
+                                <a href="https://pf.kakao.com/_fWsJd/chat" target="_blank">
+                                    <img src="/assets/image/kakao_counsel.png" alt="카카오톡 이미지"/>
+                                </a>
+                            </div>
                         </>
                         :
                         <ComponentToRender {...pageProps} />

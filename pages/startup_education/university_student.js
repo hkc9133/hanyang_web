@@ -205,7 +205,9 @@ const UniversityStudent = () => {
                                                alt="university_student_img"/> : <Image src="/assets/image/university_student_img.jpg" width={920} height={394}
                                                                                        alt="university_student_img"/>}
                         </div>
-                        <span className={cx("f-16", "c-blue")}>※ 자기소개서 다운로드<a style={{marginLeft:8}}><Image src="/assets/image/icon_download.gif" width={22} height={26} alt="다운로드"/></a></span>
+                        <span className={cx("f-16", "c-blue")}>※ 자기소개서 다운로드
+                            <Link href="/assets/pdf/[양식]자기소개서_창업융합전공.hwp"><a target="_blank" style={{marginLeft:8}} download><Image src="/assets/image/icon_download.gif" width={22} height={26} alt="다운로드"/></a></Link>
+                        </span>
                     </div>
 
                     <div className={cx("txt_style_1")}>
@@ -357,7 +359,7 @@ const UniversityStudent = () => {
                                             5월, 11월
                                         </li>
                                     </ul>
-                                    <span className={cx("f-16", "c-blue")}>※ 운영 및 신청방법 매뉴얼 참고<a style={{marginLeft:8}}><Image src="/assets/image/icon_download.gif" width={22} height={26} alt="다운로드"/></a></span>
+                                    <span className={cx("f-16", "c-blue")}>※ 운영 및 신청방법 매뉴얼 참고<Link href="/assets/pdf/2021-1 마이크로전공 운영 및 학생신청 매뉴얼.hwp"><a style={{marginLeft:8}} target="_blank" download><Image src="/assets/image/icon_download.gif" width={22} height={26} alt="다운로드"/></a></Link></span>
                                 </div>
                             </div>
                         </div>

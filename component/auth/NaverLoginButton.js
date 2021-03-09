@@ -3,6 +3,7 @@ import NaverLogin from 'react-naver-login';
 import {clientPort, url} from "../../lib/api/client";
 
 const NaverLoginButton = ({handleSocialLogin,onFormCheck}) => {
+
     return (
         <NaverLogin
             clientId="X1l09clZ_fftNuaDbjIz"

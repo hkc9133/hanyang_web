@@ -13,6 +13,10 @@ const [LOGOUT,LOGOUT_SUCCESS, LOGOUT_FAILURE] = createRequestActionTypes('auth/L
 const [SIGNUP,SIGNUP_SUCCESS, SIGNUP_FAILURE] = createRequestActionTypes('auth/SIGNUP')
 const [LOGIN,LOGIN_SUCCESS, LOGIN_FAILURE] = createRequestActionTypes('auth/LOGIN')
 const [AUTH_CHECK,AUTH_CHECK_SUCCESS, AUTH_CHECK_FAILURE] = createRequestActionTypes('auth/AUTH_CHECK')
+
+const [INIT_HANYANG,INIT_HANYANG_SUCCESS, INIT_HANYANG_FAILURE] = createRequestActionTypes('auth/INIT_HANYANG')
+const [CHECK_HANYANG,CHECK_HANYANG_SUCCESS, CHECK_HANYANG_FAILURE] = createRequestActionTypes('auth/CHECK_HANYANG')
+
 const INITIALIZE = 'auth/INITIALIZE';
 const INITIALIZE_FORM  = 'auth/INITIALIZE_FORM';
 
@@ -25,6 +29,10 @@ export const authCheck = createAction(AUTH_CHECK);
 export const logout = createAction(LOGOUT);
 export const signup = createAction(SIGNUP, (userInfo)=>(userInfo));
 export const login = createAction(LOGIN, (loginInfo) => (loginInfo))
+
+export const initHanyang = createAction(INIT_HANYANG)
+export const checkHanyang = createAction(CHECK_HANYANG, code => code)
+
 export const initialize = createAction(INITIALIZE);
 export const initializeForm = createAction(INITIALIZE_FORM, from => from);
 
@@ -40,6 +48,9 @@ const authCheckSaga = createRequestSaga(AUTH_CHECK, authAPI.authCheck);
 const signupSaga = createRequestSaga(SIGNUP, authAPI.signup);
 const loginSaga = createRequestSaga(LOGIN, authAPI.socialLogin)
 
+const initHanyangSaga = createRequestSaga(INIT_HANYANG, authAPI.initHanyang)
+const checkHanyangSaga = createRequestSaga(CHECK_HANYANG, authAPI.checkHanyang)
+
 export function* authSaga(){
 
     yield takeLatest(SOCIAL_LOGIN, socialLoginSaga);
@@ -49,6 +60,10 @@ export function* authSaga(){
     yield takeLatest(LOGOUT, logoutSaga);
     yield takeLatest(SIGNUP, signupSaga);
     yield takeLatest(LOGIN, loginSaga);
+
+    yield takeLatest(INIT_HANYANG, initHanyangSaga);
+    yield takeLatest(CHECK_HANYANG, checkHanyangSaga);
+
 }
 
 const initialState = {
@@ -67,6 +82,7 @@ const initialState = {
         result:null,
         error:null
     },
+    initHanyang:null,
     loginCode:{
         code:null
     },
@@ -183,6 +199,35 @@ const auth = handleActions(
                 draft.signup.result = false;
                 draft.signup.error = error.response.data.data;
             }),
+        [INIT_HANYANG_SUCCESS]: (state, {payload: response}) =>
+            produce(state, draft => {
+                draft.initHanyang = response.data;
+            }),
+        [INIT_HANYANG_FAILURE]: (state, {payload: error}) =>
+            produce(state, draft => {
+                draft.initHanyang = null;
+            }),
+        [CHECK_HANYANG_SUCCESS]: (state, {payload: response}) =>
+            produce(state, draft => {
+                draft.user.login = response.code == 200 ? true : false
+                draft.user.info = response.data.user != null ? response.data.user : response.data;
+                draft.user.role = response.code == 200 && response.data.user.role;
+                draft.loginCode.code = response.code;
+                draft.login.result = true;
+                draft.login.error = null;
+                // draft.signup.result = response.code == 401 ? response.data.isLogin : null
+                // draft.signup.error = null
+            }),
+        [CHECK_HANYANG_FAILURE]: (state, {payload: error}) =>
+            produce(state, draft => {
+                draft.user.login = false;
+                draft.login.result = false;
+                draft.loginCode.code = error.response.code;
+                draft.login.error = error.response.data;
+                // draft.signup.result = null
+                // draft.signup.error = 'error'
+            }),
+
         [INITIALIZE]: (state, {payload: form}) => ({
             ...initialState
         }),

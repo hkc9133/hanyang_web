@@ -89,7 +89,7 @@ const PrivacyPolicy = () => {
                             </thead>
                             <tbody>
                             <tr>
-                                <td>주식회사 호기</td>
+                                <td>주식회사 에네이</td>
                                 <td>홈페이지 유지보수</td>
                                 <td>처리목적 달성 시 또는 <br/>위탁계약 종료 시 까지</td>
                             </tr>
@@ -199,8 +199,8 @@ const PrivacyPolicy = () => {
                             <tr>
                                 <td>위탁업체</td>
                                 <td></td>
-                                <td>하준호</td>
-                                <td>전화 : 010-2750-0026<br/>메일 : mrhajh@hogi.co.kr</td>
+                                <td>전재혁</td>
+                                <td>전화 : 0506-191-0025<br/>메일 : accounts@eney.co.kr</td>
                             </tr>
                             </tbody>
                         </table>

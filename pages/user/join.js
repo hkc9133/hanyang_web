@@ -13,6 +13,7 @@ import Modal from "../../component/common/Modal";
 import SignUpInfo from "../../component/auth/SignUpInfo";
 import JoinType from "../../component/auth/JoinType";
 import {Checkbox, Form} from "antd";
+import HanyangLoginButton from "../../component/auth/HanyangLoginButton";
 
 const cx = classnames.bind(styles);
 
@@ -52,10 +53,10 @@ const Join = () => {
             // router.push('/')
         }
 
-    }, [signup, signUpLoading])
+    }, [signup, signUpLoading,user])
 
     useEffect(() => {
-        if (user.login == false && loginCode == 401) {
+        if ((user.login == false && loginCode == 401) || (user.login == false && user.info != null && user.info.type == 'HANYANG' && user.info.isLogin == true)) {
             setShowJoinInfoModal(true);
         }
         else if(user.login == true && loginCode == 200){
@@ -287,10 +288,8 @@ const Join = () => {
                     <div className={cx("sns_login")}>
                         <h2 className={cx("title_style_1")}>SNS 계정가입</h2>
                         <ul className={cx("clfx")}>
-                            <li className={cx("")}>
-                                <a href="#">
-                                    <span>한양인 <br/>계정가입</span>
-                                </a>
+                            <li className={cx("icon_4")}>
+                                <HanyangLoginButton  onFormCheck={onFormCheck}/>
                             </li>
                             <li className={cx("icon_1")}>
                                 <NaverLoginButton handleSocialLogin={handleSocialLogin} onFormCheck={onFormCheck}/>

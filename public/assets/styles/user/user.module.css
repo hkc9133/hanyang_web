@@ -24,7 +24,7 @@
     transition: all 0.35s ease-out;
 }
 .login_wrap .login_join .btn a:hover{background-color:#3d89f9; color:#fff; }
-.sns_login li{float:left; margin-left:4.77%; width:21.42%;}
+.sns_login li{float:left; margin-left:2%; width:17.9%;}
 .sns_login li:first-child{margin-left:0; }
 .sns_login li a{padding:50px 0 10px; text-align:center; width:100%; display:block; border:1px solid #ddd; border-radius:5px; }
 .sns_login li.icon_1 a{background:url(../../image/login_sns_1.gif) no-repeat center 14px;}
