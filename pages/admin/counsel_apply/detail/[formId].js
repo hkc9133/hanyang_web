@@ -52,6 +52,7 @@ const CounselApplyFormDetail = () => {
             setApplyValue({
                 ...counselApply.counselApply,
                 files:counselApply.files,
+                answerFiles:counselApply.answerFiles
             })
         }
     }, [counselApply.counselApply])
@@ -154,14 +155,6 @@ const CounselApplyFormDetail = () => {
                 <section className={cx("container")}>
                     <h1 className={cx("top_title")}>상담 신청서</h1>
                     <div className={cx("adm_container")}>
-                        {/*<div className={`${cx("mentor_info","box")} clfx `}>*/}
-                        {/*    <ul className={"clfx"}>*/}
-                        {/*        <li>*/}
-                        {/*            <span className={cx("title","icon_1")}>{mentorValue.mentorName}</span>*/}
-                        {/*        </li>*/}
-                        {/*    </ul>*/}
-                        {/*</div>*/}
-
                         <p className={cx("txt_style_1")}>
                             {/*회원자료 삭제 시 다른 회원이 기존 회원아이디를 사용하지 못하도록 회원아이디, 이름, 닉네임은 삭제하지 않고 영구*/}
                             {/*보관합니다.*/}
@@ -199,7 +192,7 @@ const CounselApplyFormDetail = () => {
                                                         담당 멘토
                                                     </th>
                                                     <td>
-                                                        {applyValue.applyStatus == "APPLY" &&
+                                                        {(applyValue.applyStatus == "APPLY" ||  applyValue.applyStatus == "RETURN") &&
                                                         <>
                                                             <MentorAssignButton/>
                                                         </>
@@ -213,7 +206,9 @@ const CounselApplyFormDetail = () => {
                                                         {applyValue.assignMentorId != null && applyValue.mentorName && (
                                                             <>
                                                                 <Link href={`/admin/mentor/detail/${applyValue.assignMentorId}`}><a>{applyValue.mentorName}</a></Link>
-                                                                <button className={cx("basic-btn03")}  onClick={() =>{setApplyValue({...applyValue,assignMentorId:null,assignMentorName:null,applyStatus:'APPLY'})}}>배정 취소</button>
+                                                                {applyValue.applyStatus != "COMPLETED" && (
+                                                                    <button className={cx("basic-btn03")}  onClick={() =>{setApplyValue({...applyValue,assignMentorId:null,assignMentorName:null,applyStatus:'APPLY'})}}>배정 취소</button>
+                                                                )}
                                                             </>
                                                         )}
                                                     </td>
@@ -283,9 +278,9 @@ const CounselApplyFormDetail = () => {
                                                     <th>첨부파일</th>
                                                     <td colSpan={5}>
                                                         {
-                                                            applyValue.files.length > 0 && (
+                                                            applyValue.files != null && applyValue.files.length > 0 && (
                                                                     <Upload
-                                                                        listType="picture-card"
+                                                                        listType="picture"
                                                                         fileList={applyValue.files.map((file) => {
                                                                             return {
                                                                                 uid: file.fileName,
@@ -363,94 +358,99 @@ const CounselApplyFormDetail = () => {
                                 }
                             </div>
                         </div>
-                        <div className={cx("admin_cont")}>
-                            <h2 className={cx("title_style_1")}><span>멘토 답변</span></h2>
-                            <div className={cx("tb_style_2", "apply_form")}>
-                                <>
-                                    <table>
-                                        <colgroup>
-                                            <col style={{width: "20%"}}/>
-                                            <col style={{width: "20%"}}/>
-                                            <col style={{width: "20%"}}/>
-                                            <col/>
-                                        </colgroup>
-                                        <thead>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <th>답변 등록일</th>
-                                            <td>
-                                                {moment(applyValue.answerDate).format("YYYY년 MM월 DD일 hh:mm")}
-                                            </td>
-                                            <th>
-                                                일시
-                                            </th>
-                                            <td>
-                                                {`${moment(applyValue.start).format("YYYY년 MM월 DD일 hh")} ~ ${moment(applyValue.end).format("YYYY년 MM월 DD일 hh")}`}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>멘토링 방법</th>
-                                            <td colSpan={1}>
-                                                {counselApply.wayItemList.map((item) =>(
-                                                    <li key={item.itemId}>{item.item}</li>
-                                                ))}
-                                            </td>
-                                            <th>
-                                                멘토링 장소
-                                            </th>
-                                            <td colSpan={1}>
-                                                {applyValue.place}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>상담 내용</th>
-                                            <td colSpan={5}>
-                                                <div className={"ql-editor"} dangerouslySetInnerHTML={{__html: applyValue.answer}}/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>첨부파일</th>
-                                            <td colSpan={5}>
-                                                {
-                                                    counselApply.answerFiles.length > 0 && (
-                                                        <Upload
-                                                            listType="picture-card"
-                                                            fileList={counselApply.answerFiles.map((file) => {
-                                                                return {
-                                                                    uid: file.fileName,
-                                                                    name: file.fileOriginName,
-                                                                    status: 'done',
-                                                                    fileId: file.fileId
-                                                                }
-                                                            })}
-                                                            showUploadList={{
-                                                                showPreviewIcon: false,
-                                                                showRemoveIcon: false,
-                                                                showDownloadIcon: true
-                                                            }}
-                                                            onDownload={handleFileDownload}
-                                                        >
-                                                        </Upload>
-                                                    )
-                                                }
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                    <div className={cx("btn-box01")}>
-                                        <button className={cx("basic-btn02", "btn-gray-bg")} onClick={() => {
-                                            router.back()
-                                        }}>뒤로가기
-                                        </button>
-                                        <button className={cx("basic-btn02", "btn-gray-bd2")} onClick={() => {
-                                            saveApply()
-                                        }}>저장
-                                        </button>
-                                    </div>
-                                </>
+
+                            <div className={cx("admin_cont")}>
+                                <h2 className={cx("title_style_1")}><span>멘토 답변</span></h2>
+                                {applyValue.applyStatus != "APPLY" &&  applyValue.applyStatus != "RETURN" && applyValue.applyStatus != "ASSIGN"  && (
+                                <div className={cx("tb_style_2", "apply_form")}>
+                                    <>
+                                        <table>
+                                            <colgroup>
+                                                <col style={{width: "20%"}}/>
+                                                <col style={{width: "20%"}}/>
+                                                <col style={{width: "20%"}}/>
+                                                <col/>
+                                            </colgroup>
+                                            <thead>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <th>답변 등록일</th>
+                                                <td>
+                                                    {moment(applyValue.answerDate).format("YYYY년 MM월 DD일 hh:mm")}
+                                                </td>
+                                                <th>
+                                                    일시
+                                                </th>
+                                                <td>
+                                                    {`${moment(applyValue.start).format("YYYY년 MM월 DD일 hh")} ~ ${moment(applyValue.end).format("YYYY년 MM월 DD일 hh")}`}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>멘토링 방법</th>
+                                                <td colSpan={1}>
+                                                    {applyValue.wayItemList.map((item) =>(
+                                                        <li key={item.itemId}>{item.item}</li>
+                                                    ))}
+                                                </td>
+                                                <th>
+                                                    멘토링 장소
+                                                </th>
+                                                <td colSpan={1}>
+                                                    {applyValue.place}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>상담 내용</th>
+                                                <td colSpan={5}>
+                                                    <div className={"ql-editor"} dangerouslySetInnerHTML={{__html: applyValue.answer}}/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>멘토일지</th>
+                                                <td colSpan={5}>
+                                                    {
+                                                        applyValue.answerFiles != null && applyValue.answerFiles.length > 0 && (
+                                                            <Upload
+                                                                listType="picture"
+                                                                fileList={applyValue.answerFiles.map((file) => {
+                                                                    return {
+                                                                        uid: file.fileName,
+                                                                        name: file.fileOriginName,
+                                                                        status: 'done',
+                                                                        fileId: file.fileId
+                                                                    }
+                                                                })}
+                                                                showUploadList={{
+                                                                    showPreviewIcon: false,
+                                                                    showRemoveIcon: false,
+                                                                    showDownloadIcon: true
+                                                                }}
+                                                                onDownload={handleFileDownload}
+                                                            >
+                                                            </Upload>
+                                                        )
+                                                    }
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </>
+                                </div>
+                                )}
+                                <div className={cx("btn-box01")}>
+                                    <button className={cx("basic-btn02", "btn-gray-bg")} onClick={() => {
+                                        router.back()
+                                    }}>뒤로가기
+                                    </button>
+                                    <button className={cx("basic-btn02", "btn-gray-bd2")} onClick={() => {
+                                        saveApply()
+                                    }}>저장
+                                    </button>
+                                </div>
                             </div>
-                        </div>
+
                     </div>
                 </section>
             )}

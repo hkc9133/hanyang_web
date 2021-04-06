@@ -33,6 +33,11 @@ const Edit = () => {
         categoryId:"",
         subName01:"",
         subName02:"",
+        subName03:"",
+        subName04:"",
+        subName05:"",
+        subName06:"",
+        subName07:"",
     })
     const [categoryValue, setCategoryValue] = useState(null)
     const [categoryCodeValue, setCategoryCodeValue] = useState(null)
@@ -197,6 +202,36 @@ const Edit = () => {
                                     <th>서브 2</th>
                                     <td>
                                         <input className={cx("txt")} type="text" name="subName02" value={boardValue.subName02} onChange={(e)=>{changeBoardValue(e)}}/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>서브 3</th>
+                                    <td>
+                                        <input className={cx("txt")} type="text" name="subName03" value={boardValue.subName03} onChange={(e)=>{changeBoardValue(e)}}/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>서브 4</th>
+                                    <td>
+                                        <input className={cx("txt")} type="text" name="subName04" value={boardValue.subName04} onChange={(e)=>{changeBoardValue(e)}}/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>서브 5</th>
+                                    <td>
+                                        <input className={cx("txt")} type="text" name="subName05" value={boardValue.subName05} onChange={(e)=>{changeBoardValue(e)}}/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>서브 6</th>
+                                    <td>
+                                        <input className={cx("txt")} type="text" name="subName06" value={boardValue.subName06} onChange={(e)=>{changeBoardValue(e)}}/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>서브 7</th>
+                                    <td>
+                                        <input className={cx("txt")} type="text" name="subName07" value={boardValue.subName07} onChange={(e)=>{changeBoardValue(e)}}/>
                                     </td>
                                 </tr>
                                 </tbody>

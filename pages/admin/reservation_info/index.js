@@ -200,26 +200,26 @@ const ReservationInfo = () => {
                                 <strong>{total}</strong>
                                 <span>건</span>
                             </li>
-                            <li>
-                                <span>대기</span>
-                                <strong>{totalCount.APPLY != null ? totalCount.APPLY : 0}</strong>
-                                <span>건</span>
-                            </li>
+                            {/*<li style={{color: 'red'}}>*/}
+                            {/*    <span>대기</span>*/}
+                            {/*    <strong>{totalCount.APPLY != null ? totalCount.APPLY : 0}</strong>*/}
+                            {/*    <span>건</span>*/}
+                            {/*</li>*/}
                             <li>
                                 <span>완료</span>
                                 <strong>{totalCount.ACCEPT != null ? totalCount.ACCEPT : 0}</strong>
                                 <span>건</span>
                             </li>
-                            <li>
-                                <span>반려</span>
-                                <strong>{totalCount.RETURN != null ? totalCount.RETURN : 0}</strong>
-                                <span>건</span>
-                            </li>
-                            <li>
-                                <span>취소</span>
-                                <strong>{totalCount.CANCEL != null ? totalCount.CANCEL : 0}</strong>
-                                <span>건</span>
-                            </li>
+                            {/*<li>*/}
+                            {/*    <span>반려</span>*/}
+                            {/*    <strong>{totalCount.RETURN != null ? totalCount.RETURN : 0}</strong>*/}
+                            {/*    <span>건</span>*/}
+                            {/*</li>*/}
+                            {/*<li>*/}
+                            {/*    <span>취소</span>*/}
+                            {/*    <strong>{totalCount.CANCEL != null ? totalCount.CANCEL : 0}</strong>*/}
+                            {/*    <span>건</span>*/}
+                            {/*</li>*/}
                         </ul>
                     )}
                 </div>

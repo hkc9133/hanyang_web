@@ -5,6 +5,12 @@ import classnames from "classnames/bind"
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
 import {getStudentReportList, initialize} from "../../../store/studentReport/studentReport";
+import {
+    BrowserView,
+    MobileView,
+    isBrowser,
+    isMobile
+} from "react-device-detect";
 
 import moment from "moment";
 import Pagination from "../../../component/common/Pagination";
@@ -44,12 +50,12 @@ const StudentReportManagePage = () => {
 
                         <div className={cx("tab_style_2")}>
                             <ul>
-                                <li><Link href="/mypage/mentee"><a>멘토링 현황</a></Link></li>
+                                <li><Link href="/mypage/mentee"><a>창업상담 현황</a></Link></li>
                                 <li className={cx("on")}><Link href="/mypage/mentee/student_report"><a>학생창업신고 현황</a></Link></li>
                             </ul>
                         </div>
 
-                        <h2>나의 멘토링 현황</h2>
+                        <h2>학생창업신고 현황</h2>
                         <ul className={cx("current_situation")}>
                             <li>
                                 <span className={cx("title")}>신청건수</span>
@@ -58,7 +64,7 @@ const StudentReportManagePage = () => {
                         </ul>
                         <div className={cx("th_title")}>
                             <ul>
-                                <li className={cx("w_1")}>NO</li>
+                                <li className={cx("w_1")}>번호</li>
                                 <li className={cx("w_1")}>기업명</li>
                                 <li className={cx("w_1")}>사업자 유형</li>
                                 <li className={cx("w_1")}>연락처</li>
@@ -77,8 +83,12 @@ const StudentReportManagePage = () => {
                                                 <li className={cx("w_1")}>{item.rownum}</li>
                                                 <li className={cx("w_1")}>{item.companyName}</li>
                                                 <li className={cx("w_1")}>{item.companyKind}</li>
-                                                <li className={cx("w_1")}>{item.studentPhoneNum}</li>
-                                                <li className={cx("w_1")}>{item.studentEmail}</li>
+                                                {!isMobile && (
+                                                    <>
+                                                        <li className={cx("w_1")}>{item.studentPhoneNum}</li>
+                                                        <li className={cx("w_1")}>{item.studentEmail}</li>
+                                                    </>
+                                                )}
                                                 <li className={cx("w_1")}>{item.createDate}</li>
                                                 <li className={cx("w_1")}>{moment(item.regDate).format("YYYY-MM-DD")}</li>
                                             </ul>

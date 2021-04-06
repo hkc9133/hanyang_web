@@ -9,7 +9,7 @@ import {
     updateBoardContent
 } from "../../../../../../store/board/adminBoard";
 import {END} from "redux-saga";
-import {Checkbox, Form, Input, Select, Tag, Upload,Modal} from "antd";
+import {Checkbox, Form, Input, Select, Tag, Upload, Modal, DatePicker} from "antd";
 // import Modal from "../../../../../../component/common/Modal";
 import {useRouter} from "next/router";
 import {useDispatch, useSelector} from "react-redux";
@@ -18,12 +18,17 @@ import styles from '../.././../../../../public/assets/styles/admin/board/board.m
 import classnames from "classnames/bind"
 import dynamic from "next/dynamic";
 import {fileDownload} from "../../../../../../store/file/file";
-const QuillEditor = dynamic(() => import("../../../../../../component/common/QuillEditor"), {
+import { Button } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
+
+const Editor = dynamic(() => import("../../../../../../component/common/Editor"), {
     ssr: false,
     loading: () => <p>Loading ...</p>,
 });
 const { Option } = Select;
 const cx = classnames.bind(styles);
+import moment from 'moment';
+import locale from "antd/lib/date-picker/locale/ko_KR";
 
 export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
 
@@ -44,12 +49,16 @@ const ContentEditView = () => {
     const [writeInfo, setWriteInfo] = useState({
         title: "",
         attachFiles:[],
+        thumbFiles:[],
+        thumb:[],
         removeFiles:[],
-        categoryCodeId:"",
+        categoryCodeId:null,
         isNotice:false
     })
+    const [editor, setEditor] = useState(null)
     const [content,setContent] = useState("");
     const [newFileList,setNewFileList] = useState([]);
+    const [newThumbList,setNewThumbList] = useState([]);
     const [updateResultModal, setUpdateResultModal] = useState(false)
 
     const {board,view,update,user} = useSelector(({adminBoard,auth,loading})=> ({
@@ -75,11 +84,20 @@ const ContentEditView = () => {
                 categoryCodeId:view.content.categoryCodeId,
                 isNotice: view.content.isNotice,
                 attachFiles: view.files,
+                thumbFiles: view.thumb,
+                regDate:moment(view.content.regDate),
+                sub01:view.content.sub01,
+                sub02:view.content.sub02,
+                sub03:view.content.sub03,
+                sub04:view.content.sub04,
+                sub05:view.content.sub05,
+                sub06:view.content.sub06,
+                sub07:view.content.sub07,
             })
             // form.setFieldsValue({
             //     categoryCodeId:view.content.categoryCodeId
             // })
-            setContent(view.content.content)
+            // setContent(view.content.content)
         }
 
     },[view])
@@ -110,6 +128,10 @@ const ContentEditView = () => {
         setNewFileList(fileList)
     },[newFileList])
 
+    const changeThumb = useCallback(({fileList}) =>{
+        setNewThumbList(fileList)
+    },[newThumbList])
+
     const handlePreview = useCallback((file) =>{
         const fileURL = URL.createObjectURL(file.originFileObj);
         window.open(fileURL);
@@ -121,12 +143,28 @@ const ContentEditView = () => {
         }
     }, [])
 
+    const changeRegDate = (e) =>{
+        setWriteInfo({
+            ...writeInfo,
+            regDate:e,
+        })
+    }
+
+
 
     const handleFileRemove = (file) => {
         setWriteInfo({
             ...writeInfo,
             removeFiles: writeInfo.removeFiles.concat(file.fileId),
             attachFiles: writeInfo.attachFiles.filter((item)=> {return item.fileId != file.fileId})
+        })
+    }
+
+    const handleThumbRemove = (file) => {
+        setWriteInfo({
+            ...writeInfo,
+            removeFiles: writeInfo.removeFiles.concat(file.fileId),
+            thumbFiles: writeInfo.thumbFiles.filter((item)=> {return item.fileId != file.fileId})
         })
     }
 
@@ -147,19 +185,22 @@ const ContentEditView = () => {
             ...writeInfo,
             // ...form.getFieldsValue(),
             contentId:router.query.contentId,
-            content:content,
+            content:editor.getData(),
             files:newFileList.map((item) => (item.originFileObj)),
-            boardEnName:router.query.boardName
+            thumb:newThumbList.map((item) => (item.originFileObj)),
+            boardEnName:router.query.boardName,
+            regDate:writeInfo.regDate.format("YYYY-MM-DD HH:mm").toString()
+        }
+        console.log(data)
+        if(data.categoryCodeId == null){
+            delete data.categoryCodeId
         }
         dispatch(updateBoardContent(data));
     }
 
 
     const uploadButton = (
-        <div>
-            <PlusOutlined />
-            <div style={{ marginTop: 8 }}>Upload</div>
-        </div>
+        <Button style={{marginTop:7}} className={"upload"} icon={<UploadOutlined />}>업로드</Button>
     );
 
     return (
@@ -196,31 +237,18 @@ const ContentEditView = () => {
                                 <thead>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <th>분류</th>
-                                    <td>
-                                        <select name='categoryCodeId' className={cx("cate")} onChange={changeWriteInfo} value={writeInfo.categoryCodeId}>
-                                            {board.categoryCode.map((item) => {
-                                                return <option key={item.categoryCodeId} value={item.categoryCodeId}>{item.categoryCodeName}</option>
-                                            })}
-                                        </select>
-                                        {/*<Form.Item*/}
-                                        {/*    name="categoryCodeId"*/}
-                                        {/*    rules={[*/}
-                                        {/*        {*/}
-                                        {/*            required: true,*/}
-                                        {/*            message: '카테고리',*/}
-                                        {/*        },*/}
-                                        {/*    ]}*/}
-                                        {/*>*/}
-                                        {/*    <Select size='large' name='categoryCodeId' className={cx("cate")} onChange={changeCategory}>*/}
-                                        {/*        {board.categoryCode.map((item) => {*/}
-                                        {/*            return <Option key={item.categoryCodeId} value={item.categoryCodeId}>{item.categoryCodeName}</Option>*/}
-                                        {/*        })}*/}
-                                        {/*    </Select>*/}
-                                        {/*</Form.Item>*/}
-                                    </td>
-                                </tr>
+                                {board.board.categoryId != null &&(
+                                    <tr>
+                                        <th>분류</th>
+                                        <td>
+                                            <select name='categoryCodeId' className={cx("cate")} onChange={changeWriteInfo} value={writeInfo.categoryCodeId}>
+                                                {board.categoryCode.map((item) => {
+                                                    return <option key={item.categoryCodeId} value={item.categoryCodeId}>{item.categoryCodeName}</option>
+                                                })}
+                                            </select>
+                                        </td>
+                                    </tr>
+                                )}
                                 <tr>
                                     <th>공지</th>
                                     <td>
@@ -229,6 +257,12 @@ const ContentEditView = () => {
                                         {/*    <Checkbox checked={writeInfo.isNotice} onChange={(e) =>{setWriteInfo({...writeInfo,isNotice: e.target.checked})}}/>*/}
                                         {/*</Form.Item>*/}
                                         <Checkbox checked={writeInfo.isNotice} onChange={(e) =>{setWriteInfo({...writeInfo,isNotice: e.target.checked})}}/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>등록일</th>
+                                    <td>
+                                        <DatePicker locale={locale} showTime format={"YYYY-MM-DD HH:ss"} onOk={changeRegDate} value={writeInfo.regDate} />
                                     </td>
                                 </tr>
                                 <tr>
@@ -249,17 +283,115 @@ const ContentEditView = () => {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>내용</th>
+                                    <th>썸네일</th>
                                     <td>
-                                        <QuillEditor Contents={content} QuillChange={setContent}/>
+                                        <Upload
+                                            listType="picture"
+                                            fileList={writeInfo.thumbFiles.map((file) => {
+                                                return {
+                                                    uid: file.fileName,
+                                                    name: file.fileOriginName,
+                                                    fileOriginName:file.fileOriginName,
+                                                    status: 'done',
+                                                    fileId: file.fileId
+                                                }
+                                            })}
+                                            showUploadList={{
+                                                showPreviewIcon: true,
+                                                showRemoveIcon: true,
+                                                showDownloadIcon: true
+                                            }}
+                                            onPreview={handlePreview}
+                                            onDownload={handleFileDownload}
+                                            onRemove={handleThumbRemove}
+                                        />
+                                        <Upload
+                                            listType="picture"
+                                            fileList={newThumbList}
+                                            showUploadList={{
+                                                showPreviewIcon: true,
+                                                showRemoveIcon: true,
+                                                showDownloadIcon: false
+                                            }}
+                                            onPreview={handlePreview}
+                                            onChange={changeThumb}
+                                        >
+                                            {(writeInfo.thumbFiles.length >= 1 || newThumbList.length >= 1) ? null : uploadButton}
+                                        </Upload>
+                                        <span className={cx("title")}>첨부파일 (10MB 미만)</span>
                                     </td>
                                 </tr>
+                                {board.board.subName01 != "" && board.board.subName01 != null &&(
+                                    <tr>
+                                        <th>{board.board.subName01}</th>
+                                        <td>
+                                            <input type="text" placeholder={""} name="sub01" value={writeInfo.sub01 == null ? "" : writeInfo.sub01} onChange={changeWriteInfo}/>
+                                        </td>
+                                    </tr>
+                                )}
+                                {board.board.subName02 != "" && board.board.subName02 != null &&(
+                                    <tr>
+                                        <th>{board.board.subName02}</th>
+                                        <td>
+                                            <input type="text" placeholder={""} name="sub02" value={writeInfo.sub02 == null ? "" : writeInfo.sub02} onChange={changeWriteInfo}/>
+                                        </td>
+                                    </tr>
+                                )}
+                                {board.board.subName03 != "" && board.board.subName03 != null &&(
+                                    <tr>
+                                        <th>{board.board.subName03}</th>
+                                        <td>
+                                            <input type="text" placeholder={""} name="sub03" value={writeInfo.sub03 == null ? "" : writeInfo.sub03} onChange={changeWriteInfo}/>
+                                        </td>
+                                    </tr>
+                                )}
+                                {board.board.subName04 != "" && board.board.subName04 != null &&(
+                                    <tr>
+                                        <th>{board.board.subName04}</th>
+                                        <td>
+                                            <input type="text" placeholder={""} name="sub04" value={writeInfo.sub04 == null ? "" : writeInfo.sub04} onChange={changeWriteInfo}/>
+                                        </td>
+                                    </tr>
+                                )}
+                                {board.board.subName05 != "" && board.board.subName05 != null &&(
+                                    <tr>
+                                        <th>{board.board.subName05}</th>
+                                        <td>
+                                            <input type="text" placeholder={""} name="sub05" value={writeInfo.sub05 == null ? "" : writeInfo.sub05} onChange={changeWriteInfo}/>
+                                        </td>
+                                    </tr>
+                                )}
+                                {board.board.subName06 != "" && board.board.subName06 != null &&(
+                                    <tr>
+                                        <th>{board.board.subName06}</th>
+                                        <td>
+                                            <input type="text" placeholder={""} name="sub06" value={writeInfo.sub06 == null ? "" : writeInfo.sub06} onChange={changeWriteInfo}/>
+                                        </td>
+                                    </tr>
+                                )}
+                                {board.board.subName07 != "" && board.board.subName07 != null &&(
+                                    <tr>
+                                        <th>{board.board.subName07}</th>
+                                        <td>
+                                            <input type="text" placeholder={""} name="sub07" value={writeInfo.sub07 == null ? "" : writeInfo.sub07} onChange={changeWriteInfo}/>
+                                        </td>
+                                    </tr>
+                                )}
+                                {board.board.boardEnName != 'corp_press' && (
+                                    <tr>
+                                        <th>내용</th>
+                                        <td>
+                                            {/*<QuillEditor Contents={content} QuillChange={setContent}/>*/}
+                                            <Editor setEditor={setEditor} content={view.content.content}/>
+                                        </td>
+                                    </tr>
+                                )}
                                 {board.board.useFile && (
                                 <tr>
                                     <th>첨부파일</th>
                                     <td>
                                         <Upload
-                                            listType="picture-card"
+                                            listType="picture"
                                             fileList={writeInfo.attachFiles.map((file) => {
                                                 return {
                                                     uid: file.fileName,
@@ -279,7 +411,7 @@ const ContentEditView = () => {
                                             onRemove={handleFileRemove}
                                         />
                                         <Upload
-                                            listType="picture-card"
+                                            listType="picture"
                                             fileList={newFileList}
                                             showUploadList={{
                                                 showPreviewIcon: true,

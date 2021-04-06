@@ -181,7 +181,7 @@ const Alumnus = () => {
                                 </colgroup>
                                 <thead>
                                 <tr>
-                                    <th scope="col">창업가적 기질</th>
+                                    <th scope="col">심사 기준</th>
                                     <th scope="col">점 수</th>
                                     <th scope="col">내 용</th>
                                 </tr>
@@ -434,7 +434,7 @@ const Alumnus = () => {
                                 </li>
                                 <li>
                                     <span className={cx("title")}>일정</span>
-                                    연 4회 분기별 개최
+                                    연 2회 분기별 개최
                                 </li>
                             </ul>
                             <div className={cx("qa_list")}>
@@ -444,7 +444,7 @@ const Alumnus = () => {
                                     style={{height: '100%', borderRight: 'none'}}
                                 >
                                     <SubMenu key="sub3" className={cx("dropdown_title")} title={<div className={cx("question")}>한양스타트업포럼 HISTORY</div>}>
-                                        <Menu.Item key="2" className={cx("dropdown_content")} style={{height: 'auto', padding: 10}}>
+                                        <Menu.Item key="2" className={cx("dropdown_content")} style={{height: 'auto',padding:0}}>
                                             <ForumHistory cx={cx}/>
                                         </Menu.Item>
                                     </SubMenu>

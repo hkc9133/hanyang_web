@@ -108,10 +108,10 @@ const UserDetail = () => {
                                             <th scope="row">권한</th>
                                             <td>
                                                 <select name='role' className={cx("cate")} onChange={changeUserInfo} value={user.role}>
+                                                    <option value="ROLE_ADMIN">관리자</option>
+                                                    <option value="ROLE_TC">교직원</option>
                                                     <option value="ROLE_MT">멘토</option>
-                                                    <option value="ROLE_SD">학생</option>
-                                                    <option value="ROLE_TC">교사</option>
-                                                    <option value="ROLE_USER">일반</option>
+                                                    <option value="ROLE_SD">일반</option>
                                                 </select>
                                             </td>
                                         </tr>

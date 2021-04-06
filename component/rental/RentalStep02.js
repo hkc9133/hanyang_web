@@ -80,6 +80,76 @@ const RentalStep02 = ({cx,selectPlace,selectRoom ,selectDate ,selectTime ,setSte
                 </table>
             </div>
 
+            <div className={cx("rental_tb","purpose")}>
+                <label htmlFor="purpose" className={cx("title")}>예약자 정보</label>
+                <table>
+                    <colgroup>
+                        {/*<col style={{width:'44.16%'}}/>*/}
+                        {/*<col style={{width:'33.75%'}}/>*/}
+                        {/*<col/>*/}
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th scope="col">성명</th>
+                        <th scope="col">소속</th>
+                        <th scope="col">전화번호</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td className={cx("start_time")}>
+                            <Form.Item
+                                className={(cx("antd_input"))}
+                                name="userName"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: '이름은 필수 입니다.',
+                                    },
+                                ]}
+                            >
+                                <Input placeholder={"이름"} name="userName"
+                                       value={rentalInfo.userName} onChange={changeInfo}/>
+                            </Form.Item>
+                        </td>
+                        <td className={cx("event_time")}>
+                            <Form.Item
+                                className={(cx("antd_input"))}
+                                name="userCompany"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: '소속은 필수 입니다.',
+                                    },
+                                ]}
+                            >
+                                <Input placeholder={"소속"} name="userCompany"
+                                       value={rentalInfo.userCompany} onChange={changeInfo}/>
+                            </Form.Item>
+                        </td>
+                        <td>
+                            <Form.Item
+                                name="userPhoneNum"
+                                className={(cx("antd_input"))}
+                                rules={[
+                                    {
+                                        required: true,
+                                        pattern: new RegExp(
+                                            /^-?\d*(\.\d*)?$/
+                                        ),
+                                        message: "'-' 없이 숫자만 입력 가능합니다",
+                                    },
+                                ]}
+                            >
+                                <Input placeholder={"연락처"} name="userPhoneNum" value={rentalInfo.userPhoneNum}
+                                       onChange={changeInfo}/>
+                            </Form.Item>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
             <div className={cx("purpose")}>
                 <label htmlFor="purpose" className={cx("title")}>사용목적</label>
                 <Form.Item

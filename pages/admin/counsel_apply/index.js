@@ -74,11 +74,11 @@ const CounselApplyListPage = () => {
 
                     <div className={`${cx("mentor_id_search")} clfx`}>
 
-                        <select name="mentorStatus" onChange={(e) =>{changeSearchInfo(e)}}>
-                            <option value="">승인 상태</option>
-                            <option value="STANDBY">미승인</option>
-                            <option value="ACCEPT">승인</option>
-                        </select>
+                        {/*<select name="mentorStatus" onChange={(e) =>{changeSearchInfo(e)}}>*/}
+                        {/*    <option value="">승인 상태</option>*/}
+                        {/*    <option value="STANDBY">미승인</option>*/}
+                        {/*    <option value="ACCEPT">승인</option>*/}
+                        {/*</select>*/}
                         <select name="searchField" onChange={(e) =>{changeSearchInfo(e)}}>
                             <option value="">검색조건</option>
                             <option value="user_id">아이디</option>

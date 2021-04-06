@@ -11,6 +11,7 @@ import Pagination from "../../component/common/Pagination";
 import {getBoardContentList} from "../../store/board/board";
 import client from "../../lib/api/client";
 import {FileImageOutlined} from "@ant-design/icons";
+import Image from "next/image";
 
 const cx = classnames.bind(styles);
 
@@ -48,10 +49,10 @@ const InvestmentPartners = () => {
             ...router.query
         }))
 
-        const { page = 1,continentId = null,searchValue = null,searchField = null} = router.query
+        const { pageNo = 1,continentId = null,searchValue = null,searchField = null} = router.query
 
         const data = {
-            page:page,
+            pageNo:pageNo,
             continentId:continentId,
             searchValue:searchValue,
             searchField:searchField,
@@ -124,18 +125,18 @@ const InvestmentPartners = () => {
                 <table>
                     <colgroup>
                         <col style={{width:"11.7%"}}/>
-                        <col style={{width:"18.18%"}}/>
-                        <col style={{width:"24.24.%"}}/>
-                        <col style={{width:"12.12%"}}/>
+                        <col style={{width:"30.18%"}}/>
+                        <col style={{width:"30.24%"}}/>
+                        <col style={{width:"10.12%"}}/>
                         <col/>
                     </colgroup>
                     <thead>
                     <tr>
                         <th scope="col">구분</th>
                         <th scope="col">기관명</th>
-                        <th scope="col">홈페이지</th>
-                        <th scope="col">국가/지역</th>
                         <th scope="col">분야</th>
+                        <th scope="col">{router.query.continentId == 1 ? "지역" : "국가/지역" }</th>
+                        <th scope="col">홈페이지</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -143,16 +144,17 @@ const InvestmentPartners = () => {
                         <tr key={item.partnerId}>
                             <td>{item.continent.continentName}</td>
                             <td>
-                                <div className={cx("logo")}>
-                                {item.attachFile != null ? <img src={`${client.defaults.baseURL}/resource${item.attachFile.filePath}/${item.attachFile.fileName+item.attachFile.fileExtension}`} width={38} height={38} alt={"LOGO"}/> : (
-                                    <FileImageOutlined style={{fontSize:33,verticalAlign:'middle'}}/>
-                                ) }
-                                </div>
+                                {/*<div className={cx("logo")}>*/}
+                                {/*{item.attachFile != null ? <img src={`${client.defaults.baseURL}/resource${item.attachFile.filePath}/${item.attachFile.fileName+item.attachFile.fileExtension}`}  alt={"LOGO"}/> : (*/}
+                                {/*    <FileImageOutlined style={{fontSize:33,verticalAlign:'middle'}}/>*/}
+                                {/*) }*/}
+                                {/*</div>*/}
+                                {/*<br/>*/}
                                 <span>{item.companyName}</span>
                             </td>
-                            <td>{item.homepage}</td>
-                            <td>{item.location}</td>
                             <td>{item.field}</td>
+                            <td>{item.location}</td>
+                            <td><Link href={item.homepage}><a target="_blank"><Image src="/assets/image/icon_navi.gif" width={16} height={14} alt="home" /></a></Link></td>
                         </tr>
                     ))}
                     </tbody>

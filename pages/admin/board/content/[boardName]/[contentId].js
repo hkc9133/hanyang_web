@@ -137,7 +137,6 @@ const ContentView = () => {
         const data = {
             ...updateReplyValue,
             replyId: replyId
-
         }
         dispatch(updateReply(data));
 
@@ -147,6 +146,8 @@ const ContentView = () => {
             replyId: ""
         })
         setShowUpdateInput(null);
+
+        dispatch(getBoardContent(view.content.contentId))
     }
 
     const handleDeleteContent = () =>{
@@ -226,6 +227,55 @@ const ContentView = () => {
                                             <span className={cx("view_cnt")}>조회수: {view.content.viewCnt}</span>
                                         </td>
                                     </tr>
+                                    {board.board.subName01 != null && (
+                                        <tr>
+                                            <td>
+                                                {`${board.board.subName01}: ${view.content.sub01}`}
+                                            </td>
+                                        </tr>
+                                    )}
+                                    {board.board.subName02 != null && (
+                                        <tr>
+                                            <td>
+                                                {`${board.board.subName02}: ${view.content.sub02}`}
+                                            </td>
+                                        </tr>
+                                    )}
+                                    {board.board.subName03 != null && (
+                                        <tr>
+                                            <td>
+                                                {`${board.board.subName03}: ${view.content.sub03}`}
+                                            </td>
+                                        </tr>
+                                    )}
+                                    {board.board.subName04 != null && (
+                                        <tr>
+                                            <td>
+                                                {`${board.board.subName04}: ${view.content.sub04}`}
+                                            </td>
+                                        </tr>
+                                    )}
+                                    {board.board.subName05 != null && (
+                                        <tr>
+                                            <td>
+                                                {`${board.board.subName05}: ${view.content.sub05}`}
+                                            </td>
+                                        </tr>
+                                    )}
+                                    {board.board.subName06 != null && (
+                                        <tr>
+                                            <td>
+                                                {`${board.board.subName06}: ${view.content.sub06}`}
+                                            </td>
+                                        </tr>
+                                    )}
+                                    {board.board.subName07 != null && (
+                                        <tr>
+                                            <td>
+                                                {`${board.board.subName07}: ${view.content.sub07}`}
+                                            </td>
+                                        </tr>
+                                    )}
                                     <tr>
                                         <td>
                                             <div dangerouslySetInnerHTML={{__html: view.content.content}} className={"ql-editor"}/>
@@ -236,7 +286,7 @@ const ContentView = () => {
                                             <tr className={cx("bbs_attach_file")}>
                                                 <td>
                                                 <Upload
-                                                    listType="picture-card"
+                                                    listType="picture"
                                                     fileList={view.files.map((file) => {
                                                         return {
                                                             uid: file.fileName,

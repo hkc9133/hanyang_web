@@ -328,12 +328,12 @@ const RoomDetail = () => {
                                                 <td colSpan={3}>
                                                     <label htmlFor="role01">관리자</label>
                                                     <input id="role01" name="rentalRole01" checked={roomInfo.rentalRole.includes("ROLE_ADMIN;")} type='checkbox' value={"ROLE_ADMIN;"} onChange={changeRoomInfo}/>
+                                                    <label htmlFor="role04">교직원</label>
+                                                    <input id="role04" name="rentalRole04" checked={roomInfo.rentalRole.includes("ROLE_TC;")} type='checkbox' value={"ROLE_TC;"} onChange={changeRoomInfo}/>
                                                     <label htmlFor="role02">멘토</label>
                                                     <input id="role02" name="rentalRole02" checked={roomInfo.rentalRole.includes("ROLE_MT;")} type='checkbox' value={"ROLE_MT;"} onChange={changeRoomInfo}/>
-                                                    <label htmlFor="role03">학생</label>
+                                                    <label htmlFor="role03">일반</label>
                                                     <input id="role03" name="rentalRole03" checked={roomInfo.rentalRole.includes("ROLE_SD;")} type='checkbox' value={"ROLE_SD;"} onChange={changeRoomInfo}/>
-                                                    <label htmlFor="role04">교사</label>
-                                                    <input id="role04" name="rentalRole04" checked={roomInfo.rentalRole.includes("ROLE_TC;")} type='checkbox' value={"ROLE_TC;"} onChange={changeRoomInfo}/>
                                                 </td>
                                             </tr>
                                             <tr>

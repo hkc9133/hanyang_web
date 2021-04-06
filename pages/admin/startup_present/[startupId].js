@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {Checkbox, DatePicker, Form, Input, Modal, Tag, Upload} from "antd";
+import {Button, Checkbox, DatePicker, Form, Input, Modal, Tag, Upload} from "antd";
 import locale from "antd/lib/date-picker/locale/ko_KR";
 import {PlusOutlined} from "@ant-design/icons";
 import {useDispatch, useSelector} from "react-redux";
@@ -16,11 +16,11 @@ import styles from '../../../public/assets/styles/admin/startupPresent/startupPr
 import classnames from "classnames/bind"
 import wrapper from "../../../store/configureStore";
 import client from "../../../lib/api/client";
-import {getNotice, getNoticeCategoryCodeList} from "../../../store/notice/adminNotice";
 import {END} from "redux-saga";
 import moment from "moment";
 import {fileDownload} from "../../../store/file/file";
 const cx = classnames.bind(styles);
+import { UploadOutlined } from '@ant-design/icons';
 
 
 export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
@@ -79,7 +79,7 @@ const StartupEditPage = () => {
         if(startup != null){
             setStartUpForm({
                 ...startup,
-                createDate:moment(startup.createDate),
+                createDate:(startup.createDate != null && startup.createDate != "") ? moment(startup.createDate).format("YYYY-MM-DD") : null,
                 businessIdList: startup.businessFieldList.map((item)=>item.businessId),
                 techIdList: startup.techFieldList.map((item)=>item.techId),
                 addAttachFileList:[],
@@ -140,7 +140,6 @@ const StartupEditPage = () => {
     }, [])
 
     const handleFileRemove = (file) => {
-        console.log(file)
         setStartUpForm({
             ...startUpForm,
             removeFileId:file.fileId,
@@ -153,17 +152,17 @@ const StartupEditPage = () => {
     const submit = () =>{
         const data = {
             ...startUpForm,
-            createDate:startUpForm.createDate.format("YYYY-MM-DD").toString(),
+            createDate:startUpForm.createDate != null && startUpForm.createDate,
             companyLogo:startUpForm.addAttachFileList.length == 1 ? startUpForm.addAttachFileList[0].originFileObj : null
         }
 
-        console.log(data)
-
+        data.createDate == null && delete data.createDate
         delete data.businessFieldList;
         delete data.techFieldList;
         delete data.regDate;
         delete data.attachFile;
 
+        console.log(data)
         dispatch(updateStartupPresent(data))
 
         // dispatch(addStartupPresent(data))
@@ -203,10 +202,7 @@ const StartupEditPage = () => {
 
 
     const uploadButton = (
-        <div>
-            <PlusOutlined />
-            <div style={{ marginTop: 8 }}>Upload</div>
-        </div>
+        <Button style={{marginTop:7}} className={"upload"} icon={<UploadOutlined />}>업로드</Button>
     );
 
 
@@ -216,7 +212,9 @@ const StartupEditPage = () => {
                 <section className={cx("container")}>
                     <h1 className={cx("top_title")}>스타트업 수정</h1>
                     <Form form={form} onFinish={submit}
-                          initialValues={{...startup,createDate:moment(startup.createDate)}}
+                          initialValues={{...startup,
+                              createDate:startup.createDate != null ? moment(startup.createDate) : null
+                          }}
                     >
                         <div className={cx("adm_container")}>
                             <div className={cx("box")}>
@@ -225,10 +223,10 @@ const StartupEditPage = () => {
                                     <div className={cx("tb_style_2")}>
                                         <table>
                                             <colgroup>
-                                                {/*<col style={{width: 270}}/>*/}
-                                                {/*<col style={{width: 400}}/>*/}
-                                                {/*<col  style={{width: 270}}/>*/}
-                                                {/*<col/>*/}
+                                                <col style={{width: 270}}/>
+                                                <col style={{width: 400}}/>
+                                                <col  style={{width: 270}}/>
+                                                <col/>
                                             </colgroup>
                                             <tbody>
                                             <tr>
@@ -300,7 +298,9 @@ const StartupEditPage = () => {
                                                             },
                                                         ]}
                                                     >
-                                                        <DatePicker locale={locale} format={"YYYY-MM-DD"} value={startUpForm.createDate} onChange={(v) =>{setStartUpForm({...startUpForm,createDate:v})}}/>
+                                                        <DatePicker locale={locale} format={"YYYY-MM-DD"} value={startUpForm.createDate} onChange={(v) =>{
+                                                            setStartUpForm({...startUpForm,createDate:v != null ? v.format("YYYY-MM-DD") : null})
+                                                        }}/>
                                                     </Form.Item>
                                                 </td>
                                             </tr>
@@ -406,15 +406,15 @@ const StartupEditPage = () => {
                                                     <Form.Item
                                                         name="companyPhoneNum"
                                                         className={(cx("antd_input"))}
-                                                        rules={[
-                                                            {
-                                                                required: false,
-                                                                pattern: new RegExp(
-                                                                    /^-?\d*(\.\d*)?$/
-                                                                ),
-                                                                message: "'-' 없이 숫자만 입력 가능합니다",
-                                                            },
-                                                        ]}
+                                                        // rules={[
+                                                        //     {
+                                                        //         required: ,
+                                                        //         pattern: new RegExp(
+                                                        //             /^-?\d*(\.\d*)?$/
+                                                        //         ),
+                                                        //         message: "'-' 없이 숫자만 입력 가능합니다",
+                                                        //     },
+                                                        // ]}
                                                     >
                                                         <Input placeholder={"연락처"} name="companyPhoneNum" value={startUpForm.companyPhoneNum}
                                                                onChange={(e) => {
@@ -505,7 +505,47 @@ const StartupEditPage = () => {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th scope="row">비지니스 분야</th>
+                                                <th scope="row">사업자 번호</th>
+                                                <td>
+                                                    <Form.Item
+                                                        name="companyNum"
+                                                        className={(cx("antd_input"))}
+                                                        rules={[
+                                                            {
+                                                                required: false,
+                                                                message: '사업자 번호',
+                                                            },
+                                                        ]}
+                                                    >
+                                                        <Input placeholder={"사업자 번호"} name="companyNum" value={startUpForm.companyNum}
+                                                               onChange={(e) => {
+                                                                   changeStartUpFormValue(e)
+                                                               }}/>
+
+                                                    </Form.Item>
+                                                </td>
+                                                <th scope="row">유지/폐업</th>
+                                                <td>
+                                                    <Form.Item
+                                                        name="companyStatus"
+                                                        className={(cx("antd_input"))}
+                                                        rules={[
+                                                            {
+                                                                required: true,
+                                                                message: '유지/폐업',
+                                                            },
+                                                        ]}
+                                                    >
+                                                        <select name="companyStatus" id="" value={startUpForm.companyStatus} onChange={changeStartUpFormValue}>
+                                                            <option value="">선택</option>
+                                                            <option value="유지">유지</option>
+                                                            <option value="폐업">폐업</option>
+                                                        </select>
+                                                    </Form.Item>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">비즈니스 분야</th>
                                                 <td colSpan={3}>
                                                     <Form.Item
                                                         name="businessIdList"
@@ -596,20 +636,20 @@ const StartupEditPage = () => {
                                                     <Form.Item
                                                         name="companyLogo"
                                                         className={(cx("antd_input"))}
-                                                        rules={[
-                                                            ({ getFieldValue }) => ({
-                                                                validator(rule, value) {
-                                                                    if(startUpForm.oldAttachFileList.length == 0 && startUpForm.addAttachFileList.length == 0){
-                                                                        return Promise.reject('기업 로고를 추가해주세요')
-
-                                                                    }
-                                                                    return Promise.resolve()
-                                                                }
-                                                            })
-                                                        ]}
+                                                        // rules={[
+                                                        //     ({ getFieldValue }) => ({
+                                                        //         validator(rule, value) {
+                                                        //             if(startUpForm.oldAttachFileList.length == 0 && startUpForm.addAttachFileList.length == 0){
+                                                        //                 return Promise.reject('기업 로고를 추가해주세요')
+                                                        //
+                                                        //             }
+                                                        //             return Promise.resolve()
+                                                        //         }
+                                                        //     })
+                                                        // ]}
                                                     >
                                                         <Upload
-                                                            listType="picture-card"
+                                                            listType="picture"
                                                             fileList={startUpForm.oldAttachFileList}
                                                             showUploadList={{
                                                                 showPreviewIcon: true,
@@ -621,7 +661,7 @@ const StartupEditPage = () => {
                                                             onRemove={handleFileRemove}
                                                         />
                                                         <Upload
-                                                            listType="picture-card"
+                                                            listType="picture"
                                                             fileList={startUpForm.addAttachFileList}
                                                             showUploadList={{
                                                                 showPreviewIcon: true,

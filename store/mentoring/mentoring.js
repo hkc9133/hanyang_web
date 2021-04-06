@@ -1,10 +1,13 @@
 import {createAction, handleActions} from 'redux-actions';
+import {enableES5} from "immer"
+enableES5()
 import createRequestSaga, {createRequestActionTypes} from "../../lib/createRequestSaga";
 import produce from 'immer';
 import {takeLatest} from 'redux-saga/effects';
 import * as mentoringAPI from '../../lib/api/mentoring/mentoring';
 import {HYDRATE} from 'next-redux-wrapper';
 import * as adminMentoringAPI from "../../lib/api/admin/mentoring/mentoring";
+import client from "../../lib/api/client";
 
 
 const [GET_COUNSEL_FIELD_CODE,GET_COUNSEL_FIELD_CODE_SUCCESS, GET_COUNSEL_FIELD_CODE_FAILURE] = createRequestActionTypes('mentoring/GET_COUNSEL_FIELD_CODE')
@@ -26,6 +29,8 @@ const [GET_MENTOR_COUNSEL_APPLY_LIST,GET_MENTOR_COUNSEL_APPLY_LIST_SUCCESS, GET_
 
 const [ADD_DIARY,ADD_DIARY_SUCCESS, ADD_DIARY_FAILURE] = createRequestActionTypes('mentoring/ADD_DIARY')
 const [UPDATE_DIARY,UPDATE_DIARY_SUCCESS, UPDATE_DIARY_FAILURE] = createRequestActionTypes('mentoring/UPDATE_DIARY')
+
+const [COMMISSION_DOWNLOAD,COMMISSION_DOWNLOAD_SUCCESS, COMMISSION_DOWNLOAD_FAILURE] = createRequestActionTypes('mentoring/COMMISSION_DOWNLOAD')
 
 const INITIALIZE = 'mentoring/INITIALIZE';
 const INITIALIZE_FORM  = 'mentoring/INITIALIZE_FORM';
@@ -56,6 +61,8 @@ export const getMentorCounselApplyList = createAction(GET_MENTOR_COUNSEL_APPLY_L
 
 export const addDiary = createAction(ADD_DIARY,form =>form);
 export const updateDiary = createAction(UPDATE_DIARY,form =>form);
+export const commissionDownload = createAction(COMMISSION_DOWNLOAD);
+
 
 
 
@@ -83,6 +90,7 @@ const getMentorCounselApplyListSaga = createRequestSaga(GET_MENTOR_COUNSEL_APPLY
 
 const addDiarySaga = createRequestSaga(ADD_DIARY, mentoringAPI.addDiary);
 const updateDiarySaga = createRequestSaga(UPDATE_DIARY, mentoringAPI.updateDiary);
+// const commissionDownloadSaga = createRequestSaga(COMMISSION_DOWNLOAD, mentoringAPI.commissionDownload);
 
 
 export function* mentoringSaga(){
@@ -111,12 +119,15 @@ export function* mentoringSaga(){
     yield takeLatest(ADD_DIARY, addDiarySaga);
     yield takeLatest(UPDATE_DIARY, updateDiarySaga);
 
+    // yield takeLatest(COMMISSION_DOWNLOAD, commissionDownloadSaga);
+
+
 
 }
 
 const initialState = {
     mentor:null,
-    bestMentor:null,
+    bestMentor:[],
     mentorUpdate:{
         result:null,
         error:null,
@@ -266,7 +277,7 @@ const mentoring = handleActions(
             }),
         [GET_BEST_MENTOR_FAILURE]: (state, {payload: error}) =>
             produce(state, draft => {
-                draft.bestMentor = null
+                draft.bestMentor = []
             }),
         [GET_MENTOR_CHECK_SUCCESS]: (state, {payload: response}) =>
             produce(state, draft => {
@@ -389,6 +400,13 @@ const mentoring = handleActions(
                 console.log(state)
                 draft.mentorList.list = state.mentorList.list.filter((mentor) =>{mentor.mentorFieldList.indexOf(field) > -1})
             }),
+        [COMMISSION_DOWNLOAD]: (state, {payload: field}) =>
+            produce(state, draft => {
+                const link = document.createElement('a');
+                link.href = `${client.defaults.baseURL}/mentoring/commission`;
+                link.click();
+                link.remove();
+            })
     }
     ,
     initialState

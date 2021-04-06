@@ -32,3 +32,8 @@
 .adm_menu_detail ul li{margin-bottom: 15px; }
 .adm_menu_detail ul li a{font-size: 18px; font-weight: 200; }
 .adm_menu_detail ul li.on a{color: #4b8cf7; font-weight: 400; }
+
+.adm_menu_detail .board_title{    font-size: 18px;font-weight: 200;}
+.adm_menu_detail .board_sub ul{border: none;padding:0}
+.adm_menu_detail .board_sub ul li{margin-bottom: 15px;}
+.adm_menu_detail .board_sub ul li a{color:gray;font-size: 15px}

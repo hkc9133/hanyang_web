@@ -124,7 +124,7 @@ const StudentReportEditPage = () => {
                         <div className={cx("adm_container")}>
                             <div className={cx("box")}>
                                 <div className={cx("student_report_detail")}>
-                                    <h2>팝업 정보</h2>
+                                    <h2>학생창업 정보</h2>
                                     <div className={cx("tb_style_2")}>
                                         <table>
                                             <colgroup>
@@ -359,7 +359,7 @@ const StudentReportEditPage = () => {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th scope="row">당해 연도 매출액(해당하는 경우에만 입력)</th>
+                                                <th scope="row">당해 연도 매출액(해당하는 경우에만 입력, 단위:원)</th>
                                                 <td>
                                                     <Form.Item
                                                         name="sales"
@@ -374,7 +374,7 @@ const StudentReportEditPage = () => {
                                                             },
                                                         ]}
                                                     >
-                                                        <Input placeholder={"당해 연도 매출액(해당하는 경우에만 입력)"} name="sales" value={reportInfo.sales}
+                                                        <Input placeholder={"당해 연도 매출액(해당하는 경우에만 입력, 단위:원)"} name="sales" value={reportInfo.sales}
                                                                onChange={(e) => {
                                                                    changeReportInfo(e)
                                                                }}/>

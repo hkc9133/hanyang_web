@@ -340,7 +340,7 @@ const StudentReportAddPage = () => {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th scope="row">당해 연도 매출액(해당하는 경우에만 입력)</th>
+                                                <th scope="row">당해 연도 매출액(해당하는 경우에만 입력, 단위:원)</th>
                                                 <td>
                                                     <Form.Item
                                                         name="sales"
@@ -355,7 +355,7 @@ const StudentReportAddPage = () => {
                                                             },
                                                         ]}
                                                     >
-                                                        <Input placeholder={"당해 연도 매출액(해당하는 경우에만 입력)"} name="sales" value={reportForm.sales}
+                                                        <Input placeholder={"당해 연도 매출액(해당하는 경우에만 입력, 단위:원)"} name="sales" value={reportForm.sales}
                                                                onChange={(e) => {
                                                                    changeReportFormValue(e)
                                                                }}/>

@@ -87,7 +87,7 @@ const PopupItem = ({popup,cx}) => {
                          style={{
                              cursor: 'move',
                              position: 'absolute',
-                             zIndex:3,
+                             zIndex:999,
                              left:isMobile ? 0 : popup.leftPosition,
                              top:popup.topPosition,
                          }}

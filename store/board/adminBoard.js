@@ -1,4 +1,6 @@
 import {createAction, handleActions} from 'redux-actions';
+import {enableES5} from "immer"
+enableES5()
 import createRequestSaga, {createRequestActionTypes} from "../../lib/createRequestSaga";
 import produce from 'immer';
 import {takeLatest} from 'redux-saga/effects';
@@ -100,7 +102,8 @@ const initialState = {
         content:null,
         prev:null,
         next:null,
-        files:[]
+        files:[],
+        thumb:[]
     },
     update:{
         result:null,
@@ -188,6 +191,7 @@ const adminBoard = handleActions(
                 draft.view.next = response.data.next
                 draft.reply.list = response.data.reply
                 draft.view.files = response.data.files
+                draft.view.thumb = response.data.thumb
             }),
         [GET_BOARD_CONTENT_FAILURE]: (state, {payload: error}) =>
             produce(state, draft => {

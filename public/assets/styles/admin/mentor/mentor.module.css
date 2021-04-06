@@ -15,7 +15,7 @@
 .mentor_info>ul>li .number strong{font-size:24px; font-weight:400; vertical-align:bottom;}
 .mentor_info .mentor_id_search{float:right; position:relative; width:640px; }
 .mentor_info .mentor_id_search select{float:left; width:24.3%; height:35px; line-height:33px; background-color:#ebf0f9;margin-right: 0.5%}
-.mentor_info .mentor_id_search input[type=text]{float:right; padding-right:39px;width:50%; height:35px; line-height:33px; box-sizing:border-box; }
+.mentor_info .mentor_id_search input[type=text]{float:right; padding-right:39px;width:74%; height:35px; line-height:33px; box-sizing:border-box; }
 .mentor_info .mentor_id_search .btn_search{position:absolute; right:1px; top:1px; width:40px; height:33px; }
 .admin_cont{padding:30px 20px; background-color:#fff; box-shadow:2px 2px 3px 2px rgba(150,150,150,0.1); background-color:#fff; }
 .txt_style_1{margin-bottom:15px; font-size:14px; font-weight:200; }
@@ -82,6 +82,7 @@
 }
 
 .btn-box01{text-align: right;margin-top:20px;}
+.btn-box02{text-align: right;margin:10px 0px;}
 .basic-btn01{background-color: #009bcb; padding:8px 18px; color:white;box-sizing: border-box;margin:3px;border-radius: 5px;}
 .basic-btn01:hover{color:white;}
 .basic-btn02{padding:8px 16px;border: 1px solid gray;box-sizing: border-box;margin:3px;border-radius: 5px;}
@@ -89,7 +90,7 @@
 
 .basic-btn03{background-color: white; padding:8px 18px; color:#ff4d4f;box-sizing: border-box;margin:3px;border-radius: 5px;border: 1px solid #ff4d4f;margin-left: 10px;}
 .basic-btn03:hover{background-color: #ff4d4f;color:white}
-
+.basic-btn04{background-color: #009bcb; padding:8px 18px; color:white;box-sizing: border-box;margin:3px;border-radius: 5px;}
 /*.basic-btn01{width:70px; height:35px; line-height:33px; text-align:center; border:1px solid #afb6c5; box-sizing:border-box; font-size:14px; font-weight:200; border-radius:3px; vertical-align:top;}*/
 .basic-btn02{min-width:150px; padding:0 20px; height:50px; line-height:50px; text-align:center; box-sizing:border-box; font-size:14px; font-weight:400; border-radius:3px; display:inline-block; vertical-align:top;}
 .basic-btn02[type=submit]{color:white;}

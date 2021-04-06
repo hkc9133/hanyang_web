@@ -53,8 +53,33 @@
     width: 20px;height: 20px;
 }
 .jpg{
-    background-image: url(../../image/icon_avi.png);
+    background-image: url(../../image/icon_jpg.png);
 }
+.hwp{
+    background-image: url(../../image/icon_hwp.png);
+}
+.hwpx{
+    background-image: url(../../image/icon_hwpx.png);
+}
+.pdf{
+    background-image: url(../../image/icon_pdf.png);
+}
+.ppt{
+    background-image: url(../../image/icon_ppt.png);
+}
+.pptx{
+    background-image: url(../../image/icon_pptx.png);
+}
+.xls{
+    background-image: url(../../image/icon_xls.png);
+}
+.xlsx{
+    background-image: url(../../image/icon_xlsx.png);
+}
+.zip{
+    background-image: url(../../image/icon_zip.png);
+}
+
 
 @media screen and (max-width: 1400px){
 

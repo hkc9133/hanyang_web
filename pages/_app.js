@@ -1,13 +1,15 @@
+
+import "@babel/polyfill";
+import 'react-app-polyfill/ie11';
+import 'react-app-polyfill/stable';
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector, useStore} from "react-redux";
 import wrapper from '../store/configureStore';
 import {useRouter} from "next/router";
-import client from '../lib/api/client'
+import client, {port} from '../lib/api/client'
 import {registerLocale} from "react-datepicker";
 import ko from 'date-fns/locale/ko';
 import "react-big-calendar/lib/css/react-big-calendar.css";
-// import '../public/assets/styles/antd.less'
-
 registerLocale('ko', ko)
 import AuthFail from "./user/auth_fail";
 import AdminHeader from "../component/layout/AdminHeader";
@@ -25,11 +27,14 @@ import "../public/assets/styles/date-picker.css"
 import 'react-quill/dist/quill.snow.css';
 import Head from "next/head";
 
+
 import ScrollToTop from "../component/common/ScrollToTop";
 
 import GlobalStyles from '../public/assets/styles/global'
 import AdminGlobalStyles from '../public/assets/styles/admin_global'
-import {getMainData, getNoticeList} from "../store/main/main";
+import {getMainData, getMediaList} from "../store/main/main";
+
+// import Favicon from '../public/assets/image/favicon.ico';
 
 // "dev": "NODE_ENV='development' node server.js",
 
@@ -52,8 +57,8 @@ const _App = ({Component, pageProps}) => {
     useEffect(() => {
         dispatch(authCheck())
 
-        if(!router.pathname.startsWith("/admin")){
-            dispatch(getNoticeList())
+        if (!router.pathname.startsWith("/admin")) {
+            dispatch(getMediaList())
         }
     }, [router])
 
@@ -61,17 +66,19 @@ const _App = ({Component, pageProps}) => {
         if (user.login && user.info.role !== null) {
             setRole(user.info.role !== null ? user.info.role : null)
         }
-    }, [user,router.pathname])
+    }, [user, router.pathname])
 
     let allowed = true;
     if (router.pathname.startsWith("/admin") && role !== "ROLE_ADMIN") {
         allowed = false;
-    } else if((router.pathname.startsWith("/mypage/mentee") || router.pathname.startsWith("/startup_counsel/counsel_apply") || router.pathname.startsWith("/startup_counsel/student_report") )   && (user.login !== true || role != 'ROLE_SD')) {
+    } else if ((router.pathname.startsWith("/mypage/mentee") || router.pathname.startsWith("/startup_counsel/student_report")) && (user.login !== true || role != 'ROLE_SD')) {
         allowed = false;
-    }else if((router.pathname.startsWith("/mypage/mentor") || router.pathname.startsWith("/startup_counsel/mentor_apply")) && (user.login !== true || role != 'ROLE_MT')) {
+    } else if ((router.pathname.startsWith("/mypage/mentor") || router.pathname.startsWith("/startup_counsel/mentor_apply")) && (user.login !== true || role != 'ROLE_MT')) {
         allowed = false;
-    }else if(router.pathname.startsWith("/introduce/space_reservation") && role == null){
-        allowed = false;
+    }
+
+    if(role == "ROLE_ADMIN"){
+        allowed = true;
     }
 
     const ComponentToRender = allowed ? Component : AuthFail;
@@ -81,9 +88,22 @@ const _App = ({Component, pageProps}) => {
         <>
             <Head>
                 <title>한양대학교 창업지원단</title>
-                <script
-                    src="https://polyfill.io/v3/polyfill.min.js?features=es6,es7,es8,es9,NodeList.prototype.forEach&flags=gated"/>
+                <link rel="shortcut icon" href="/assets/image/favicon.ico"/>
+                {/*<script*/}
+                {/*    // src="https://polyfill.io/v3/polyfill.min.js?features=es6,es7,es8,es9,NodeList.prototype.forEach&flags=gated"/>*/}
                 <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
+                <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+                <meta name="description"
+                      content="예비창업자 및 초기 기업가, 각 분야 전문가 멘토 간의 정보 교류, 한양대 글로벌기업가센터, 한양대 창업지원단, 한양대 창업지원단"/>
+                <meta property="og:type" content="website"/>
+                <meta property="og:title" content="한양대학교 창업지원단"/>
+                <meta property="og:description"
+                      content="예비창업자 및 초기 기업가, 각 분야 전문가 멘토 간의 정보 교류, 한양대 글로벌기업가센터, 한양대 창업지원단, 한양대 창업지원단"/>
+                <meta name="naver-site-verification"
+                      content="7418ad80b2b649e57cf89a6496ee646c915aea9c"/>
+                <meta property="og:image"
+                      content={`http://61.109.248.203${port != null ? `:${port}` : ''}/api/image/bg.jpg`}/>
+                <meta property="og:url" content="http://startup.hanyang.ac.kr"/>
             </Head>
             <div id="wrap">
                 <ScrollToTop>
@@ -99,17 +119,22 @@ const _App = ({Component, pageProps}) => {
                         <ComponentToRender {...pageProps} />
                         : null
                     }
-                    {(!router.pathname.startsWith("/admin/") || !router.pathname.startsWith("/admin/") ) ? allowed ?
-                    <>
-                        <style jsx global>
-                            {GlobalStyles}
-                        </style>
-                        <Header/>
-                        <div className="container">
-                            <ComponentToRender {...pageProps} />
-                        </div>
-                        <Footer/>
-                    </>
+                    {(!router.pathname.startsWith("/admin/") || !router.pathname.startsWith("/admin/")) ? allowed ?
+                        <>
+                            <style jsx global>
+                                {GlobalStyles}
+                            </style>
+                            <Header/>
+                            <div className="container">
+                                <ComponentToRender {...pageProps} />
+                            </div>
+                            <Footer/>
+                            <div className="kakao_menu">
+                                <a href="https://pf.kakao.com/_fWsJd/chat" target="_blank">
+                                    <img src="/assets/image/hanyang_talk.png" alt="상담톡"/>
+                                </a>
+                            </div>
+                        </>
                         :
                         <ComponentToRender {...pageProps} />
                         : null

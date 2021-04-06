@@ -10,8 +10,8 @@ import board ,{boardSaga} from './board/board';
 import adminBoard ,{adminBoardSaga} from './board/adminBoard';
 import user ,{userSaga} from './user/user';
 import file ,{fileSaga} from './file/file';
-import notice ,{noticeSaga} from './notice/notice';
-import adminNotice, {adminNoticeSaga} from './notice/adminNotice';
+import startupCalendar ,{startupCalendarSaga} from './startupCalendar/startupCalendar';
+import adminStartupCalendar, {adminStartupCalendarSaga} from './startupCalendar/adminStartupCalendar';
 import popup , {popupSaga} from './popup/popup';
 import adminPopup, {adminPopupSaga} from './popup/adminPopup';
 import startupPresent , {startupPresentSaga} from './startupPresent/startupPresent';
@@ -50,7 +50,7 @@ const rootReducer = (state, action) => {
             return action.payload;
         default: {
             const combinedReducer = combineReducers({
-                main,auth,file,spaceRental,adminSpaceRental, mentoring,adminMentoring,board,adminBoard,user,notice,adminNotice,popup,adminPopup,
+                main,auth,file,spaceRental,adminSpaceRental, mentoring,adminMentoring,board,adminBoard,user,startupCalendar,adminStartupCalendar,popup,adminPopup,
                 startupPresent,adminStartupPresent,studentReport,adminStudentReport,adminKeyword,adminPartner,partner,
                 loading
             })
@@ -88,7 +88,7 @@ const rootReducer = (state, action) => {
 // }
 export function* rootSaga(){
     yield all ([mainSaga(),authSaga(),fileSaga(),spaceRentalSaga(),adminSpaceRentalSaga(), mentoringSaga(),adminMentoringSaga(),
-        boardSaga(),adminBoardSaga(),noticeSaga(),adminNoticeSaga(),popupSaga(),adminPopupSaga(),userSaga(),startupPresentSaga(),adminStartupPresentSaga(),studentReportSaga(),adminStudentReportSaga(),adminPartnerSaga(),partnerSaga(),adminKeywordSaga()]);
+        boardSaga(),adminBoardSaga(),startupCalendarSaga(),adminStartupCalendarSaga(),popupSaga(),adminPopupSaga(),userSaga(),startupPresentSaga(),adminStartupPresentSaga(),studentReportSaga(),adminStudentReportSaga(),adminPartnerSaga(),partnerSaga(),adminKeywordSaga()]);
 }
 
 export default rootReducer;

@@ -24,13 +24,14 @@
     transition: all 0.35s ease-out;
 }
 .login_wrap .login_join .btn a:hover{background-color:#3d89f9; color:#fff; }
-.sns_login li{float:left; margin-left:4.77%; width:21.42%;}
+.sns_login li{float:left; margin-left:2%; width:17.9%;}
 .sns_login li:first-child{margin-left:0; }
 .sns_login li a{padding:50px 0 10px; text-align:center; width:100%; display:block; border:1px solid #ddd; border-radius:5px; }
 .sns_login li.icon_1 a{background:url(../../image/login_sns_1.gif) no-repeat center 14px;}
 .sns_login li.icon_2 a{background:url(../../image/login_sns_2.gif) no-repeat center 14px;}
 .sns_login li.icon_3 a{background:url(../../image/login_sns_3.gif) no-repeat center 14px;}
 .sns_login li.icon_4 a{background:url(../../image/login_sns_4.gif) no-repeat center 14px;}
+.sns_login li.icon_5 a{background:url(../../image/hanyang_login_logo.png) no-repeat center 14px; background-size: 26px 26px;}
 
 .sub_container{margin:0 auto; padding:120px 20px; max-width:1320px; }
 .sub_top_title{position:relative; z-index:2; margin-bottom:40px; line-height:1; font-size:42px; color:#222; font-family: 's-core-dream-bold';}
@@ -43,7 +44,7 @@
 .join_terms .terms_box .titleArea:after{ clear: both; content: "."; display: block; height: 0; visibility: hidden; font-size: 0;}
 .join_terms .terms_box .titleArea h2{float:left; font-size:20px;  font-family: 's-core-dream-medium';}
 .join_terms .terms_box .titleArea .chk{float:right; font-size:16px; }
-.join_terms .terms_box .terms_content{padding:20px; height:400px; overflow:auto; box-sizing:border-box; }
+.join_terms .terms_box .terms_content{padding:20px; height:200px; overflow:auto; box-sizing:border-box; }
 
 .title_style_1{margin-bottom:30px; font-size:20px; font-family: 's-core-dream-medium';}
 .join_terms .sns_login ul li{float:left; margin-left:2.5%; width:18%; }

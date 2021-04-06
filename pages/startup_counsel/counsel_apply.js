@@ -2,7 +2,20 @@ import React, {useCallback, useEffect, useRef, useState} from 'react';
 import styles from '../../public/assets/styles/startup_info/startup_info.module.css';
 import classnames from "classnames/bind"
 import Link from 'next/link'
-import {Input, Tag, Button, Select, Form, Radio, Checkbox, Upload, Progress, Typography, Modal} from 'antd';
+import {
+    Input,
+    Tag,
+    Button,
+    Select,
+    Form,
+    Radio,
+    Checkbox,
+    Upload,
+    Progress,
+    Typography,
+    Modal,
+    Modal as AntdModal
+} from 'antd';
 const { Option } = Select;
 
 import client from '../../lib/api/client';
@@ -20,7 +33,7 @@ import {
     initialize
 } from "../../store/mentoring/mentoring";
 import dynamic from "next/dynamic";
-const QuillEditor = dynamic(() => import("../../component/common/QuillEditor"), {
+const Editor = dynamic(() => import("../../component/common/Editor"), {
     ssr: false,
     loading: () => <p>Loading ...</p>,
 });
@@ -51,6 +64,9 @@ const CounselApply = () => {
 
     const [applyForm, setApplyForm] = useState({
         // formId: "",
+        userName: "",
+        userCompany: "",
+        userPhoneNum: "",
         userId: "",
         title: "",
         content: "",
@@ -67,6 +83,7 @@ const CounselApply = () => {
         uploadResultList:[]
     })
     const [content,setContent] = useState("");
+    const [editor,setEditor] = useState(null);
     const [applyResultModal, setApplyResultModal] = useState(false)
 
     // const [fileList ,setFileList] = useState([])
@@ -75,11 +92,19 @@ const CounselApply = () => {
     const [hopeMentorList, setHopeMentorList] = useState([]);
 
     useEffect(() =>{
-        dispatch(getMentorList({pageSize:500}))
-        dispatch(getCounselFieldCode())
-        dispatch(getProgressItem())
-        dispatch(getSortationItem())
-        dispatch(getWayItem())
+
+        if(user.login != null && !user.login){
+            Modal.warning({
+                title: '로그인 후 이용하실 수 있습니다.',
+                onOk:() =>{router.push("/user/login");}
+            });
+        }else{
+            dispatch(getMentorList({pageSize:500}))
+            dispatch(getCounselFieldCode())
+            dispatch(getProgressItem())
+            dispatch(getSortationItem())
+            dispatch(getWayItem())
+        }
         return () => {
             dispatch(initialize());
         }
@@ -223,16 +248,23 @@ const CounselApply = () => {
     };
 
     const submitApply = (e) => {
-        const data = {
-            ...applyForm,
-            content:content,
-            uploadResultList:applyForm.uploadResultList.map((item) =>{return item.fileId})
+        if(user.role == "ROLE_MT" || user.role == "ROLE_USER"){
+            Modal.warning({
+                title: '창업상담신청은 로그인 후 이용하실 수 있습니다.',
+            });
+        }else{
+            const data = {
+                ...applyForm,
+                content:editor.getData(),
+                uploadResultList:applyForm.uploadResultList.map((item) =>{return item.fileId})
+            }
+            // data.hopeMentor == null || data.hopeMentor == '' && delete data.hopeMentor
+            if(data.hopeMentor == null || data.hopeMentor == ''){
+                delete data.hopeMentor
+            }
+            dispatch(applyCounsel(data));
+
         }
-        // data.hopeMentor == null || data.hopeMentor == '' && delete data.hopeMentor
-        if(data.hopeMentor == null || data.hopeMentor == ''){
-            delete data.hopeMentor
-        }
-        dispatch(applyCounsel(data));
     }
 
     useEffect(() =>{
@@ -259,8 +291,8 @@ const CounselApply = () => {
             <section className={cx("container")}>
                 <Form form={form} onFinish={(e) =>{submitApply(e)}} onFinishFailed={(e) =>{personalDev.current.scrollIntoView()}}>
                 <div className={cx("sub_container", "mentor_group_write")}>
-                    <h1 className={cx("sub_top_title")}>멘토단 소개</h1>
-                    <p className={cx("sub_top_txt")}>전문 멘토로부터 듣는 창업 알짜 정보 예비창업자를 위한 <br/>창업 전문 상담코너입니다.</p>
+                    <h1 className={cx("sub_top_title")}>창업 상담</h1>
+                    <p className={cx("sub_top_txt")}>(예비)창업자의 기술‧경영 애로사항을 해결하기 위해 <br/>온·오프라인 창업상담 프로그램을 운영합니다.</p>
 
                     <div className={cx("tab_style_2")}>
                         <ul>
@@ -273,7 +305,7 @@ const CounselApply = () => {
                     <PersonalInfoForm cx={cx} changeApplyFormValue={changeApplyFormValue} applyForm={applyForm}/>
 
                     <div className={cx("termsArea")}>
-                        <h3>개인정보처리방침</h3>
+                        <h3><span style={{color:'red'}}>*</span>개인정보처리방침</h3>
                         <div className={cx("terms_box")}>
 <pre>
 한양대학교 창업지원단 개인정보 처리방침
@@ -300,7 +332,7 @@ const CounselApply = () => {
                         </div>
                     </div>
 
-                    <h2>구분</h2>
+                    <h2><span style={{color:'red'}}>*</span>구분</h2>
                     <div className={cx("form_style_1")}>
                         <ul className={cx("list_2")}>
                             <Form.Item
@@ -317,14 +349,14 @@ const CounselApply = () => {
                         </ul>
                     </div>
 
-                    <h2>창업진행 상황</h2>
+                    <h2><span style={{color:'red'}}>*</span>창업진행 상황</h2>
                     <div className={cx("form_style_1")}>
                         <ul className={cx("list_3")}>
                             <Radio.Group name="formProgressItem" options={progressItem.list} value={applyForm.formProgressItem} defaultValue={1}  onChange={changeApplyFormValue} />
                         </ul>
                     </div>
 
-                    <h2>희망 멘토링 분야</h2>
+                    <h2><span style={{color:'red'}}>*</span>희망 멘토링 분야</h2>
                     <div className={cx("form_style_1")}>
                         <ul className={cx("list_5")}>
                             <Form.Item
@@ -374,7 +406,7 @@ const CounselApply = () => {
                         </Select>
                     </div>
 
-                    <h2>희망 상담 방식</h2>
+                    <h2><span style={{color:'red'}}>*</span>희망 상담 방식</h2>
                     <div className={cx("form_style_1")}>
                         <ul className={cx("list_5","way")}>
                             <Form.Item
@@ -395,7 +427,7 @@ const CounselApply = () => {
                     <ul className={cx("consultation_details")}>
                         <li>
                             <Form.Item
-                                label="제목"
+                                label={<span><span style={{color:'red'}}>*</span>제목</span>}
                                 name="title"
                                 className={(cx("antd_input"))}
                                 rules={[
@@ -413,7 +445,7 @@ const CounselApply = () => {
                         </li>
                         <li>
                             <div className={cx("editor_box")}>
-                                <QuillEditor Contents={applyForm.content} QuillChange={setContent}/>
+                                <Editor setEditor={setEditor}/>
                             </div>
                         </li>
                         <li>

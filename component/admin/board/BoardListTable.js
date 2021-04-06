@@ -8,18 +8,18 @@ const BoardListTable = ({cx, list,moveBoardConfig,moveBoardContentList}) => {
             <table>
                 <colgroup>
                     <col style={{width: "8.6%"}}/>
-                    <col style={{width: "30.5%"}}/>
+                    <col style={{width: "50.5%"}}/>
                     <col/>
                 </colgroup>
                 <thead>
                 <tr>
-                    <th scope="col">NO</th>
+                    <th scope="col">번호</th>
                     <th scope="col">게시판 이름</th>
                     {/*<th scope="col">게시판 영문</th>*/}
                     <th scope="col">생성일</th>
-                    <th scope="col">글 작성</th>
-                    <th scope="col">바로가기</th>
-                    <th scope="col">글 목록</th>
+                    {/*<th scope="col">글 작성</th>*/}
+                    {/*<th scope="col">바로가기</th>*/}
+                    {/*<th scope="col">글 목록</th>*/}
                 </tr>
                 </thead>
                 <tbody>
@@ -38,19 +38,19 @@ const BoardListTable = ({cx, list,moveBoardConfig,moveBoardContentList}) => {
                             <td>
                                 {moment(item.regDate).format("YYYY-MM-DD")}
                             </td>
-                            <td>
-                                <Link href={`/admin/board/content/${item.boardEnName}/write`}>
-                                    <a>
-                                    <EditOutlined />
-                                    </a>
-                                </Link>
-                            </td>
-                            <td>
-                                <Link href={`/board/${item.boardEnName}/list`}><a>이동</a></Link>
-                            </td>
-                            <td>
-                                <button onClick={() => {moveBoardContentList(item.boardEnName)}}>이동</button>
-                            </td>
+                            {/*<td>*/}
+                            {/*    <Link href={`/admin/board/content/${item.boardEnName}/write`}>*/}
+                            {/*        <a>*/}
+                            {/*        <EditOutlined />*/}
+                            {/*        </a>*/}
+                            {/*    </Link>*/}
+                            {/*</td>*/}
+                            {/*<td>*/}
+                            {/*    <Link href={`/board/${item.boardEnName}/list`}><a>이동</a></Link>*/}
+                            {/*</td>*/}
+                            {/*<td>*/}
+                            {/*    <button onClick={() => {moveBoardContentList(item.boardEnName)}}>이동</button>*/}
+                            {/*</td>*/}
                         </tr>
                     )
                 })}

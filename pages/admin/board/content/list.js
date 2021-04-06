@@ -47,7 +47,9 @@ const List = () => {
         categoryCodeId:"",
         searchValue:"",
         searchField:"title"
-    });
+    })
+    const [currentBoard, setCurrentBoard]= useState(null);
+
     const {content,infoAll,contentListLoading} = useSelector(({adminBoard,loading})=> ({
         content:adminBoard.content,
         infoAll:adminBoard.infoAll,
@@ -57,9 +59,18 @@ const List = () => {
     useEffect(() => {
         setSearchInfo({
             ...searchInfo,
+            boardEnName:router.query.boardEnName,
             ...router.query
         })
-    },[])
+    },[router.query])
+    useEffect(() => {
+        const {boardEnName = null} = router.query
+        if(infoAll.boardList.length > 0 && boardEnName != null){
+            infoAll.boardList.forEach( (item) => item.boardEnName == boardEnName && setCurrentBoard(item));
+
+
+        }
+    },[infoAll])
 
     useEffect(() => {
         const { page = 1,boardEnName = null,categoryId = null,categoryCodeId = null,searchValue = null,searchField = null} = router.query
@@ -113,17 +124,21 @@ const List = () => {
                         </ul>
 
                         <div className={`${cx("member_id_search")} clfx`}>
-                            <select name="boardEnName" value={searchInfo.boardEnName} onChange={(e) =>{changeSearchInfo(e)}}>
-                                <option value="">게시판 선택</option>
-                                {infoAll.boardList.map((item)=>{
-                                    return <option key={item.boardEnName} value={item.boardEnName}>{item.boardKrName}</option>
-                                })}
-                            </select>
+                            {/*<select name="boardEnName" value={searchInfo.boardEnName} onChange={(e) =>{changeSearchInfo(e)}}>*/}
+                            {/*    <option value="">게시판 선택</option>*/}
+                            {/*    {infoAll.boardList.map((item)=>{*/}
+                            {/*        return <option key={item.boardEnName} value={item.boardEnName}>{item.boardKrName}</option>*/}
+                            {/*    })}*/}
+                            {/*</select>*/}
                             <select name="categoryCodeId" value={searchInfo.categoryCodeId} onChange={(e) => {changeSearchInfo(e)}}>
                                 <option value="">카테고리 선택</option>
-                                {infoAll.categoryCodeList.map((item)=>{
-                                    return <option key={item.categoryCodeId} value={item.categoryCodeId}>{`${item.categoryCodeName}(${item.categoryName})`}</option>
-                                })}
+                                {currentBoard != null && (
+                                    infoAll.categoryCodeList.map((item)=>
+                                            currentBoard.categoryId == item.categoryId &&(
+                                                <option key={item.categoryCodeId} value={item.categoryCodeId}>{`${item.categoryCodeName}(${item.categoryName})`}</option>
+                                            )
+                                        )
+                                )}
                             </select>
                             <select name="searchField" value={searchInfo.searchField} onChange={(e) => {changeSearchInfo(e)}}>
                                 <option value="title">제목</option>
@@ -145,8 +160,13 @@ const List = () => {
 
                     <div className={cx("admin_cont")}>
                         <h2 className={cx("title_style_1")}><span>목록</span></h2>
+                        <div className={cx("top_btn_box")}>
+                            {currentBoard != null &&(
+                                <Link href={`/admin/board/content/${currentBoard.boardEnName}/write`}>글 쓰기</Link>
+                            )}
+                        </div>
                         {content.list.length !== 0 &&
-                            <BoardContentListTable cx={cx} moveBoardContent={moveBoardContent} list={content.list}/>
+                            <BoardContentListTable cx={cx} moveBoardContent={moveBoardContent} list={content.list} currentBoard={currentBoard}/>
                         }
 
                         {content.page != null && (

@@ -9,6 +9,7 @@ import {getUserList} from "../../../store/user/user";
 import UserListTable from "../../../component/admin/user/UserListTable";
 import Pagination from "../../../component/common/Pagination";
 import qs from 'query-string';
+import {port, url} from "../../../lib/api/client";
 
 const cx = classnames.bind(styles);
 
@@ -103,6 +104,9 @@ const Index = () => {
 
                 <div className={cx("admin_cont")}>
                     <h2 className={cx("title_style_1")}><span>전체목록</span></h2>
+                    <div className={cx("btn-box01")}>
+                        <Link href={`${url}:${port}/api/admin/user/excel_download`}><a className={cx("basic-btn02")} download target="_blank">액셀 다운로드</a></Link>
+                    </div>
                     <div className={cx("tb_style_1")}>
                         <UserListTable cx={cx} list={user.list}/>
                     </div>

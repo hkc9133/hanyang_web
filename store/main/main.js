@@ -1,11 +1,13 @@
 import {createAction, handleActions} from 'redux-actions';
+import {enableES5} from "immer"
+enableES5()
 import produce from 'immer';
 import {takeLatest} from 'redux-saga/effects';
 import createRequestSaga, {createRequestActionTypes} from "../../lib/createRequestSaga";
 import * as mainAPI from '../../lib/api/main/main';
 
 const [GET_MAIN_DATA,GET_MAIN_DATA_SUCCESS, GET_MAIN_DATA_FAILURE] = createRequestActionTypes('main/GET_MAIN_DATA')
-const [GET_NOTICE_LIST,GET_NOTICE_LIST_SUCCESS, GET_NOTICE_LIST_FAILURE] = createRequestActionTypes('main/GET_NOTICE_LIST')
+const [GET_MEDIA_LIST,GET_MEDIA_LIST_SUCCESS, GET_MEDIA_LIST_FAILURE] = createRequestActionTypes('main/GET_MEDIA_LIST')
 const [GET_BOARD_SEARCH_LIST,GET_BOARD_SEARCH_LIST_SUCCESS, GET_BOARD_SEARCH_LIST_FAILURE] = createRequestActionTypes('main/GET_BOARD_SEARCH_LIST')
 const INITIALIZE = 'main/INITIALIZE';
 
@@ -13,16 +15,16 @@ const INITIALIZE = 'main/INITIALIZE';
 // export const selectCompany = createAction(SELECT_COMPANY,(id)=>(id));
 export const initialize = createAction(INITIALIZE);
 export const getMainData = createAction(GET_MAIN_DATA);
-export const getNoticeList = createAction(GET_NOTICE_LIST);
+export const getMediaList = createAction(GET_MEDIA_LIST);
 export const getBoardSearchList = createAction(GET_BOARD_SEARCH_LIST);
 
 const getMainDataSaga = createRequestSaga(GET_MAIN_DATA, mainAPI.getMainData);
-const getNoticeListSaga = createRequestSaga(GET_NOTICE_LIST, mainAPI.getNoticeList);
+const getMediaListSaga = createRequestSaga(GET_MEDIA_LIST, mainAPI.getMediaList);
 const getBoardSearchListSaga = createRequestSaga(GET_BOARD_SEARCH_LIST, mainAPI.getBoardSearchList);
 
 export function* mainSaga(){
     yield takeLatest(GET_MAIN_DATA, getMainDataSaga);
-    yield takeLatest(GET_NOTICE_LIST, getNoticeListSaga);
+    yield takeLatest(GET_MEDIA_LIST, getMediaListSaga);
     yield takeLatest(GET_BOARD_SEARCH_LIST, getBoardSearchListSaga);
 }
 
@@ -30,12 +32,15 @@ const initialState = {
     mainData:{
         result:null,
         notice:[],
+        calendar:[],
+        issue:[],
         startup_info:[],
+        hub:[],
         popup:[],
         keyword:[],
         online_content:[],
     },
-    getNoticeList:[],
+    getMediaList:[],
     boardSearch:{
         list:[],
         page:null,
@@ -55,7 +60,10 @@ const main = handleActions(
             produce(state,draft => {
                 draft.mainData.result = true;
                 draft.mainData.notice = response.data.notice;
+                draft.mainData.calendar = response.data.calendar;
+                draft.mainData.issue = response.data.issue;
                 draft.mainData.startup_info = response.data.startup_info;
+                draft.mainData.hub = response.data.hub;
                 draft.mainData.popup = response.data.popup;
                 draft.mainData.keyword = response.data.keyword;
                 draft.mainData.online_content = response.data.online_content;
@@ -65,19 +73,22 @@ const main = handleActions(
             produce(state, draft => {
                 draft.mainData.result = false;
                 draft.mainData.notice = [];
+                draft.mainData.calendar = [];
+                draft.mainData.issue = [];
                 draft.mainData.startup_info = [];
+                draft.mainData.hub = [];
                 draft.mainData.popup = [];
                 draft.mainData.keyword = [];
                 draft.mainData.online_content = [];
             }),
-        [GET_NOTICE_LIST_SUCCESS]: (state, {payload: response}) =>
+        [GET_MEDIA_LIST_SUCCESS]: (state, {payload: response}) =>
             produce(state,draft => {
-                draft.getNoticeList = response.data;
+                draft.getMediaList = response.data;
             }),
 
-        [GET_NOTICE_LIST_FAILURE]: (state, {payload: error}) =>
+        [GET_MEDIA_LIST_FAILURE]: (state, {payload: error}) =>
             produce(state, draft => {
-                draft.getNoticeList = [];
+                draft.getMediaList = [];
             }),
         [GET_BOARD_SEARCH_LIST_SUCCESS]: (state, {payload: response}) =>
             produce(state,draft => {

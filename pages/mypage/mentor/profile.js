@@ -4,7 +4,13 @@ import {Input, Tag, Button, Select, Form, Checkbox} from 'antd';
 
 const {CheckableTag} = Tag;
 import {useRouter} from "next/router";
-import {getCounselFieldCode, getMentor, initialize, updateMentorProfile} from "../../../store/mentoring/mentoring";
+import {
+    commissionDownload,
+    getCounselFieldCode,
+    getMentor,
+    initialize,
+    updateMentorProfile
+} from "../../../store/mentoring/mentoring";
 import Link from 'next/link'
 
 import styles from '../../../public/assets/styles/startup_info/startup_info.module.css';
@@ -107,6 +113,7 @@ const MentorProfile = () => {
     }
 
     const changeMentorField = (tag, checked) => {
+        console.log(tag, checked)
         const nextSelectedTags = checked ? [...mentorInfo.mentorFieldList, tag.value] : mentorInfo.mentorFieldList.filter(t => t !== tag.value);
 
         setMentorInfo({
@@ -122,10 +129,15 @@ const MentorProfile = () => {
     },[update])
 
     const submitApply = () =>{
+
+        console.log(mentorInfo)
         dispatch(updateMentorProfile(mentorInfo))
     }
 
 
+    const handleDownload = () => {
+        dispatch(commissionDownload())
+    }
 
     return (
         <div>
@@ -138,7 +150,7 @@ const MentorProfile = () => {
                         <ul>
                             <li><Link href="/mypage/mentor"><a>나의 멘토링현황</a></Link></li>
                             <li className={cx("on")}><Link href="/mypage/mentor/profile"><a>프로필 변경</a></Link></li>
-                            <li><Link href="/mypage/mentor"><a>위촉장 리스트</a></Link></li>
+                            <li><a href={`${client.defaults.baseURL}/mentoring/commission`}>위촉장 발급</a></li>
                         </ul>
                     </div>
                     {mentor != null && (
@@ -311,7 +323,7 @@ const MentorProfile = () => {
                                             <KeywordBox mentorInfo={mentorInfo} setMentorInfo={setMentorInfo} cx={cx}/>
                                         </li>
                                         <li>
-                                            <label htmlFor="startup_write_8">주요경력</label>
+                                            <label htmlFor="startup_write_8">주요경력 <span style={{fontSize:13,color:'gray'}}>ex)1996. 0. ~ 2000. 0.   00대학교 00학과 학사</span></label>
                                             <CareerBox mentorInfo={mentorInfo} setMentorInfo={setMentorInfo} cx={cx}/>
                                         </li>
                                     </ul>
@@ -324,7 +336,7 @@ const MentorProfile = () => {
                                     </div>
                                 </div>
                                 <div className={cx("txt_c")}>
-                                    <input type="submit" value="지원하기" className={cx("basic-btn03", "btn-blue-bd")}/>
+                                    <input type="submit" value="수정하기" className={cx("basic-btn03", "btn-blue-bd")}/>
                                 </div>
                             </Form>
 

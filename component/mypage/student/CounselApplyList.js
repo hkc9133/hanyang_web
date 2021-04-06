@@ -87,7 +87,7 @@ const CounselApplyListItem = React.memo(({item, handleShowAnswer, showAnswer, ha
                                     <div className={cx("attached_file")}>
                                         <span className={cx("title")}>첨부파일</span>
                                         <Upload
-                                            listType="picture-card"
+                                            listType="picture"
                                             fileList={counselApply.files.map((file) => {
                                                 return {
                                                     uid: file.fileName,
@@ -122,50 +122,51 @@ const CounselApplyListItem = React.memo(({item, handleShowAnswer, showAnswer, ha
                             </div>
                             : (counselApply.counselApply.applyStatus == "COMPLETED") ?
                                 <div className={cx("mentors_opinion")} style={{display: 'block'}}>
-                                    <h3>일시</h3>
+                                    <h3>·일시</h3>
                                     <div className={cx("mentors_opinion_content")}>{`${moment(counselApply.counselApply.start).format("YYYY년 MM월 DD일 hh")} ~ ${moment(counselApply.counselApply.end).format("YYYY년 MM월 DD일 hh")}`}</div>
-                                    <h3>방법</h3>
+                                    <h3>·방법</h3>
                                     <div className={cx("mentors_opinion_content")}>
                                         {counselApply.wayItemList.map((item) =>(
                                             <li key={item.itemId}>{item.item}</li>
                                         ))}
                                     </div>
-                                    <h3>장소</h3>
+                                    <h3>·장소</h3>
                                     <div className={cx("mentors_opinion_content")}>
                                         {counselApply.counselApply.place}
                                     </div>
 
-                                    <h3>멘토의견</h3>
+                                    <h3>·멘토의견</h3>
                                     <div className={cx("mentors_opinion_content")}>
                                         <div className={"ql-editor"} dangerouslySetInnerHTML={{__html: counselApply.counselApply.answer}}/>
                                         <Rate allowHalf value={counselApply.counselApply.score} disabled/>
                                     </div>
-                                    <div className={cx("attached_file")}>
-                                        <span className={cx("title")}>첨부파일</span>
-                                        {
-                                            counselApply.answerFiles.length > 0 && (
-                                                <Upload
-                                                    listType="picture-card"
-                                                    fileList={counselApply.answerFiles.map((file) => {
-                                                        return {
-                                                            uid: file.fileName,
-                                                            name: file.fileOriginName,
-                                                            status: 'done',
-                                                            fileId: file.fileId
-                                                        }
-                                                    })}
-                                                    showUploadList={{
-                                                        showPreviewIcon: false,
-                                                        showRemoveIcon: false,
-                                                        showDownloadIcon: true
-                                                    }}
-                                                    onDownload={handleFileDownload}
-                                                >
-                                                </Upload>
-                                            )
-                                        }
-                                    </div>
-                                </div> : counselApply.counselApply.applyStatus == "RETURN" ? "반려" : "진행중"}
+                                    {/*<div className={cx("attached_file")}>*/}
+                                    {/*    <span className={cx("title")}>·첨부파일</span>*/}
+                                    {/*    {*/}
+                                    {/*        counselApply.answerFiles.length > 0 && (*/}
+                                    {/*            <Upload*/}
+                                    {/*                listType="picture-card"*/}
+                                    {/*                fileList={counselApply.answerFiles.map((file) => {*/}
+                                    {/*                    return {*/}
+                                    {/*                        uid: file.fileName,*/}
+                                    {/*                        name: file.fileOriginName,*/}
+                                    {/*                        status: 'done',*/}
+                                    {/*                        fileId: file.fileId*/}
+                                    {/*                    }*/}
+                                    {/*                })}*/}
+                                    {/*                showUploadList={{*/}
+                                    {/*                    showPreviewIcon: false,*/}
+                                    {/*                    showRemoveIcon: false,*/}
+                                    {/*                    showDownloadIcon: true*/}
+                                    {/*                }}*/}
+                                    {/*                onDownload={handleFileDownload}*/}
+                                    {/*            >*/}
+                                    {/*            </Upload>*/}
+                                    {/*        )*/}
+                                    {/*    }*/}
+                                    {/*</div>*/}
+                                </div>
+                                : counselApply.counselApply.applyStatus == "RETURN" ? "반려" : "진행중"}
                     </li>
                 )}
             </ul>

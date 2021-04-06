@@ -88,7 +88,7 @@ const StudentReportManagePage = () => {
                         {/*    <select name="categoryCodeId" value={searchInfo.categoryCodeId} onChange={(e) => {changeSearchInfo(e)}}>*/}
                         {/*        <option value={""}>분류</option>*/}
                         {/*        {*/}
-                        {/*            notice.cate.map((cate)=>(*/}
+                        {/*            startupCalendar.cate.map((cate)=>(*/}
                         {/*                <option key={cate.categoryCodeId} value={cate.categoryCodeId}>{cate.categoryCodeName}</option>*/}
                         {/*            ))*/}
                         {/*        }*/}
@@ -130,7 +130,7 @@ const StudentReportManagePage = () => {
                                 </colgroup>
                                 <thead>
                                 <tr>
-                                    <th scope="col">NO</th>
+                                    <th scope="col">번호</th>
                                     <th scope="col">기업명</th>
                                     <th scope="col">사업자 유형</th>
                                     <th scope="col">학생 이름</th>

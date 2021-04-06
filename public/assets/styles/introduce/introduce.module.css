@@ -89,9 +89,10 @@
 .vision_list>li.icon_5{background:url(../../image/mission_icon_5.jpg) no-repeat 20px 10px; }
 .vision_list>li .c-sky{color:#0069f8; font-weight:normal;}
 .organization .img_area{margin:-30px 0 35px;}
-.introduction table{margin-bottom:20px; border-top:2px solid #000;}
+.introduction table{margin-bottom:20px;}
 .introduction td{padding:20px 5px;  border:1px solid #dedede; text-align:center; font-size:16px; border-right:none; }
 .introduction td:first-child{border-left:none; }
+.introduction thead th{padding:20px 5px;  border-borrom:1px solid #dedede; text-align:center; font-size:20px; border-right:none; border-bottom:2px solid #000;}
 .organization .btn_area{text-align:right; }
 .organization .btn_area button{width:120px; height:40px; line-height:40px; display:inline-block; text-align:center; border:1px solid #000; border-radius:5px; }
 .organization .btn_area button span{line-height:40px;  display:inline-block; font-size:16px; }
@@ -142,6 +143,7 @@
 
 
 .startup_support_step>ol>li{position:relative; margin-bottom:50px; padding:0 0 0 400px; min-height:255px; }
+.startup_support_step>ol>li:last-child .list{padding-top: 55px;}
 .startup_support_step>ol>li .step{position:absolute; left:80px; top:50%; margin-top:-127px; width:220px; height:255px;text-align:center; background:url(../../image/startup_support_bg1.jpg) no-repeat center center; display:table;}
 .startup_support_step>ol>li:nth-child(2) .step{background:url(../../image/startup_support_bg2.jpg) no-repeat center center;}
 .startup_support_step>ol>li:nth-child(3) .step{background:url(../../image/startup_support_bg3.jpg) no-repeat center center;}
@@ -164,7 +166,6 @@
 }
 .btn-blue-bd{ border:1px solid #4b8cf7; color:#4b8cf7;}
 .btn-blue-bd:hover{background-color:#4b8cf7; color:#fff; }
-
 
 
 @media screen and (max-width: 1400px){
@@ -326,6 +327,7 @@
     .promotion .ci_list>div{float:none; width:100%; }
     .promotion .ci_list li{margin-bottom:20px; }
 
+    .startup_support_step>ol>li:last-child .list{padding-top: 0px;}
     .startup_support_step>ol>li .step{width:150px; height:180px; background-size:150px; }
     .startup_support_step>ol>li .step span{font-size:20px; }
     .startup_support_step>ol>li .step span strong{font-size:24px; }

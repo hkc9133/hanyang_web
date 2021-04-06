@@ -173,7 +173,7 @@ const MentorApply = () => {
             {!isLoading && mentorCheck.code !== 409  &&(
                 <section className={cx("container")} hidden={mentorCheck.code === 409}>
                     <div className={cx("sub_container", "mentor_group_write")}>
-                        <h1 className={cx("sub_top_title")}>멘토단 소개</h1>
+                        <h1 className={cx("sub_top_title")}>멘토단 신청</h1>
                         <p className={cx("sub_top_txt")}>전문 멘토로부터 듣는 창업 알짜 정보 예비창업자를 위한 <br/>창업 전문 상담코너입니다.</p>
                         <h2>개인정보</h2>
                         <Form form={form} onFinish={(e) =>{submitApply(e)}} onFinishFailed={(e) =>{personalDev.current.scrollIntoView();}}>

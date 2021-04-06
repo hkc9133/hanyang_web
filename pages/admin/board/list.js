@@ -68,13 +68,11 @@ const List = () => {
     }
 
     const pageChange = (page) =>{
-        console.log(page)
         const data = {
             ...searchInfo,
             page:page
         }
         const queryString = qs.stringify(data);
-        console.log(data)
         router.push(`${router.pathname}?${queryString}`)
 
     }

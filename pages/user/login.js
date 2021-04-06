@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {initializeForm, normalLogin, socialLogin, socialSignUp} from "../../store/auth/auth";
+import {checkHanyang, initHanyang, initializeForm, normalLogin, socialLogin, socialSignUp} from "../../store/auth/auth";
 import {useDispatch, useSelector} from "react-redux";
 import { useRouter } from 'next/router'
 import Modal from "../../component/common/Modal";
@@ -16,6 +16,8 @@ import FaceBookLoginButton from "../../component/auth/FaceBookLoginButton";
 import KakaoLoginButton from "../../component/auth/KakaoLoinButton";
 import GoogleLoginButton from "../../component/auth/GoogleLoginButton";
 import NaverLoginButton from "../../component/auth/NaverLoginButton";
+import Loader from "../../component/layout/Loader";
+import HanyangLoginButton from "../../component/auth/HanyangLoginButton";
 const cx = classnames.bind(styles);
 
 
@@ -30,18 +32,34 @@ const Login = () => {
         userId:"",
         userPassword:""
     })
-    const {user,loginCode, signup, loginLoading, signUpLoading,normalLoginLoading, loading} = useSelector(({auth, loading}) => ({
+    const {user,loginCode, signup,initHanyangInfo, loginLoading, signUpLoading,normalLoginLoading,hanyangLoading, loading} = useSelector(({auth, loading}) => ({
         user: auth.user,
         loginCode:auth.loginCode.code,
         signup: auth.signup,
+        initHanyangInfo:auth.initHanyang,
         loginLoading: loading['auth/SOCIAL_LOGIN'],
         normalLoginLoading: loading['auth/NORMAL_LOGIN'],
         signUpLoading: loading['auth/SOCIAL_SIGNUP'],
+        hanyangLoading:loading['auth/CHECK_HANYANG'],
         loading: loading
     }))
 
     useEffect(() => {
+        dispatch(initHanyang());
     },[])
+
+    useEffect(() => {
+        if(user.login){
+            router.push("/")
+        }
+    },[user])
+
+
+    useEffect(() => {
+        if(router.query.code != null && router.query.code != undefined){
+            dispatch(checkHanyang(router.query.code))
+        }
+    },[router.query])
 
     const handleChangeLoginInfo = (e) => {
         const {name, value} = e.target
@@ -91,10 +109,13 @@ const Login = () => {
 
     useEffect(() => {
         if (!signUpLoading && signup.result == true && signup.error == null) {
-            console.log("가입 성공")
             router.push('/')
         }
     }, [signup, signUpLoading])
+
+    useEffect(() =>{
+        console.log(initHanyangInfo)
+    },[])
 
     return (
         <>
@@ -134,6 +155,9 @@ const Login = () => {
                                 </div>
                                 <div className={cx("sns_login")}>
                                     <ul className={"clfx"}>
+                                        <li className={cx("icon_5")}>
+                                            <HanyangLoginButton handleSocialLogin={handleSocialLogin} onFormCheck={onFormCheck}/>
+                                        </li>
                                         <li className={cx("icon_1")}>
                                             <NaverLoginButton handleSocialLogin={handleSocialLogin} onFormCheck={onFormCheck}/>
                                         </li>
@@ -151,6 +175,8 @@ const Login = () => {
                             </div>
                             <div className={cx("login_img")}><Image src="/assets/image/login_bg.jpg" width={420} height={462} alt="login_bg"/></div>
                         </div>
+                        {hanyangLoading && <Loader/>}
+
                     </section>
                     {showJoinInfoModal && <Modal visible={showJoinInfoModal} closable={true} maskClosable={true}
                                                  onClose={() => setShowJoinInfoModal(false)}>

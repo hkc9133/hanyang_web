@@ -9,9 +9,9 @@
 .tab_style_2 li a strong{display:block; font-size:32px; font-family: 's-core-dream-medium';}
 
 .sub_cont{margin:0 auto; padding:60px 20px; max-width:1320px; }
-.sub_container{margin:0 auto; padding:120px 20px; max-width:1320px; }
+.sub_container{margin:0 auto; padding: 120px 20px 60px; max-width:1320px; }
 .sub_top_title{position:relative; z-index:2; margin-bottom:40px; line-height:1; font-size:42px; color:#222; font-family: 's-core-dream-bold';}
-.sub_top_txt{position:relative; z-index:2; margin-bottom:100px; font-size:24px; }
+.sub_top_txt{position:relative; z-index:2; margin-bottom:100px; font-size:24px; width: 780px;}
 .sub_cont_top{position:relative; z-index:1; padding:120px 20px 60px; overflow:hidden;}
 .sub_cont_top:before{position:absolute; right:20px; top:25px; width:445px; height:288px; display:block; background:url(../../image/mentor_group_bg.jpg) no-repeat right 0; content:"";}
 .sub_container{position:relative; z-index:1; overflow:hidden;}
@@ -116,12 +116,12 @@
 .mentor_group_write .personal_info ul li.email{width:100%; }
 .mentor_group_write .personal_info ul li.email input[type=text]{float:left; width:100%;}
 .mentor_group_write .personal_info ul li.email select{float:right; width:33.33%; font-size:16px; }
-.mentor_group_write .personal_info ul li.email span{float:left; width:5%; text-align:center; line-height:50px; display:block; font-size:16px; color:#888;}
+/*.mentor_group_write .personal_info ul li.email span{float:left; width:5%; text-align:center; line-height:50px; display:block; font-size:16px; color:#888;}*/
 .mentor_group_write select{width:100%; height:50px; line-height:48px; border-radius:5px; }
 .mentor_group_write input[type=text]{width:100%; height:50px; line-height:48px; border-radius:5px;margin-bottom: 5px;}
 .mentor_group_write h3{padding-bottom:20px; font-size:16px; font-family: 's-core-dream-medium'; color:#222; }
 .mentor_group_write .termsArea{padding:40px; margin-bottom:60px; border-bottom:1px solid #ddd; }
-.mentor_group_write .termsArea .terms_box{margin-bottom:20px; padding:20px; width:100%; height:320px; border:1px solid #ddd; border-radius:5px; overflow:auto; box-sizing:border-box; }
+.mentor_group_write .termsArea .terms_box{margin-bottom:20px; padding:20px; width:100%; height:120px; border:1px solid #ddd; border-radius:5px; overflow:auto; box-sizing:border-box; }
 .mentor_group_write .termsArea .terms_box pre{color:#222; font-size:16px;}
 .mentor_group_write .termsArea .agree label{margin-left:10px; display:inline-block; font-size:16px; color:#666;}
 .mentor_group_write .mentor_detail{margin-bottom:40px; padding:40px 40px 25px; border-bottom:1px solid #ddd;}
@@ -204,7 +204,10 @@
 .mentor_groupList .th_title ul{display:table; width:100%;}
 .mentor_groupList .td_content ul{display:table; width:100%;}
 .mentor_groupList .th_title ul li{padding:18px 0; display:table-cell; text-align:center; font-family: 's-core-dream-medium'; color:#222; border-bottom:1px solid #ddd; border-top:2px solid #222; font-size:18px;}
-.mentor_groupList .td_content .question ul li{padding:24px 0; display:table-cell; text-align:center; color:#222; border-bottom:1px solid #ddd; font-size:16px;}
+.mentor_groupList .td_content .question ul li{padding:24px 0; display:table-cell; text-align:center; color:#222; border-bottom:1px solid #ddd; font-size:16px;text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+    overflow: hidden;}
 .mentor_groupList .td_content .answer{padding:40px; background-color:#fafafa;}
 .mentor_groupList .td_content .answer .counsel_content{width: 100%;}
 .mentor_groupList .td_content .answer .counsel_content div{padding:20px 0px;}
@@ -212,7 +215,7 @@
 .mentor_groupList .td_content .info .basic-btn02{position:absolute; right:0; top:0; width:120px; height:50px; line-height:48px; font-size:16px; }
 .mentor_groupList .td_content .info li{position:relative; margin-bottom:8px; float:left; padding-left:10px; width:50%; box-sizing:border-box; font-size:16px; color:#222; }
 .mentor_groupList .td_content .info li:before{position:absolute; left:0; top:10px; width:3px; height:3px; background-color:#aaa; display:block; content:"";}
-.mentor_groupList .td_content .answer ul.dep_2 li{padding-left: 30px;}
+.mentor_groupList .td_content .answer ul.dep_2 li{width: 100%;}
 .mentor_groupList .td_content .answer ul.dep_2 li:before{width: 0px; height: 0px;}
 .mentor_groupList .td_content h3{margin-bottom:20px; font-size:16px; color:#222; }
 .mentor_groupList .td_content h3 span{color:#888; vertical-align:top;}

@@ -111,7 +111,7 @@ const StartupInfoBoard = () => {
                 <p className={cx("sub_top_txt")}>{board.board.boardDesc}</p>
                 <SearchBoxSelector skinName="SearchBoxStyle01" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={board.cate.length > 0 ? board.cate : null}/>
                 <div className={cx("btn_box")}>
-                    <Link href={`/board/${router.query.boardEnName}/write`}><a className={cx("basic-btn03","write_btn")}>글쓰기</a></Link>
+                    {board.board.boardEnName == 'idea' && <Link href={`/board/${router.query.boardEnName}/write`}><a className={cx("basic-btn03","write_btn")}>글쓰기</a></Link>}
                 </div>
                 <BoardSkinSelector skinName="ListType02" pageChange={pageChange} board={board.board} content={content}/>
 

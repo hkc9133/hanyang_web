@@ -123,7 +123,7 @@ const PartnerManagePage = () => {
                             {/*    <select name="categoryCodeId" value={searchInfo.categoryCodeId} onChange={(e) => {changeSearchInfo(e)}}>*/}
                             {/*        <option value={""}>분류</option>*/}
                             {/*        {*/}
-                            {/*            notice.cate.map((cate)=>(*/}
+                            {/*            startupCalendar.cate.map((cate)=>(*/}
                             {/*                <option key={cate.categoryCodeId} value={cate.categoryCodeId}>{cate.categoryCodeName}</option>*/}
                             {/*            ))*/}
                             {/*        }*/}
@@ -165,7 +165,7 @@ const PartnerManagePage = () => {
                                 </colgroup>
                                 <thead>
                                 <tr>
-                                    <th scope="col">NO</th>
+                                    <th scope="col">번호</th>
                                     <th scope="col">구분</th>
                                     <th scope="col">기업명</th>
                                     <th scope="col">홈페이지</th>

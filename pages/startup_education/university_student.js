@@ -7,6 +7,9 @@ import classnames from "classnames/bind"
 import {Menu, Dropdown} from 'antd';
 import Edu2030 from '../../component/startup_education/Edu2030';
 import Edu1619 from '../../component/startup_education/Edu1619';
+import {
+    isMobile
+} from "react-device-detect";
 
 const {SubMenu} = Menu;
 
@@ -16,6 +19,7 @@ const cx = classnames.bind(styles);
 const UniversityStudent = () => {
 
     const [tabNum, setTabNum] = useState(0)
+    const [showScore, setShowScore] = useState(false)
 
     useEffect(() => {
         console.log(tabNum)
@@ -67,7 +71,7 @@ const UniversityStudent = () => {
                                 <li>
                                     <Image src="/assets/image/university_student_icon_4.jpg" width={186} height={186}
                                            alt="university_student_icon_4"/>
-                                    <span>창업 역량 강화<br />실전 창업 준비</span>
+                                    <span>창업 역량 강화<br/>실전 창업 준비</span>
                                 </li>
                                 <li>
                                     <Image src="/assets/image/university_student_icon_5.jpg" width={186} height={186}
@@ -83,7 +87,7 @@ const UniversityStudent = () => {
                 <div className={cx("sub_cont", "university_studentCont_2")}>
                     <div className={cx("txt_style_1")}>
                         <div className={cx("left_title")}>
-                            <h1 className={cx("title_style_2")}><strong>개설강좌</strong></h1>
+                            <h1 className={cx("title_style_2")}><strong>운영강좌</strong></h1>
                             <p>화살표를 누르면 표를 확인하실 수 있습니다.</p>
                         </div>
                         <div className={cx("txtArea")}>
@@ -93,12 +97,14 @@ const UniversityStudent = () => {
                                     selectable={false}
                                     style={{height: '100%', borderRight: 'none'}}
                                 >
-                                    <SubMenu key="sub1" className={cx("dropdown_title")} title={<div className={cx("question")}>1학기 운영강좌</div>}>
+                                    <SubMenu key="sub1" className={cx("dropdown_title")}
+                                             title={<div className={cx("question")}>1학기 운영강좌</div>}>
                                         <Menu.Item key="0" className={cx("dropdown_content")} style={{height: 'auto'}}>
                                             <img src={"/assets/image/university_student_class_1.jpg"}/>
                                         </Menu.Item>
                                     </SubMenu>
-                                    <SubMenu key="sub2" className={cx("dropdown_title")} title={<div className={cx("question")}>2학기 운영강좌</div>}>
+                                    <SubMenu key="sub2" className={cx("dropdown_title")}
+                                             title={<div className={cx("question")}>2학기 운영강좌</div>}>
                                         <Menu.Item key="1" className={cx("dropdown_content")}
                                                    style={{height: 'auto', padding: 10}}>
                                             <img src={"/assets/image/university_student_class_2.jpg"}/>
@@ -120,7 +126,8 @@ const UniversityStudent = () => {
                                     selectable={false}
                                     style={{height: '100%', borderRight: 'none'}}
                                 >
-                                    <SubMenu key="sub3" className={cx("dropdown_title")} title={<div className={cx("question")}>2016년~2019년 교육과정</div>}>
+                                    <SubMenu key="sub3" className={cx("dropdown_title")}
+                                             title={<div className={cx("question")}>2016년~2019년 교육과정</div>}>
                                         <Menu.Item key="2" className={cx("dropdown_content")}
                                                    style={{height: 'auto', padding: 10}}>
                                             {/*<Edu1619 cx={cx}/>*/}
@@ -128,15 +135,17 @@ const UniversityStudent = () => {
                                             <img src={"/assets/image/university_student_class_4.jpg"}/>
                                         </Menu.Item>
                                     </SubMenu>
-                                    <SubMenu key="sub4" className={cx("dropdown_title")} title={<div className={cx("question")}>2020년~2023년 교육과정</div>}>
-                                        <Menu.Item key="3" className={cx("dropdown_content")} style={{height: 'auto', padding: 10}}>
+                                    <SubMenu key="sub4" className={cx("dropdown_title")}
+                                             title={<div className={cx("question")}>2020년~2023년 교육과정</div>}>
+                                        <Menu.Item key="3" className={cx("dropdown_content")}
+                                                   style={{height: 'auto', padding: 10}}>
                                             {/*<Edu2030 cx={cx}/>*/}
                                             <img src={"/assets/image/university_student_class_5.jpg"}/>
                                             <img src={"/assets/image/university_student_class_6.jpg"}/>
                                         </Menu.Item>
                                     </SubMenu>
                                 </Menu>
-                                <p>교양으로 창업강좌를 수강하는 학생들은 가장 최근 교육과정의 로드맵을, 융합전공생은 본인에게 해당하는 교육과정표를 확인해 주세요.</p>
+                                <p>교양으로 창업강좌를 수강하는 학생들은 가장 최근 교육과정의 로드맵을, 융합전공생은 본인에게 해당하는 교육과정표를 확인해주세요.</p>
                             </div>
                         </div>
                     </div>
@@ -166,15 +175,23 @@ const UniversityStudent = () => {
                                         </li>
                                         <li>
                                             <span className={cx("title")}>이수학점</span>
-                                            <Link href="#"><a>이수학점 보기</a></Link>
+                                            <a onClick={(e) => {
+                                                e.preventDefault();
+                                                setShowScore(!showScore)
+                                            }}>이수학점 보기</a>
                                             <br/>
-                                            <p>[2016~2019 교육과정 적용]</p>
-                                            <p>- 제 2전공 : 전공핵심 21학점, 전공심화 6학점 포함하여 전공과목 36학점 이상 이수<br/>
-                                            - 부전공 : 전공핵심 12학점 포함하여 전공과목 21학점 이상 이수</p>
-                                            <br/>
-                                            <p>[2020~2023 교육과정 적용]</p>
-                                            <p>- 제 2전공 : 200~300단위 21학점, 400단위 6학점, 자율선택 9학점 전체 36학점 이상 이수<br/>
-                                            - 부전공 : 200~300단위 12학점, 자율선택 9학점, 전체 21학점 이상 이수</p>
+                                            {showScore && (
+                                                <div>
+                                                    <br/>
+                                                    <p>[2016~2019 교육과정 적용]</p>
+                                                    <p>- 제 2전공 : 전공핵심 21학점, 전공심화 6학점 포함하여 전공과목 36학점 이상 이수<br/>
+                                                        - 부전공 : 전공핵심 12학점 포함하여 전공과목 21학점 이상 이수</p>
+                                                    <br/>
+                                                    <p>[2020~2023 교육과정 적용]</p>
+                                                    <p>- 제 2전공 : 200~300단위 21학점, 400단위 6학점, 자율선택 9학점 전체 36학점 이상 이수<br/>
+                                                        - 부전공 : 200~300단위 12학점, 자율선택 9학점, 전체 21학점 이상 이수</p>
+                                                </div>
+                                            )}
                                         </li>
                                         <li>
                                             <span className={cx("title")}>신청기간</span>
@@ -193,9 +210,18 @@ const UniversityStudent = () => {
                             <h1 className={cx("title_style_2")}>신청방법</h1>
                         </div>
                         <div className={cx("txtArea")}>
-                            <Image src="/assets/image/university_student_img.jpg" width={920} height={394}
-                                   alt="university_student_img"/>
+                            {isMobile ?
+                                <Image src="/assets/image/university_student_img_mo.jpg" width={375} height={394}
+                                       alt="university_student_img"/> :
+                                <Image src="/assets/image/university_student_img.jpg" width={920} height={394}
+                                       alt="university_student_img"/>}
                         </div>
+                        <span className={cx("f-16", "c-blue")}>※ 자기소개서 다운로드
+                            <Link href="/assets/pdf/[양식]자기소개서_창업융합전공.hwp"><a target="_blank"
+                                                                                                  style={{marginLeft: 8}}
+                                                                                                  download><Image
+                                src="/assets/image/icon_download.gif" width={22} height={26} alt="다운로드"/></a></Link>
+                        </span>
                     </div>
 
                     <div className={cx("txt_style_1")}>
@@ -204,9 +230,10 @@ const UniversityStudent = () => {
                         </div>
                         <div className={cx("txtArea")}>
                             <p>
-                                융합전공교육과정(2016-2019 또는 2020-2023) 확인 후 <br/>본인에게 해당하는 교육과정표를 확인해 주세요.
+                                융합전공교육과정(2016-2019 또는 2020-2023) 확인 후 <br/>본인에게 해당하는 교육과정표를 확인해주세요.
                                 <span className={cx("f-16", "c-blue")}>* 교육과정 계산식: 융합전공신청연도–신청학년+ 1</span>
                             </p>
+
                             <h2 className={cx("title_style_4")}>교육과정표 확인 시 주의사항</h2>
                             <ul className={cx("list_style_2")}>
                                 <li><span className={cx("number")}>1)</span> 교육과정표의 이수구분은 창업융합전공을 다중전공, 부전공으로 이수하는 학생에게만
@@ -234,6 +261,34 @@ const UniversityStudent = () => {
 
                     <div className={cx("txt_style_1")}>
                         <div className={cx("left_title")}>
+                            {/*<h1 className={cx("title_style_2")}>교육과정표</h1>*/}
+                        </div>
+                        <div className={cx("qa_list")} style={{marginBottom: 15}}>
+                            <Menu
+                                mode="inline"
+                                selectable={false}
+                                style={{height: '100%', borderRight: 'none'}}
+                            >
+                                <SubMenu key="sub2" className={cx("dropdown_title")}
+                                         title={<div className={cx("question")}>2016년~2019년 교육과정</div>}>
+                                    <Menu.Item key="2" className={cx("dropdown_content")}
+                                               style={{height: 'auto', padding: 10}}>
+                                        <Edu1619 cx={cx}/>
+                                    </Menu.Item>
+                                </SubMenu>
+                                <SubMenu key="sub1" className={cx("dropdown_title")}
+                                         title={<div className={cx("question")}>2020년~2023년 교육과정</div>}>
+                                    <Menu.Item key="1" className={cx("dropdown_content")}
+                                               style={{height: 'auto', padding: 10}}>
+                                        <Edu2030 cx={cx}/>
+                                    </Menu.Item>
+                                </SubMenu>
+                            </Menu>
+                        </div>
+                    </div>
+
+                    <div className={cx("txt_style_1")}>
+                        <div className={cx("left_title")}>
                             <h1 className={cx("title_style_2")}>문의</h1>
                         </div>
                         <div className={cx("txtArea")}>
@@ -242,6 +297,49 @@ const UniversityStudent = () => {
                                 <li>E-mail. startup@hanyang.ac.kr</li>
                             </ul>
                             <span className={cx("kakao")}>카카오톡채널. 한양스타트업톡톡 </span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div className={cx("gray_bg", "university_studentCont_4")} id="hakbu_2">
+                    {/*<div className={cx("university_studentCont_4")} id="hakbu_2">*/}
+                    <div className={cx("sub_cont")}>
+                        <div className={cx("txt_style_1")}>
+                            <div className={cx("left_title")}>
+                                <h1 className={cx("title_style_3")}><strong>학부 4차산업혁명창업<br/><br/> 마이크로전공</strong></h1>
+                            </div>
+                            <div className={cx("txtArea")}>
+                                <div className={cx("list_style_1")}>
+                                    <ul>
+                                        <li>
+                                            <span className={cx("title")}>목적</span>
+                                            미래 산업 분야의 핵심 기술을 선도할 수 있는 창의융합 인재 양성
+                                        </li>
+                                        <li>
+                                            <span className={cx("title")}>수여학위</span>
+                                            부여되지않음(성적증명서에만 표시)
+                                        </li>
+                                        <li>
+                                            <span className={cx("title")}>신청대상 </span>
+                                            창업에 관심있는 서울캠퍼스 재학생(학년, 학부성적 제한없음)
+                                        </li>
+                                        <li>
+                                            <span className={cx("title")}>이수학점</span>
+                                            12학점
+                                        </li>
+                                        <li>
+                                            <span className={cx("title")}>신청기간</span>
+                                            5월, 11월
+                                        </li>
+                                    </ul>
+                                    <span className={cx("f-16", "c-blue")}>※ 운영 및 신청방법 매뉴얼 참고<Link
+                                        href="/assets/pdf/2021-1 마이크로전공 운영 및 학생신청 매뉴얼.hwp"><a
+                                        style={{marginLeft: 8}} target="_blank" download><Image
+                                        src="/assets/image/icon_download.gif" width={22} height={26}
+                                        alt="다운로드"/></a></Link></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -334,8 +432,9 @@ const UniversityStudent = () => {
                                     <li>
                                         <h2 className={cx("title_style_4")}>벤처창업의 이해</h2>
                                         <p>
-                                            벤처창업에 대한 입문 과목으로 창업생태계 및 창업과 관련된 일련의 프로세스와 활동들에 관하여 다룬다. 구체적으로 기업가 정신과 벤처기업가,
-                                             벤처기업과 산업환경, 벤처 기업전략, 사업기회 발견, 자금조달과 관리, 벤처캐피털, 벤처마케팅, 벤처조직 및
+                                            벤처창업에 대한 입문 과목으로 창업생태계 및 창업과 관련된 일련의 프로세스와 활동들에 관하여 다룬다. 구체적으로 기업가 정신과
+                                            벤처기업가,
+                                            벤처기업과 산업환경, 벤처 기업전략, 사업기회 발견, 자금조달과 관리, 벤처캐피털, 벤처마케팅, 벤처조직 및
                                             인사관리, M&A와 기업공개, 벤처의 글로벌화 등 벤처창업에 관한 전반적인 내용을 포함한다. 이를 통하여 학생들은 각 분야의 심화 교과목
                                             으로 들어가기전에 벤처창업의 전반적인 프로세스와 주요 내용을 이해할 수 있다.
                                         </p>
@@ -374,7 +473,7 @@ const UniversityStudent = () => {
                                         </p>
                                     </li>
                                 </ul>
-                                <div className={cx("btn_area")}>
+                                <div className={cx("btn_area")} style={{textAlign: 'center'}}>
                                     <a href="http://entrepreneurship.hanyang.ac.kr/" className={cx("btn_more")}
                                        target="_blank">자세히 알아보기</a>
                                 </div>
@@ -422,7 +521,7 @@ const UniversityStudent = () => {
                                         </p>
                                     </li>
                                 </ul>
-                                <div className={cx("btn_area")}>
+                                <div className={cx("btn_area")} style={{textAlign: 'center'}}>
                                     <a href="http://entrepreneurship.hanyang.ac.kr/" className={cx("btn_more")}
                                        target="_blank">자세히 알아보기</a>
                                 </div>
@@ -438,20 +537,24 @@ const UniversityStudent = () => {
                                     <li>
                                         <h2 className={cx("title_style_4")}>창업기업 운영 특론</h2>
                                         <p>
-                                            스타트업 경영에 있어서 핵심적인 경영관리상의 이슈로 부각되는 특정주제를 정하고 이에 대한 관리 방안 및 사례 연구를 통하여 학생들이 스타트업 경영에 대하여 이론적,
-                                            실무적 이해를 높이고자 한다. 또한 성공한 스타트업 경영인의 특강을 통하여 학생들의 창업에 관한 관심을 높이고 현장감 있는 지식을 전달하고자 한다.
+                                            스타트업 경영에 있어서 핵심적인 경영관리상의 이슈로 부각되는 특정주제를 정하고 이에 대한 관리 방안 및 사례 연구를 통하여 학생들이
+                                            스타트업 경영에 대하여 이론적,
+                                            실무적 이해를 높이고자 한다. 또한 성공한 스타트업 경영인의 특강을 통하여 학생들의 창업에 관한 관심을 높이고 현장감 있는 지식을
+                                            전달하고자 한다.
                                         </p>
                                     </li>
                                     <li>
                                         <h2 className={cx("title_style_4")}>창업 마케팅 </h2>
                                         <p>
-                                            초기 창업 기업에 바로 적용 가능한, 새로운 마케팅 기법을 다룬다. 전통적인 마케팅 기법과는 차별화된, 파괴적(Disruptive) 마케팅,
+                                            초기 창업 기업에 바로 적용 가능한, 새로운 마케팅 기법을 다룬다. 전통적인 마케팅 기법과는 차별화된, 파괴적(Disruptive)
+                                            마케팅,
                                             바이럴(Viral) 마케팅, 래디컬(Radical)마케팅, 컨버전스(Convergence) 마케팅, 탐험적(expeditionary)
-                                            마케팅과 같은 새로운 시각의 개념을 학습하고 실습한다. 본 수업을 통해 학생들은 마케팅의 측면에서 현실 비즈니스의 실제 사례를 읽고 토론한다.
+                                            마케팅과 같은 새로운 시각의 개념을 학습하고 실습한다. 본 수업을 통해 학생들은 마케팅의 측면에서 현실 비즈니스의 실제 사례를 읽고
+                                            토론한다.
                                         </p>
                                     </li>
                                 </ul>
-                                <div className={cx("btn_area")}>
+                                <div className={cx("btn_area")} style={{textAlign: 'center'}}>
                                     <a href="http://entrepreneurship.hanyang.ac.kr/" className={cx("btn_more")}
                                        target="_blank">자세히 알아보기</a>
                                 </div>
@@ -483,7 +586,7 @@ const UniversityStudent = () => {
                                         </p>
                                     </li>
                                 </ul>
-                                <div className={cx("btn_area")}>
+                                <div className={cx("btn_area")} style={{textAlign: 'center'}}>
                                     <a href="http://entrepreneurship.hanyang.ac.kr/" className={cx("btn_more")}
                                        target="_blank">자세히 알아보기</a>
                                 </div>
@@ -526,7 +629,7 @@ const UniversityStudent = () => {
                                         </p>
                                     </li>
                                 </ul>
-                                <div className={cx("btn_area")}>
+                                <div className={cx("btn_area")} style={{textAlign: 'center'}}>
                                     <a href="http://entrepreneurship.hanyang.ac.kr/" className={cx("btn_more")}
                                        target="_blank">자세히 알아보기</a>
                                 </div>
@@ -577,13 +680,64 @@ const UniversityStudent = () => {
                                         </p>
                                     </li>
                                 </ul>
-                                <div className={cx("btn_area")}>
-                                    <a href="http://entrepreneurship.hanyang.ac.kr/" className={cx("btn_more")} target="_blank">자세히
-                                    알아보기</a>
+                                <div className={cx("btn_area")} style={{textAlign: 'center'}}>
+                                    <a href="http://entrepreneurship.hanyang.ac.kr/" className={cx("btn_more")}
+                                       target="_blank">자세히 알아보기</a>
                                 </div>
                             </div>
                         </div>
 
+
+
+                    </div>
+                    <div className={cx("sub_cont")}>
+                        <div className={`${cx({show: true})} txt_style_1 `}>
+                            <div className={cx("txt_style_1")}>
+                                <div className={cx("left_title")}>
+                                    <h1 className={cx("title_style_3")}><strong>비교과 프로그램</strong></h1>
+                                </div>
+                                <div className={cx("txtArea")}>
+                                    <ul>
+                                        <li>
+                                            <h2 className={cx("title_style_4")}>창업경진대회 </h2>
+                                            <ul>
+                                                <li>벤처창업경진대회 : 대학(원)생들의 창의적 · 혁신적인 비즈니스모델 조기 발굴 및 육성을 위한 창업경진대회​</li>
+                                                <li>라이언컵 경진대회 : 당해 창업경진대회 수상자 중 최고의 혁신 아이템을 선발하는 창업경진대회 왕중왕전​</li>
+                                                <li>캠퍼스 CEO 창업경진대회 : 창업강좌 수강생들이 한 학기동안 발굴한 참신한 사업 아이디어를 점검하는 교내
+                                                    창업경진대회​
+                                                </li>
+                                                <li>소프트웨어 창업아이디어 경진대회 : 대학생 개발자 , 디자이너 , 마케터 등이 한 팀을 구성해 소프트웨어 기반 혁신 창업
+                                                    아이디어를<br/>발굴하는 창업경진대회
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <h2 className={cx("title_style_4")}>창업 인턴십 </h2>
+                                            <ul>
+                                                <li>내가 바로 CEO: 사업계획서 집중 멘토링 , 비즈니스모델 고도화 등 사업아이템 검증을 위한 실전 창업캠프 창업인턴십​
+                                                </li>
+                                                <li>국내 창업인턴십 : 창업교육을 통해 쌓은 지식을 활용하여 스타트업 등 국내 기업에서 직접 창업실무 경험​</li>
+                                                <li>글로벌 창업인턴십 : 해외 기업인들과 함께 현지 시장조사 , 사업기회 발굴 등의 미션을 수행하며 글로벌 창업과정 체험
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <h2 className={cx("title_style_4")}>학생창업보육 </h2>
+                                            <ul>
+                                                <li>창업동아리 : 한양대학교 · 재휴학생 중 참신한 아이디어를 보유한 3인 이상의 팀을 선발하여 사업화지원금,
+                                                    학생창업준비공간(공용),
+                                                    창업교육, 멘토링 등 지원​
+                                                </li>
+                                                <li>247 스타트업 돔 : 24시간 주 7일 내내 창업을 꿈꾸는 학생들을 위한 기숙형 창업 공간으로 입사생 대상 특별교육,
+                                                    전담멘토링 등
+                                                    지원​
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
 

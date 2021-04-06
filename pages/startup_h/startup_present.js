@@ -9,11 +9,13 @@ import qs from "query-string";
 import {useRouter} from "next/router";
 import {Menu, Checkbox, Button, Modal, Dropdown} from "antd";
 const {SubMenu} = Menu;
-import { DownOutlined } from '@ant-design/icons';
+import {DownOutlined, FileImageOutlined,HomeOutlined} from '@ant-design/icons';
 
 import { Select } from 'antd';
 import moment from "moment";
 import Pagination from "../../component/common/Pagination";
+import client from "../../lib/api/client";
+import Image from "next/image";
 
 const { Option } = Select;
 
@@ -66,6 +68,8 @@ const StartupPresent = () => {
 
         const data = {
             ...searchInfo,
+            searchField:searchField,
+            searchValue:searchValue,
             pageNo:pageNo
         }
 
@@ -161,7 +165,7 @@ const StartupPresent = () => {
                 <div className={cx("search_type_2")}>
                     <Dropdown className={cx("search_01")} overlay={businessList} trigger={['click']} visible={showBusinessField} onVisibleChange={() =>{setShowBusinessField(!showBusinessField)}}>
                         <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-                            비지니스 분야<DownOutlined style={{marginLeft:10}}/>
+                            비즈니스 분야<DownOutlined style={{marginLeft:10}}/>
                         </a>
                     </Dropdown>
 
@@ -182,17 +186,17 @@ const StartupPresent = () => {
                     <table>
                         <colgroup>
                             <col style={{width:"5%"}}/>
-                            <col style={{width:"14.3%"}}/>
-                            <col style={{width:"16.3%"}}/>
-                            <col style={{width:"15.15%"}}/>
-                            <col/>
-                            <col/>
+                            <col style={{width:"12%"}}/>
+                            <col style={{width:"6%"}}/>
+                            <col style={{width:"6%"}}/>
+                            <col style={{width:"20%"}}/>
+                            <col style={{width:"10%"}}/>
                         </colgroup>
                         <thead>
                         <tr>
-                            <th scope="col">NO</th>
+                            <th scope="col">번호</th>
                             <th scope="col">기업명</th>
-                            <th scope="col">비지니스 분야</th>
+                            <th scope="col">비즈니스 분야</th>
                             <th scope="col">활용 기술</th>
                             <th scope="col">사업 아이템</th>
                             <th scope="col">링크</th>
@@ -214,7 +218,31 @@ const StartupPresent = () => {
                                     ))}
                                 </td>
                                 <td>{item.item}</td>
-                                <td>{item.homepage}</td>
+                                <td>
+                                    {item.homepage != null && (
+                                        <Link href={item.homepage}>
+                                            <a target="_blank">
+                                                <HomeOutlined style={{fontSize:22,verticalAlign:'top'}}/>
+                                            </a>
+                                        </Link>
+                                    )}
+                                    {item.insta != null && item.insta != "" &&
+                                    <a href={item.insta} target="_blank"><Image
+                                        src="/assets/image/startup_insta.png" width={25} height={25}
+                                        alt="sns_logo"/></a>}
+                                    {item.facebook != null && item.facebook != "" &&
+                                    <a href={item.facebook} target="_blank"><Image
+                                        src="/assets/image/startup_facebook.png" width={25} height={25}
+                                        alt="sns_logo"/></a>}
+                                    {item.naverBlog != null && item.naverBlog != "" &&
+                                    <a href={item.naverBlog} target="_blank"><Image
+                                        src="/assets/image/startup_naver_blog.png" width={25} height={25}
+                                        alt="sns_logo"/></a>}
+                                    {item.twitter != null && item.twitter != "" &&
+                                    <a href={item.twitter} target="_blank"><Image
+                                        src="/assets/image/startup_twitter.png" width={25} height={25}
+                                        alt="sns_logo"/></a>}
+                                </td>
                             </tr>
                         ))}
 

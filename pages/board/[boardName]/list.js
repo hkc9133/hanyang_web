@@ -59,6 +59,7 @@ const List = () => {
             ...router.query
         }))
 
+        console.log(board.board)
         setCurrentBoard(currentBoard =>({
             ...currentBoard,
             board: board.board,
@@ -81,6 +82,10 @@ const List = () => {
         }
     },[board,router.query])
 
+
+    useEffect(() =>{
+        console.log(board.board)
+    },[])
 
     const changeSearchInfo = (e) =>{
 
@@ -110,8 +115,8 @@ const List = () => {
                     <h1 className={cx("sub_top_title")}>{currentBoard.board.boardKrName}</h1>
                     <p className={cx("sub_top_txt")}>{currentBoard.board.boardDesc}</p>
 
-                    {currentBoard.board.boardEnName == 'notice' && (
-                        <SearchBoxSelector skinName="SearchBoxStyle01" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
+                    {(currentBoard.board.boardEnName == 'notice' || currentBoard.board.boardEnName == 'faq' || currentBoard.board.boardEnName == 'qna')  && (
+                        <SearchBoxSelector skinName="SearchBoxStyle03" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
                     )}
                     {currentBoard.board.boardEnName == 'news' && (
                         <SearchBoxSelector skinName="SearchBoxStyle01" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
@@ -125,39 +130,51 @@ const List = () => {
                     {currentBoard.board.boardEnName == 'data_room' || currentBoard.board.boardEnName == 'idea' || currentBoard.board.boardEnName == "startup_info" && (
                         <SearchBoxSelector skinName="SearchBoxStyle01" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
                     )}
-                    {(currentBoard.board.boardEnName == 'idea' || currentBoard.board.boardEnName == 'ir')  && (
+                    {(currentBoard.board.boardEnName == 'idea' || currentBoard.board.boardEnName == 'ir' || currentBoard.board.boardEnName == 'corp_press')  && (
                         <SearchBoxSelector skinName="SearchBoxStyle01" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
                     )}
                     {(currentBoard.board.boardEnName == 'online_content') && (
                         <SearchBoxSelector skinName="SearchBoxStyle04" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
                     )}
+                    {(currentBoard.board.boardEnName == 'issue') && (
+                        <SearchBoxSelector skinName="SearchBoxStyle01" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
+                    )}
 
                     {
-                        currentBoard.board.writeRole != null && currentBoard.board.writeRole.indexOf(user.role) > 0 || user.role == 'ROLE_ADMIN' && (
+                        board.board.writeRole != null && (board.board.writeRole.indexOf(user.role) > 0 || user.role == 'ROLE_ADMIN') && (
                             <div className={cx("btn_box")}>
-                                <Link href={`/board/${currentBoard.board.boardEnName}/write`}><a className={cx("basic-btn03","write_btn")}>글쓰기</a></Link>
+                                <Link href={`/board/${board.board.boardEnName}/write`}><a className={cx("basic-btn03","write_btn")}>글쓰기</a></Link>
                             </div>
                         )
                     }
 
 
                     {currentBoard.board.boardEnName == 'notice' && (
-                        <BoardSkinSelector skinName="ListType02" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
+                        <BoardSkinSelector skinName="NoticeListType01" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
                     )}
                     {currentBoard.board.boardEnName == 'news' && (
                         <BoardSkinSelector skinName="ListType02" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
                     )}
                     {currentBoard.board.boardEnName == 'media_report' && (
-                        <BoardSkinSelector skinName="ListType02" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
+                        <BoardSkinSelector skinName="ListType04" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
                     )}
                     {currentBoard.board.boardEnName == 'data_room' && (
                         <BoardSkinSelector skinName="ListType01" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
                     )}
-                    {currentBoard.board.boardEnName == 'idea' && (
-                        <BoardSkinSelector skinName="ListType02" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
-                    )}
                     {currentBoard.board.boardEnName == 'startup_info' && (
                         <BoardSkinSelector skinName="ListType02" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
+                    )}
+                    {(currentBoard.board.boardEnName == 'faq') && (
+                        <BoardSkinSelector skinName="ListType02" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
+                    )}
+                    {(currentBoard.board.boardEnName == 'qna') && (
+                        <BoardSkinSelector skinName="ListType05" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
+                    )}
+                    {currentBoard.board.boardEnName == 'idea' && (
+                        <BoardSkinSelector skinName="ListType03" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
+                    )}
+                    {currentBoard.board.boardEnName == 'corp_press' && (
+                        <BoardSkinSelector skinName="ListType06" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
                     )}
                     {currentBoard.board.boardEnName == 'people' && (
                         <BoardSkinSelector skinName="GalleryType01" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
@@ -165,6 +182,10 @@ const List = () => {
                     {(currentBoard.board.boardEnName == 'online_content' || currentBoard.board.boardEnName == 'ir' ) && (
                         <BoardSkinSelector skinName="GalleryType02" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
                     )}
+                    {currentBoard.board.boardEnName == 'issue' && (
+                        <BoardSkinSelector skinName="ListType02" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
+                    )}
+
 
                 </section>
             )}

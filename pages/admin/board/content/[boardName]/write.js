@@ -1,10 +1,14 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useRouter} from "next/router";
 import {useDispatch, useSelector} from "react-redux";
-import {Checkbox, Form, Modal, Upload} from "antd";
+import {Button, Checkbox, DatePicker, Form, Modal, Upload} from "antd";
 import {addBoardContent, getBoard, initialize} from "../../../../../store/board/adminBoard";
 import {PlusOutlined} from "@ant-design/icons";
-const QuillEditor = dynamic(() => import("../../../../../component/common/QuillEditor"), {
+// const QuillEditor = dynamic(() => import("../../../../../component/common/QuillEditor"), {
+//     ssr: false,
+//     loading: () => <p>Loading ...</p>,
+// });
+const Editor = dynamic(() => import("../../../../../component/common/Editor"), {
     ssr: false,
     loading: () => <p>Loading ...</p>,
 });
@@ -13,7 +17,8 @@ import dynamic from "next/dynamic";
 
 import styles from '../.././../../../public/assets/styles/admin/board/board.module.css';
 import classnames from "classnames/bind"
-
+import locale from "antd/lib/date-picker/locale/ko_KR";
+import { UploadOutlined } from '@ant-design/icons';
 const cx = classnames.bind(styles);
 
 
@@ -29,6 +34,9 @@ export async function getStaticPaths() {
             { params: { boardName: 'online_content' } },
             { params: { boardName: 'startup_support_coverage' } },
             { params: { boardName: 'ir' } },
+            { params: { boardName: 'hub' } },
+            { params: { boardName: 'faq' } },
+            { params: { boardName: 'media_report' } },
         ],
         fallback: true
     };
@@ -44,11 +52,14 @@ const Write = (props) => {
     const router = useRouter();
     const dispatch = useDispatch();
     const [form] = Form.useForm();
+    const [editor, setEditor] = useState(null)
 
     const [writeInfo, setWriteInfo] = useState({
         title: "",
         attachFiles:[],
+        thumb:[],
         categoryCodeId:"",
+        regDate:null
     })
     const [content,setContent] = useState("");
     const [addResultModal, setAddResultModal] = useState(false)
@@ -69,12 +80,11 @@ const Write = (props) => {
 
     const changeWriteInfo = useCallback((e) =>{
         const {name, value} = e.target
-
         setWriteInfo(writeInfo =>({
             ...writeInfo,
             [name]: value,
         }))
-    },[])
+    },[writeInfo,content])
 
     // const changeCategory = useCallback((value) =>{
     //     setWriteInfo(writeInfo =>({
@@ -83,11 +93,25 @@ const Write = (props) => {
     //     }))
     // },[])
 
+    const changeRegDate = (e) =>{
+        setWriteInfo({
+            ...writeInfo,
+            regDate:e,
+        })
+    }
+
 
     const changeFileList = useCallback(({fileList}) =>{
         setWriteInfo(writeInfo =>({
             ...writeInfo,
             attachFiles: fileList
+        }))
+    },[])
+
+    const changeThumb = useCallback(({fileList}) =>{
+        setWriteInfo(writeInfo =>({
+            ...writeInfo,
+            thumb: fileList
         }))
     },[])
 
@@ -112,13 +136,23 @@ const Write = (props) => {
 
 
     const submitApply = (e) => {
-        const data = {
-            ...writeInfo,
-            content:content,
-            files:writeInfo.attachFiles.map((item) => (item.originFileObj)),
-            boardEnName:router.query.boardName
+        if(writeInfo.title == null || writeInfo.title == ""){
+            Modal.warning({
+                title:"제목은 필수 입니다."
+            })
+        }else{
+            const data = {
+                ...writeInfo,
+                content:editor.getData(),
+                files:writeInfo.attachFiles.map((item) => (item.originFileObj)),
+                thumb:writeInfo.thumb.map((item) => (item.originFileObj)),
+                boardEnName:router.query.boardName,
+                categoryCodeId:board.categoryCode.length == 1 ? board.categoryCode[0].categoryCodeId : writeInfo.categoryCodeId,
+                regDate: writeInfo.regDate != null ? writeInfo.regDate.format("YYYY-MM-DD HH:mm").toString() : null,
+            }
+            data.regDate == null && delete data.regDate
+            dispatch(addBoardContent(data));
         }
-        dispatch(addBoardContent(data));
     }
 
     if(board.board == null){
@@ -126,17 +160,14 @@ const Write = (props) => {
     }
 
     const uploadButton = (
-        <div>
-            <PlusOutlined />
-            <div style={{ marginTop: 8 }}>Upload</div>
-        </div>
+        <Button style={{marginTop:7}} className={"upload"} icon={<UploadOutlined />}>업로드</Button>
     );
 
 
     return (
         <>
             <section className={cx("container","board_container")}>
-                <h1 className={cx("top_title")}>글 쓰기</h1>
+                <h1 className={cx("top_title")}>게시판 관리</h1>
                 <div className={cx("adm_container")}>
                     <div className={`${cx("member_info","box")} clfx `}>
                         <ul className={"clfx"}>
@@ -164,17 +195,21 @@ const Write = (props) => {
                                     <thead>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>분류</td>
-                                        <td>
-                                            <select name='categoryCodeId' className={cx("cate")} onChange={changeWriteInfo} value={writeInfo.categoryCodeId}>
-                                                {board.categoryCode.map((item) => {
-                                                    return <option key={item.categoryCodeId} value={item.categoryCodeId}>{item.categoryCodeName}</option>
-                                                })}
-                                            </select>
+                                    {board.board.categoryId != null && (
+                                        <tr>
+                                            <td>분류</td>
+                                            <td>
+                                                <select name='categoryCodeId' className={cx("cate")} onChange={changeWriteInfo} value={writeInfo.categoryCodeId}>
+                                                    {board.categoryCode.map((item) => {
+                                                        if(board.board.categoryId == item.categoryId){
+                                                            return <option key={item.categoryCodeId} value={item.categoryCodeId}>{item.categoryCodeName}</option>
+                                                        }
+                                                    })}}
+                                                </select>
 
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
+                                    )}
                                     <tr>
                                         <td>공지</td>
                                         <td>
@@ -182,9 +217,34 @@ const Write = (props) => {
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td>등록일</td>
+                                        <td>
+                                            <DatePicker locale={locale} showTime format={"YYYY-MM-DD HH:ss"} onOk={changeRegDate} value={writeInfo.regDate} />
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td>제목</td>
                                         <td>
                                             <input type="text" placeholder={"제목을 입력하세요."} name="title" value={writeInfo.title} onChange={changeWriteInfo}/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>썸네일</td>
+                                        <td>
+                                            <Upload
+                                                listType="picture"
+                                                fileList={writeInfo.thumb}
+                                                showUploadList={{
+                                                    showPreviewIcon: true,
+                                                    showRemoveIcon: true,
+                                                    showDownloadIcon: false
+                                                }}
+                                                onPreview={handlePreview}
+                                                onChange={changeThumb}
+                                            >
+                                                {writeInfo.thumb.length >= 1 ? null : uploadButton}
+                                            </Upload>
+                                            <span className={cx("title")}>첨부파일 (10MB 미만)</span>
                                         </td>
                                     </tr>
                                     {board.board.subName01 != "" && board.board.subName01 != null &&(
@@ -203,18 +263,61 @@ const Write = (props) => {
                                             </td>
                                         </tr>
                                     )}
-                                    <tr>
-                                        <td>내용</td>
-                                        <td>
-                                            <QuillEditor Contents={content} QuillChange={setContent}/>
-                                        </td>
-                                    </tr>
+                                    {board.board.subName03 != "" && board.board.subName03 != null &&(
+                                        <tr>
+                                            <td>{board.board.subName03}</td>
+                                            <td>
+                                                <input type="text" placeholder={""} name="sub03" value={writeInfo.sub03 == null ? "" : writeInfo.sub03} onChange={changeWriteInfo}/>
+                                            </td>
+                                        </tr>
+                                    )}
+                                    {board.board.subName04 != "" && board.board.subName04 != null &&(
+                                        <tr>
+                                            <td>{board.board.subName04}</td>
+                                            <td>
+                                                <input type="text" placeholder={""} name="sub04" value={writeInfo.sub04 == null ? "" : writeInfo.sub04} onChange={changeWriteInfo}/>
+                                            </td>
+                                        </tr>
+                                    )}
+                                    {board.board.subName05 != "" && board.board.subName05 != null &&(
+                                        <tr>
+                                            <td>{board.board.subName05}</td>
+                                            <td>
+                                                <input type="text" placeholder={""} name="sub05" value={writeInfo.sub05 == null ? "" : writeInfo.sub05} onChange={changeWriteInfo}/>
+                                            </td>
+                                        </tr>
+                                    )}
+                                    {board.board.subName06 != "" && board.board.subName06 != null &&(
+                                        <tr>
+                                            <td>{board.board.subName06}</td>
+                                            <td>
+                                                <input type="text" placeholder={""} name="sub06" value={writeInfo.sub06 == null ? "" : writeInfo.sub06} onChange={changeWriteInfo}/>
+                                            </td>
+                                        </tr>
+                                    )}
+                                    {board.board.subName07 != "" && board.board.subName07 != null &&(
+                                        <tr>
+                                            <td>{board.board.subName07}</td>
+                                            <td>
+                                                <input type="text" placeholder={""} name="sub07" value={writeInfo.sub07 == null ? "" : writeInfo.sub07} onChange={changeWriteInfo}/>
+                                            </td>
+                                        </tr>
+                                    )}
+                                    {board.board.boardEnName != 'corp_press' && (
+                                        <tr>
+                                            <td>내용</td>
+                                            <td>
+                                                {/*<QuillEditor Contents={content} QuillChange={setContent}/>*/}
+                                                <Editor setEditor={setEditor}/>
+                                            </td>
+                                        </tr>
+                                    )}
                                     {board.board.useFile && (
                                         <tr>
                                             <th scope="row">첨부파일</th>
                                             <td>
                                                 <Upload
-                                                    listType="picture-card"
+                                                    listType="picture"
                                                     fileList={writeInfo.attachFiles}
                                                     onPreview={handlePreview}
                                                     onChange={changeFileList}
