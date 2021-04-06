@@ -14,14 +14,15 @@ const Promotion = () => {
             <section className={cx("container")}>
             <div className={cx("sub_container", "promotion")}>
                 <h1 className={cx("sub_top_title")}>소개자료</h1>
-                <p className={cx("sub_top_txt")}>한양대학교 창업지원단 홍보영상, 브로슈어, CI를 소개합니다 .</p>
+                <p className={cx("sub_top_txt")}>한양대학교 창업지원단 홍보영상, 브로슈어, CI를 소개합니다.</p>
                 <div className={cx("txt_style_1")}>
                     <div className={cx("left_title")}>
                         {/*<span>한양대학교 창업지원단 </span>*/}
                         <h3>소개 동영상</h3>
                     </div>
                     <div className={cx("vedioArea")}>
-                        <img src="/assets/image/promotion_vedio.jpg" alt=""/>
+                        {/*<img src="/assets/image/promotion_vedio.jpg" alt=""/>*/}
+                        <iframe src="https://www.youtube.com/embed/ojWuGZAVjV0" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                 </div>
 

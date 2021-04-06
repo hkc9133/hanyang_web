@@ -20,7 +20,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <th scope="col">학수번호</th>
                                                             <th scope="col">교과목명</th>
-                                                            <th scope="col">과목구분</th>
+                                                            <th scope="col">단위</th>
                                                             <th scope="col" colSpan="3">학-강-실</th>
                                                             <th scope="col">관장학과</th>
                                                             <th scope="col">비고</th>
@@ -30,7 +30,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>CUL0135</td>
                                                             <td>글로벌기업가정신</td>
-                                                            <td>전공심화</td>
+                                                            <td>100</td>
                                                             <td>3</td>
                                                             <td>3</td>
                                                             <td>0</td>
@@ -40,7 +40,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>VEN2001</td>
                                                             <td>창업기초:창업과기업가정신</td>
-                                                            <td>전공핵심</td>
+                                                            <td>200</td>
                                                             <td>3</td>
                                                             <td>1</td>
                                                             <td>2</td>
@@ -50,7 +50,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>VEN2003</td>
                                                             <td>창업심화:스타트업 A to Z</td>
-                                                            <td>전공핵심</td>
+                                                            <td>200</td>
                                                             <td>3</td>
                                                             <td>1</td>
                                                             <td>2</td>
@@ -60,7 +60,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>VEN2017</td>
                                                             <td>창업기초:사업기회의발견</td>
-                                                            <td>전공핵심</td>
+                                                            <td>200</td>
                                                             <td>3</td>
                                                             <td>2</td>
                                                             <td>1</td>
@@ -70,7 +70,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>VEN2018</td>
                                                             <td>창업심화:창업마케팅</td>
-                                                            <td>전공핵심</td>
+                                                            <td>200</td>
                                                             <td>3</td>
                                                             <td>1</td>
                                                             <td>2</td>
@@ -80,7 +80,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>VEN3008</td>
                                                             <td>창업기초:글로벌스타트업멘토링<br/>(구,창업심화:글로벌스타트업세미나)</td>
-                                                            <td>전공심화</td>
+                                                            <td>200</td>
                                                             <td>3</td>
                                                             <td>1</td>
                                                             <td>2</td>
@@ -90,7 +90,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>VEN3009</td>
                                                             <td>창업심화:스타트업투자유치</td>
-                                                            <td>전공핵심</td>
+                                                            <td>200</td>
                                                             <td>3</td>
                                                             <td>2</td>
                                                             <td>1</td>
@@ -100,7 +100,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>VEN3010</td>
                                                             <td>창업기초:3D프린팅이해와활용</td>
-                                                            <td>전공심화</td>
+                                                            <td>200</td>
                                                             <td>3</td>
                                                             <td>0</td>
                                                             <td>3</td>
@@ -110,7 +110,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>VEN3011</td>
                                                             <td>창업기초:문화예술산업의이해</td>
-                                                            <td>전공심화</td>
+                                                            <td>200</td>
                                                             <td>3</td>
                                                             <td>2</td>
                                                             <td>1</td>
@@ -120,7 +120,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>VEN6001</td>
                                                             <td>스타트업토크콘서트</td>
-                                                            <td>전공핵심</td>
+                                                            <td>200</td>
                                                             <td>2</td>
                                                             <td>2</td>
                                                             <td>0</td>
@@ -130,7 +130,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>VEN2005</td>
                                                             <td>창업기초:디자인씽킹</td>
-                                                            <td>전공핵심</td>
+                                                            <td>200</td>
                                                             <td>3</td>
                                                             <td>0</td>
                                                             <td>3</td>
@@ -140,7 +140,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>VEN2009</td>
                                                             <td>창업기초:스타트업기업가정신의이해와사례</td>
-                                                            <td>전공심화</td>
+                                                            <td>200</td>
                                                             <td>3</td>
                                                             <td>2</td>
                                                             <td>1</td>
@@ -150,7 +150,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>VEN2011</td>
                                                             <td>Business Model Schema</td>
-                                                            <td>전공핵심</td>
+                                                            <td></td>
                                                             <td>1</td>
                                                             <td>1</td>
                                                             <td>0</td>
@@ -160,7 +160,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>VEN2012</td>
                                                             <td>스타트업트렌드1</td>
-                                                            <td>전공심화</td>
+                                                            <td>200</td>
                                                             <td>1</td>
                                                             <td>1</td>
                                                             <td>0</td>
@@ -170,7 +170,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>VEN2013</td>
                                                             <td>스타트업트렌드2</td>
-                                                            <td>전공심화</td>
+                                                            <td>200</td>
                                                             <td>1</td>
                                                             <td>1</td>
                                                             <td>0</td>
@@ -180,7 +180,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>VEN2014</td>
                                                             <td>창업기초:사회적기업가정신액션러닝</td>
-                                                            <td>전공핵심</td>
+                                                            <td>200</td>
                                                             <td>3</td>
                                                             <td>1</td>
                                                             <td>2</td>
@@ -190,7 +190,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>VEN2015</td>
                                                             <td>레드라이언을위한씽씽스타트업1</td>
-                                                            <td>전공심화</td>
+                                                            <td>200</td>
                                                             <td>3</td>
                                                             <td>2</td>
                                                             <td>1</td>
@@ -200,7 +200,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>VEN3001</td>
                                                             <td>창업심화:스타트업MBA<br/>(구, 창업심화:창업금융과법)</td>
-                                                            <td>전공핵심</td>
+                                                            <td>200</td>
                                                             <td>3</td>
                                                             <td>3</td>
                                                             <td>0</td>
@@ -210,7 +210,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>VEN3002</td>
                                                             <td>창업심화:특허와창의적사업전략</td>
-                                                            <td>전공핵심</td>
+                                                            <td>200</td>
                                                             <td>3</td>
                                                             <td>1</td>
                                                             <td>2</td>
@@ -220,7 +220,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>VEN3004</td>
                                                             <td>창업실습:협력적비즈니스모델의성공조건</td>
-                                                            <td>전공심화</td>
+                                                            <td>200</td>
                                                             <td>3</td>
                                                             <td>0</td>
                                                             <td>3</td>
@@ -230,7 +230,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>VEN3006</td>
                                                             <td>창업실습1</td>
-                                                            <td>전공심화</td>
+                                                            <td>200</td>
                                                             <td>3</td>
                                                             <td>0</td>
                                                             <td>3</td>
@@ -240,7 +240,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>VEN2002</td>
                                                             <td>창업실습:실전창업워크숍</td>
-                                                            <td>전공핵심</td>
+                                                            <td>300</td>
                                                             <td>3</td>
                                                             <td>0</td>
                                                             <td>3</td>
@@ -250,7 +250,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>VEN3007</td>
                                                             <td>창업실습2</td>
-                                                            <td>전공심화</td>
+                                                            <td>300</td>
                                                             <td>3</td>
                                                             <td>0</td>
                                                             <td>3</td>
@@ -260,7 +260,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>VEN3014</td>
                                                             <td>창업실습:스타트랙1</td>
-                                                            <td>전공심화</td>
+                                                            <td>300</td>
                                                             <td>3</td>
                                                             <td>1</td>
                                                             <td>2</td>
@@ -268,9 +268,19 @@ const Edu2030 = ({cx}) => {
                                                             <td>247스타트업돔 입사생 대상 강좌</td>
                                                         </tr>
                                                         <tr>
+                                                            <td>VEN3017</td>
+                                                            <td>클라우드비즈니스모델</td>
+                                                            <td>300</td>
+                                                            <td>3</td>
+                                                            <td>1</td>
+                                                            <td>2</td>
+                                                            <td>글로벌기업가센터</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
                                                             <td>JOB5001</td>
                                                             <td>단기창업현장실습</td>
-                                                            <td>전공심화</td>
+                                                            <td>300</td>
                                                             <td>3</td>
                                                             <td>0</td>
                                                             <td>3</td>
@@ -280,7 +290,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>JOB6005</td>
                                                             <td>창업현장실습(일반선택)</td>
-                                                            <td>전공심화</td>
+                                                            <td>300</td>
                                                             <td>9</td>
                                                             <td>0</td>
                                                             <td>9</td>
@@ -290,7 +300,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>VEN3005</td>
                                                             <td>창업실습:캠퍼스CEO</td>
-                                                            <td>전공핵심</td>
+                                                            <td>300</td>
                                                             <td>3</td>
                                                             <td>0</td>
                                                             <td>3</td>
@@ -300,7 +310,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>VEN3012</td>
                                                             <td>창업실습:3D프린팅스타트업</td>
-                                                            <td>전공심화</td>
+                                                            <td>300</td>
                                                             <td>3</td>
                                                             <td>0</td>
                                                             <td>3</td>
@@ -310,7 +320,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>VEN3013</td>
                                                             <td>창업실습:도전크라우드펀딩</td>
-                                                            <td>전공심화</td>
+                                                            <td>300</td>
                                                             <td>3</td>
                                                             <td>0</td>
                                                             <td>3</td>
@@ -320,7 +330,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>VEN4001</td>
                                                             <td>창업실습:캡스톤디자인</td>
-                                                            <td>전공핵심</td>
+                                                            <td>300</td>
                                                             <td>3</td>
                                                             <td>0</td>
                                                             <td>3</td>
@@ -330,7 +340,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>VEN4003</td>
                                                             <td>블록체인과비즈니스모델</td>
-                                                            <td>전공심화</td>
+                                                            <td>300</td>
                                                             <td>3</td>
                                                             <td>1</td>
                                                             <td>2</td>
@@ -340,7 +350,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>BUS3039</td>
                                                             <td>벤처창업론</td>
-                                                            <td>전공심화</td>
+                                                            <td>300</td>
                                                             <td>3</td>
                                                             <td>3</td>
                                                             <td>3</td>
@@ -350,7 +360,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>BUS3107</td>
                                                             <td>인공지능과비즈니스</td>
-                                                            <td>전공심화</td>
+                                                            <td>300</td>
                                                             <td>3</td>
                                                             <td>2</td>
                                                             <td>1</td>
@@ -360,7 +370,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>GEN5026</td>
                                                             <td>테크노경영학(스타트업종합설계)</td>
-                                                            <td>전공심화</td>
+                                                            <td>300</td>
                                                             <td>3</td>
                                                             <td>3</td>
                                                             <td>0</td>
@@ -370,7 +380,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>ITE3074</td>
                                                             <td>소프트웨어기술창업1</td>
-                                                            <td>전공심화</td>
+                                                            <td>300</td>
                                                             <td>3</td>
                                                             <td>3</td>
                                                             <td>0</td>
@@ -380,7 +390,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>ITE4083</td>
                                                             <td>소프트웨어기술창업2</td>
-                                                            <td>전공심화</td>
+                                                            <td>400</td>
                                                             <td>3</td>
                                                             <td>3</td>
                                                             <td>0</td>
@@ -390,7 +400,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>ITC4001</td>
                                                             <td>기업가정신과창업</td>
-                                                            <td>전공심화</td>
+                                                            <td>400</td>
                                                             <td>3</td>
                                                             <td>3</td>
                                                             <td>0</td>
@@ -400,7 +410,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>PHE4072</td>
                                                             <td>스포츠창업론</td>
-                                                            <td>전공심화</td>
+                                                            <td>400</td>
                                                             <td>3</td>
                                                             <td>3</td>
                                                             <td>0</td>
@@ -410,7 +420,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>CUL1156</td>
                                                             <td>4차산업혁명과창업</td>
-                                                            <td>전공심화</td>
+                                                            <td>100</td>
                                                             <td>3</td>
                                                             <td>3</td>
                                                             <td>0</td>
@@ -420,7 +430,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>GEN6006</td>
                                                             <td>특허법의이해</td>
-                                                            <td>전공심화</td>
+                                                            <td>100</td>
                                                             <td>2</td>
                                                             <td>2</td>
                                                             <td>0</td>
@@ -430,7 +440,7 @@ const Edu2030 = ({cx}) => {
                                                         <tr>
                                                             <td>GEN5010</td>
                                                             <td>지적재산법</td>
-                                                            <td>전공심화</td>
+                                                            <td>100</td>
                                                             <td>2</td>
                                                             <td>2</td>
                                                             <td>0</td>
@@ -442,6 +452,122 @@ const Edu2030 = ({cx}) => {
                                             </div>
 
                                             <div className={cx("tb_style_1")}>
+                                                <h3>4차산업혁명창업 마이크로전공 교육과정표</h3>
+                                                <table>
+                                                    <colgroup>
+                                                        <col style={{width:"5%"}} />
+                                                        <col style={{width:"30%"}} />
+                                                        <col />
+                                                        <col />
+                                                        <col />
+                                                        <col />
+                                                        <col />
+                                                    </colgroup>
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">학수번호</th>
+                                                            <th scope="col">교과목명</th>
+                                                            <th scope="col" colSpan="3">학-강-실</th>
+                                                            <th scope="col">관장학과</th>
+                                                            <th scope="col">비고</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>VEN2003</td>
+                                                            <td>창업심화:스타트업 A to Z</td>
+                                                            <td>3</td>
+                                                            <td>1</td>
+                                                            <td>2</td>
+                                                            <td>글로벌기업가센터</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>VEN2009</td>
+                                                            <td>창업기초:스타트업기업가정신의이해와사례</td>
+                                                            <td>3</td>
+                                                            <td>2</td>
+                                                            <td>1</td>
+                                                            <td>글로벌기업가센터</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>VEN6001</td>
+                                                            <td>스타트업토크콘서트</td>
+                                                            <td>2</td>
+                                                            <td>2</td>
+                                                            <td>0</td>
+                                                            <td>글로벌기업가센터</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>VEN4003</td>
+                                                            <td>블록체인과비즈니스모델</td>
+                                                            <td>3</td>
+                                                            <td>1</td>
+                                                            <td>2</td>
+                                                            <td>글로벌기업가센터</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>CUL1131</td>
+                                                            <td>4차산업혁명과비즈니스</td>
+                                                            <td>2</td>
+                                                            <td>2</td>
+                                                            <td>0</td>
+                                                            <td>창의융합교육팀</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>GEN9177</td>
+                                                            <td>4차산업혁명시대리더십트레이닝</td>
+                                                            <td>3</td>
+                                                            <td>3</td>
+                                                            <td>0</td>
+                                                            <td>정책과학대학</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>AIX0004</td>
+                                                            <td>AI+X:R-Py컴퓨팅</td>
+                                                            <td>3</td>
+                                                            <td>3</td>
+                                                            <td>0</td>
+                                                            <td>창의융합교육팀</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>AIX0003</td>
+                                                            <td>AI+X:딥러닝</td>
+                                                            <td>3</td>
+                                                            <td>3</td>
+                                                            <td>0</td>
+                                                            <td>창의융합교육팀</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>AIX0005</td>
+                                                            <td>AI+X:머신러닝</td>
+                                                            <td>3</td>
+                                                            <td>3</td>
+                                                            <td>0</td>
+                                                            <td>창의융합교육팀</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>AIX0002</td>
+                                                            <td>AI+X:인공지능</td>
+                                                            <td>3</td>
+                                                            <td>3</td>
+                                                            <td>0</td>
+                                                            <td>창의융합교육팀</td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            {/*<div className={cx("tb_style_1")}>
                                                 <h3>글로벌 CEO 창업융합전공 교육과정표</h3>
                                                 <table>
                                                     <colgroup>
@@ -857,7 +983,7 @@ const Edu2030 = ({cx}) => {
                                                         </tr>
                                                     </tbody>
                                                 </table>
-                                            </div>
+    </div>*/}
             
         </>
     );

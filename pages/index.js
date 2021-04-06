@@ -302,7 +302,7 @@ const Index = () => {
                     </div>
 
                     <div className={cx("main_Elearning")}>
-                        <h1><Link href="/"><a>온라인 콘텐츠</a></Link></h1>
+                        <h1><Link href="/board/online_content/list"><a>온라인 콘텐츠</a></Link></h1>
                         <div className={cx("e_learning_slide")}>
                             <div className={cx("list")}>
                                 {mainData.online_content.map((item, index) => {

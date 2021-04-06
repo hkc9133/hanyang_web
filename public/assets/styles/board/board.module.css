@@ -19,7 +19,7 @@
 .bbs_view{position:relative; z-index:2; }
 .bbs_view .topTitleArea{padding:40px; border-top:2px solid #222; border-bottom:1px solid #ddd; }
 .bbs_view .topTitleArea h2{font-size:24px; font-family: 's-core-dream-medium'; color:#222; }
-.bbs_view .topTitleArea .date{margin-top:10px; display:block; font-size:16px; color:#888k; }
+.bbs_view .topTitleArea .date{margin-top:10px; display:block; font-size:16px; color:#888; }
 .bbs_viewCont{padding:40px; margin-bottom:40px; line-height:1.6; border-bottom:1px solid #ddd; }
 .bbs_view .txt_c{margin-bottom:60px; text-align: center;}
 .bbs_view .prev_next{ border-top:1px solid #ddd; }

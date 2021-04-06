@@ -328,6 +328,16 @@ const Edu1619 = ({cx}) => {
                                                             <td></td>
                                                         </tr>
                                                         <tr>
+                                                            <td>VEN3017</td>
+                                                            <td>클라우드비즈니스모델</td>
+                                                            <td>전공심화</td>
+                                                            <td>3</td>
+                                                            <td>1</td>
+                                                            <td>2</td>
+                                                            <td>글로벌기업가센터</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
                                                             <td>BUS3107</td>
                                                             <td>인공지능과비즈니스</td>
                                                             <td>전공심화</td>
@@ -481,6 +491,125 @@ const Edu1619 = ({cx}) => {
                                                 </table>
                                             </div>
 
+                                            <div className={cx("tb_style_1")}>
+                                                <h3>4차산업혁명창업 마이크로전공 교육과정표</h3>
+                                                <table>
+                                                    <colgroup>
+                                                        <col style={{width:"5%"}} />
+                                                        <col style={{width:"30%"}} />
+                                                        <col />
+                                                        <col />
+                                                        <col />
+                                                        <col />
+                                                        <col />
+                                                    </colgroup>
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">학수번호</th>
+                                                            <th scope="col">교과목명</th>
+                                                            <th scope="col" colSpan="3">학-강-실</th>
+                                                            <th scope="col">관장학과</th>
+                                                            <th scope="col">비고</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>VEN2003</td>
+                                                            <td>창업심화:스타트업 A to Z</td>
+                                                            <td>3</td>
+                                                            <td>1</td>
+                                                            <td>2</td>
+                                                            <td>글로벌기업가센터</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>VEN2009</td>
+                                                            <td>창업기초:스타트업기업가정신의이해와사례</td>
+                                                            <td>3</td>
+                                                            <td>2</td>
+                                                            <td>1</td>
+                                                            <td>글로벌기업가센터</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>VEN6001</td>
+                                                            <td>스타트업토크콘서트</td>
+                                                            <td>2</td>
+                                                            <td>2</td>
+                                                            <td>0</td>
+                                                            <td>글로벌기업가센터</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>VEN4003</td>
+                                                            <td>블록체인과비즈니스모델</td>
+                                                            <td>3</td>
+                                                            <td>1</td>
+                                                            <td>2</td>
+                                                            <td>글로벌기업가센터</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>CUL1131</td>
+                                                            <td>4차산업혁명과비즈니스</td>
+                                                            <td>2</td>
+                                                            <td>2</td>
+                                                            <td>0</td>
+                                                            <td>창의융합교육팀</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>GEN9177</td>
+                                                            <td>4차산업혁명시대리더십트레이닝</td>
+                                                            <td>3</td>
+                                                            <td>3</td>
+                                                            <td>0</td>
+                                                            <td>정책과학대학</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>AIX0004</td>
+                                                            <td>AI+X:R-Py컴퓨팅</td>
+                                                            <td>3</td>
+                                                            <td>3</td>
+                                                            <td>0</td>
+                                                            <td>창의융합교육팀</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>AIX0003</td>
+                                                            <td>AI+X:딥러닝</td>
+                                                            <td>3</td>
+                                                            <td>3</td>
+                                                            <td>0</td>
+                                                            <td>창의융합교육팀</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>AIX0005</td>
+                                                            <td>AI+X:머신러닝</td>
+                                                            <td>3</td>
+                                                            <td>3</td>
+                                                            <td>0</td>
+                                                            <td>창의융합교육팀</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>AIX0002</td>
+                                                            <td>AI+X:인공지능</td>
+                                                            <td>3</td>
+                                                            <td>3</td>
+                                                            <td>0</td>
+                                                            <td>창의융합교육팀</td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+
+
+{/*}
                                             <div className={cx("tb_style_1")}>
                                                 <h3>글로벌 CEO 창업융합전공 교육과정표</h3>
                                                 <table>
@@ -867,7 +996,7 @@ const Edu1619 = ({cx}) => {
                                                         </tr>
                                                     </tbody>
                                                 </table>
-                                            </div> 
+    </div> */}
         </>
     );
 };
