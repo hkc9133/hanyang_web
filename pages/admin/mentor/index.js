@@ -12,6 +12,8 @@ import MentorListTable from "../../../component/admin/mentor/MentorListTable";
 
 import styles from '../../../public/assets/styles/admin/mentor/mentor.module.css';
 import classnames from "classnames/bind"
+import Link from "next/link";
+import {port, url} from "../../../lib/api/client";
 
 const cx = classnames.bind(styles);
 
@@ -77,18 +79,18 @@ const Mentor = () => {
 
                     <div className={`${cx("mentor_id_search")} clfx`}>
 
-                        <select name="mentorStatus" onChange={(e) =>{changeSearchInfo(e)}}>
-                            <option value="">승인 상태</option>
-                            <option value="STANDBY">미승인</option>
-                            <option value="ACCEPT">승인</option>
-                        </select>
+                        {/*<select name="mentorStatus" onChange={(e) =>{changeSearchInfo(e)}}>*/}
+                        {/*    <option value="">승인 상태</option>*/}
+                        {/*    <option value="STANDBY">미승인</option>*/}
+                        {/*    <option value="ACCEPT">승인</option>*/}
+                        {/*</select>*/}
                         <select name="searchField" onChange={(e) =>{changeSearchInfo(e)}}>
                             <option value="">검색조건</option>
-                            <option value="user_id">아이디</option>
+                            {/*<option value="user_id">아이디</option>*/}
                             <option value="mentor_name">이름</option>
                             <option value="mentor_company">소속</option>
-                            <option value="mentorPhoneNumber">핸드폰번호</option>
-                            <option value="mentor_email">E-MAIL</option>
+                            {/*<option value="mentorPhoneNumber">핸드폰번호</option>*/}
+                            {/*<option value="mentor_email">E-MAIL</option>*/}
                         </select>
                         <input type="text" name="searchValue" onChange={(e) =>{changeSearchInfo(e)}} />
                         <button type="button" className={cx("btn_search")} onClick={()=>{searchUser()}}>
@@ -104,6 +106,9 @@ const Mentor = () => {
 
                 <div className={cx("admin_cont")}>
                     <h2 className={cx("title_style_1")}><span>전체목록</span></h2>
+                    <div className={cx("btn-box02")}>
+                        <Link href={`${url}:${port}/api/admin/mentoring/excel_download`}><a className={cx("basic-btn04")} download target="_blank">액셀 다운로드</a></Link>
+                    </div>
                     <div className={cx("tb_style_1")}>
                         <MentorListTable cx={cx} list={adminMentoring.mentorList.list}/>
                     </div>

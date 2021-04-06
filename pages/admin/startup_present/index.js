@@ -10,8 +10,9 @@ import styles from '../../../public/assets/styles/admin/startupPresent/startupPr
 import classnames from "classnames/bind"
 import {Checkbox, Dropdown, Image} from "antd";
 import {DownOutlined} from "@ant-design/icons";
-
+import {url,port,serverAddr} from '../../../lib/api/client';
 const cx = classnames.bind(styles);
+import {HomeOutlined} from '@ant-design/icons';
 
 const StartupPresentManagePage = () => {
 
@@ -34,6 +35,8 @@ const StartupPresentManagePage = () => {
     const [searchInfo, setSearchInfo] = useState({
         searchValue: "",
         searchField: "company_name",
+        companyStatus:"",
+        gubun:"",
         businessIdList: [],
         techIdList: [],
         pageNo: 1,
@@ -69,7 +72,10 @@ const StartupPresentManagePage = () => {
         const data = {
             pageNo: 1,
             searchValue: searchInfo.searchValue,
-            searchField: searchInfo.searchField
+            searchField: searchInfo.searchField,
+            gubun:searchInfo.gubun,
+            companyStatus:searchInfo.companyStatus
+
         }
         const queryString = qs.stringify(data);
         router.push(`${router.pathname}?${queryString}`)
@@ -175,8 +181,26 @@ const StartupPresentManagePage = () => {
                                 setSearchInfo({...searchInfo, searchField: e.target.value})
                             }}>
                                 <option value="company_name">기업명</option>
+                                <option value="company_owner">대표자명</option>
                                 <option value="item">아이템</option>
                             </select>
+                            <select name="gubun" value={searchInfo.gubun} onChange={(e) => {
+                                setSearchInfo({...searchInfo, gubun: e.target.value})
+                            }}>
+                                <option value="">구분</option>
+                                <option value="학생">학생</option>
+                                <option value="동문">동문</option>
+                                <option value="교원">교원</option>
+                                <option value="일반인">일반인</option>
+                            </select>
+                            <select name="companyStatus" value={searchInfo.companyStatus} onChange={(e) => {
+                                setSearchInfo({...searchInfo, companyStatus: e.target.value})
+                            }}>
+                                <option value="">상태</option>
+                                <option value="유지">유지</option>
+                                <option value="폐업">폐업</option>
+                            </select>
+
                             <input type="text" placeholder="검색어를 입력하세요." value={searchInfo.searchValue}
                                    onChange={(e) => {
                                        setSearchInfo({...searchInfo, searchValue: e.target.value})
@@ -222,8 +246,8 @@ const StartupPresentManagePage = () => {
                     <div className={cx("admin_cont")}>
                         <h2 className={cx("title_style_1")}><span>목록</span></h2>
                         <div className={cx("btn-box01")}>
-                            <Link href={"/admin/startup_present/add"}><a className={cx("basic-btn03")}>스타트업
-                                추가</a></Link>
+                            <Link href={`${url}:${port}/api/admin/startup_present/excel_download`}><a className={cx("basic-btn03")} download target="_blank">액셀 다운로드</a></Link>
+                            <Link href={"/admin/startup_present/add"}><a className={cx("basic-btn03")}>스타트업 추가</a></Link>
                         </div>
                         <div className={cx("tb_style_1", "startup_present_list")}>
                             <table>
@@ -235,7 +259,7 @@ const StartupPresentManagePage = () => {
                                 </colgroup>
                                 <thead>
                                 <tr>
-                                    <th scope="col">NO</th>
+                                    <th scope="col">번호</th>
                                     <th scope="col">구분</th>
                                     <th scope="col">회사명</th>
                                     <th scope="col">비즈니스 분야</th>
@@ -266,7 +290,31 @@ const StartupPresentManagePage = () => {
                                             </td>
                                             <td>{item.companyOwner}</td>
                                             <td>{item.companyPhoneNum}</td>
-                                            <td>{item.homepage}</td>
+                                            <td>
+                                                {item.homepage != null && (
+                                                    <Link href={item.homepage}>
+                                                        <a target="_blank">
+                                                            <HomeOutlined style={{fontSize:22,verticalAlign:'top'}}/>
+                                                        </a>
+                                                    </Link>
+                                                )}
+                                                {item.insta != null && item.insta != "" &&
+                                                <a href={item.insta} target="_blank"><Image
+                                                    src="/assets/image/startup_insta.png" width={25} height={25}
+                                                    alt="sns_logo"/></a>}
+                                                {item.facebook != null && item.facebook != "" &&
+                                                <a href={item.facebook} target="_blank"><Image
+                                                    src="/assets/image/startup_facebook.png" width={25} height={25}
+                                                    alt="sns_logo"/></a>}
+                                                {item.naverBlog != null && item.naverBlog != "" &&
+                                                <a href={item.naverBlog} target="_blank"><Image
+                                                    src="/assets/image/startup_naver_blog.png" width={25} height={25}
+                                                    alt="sns_logo"/></a>}
+                                                {item.twitter != null && item.twitter != "" &&
+                                                <a href={item.twitter} target="_blank"><Image
+                                                    src="/assets/image/startup_twitter.png" width={25} height={25}
+                                                    alt="sns_logo"/></a>}
+                                            </td>
 
                                         </tr>
                                     )

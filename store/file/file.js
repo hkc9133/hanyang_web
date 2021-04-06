@@ -1,4 +1,6 @@
 import {createAction, handleActions} from 'redux-actions';
+import {enableES5} from "immer"
+enableES5()
 import createRequestSaga, {createRequestActionTypes} from "../../lib/createRequestSaga";
 import produce from 'immer';
 import client from '../../lib/api/client';

@@ -15,7 +15,7 @@ const StartupCalendarListTable = ({list,cx}) => {
                 </colgroup>
                 <thead>
                 <tr>
-                    <th scope="col">NO</th>
+                    <th scope="col">번호</th>
                     <th scope="col">상태</th>
                     <th scope="col">제목</th>
                     <th scope="col">분류</th>
@@ -43,11 +43,12 @@ const StartupCalendarListTable = ({list,cx}) => {
                                 {item.categoryCodeName}
                             </td>
                             <td>
-                                {moment(item.eventDate).format("YYYY-MM-DD HH:mm")}
+
+                                {item.eventDate != null && moment(item.eventDate).format("YYYY-MM-DD HH:mm")}
                             </td>
                             <td>
-                                {moment(item.applyStartDate).format("YYYY-MM-DD HH:mm")} ~
-                                {moment(item.applyEndDate).format("YYYY-MM-DD HH:mm")}
+                                {item.applyStartDate != null && moment(item.applyStartDate).format("YYYY-MM-DD HH:mm")} ~
+                                {item.applyEndDate != null && moment(item.applyEndDate).format("YYYY-MM-DD HH:mm")}
                             </td>
                         </tr>
                     )

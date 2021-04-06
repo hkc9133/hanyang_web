@@ -52,6 +52,7 @@ const CounselApplyFormDetail = () => {
             setApplyValue({
                 ...counselApply.counselApply,
                 files:counselApply.files,
+                answerFiles:counselApply.answerFiles
             })
         }
     }, [counselApply.counselApply])
@@ -191,7 +192,7 @@ const CounselApplyFormDetail = () => {
                                                         담당 멘토
                                                     </th>
                                                     <td>
-                                                        {applyValue.applyStatus == "APPLY" ||  applyValue.applyStatus == "RETURN" &&
+                                                        {(applyValue.applyStatus == "APPLY" ||  applyValue.applyStatus == "RETURN") &&
                                                         <>
                                                             <MentorAssignButton/>
                                                         </>
@@ -205,7 +206,9 @@ const CounselApplyFormDetail = () => {
                                                         {applyValue.assignMentorId != null && applyValue.mentorName && (
                                                             <>
                                                                 <Link href={`/admin/mentor/detail/${applyValue.assignMentorId}`}><a>{applyValue.mentorName}</a></Link>
-                                                                <button className={cx("basic-btn03")}  onClick={() =>{setApplyValue({...applyValue,assignMentorId:null,assignMentorName:null,applyStatus:'APPLY'})}}>배정 취소</button>
+                                                                {applyValue.applyStatus != "COMPLETED" && (
+                                                                    <button className={cx("basic-btn03")}  onClick={() =>{setApplyValue({...applyValue,assignMentorId:null,assignMentorName:null,applyStatus:'APPLY'})}}>배정 취소</button>
+                                                                )}
                                                             </>
                                                         )}
                                                     </td>
@@ -277,7 +280,7 @@ const CounselApplyFormDetail = () => {
                                                         {
                                                             applyValue.files != null && applyValue.files.length > 0 && (
                                                                     <Upload
-                                                                        listType="picture-card"
+                                                                        listType="picture"
                                                                         fileList={applyValue.files.map((file) => {
                                                                             return {
                                                                                 uid: file.fileName,
@@ -355,9 +358,10 @@ const CounselApplyFormDetail = () => {
                                 }
                             </div>
                         </div>
-                        {applyValue.applyStatus != "APPLY" &&  applyValue.applyStatus != "RETURN" && (
+
                             <div className={cx("admin_cont")}>
                                 <h2 className={cx("title_style_1")}><span>멘토 답변</span></h2>
+                                {applyValue.applyStatus != "APPLY" &&  applyValue.applyStatus != "RETURN" && applyValue.applyStatus != "ASSIGN"  && (
                                 <div className={cx("tb_style_2", "apply_form")}>
                                     <>
                                         <table>
@@ -408,7 +412,7 @@ const CounselApplyFormDetail = () => {
                                                     {
                                                         applyValue.answerFiles != null && applyValue.answerFiles.length > 0 && (
                                                             <Upload
-                                                                listType="picture-card"
+                                                                listType="picture"
                                                                 fileList={applyValue.answerFiles.map((file) => {
                                                                     return {
                                                                         uid: file.fileName,
@@ -431,20 +435,22 @@ const CounselApplyFormDetail = () => {
                                             </tr>
                                             </tbody>
                                         </table>
-                                        <div className={cx("btn-box01")}>
-                                            <button className={cx("basic-btn02", "btn-gray-bg")} onClick={() => {
-                                                router.back()
-                                            }}>뒤로가기
-                                            </button>
-                                            <button className={cx("basic-btn02", "btn-gray-bd2")} onClick={() => {
-                                                saveApply()
-                                            }}>저장
-                                            </button>
-                                        </div>
+
                                     </>
                                 </div>
+                                )}
+                                <div className={cx("btn-box01")}>
+                                    <button className={cx("basic-btn02", "btn-gray-bg")} onClick={() => {
+                                        router.back()
+                                    }}>뒤로가기
+                                    </button>
+                                    <button className={cx("basic-btn02", "btn-gray-bd2")} onClick={() => {
+                                        saveApply()
+                                    }}>저장
+                                    </button>
+                                </div>
                             </div>
-                        )}
+
                     </div>
                 </section>
             )}

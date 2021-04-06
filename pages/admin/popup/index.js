@@ -105,7 +105,7 @@ const PopupManagePage = () => {
                                 </colgroup>
                                 <thead>
                                 <tr>
-                                    <th scope="col">NO</th>
+                                    <th scope="col">번호</th>
                                     <th scope="col">이름</th>
                                     <th scope="col">기간</th>
                                     <th scope="col">PC</th>

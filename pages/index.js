@@ -20,7 +20,13 @@ import PopupItem from "../component/main/PopupItem";
 import client from "../lib/api/client";
 import dynamic from "next/dynamic";
 import {useRouter} from "next/router";
-import {getNoticeRanThumbnail, getThumbnail, getBoardThumbnail} from "../component/common/util/ThumbnailUtil";
+import {
+    getNoticeRanThumbnail,
+    getThumbnail,
+    getBoardThumbnail,
+    getRanThumbnail
+} from "../component/common/util/ThumbnailUtil";
+import {Modal} from "antd";
 
 
 const cx = classnames.bind(styles);
@@ -60,24 +66,6 @@ const onlineSliderSettings = {
     speed: 300,
     slidesToShow: 1,
     slidesToScroll: 1,
-    // responsive: [
-    //     {
-    //         breakpoint: 1024,
-    //         settings: {
-    //             slidesToShow: 3,
-    //             slidesToScroll: 1,
-    //             infinite: true,
-    //             dots: true
-    //         }
-    //     },
-    //     {
-    //         breakpoint: 600,
-    //         settings: {
-    //             slidesToShow: 3,
-    //             slidesToScroll: 1
-    //         }
-    //     },
-    // ]
 };
 
 const boardSliderSettings = {
@@ -174,6 +162,7 @@ export const getServerSideProps = wrapper.getServerSideProps(async (context) => 
     const cookie = context.req && context.req.headers.cookie ? context.req.headers.cookie : '';
     client.defaults.headers.Cookie = cookie;
 
+    context.store.dispatch(getMainData());
     context.store.dispatch(END);
     await context.store.sagaTask.toPromise();
 })
@@ -188,9 +177,11 @@ const Index = () => {
     const [showNotice, setShowNotice] = useState(true);
     const [searchValue, setSearchValue] = useState("");
 
-    const {mainData} = useSelector(({main, loading}) => ({
-        mainData: main.mainData
+    const {mainData,user} = useSelector(({main,auth, loading}) => ({
+        mainData: main.mainData,
+        user: auth.user
     }))
+
 
     useEffect(() => {
         dispatch(getMainData())
@@ -210,6 +201,21 @@ const Index = () => {
 
     }
 
+    const moveReportApply = () =>{
+        if(user.login == false || (user.role != "ROLE_SD" && user.role != "ROLE_ADMIN") ){
+            if(user.role == "ROLE_MT"){
+                Modal.warning({
+                    title: '권한이 없습니다',
+                });
+            }else{
+                Modal.warning({
+                    title: '로그인 후 이용하실 수 있습니다.',
+                });
+            }
+        }else{
+            router.push("/startup_counsel/student_report")
+        }
+    }
     return (
         <>
             <Head>
@@ -270,8 +276,8 @@ const Index = () => {
                             </Link>
                         </li>
                         <li className={cx("icon_8")}>
-                            <Link href="/startup_counsel/student_report">
-                                <a>
+                            <Link href="#">
+                                <a onClick={moveReportApply}>
                                     <span>학생창업자 신고</span>
                                 </a>
                             </Link>
@@ -305,13 +311,14 @@ const Index = () => {
                         {mainData.calendar.length > 0 ?
                             <Slider className="main_calendar" {...calendarSliderSettings}>
                                 {mainData.calendar.map((item, index) => (
-                                    <Link href={`/startup_info/startup_event?page=1&type=L`}>
+                                    <Link key={item.startupCalendarId}
+                                          href={`/startup_info/startup_event?page=1&type=L`}>
                                         <div className={cx("list")}>
                                             <a>
                                                 <span
-                                                    className={cx("day")}>{moment(item.eventDate).format("DD").toString()}</span>
+                                                    className={cx("day")}>{item.eventDate != null ? moment(item.eventDate).format("DD").toString() : ""}</span>
                                                 <span
-                                                    className={cx("date")}>{moment(item.eventDate).format("YYYY.MM.DD").toString()}</span>
+                                                    className={cx("date")}>{item.eventDate != null ? moment(item.eventDate).format("YYYY.MM.DD").toString() : ""}</span>
                                                 <p>
                                                     {item.title}
                                                 </p>
@@ -334,14 +341,15 @@ const Index = () => {
                     </div>
 
                     <div className={cx("main_Elearning")}>
-                        <h1><Link href="/"><a>온라인 콘텐츠</a></Link></h1>
+                        <h1><Link href="/board/online_content/list"><a>온라인 콘텐츠</a></Link></h1>
                         <div className={cx("e_learning_slide")}>
                             <div className={cx("list")}>
                                 {mainData.online_content.length > 0 && (
                                     <Slider className="online_content" {...onlineSliderSettings}>
                                         {mainData.online_content.map((item, index) => {
                                                 return (
-                                                    <Link href={`/board/online_content/view/${item.contentId}`}>
+                                                    <Link href={`/board/online_content/view/${item.contentId}`}
+                                                          key={item.contentId}>
                                                         <a>
                                                             <Image src={getThumbnail(item.content)} layout="fill"
                                                                    alt="온라인 콘텐츠"/>
@@ -390,8 +398,9 @@ const Index = () => {
                                                 <div className={cx("img_area")}>
                                                     <Link href={`/board/notice/view/${item.contentId}`}>
                                                         <a>
-                                                            <Image src={getNoticeRanThumbnail()} layout="fill"
-                                                                   alt="main_notice_img"/>
+                                                            <Image layout="fill"
+                                                                   src={item.thumbList.length > 0 ? `${client.defaults.baseURL}/resource${item.thumbList[0].filePath}/${item.thumbList[0].fileName + item.thumbList[0].fileExtension}` : getRanThumbnail()}
+                                                                   alt={"게시글 썸네일"}/>
                                                         </a>
                                                     </Link>
                                                 </div>
@@ -402,7 +411,8 @@ const Index = () => {
                                                                 {item.title}
                                                             </div>
                                                             <div className={cx("txt")}>
-                                                                <div dangerouslySetInnerHTML={{__html: item.content}}/>
+                                                                {/*<div dangerouslySetInnerHTML={{__html: item.content.replace(/<img[^>]*>/g, '')}}/>*/}
+                                                                {item.sub01}
                                                             </div>
                                                             <span
                                                                 className={cx("date")}>{moment(item.regDate).format("YYYY년 MM월 DD일")}</span>
@@ -428,8 +438,11 @@ const Index = () => {
                                                 <div className={cx("img_area")}>
                                                     <Link href={`/board/startup_info/view/${item.contentId}`}>
                                                         <a>
-                                                            <Image src="/assets/image/main_notice_img.jpg" layout="fill"
-                                                                   alt="main_notice_img"/>
+                                                            {/*<Image src={getNoticeRanThumbnail(item.content)} layout="fill"*/}
+                                                            {/*       alt="main_notice_img"/>*/}
+                                                            <Image layout="fill"
+                                                                   src={item.thumbList.length > 0 ? `${client.defaults.baseURL}/resource${item.thumbList[0].filePath}/${item.thumbList[0].fileName + item.thumbList[0].fileExtension}` : getRanThumbnail()}
+                                                                   alt={"게시글 썸네일"}/>
                                                         </a>
                                                     </Link>
                                                 </div>
@@ -440,8 +453,9 @@ const Index = () => {
                                                                 {item.title}
                                                             </div>
                                                             <div className={cx("txt")}>
-                                                                <div
-                                                                    dangerouslySetInnerHTML={{__html: item.content.replace("<br>", "")}}/>
+                                                                {/*<div*/}
+                                                                {/*    dangerouslySetInnerHTML={{__html: item.content.replace(/<img[^>]*>/g, '')}}/>*/}
+                                                                {item.sub01}
                                                             </div>
                                                             <span
                                                                 className={cx("date")}>{moment(item.regDate).format("YYYY년 MM월 DD일")}</span>
@@ -540,49 +554,229 @@ const Index = () => {
                     <div className={cx("main_tab")}>
                         <ul>
                             <li className={cx("on")}>
-                                <button type="button">허브 네트워크</button>
+                                <button type="button">창업지원 부서/기관</button>
                             </li>
                         </ul>
                     </div>
 
                     <div className={cx("main_board_list", "main_tabCont")}>
                         {/*허브*/}
-                        {mainData.hub.length > 0 ? (
-                            <Slider
-                                className={`${cx("slides")} main_board_list`} {...hubSliderSettings}>
-                                {
-                                    mainData.hub.map((item, index) => {
-                                        return (
-                                            <div className={cx("list")} key={item.contentId}>
-                                                <div className={cx("img_area")}>
-                                                    <Link href={`/board/hub/view/${item.contentId}`}>
-                                                        <a>
-                                                            <Image src={getBoardThumbnail(item.content)} layout="fill"
-                                                                   alt="main_notice_img"/>
-                                                        </a>
-                                                    </Link>
-                                                </div>
-                                                <div className={cx("txt_area")}>
-                                                    <Link href={`/board/hub/view/${item.contentId}`}>
-                                                        <a>
-                                                            <div className={cx("title")}>
-                                                                {item.title}
-                                                            </div>
-                                                            <div className={cx("txt")}>
-                                                                <div dangerouslySetInnerHTML={{__html: item.content}}/>
-                                                            </div>
-                                                            <span
-                                                                className={cx("date")}>{moment(item.regDate).format("YYYY년 MM월 DD일")}</span>
-                                                        </a>
-                                                    </Link>
-                                                </div>
+                        <Slider
+                            className={`${cx("slides")} main_board_list`} {...hubSliderSettings}>
+                            {/*1*/}
+                            <div className={cx("list")} key={1}>
+                                <div className={cx("img_area")}>
+                                    <Link href="http://research.hanyang.ac.kr/">
+                                        <a target="_blank">
+                                            <Image src={"/assets/image/hub01.png"} layout="fill" alt="main_notice_img"/>
+                                        </a>
+                                    </Link>
+                                </div>
+                                <div className={cx("txt_area")}>
+                                    <Link href="http://research.hanyang.ac.kr/">
+                                        <a target="_blank">
+                                            <div className={cx("title")}>
+                                                한양대학교 산학협력단
                                             </div>
+                                            <div>교육, 연구지원</div>
+                                            <div className={cx("txt")}>
+                                                글로벌 실용인재 양성
+                                                <br/>
+                                                다학제간 통합연구, 연구성과 확산모델선도
+                                            </div>
+                                        </a>
+                                    </Link>
+                                </div>
+                            </div>
+                            {/*2*/}
+                            <div className={cx("list")} key={2}>
+                                <div className={cx("img_area")}>
+                                    <Link href="http://hyuholdings.com/html/">
+                                        <a target="_blank">
+                                            <Image src={"/assets/image/hub02.png"} layout="fill" alt="main_notice_img"/>
+                                        </a>
+                                    </Link>
+                                </div>
+                                <div className={cx("txt_area")}>
+                                    <Link href="http://hyuholdings.com/html/">
+                                        <a target="_blank">
+                                            <div className={cx("title")}>
+                                                기술지주회사
+                                            </div>
+                                            <div>투자, 액셀</div>
+                                            <div className={cx("txt")}>
+                                                국내 제1호 대학기술지주회사
+                                                <br/>
+                                                TIPS 및 교육계정펀드 운영사로
+                                                <br/>
+                                                우수 기술 발굴, 사업화, 보육, 투자
+                                            </div>
+                                        </a>
+                                    </Link>
+                                </div>
+                            </div>
+                            {/*3*/}
 
-                                        )
-                                    })
-                                }
-                            </Slider>
-                        ) : "LOADING"}
+                            <div className={cx("list")} key={3}>
+                                <div className={cx("img_area")}>
+                                    <Link href="http://research.hanyang.ac.kr/certi/foundation.php">
+                                        <a target="_blank">
+                                            <Image src={"/assets/image/hub03.png"} layout="fill" alt="main_notice_img"/>
+                                        </a>
+                                    </Link>
+                                </div>
+                                <div className={cx("txt_area")}>
+                                    <Link href="http://research.hanyang.ac.kr/certi/foundation.php">
+                                        <a target="_blank">
+                                            <div className={cx("title")}>
+                                                기술사업화센터
+                                            </div>
+                                            <div>실험실창업</div>
+                                            <div className={cx("txt")}>
+                                                실험실 연구성과 기반의 창업 아이템을
+                                                <br/>
+                                                발굴하고 生기술혁신 창업 기업으로 육성
+                                            </div>
+                                        </a>
+                                    </Link>
+                                </div>
+                            </div>
+
+                            {/*4*/}
+                            <div className={cx("list")} key={4}>
+                                <div className={cx("img_area")}>
+                                    <Link href="http://fablab.hanyang.ac.kr/">
+                                        <a target="_blank">
+                                            <Image src={"/assets/image/hub04.png"} layout="fill" alt="main_notice_img"/>
+                                        </a>
+                                    </Link>
+                                </div>
+                                <div className={cx("txt_area")}>
+                                    <Link href="http://fablab.hanyang.ac.kr/">
+                                        <a target="_blank">
+                                            <div className={cx("title")}>
+                                                휴온스팹랩[Huons FABLAB]
+                                            </div>
+                                            <div>메이커 스페이스</div>
+                                            <div className={cx("txt")}>
+                                                3D프린터룸, 메이킹룸, 공학입문설계
+                                                <br/>
+                                                스튜디오, IoT룸, 학생라운지 제공
+                                            </div>
+                                        </a>
+                                    </Link>
+                                </div>
+                            </div>
+
+                            {/*5*/}
+                            <div className={cx("list")} key={5}>
+                                <div className={cx("img_area")}>
+                                    <Link href="http://entrepreneurship.hanyang.ac.kr/">
+                                        <a target="_blank">
+                                            <Image src={"/assets/image/hub05.png"} layout="fill" alt="main_notice_img"/>
+                                        </a>
+                                    </Link>
+                                </div>
+                                <div className={cx("txt_area")}>
+                                    <Link href="http://entrepreneurship.hanyang.ac.kr/">
+                                        <a target="_blank">
+                                            <div className={cx("title")}>
+                                                창업융합학과
+                                            </div>
+                                            <div>교육</div>
+                                            <div className={cx("txt")}>
+                                                창의적 사고와 기업가정신, 글로벌 창업
+                                                <br/>
+                                                역량을 지닌 창의 융합인재 양성,
+                                                <br/>
+                                                창업관련 연구 수행
+                                            </div>
+                                        </a>
+                                    </Link>
+                                </div>
+                            </div>
+
+                            {/*6*/}
+                            <div className={cx("list")} key={6}>
+                                <div className={cx("img_area")}>
+                                    <Link href="https://hywep.hanyang.ac.kr/index.do">
+                                        <a target="_blank">
+                                            <Image src={"/assets/image/hub06.png"} layout="fill" alt="main_notice_img"/>
+                                        </a>
+                                    </Link>
+                                </div>
+                                <div className={cx("txt_area")}>
+                                    <Link href="https://hywep.hanyang.ac.kr/index.do">
+                                        <a target="_blank">
+                                            <div className={cx("title")}>
+                                                창업보육센터
+                                            </div>
+                                            <div>교육, 지원, 공간</div>
+                                            <div className={cx("txt")}>
+                                                창업보육 전용공간, 창업 보육단계별
+                                                <br/>
+                                                기술 경영 등 주요지원프로그램 제공
+                                            </div>
+                                        </a>
+                                    </Link>
+                                </div>
+                            </div>
+
+                            {/*7*/}
+                            <div className={cx("list")} key={7}>
+                                <div className={cx("img_area")}>
+                                    <Link href="https://hywep.hanyang.ac.kr/index.do">
+                                        <a target="_blank">
+                                            <Image src={"/assets/image/hub07.png"} layout="fill" alt="main_notice_img"/>
+                                        </a>
+                                    </Link>
+                                </div>
+                                <div className={cx("txt_area")}>
+                                    <Link href="https://hywep.hanyang.ac.kr/index.do">
+                                        <a target="_blank">
+                                            <div className={cx("title")}>
+                                                현장실습지원센터
+                                            </div>
+                                            <div>교육</div>
+                                            <div className={cx("txt")}>
+                                                전공과 관련된 산업현장에서의 경험과
+                                                <br/>
+                                                진로탐색 기회를 제공하는
+                                                <br/>
+                                                현장실습 프로그램 운영
+                                            </div>
+                                        </a>
+                                    </Link>
+                                </div>
+                            </div>
+
+                            {/*8*/}
+                            <div className={cx("list")} key={8}>
+                                <div className={cx("img_area")}>
+                                    <Link href="http://lincplus.hanyang.ac.kr/">
+                                        <a target="_blank">
+                                            <Image src={"/assets/image/hub08.png"} layout="fill" alt="main_notice_img"/>
+                                        </a>
+                                    </Link>
+                                </div>
+                                <div className={cx("txt_area")}>
+                                    <Link href="http://lincplus.hanyang.ac.kr/">
+                                        <a target="_blank">
+                                            <div className={cx("title")}>
+                                                LINC+사업단
+                                            </div>
+                                            <div>산학협력 지원</div>
+                                            <div className={cx("txt")}>
+                                                사회적 가치를 창출하는
+                                                <br/>
+                                                산업선도형 산학협력사업 수행
+                                            </div>
+                                        </a>
+                                    </Link>
+                                </div>
+                            </div>
+
+                        </Slider>
                         <div>
                         </div>
 

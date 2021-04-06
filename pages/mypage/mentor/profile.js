@@ -113,6 +113,7 @@ const MentorProfile = () => {
     }
 
     const changeMentorField = (tag, checked) => {
+        console.log(tag, checked)
         const nextSelectedTags = checked ? [...mentorInfo.mentorFieldList, tag.value] : mentorInfo.mentorFieldList.filter(t => t !== tag.value);
 
         setMentorInfo({
@@ -128,6 +129,8 @@ const MentorProfile = () => {
     },[update])
 
     const submitApply = () =>{
+
+        console.log(mentorInfo)
         dispatch(updateMentorProfile(mentorInfo))
     }
 

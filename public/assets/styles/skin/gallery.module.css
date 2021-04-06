@@ -1,3 +1,4 @@
+.gallery_list ul {display:inline-block; width:100%;}
 .gallery_list ul li{float:left; margin:0 4.55% 60px 0; width:30.3%;}
 .gallery_list ul li:nth-child(3n){margin-right:0; }
 .gallery_list ul li .img_area a{position:Relative; padding-bottom:65%; display:block; }

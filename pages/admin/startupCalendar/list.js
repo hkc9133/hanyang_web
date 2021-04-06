@@ -99,7 +99,7 @@ const List = () => {
                     <div className={`${cx("member_info","box")} clfx `}>
                         <ul className={"clfx"}>
                             <li>
-                                <span className={cx("title","icon_1")}>공지</span>
+                                <span className={cx("title","icon_1")}>일정</span>
                                 <div className={cx("number")}>
                                     <strong>{startupCalendar.page !== null && startupCalendar.page.totalCount}</strong>개
                                 </div>

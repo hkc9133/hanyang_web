@@ -4,6 +4,8 @@ import classnames from "classnames/bind"
 import Image from 'next/image'
 import {useRouter} from "next/router";
 import Link from "next/link";
+import {Modal} from "antd";
+import {useSelector} from "react-redux";
 
 
 const cx = classnames.bind(styles);
@@ -46,7 +48,7 @@ const dep1 = {
             notice: {name:'공지사항',link:'/board/startupCalendar/list'},
             startup_event: {name:'창업캘린더',link:'/startup_info/startup_event'},
             startup_info: {name:'신규사업공고',link:'/board/startup_info/list'},
-            idea: {name:'창업지원단 커뮤니티',link:'/board/idea/list'},
+            idea: {name:'커뮤니티 게시판',link:'/board/idea/list'},
             data_room: {name:'자료실',link:'/board/data_room/list'},
             faq: {name:'FAQ',link:'/board/faq/list'},
         }
@@ -56,7 +58,7 @@ const dep1 = {
         link:"/startup_h/best_startup",
         sub:{
             best_startup: {name:'우수스타트업',link:'/startup_h/best_startup'},
-            startup_present: {name:'스타트업배출현황',link:'/startup_h/startup_present'},
+            startup_present: {name:'스타트업 배출현황',link:'/startup_h/startup_present'},
             corp_press: {name:'기업언론보도',link:'/board/corp_press/list'},
         }
     },
@@ -104,6 +106,10 @@ const PageNavigation = () => {
     const [subNavi, setSubNavi] = useState({key:null,name:null});
     const router = useRouter();
 
+    const {user} = useSelector(({auth, loading}) => ({
+        user: auth.user,
+    }))
+
     useEffect(() => {
 
         let str = "";
@@ -122,54 +128,18 @@ const PageNavigation = () => {
             return;
         }
 
-
-        // let keyV;
-        // let itemIndex = null;
-        // let subItemIndex = null;
-        // arr.forEach((element,index) => {
-        //     switch (index) {
-        //         case 1:
-        //             siteMap.forEach((item,itemIdx) => {
-        //                 if(element == 'board'){
-        //                     if(board[arr[2]].parents == item.url){
-        //                         itemIndex = itemIdx
-        //                         return
-        //                     }
-        //                 }else{
-        //                     if(item.url == element){
-        //                         itemIndex = itemIdx;
-        //                         return;
-        //                     }
-        //                 }
-        //             })
-        //             setNavi(itemIndex)
-        //             break;
-        //         case 2:
-        //             if(siteMap[itemIndex] != null){
-        //                 siteMap[itemIndex].sub.forEach((subItem,subIndex) => {
-        //                     if(subItem.url == element){
-        //                         subItemIndex = subIndex;
-        //                         return;
-        //                     }
-        //                 })
-        //                 if(siteMap[itemIndex].sub.length > 0 && subItemIndex != null){
-        //                     setSubNavi({
-        //                         key:element,
-        //                         name:siteMap[itemIndex].sub[subItemIndex].name
-        //                     })
-        //
-        //                 }
-        //             }
-        //             break;
-        //     }
-        // });
-
-
     },[router])
 
-    // useEffect(() => {
-    //
-    // },[navi,subNavi])
+    const moveMentorApply = () =>{
+        if(user.login == false ||  user.role != "ROLE_ADMIN" ){
+            Modal.warning({
+                title: '맨토신청은 당해년 05월 01일 부터 05월 31일까지 진행 합니다.',
+                content:'멘토신청을 원하시면 멘토로 회원가입 및 인증 후 신청 가능 합니다.'
+            });
+        }else{
+            router.push("/startup_counsel/mentor_apply")
+        }
+    }
 
 
     return (
@@ -198,7 +168,12 @@ const PageNavigation = () => {
                                 <ul>
                                     {
                                         Object.keys(navi.sub).map((key) => {
-                                            return (<li key={navi.sub[key].name}><a href={navi.sub[key].link}>{navi.sub[key].name}</a></li>)
+                                            return (<li key={navi.sub[key].name}>
+                                                    {navi.sub[key].link === '/startup_counsel/mentor_apply' ?
+                                                        <a onClick={()=>{moveMentorApply()}}>{navi.sub[key].name}</a>
+                                                        :
+                                                        <a href={navi.sub[key].link}>{navi.sub[key].name}</a>}
+                                            </li>)
                                         })
                                         // siteMap[navi].sub.map(function(item) {
                                         //     return(

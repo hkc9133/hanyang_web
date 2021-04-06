@@ -53,7 +53,7 @@ const Footer = () => {
                 <li><Link href="http://fablab.hanyang.ac.kr/"><a>휴온스팹랩</a></Link></li>
             </Menu.Item>
             <Menu.Item>
-                <li><Link href="http://lincplus.hanyang.ac.kr/"><a>LINK+사업단</a></Link></li>
+                <li><Link href="http://lincplus.hanyang.ac.kr/"><a>LINC+사업단</a></Link></li>
             </Menu.Item>
             <Menu.Item>
                 <li><Link href="https://hywep.hanyang.ac.kr/index.do"><a>현장실습지원센터</a></Link></li>

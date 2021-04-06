@@ -1,7 +1,9 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
-import {DatePicker, Form, Input, Modal, Upload} from "antd";
+import {DatePicker, Form, Input, Modal, Typography} from "antd";
+
+const { Text, Link } = Typography;
 import {PlusOutlined} from "@ant-design/icons";
 import moment from "moment";
 import locale from "antd/lib/date-picker/locale/ko_KR";
@@ -10,7 +12,7 @@ import classnames from "classnames/bind"
 import {addPopup,initialize} from "../../../store/popup/adminPopup";
 import dynamic from "next/dynamic";
 const cx = classnames.bind(styles);
-const QuillEditor = dynamic(() => import("../../../component/common/QuillEditor"), {
+const Editor = dynamic(() => import("../../../component/common/Editor"), {
     ssr: false,
     loading: () => <p>Loading ...</p>,
 });
@@ -40,7 +42,7 @@ const PopupAddPage = () => {
         isMobile:true,
     });
 
-    const [content,setContent] = useState("");
+    const [editor,setEditor] = useState(null);
 
     useEffect(() =>{
 
@@ -81,7 +83,7 @@ const PopupAddPage = () => {
             ...popupInfo,
             start:popupInfo.start.format("YYYY-MM-DD HH:mm").toString(),
             end:popupInfo.end.format("YYYY-MM-DD HH:mm").toString(),
-            content: content
+            content: editor.getData()
         }
 
         dispatch(addPopup(data))
@@ -194,7 +196,7 @@ const PopupAddPage = () => {
                                                     <Input type="number" className={cx("w_100p")}
                                                            name="leftPosition" onChange={changePopupInfo}
                                                            value={popupInfo.leftPosition}
-                                                           placeholder="시간 입력"/>
+                                                           placeholder=""/>
                                                 </Form.Item>
                                             </td>
                                         </tr>
@@ -214,7 +216,7 @@ const PopupAddPage = () => {
                                                     <Input type="number" className={cx("w_100p")}
                                                            name="topPosition" onChange={changePopupInfo}
                                                            value={popupInfo.topPosition}
-                                                           placeholder="시간 입력"/>
+                                                           placeholder=""/>
                                                 </Form.Item>
                                             </td>
                                         </tr>
@@ -234,8 +236,9 @@ const PopupAddPage = () => {
                                                     <Input type="number" className={cx("w_100p")}
                                                            name="width" onChange={changePopupInfo}
                                                            value={popupInfo.width}
-                                                           placeholder="시간 입력"/>
+                                                           placeholder="이미지 가로 크기 권장"/>
                                                 </Form.Item>
+                                                <Text type="danger">&#8251;모바일 최적화를 위해 362px 권장</Text>
                                             </td>
                                         </tr>
                                         <tr>
@@ -254,7 +257,7 @@ const PopupAddPage = () => {
                                                     <Input type="number" className={cx("w_100p")}
                                                            name="height" onChange={changePopupInfo}
                                                            value={popupInfo.height}
-                                                           placeholder="시간 입력"/>
+                                                           placeholder="이미지 세로 크기 권장"/>
                                                 </Form.Item>
                                             </td>
                                         </tr>
@@ -295,7 +298,7 @@ const PopupAddPage = () => {
                                                 {/*        },*/}
                                                 {/*    ]}*/}
                                                 {/*>*/}
-                                                <QuillEditor Contents={content} QuillChange={setContent}/>
+                                                <Editor setEditor={setEditor}/>
                                                     {/*<Upload*/}
                                                     {/*    listType="picture-card"*/}
                                                     {/*    fileList={popupInfo.addAttachFileList}*/}

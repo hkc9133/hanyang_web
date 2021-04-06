@@ -9,12 +9,13 @@ import qs from "query-string";
 import {useRouter} from "next/router";
 import {Menu, Checkbox, Button, Modal, Dropdown} from "antd";
 const {SubMenu} = Menu;
-import {DownOutlined, FileImageOutlined} from '@ant-design/icons';
+import {DownOutlined, FileImageOutlined,HomeOutlined} from '@ant-design/icons';
 
 import { Select } from 'antd';
 import moment from "moment";
 import Pagination from "../../component/common/Pagination";
 import client from "../../lib/api/client";
+import Image from "next/image";
 
 const { Option } = Select;
 
@@ -67,6 +68,8 @@ const StartupPresent = () => {
 
         const data = {
             ...searchInfo,
+            searchField:searchField,
+            searchValue:searchValue,
             pageNo:pageNo
         }
 
@@ -182,12 +185,12 @@ const StartupPresent = () => {
                 <div className={cx("bbs_tb_list")}>
                     <table>
                         <colgroup>
+                            <col style={{width:"5%"}}/>
                             <col style={{width:"12%"}}/>
-                            <col style={{width:"14.3%"}}/>
-                            <col style={{width:"16.3%"}}/>
-                            <col style={{width:"15.15%"}}/>
-                            <col/>
-                            <col/>
+                            <col style={{width:"6%"}}/>
+                            <col style={{width:"6%"}}/>
+                            <col style={{width:"20%"}}/>
+                            <col style={{width:"10%"}}/>
                         </colgroup>
                         <thead>
                         <tr>
@@ -216,11 +219,29 @@ const StartupPresent = () => {
                                 </td>
                                 <td>{item.item}</td>
                                 <td>
-                                    <a href={item.homepage} target="_blank">
-                                    {item.attachFile != null ? <img src={`${client.defaults.baseURL}/resource${item.attachFile.filePath}/${item.attachFile.fileName+item.attachFile.fileExtension}`} width={35} height={35} alt={"LOGO"}/> : (
-                                        <FileImageOutlined style={{fontSize:30,verticalAlign:'middle'}}/>
-                                    ) }
-                                    </a>
+                                    {item.homepage != null && (
+                                        <Link href={item.homepage}>
+                                            <a target="_blank">
+                                                <HomeOutlined style={{fontSize:22,verticalAlign:'top'}}/>
+                                            </a>
+                                        </Link>
+                                    )}
+                                    {item.insta != null && item.insta != "" &&
+                                    <a href={item.insta} target="_blank"><Image
+                                        src="/assets/image/startup_insta.png" width={25} height={25}
+                                        alt="sns_logo"/></a>}
+                                    {item.facebook != null && item.facebook != "" &&
+                                    <a href={item.facebook} target="_blank"><Image
+                                        src="/assets/image/startup_facebook.png" width={25} height={25}
+                                        alt="sns_logo"/></a>}
+                                    {item.naverBlog != null && item.naverBlog != "" &&
+                                    <a href={item.naverBlog} target="_blank"><Image
+                                        src="/assets/image/startup_naver_blog.png" width={25} height={25}
+                                        alt="sns_logo"/></a>}
+                                    {item.twitter != null && item.twitter != "" &&
+                                    <a href={item.twitter} target="_blank"><Image
+                                        src="/assets/image/startup_twitter.png" width={25} height={25}
+                                        alt="sns_logo"/></a>}
                                 </td>
                             </tr>
                         ))}

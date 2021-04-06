@@ -2,7 +2,20 @@ import React, {useCallback, useEffect, useRef, useState} from 'react';
 import styles from '../../public/assets/styles/startup_info/startup_info.module.css';
 import classnames from "classnames/bind"
 import Link from 'next/link'
-import {Input, Tag, Button, Select, Form, Radio, Checkbox, Upload, Progress, Typography, Modal} from 'antd';
+import {
+    Input,
+    Tag,
+    Button,
+    Select,
+    Form,
+    Radio,
+    Checkbox,
+    Upload,
+    Progress,
+    Typography,
+    Modal,
+    Modal as AntdModal
+} from 'antd';
 const { Option } = Select;
 
 import client from '../../lib/api/client';
@@ -20,7 +33,7 @@ import {
     initialize
 } from "../../store/mentoring/mentoring";
 import dynamic from "next/dynamic";
-const QuillEditor = dynamic(() => import("../../component/common/QuillEditor"), {
+const Editor = dynamic(() => import("../../component/common/Editor"), {
     ssr: false,
     loading: () => <p>Loading ...</p>,
 });
@@ -51,6 +64,9 @@ const CounselApply = () => {
 
     const [applyForm, setApplyForm] = useState({
         // formId: "",
+        userName: "",
+        userCompany: "",
+        userPhoneNum: "",
         userId: "",
         title: "",
         content: "",
@@ -67,6 +83,7 @@ const CounselApply = () => {
         uploadResultList:[]
     })
     const [content,setContent] = useState("");
+    const [editor,setEditor] = useState(null);
     const [applyResultModal, setApplyResultModal] = useState(false)
 
     // const [fileList ,setFileList] = useState([])
@@ -75,11 +92,19 @@ const CounselApply = () => {
     const [hopeMentorList, setHopeMentorList] = useState([]);
 
     useEffect(() =>{
-        dispatch(getMentorList({pageSize:500}))
-        dispatch(getCounselFieldCode())
-        dispatch(getProgressItem())
-        dispatch(getSortationItem())
-        dispatch(getWayItem())
+
+        if(user.login != null && !user.login){
+            Modal.warning({
+                title: '로그인 후 이용하실 수 있습니다.',
+                onOk:() =>{router.push("/user/login");}
+            });
+        }else{
+            dispatch(getMentorList({pageSize:500}))
+            dispatch(getCounselFieldCode())
+            dispatch(getProgressItem())
+            dispatch(getSortationItem())
+            dispatch(getWayItem())
+        }
         return () => {
             dispatch(initialize());
         }
@@ -223,16 +248,23 @@ const CounselApply = () => {
     };
 
     const submitApply = (e) => {
-        const data = {
-            ...applyForm,
-            content:content,
-            uploadResultList:applyForm.uploadResultList.map((item) =>{return item.fileId})
+        if(user.role == "ROLE_MT" || user.role == "ROLE_USER"){
+            Modal.warning({
+                title: '창업상담신청은 로그인 후 이용하실 수 있습니다.',
+            });
+        }else{
+            const data = {
+                ...applyForm,
+                content:editor.getData(),
+                uploadResultList:applyForm.uploadResultList.map((item) =>{return item.fileId})
+            }
+            // data.hopeMentor == null || data.hopeMentor == '' && delete data.hopeMentor
+            if(data.hopeMentor == null || data.hopeMentor == ''){
+                delete data.hopeMentor
+            }
+            dispatch(applyCounsel(data));
+
         }
-        // data.hopeMentor == null || data.hopeMentor == '' && delete data.hopeMentor
-        if(data.hopeMentor == null || data.hopeMentor == ''){
-            delete data.hopeMentor
-        }
-        dispatch(applyCounsel(data));
     }
 
     useEffect(() =>{
@@ -413,7 +445,7 @@ const CounselApply = () => {
                         </li>
                         <li>
                             <div className={cx("editor_box")}>
-                                <QuillEditor Contents={applyForm.content} QuillChange={setContent}/>
+                                <Editor setEditor={setEditor}/>
                             </div>
                         </li>
                         <li>

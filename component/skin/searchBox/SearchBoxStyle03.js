@@ -8,10 +8,12 @@ const cx = classnames.bind(styles);
 
 const SearchBoxStyle03 = ({searchContent,changeSearchInfo,category,searchInfo}) => {
 
+    console.log(category)
+
     return (
-        <fieldset className={cx("search_wrap")}>
+        <fieldset className={cx("search_wrap","search_03")}>
             <div className={cx("search")}>
-                {category !== null && (
+                {(category !== null && category.length > 0) && (
                     <select name="categoryCodeId" value={searchInfo.categoryCodeId} style={{width:category !== null ? "19%" : "38%"}} onChange={changeSearchInfo}>
                         <option value={""}>분류</option>
                         {category.map((item) =>

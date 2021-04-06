@@ -1,14 +1,24 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Link from 'next/link';
 import styles from '../../public/assets/styles/startup_education/startup_education.module.css';
 import classnames from "classnames/bind"
 import PageNavigation from "../../component/layout/PageNavigation";
+import {useRouter} from "next/router";
 
 const cx = classnames.bind(styles);
 
 const Friendly = () => {
-
+    const router = useRouter();
     const [tab, setTab] =  useState(0);
+
+    useEffect(() =>{
+        if(router.query.tab == 0 ){
+            setTab(0)
+        }else if(router.query.tab == 1){
+            setTab(1)
+        }
+
+    },[router.query])
 
     return (
         <>
@@ -137,6 +147,10 @@ const Friendly = () => {
                                             <li>
                                                 <span className={cx("title")}>신청자격 </span>
                                                 학년, 학부성적 제한없음
+                                            </li>
+                                            <li>
+                                                <span className={cx("title")}>혜택</span>
+                                                최소 4과목(12학점) 이수 시 인정 및 창업융합전공 신청 시 우대
                                             </li>
                                         </ul>
                                     </div>

@@ -25,18 +25,17 @@ const Location = () => {
 
     useEffect(() => {
         initFacebookSdk();
-
         let s = document.createElement("script");
         s.setAttribute("src", "https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=b348wme6ql");
         s.onload = function () {
             let mapOptions = {
-                center: new window.naver.maps.LatLng(37.5553142, 127.0426254),
+                center: new window.naver.maps.LatLng(37.55755459409449, 127.04686152506919),
                 zoom: 15
             };
             let map = new naver.maps.Map(mapArea.current, mapOptions);
 
             let marker = new naver.maps.Marker({
-                position: new naver.maps.LatLng(37.556861738392726, 127.04835502516103),
+                position: new naver.maps.LatLng(37.55755459409449, 127.04686152506919),
                 map: map,
             });
         }
@@ -190,7 +189,7 @@ const Location = () => {
                             {/*<h3>오시는 길</h3>*/}
                             <div className={cx("btn_area")}>
                                 <ul>
-                                    <li><Link href="/assets/image/location_map.png" ><a target="_blank" download>약도 이미지 다운로드</a></Link></li>
+                                    <li><Link href="/assets/pdf/map.pdf" ><a target="_blank" download>약도 이미지 다운로드</a></Link></li>
                                     <li>
                                     <Dropdown overlay={menu} trigger={['click']} placement="bottomCenter" arrow>
                                         <a onClick={(e)=>{e.preventDefault();}}>약도 공유하기</a>

@@ -38,7 +38,7 @@
 .mentor_group{position:relative; z-index:1; overflow:hidden;}
 .mentor_group:before{position:absolute; right:0; top:0; width:445px; height:288px; display:block; background:url(../../image/mentor_group_bg.jpg) no-repeat right 0; content:"";}
 .mentor_group_list>ul:after{ clear: both; content: "."; display: block; height: 0; visibility: hidden; font-size: 0;}
-.mentor_group_list>ul>li{float:left; position:relative; padding:40px 40px 100px; margin:0 4.55% 60px 0; width:30.3%; height:460px; border:1px solid #ccc; box-sizing:border-box; letter-spacing:-1px;
+.mentor_group_list>ul>li{float:left; position:relative; padding:40px 40px 100px; margin:0 4.55% 60px 0; width:30.3%; height:560px; border:1px solid #ccc; box-sizing:border-box; letter-spacing:-1px;
     -webkit-transition: all 0.35s ease-out;
     -moz-transition: all 0.35s ease-out;
     -ms-transition: all 0.35s ease-out;

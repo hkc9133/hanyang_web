@@ -87,7 +87,7 @@ const Infra = () => {
                                 <li>
                                     <span className={cx("s_title")}>기술사업화센터</span>
                                     -실험실 창업 <br/>
-                                    -기술검증 및 기술 사업호 <br/>
+                                    -기술검증 및 기술 사업화 <br/>
                                     -우수IP창출, 기술 마케팅 <br/>
                                     -출자회사 설립지원
                                 </li>
@@ -187,13 +187,13 @@ const Infra = () => {
                                     <img src="/assets/image/infra_center_2.jpg" alt="infra_center_2" />
                                 </li>
                             </ul>
-                            <span className={cx("txt")}>창업자인큐베이팅을 위한 전용공간(면적 1,459㎡)</span>
+                            <span className={cx("txt")}>학생창업자 인큐베이팅을 위한 전용공간(면적 1,459㎡)</span>
                         </div>
                     </div>
 
-                    <div className={"txt_c"}>
-                        <Link href="/introduce/space_reservation"><a className={cx("basic-btn03","btn-blue-bd")}>공간예약하기</a></Link>
-                    </div>
+                    {/*<div className={"txt_c"}>*/}
+                    {/*    <Link href="/introduce/space_reservation"><a className={cx("basic-btn03","btn-blue-bd")}>공간예약하기</a></Link>*/}
+                    {/*</div>*/}
                 </div>
 
             </div>

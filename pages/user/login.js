@@ -49,6 +49,13 @@ const Login = () => {
     },[])
 
     useEffect(() => {
+        if(user.login){
+            router.push("/")
+        }
+    },[user])
+
+
+    useEffect(() => {
         if(router.query.code != null && router.query.code != undefined){
             dispatch(checkHanyang(router.query.code))
         }
@@ -148,7 +155,7 @@ const Login = () => {
                                 </div>
                                 <div className={cx("sns_login")}>
                                     <ul className={"clfx"}>
-                                        <li>
+                                        <li className={cx("icon_5")}>
                                             <HanyangLoginButton handleSocialLogin={handleSocialLogin} onFormCheck={onFormCheck}/>
                                         </li>
                                         <li className={cx("icon_1")}>

@@ -130,7 +130,7 @@ const StudentReportManagePage = () => {
                                 </colgroup>
                                 <thead>
                                 <tr>
-                                    <th scope="col">NO</th>
+                                    <th scope="col">번호</th>
                                     <th scope="col">기업명</th>
                                     <th scope="col">사업자 유형</th>
                                     <th scope="col">학생 이름</th>

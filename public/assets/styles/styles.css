@@ -52,7 +52,7 @@ textarea{padding:15px; width:100%; border:1px solid #ddd; box-sizing:border-box;
 button:focus,textarea:focus,input:focus{outline:none;}
 
 
-#wrap{min-height:115vh;}
+#wrap{min-height:125vh;}
 .container{min-height:500px;}
 
 .hid{display:none;}
@@ -182,7 +182,12 @@ button:focus,textarea:focus,input:focus{outline:none;}
     background: none;
     border: none;
 }
-
+.ant-btn.upload{
+    height: 32px;
+    padding: 4px 15px;
+    background: #fff;
+    border: 1px solid #d9d9d9;
+}
 /*.ant-modal-header{padding:0}*/
 
 .ant-modal-confirm-btns button{
@@ -232,8 +237,16 @@ input[type=file]::-webkit-file-upload-button{
 .rbc-event.rbc-selected{background-color: transparent;}
 .rbc-overlay{display: none !important;}
 /*.rbc-row{height: 9px;}*/
-
-
+#editor_box{    border: 1px solid #C0C0C0;
+    min-height: 400px;
+    width: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+#editor{height: 100%;    max-width: 100%;    white-space: normal;}
+.ck.ck-dropdown .ck-dropdown__panel.ck-dropdown__panel_ne, .ck.ck-dropdown .ck-dropdown__panel.ck-dropdown__panel_se {
+    top: 34px;
+}
 /*-- font --*/
 /*NotoSans*/
 @font-face {

@@ -14,6 +14,9 @@ const IR = () => {
             <section className={cx("sub_container","irWrap")}>
                 <h1 className={cx("sub_top_title")}>IR/투자 안내</h1>
                 <p className={cx("sub_top_txt")}>유망 스타트업을 대상으로 IR 및 투자를 지원합니다.</p>
+                <div className={cx("ir_top_box")}>
+                    <img src="/assets/image/ir_cont.png" alt="mission_img"/>
+                </div>
 
                 <div className={cx("ir_box")}>
 

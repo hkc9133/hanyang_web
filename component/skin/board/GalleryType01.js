@@ -9,7 +9,8 @@ import Pagination from "../../common/Pagination";
 const cx = classnames.bind(styles);
 import qs from 'query-string';
 import {useRouter} from "next/router";
-import {getThumbnail} from '../../common/util/ThumbnailUtil';
+import {getRanThumbnail, getThumbnail} from '../../common/util/ThumbnailUtil';
+import client from "../../../lib/api/client";
 
 
 const GalleryType01 = ({content,board, pageChange}) => {
@@ -25,7 +26,8 @@ const GalleryType01 = ({content,board, pageChange}) => {
                                 <div className={cx("img_area")}>
                                     <Link href={`/board/${board.boardEnName}/view/${item.contentId}?${qs.stringify(router.query)}`}>
                                     <a href="#">
-                                        <img src={getThumbnail(item.content)} alt="gallery_list"/>
+                                        <img src={item.thumbList.length > 0 ? `${client.defaults.baseURL}/resource${item.thumbList[0].filePath}/${item.thumbList[0].fileName + item.thumbList[0].fileExtension}` : getRanThumbnail()}
+                                               alt={"게시글 썸네일"}/>
                                     </a>
                                     </Link>
                                 </div>

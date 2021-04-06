@@ -233,7 +233,7 @@ const BoardView = () => {
                             board.board.useFile && view.files.length > 0 && (
                                 <div className={cx("bbs_attach_file")}>
                                     <Upload
-                                        listType="picture-card"
+                                        listType="picture"
                                         fileList={view.files.map((file) => {
                                             return {
                                                 uid: file.fileName,

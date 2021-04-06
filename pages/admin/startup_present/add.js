@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {Checkbox, DatePicker, Form, Input, Modal, Tag, Upload} from "antd";
+import {Button, Checkbox, DatePicker, Form, Input, Modal, Tag, Upload} from "antd";
 import locale from "antd/lib/date-picker/locale/ko_KR";
 
 import styles from '../../../public/assets/styles/admin/startupPresent/startupPresent.module.css';
@@ -11,7 +11,7 @@ import {addStartupPresent, getFieldList, initialize} from "../../../store/startu
 import {PlusOutlined} from "@ant-design/icons";
 import {useRouter} from "next/router";
 const cx = classnames.bind(styles);
-
+import { UploadOutlined } from '@ant-design/icons';
 const StartUpAddPage = () => {
 
     const [form] = Form.useForm();
@@ -37,6 +37,7 @@ const StartUpAddPage = () => {
         insta:"",
         facebook:"",
         naverBlog:"",
+        companyStatus:"",
         twitter:"",
         businessIdList:[],
         techIdList:[],
@@ -94,8 +95,10 @@ const StartUpAddPage = () => {
         const data = {
             ...startUpForm,
             createDate:startUpForm.createDate.format("YYYY-MM-DD").toString(),
-            companyLogo:startUpForm.addAttachFileList[0].originFileObj
+            companyLogo:startUpForm.addAttachFileList.length > 0 ? startUpForm.addAttachFileList[0].originFileObj : []
         }
+
+        data.companyLogo.length == 0 && delete data.companyLogo;
 
         dispatch(addStartupPresent(data))
     }
@@ -116,10 +119,7 @@ const StartUpAddPage = () => {
     },[addResult])
 
     const uploadButton = (
-        <div>
-            <PlusOutlined />
-            <div style={{ marginTop: 8 }}>Upload</div>
-        </div>
+        <Button style={{marginTop:7}} className={"upload"} icon={<UploadOutlined />}>업로드</Button>
     );
 
 
@@ -314,15 +314,15 @@ const StartUpAddPage = () => {
                                                 <Form.Item
                                                     name="companyPhoneNum"
                                                     className={(cx("antd_input"))}
-                                                    rules={[
-                                                        {
-                                                            required: false,
-                                                            pattern: new RegExp(
-                                                                /^-?\d*(\.\d*)?$/
-                                                            ),
-                                                            message: "'-' 없이 숫자만 입력 가능합니다",
-                                                        },
-                                                    ]}
+                                                    // rules={[
+                                                    //     {
+                                                    //         required: false,
+                                                    //         pattern: new RegExp(
+                                                    //             /^-?\d*(\.\d*)?$/
+                                                    //         ),
+                                                    //         message: "'-' 없이 숫자만 입력 가능합니다",
+                                                    //     },
+                                                    // ]}
                                                 >
                                                     <Input placeholder={"연락처"} name="companyPhoneNum" value={startUpForm.companyPhoneNum}
                                                            onChange={(e) => {
@@ -408,6 +408,46 @@ const StartUpAddPage = () => {
                                                         <option value="">선택</option>
                                                         <option value="법인">법인</option>
                                                         <option value="개인">개인</option>
+                                                    </select>
+                                                </Form.Item>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">사업자 번호</th>
+                                            <td>
+                                                <Form.Item
+                                                    name="companyNum"
+                                                    className={(cx("antd_input"))}
+                                                    rules={[
+                                                        {
+                                                            required: false,
+                                                            message: '사업자 번호',
+                                                        },
+                                                    ]}
+                                                >
+                                                    <Input placeholder={"사업자 번호"} name="companyNum" value={startUpForm.companyNum}
+                                                           onChange={(e) => {
+                                                               changeStartUpFormValue(e)
+                                                           }}/>
+
+                                                </Form.Item>
+                                            </td>
+                                            <th scope="row">유지/폐업</th>
+                                            <td>
+                                                <Form.Item
+                                                    name="companyStatus"
+                                                    className={(cx("antd_input"))}
+                                                    rules={[
+                                                        {
+                                                            required: true,
+                                                            message: '유지/폐업',
+                                                        },
+                                                    ]}
+                                                >
+                                                    <select name="companyStatus" id="" value={startUpForm.companyStatus} onChange={changeStartUpFormValue}>
+                                                        <option value="">선택</option>
+                                                        <option value="유지">유지</option>
+                                                        <option value="폐업">폐업</option>
                                                     </select>
                                                 </Form.Item>
                                             </td>
@@ -506,13 +546,13 @@ const StartUpAddPage = () => {
                                                     className={(cx("antd_input"))}
                                                     rules={[
                                                         {
-                                                            required: true,
+                                                            required: false,
                                                             message: '기업 로고를 추가해주세요',
                                                         },
                                                     ]}
                                                 >
                                                     <Upload
-                                                        listType="picture-card"
+                                                        listType="picture"
                                                         fileList={startUpForm.addAttachFileList}
                                                         showUploadList={{
                                                             showPreviewIcon: true,

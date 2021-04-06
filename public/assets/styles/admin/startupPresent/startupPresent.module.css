@@ -58,8 +58,8 @@
 .startup_present_info>ul>li .number{float:right; margin-left:30px; line-height:1; display:block; font-size:14px; font-weight:200; }
 .startup_present_info>ul>li .number strong{font-size:24px; font-weight:400; vertical-align:bottom;}
 .startup_present_info .startup_present_search{float:right; position:relative; width:840px;text-align: right; }
-.startup_present_info .startup_present_search select{width:17.83%; height:35px; line-height:33px; background-color:#ebf0f9;margin-right: 0.5%; }
-.startup_present_info .startup_present_search input[type=text]{float:right; padding-right:39px;width:45%; height:35px; line-height:33px; box-sizing:border-box;}
+.startup_present_info .startup_present_search select{width:10%; height:35px; line-height:33px; background-color:#ebf0f9;margin-right: 0.5%; }
+.startup_present_info .startup_present_search input[type=text]{float:right; padding-right:39px;width:25%; height:35px; line-height:33px; box-sizing:border-box;}
 .startup_present_info .startup_present_search .btn_search{position:absolute; right:1px; top:1px; width:40px; height:33px; }
 
 

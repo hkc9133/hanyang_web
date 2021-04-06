@@ -32,7 +32,7 @@ const AdminHeader = () => {
                     <ul>
                         {/*<li><Link href="/admin/dashboard"><a><Image src="/assets/image/admin/adm_menu_1.png" width={38} height={38} alt="adm_menu"/></a></Link></li>*/}
                         <li><Link href="/admin/users"><a><Image src="/assets/image/admin/adm_menu_2.png" width={38} height={38} alt="adm_menu"/></a></Link></li>
-                        <li><Link href="/admin/board/list"><a><Image src="/assets/image/admin/adm_menu_3.png" width={38} height={38} alt="adm_menu"/></a></Link></li>
+                        <li><Link href="/admin/board/list"><a><Image src="/assets/image/admin/adm_menu_8.png" width={38} height={38} alt="adm_menu"/></a></Link></li>
                         <li><Link href="/admin/mentor"><a><Image src="/assets/image/admin/mentor.png" width={38} height={38} alt="adm_menu"/></a></Link></li>
                         {/*<li><Link href="/admin/counsel_apply"><a><Image src="/assets/image/admin/counsel.png" width={38} height={38} alt="adm_menu"/></a></Link></li>*/}
                         <li><Link href="/admin/rental_place/manage"><a><Image src="/assets/image/admin/rent.png" width={38} height={38} alt="adm_menu"/></a></Link></li>

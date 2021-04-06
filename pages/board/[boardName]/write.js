@@ -14,7 +14,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import AuthFail from "../../user/auth_fail";
 
 
-const QuillEditor = dynamic(() => import("../../../component/common/QuillEditor"), {
+const Editor = dynamic(() => import("../../../component/common/Editor"), {
     ssr: false,
     loading: () => <p>Loading ...</p>,
 });
@@ -54,6 +54,7 @@ const Write = () => {
         categoryCodeId:"",
     })
     const [content,setContent] = useState("");
+    const [editor,setEditor] = useState(null);
     const [fileList,setFileList] = useState([]);
     const [addResultModal, setAddResultModal] = useState(false)
 
@@ -115,7 +116,7 @@ const Write = () => {
     const submitApply = (e) => {
         const data = {
             ...writeInfo,
-            content:content,
+            content:editor.getData(),
             files:writeInfo.attachFiles.map((item) => (item.originFileObj)),
             boardEnName:router.query.boardName
         }
@@ -191,7 +192,7 @@ const Write = () => {
                             <tr>
                                 <th scope="row">내용</th>
                                 <td>
-                                    <QuillEditor Contents={content} QuillChange={setContent}/>
+                                    <Editor setEditor={setEditor}/>
                                 </td>
                             </tr>
                             {board.board.useFile && (
@@ -199,7 +200,7 @@ const Write = () => {
                                     <th scope="row">첨부파일</th>
                                     <td>
                                         <Upload
-                                            listType="picture-card"
+                                            listType="picture"
                                             fileList={writeInfo.attachFiles}
                                             onPreview={handlePreview}
                                             onChange={changeFileList}

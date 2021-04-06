@@ -1,9 +1,9 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useRouter} from "next/router";
 import {useDispatch, useSelector} from "react-redux";
-import {Checkbox, Form, Upload,Modal} from "antd";
+import {Checkbox, Form, Upload, Modal, Button} from "antd";
 import {PlusOutlined} from "@ant-design/icons";
-const QuillEditor = dynamic(() => import("../../../component/common/QuillEditor"), {
+const Editor = dynamic(() => import("../../../component/common/Editor"), {
     ssr: false,
     loading: () => <p>Loading ...</p>,
 });
@@ -16,6 +16,7 @@ import styles from '../.././../public/assets/styles/admin/board/board.module.css
 import classnames from "classnames/bind"
 import {addStartupCalendar, getStartupCalendarCategoryCodeList,initialize} from "../../../store/startupCalendar/adminStartupCalendar";
 import locale from "antd/lib/date-picker/locale/ko_KR";
+import { UploadOutlined } from '@ant-design/icons';
 
 const cx = classnames.bind(styles);
 
@@ -29,8 +30,10 @@ const Write = () => {
         title: "",
         attachFiles:[],
         categoryCodeId:"",
+        progressStatus:"OPEN"
     })
     const [content,setContent] = useState("");
+    const [editor,setEditor] = useState(null);
     const [addResultModal, setAddResultModal] = useState(false)
 
     const {cate,add} = useSelector(({adminStartupCalendar,auth,loading})=> ({
@@ -100,30 +103,27 @@ const Write = () => {
     const submitApply = (e) => {
         const data = {
             ...writeInfo,
-            content:content,
+            content:editor.getData(),
             files:writeInfo.attachFiles.map((item) => (item.originFileObj)),
         }
         dispatch(addStartupCalendar(data));
     }
 
     const uploadButton = (
-        <div>
-            <PlusOutlined />
-            <div style={{ marginTop: 8 }}>Upload</div>
-        </div>
+        <Button style={{marginTop:7}} className={"upload"} icon={<UploadOutlined />}>업로드</Button>
     );
 
     const changeApplyDate = (e) =>{
         setWriteInfo({
             ...writeInfo,
-            applyStartDateStr:e[0].format("YYYY-MM-DD HH:mm:ss").toString(),
-            applyEndDateStr:e[1].format("YYYY-MM-DD HH:mm:ss").toString(),
+            applyStartDateStr:e[0] != null ? e[0].format("YYYY-MM-DD HH:mm").toString() : null,
+            applyEndDateStr:e[1] != null ? e[1].format("YYYY-MM-DD HH:mm").toString() : null,
         })
     }
     const changeEventDate = (e) =>{
         setWriteInfo({
             ...writeInfo,
-            eventDateStr:e.format("YYYY-MM-DD HH:mm:ss").toString(),
+            eventDateStr:e.format("YYYY-MM-DD HH:mm").toString(),
         })
     }
 
@@ -135,7 +135,7 @@ const Write = () => {
                     <div className={`${cx("member_info","box")} clfx `}>
                         <ul className={"clfx"}>
                             <li>
-                                <span className={cx("title","icon_1")}>공지사항</span>
+                                <span className={cx("title","icon_1")}>창업캘린더</span>
                             </li>
                         </ul>
                     </div>
@@ -181,12 +181,12 @@ const Write = () => {
                                             </select>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row">공지</th>
-                                        <td>
-                                            <Checkbox checked={writeInfo.isNotice} onChange={(e) =>{setWriteInfo({...writeInfo,isNotice: e.target.checked})}}/>
-                                        </td>
-                                    </tr>
+                                    {/*<tr>*/}
+                                    {/*    <th scope="row">공지</th>*/}
+                                    {/*    <td>*/}
+                                    {/*        <Checkbox checked={writeInfo.isNotice} onChange={(e) =>{setWriteInfo({...writeInfo,isNotice: e.target.checked})}}/>*/}
+                                    {/*    </td>*/}
+                                    {/*</tr>*/}
                                     <tr>
                                         <th scope="row">신청 기간</th>
                                         <td>
@@ -202,7 +202,7 @@ const Write = () => {
                                     <tr>
                                         <th scope="row">행사일</th>
                                         <td>
-                                            <DatePicker locale={locale} showTime onOk={changeEventDate} />
+                                            <DatePicker locale={locale} showTime format="YYYY-MM-DD HH:mm" onOk={changeEventDate} />
                                         </td>
                                     </tr>
                                     <tr>
@@ -228,18 +228,18 @@ const Write = () => {
                                             <Form.Item
                                                 name="content"
                                                 className={(cx("antd_input"))}
-                                                rules={[
-                                                    ({ getFieldValue }) => ({
-                                                        validator(rule, value) {
-                                                            if(content == null || content == ""){
-                                                                return Promise.reject('내용을 입력해주세요')
-                                                            }
-                                                            return Promise.resolve()
-                                                        }
-                                                    })
-                                                ]}
+                                                // rules={[
+                                                //     ({ getFieldValue }) => ({
+                                                //         validator(rule, value) {
+                                                //             if(content == null || content == ""){
+                                                //                 return Promise.reject('내용을 입력해주세요')
+                                                //             }
+                                                //             return Promise.resolve()
+                                                //         }
+                                                //     })
+                                                // ]}
                                             >
-                                                <QuillEditor Contents={content} QuillChange={setContent}/>
+                                                <Editor setEditor={setEditor}/>
                                             </Form.Item>
                                         </td>
                                     </tr>
@@ -247,7 +247,7 @@ const Write = () => {
                                             <th scope="row">첨부파일</th>
                                             <td>
                                                 <Upload
-                                                    listType="picture-card"
+                                                    listType="picture"
                                                     fileList={writeInfo.attachFiles}
                                                     onPreview={handlePreview}
                                                     onChange={changeFileList}

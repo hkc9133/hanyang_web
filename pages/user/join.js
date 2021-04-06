@@ -288,7 +288,7 @@ const Join = () => {
                     <div className={cx("sns_login")}>
                         <h2 className={cx("title_style_1")}>SNS 계정가입</h2>
                         <ul className={cx("clfx")}>
-                            <li className={cx("icon_4")}>
+                            <li className={cx("icon_5")}>
                                 <HanyangLoginButton  onFormCheck={onFormCheck}/>
                             </li>
                             <li className={cx("icon_1")}>

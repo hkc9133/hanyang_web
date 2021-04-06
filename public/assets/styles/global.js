@@ -1,6 +1,14 @@
 import css from 'styled-jsx/css'
 
 export default css.global`
+        .kakao_menu{position: fixed; bottom: 3%; right: 3%; z-index: 99; width: 80px; height: 80px; border-radius: 10px; background-color: #ffffff; text-align: center;box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.151); }
+        .kakao_menu a{display: block; line-height: 80px; }
+        
+        @media screen and (max-width:768px){
+            .kakao_menu{width: 60px; height: 60px; }
+            .kakao_menu a{line-height: 60px; }
+            .kakao_menu a img{width: 40px;}
+        }
         // body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,textarea,p,blockquote,th,td,input,select,textarea,button{margin:0;padding:0;}
         // html {height:100%;}
         // body {height:100%;background-color: white;}

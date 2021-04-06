@@ -93,8 +93,8 @@ const MentorIntroduce = () => {
                                 {item.mentorKeyword.map((keyword)=>(`#${keyword} `))}
                             </div>
                             <ul>
-                                {item.mentorCareer.map((career)=>(
-                                    <li key={career}>{career}</li>
+                                {item.mentorCareer.map((career,i)=>(
+                                    i < 3 && <li key={career}>{career}</li>
                                 ))}
                             </ul>
                             <div className={cx("btn_area")}>

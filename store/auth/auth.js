@@ -1,4 +1,6 @@
 import {createAction, handleActions} from 'redux-actions';
+import {enableES5} from "immer"
+enableES5()
 import produce from 'immer';
 import {takeLatest} from 'redux-saga/effects';
 import createRequestSaga, {createRequestActionTypes} from "../../lib/createRequestSaga";
@@ -184,6 +186,7 @@ const auth = handleActions(
             produce(state, draft => {
                 draft.logout.result = true;
                 draft.user = initialState.user;
+                draft.login = initialState.login;
             }),
         [LOGOUT_FAILURE]: (state, {payload: error}) =>
             produce(state, draft => {

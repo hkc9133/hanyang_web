@@ -1,6 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {getRentalType} from "../../common/util/StatusUtil";
 import moment from "moment";
+import {Modal} from "antd";
 
 const ListTypeItem = ({schedule,manageItem,setManageItem,saveStatus}) => {
 
@@ -42,6 +43,19 @@ const ListTypeItem = ({schedule,manageItem,setManageItem,saveStatus}) => {
         setManageItem(scheduleId)
     }
 
+    const showDetail = (item) =>{
+        Modal.info({
+            title: item.userName,
+            content:<div>
+                <p>이름:{item.userName}</p>
+                <p>소속:{item.userCompany}</p>
+                <p>전화번호:{item.userPhoneNum}</p>
+            </div>,
+            mask:false,
+        });
+
+    }
+
     const cancelManage = () =>{
         selectSchedule(null)
         setEditStatus({
@@ -55,7 +69,7 @@ const ListTypeItem = ({schedule,manageItem,setManageItem,saveStatus}) => {
     return (
         <tr>
             <td>{schedule.rownum}</td>
-            <td>{schedule.reservationNum}</td>
+            <td onClick={(e) =>{showDetail(schedule)}} style={{cursor:"pointer"}}>{schedule.reservationNum}</td>
             <td>{getPlaceInfo(schedule)}</td>
             <td>
                 <p>{schedule.userName}</p>
@@ -88,7 +102,7 @@ const ListTypeItem = ({schedule,manageItem,setManageItem,saveStatus}) => {
                     </>
 
                 ):(
-                    <button onClick={() =>{selectSchedule(schedule.scheduleId);}}>관리</button>
+                    <button onClick={(e) =>{e.preventDefault();selectSchedule(schedule.scheduleId);}}>관리</button>
                 )}
             </td>
         </tr>

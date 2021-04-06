@@ -24,7 +24,7 @@ const ListType = ({cx, scheduleList,pageChange,manageItem,setManageItem,saveStat
                 </colgroup>
                 <thead>
                 <tr>
-                    <th scope="col">NO</th>
+                    <th scope="col">번호</th>
                     <th scope="col">예약번호</th>
                     <th scope="col">예약 정보</th>
                     <th scope="col">예약자 정보</th>

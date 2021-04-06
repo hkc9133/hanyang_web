@@ -12,7 +12,7 @@ import {
 } from "../../../../store/mentoring/mentoring";
 import {useRouter} from "next/router";
 import dynamic from "next/dynamic";
-import {Checkbox, Form, Upload,DatePicker} from "antd";
+import {Checkbox, Form, Upload, DatePicker, Button} from "antd";
 import {fileDownload} from "../../../../store/file/file";
 import {PlusOutlined} from "@ant-design/icons";
 import {addBoardContent} from "../../../../store/board/board";
@@ -20,8 +20,9 @@ import Modal from "../../../../component/common/Modal";
 import moment from "moment";
 import locale from "antd/lib/date-picker/locale/ko_KR";
 const {RangePicker} = DatePicker;
-
-const QuillEditor = dynamic(() => import("../../../../component/common/QuillEditor"), {
+import { UploadOutlined } from '@ant-design/icons';
+import client from "../../../../lib/api/client";
+const Editor = dynamic(() => import("../../../../component/common/Editor"), {
     ssr: false,
     loading: () => <p>Loading ...</p>,
 });
@@ -36,10 +37,12 @@ const CounselApplyDetail = () => {
     const [showAlertModal, setShowAlertModal] = useState(false);
     const [showResultModal, setShowResultModal] = useState(false);
     const [applyStatus, setApplyStatus] = useState(null);
+    const [editor, setEditor] = useState(null);
     const [answer, setAnswer] = useState({
         attachFiles: [],
         wayIdList:[],
-        place:""
+        place:"",
+        answer:""
     });
     const [content, setContent] = useState("");
     const {user, counselApply, statusUpdate, addDiaryResult,wayItem} = useSelector(({auth, mentoring, loading}) => ({
@@ -63,6 +66,10 @@ const CounselApplyDetail = () => {
             setApply({
                 ...counselApply.counselApply,
                 files: counselApply.files,
+            })
+            setAnswer({
+                ...answer,
+                ...counselApply.counselApply.answer
             })
             setApplyStatus(counselApply.counselApply.applyStatus)
         }
@@ -117,10 +124,7 @@ const CounselApplyDetail = () => {
     }, [])
 
     const uploadButton = (
-        <div>
-            <PlusOutlined/>
-            <div style={{marginTop: 8}}>Upload</div>
-        </div>
+        <Button style={{marginTop:7}} className={"upload"} icon={<UploadOutlined />}>업로드</Button>
     );
 
     const changeStatus = () => {
@@ -147,7 +151,7 @@ const CounselApplyDetail = () => {
             const data = {
                 ...answer,
                 formId: apply.formId,
-                answer: content,
+                answer: editor.getData(),
                 start: answer.start.format("YYYY-MM-DD HH:mm").toString(),
                 end: answer.end.format("YYYY-MM-DD HH:mm").toString(),
                 files: answer.attachFiles.map((item) => (item.originFileObj)),
@@ -167,10 +171,9 @@ const CounselApplyDetail = () => {
 
                         <div className={cx("tab_style_2")}>
                             <ul>
-                                <li className={cx("on")}><Link href="mentoring_management.html"><a>나의 멘토링현황</a></Link>
-                                </li>
-                                <li><Link href="/"><a>프로필변경</a></Link></li>
-                                <li><Link href="/"><a>위촉장 리스트</a></Link></li>
+                                <li className={cx("on")}><Link href="/mypage/mentor"><a>나의 멘토링현황</a></Link></li>
+                                <li><Link href="/mypage/mentor/profile"><a>프로필 변경</a></Link></li>
+                                <li><a href={`${client.defaults.baseURL}/mentoring/commission`}>위촉장 발급</a></li>
                             </ul>
                         </div>
 
@@ -258,7 +261,7 @@ const CounselApplyDetail = () => {
                                     apply.files.length > 0 && (
                                         // <div className={cx("bbs_attach_file")}>
                                         <Upload
-                                            listType="picture-card"
+                                            listType="picture"
                                             fileList={apply.files.map((file) => {
                                                 return {
                                                     uid: file.fileName,
@@ -372,18 +375,18 @@ const CounselApplyDetail = () => {
                                     ) : (
                                         <Form.Item
                                             name="answer"
-                                            rules={[
-                                                ({ getFieldValue }) => ({
-                                                    validator(rule, value) {
-                                                        if(content == null || content == ""){
-                                                            return Promise.reject('내용을 입력해주세요')
-                                                        }
-                                                        return Promise.resolve()
-                                                    }
-                                                })
-                                            ]}
+                                            // rules={[
+                                            //     ({ getFieldValue }) => ({
+                                            //         validator(rule, value) {
+                                            //             if(content == null || content == ""){
+                                            //                 return Promise.reject('내용을 입력해주세요')
+                                            //             }
+                                            //             return Promise.resolve()
+                                            //         }
+                                            //     })
+                                            // ]}
                                         >
-                                            <QuillEditor Contents={content} QuillChange={setContent}/>
+                                            <Editor setEditor={setEditor} content={counselApply.counselApply.answer}/>
                                         </Form.Item>
                                     )}
                                 </li>
@@ -392,7 +395,7 @@ const CounselApplyDetail = () => {
                                     {counselApply.counselApply.applyStatus == 'COMPLETED' ? (
                                         counselApply.answerFiles.length > 0 && (
                                             <Upload
-                                                listType="picture-card"
+                                                listType="picture"
                                                 fileList={counselApply.answerFiles.map((file) => {
                                                     return {
                                                         uid: file.fileName,
@@ -417,7 +420,7 @@ const CounselApplyDetail = () => {
                                                 ({ getFieldValue }) => ({
                                                     validator(rule, value) {
                                                         if(answer.attachFiles.length < 2){
-                                                            return Promise.reject('사진 2매 필수')
+                                                            return Promise.reject('멘토일 일지를 첨부해주세요')
 
                                                         }
                                                         return Promise.resolve()
@@ -426,7 +429,7 @@ const CounselApplyDetail = () => {
                                             ]}
                                         >
                                             <Upload
-                                                listType="picture-card"
+                                                listType="picture"
                                                 fileList={answer.attachFiles}
                                                 onPreview={handlePreview}
                                                 onChange={changeFileList}

@@ -25,7 +25,7 @@ export const getUserRole = (role) =>{
         case 'ROLE_USER':
             return "일반(미승인)"
         case 'ROLE_SD':
-            return "일반인"
+            return "일반"
         case 'ROLE_TC':
             return "교직"
         case 'ROLE_MT':

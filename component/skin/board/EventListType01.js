@@ -13,6 +13,18 @@ const cx = classnames.bind(styles);
 
 const EventListType01 = ({list,cateList,page,pageChange,changeCategory,changeType,handleShowContent}) => {
     const router = useRouter();
+
+    const getStatus = (status,eventDate) =>{
+        let result = '';
+        if(status == 'OPEN'){
+            result = "진행중"
+        }
+
+        if(moment(eventDate) < moment()){
+            result = '마감'
+        }
+        return result
+    }
     return (
         <>
             <div className={cx("calendar_top")}>
@@ -59,7 +71,11 @@ const EventListType01 = ({list,cateList,page,pageChange,changeCategory,changeTyp
                             return (
                                 <tr key={item.noticeId}>
                                     <td>{item.rownum}</td>
-                                    <td><span className={cx("category",{red:item.progressStatus == "OPEN"})}>{item.progressStatus == "OPEN" ? "진행중" : "마감"}</span></td>
+                                    <td>
+                                        <span className={cx("category",{red:getStatus(item.progressStatus,item.eventDate) == "진행중"})}>
+                                            {getStatus(item.progressStatus,item.eventDate)}
+                                        </span>
+                                    </td>
                                     <td className={cx("txt_l")}><a onClick={(e) =>{e.preventDefault();handleShowContent(item)}}>{item.title}</a></td>
                                     <td>{item.eventDate != null && moment(item.eventDate).format("YYYY-MM-DD HH시mm분")}</td>
                                 </tr>

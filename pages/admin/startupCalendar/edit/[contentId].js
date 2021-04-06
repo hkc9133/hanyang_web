@@ -5,7 +5,7 @@ import {
     initialize,
 } from "../../../../store/board/adminBoard";
 import {END} from "redux-saga";
-import {Checkbox, Form, Input, Select, Tag, Upload,Modal} from "antd";
+import {Checkbox, Form, Input, Select, Tag, Upload, Modal, Button} from "antd";
 import {useRouter} from "next/router";
 import {useDispatch, useSelector} from "react-redux";
 import {PlusOutlined} from "@ant-design/icons";
@@ -16,7 +16,7 @@ import {fileDownload} from "../../../../store/file/file";
 import {getStartupCalendar, getStartupCalendarCategoryCodeList, updateStartupCalendar} from "../../../../store/startupCalendar/adminStartupCalendar";
 import locale from "antd/lib/date-picker/locale/ko_KR";
 import moment from "moment";
-const QuillEditor = dynamic(() => import("../../../../component/common/QuillEditor"), {
+const Editor = dynamic(() => import("../../../../component/common/Editor"), {
     ssr: false,
     loading: () => <p>Loading ...</p>,
 });
@@ -25,6 +25,7 @@ import { DatePicker, Space } from 'antd';
 const { RangePicker } = DatePicker;
 const { Option } = Select;
 const cx = classnames.bind(styles);
+import { UploadOutlined } from '@ant-design/icons';
 
 export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
 
@@ -50,6 +51,7 @@ const ContentEditView = () => {
         isNotice:false
     })
     const [content,setContent] = useState("");
+    const [editor,setEditor] = useState(null);
     const [newFileList,setNewFileList] = useState([]);
     const [updateResultModal, setUpdateResultModal] = useState(false)
 
@@ -78,9 +80,9 @@ const ContentEditView = () => {
                 categoryCodeId:view.startupCalendar.categoryCodeId,
                 isNotice: view.startupCalendar.isNotice,
                 attachFiles: view.files,
-                applyStartDate:moment(view.startupCalendar.applyStartDate),
-                applyEndDate:moment(view.startupCalendar.applyEndDate),
-                eventDate:moment(view.startupCalendar.eventDate),
+                applyStartDate:view.startupCalendar.applyStartDate != null ? moment(view.startupCalendar.applyStartDate) : null,
+                applyEndDate:view.startupCalendar.applyEndDate != null ? moment(view.startupCalendar.applyEndDate) : null,
+                eventDate:view.startupCalendar.eventDate != null ? moment(view.startupCalendar.eventDate) : null,
                 applyStartDateStr:moment(view.startupCalendar.applyStartDate).format("YYYY-MM-DD HH:mm:ss").toString(),
                 applyEndDateStr:moment(view.startupCalendar.applyEndDate).format("YYYY-MM-DD HH:mm:ss").toString(),
                 eventDateStr:moment(view.startupCalendar.eventDate).format("YYYY-MM-DD HH:mm:ss").toString(),
@@ -170,23 +172,28 @@ const ContentEditView = () => {
         const data = {
             ...writeInfo,
             // startupCalendarId:view.startupCalendar.startupCalendarId,
-            content:content,
+            eventDateStr:writeInfo.eventDate != null ? writeInfo.eventDate.format("YYYY-MM-DD HH:mm").toString() : null,
+            applyStartDateStr:writeInfo.applyStartDate != null ? writeInfo.applyStartDate.format("YYYY-MM-DD HH:mm").toString() : null,
+            applyEndDateStr:writeInfo.applyEndDate != null ? writeInfo.applyEndDate.format("YYYY-MM-DD HH:mm").toString() : null,
+            content:editor.getData(),
             files:newFileList.map((item) => (item.originFileObj)),
         }
         delete data.eventDate;
         delete data.applyStartDate;
         delete data.applyEndDate;
-        console.log("aaa")
+
+        data.eventDateStr == null && delete data.eventDateStr;
+        data.applyStartDateStr == null && delete data.applyStartDateStr;
+        data.applyEndDateStr == null && delete data.applyEndDateStr;
+
+
         console.log(data)
         dispatch(updateStartupCalendar(data));
     }
 
 
     const uploadButton = (
-        <div>
-            <PlusOutlined />
-            <div style={{ marginTop: 8 }}>Upload</div>
-        </div>
+        <Button style={{marginTop:7}} className={"upload"} icon={<UploadOutlined />}>업로드</Button>
     );
 
     return (
@@ -196,7 +203,7 @@ const ContentEditView = () => {
                     <div className={`${cx("member_info","box")} clfx `}>
                         <ul className={"clfx"}>
                             <li>
-                                <span className={cx("title","icon_1")}>{"공지사항"}</span>
+                                <span className={cx("title","icon_1")}>{"창업캘린더"}</span>
                             </li>
                         </ul>
                     </div>
@@ -241,12 +248,12 @@ const ContentEditView = () => {
                                         </select>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <th scope="row">공지</th>
-                                    <td>
-                                        <Checkbox checked={writeInfo.isNotice} onChange={(e) =>{setWriteInfo({...writeInfo,isNotice: e.target.checked})}}/>
-                                    </td>
-                                </tr>
+                                {/*<tr>*/}
+                                {/*    <th scope="row">공지</th>*/}
+                                {/*    <td>*/}
+                                {/*        <Checkbox checked={writeInfo.isNotice} onChange={(e) =>{setWriteInfo({...writeInfo,isNotice: e.target.checked})}}/>*/}
+                                {/*    </td>*/}
+                                {/*</tr>*/}
                                 <tr>
                                     <th scope="row">신청 기간</th>
                                     <td>
@@ -288,18 +295,18 @@ const ContentEditView = () => {
                                         <Form.Item
                                             name="content"
                                             className={(cx("antd_input"))}
-                                            rules={[
-                                                ({ getFieldValue }) => ({
-                                                    validator(rule, value) {
-                                                        if(content == null || content == ""){
-                                                            return Promise.reject('내용을 입력해주세요')
-                                                        }
-                                                        return Promise.resolve()
-                                                    }
-                                                })
-                                            ]}
+                                            // rules={[
+                                            //     ({ getFieldValue }) => ({
+                                            //         validator(rule, value) {
+                                            //             if(content == null || content == ""){
+                                            //                 return Promise.reject('내용을 입력해주세요')
+                                            //             }
+                                            //             return Promise.resolve()
+                                            //         }
+                                            //     })
+                                            // ]}
                                         >
-                                        <QuillEditor Contents={content} QuillChange={setContent}/>
+                                        <Editor setEditor={setEditor} content={content}/>
                                         </Form.Item>
                                     </td>
                                 </tr>
@@ -307,7 +314,7 @@ const ContentEditView = () => {
                                     <th scope="row">첨부파일</th>
                                     <td>
                                         <Upload
-                                            listType="picture-card"
+                                            listType="picture"
                                             fileList={writeInfo.attachFiles.map((file) => {
                                                 return {
                                                     uid: file.fileName,
@@ -327,7 +334,7 @@ const ContentEditView = () => {
                                             onRemove={handleFileRemove}
                                         />
                                         <Upload
-                                            listType="picture-card"
+                                            listType="picture"
                                             fileList={newFileList}
                                             showUploadList={{
                                                 showPreviewIcon: true,

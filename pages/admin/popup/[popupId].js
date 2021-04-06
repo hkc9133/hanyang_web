@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
-import {DatePicker, Form, Input, Modal, Upload} from "antd";
+import {DatePicker, Form, Input, Modal, Typography} from "antd";
 import {PlusOutlined} from "@ant-design/icons";
 import moment from "moment";
 import locale from "antd/lib/date-picker/locale/ko_KR";
@@ -13,7 +13,10 @@ import {fileDownload} from "../../../store/file/file";
 import dynamic from "next/dynamic";
 
 const cx = classnames.bind(styles);
-const QuillEditor = dynamic(() => import("../../../component/common/QuillEditor"), {
+
+
+const { Text, Link } = Typography;
+const Editor = dynamic(() => import("../../../component/common/Editor"), {
     ssr: false,
     loading: () => <p>Loading ...</p>,
 });
@@ -38,7 +41,9 @@ const PopupEditPage = () => {
         isMobile: true,
     });
 
-    const [content, setContent] = useState("");
+    const [editor, setEditor] = useState(null)
+    const [content, setContent] = useState("")
+
     const [showRemoveModal, setShowRemoveModal] = useState(false);
     const {popup, update,deleteResult} = useSelector(({adminPopup, loading}) => ({
         popup: adminPopup.getPopup,
@@ -101,7 +106,7 @@ const PopupEditPage = () => {
             ...popupInfo,
             start: popupInfo.start.format("YYYY-MM-DD HH:mm"),
             end: popupInfo.end.format("YYYY-MM-DD HH:mm"),
-            content: content
+            content: editor.getData()
         }
 
         dispatch(updatePopup(data));
@@ -247,7 +252,7 @@ const PopupEditPage = () => {
                                                         <Input type="number" className={cx("w_100p")}
                                                                name="leftPosition" onChange={changePopupInfo}
                                                                value={popupInfo.leftPosition}
-                                                               placeholder="시간 입력"/>
+                                                               placeholder=""/>
                                                     </Form.Item>
                                                 </td>
                                             </tr>
@@ -267,7 +272,7 @@ const PopupEditPage = () => {
                                                         <Input type="number" className={cx("w_100p")}
                                                                name="topPosition" onChange={changePopupInfo}
                                                                value={popupInfo.topPosition}
-                                                               placeholder="시간 입력"/>
+                                                               placeholder=""/>
                                                     </Form.Item>
                                                 </td>
                                             </tr>
@@ -287,8 +292,9 @@ const PopupEditPage = () => {
                                                         <Input type="number" className={cx("w_100p")}
                                                                name="width" onChange={changePopupInfo}
                                                                value={popupInfo.width}
-                                                               placeholder="시간 입력"/>
+                                                               placeholder="이미지 가로 크기 권장"/>
                                                     </Form.Item>
+                                                    <Text type="danger">&#8251;모바일 최적화를 위해 362px 권장</Text>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -307,7 +313,7 @@ const PopupEditPage = () => {
                                                         <Input type="number" className={cx("w_100p")}
                                                                name="height" onChange={changePopupInfo}
                                                                value={popupInfo.height}
-                                                               placeholder="시간 입력"/>
+                                                               placeholder="이미지 세로 크기 권장"/>
                                                     </Form.Item>
                                                 </td>
                                             </tr>
@@ -338,7 +344,7 @@ const PopupEditPage = () => {
                                             <tr>
                                                 <th scope="row">내용</th>
                                                 <td colSpan={3}>
-                                                    <QuillEditor Contents={content} QuillChange={setContent}/>
+                                                    <Editor setEditor={setEditor} content={content}/>
                                                 </td>
                                             </tr>
                                             </tbody>

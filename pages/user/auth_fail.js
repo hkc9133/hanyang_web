@@ -16,8 +16,8 @@ const AuthFail =() => {
     useEffect(() => {
         if (router.pathname.startsWith("/admin")) {
             setMsg("권한이 없습니다")
-        } else if(router.pathname.startsWith("/mypage/mentee") || router.pathname.startsWith("/startup_counsel/counsel_apply") || router.pathname.startsWith("/startup_counsel/student_report")) {
-            setMsg("학생 권한이 아닙니다")
+        } else if(router.pathname.startsWith("/startup_counsel/counsel_apply") || router.pathname.startsWith("/startup_counsel/student_report")) {
+            setMsg("창업상담신청은 로그인 후 이용하실 수 있습니다.")
         }else if(router.pathname.startsWith("/mypage/mentor")) {
             setMsg("멘토 권한이 아닙니다")
         }else if(router.pathname.startsWith("/startup_counsel/mentor_apply")){

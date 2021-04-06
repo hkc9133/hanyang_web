@@ -235,7 +235,7 @@ const PartnerAddPage = () => {
                                                     ]}
                                                 >
                                                     <Upload
-                                                        listType="picture-card"
+                                                        listType="picture"
                                                         fileList={partnerForm.addAttachFileList}
                                                         showUploadList={{
                                                             showPreviewIcon: true,

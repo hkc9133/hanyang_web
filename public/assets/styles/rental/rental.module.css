@@ -296,6 +296,15 @@ span.btn_action{background: #f73c3c; color: white; border-radius: 4px; padding: 
     color: #333;
 }
 
+
+.infrastructure_btm .left_area{float:left; padding-bottom:40px; width:47.72%;}
+.infrastructure_btm .right_area{float:right; padding-bottom:40px; width:47.72%;}
+.infrastructure_btm h2{margin-bottom:15px; font-size:24px; font-family: 's-core-dream-medium';}
+.infrastructure_btm ul:after{ clear: both; content: "."; display: block; height: 0; visibility: hidden; font-size: 0;}
+.infrastructure_btm ul li{float:left; width:46.82%;}
+.infrastructure_btm ul li:nth-child(2n){float:right; }
+.infrastructure_btm .txt{padding-top:20px; display:block; font-size:16px; color:#666; }
+
 @media screen and (max-width: 1400px){
 
 
@@ -344,6 +353,12 @@ span.btn_action{background: #f73c3c; color: white; border-radius: 4px; padding: 
     .bbs_tb_list td button,
     .bbs_tb_list td a,
     .bbs_tb_list td{font-size:14px;}
+
+    .infrastructure_btm .left_area{width:49%; }
+    .infrastructure_btm .right_area{width:49%; }
+    .infrastructure_btm ul li{width:49%; }
+    .infrastructure_btm h2{font-size:20px; }
+    .infrastructure_btm .txt{padding-top:10px; font-size:14px; }
 
 }
 
@@ -406,6 +421,12 @@ span.btn_action{background: #f73c3c; color: white; border-radius: 4px; padding: 
 
     .bbs_tb_list th{font-size:12px; }
     .bbs_tb_list td button, .bbs_tb_list td a, .bbs_tb_list td{font-size:12px;}
+
+    .infrastructure_btm .left_area{float:none; padding-bottom:20px; width:100%;}
+    .infrastructure_btm li img{width:100%; }
+    .infrastructure_btm .right_area{float:none; padding-bottom:20px; width:100%;}
+    .infrastructure_btm h2{font-size:18px; }
+    .infrastructure_btm .txt{font-size:12px; }
 
 
 

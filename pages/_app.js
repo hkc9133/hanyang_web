@@ -1,3 +1,4 @@
+
 import "@babel/polyfill";
 import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
@@ -70,12 +71,14 @@ const _App = ({Component, pageProps}) => {
     let allowed = true;
     if (router.pathname.startsWith("/admin") && role !== "ROLE_ADMIN") {
         allowed = false;
-    } else if ((router.pathname.startsWith("/mypage/mentee") || router.pathname.startsWith("/startup_counsel/counsel_apply") || router.pathname.startsWith("/startup_counsel/student_report")) && (user.login !== true || role != 'ROLE_SD'  || role != 'ROLE_ADMIN')) {
+    } else if ((router.pathname.startsWith("/mypage/mentee") || router.pathname.startsWith("/startup_counsel/student_report")) && (user.login !== true || role != 'ROLE_SD')) {
         allowed = false;
     } else if ((router.pathname.startsWith("/mypage/mentor") || router.pathname.startsWith("/startup_counsel/mentor_apply")) && (user.login !== true || role != 'ROLE_MT')) {
         allowed = false;
-    } else if ((router.pathname.startsWith("/introduce/space_reservation")) && role == null) {
-        allowed = false;
+    }
+
+    if(role == "ROLE_ADMIN"){
+        allowed = true;
     }
 
     const ComponentToRender = allowed ? Component : AuthFail;
@@ -128,7 +131,7 @@ const _App = ({Component, pageProps}) => {
                             <Footer/>
                             <div className="kakao_menu">
                                 <a href="https://pf.kakao.com/_fWsJd/chat" target="_blank">
-                                    <img src="/assets/image/kakao_counsel.png" alt="카카오톡 이미지"/>
+                                    <img src="/assets/image/hanyang_talk.png" alt="상담톡"/>
                                 </a>
                             </div>
                         </>

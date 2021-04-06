@@ -7,7 +7,7 @@ const MentorListTable = ({list,cx}) => {
         <table>
             <colgroup>
                 <col style={{width:"8.6%"}}/>
-                <col style={{width:"15.5%"}}/>
+                <col style={{width:"10.5%"}}/>
                 <col style={{width:"14.6%"}}/>
                 {/*<col style={{width:"13.7%"}}/>*/}
                 <col style={{width:"13.6%"}}/>
@@ -16,7 +16,7 @@ const MentorListTable = ({list,cx}) => {
             </colgroup>
             <thead>
             <tr>
-                <th scope="col">NO</th>
+                <th scope="col">번호</th>
                 <th scope="col">아이디</th>
                 <th scope="col">이름</th>
                 <th scope="col">소속</th>

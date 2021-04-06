@@ -50,3 +50,8 @@ export const getNoticeRanThumbnail = (item) => {
 
 
 
+export const getRanThumbnail = () => {
+    const num = Math.floor(Math.random() * 4 + 1);
+    return "/assets/image/board_thumbnail_0"+num+".jpeg";
+}
+

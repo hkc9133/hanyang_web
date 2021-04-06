@@ -110,14 +110,14 @@ const ContentView = () => {
                                     <tr>
                                         <td className={cx("title_box")}>
                                             <h1 className={cx("title")}>
-                                                {view.startupCalendar.isNotice && (
-                                                   <span className={cx("notice_icon")}>공지</span>
-                                                )}
+                                                {/*{view.startupCalendar.isNotice && (*/}
+                                                {/*   <span className={cx("notice_icon")}>공지</span>*/}
+                                                {/*)}*/}
                                                 {view.startupCalendar.title}
                                             </h1>
                                             <span className={cx("cate")}>{view.startupCalendar.categoryCodeName}</span>
                                             <span className={cx("date")}>작성일: {moment(view.startupCalendar.regDate).format("YYYY.MM.DD HH:MM")}</span>
-                                            <span className={cx("view_cnt")}>조회수: {view.startupCalendar.viewCnt}</span>a
+                                            <span className={cx("view_cnt")}>조회수: {view.startupCalendar.viewCnt}</span>
                                         </td>
                                     </tr>
 

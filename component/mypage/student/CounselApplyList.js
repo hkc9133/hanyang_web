@@ -87,7 +87,7 @@ const CounselApplyListItem = React.memo(({item, handleShowAnswer, showAnswer, ha
                                     <div className={cx("attached_file")}>
                                         <span className={cx("title")}>첨부파일</span>
                                         <Upload
-                                            listType="picture-card"
+                                            listType="picture"
                                             fileList={counselApply.files.map((file) => {
                                                 return {
                                                     uid: file.fileName,

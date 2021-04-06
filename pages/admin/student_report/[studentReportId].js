@@ -124,7 +124,7 @@ const StudentReportEditPage = () => {
                         <div className={cx("adm_container")}>
                             <div className={cx("box")}>
                                 <div className={cx("student_report_detail")}>
-                                    <h2>팝업 정보</h2>
+                                    <h2>학생창업 정보</h2>
                                     <div className={cx("tb_style_2")}>
                                         <table>
                                             <colgroup>

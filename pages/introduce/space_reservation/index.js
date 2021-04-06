@@ -14,15 +14,15 @@ import {
 } from "../../../store/spaceRental/spaceRental";
 import {END} from "redux-saga";
 import moment from "moment";
+
 moment.lang('ko', {
-    weekdays: ["일요일","월요일","화요일","수요일","목요일","금요일","토요일"],
-    weekdaysShort: ["일","월","화","수","목","금","토"],
+    weekdays: ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"],
+    weekdaysShort: ["일", "월", "화", "수", "목", "금", "토"],
 });
 
 import DatePicker from "react-datepicker";
-import {Empty} from 'antd';
+import {Empty,Modal} from 'antd';
 import RentalStep02 from "../../../component/rental/RentalStep02";
-import Modal from "../../../component/common/Modal";
 
 const cx = classnames.bind(styles);
 
@@ -45,7 +45,7 @@ const SpaceReservation = () => {
         time: null,
     })
 
-    const [showResultModal,setShowResultModal] = useState(false);
+    const [showResultModal, setShowResultModal] = useState(false);
     const [selectPlace, setSelectPlace] = useState(null);
     const [selectRoom, setSelectRoom] = useState(null);
     const [selectDate, setSelectDate] = useState(null);
@@ -56,8 +56,8 @@ const SpaceReservation = () => {
     });
     const [step, setStep] = useState(1);
     const [rentalInfo, setRentalInfo] = useState({
-        personCount:0,
-        purpose:"",
+        personCount: 0,
+        purpose: "",
     })
     // const [personCount, setPersonCount] = useState(null);
     // const [purpose, setPurpose] = useState(null);
@@ -65,12 +65,14 @@ const SpaceReservation = () => {
     const [applyActive, setApplyActive] = useState(false);
 
 
-    const {spaceInfo, addSchedule, spaceInfoLoading, timeListLoading, addScheduleLoading} = useSelector(({
-                                                                                                             spaceRental,
-                                                                                                             loading
-                                                                                                         }) => ({
+    const {spaceInfo, addSchedule, spaceInfoLoading, user, timeListLoading, addScheduleLoading} = useSelector(({
+                                                                                                                   auth,
+                                                                                                                   spaceRental,
+                                                                                                                   loading
+                                                                                                               }) => ({
         spaceInfo: spaceRental.spaceInfo,
         addSchedule: spaceRental.addSchedule,
+        user: auth.user,
         spaceInfoLoading: loading['popup/GET_SPACE_RENTAL_INFO_ALL'],
         timeListLoading: loading['popup/GET_AVAILABLE_ROOM_TIME_LIST'],
         addScheduleLoading: loading['popup/ADD_RENTAL_SCHEDULE']
@@ -93,9 +95,8 @@ const SpaceReservation = () => {
         }
     }, [selectPlace, selectRoom, selectDate, selectTime])
 
-    useEffect(() =>{
-        console.log(space)
-    },[space])
+    useEffect(() => {
+    }, [space])
 
     useEffect(() => {
         if (!spaceInfoLoading) {
@@ -156,6 +157,11 @@ const SpaceReservation = () => {
     }
 
     const handleRentalApply = () => {
+        if (!user.login) {
+            Modal.warning({
+                title: '공간 예약을 하기 위해서는 로그인이 필요합니다',
+            });
+        }
         const data = {
             roomId: selectRoom.roomId,
             rentalDate: moment(selectDate).format("YYYY-MM-DD").toString(),
@@ -167,7 +173,10 @@ const SpaceReservation = () => {
     }
     useEffect(() => {
         if (!addScheduleLoading && addSchedule.result && addSchedule.error == null) {
-            setShowResultModal(true)
+            // setShowResultModal(true)
+            Modal.success({
+                title: '예약이 완료되었습니다',
+            });
             setSpace({
                 ...space,
                 room: null,
@@ -217,6 +226,10 @@ const SpaceReservation = () => {
 
         if (selectRoom == null || selectDate == null || selectTime.timeId == null) {
             // alert("입력부족")
+        } else if (!user.login) {
+            Modal.warning({
+                title: '공간 예약을 하기 위해서는 로그인이 필요합니다',
+            });
         } else {
             setStep(2)
         }
@@ -228,18 +241,51 @@ const SpaceReservation = () => {
     return (
         <>
             <section className={cx("container")}>
-                <div className={`${cx("sub_container","sssup")} `}>
+                <div className={`${cx("sub_container", "sssup")} `}>
                     <h1 className={cx("sub_top_title")}>공간 예약 시스템</h1>
                     <div className={`${cx("tab_style_2")} mb_30`}>
                         <ul>
-                            <li className={cx("on")}><Link href="/introduce/space_reservation"><a><span>공간 신청하기</span></a></Link></li>
-                            <li><Link href="/introduce/space_reservation/check"><a><span> 확인/ 취소하기</span></a></Link></li>
+                            <li className={cx("on")}><Link
+                                href="/introduce/space_reservation"><a><span>공간 신청하기</span></a></Link></li>
+                            <li><Link href="/introduce/space_reservation/check"><a><span> 확인/ 취소하기</span></a></Link>
+                            </li>
                         </ul>
                     </div>
                     {step == 1 && (
                         <>
                             <h2 className={`${cx("title_style_2")} mb_10 `}>공간리스트</h2>
+                            <div className={cx("infrastructure_btm")}>
+                                <div className={"clfx"}>
+                                    <div className={cx("left_area")}>
+                                        <h2>HIT B233 회의실</h2>
+                                        <ul>
+                                            <li>
+                                                <img src="/assets/image/place01.jpg" alt="infra_town_1"/>
+                                            </li>
+                                            <li>
+                                                <img src="/assets/image/place02.jpg" alt="infra_town_1"/>
+                                            </li>
+                                        </ul>
+                                        <span className={cx("txt")}>(예비)창업자들을 위한 회의공간(면적 47.49㎡)</span>
+                                    </div>
+                                    <div className={cx("right_area")}>
+                                        <h2>HIT B224 아이디어팩토리</h2>
+                                        <ul>
+                                            <li>
+                                                <img src="/assets/image/place03.jpg" alt="infra_dom_1"/>
+                                            </li>
+                                            <li>
+                                                <img src="/assets/image/place04.jpg" alt="infra_dom_2" />
+                                            </li>
+                                        </ul>
+                                        <span className={cx("txt")}>창업강좌 및 특강에 적합한 맞춤공간(면적 73.97㎡)</span>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div className={`${cx("top_area")} clfx mb_20`}>
+                                <p className={cx("left_txt")}>*본 공간은 한양대학교 학생 및 구성원, 입주기업만 신청이 가능합니다.(외부인 신청불가)
+                                    *B224 아이디어팩토리 공간 예약 문의는 담당자에게 연락주시기 바랍니다. (02-2220-2872)</p>
                                 <p className={cx("left_txt")}>*공간명을 클릭하면 자세한 사항을 볼 수 있습니다.</p>
                             </div>
                             <div className={cx("apply_hd")}>
@@ -327,19 +373,24 @@ const SpaceReservation = () => {
                         </>
                     )}
                     {step == 2 && (
-                        <RentalStep02 cx={cx} selectPlace={selectPlace} selectRoom={selectRoom} selectDate={selectDate} selectTime={selectTime} setStep={setStep} rentalInfo={rentalInfo} setRentalInfo={setRentalInfo} handleRentalApply={handleRentalApply}/>
+                        <RentalStep02 cx={cx} selectPlace={selectPlace} selectRoom={selectRoom} selectDate={selectDate}
+                                      selectTime={selectTime} setStep={setStep} rentalInfo={rentalInfo}
+                                      setRentalInfo={setRentalInfo} handleRentalApply={handleRentalApply}/>
                     )}
 
                 </div>
 
-                <Modal visible={showResultModal} closable={true} maskClosable={true} onClose={() => {
-                    setShowResultModal(false);
-                }} cx={cx} className={"rental_popup"}>
-                    <h2 className={cx("popup_title")}>예약이 완료되었습니다</h2>
-                    <div className={cx("btn_box")}>
-                        <button className={cx("basic-btn01","btn-gray-bg")} onClick={() =>{setShowResultModal(false);}}>확인</button>
-                    </div>
-                </Modal>
+                {/*<Modal visible={showResultModal} closable={true} maskClosable={true} onClose={() => {*/}
+                {/*    setShowResultModal(false);*/}
+                {/*}} cx={cx} className={"rental_popup"}>*/}
+                {/*    <h2 className={cx("popup_title")}>예약이 완료되었습니다</h2>*/}
+                {/*    <div className={cx("btn_box")}>*/}
+                {/*        <button className={cx("basic-btn01", "btn-gray-bg")} onClick={() => {*/}
+                {/*            setShowResultModal(false);*/}
+                {/*        }}>확인*/}
+                {/*        </button>*/}
+                {/*    </div>*/}
+                {/*</Modal>*/}
             </section>
         </>
     );

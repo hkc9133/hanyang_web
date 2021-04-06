@@ -136,6 +136,9 @@ const List = () => {
                     {(currentBoard.board.boardEnName == 'online_content') && (
                         <SearchBoxSelector skinName="SearchBoxStyle04" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
                     )}
+                    {(currentBoard.board.boardEnName == 'issue') && (
+                        <SearchBoxSelector skinName="SearchBoxStyle01" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
+                    )}
 
                     {
                         board.board.writeRole != null && (board.board.writeRole.indexOf(user.role) > 0 || user.role == 'ROLE_ADMIN') && (
@@ -171,13 +174,16 @@ const List = () => {
                         <BoardSkinSelector skinName="ListType03" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
                     )}
                     {currentBoard.board.boardEnName == 'corp_press' && (
-                        <BoardSkinSelector skinName="ListType04" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
+                        <BoardSkinSelector skinName="ListType06" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
                     )}
                     {currentBoard.board.boardEnName == 'people' && (
                         <BoardSkinSelector skinName="GalleryType01" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
                     )}
                     {(currentBoard.board.boardEnName == 'online_content' || currentBoard.board.boardEnName == 'ir' ) && (
                         <BoardSkinSelector skinName="GalleryType02" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
+                    )}
+                    {currentBoard.board.boardEnName == 'issue' && (
+                        <BoardSkinSelector skinName="ListType02" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
                     )}
 
 

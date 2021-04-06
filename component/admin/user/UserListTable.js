@@ -17,13 +17,13 @@ const UserListTable = ({cx,list}) => {
             </colgroup>
             <thead>
             <tr>
-                <th scope="col">NO</th>
+                <th scope="col">번호</th>
                 <th scope="col">아이디</th>
-                <th scope="col">닉네임</th>
+                <th scope="col">이름</th>
                 <th scope="col">E-MAIL</th>
                 {/*<th scope="col">메일인증</th>*/}
-                <th scope="col">상태</th>
-                <th scope="col">최근접속일</th>
+                {/*<th scope="col">상태</th>*/}
+                {/*<th scope="col">최근접속일</th>*/}
                 <th scope="col">권한</th>
                 <th scope="col">가입일</th>
             </tr>
@@ -38,8 +38,8 @@ const UserListTable = ({cx,list}) => {
                         </td>
                         <td>{item.userName}</td>
                         <td>{item.userEmail}</td>
-                        <td className={cx("c-blue")}>{item.status}</td>
-                        <td>{moment(item.lastLogin).format("YYYY-MM-DD hh:mm:ss")}</td>
+                        {/*<td className={cx("c-blue")}>{item.status}</td>*/}
+                        {/*<td>{moment(item.lastLogin).format("YYYY-MM-DD hh:mm:ss")}</td>*/}
                         <td>{getUserRole(item.role)}</td>
                         <td>{moment(item.regDate).format("YYYY-MM-DD  hh:mm:ss")}</td>
                     </tr>

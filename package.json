@@ -12,6 +12,28 @@
   },
   "dependencies": {
     "@babel/polyfill": "7.12.1",
+    "@ckeditor/ckeditor5-alignment": "26.0.0",
+    "@ckeditor/ckeditor5-basic-styles": "26.0.0",
+    "@ckeditor/ckeditor5-block-quote": "26.0.0",
+    "@ckeditor/ckeditor5-build-classic": "26.0.0",
+    "@ckeditor/ckeditor5-build-decoupled-document": "26.0.0",
+    "@ckeditor/ckeditor5-editor-classic": "26.0.0",
+    "@ckeditor/ckeditor5-editor-decoupled": "26.0.0",
+    "@ckeditor/ckeditor5-essentials": "26.0.0",
+    "@ckeditor/ckeditor5-font": "26.0.0",
+    "@ckeditor/ckeditor5-heading": "26.0.0",
+    "@ckeditor/ckeditor5-image": "26.0.0",
+    "@ckeditor/ckeditor5-indent": "26.0.0",
+    "@ckeditor/ckeditor5-link": "26.0.0",
+    "@ckeditor/ckeditor5-list": "26.0.0",
+    "@ckeditor/ckeditor5-media-embed": "26.0.0",
+    "@ckeditor/ckeditor5-paragraph": "26.0.0",
+    "@ckeditor/ckeditor5-paste-from-office": "26.0.0",
+    "@ckeditor/ckeditor5-react": "3.0.2",
+    "@ckeditor/ckeditor5-table": "26.0.0",
+    "@ckeditor/ckeditor5-theme-lark": "26.0.0",
+    "@ckeditor/ckeditor5-typing": "26.0.0",
+    "@ckeditor/ckeditor5-upload": "26.0.0",
     "@zeit/next-css": "1.0.1",
     "antd": "4.9.4",
     "axios": "0.21.0",
@@ -31,7 +53,7 @@
     "next-redux-saga": "4.1.2",
     "next-redux-wrapper": "6.0.2",
     "pm2": "4.5.0",
-    "query-string": "6.13.7",
+    "query-string": "5",
     "quill": "1.3.7",
     "raw-loader": "4.0.2",
     "react": "17.0.1",
@@ -50,7 +72,6 @@
     "react-quill": "1.3.5",
     "react-redux": "7.2.2",
     "react-slick": "0.27.13",
-    "react-spring": "9.0.0-rc.3",
     "redux": "4.0.5",
     "redux-actions": "2.6.5",
     "redux-devtools-extension": "2.13.8",
@@ -67,9 +88,10 @@
   "engines": {
     "node": ">=12.18.4"
   },
-  "browserslist": "> 0.25%, not dead",
   "devDependencies": {
     "@babel/core": "7.13.10",
-    "@babel/plugin-proposal-logical-assignment-operators": "7.13.8"
+    "@babel/plugin-proposal-logical-assignment-operators": "7.13.8",
+    "@ckeditor/ckeditor5-dev-utils": "24.4.2",
+    "@ckeditor/ckeditor5-dev-webpack-plugin": "24.4.2"
   }
 }

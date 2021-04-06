@@ -43,6 +43,9 @@ class MyDocument extends Document {
                 <Head>
                     {/*    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6,es7,es8,es9,NodeList.prototype.forEach&flags=gated" />*/}
                     {/*    <meta name="viewport" content="initial-scale=1.0, width=device-width" />*/}
+                    {/*<script src="https://cdn.ckeditor.com/ckeditor5/26.0.0/decoupled-document/ckeditor.js"></script>*/}
+                    {/*<script charSet="utf-8" src="//cdn.iframe.ly/embed.js?api_key=39e093f45ee70394f340cf"></script>*/}
+                    <script src="/assets/ckeditor.js"></script>
                 </Head>
                 <body>
                 <Main/>

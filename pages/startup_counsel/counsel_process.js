@@ -8,6 +8,8 @@ import {useDispatch, useSelector} from "react-redux";
 import client from "../../lib/api/client";
 import {getBestMentor} from "../../store/mentoring/mentoring";
 import Slider from "react-slick";
+import {Modal} from "antd";
+import {useRouter} from "next/router";
 const cx = classnames.bind(styles);
 
 
@@ -16,7 +18,7 @@ const mentorSliderSettings = {
     infinite: true,
     arrows: false,
     autoplay: true,
-    autoplaySpeed:2000,
+    autoplaySpeed:4000,
     slidesToShow: 1,
     slidesToScroll: 1,
 };
@@ -24,8 +26,10 @@ const mentorSliderSettings = {
 const CounselApply = () => {
 
     const dispatch = useDispatch();
+    const router = useRouter();
 
-    const {bestMentor} = useSelector(({mentoring, loading}) => ({
+    const {bestMentor,user} = useSelector(({auth,mentoring, loading}) => ({
+        user: auth.user,
         bestMentor:mentoring.bestMentor
     }))
 
@@ -44,6 +48,27 @@ const CounselApply = () => {
 
     }, [bestMentor])
 
+    const moveCounselApply = () =>{
+        if(user.login == false || (user.role != "ROLE_SD" && user.role != "ROLE_ADMIN") ){
+            Modal.warning({
+                title: '로그인 후 이용하실 수 있습니다.',
+            });
+        }else{
+            router.push("/startup_counsel/counsel_apply")
+        }
+    }
+
+    const moveMentorApply = () =>{
+        if(user.login == false ||  user.role != "ROLE_ADMIN" ){
+            Modal.warning({
+                title: '맨토신청은 당해년 05월 01일 부터 05월 31일까지 진행 합니다.',
+                content:'멘토신청을 원하시면 멘토로 회원가입 및 인증 후 신청 가능 합니다.'
+            });
+        }else{
+            router.push("/startup_counsel/mentor_apply")
+        }
+    }
+
 
     return (
         <>
@@ -56,7 +81,7 @@ const CounselApply = () => {
                 </p>
                 <div className={cx("txt_c")}>
                     <Link href={"/startup_counsel/mentor_introduce"}><a className={`${cx("basic-btn03","btn-blue-bg2")} mr_20`}>멘토찾기</a></Link>
-                    <Link href="/startup_counsel/counsel_apply"><a className={cx("basic-btn03","btn-blue-bd")}>창업상담 신청하기</a></Link>
+                    <Link href={"#"}><a className={cx("basic-btn03","btn-blue-bd")} onClick={() =>{moveCounselApply()}}>창업상담 신청하기</a></Link>
                 </div>
 
 
@@ -64,8 +89,8 @@ const CounselApply = () => {
                 {bestMentor.length  != 0 &&
                     <Slider className="mentor_slider" {...mentorSliderSettings}>
                         {
-                            bestMentor.map((item) =>(
-                                    <>
+                            bestMentor.map((item,j) =>(
+                                <>
                                         <div className={cx("title")}>
                                             <h2>우수 멘토</h2>
                                             <p>
@@ -80,10 +105,12 @@ const CounselApply = () => {
                                             <span className={cx("job")}>{item.mentorPosition}</span>
                                         </div>
                                         <div className={cx("txt_area")}>
-                                            <div className={cx("tag")}>{item.mentorKeyword.map((keyword)=>(`#${keyword} `))}</div>
+                                            <div className={cx("tag")}>
+                                                {item.mentorKeyword.map((keyword)=>(`#${keyword} `))}
+                                            </div>
                                             <ul>
-                                                {item.mentorCareer.map((career)=>(
-                                                    <li>{career}</li>
+                                                {item.mentorCareer.map((career,i)=>(
+                                                    i < 2 && <li>{career}</li>
                                                 ))}
                                             </ul>
                                             <p>
@@ -105,19 +132,25 @@ const CounselApply = () => {
                     <div className={cx("txtArea")}>
                         <ul className={`${cx("icon_list")} clfx`}>
                             <li className={cx("icon_1")}>
-                                <a href="#">
+                                <Link href="/board/online_content/list?categoryCodeId=22">
+                                <a>
                                     세무, 회계 <br/>기본지식 알고가기
                                 </a>
+                                </Link>
                             </li>
                             <li className={cx("icon_2")}>
-                                <a href="#">
-                                    알면 도움되는 <br/> 스타트업 법률상식
+                                <Link href="/board/online_content/list?categoryCodeId=20">
+                                <a>
+                                    사업계획서<br/>작성방법
                                 </a>
+                                </Link>
                             </li>
                             <li className={cx("icon_3")}>
-                                <a href="#">
+                                <Link href="/board/online_content/list?categoryCodeId=24">
+                                <a>
                                     스타트업 <br/>투자유치 A to Z
                                 </a>
+                                </Link>
                             </li>
                         </ul>
                     </div>
@@ -142,7 +175,8 @@ const CounselApply = () => {
                 </div>
 
                 <div className={cx("counselingBtnArea")}>
-                    <Link href={"/startup_counsel/mentor_apply"}><a>멘토지원하기</a></Link>
+                    {/*<Link href={"/startup_counsel/mentor_apply"}><a>멘토지원하기</a></Link>*/}
+                    <Link href={"#"} ><a onClick={() =>{moveMentorApply()}}>멘토지원하기</a></Link>
                 </div>
 
                 <div className={cx("step")}>

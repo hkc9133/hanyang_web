@@ -165,7 +165,7 @@ const PartnerManagePage = () => {
                                 </colgroup>
                                 <thead>
                                 <tr>
-                                    <th scope="col">NO</th>
+                                    <th scope="col">번호</th>
                                     <th scope="col">구분</th>
                                     <th scope="col">기업명</th>
                                     <th scope="col">홈페이지</th>

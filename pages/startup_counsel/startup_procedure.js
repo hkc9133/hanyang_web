@@ -1,14 +1,41 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from '../../public/assets/styles/startup_info/startup_info.module.css';
 import classnames from "classnames/bind"
 import Link from 'next/link'
 import PageNavigation from "../../component/layout/PageNavigation";
 import {isMobile} from "react-device-detect";
 import Image from "next/image";
+import {useRouter} from "next/router";
+import {Modal} from "antd";
+import {useSelector} from "react-redux";
 
 const cx = classnames.bind(styles);
 const StartupProcedure = () => {
-    const [tab, setTap] = useState(0);
+    const router = useRouter();
+    const [tab, setTab] =  useState(0);
+
+    const {user} = useSelector(({auth, loading}) => ({
+        user: auth.user
+    }))
+
+    useEffect(() =>{
+        if(router.query.tab == 0 ){
+            setTab(0)
+        }else if(router.query.tab == 1){
+            setTab(1)
+        }
+
+    },[router.query])
+
+    const moveReportApply = () =>{
+        if(user.login == false || (user.role != "ROLE_SD" && user.role != "ROLE_ADMIN") ){
+            Modal.warning({
+                title: '로그인 후 이용하실 수 있습니다.',
+            });
+        }else{
+            router.push("/startup_counsel/student_report")
+        }
+    }
     return (
         <>
             <PageNavigation/>
@@ -21,8 +48,8 @@ const StartupProcedure = () => {
 
                     <div className={cx("tab_style_2")}>
                         <ul>
-                            <li className={cx({on:tab == 0})}><a onClick={() =>{setTap(0)}}>학생창업</a></li>
-                            <li className={cx({on:tab == 1})}><a onClick={() =>{setTap(1)}}>교원창업</a></li>
+                            <li className={cx({on:tab == 0})}><a onClick={() =>{setTab(0)}}>학생창업</a></li>
+                            <li className={cx({on:tab == 1})}><a onClick={() =>{setTab(1)}}>교원창업</a></li>
                         </ul>
                     </div>
 
@@ -36,8 +63,7 @@ const StartupProcedure = () => {
                             <div className={cx("txt_2")}>학생창업자 신고 후 다양한 한양대학교 학생창업 지원 혜택을 누리세요.</div>
                             <div className={cx("txt_c")}>
                                 <Link href="/assets/pdf/한양대학교 학생창업자 지원 사항 안내.pdf" ><a className={cx("basic-btn04","btn-blue-bd")} target="_blank">한양대학교 학생창업 지원사항 안내서</a></Link>
-                                <Link href="/startup_counsel/student_report" ><a className={cx("basic-btn04", "btn-black-bd")}>학생창업자
-                                    신고</a></Link>내
+                                <Link href="#" ><a className={cx("basic-btn04", "btn-black-bd")} onClick={moveReportApply}>학생창업자 신고</a></Link>
                             </div>
                         </>
                     )}

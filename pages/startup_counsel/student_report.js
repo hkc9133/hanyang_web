@@ -11,6 +11,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
 import {addStudentReport, initialize} from "../../store/studentReport/studentReport";
 import PageNavigation from "../../component/layout/PageNavigation";
+import moment from "moment";
 const StudentReportPage = () => {
 
     const [form] = Form.useForm();
@@ -82,7 +83,7 @@ const StudentReportPage = () => {
             if(add.result && add.error == null){
                 Modal.success({
                     title: '작성이 완료되었습니다',
-                    onOk:() =>{router.push("/")}
+                    // onOk:() =>{router.push("/")}
                 });
             }else{
                 Modal.warning({
@@ -91,6 +92,11 @@ const StudentReportPage = () => {
             }
         }
     },[add])
+
+    function disabledDate(current) {
+        // Can not select days before today and today
+        return current && current > moment().endOf('day');
+    }
 
     return (
         <>
@@ -108,16 +114,14 @@ const StudentReportPage = () => {
                     <h2>학생창업자혜택</h2>
                     <div className={cx("list_style_4")}>
                         <ul>
-                            <li>창업장학금 희망사다리장학 (~400 만원 /1 년)</li>
-                            <li>창업기숙사 최대 2 년 )</li>
-                            <li>사업화지원금 (예비창업패키지 초기창업패키지 )</li>
-                            <li>창업현장실습 장기 : 최대 15 학점 , 단기 : 3 학점 )</li>
-                            <li>창업 맞춤형 패키지 (법인설립 , 시제품 제작 , 특허출원</li>
-                            <li>창업동아리 활동비 (~500 만원 년)</li>
-                            <li>학생창업보육공간 입주공간 제공</li>
-                            <li>창업휴학 최대 2 년</li>
-                            <li>원스톱 창업멘토링 멘토스온콜</li>
-                            <li>기타 : 학생창업자가 필요한 사항 등</li>
+                            <li>창업장학금(희망사다리장학금)(~400만원/1년)</li>
+                            <li>사업화지원금(예비창업패키지, 초기창업패키지, 캠퍼스타운)</li>
+                            <li>법인설립지원, 지식재산권 출원 지원 등</li>
+                            <li>창업기숙사 247 스타트업 돔(최대 2년)</li>
+                            <li>창업현장실습-장기(15학점) / 단기(3학점)</li>
+                            <li>창업동아리 활동비(~500만원/1년)</li>
+                            <li>창업휴학(최대 2년)</li>
+                            <li>그 외 학생창업자에게 필요한 사항 등</li>
                         </ul>
                     </div>
 
@@ -313,7 +317,7 @@ const StudentReportPage = () => {
                                         },
                                     ]}
                                 >
-                                    <DatePicker locale={locale} format={"YYYY-MM-DD"} value={reportForm.createDate} onChange={(v) =>{setReportForm({...reportForm,createDate:v})}}/>
+                                    <DatePicker disabledDate={disabledDate} locale={locale} format={"YYYY-MM-DD"} value={reportForm.createDate} onChange={(v) =>{setReportForm({...reportForm,createDate:v})}}/>
                                 </Form.Item>
                             </li>
                             <li className={cx("w_100")}>
