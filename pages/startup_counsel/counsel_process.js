@@ -128,6 +128,9 @@ const CounselApply = () => {
                 <div className={cx("before_counseling","txt_style_1")}>
                     <div className={cx("left_title")}>
                         <h2 className={cx("title_style_3")}>상담하기 전에 <br/>이것부터 보고가세요!</h2>
+                        <div>
+                            <Link href="/board/faq/list"><a className={cx("basic-btn03")}>자주 묻는 질문</a></Link>
+                        </div>
                     </div>
                     <div className={cx("txtArea")}>
                         <ul className={`${cx("icon_list")} clfx`}>

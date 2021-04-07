@@ -113,6 +113,7 @@ const IR = () => {
                         </a>
                     </div>
 
+                    <p className={cx("sub_top_txt")}>문의: 한양대학교 기술지주회사(Tel. 02-2220-4071)</p>
 
                 </div>
 

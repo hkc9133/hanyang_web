@@ -157,10 +157,10 @@ const StartupPresent = () => {
 
     return (
         <>
+            <PageNavigation/>
             <section className={cx("sub_container","startup_emissions")}>
-                <h1 className={cx("sub_top_title")}>스타트업배출현황</h1>
-                <p className={cx("sub_top_txt")}>한양대학교는 창업기업은 3939개 기업과 함께하고 있습니다. <br/>검색 버튼을 활용하면 한양대학교와 함께하는 창업기업들을 모두 확인 할
-                    수 있습니다. </p>
+                <h1 className={cx("sub_top_title")}>스타트업 배출현황</h1>
+                <p className={cx("sub_top_txt")}>한양대학교에서 발굴하고 육성한 스타트업을 소개합니다. </p>
 
                 <div className={cx("search_type_2")}>
                     <Dropdown className={cx("search_01")} overlay={businessList} trigger={['click']} visible={showBusinessField} onVisibleChange={() =>{setShowBusinessField(!showBusinessField)}}>

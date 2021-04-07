@@ -578,11 +578,9 @@ const Index = () => {
                                             <div className={cx("title")}>
                                                 한양대학교 산학협력단
                                             </div>
-                                            <div>교육, 연구지원</div>
+                                            <div>산학연협력, 융합연구</div>
                                             <div className={cx("txt")}>
-                                                글로벌 실용인재 양성
-                                                <br/>
-                                                다학제간 통합연구, 연구성과 확산모델선도
+                                                글로벌 실용인재 양성, 다학제간 통합연구, 기술이전/기술사업화, 연구비 수탁관리/지급 등 산학협력 총괄
                                             </div>
                                         </a>
                                     </Link>
@@ -603,13 +601,9 @@ const Index = () => {
                                             <div className={cx("title")}>
                                                 기술지주회사
                                             </div>
-                                            <div>투자, 액셀</div>
+                                            <div>투자, TIPS운영사, 액셀러레이터</div>
                                             <div className={cx("txt")}>
-                                                국내 제1호 대학기술지주회사
-                                                <br/>
-                                                TIPS 및 교육계정펀드 운영사로
-                                                <br/>
-                                                우수 기술 발굴, 사업화, 보육, 투자
+                                                대학의 보유기술을 출자하여 기술사업화, 자회사 설립 지원, 펀드 운영 등 투자 업무
                                             </div>
                                         </a>
                                     </Link>
@@ -631,11 +625,9 @@ const Index = () => {
                                             <div className={cx("title")}>
                                                 기술사업화센터
                                             </div>
-                                            <div>실험실창업</div>
+                                            <div>기술이전, 기술사업화, 실험실창업</div>
                                             <div className={cx("txt")}>
-                                                실험실 연구성과 기반의 창업 아이템을
-                                                <br/>
-                                                발굴하고 生기술혁신 창업 기업으로 육성
+                                                대학의 연구성과를 활용하여 기술이전/사업화 촉진, 실험실창업 유망기술의 사업화모델 개발 및 창업 지원
                                             </div>
                                         </a>
                                     </Link>
@@ -655,13 +647,11 @@ const Index = () => {
                                     <Link href="http://fablab.hanyang.ac.kr/">
                                         <a target="_blank">
                                             <div className={cx("title")}>
-                                                휴온스팹랩[Huons FABLAB]
+                                                휴온스팹랩
                                             </div>
                                             <div>메이커 스페이스</div>
                                             <div className={cx("txt")}>
-                                                3D프린터룸, 메이킹룸, 공학입문설계
-                                                <br/>
-                                                스튜디오, IoT룸, 학생라운지 제공
+                                                아이디어 구현에 필요한 3D 프린터, 레이저 커터 등 다양한 장비가 구비된 창작 및 창업지원 공간
                                             </div>
                                         </a>
                                     </Link>
@@ -681,15 +671,11 @@ const Index = () => {
                                     <Link href="http://entrepreneurship.hanyang.ac.kr/">
                                         <a target="_blank">
                                             <div className={cx("title")}>
-                                                창업융합학과
+                                                대학원 창업융합학과
                                             </div>
-                                            <div>교육</div>
+                                            <div>실전창업교육, 창업연구</div>
                                             <div className={cx("txt")}>
-                                                창의적 사고와 기업가정신, 글로벌 창업
-                                                <br/>
-                                                역량을 지닌 창의 융합인재 양성,
-                                                <br/>
-                                                창업관련 연구 수행
+                                                창의적 사고와 기업가정신, 글로벌 창업 역량을 지닌 창의융합인재 양성, 창업관련 연구 수행
                                             </div>
                                         </a>
                                     </Link>
@@ -711,11 +697,9 @@ const Index = () => {
                                             <div className={cx("title")}>
                                                 창업보육센터
                                             </div>
-                                            <div>교육, 지원, 공간</div>
+                                            <div>입주기업 창업지원</div>
                                             <div className={cx("txt")}>
-                                                창업보육 전용공간, 창업 보육단계별
-                                                <br/>
-                                                기술 경영 등 주요지원프로그램 제공
+                                                창업기업 및 예비창업자에게 보육공간/시설 제공, 기술/경영 컨설팅 및 사업화 지원, 투자유치 연계
                                             </div>
                                         </a>
                                     </Link>
@@ -737,13 +721,9 @@ const Index = () => {
                                             <div className={cx("title")}>
                                                 현장실습지원센터
                                             </div>
-                                            <div>교육</div>
+                                            <div>기업(창업)현장실습, 인턴십</div>
                                             <div className={cx("txt")}>
-                                                전공과 관련된 산업현장에서의 경험과
-                                                <br/>
-                                                진로탐색 기회를 제공하는
-                                                <br/>
-                                                현장실습 프로그램 운영
+                                                전공과 관련된 산업현장에서의 경험과 진로탐색 기회를 제공하는 현장실습(인턴십) 프로그램 운영
                                             </div>
                                         </a>
                                     </Link>

@@ -24,6 +24,9 @@ const Alumnus = () => {
                     <div className={cx("txt_style_1")}>
                         <div className={cx("left_title")}>
                             <h1 className={cx("title_style_3")}>한양 스타트업 아카데미</h1>
+                            <div>
+                                <Link href="/board/notice/view/911?boardEnName=&boardName=notice&categoryCodeId=&categoryId=&page=1&searchField=title&searchValue=%EC%95%84%EC%B9%B4%EB%8D%B0%EB%AF%B8"><a className={cx("basic-btn03","btn-blue-bg")}>최근 모집공고 보기</a></Link>
+                            </div>
                         </div>
                         <div className={cx("txtArea")}>
                             <p className={cx("txt_1")}>

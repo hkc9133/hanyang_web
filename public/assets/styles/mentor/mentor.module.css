@@ -114,6 +114,7 @@
 .mentor_month .txt_area ul li{margin-bottom:8px; font-size:16px; }
 .mentor_month .txt_area p{line-height:1.8; font-size:16px; color:#666;}
 .before_counseling{padding-bottom:70px; border-bottom:1px solid #ddd; }
+.before_counseling .basic-btn03{border: 1px solid #333;}
 .before_counseling .icon_list li{float:left; width:33.33%; }
 .before_counseling .icon_list li a{position:relative; padding:90px 0 30px; display:inline-block; vertical-align:top; font-size:24px; font-family: 's-core-dream-medium';}
 .before_counseling .icon_list li.icon_1 a{background:url(../../image/consultation_icon_1.jpg) no-repeat 0 0;}

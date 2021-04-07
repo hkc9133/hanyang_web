@@ -42,9 +42,7 @@ const StartupProcedure = () => {
             <section className={cx("container")}>
                 <div className={cx("sub_container","startup_procedure","teacher_startup")}>
                     <h1 className={cx("sub_top_title")}>창업절차</h1>
-                    <p className={cx("sub_top_txt")}>한양대는 해외 현지 액셀러레이터와 협력관계를 구축하고, <br/>현지 시장 분석 제공, 1:1 코칭, 글로벌 액셀러레이팅
-                        프로그램 운영
-                        등 <br/>창업기업의 글로벌 진출을 위한 발판 마련에 힘쓰고 있습니다.</p>
+                    <p className={cx("sub_top_txt")}>한양대에서 어떻게 스타트업을 시작하는가? 창업 아이디어 구상부터 시제품 제작, 창업 실행, 투자유치를 거쳐 성공 창업까지의 창업강좌, 프로그램 및 인프라를 소개합니다.</p>
 
                     <div className={cx("tab_style_2")}>
                         <ul>
@@ -55,7 +53,7 @@ const StartupProcedure = () => {
 
                     {tab == 0 && (
                         <>
-                            <h2>How to Start a Startup in Hanyang</h2>
+                            <h2>How to Start a Startup at Hanyang University</h2>
                             <p className={cx("txt_1")}>스타트업을 꿈꾸는 한양인을 위한 창업가이드</p>
                             <div className={cx("img_area")}>
                                 <img src="/assets/image/startup_procedure.jpg" alt=""/>
