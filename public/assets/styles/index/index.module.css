@@ -81,7 +81,7 @@
 .main_board_list .slides.hidden{display:none;}
 .main_board_list .slides .list{position:relative; padding:0 10px; max-width:337px; box-sizing:border-box; display:none;}
 .main_board_list .list:first-child{display:block;}
-.main_board_list .list .img_area{border-radius:15px 15px 0 0; overflow:hidden;}
+.main_board_list .list .img_area{border-radius:15px 15px 0 0; border: 1px solid #cfd1d4; border-bottom: none; overflow:hidden;}
 .main_board_list .list .img_area a{position:relative; width:100%; padding-bottom:72.81%; display:block; }
 .main_board_list .list .img_area a img{position:absolute; left:0; top:0; bottom:0; width:100%; height:100%; }
 .main_board_list .list .txt_area{border:1px solid #cfd1d4; border-top:none; border-radius:0 0 15px 15px;}
