@@ -8,8 +8,8 @@
 .sub_container{position:relative; z-index:1; overflow:hidden;}
 .sub_container:before{position:absolute; right:20px; top:25px; width:445px; height:288px; display:block; background:url(../../image/mentor_group_bg.jpg) no-repeat right 0; content:"";}
 
-.txt_style_1{position:relative; margin:25px 0; /*padding-left:400px;*/ }
-.txt_style_1 .left_title{position:absolute; left:0; top:520px; width:100%; }
+.txt_style_1{position:relative; margin:25px 0; padding-left:400px; }
+.txt_style_1 .left_title{position:absolute; left:0; top:0; width:100%; }
 .txt_style_1 .left_title p{padding-top:10px; font-size:16px; }
 
 /*인프라*/
@@ -100,6 +100,8 @@
 
 
 .location{margin-top: 140px;}
+.location_wrap .txt_style_1{padding-left:0; }
+.location_wrap .txt_style_1 .left_title{top:520px; }
 .location_wrap .left_title h3{margin-bottom:300px; font-size:32px; font-family: 's-core-dream-medium';}
 .location_wrap .left_title .btn_area ul{text-align: center;}
 .location_wrap .left_title .btn_area li{display: inline-block; margin-right: 50px; }
@@ -230,7 +232,7 @@
     .location_wrap .left_title .btn_area li{margin-right:10px; display:inline-block; }
     .location_wrap .left_title .btn_area a{width:300px; height:50px; line-height:48px; font-size:16px; }
     .location_wrap .map_area{margin-top: 150px;}
-    .txt_style_1 .left_title{top: 720px;}
+    .location_wrap .txt_style_1 .left_title{top: 720px;}
 
     .ceo_info{float:none; margin-bottom:40px; width:100%; }
     .ceo_txt{float:none; width:100%; }
@@ -320,7 +322,7 @@
     .location_wrap .location address{font-size:14px; }
     .location_wrap .location .info li{display:block; font-size:14px; }
     .location_wrap .transportation li{font-size:14px;}
-    .txt_style_1 .left_title{top: 350px; margin-bottom: 20px; }
+    .location_wrap .txt_style_1 .left_title{top: 350px; margin-bottom: 20px; }
     .location{margin-top: 90px;}
 
 
