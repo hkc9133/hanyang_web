@@ -33,7 +33,7 @@ const BoardContentListTable = ({cx, list,moveBoardContent,currentBoard}) => {
                 <tbody>
                 {list.map((item) => {
                     return (
-                        <tr key={item.rownum}>
+                        <tr key={item.contentId}>
                             <td>{item.rownum == 0 ? <strong>공지</strong> : <span>{item.rownum}</span>}</td>
                             <td className={cx("td_btn")}>
                                 <Link href={`/admin/board/content/${item.boardEnName}/${item.contentId}`}>

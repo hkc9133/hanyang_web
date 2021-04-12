@@ -45,6 +45,10 @@ class MyDocument extends Document {
                     {/*    <meta name="viewport" content="initial-scale=1.0, width=device-width" />*/}
                     {/*<script src="https://cdn.ckeditor.com/ckeditor5/26.0.0/decoupled-document/ckeditor.js"></script>*/}
                     {/*<script charSet="utf-8" src="//cdn.iframe.ly/embed.js?api_key=39e093f45ee70394f340cf"></script>*/}
+                    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+                    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+                    <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+                    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
                     <script src="/assets/ckeditor.js"></script>
                 </Head>
                 <body>

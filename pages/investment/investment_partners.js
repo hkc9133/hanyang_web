@@ -86,6 +86,12 @@ const InvestmentPartners = () => {
         router.push(`${router.pathname}?${queryString}`)
     }, [router.query])
 
+    const handleEnter = (e) => {
+        if (e.key == "Enter") {
+            searchSubmit();
+        }
+    }
+
     return (
         <>
             <PageNavigation/>
@@ -100,15 +106,17 @@ const InvestmentPartners = () => {
                     setSearchInfo({...searchInfo, searchField: e.target.value})
                 }}>
                     <option value="">검색 조건</option>
-                    <option value="company_name">기업명</option>
-                    <option value="homepage">홈페이지</option>
+                    <option value="company_name">기관명</option>
+                    {/*<option value="homepage">홈페이지</option>*/}
                     <option value="field">분야</option>
                     <option value="location">국가/지역</option>
                 </select>
                 <input type="text" placeholder="검색어를 입력하세요." value={searchInfo.searchValue}
                        onChange={(e) => {
                            setSearchInfo({...searchInfo, searchValue: e.target.value})
-                       }}/>
+                       }}
+                       onKeyPress={handleEnter}
+                />
                 <button type="button" className={cx("btn_search")} onClick={() =>{searchSubmit();}}>검색</button>
             </div>
 

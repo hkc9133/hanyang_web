@@ -10,6 +10,7 @@ import Edu1619 from '../../component/startup_education/Edu1619';
 import {
     isMobile
 } from "react-device-detect";
+import {baseUrl} from "../../lib/api/client";
 
 const {SubMenu} = Menu;
 
@@ -217,9 +218,8 @@ const UniversityStudent = () => {
                                        alt="university_student_img"/>}
                         </div>
                         <span className={cx("f-16", "c-blue")}>※ 자기소개서 다운로드
-                            <Link href="/assets/pdf/[양식]자기소개서_창업융합전공.hwp"><a target="_blank"
-                                                                                                  style={{marginLeft: 8}}
-                                                                                                  download><Image
+                            <Link href={`${baseUrl}/hwp/양식_자기소개서_창업융합전공.hwp`}><a target="_blank" style={{marginLeft: 8}} download>
+                                <Image
                                 src="/assets/image/icon_download.gif" width={22} height={26} alt="다운로드"/></a></Link>
                         </span>
                     </div>
@@ -334,7 +334,7 @@ const UniversityStudent = () => {
                                         </li>
                                     </ul>
                                     <span className={cx("f-16", "c-blue")}>※ 운영 및 신청방법 매뉴얼 참고<Link
-                                        href="/assets/pdf/2021-1 마이크로전공 운영 및 학생신청 매뉴얼.hwp"><a
+                                        href={`${baseUrl}/hwp/2021-1 마이크로전공 운영 및 학생신청 매뉴얼.hwp`}><a
                                         style={{marginLeft: 8}} target="_blank" download><Image
                                         src="/assets/image/icon_download.gif" width={22} height={26}
                                         alt="다운로드"/></a></Link></span>

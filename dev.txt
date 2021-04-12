@@ -7,3 +7,7 @@ className={cx("$1")}
 
 
 <div className={`${cx("header_inner")} clfx `}>
+
+
+../img/
+/assets/image/

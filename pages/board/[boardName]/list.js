@@ -141,7 +141,7 @@ const List = () => {
                     )}
 
                     {
-                        board.board.writeRole != null && (board.board.writeRole.indexOf(user.role) > 0 || user.role == 'ROLE_ADMIN') && (
+                        board.board.writeRole != null && (board.board.writeRole.indexOf(user.role) > 0) && currentBoard.board.boardEnName == 'idea' && (
                             <div className={cx("btn_box")}>
                                 <Link href={`/board/${board.board.boardEnName}/write`}><a className={cx("basic-btn03","write_btn")}>글쓰기</a></Link>
                             </div>

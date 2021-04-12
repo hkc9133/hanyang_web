@@ -27,9 +27,17 @@ const PopupItem = ({popup,cx}) => {
 
     useEffect(() =>{
         cookies.get(`popup-${popup.popupId}`) == undefined ? setPass(false) : setPass(true)
-        if(!popup.isMobile && isMobile){
+        if(isMobile && !popup.isMobile){
             setPass(true)
         }
+        if(!isMobile && !popup.isPc){
+            setPass(true)
+        }
+        //
+        // if(!isMobile && !popup.))
+
+
+
     },[])
 
     useEffect(() =>{

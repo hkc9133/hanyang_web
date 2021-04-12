@@ -123,7 +123,7 @@ const ContentView = () => {
 
                                     <tr>
                                         <td>
-                                            <div className={"ql-editor"} dangerouslySetInnerHTML={{__html: view.startupCalendar.content}}/>
+                                            <div className={"ck-content"} dangerouslySetInnerHTML={{__html: view.startupCalendar.content}}/>
                                         </td>
                                     </tr>
                                     {

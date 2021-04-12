@@ -282,6 +282,7 @@ const ContentEditView = () => {
                                         {/*</Form.Item>*/}
                                     </td>
                                 </tr>
+                                {(board.board.boardEnName != 'data_room' && board.board.boardEnName != 'media_report')  && (
                                 <tr>
                                     <th>썸네일</th>
                                     <td>
@@ -321,6 +322,7 @@ const ContentEditView = () => {
                                         <span className={cx("title")}>첨부파일 (10MB 미만)</span>
                                     </td>
                                 </tr>
+                                )}
                                 {board.board.subName01 != "" && board.board.subName01 != null &&(
                                     <tr>
                                         <th>{board.board.subName01}</th>

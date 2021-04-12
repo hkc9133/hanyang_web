@@ -31,11 +31,6 @@ const StartupEvent = () => {
     }))
 
     useEffect(() => {
-        console.log(showContent)
-
-    }, [showContent])
-
-    useEffect(() => {
 
         const {type = "C"} = router.query
         setSearchInfo(searchInfo => ({
@@ -43,7 +38,7 @@ const StartupEvent = () => {
             type: type
         }))
 
-        const {page = 1, date = null, categoryCodeId = null, searchValue = null, searchField = null} = router.query
+        const {page = 1, date = "", categoryCodeId = null, searchValue = null, searchField = null} = router.query
 
         const data = {
             page: page,
@@ -54,6 +49,7 @@ const StartupEvent = () => {
             showCalendar:true
         }
 
+        console.log(data)
         dispatch(getStartupCalendarList(data))
 
     }, [router.query])

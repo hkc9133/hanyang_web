@@ -239,11 +239,11 @@ input[type=file]::-webkit-file-upload-button{
 /*.rbc-row{height: 9px;}*/
 #editor_box{    border: 1px solid #C0C0C0;
     min-height: 400px;
-    width: auto;
+    max-width: 800px;
     overflow-y: auto;
     overflow-x: hidden;
 }
-#editor{height: 100%;    max-width: 100%;    white-space: normal;}
+#editor{height: 400px;    max-width: 100%;    white-space: normal;}
 .ck.ck-dropdown .ck-dropdown__panel.ck-dropdown__panel_ne, .ck.ck-dropdown .ck-dropdown__panel.ck-dropdown__panel_se {
     top: 34px;
 }

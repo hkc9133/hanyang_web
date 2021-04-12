@@ -68,11 +68,15 @@ const Editor = ({setEditor,content}) => {
                     mediaEmbed: {previewsInData: true},
                     language: 'ko',
                     image: {
+                        styles: [
+                            'alignLeft', 'alignCenter', 'alignRight'
+                        ],
                         toolbar: [
-                            'imageTextAlternative',
-                            'imageStyle:full',
-                            'imageStyle:side',
-                            'linkImage'
+                            'imageStyle:alignLeft', 'imageStyle:alignCenter', 'imageStyle:alignRight',
+                            '|',
+                            'resizeImage',
+                            '|',
+                            'imageTextAlternative'
                         ]
                     },
                     table: {

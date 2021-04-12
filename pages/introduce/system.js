@@ -11,7 +11,7 @@ const System = () => {
     return (
         <>
             <PageNavigation/>
-        <section className={cx("container")}>
+            <section className={cx("container")}>
             <div className={cx("sub_container","startup_support_step")}>
                 <h1 className={cx("sub_top_title")}>창업지원단 지원체계</h1>
                 <p className={cx("sub_top_txt")}> 창업준비부터 창업실행, EXIT까지 창업 전주기 맞춤형 지원체계를 구축하고 있습니다</p>

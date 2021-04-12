@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 import styles from '../../../public/assets/styles/board/board.module.css';
 import classnames from "classnames/bind"
-import {Form, Input, Select} from "antd";
+import {Button, Form, Input, Select} from "antd";
 import dynamic from "next/dynamic";
 import {useRouter} from "next/router";
 import {addBoardContent, getBoard, getBoardContentList, getBoardInfoAll, initialize} from "../../../store/board/board";
@@ -12,6 +12,7 @@ import Modal from "../../../component/common/Modal";
 import { Upload } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import AuthFail from "../../user/auth_fail";
+import { UploadOutlined } from '@ant-design/icons';
 
 
 const Editor = dynamic(() => import("../../../component/common/Editor"), {
@@ -72,6 +73,13 @@ const Write = () => {
         };
     }, []);
 
+
+    useEffect(() => {
+        form.setFieldsValue({
+            categoryCodeId:""
+        })
+    }, [board]);
+
     const changeWriteInfo = useCallback((e) =>{
         const {name, value} = e.target
 
@@ -128,10 +136,7 @@ const Write = () => {
     }
 
     const uploadButton = (
-        <div>
-            <PlusOutlined />
-            <div style={{ marginTop: 8 }}>Upload</div>
-        </div>
+        <Button style={{marginTop:7}} className={"upload"} icon={<UploadOutlined />}>업로드</Button>
     );
 
 
@@ -154,7 +159,7 @@ const Write = () => {
                                     <th scope="row">분류</th>
                                     <td>
                                         <Form.Item
-                                            name="categoryId"
+                                            name="categoryCodeId"
                                             rules={[
                                                 {
                                                     required: true,
@@ -162,7 +167,8 @@ const Write = () => {
                                                 },
                                             ]}
                                         >
-                                            <Select size='large' className={cx("cate")} onChange={changeCategory}>
+                                            <Select size='large' className={cx("cate")} onChange={changeCategory} >
+                                                <Option value="">선택</Option>
                                                 {board.cate.map((item) => {
                                                     return <Option key={item.categoryCodeId} value={item.categoryCodeId}>{item.categoryCodeName}</Option>
                                                 })}

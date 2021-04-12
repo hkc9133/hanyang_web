@@ -7,7 +7,9 @@ const ReplyList = (props) => {
     return (
         <div>
             {props.list.map((reply) =>
-                <ReplyItem key={reply.replyId} reply={reply} {...props}/>
+                reply.status != "D" && (
+                    <ReplyItem key={reply.replyId} reply={reply} {...props}/>
+                )
             )}
         </div>
     );

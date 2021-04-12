@@ -21,6 +21,9 @@
 .bbs_tb_list td{padding:14px 5px; text-align:center; border-bottom:1px solid #ddd; font-size:16px;}
 .bbs_tb_list td .notice_icon{margin-top: -10px;width: 60px;height: 30px;line-height: 28px;text-align: center;display: inline-block;border: 1px solid #009bcb;box-sizing: border-box;color: #009bcb;font-size: 14px;font-weight: 300;border-radius: 0;}
 .bbs_tb_list td a{font-size:16px; }
+.bbs_tb_list td button{font-size:16px;}
+.bbs_tb_list tr.content_view td{padding:30px 10px;font-size: unset;text-align: unset;}
+.bbs_tb_list tr.content_view td:first-child{text-align: center;font-size:18px;}
 .bbs_tb_list td.icon img{width:20px; }
 
 .bbs_tb_list .category{width:110px; height:40px; line-height:38px; display:inline-block; box-sizing:border-box; border:1px solid #93989c; color:#93989c; font-size:16px; border-radius:20px; }
@@ -139,6 +142,7 @@
     .bo_notice .notice_icon,
     .bbs_tb_list .icon_notice{padding:0 5px; height:26px; line-height:26px; font-size:11px; border-radius:20px; }
     .bbs_tb_list .category{width:60px; height:26px; line-height:24px; font-size:13px; }
+    .bbs_tb_list td.content_view{padding:15px;}
 
 
 

@@ -149,8 +149,8 @@ const SpaceReservation = () => {
     const handleTimeChange = (time) => {
 
         setSelectTime({
-            startTime: moment(time.startTime, "hh:mm:ss").format("H:mm").toString(),
-            endTime: moment(time.endTime, "hh:mm:ss").format("H:mm").toString(),
+            startTime: moment(time.startTime, "hh:mm:ss").format("hh:mm").toString(),
+            endTime: moment(time.endTime, "hh:mm:ss").format("hh:mm").toString(),
             timeId: time.timeId
         })
 

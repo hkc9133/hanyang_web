@@ -104,11 +104,12 @@ const boardSliderSettings = {
 
 const hubSliderSettings = {
     dots: true,
-    infinite: false,
     arrows: false,
+    infinite: true,
+    autoplay: true,
     speed: 300,
     slidesToShow: 4,
-    slidesToScroll: 1,
+    slidesToScroll: 4,
     responsive: [
         {
             breakpoint: 1024,
@@ -275,13 +276,13 @@ const Index = () => {
                                 </a>
                             </Link>
                         </li>
-                        <li className={cx("icon_8")}>
-                            <Link href="#">
-                                <a onClick={moveReportApply}>
-                                    <span>학생창업자 신고</span>
-                                </a>
-                            </Link>
-                        </li>
+                        {/*<li className={cx("icon_8")}>*/}
+                        {/*    <Link href="#">*/}
+                        {/*        <a onClick={moveReportApply}>*/}
+                        {/*            <span>학생창업자 신고</span>*/}
+                        {/*        </a>*/}
+                        {/*    </Link>*/}
+                        {/*</li>*/}
                     </ul>
                     <div className={cx("main_search_area")}>
                         <input type="text" placeholder="검색어를 입력하세요." value={searchValue} onChange={(e) => {

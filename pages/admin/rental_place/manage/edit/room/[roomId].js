@@ -356,45 +356,45 @@ const RoomDetail = () => {
                                                     <input type="checkbox" id="day07" name="possibleDay07" value={"6;"} checked={roomInfo.possibleDay.includes("6;")} onChange={changeRoomInfo} /><label htmlFor="day07">토</label>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <th scope="row">대표이미지</th>
-                                                <td colSpan={3}>
-                                                    <Upload
-                                                        listType="picture-card"
-                                                        fileList={roomInfo.roomAttachFileList.map((file) => {
-                                                            return {
-                                                                uid: file.fileName,
-                                                                name: file.fileOriginName,
-                                                                fileOriginName:file.fileOriginName,
-                                                                status: 'done',
-                                                                fileId: file.fileId
-                                                            }
-                                                        })}
-                                                        showUploadList={{
-                                                            showPreviewIcon: false,
-                                                            showRemoveIcon: true,
-                                                            showDownloadIcon: true
-                                                        }}
-                                                        onPreview={handlePreview}
-                                                        onDownload={handleFileDownload}
-                                                        onRemove={handleFileRemove}
-                                                    />
-                                                    <Upload
-                                                        listType="picture-card"
-                                                        fileList={roomInfo.addAttachFileList}
-                                                        showUploadList={{
-                                                            showPreviewIcon: true,
-                                                            showRemoveIcon: true,
-                                                            showDownloadIcon: false
-                                                        }}
-                                                        onPreview={handlePreview}
-                                                        onChange={changeNewFileList}
-                                                        accept="image/png, image/jpeg"
-                                                    >
-                                                        {roomInfo.addAttachFileList.length + roomInfo.roomAttachFileList.length >= 3 ? null : uploadButton}
-                                                    </Upload>
-                                                </td>
-                                            </tr>
+                                            {/*<tr>*/}
+                                            {/*    <th scope="row">대표이미지</th>*/}
+                                            {/*    <td colSpan={3}>*/}
+                                            {/*        <Upload*/}
+                                            {/*            listType="picture-card"*/}
+                                            {/*            fileList={roomInfo.roomAttachFileList.map((file) => {*/}
+                                            {/*                return {*/}
+                                            {/*                    uid: file.fileName,*/}
+                                            {/*                    name: file.fileOriginName,*/}
+                                            {/*                    fileOriginName:file.fileOriginName,*/}
+                                            {/*                    status: 'done',*/}
+                                            {/*                    fileId: file.fileId*/}
+                                            {/*                }*/}
+                                            {/*            })}*/}
+                                            {/*            showUploadList={{*/}
+                                            {/*                showPreviewIcon: false,*/}
+                                            {/*                showRemoveIcon: true,*/}
+                                            {/*                showDownloadIcon: true*/}
+                                            {/*            }}*/}
+                                            {/*            onPreview={handlePreview}*/}
+                                            {/*            onDownload={handleFileDownload}*/}
+                                            {/*            onRemove={handleFileRemove}*/}
+                                            {/*        />*/}
+                                            {/*        <Upload*/}
+                                            {/*            listType="picture-card"*/}
+                                            {/*            fileList={roomInfo.addAttachFileList}*/}
+                                            {/*            showUploadList={{*/}
+                                            {/*                showPreviewIcon: true,*/}
+                                            {/*                showRemoveIcon: true,*/}
+                                            {/*                showDownloadIcon: false*/}
+                                            {/*            }}*/}
+                                            {/*            onPreview={handlePreview}*/}
+                                            {/*            onChange={changeNewFileList}*/}
+                                            {/*            accept="image/png, image/jpeg"*/}
+                                            {/*        >*/}
+                                            {/*            {roomInfo.addAttachFileList.length + roomInfo.roomAttachFileList.length >= 3 ? null : uploadButton}*/}
+                                            {/*        </Upload>*/}
+                                            {/*    </td>*/}
+                                            {/*</tr>*/}
                                             <tr>
                                                 <th scope="row">사용여부</th>
                                                 <td colSpan={3}>

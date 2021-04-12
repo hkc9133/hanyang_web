@@ -43,9 +43,9 @@ const dep1 = {
     },
     startup_info:{
         name:'창업지원정보',
-        link:"/board/idea/list",
+        link:"/board/notice/list",
         sub:{
-            notice: {name:'공지사항',link:'/board/startupCalendar/list'},
+            notice: {name:'공지사항',link:'/board/notice/list'},
             startup_event: {name:'창업캘린더',link:'/startup_info/startup_event'},
             startup_info: {name:'신규사업공고',link:'/board/startup_info/list'},
             idea: {name:'커뮤니티 게시판',link:'/board/idea/list'},
@@ -79,7 +79,7 @@ const dep1 = {
             infra: {name:'인프라',link:'/introduce/infra'},
             friendly: {name:'창업친화적 제도',link:'/introduce/friendly'},
             media_report: {name:'언론보도',link:'/board/media_report/list'},
-            news: {name:'뉴스레터',link:'/board/news/list'},
+            news: {name:'뉴스레터',link:'/introduce/news'},
             promotion: {name:'소개자료',link:'/introduce/promotion'},
             location: {name:'오시는길',link:'/introduce/location'},
             // ir: {name:'IR/ 투자 안내',link:'/board/ir/list'}
@@ -94,7 +94,7 @@ const board = {
     startup_info:{parents:'startup_info'},
     people:{parents:'startup_education'},
     online_content:{parents:'startup_education'},
-    news:{parents:'introduce'},
+    // news:{parents:'introduce'},
     faq:{parents:'startup_info'},
     media_report:{parents:'introduce'},
     corp_press:{parents:'startup_h'},

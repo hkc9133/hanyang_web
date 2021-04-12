@@ -212,45 +212,45 @@ const PlaceDetail = () => {
                                                     <input type="checkbox" name="isActive" checked={placeInfo.isActive} onChange={changePlaceInfo}/><label htmlFor="">사용</label>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <th scope="row">대표이미지</th>
-                                                <td colSpan={3}>
-                                                    <Upload
-                                                        listType="picture-card"
-                                                        fileList={placeInfo.placeAttachFileList.map((file) => {
-                                                            return {
-                                                                uid: file.fileName,
-                                                                name: file.fileOriginName,
-                                                                fileOriginName:file.fileOriginName,
-                                                                status: 'done',
-                                                                fileId: file.fileId
-                                                            }
-                                                        })}
-                                                        showUploadList={{
-                                                            showPreviewIcon: false,
-                                                            showRemoveIcon: true,
-                                                            showDownloadIcon: true
-                                                        }}
-                                                        onPreview={handlePreview}
-                                                        onDownload={handleFileDownload}
-                                                        onRemove={handleFileRemove}
-                                                    />
-                                                    <Upload
-                                                        listType="picture-card"
-                                                        fileList={placeInfo.addAttachFileList}
-                                                        showUploadList={{
-                                                            showPreviewIcon: true,
-                                                            showRemoveIcon: true,
-                                                            showDownloadIcon: false
-                                                        }}
-                                                        onPreview={handlePreview}
-                                                        onChange={changeNewFileList}
-                                                        accept="image/png, image/jpeg"
-                                                    >
-                                                        {placeInfo.addAttachFileList.length + placeInfo.placeAttachFileList.length >= 3 ? null : uploadButton}
-                                                    </Upload>
-                                                </td>
-                                            </tr>
+                                            {/*<tr>*/}
+                                            {/*    <th scope="row">대표이미지</th>*/}
+                                            {/*    <td colSpan={3}>*/}
+                                            {/*        <Upload*/}
+                                            {/*            listType="picture-card"*/}
+                                            {/*            fileList={placeInfo.placeAttachFileList.map((file) => {*/}
+                                            {/*                return {*/}
+                                            {/*                    uid: file.fileName,*/}
+                                            {/*                    name: file.fileOriginName,*/}
+                                            {/*                    fileOriginName:file.fileOriginName,*/}
+                                            {/*                    status: 'done',*/}
+                                            {/*                    fileId: file.fileId*/}
+                                            {/*                }*/}
+                                            {/*            })}*/}
+                                            {/*            showUploadList={{*/}
+                                            {/*                showPreviewIcon: false,*/}
+                                            {/*                showRemoveIcon: true,*/}
+                                            {/*                showDownloadIcon: true*/}
+                                            {/*            }}*/}
+                                            {/*            onPreview={handlePreview}*/}
+                                            {/*            onDownload={handleFileDownload}*/}
+                                            {/*            onRemove={handleFileRemove}*/}
+                                            {/*        />*/}
+                                            {/*        <Upload*/}
+                                            {/*            listType="picture-card"*/}
+                                            {/*            fileList={placeInfo.addAttachFileList}*/}
+                                            {/*            showUploadList={{*/}
+                                            {/*                showPreviewIcon: true,*/}
+                                            {/*                showRemoveIcon: true,*/}
+                                            {/*                showDownloadIcon: false*/}
+                                            {/*            }}*/}
+                                            {/*            onPreview={handlePreview}*/}
+                                            {/*            onChange={changeNewFileList}*/}
+                                            {/*            accept="image/png, image/jpeg"*/}
+                                            {/*        >*/}
+                                            {/*            {placeInfo.addAttachFileList.length + placeInfo.placeAttachFileList.length >= 3 ? null : uploadButton}*/}
+                                            {/*        </Upload>*/}
+                                            {/*    </td>*/}
+                                            {/*</tr>*/}
                                             </tbody>
                                         </table>
                                     </div>

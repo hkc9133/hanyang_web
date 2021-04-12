@@ -24,6 +24,7 @@ import "../public/assets/styles/styles.css";
 import "react-datepicker/dist/react-datepicker.css";
 import '../public/assets/styles/slick.css'
 import "../public/assets/styles/date-picker.css"
+import "../public/assets/styles/imagestyle.css"
 import 'react-quill/dist/quill.snow.css';
 import Head from "next/head";
 
@@ -101,8 +102,7 @@ const _App = ({Component, pageProps}) => {
                       content="예비창업자 및 초기 기업가, 각 분야 전문가 멘토 간의 정보 교류, 한양대 글로벌기업가센터, 한양대 창업지원단, 한양대 창업지원단"/>
                 <meta name="naver-site-verification"
                       content="7418ad80b2b649e57cf89a6496ee646c915aea9c"/>
-                <meta property="og:image"
-                      content={`http://61.109.248.203${port != null ? `:${port}` : ''}/api/image/bg.jpg`}/>
+                <meta property="og:image" content={`http://61.109.248.203${port != null ? `:${port}` : ''}/api/image/bg.jpg`}/>
                 <meta property="og:url" content="http://startup.hanyang.ac.kr"/>
             </Head>
             <div id="wrap">

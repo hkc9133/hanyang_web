@@ -12,6 +12,8 @@ const Editor = dynamic(() => import("../../../../../component/common/Editor"), {
     ssr: false,
     loading: () => <p>Loading ...</p>,
 });
+
+import moment from 'moment';
 // import Modal from "../../../../../component/common/Modal";
 import dynamic from "next/dynamic";
 
@@ -59,7 +61,7 @@ const Write = (props) => {
         attachFiles:[],
         thumb:[],
         categoryCodeId:"",
-        regDate:null
+        regDate:moment()
     })
     const [content,setContent] = useState("");
     const [addResultModal, setAddResultModal] = useState(false)
@@ -71,12 +73,39 @@ const Write = (props) => {
     }))
 
 
+
     useEffect(() => {
         dispatch(getBoard(router.query.boardName))
         return () => {
             dispatch(initialize());
         };
     }, []);
+
+    useEffect(() =>{
+        if(board.board != null){
+            setWriteInfo({
+                ...writeInfo,
+                sub01:board.board.subDValue01,
+                sub02:board.board.subDValue02,
+                sub03:board.board.subDValue03,
+                sub04:board.board.subDValue04,
+                sub05:board.board.subDValue05,
+                sub06:board.board.subDValue06,
+                sub07:board.board.subDValue07,
+            })
+            board.categoryCode.some(item =>
+                {
+                    if(board.board.categoryId == item.categoryId){
+                        setWriteInfo({
+                            ...writeInfo,
+                            categoryCodeId:item.categoryCodeId
+
+                        })
+                    }
+                }
+            );
+        }
+    },[board])
 
     const changeWriteInfo = useCallback((e) =>{
         const {name, value} = e.target
@@ -228,25 +257,27 @@ const Write = (props) => {
                                             <input type="text" placeholder={"제목을 입력하세요."} name="title" value={writeInfo.title} onChange={changeWriteInfo}/>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>썸네일</td>
-                                        <td>
-                                            <Upload
-                                                listType="picture"
-                                                fileList={writeInfo.thumb}
-                                                showUploadList={{
-                                                    showPreviewIcon: true,
-                                                    showRemoveIcon: true,
-                                                    showDownloadIcon: false
-                                                }}
-                                                onPreview={handlePreview}
-                                                onChange={changeThumb}
-                                            >
-                                                {writeInfo.thumb.length >= 1 ? null : uploadButton}
-                                            </Upload>
-                                            <span className={cx("title")}>첨부파일 (10MB 미만)</span>
-                                        </td>
-                                    </tr>
+                                    {(board.board.boardEnName != 'data_room' && board.board.boardEnName != 'media_report')  && (
+                                        <tr>
+                                            <td>썸네일</td>
+                                            <td>
+                                                <Upload
+                                                    listType="picture"
+                                                    fileList={writeInfo.thumb}
+                                                    showUploadList={{
+                                                        showPreviewIcon: true,
+                                                        showRemoveIcon: true,
+                                                        showDownloadIcon: false
+                                                    }}
+                                                    onPreview={handlePreview}
+                                                    onChange={changeThumb}
+                                                >
+                                                    {writeInfo.thumb.length >= 1 ? null : uploadButton}
+                                                </Upload>
+                                                <span className={cx("title")}>첨부파일 (10MB 미만)</span>
+                                            </td>
+                                        </tr>
+                                        )}
                                     {board.board.subName01 != "" && board.board.subName01 != null &&(
                                         <tr>
                                             <td>{board.board.subName01}</td>
@@ -303,18 +334,16 @@ const Write = (props) => {
                                             </td>
                                         </tr>
                                     )}
-                                    {board.board.boardEnName != 'corp_press' && (
-                                        <tr>
+                                        <tr hidden={board.board.boardEnName == 'corp_press'}>
                                             <td>내용</td>
                                             <td>
                                                 {/*<QuillEditor Contents={content} QuillChange={setContent}/>*/}
                                                 <Editor setEditor={setEditor}/>
                                             </td>
                                         </tr>
-                                    )}
                                     {board.board.useFile && (
                                         <tr>
-                                            <th scope="row">첨부파일</th>
+                                            <td scope="row">첨부파일</td>
                                             <td>
                                                 <Upload
                                                     listType="picture"

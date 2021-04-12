@@ -147,25 +147,25 @@ const PlaceAdd = () => {
                                                     <input type="checkbox" name="isActive" checked={placeInfo.isActive} onChange={changePlaceInfo}/><label htmlFor="">사용</label>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <th scope="row">대표이미지</th>
-                                                <td>
-                                                    <Upload
-                                                        listType="picture-card"
-                                                        fileList={placeInfo.addAttachFileList}
-                                                        showUploadList={{
-                                                            showPreviewIcon: true,
-                                                            showRemoveIcon: true,
-                                                            showDownloadIcon: false
-                                                        }}
-                                                        onPreview={handlePreview}
-                                                        onChange={changeNewFileList}
-                                                        accept="image/png, image/jpeg"
-                                                    >
-                                                        {placeInfo.addAttachFileList.length>= 3 ? null : uploadButton}
-                                                    </Upload>
-                                                </td>
-                                            </tr>
+                                            {/*<tr>*/}
+                                            {/*    <th scope="row">대표이미지</th>*/}
+                                            {/*    <td>*/}
+                                            {/*        <Upload*/}
+                                            {/*            listType="picture-card"*/}
+                                            {/*            fileList={placeInfo.addAttachFileList}*/}
+                                            {/*            showUploadList={{*/}
+                                            {/*                showPreviewIcon: true,*/}
+                                            {/*                showRemoveIcon: true,*/}
+                                            {/*                showDownloadIcon: false*/}
+                                            {/*            }}*/}
+                                            {/*            onPreview={handlePreview}*/}
+                                            {/*            onChange={changeNewFileList}*/}
+                                            {/*            accept="image/png, image/jpeg"*/}
+                                            {/*        >*/}
+                                            {/*            {placeInfo.addAttachFileList.length>= 3 ? null : uploadButton}*/}
+                                            {/*        </Upload>*/}
+                                            {/*    </td>*/}
+                                            {/*</tr>*/}
                                             </tbody>
                                         </table>
                                     </div>

@@ -87,7 +87,6 @@ const Login = () => {
 
     const onFormCheck = async (e,onClick) => {
         onClick();
-
     };
 
 
@@ -114,8 +113,14 @@ const Login = () => {
     }, [signup, signUpLoading])
 
     useEffect(() =>{
-        console.log(initHanyangInfo)
+        // console.log(initHanyangInfo)
     },[])
+
+    const handleEnter = (e) => {
+        if (e.key == "Enter") {
+            handleLogin();
+        }
+    }
 
     return (
         <>
@@ -129,7 +134,7 @@ const Login = () => {
                                 <p>한양인으로 로그인 하려면 아이디/비번을 입력해주세요</p>
                                 <ul className={cx("login_form")}>
                                     <li><input type="text" name="userId" placeholder="아이디" onChange={handleChangeLoginInfo}/></li>
-                                    <li><input type="password" name="userPassword" placeholder="비밀번호" onChange={handleChangeLoginInfo}/></li>
+                                    <li><input type="password" name="userPassword" placeholder="비밀번호" onChange={handleChangeLoginInfo} onKeyPress={handleEnter}/></li>
                                 </ul>
                                 <div className={`${cx("login_info")} clfx`}>
                                     {/*<ul className={"clfx"}>*/}

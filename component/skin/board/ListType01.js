@@ -9,6 +9,7 @@ import qs from 'query-string';
 import {useRouter} from "next/router";
 
 const cx = classnames.bind(styles);
+import moment from 'moment';
 
 const ListType01 = ({content,board,moveContentDetail,pageChange,category}) => {
     const router = useRouter();
@@ -51,7 +52,7 @@ const ListType01 = ({content,board,moveContentDetail,pageChange,category}) => {
                                     )}
                                     <td className={cx("txt_l")}><Link href={`/board/${board.boardEnName}/view/${item.contentId}?${qs.stringify(router.query)}`}><a>{item.title}</a></Link></td>
                                     <td>{item.userName}</td>
-                                    <td>{item.regDate}</td>
+                                    <td>{moment(item.regDate).format("YYYY년 MM월 DD일").toString()}</td>
                                     <td>
                                         {item.attachFileList != null && (
                                             item.attachFileList.map((attachFile)=>{

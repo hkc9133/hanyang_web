@@ -136,15 +136,15 @@ const GalleryType02 = ({content,board, pageChange}) => {
                     {/*</li>*/}
                 </ul>
             </div>
-            {/*{content.page != null && (*/}
-            {/*    <Pagination*/}
-            {/*        totalRecords={content.page.totalCount}*/}
-            {/*        pageLimit={content.page.pageSize}*/}
-            {/*        pageNeighbours={1}*/}
-            {/*        currentPage={content.page.pageNo}*/}
-            {/*        onPageChanged={pageChange}*/}
-            {/*    />*/}
-            {/*)}*/}
+            {content.page != null && (
+                <Pagination
+                    totalRecords={content.page.totalCount}
+                    pageLimit={content.page.pageSize}
+                    pageNeighbours={1}
+                    currentPage={content.page.pageNo}
+                    onPageChanged={pageChange}
+                />
+            )}
         </>
     );
 };

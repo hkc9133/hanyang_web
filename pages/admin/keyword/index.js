@@ -81,7 +81,7 @@ const KeywordManagePage = () => {
     },[keyword])
 
     useEffect(() =>{
-        console.log(editInfo)
+        // console.log(editInfo)
 
     },[editInfo])
 
@@ -121,7 +121,7 @@ const KeywordManagePage = () => {
     }
 
     useEffect(() =>{
-        console.log(addInfo)
+        // console.log(addInfo)
 
 
     },[addInfo])
@@ -135,7 +135,7 @@ const KeywordManagePage = () => {
     }
 
     const handleAdd = () =>{
-        console.log(addInfo)
+        // console.log(addInfo)
     }
 
     const handleAddCancel = () =>{
@@ -147,7 +147,7 @@ const KeywordManagePage = () => {
     }
 
     const handleEdit = () =>{
-        console.log(editInfo)
+        // console.log(editInfo)
     }
 
     const handleShowEditModal = (keywordId) =>{
@@ -225,7 +225,7 @@ const KeywordManagePage = () => {
     return (
         <>
             <section className={cx("container")}>
-                <h1 className={cx("top_title")}>팝업 목록</h1>
+                <h1 className={cx("top_title")}>검색어 목록</h1>
                 <div className={cx("adm_container")}>
                     <div className={`${cx("keyword_info","box")} clfx `}>
                         <ul className={"clfx"}>
@@ -252,7 +252,7 @@ const KeywordManagePage = () => {
                         <div className={cx("tb_style_1","keyword_list")}>
                             <table>
                                 <colgroup>
-                                    <col style={{width: "4.6%"}}/>
+                                    <col style={{width: "70%"}}/>
                                     <col/>
                                     <col/>
                                 </colgroup>

@@ -227,49 +227,49 @@ const ContentView = () => {
                                             <span className={cx("view_cnt")}>조회수: {view.content.viewCnt}</span>
                                         </td>
                                     </tr>
-                                    {board.board.subName01 != null && (
+                                    {board.board.subName01 != null  && board.board.subName01 != "" && (
                                         <tr>
                                             <td>
                                                 {`${board.board.subName01}: ${view.content.sub01}`}
                                             </td>
                                         </tr>
                                     )}
-                                    {board.board.subName02 != null && (
+                                    {board.board.subName02 != null  && board.board.subName02 != "" && (
                                         <tr>
                                             <td>
                                                 {`${board.board.subName02}: ${view.content.sub02}`}
                                             </td>
                                         </tr>
                                     )}
-                                    {board.board.subName03 != null && (
+                                    {board.board.subName03 != null  && board.board.subName03 != "" && (
                                         <tr>
                                             <td>
                                                 {`${board.board.subName03}: ${view.content.sub03}`}
                                             </td>
                                         </tr>
                                     )}
-                                    {board.board.subName04 != null && (
+                                    {board.board.subName04 != null  && board.board.subName04 != "" && (
                                         <tr>
                                             <td>
                                                 {`${board.board.subName04}: ${view.content.sub04}`}
                                             </td>
                                         </tr>
                                     )}
-                                    {board.board.subName05 != null && (
+                                    {board.board.subName05 != null  && board.board.subName05 != "" && (
                                         <tr>
                                             <td>
                                                 {`${board.board.subName05}: ${view.content.sub05}`}
                                             </td>
                                         </tr>
                                     )}
-                                    {board.board.subName06 != null && (
+                                    {board.board.subName06 != null  && board.board.subName06 != "" && (
                                         <tr>
                                             <td>
                                                 {`${board.board.subName06}: ${view.content.sub06}`}
                                             </td>
                                         </tr>
                                     )}
-                                    {board.board.subName07 != null && (
+                                    {board.board.subName07 != null  && board.board.subName07 != "" && (
                                         <tr>
                                             <td>
                                                 {`${board.board.subName07}: ${view.content.sub07}`}
@@ -278,7 +278,7 @@ const ContentView = () => {
                                     )}
                                     <tr>
                                         <td>
-                                            <div dangerouslySetInnerHTML={{__html: view.content.content}} className={"ql-editor"}/>
+                                            <div dangerouslySetInnerHTML={{__html: view.content.content}} className={"ck-content"}/>
                                         </td>
                                     </tr>
                                     {
@@ -314,8 +314,7 @@ const ContentView = () => {
                                         {view.next != null && (
                                             <li>
                                                 <span className={cx("title")}>다음글</span>
-                                                <Link
-                                                    href={`/board/${router.query.boardName}/view/${view.next.contentId}`}><a>{view.next.title}</a></Link>
+                                                <Link href={`/admin/board/content/${router.query.boardName}/${view.next.contentId}`}><a>{view.next.title}</a></Link>
                                                 <span
                                                     className={cx("date")}>{moment(view.next.regDate).format("YYYY.MM.DD")}</span>
                                             </li>
@@ -323,8 +322,7 @@ const ContentView = () => {
                                         {view.prev != null && (
                                             <li>
                                                 <span className={cx("title")}>이전글</span>
-                                                <Link
-                                                    href={`/board/${router.query.boardName}/view/${view.prev.contentId}`}><a>{view.prev.title}</a></Link>
+                                                <Link href={`/admin/board/content/${router.query.boardName}/${view.prev.contentId}`}><a>{view.prev.title}</a></Link>
                                                 <span
                                                     className={cx("date")}>{moment(view.prev.regDate).format("YYYY.MM.DD")}</span>
                                             </li>

@@ -37,19 +37,15 @@ const ReplyItem = ({reply,addNewReReply,newReReply,changeAddReReply,showInput,se
     return (
         <>
             <div className={cx("reply_content_box", {rereply:reply.parentId != null})}>
-                {reply.status != 'D' && (
-                    <span className={cx("to_name")}>{reply.userName}</span>
-                )}
-                <div key={reply.replyId}>{reply.status == 'D' ? "삭제된 댓글 입니다." :
-                    (
-                        <>
-                            {reply.toName != null && (
-                                <span className={cx("to_name")}>{reply.toName}</span>
-                            )}
-                            <span className={cx("reply_content")}>{reply.replyContent}</span>
-                        </>
-                    )
-                }</div>
+                <span className={cx("to_name")}>{reply.userName}</span>
+                <div key={reply.replyId}>
+                    <>
+                        {reply.toName != null && (
+                            <span className={cx("to_name")}>{reply.toName}</span>
+                        )}
+                        <span className={cx("reply_content")}>{reply.replyContent}</span>
+                    </>
+                </div>
                 {reply.status != 'D' && (
                     <div className={cx("reply_content_btn_box")}>
                         {user.login && (

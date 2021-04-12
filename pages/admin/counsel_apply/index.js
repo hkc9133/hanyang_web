@@ -11,6 +11,8 @@ import styles from '../../../public/assets/styles/admin/mentor/mentor.module.css
 import classnames from "classnames/bind"
 import {getCounselApplyList, getMentorList} from "../../../store/mentoring/adminMentoring";
 import CounselApplyListTable from "../../../component/admin/counsel_apply/CounselApplyListTable";
+import Link from "next/link";
+import {port, url} from "../../../lib/api/client";
 
 const cx = classnames.bind(styles);
 
@@ -101,6 +103,9 @@ const CounselApplyListPage = () => {
 
                 <div className={cx("admin_cont")}>
                     <h2 className={cx("title_style_1")}><span>전체목록</span></h2>
+                    <div className={cx("btn-box02")}>
+                        <Link href={`${url}:${port}/api/admin/mentoring/counsel_apply/excel_download`}><a className={cx("basic-btn04")} download target="_blank">액셀 다운로드</a></Link>
+                    </div>
                     <div className={cx("tb_style_1")}>
                         <CounselApplyListTable cx={cx} list={counselApplyList.list}/>
                     </div>

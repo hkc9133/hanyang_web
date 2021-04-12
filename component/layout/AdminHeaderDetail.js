@@ -87,6 +87,7 @@ const AdminHeaderDetail = () => {
                                 <li><Link href={'/admin/board/content/list?boardEnName=startup_info'}><a>신규사업공고</a></Link></li>
                                 <li><Link href={'/admin/board/content/list?boardEnName=idea'}><a>커뮤니티 게시판</a></Link></li>
                                 <li><Link href={'/admin/board/content/list?boardEnName=data_room'}><a>자료실</a></Link></li>
+                                <li><Link href={'/admin/board/content/list?boardEnName=faq'}><a>FAQ</a></Link></li>
                             </ul>
                             )}
                         </div>
@@ -120,7 +121,6 @@ const AdminHeaderDetail = () => {
                             {dropdown["4_6"] && (
                                 <ul>
                                     <li><Link href={'/admin/board/content/list?boardEnName=Issue'}><a>창업지원단 핫이슈</a></Link></li>
-                                    <li><Link href={'/admin/board/content/list?boardEnName=faq'}><a>FAQ</a></Link></li>
                                 </ul>
                             )}
                         </div>

@@ -89,6 +89,10 @@ const BoardView = () => {
         }
     },[board,user,view])
 
+    useEffect(() =>{
+
+    },[])
+
     useEffect(() => {
         setNewReReply({
             replyContent: "",
@@ -165,7 +169,8 @@ const BoardView = () => {
     const handleUpdateReply = (replyId) => {
         const data = {
             ...updateReplyValue,
-            replyId: replyId
+            replyId: replyId,
+            contentId:view.content.contentId
 
         }
         dispatch(updateReply(data));
@@ -216,18 +221,18 @@ const BoardView = () => {
 
                     <div className={cx("bbs_view")}>
                         <div className={cx("topTitleArea")}>
-                            {
-                                user.info != null && (user.role == 'ROLE_ADMIN' || user.info.userId != view.content.writerId) &&(
-                                    <button className={cx("basic-btn05","btn-red-bd")} onClick={() =>{setShowRemoveModal(true)}}>삭제</button>
-                                )
-                            }
+                            {/*{*/}
+                            {/*    user.info != null && (user.role == 'ROLE_ADMIN' || user.info.userId != view.content.writerId) &&(*/}
+                            {/*        <button className={cx("basic-btn05","btn-red-bd")} onClick={() =>{setShowRemoveModal(true)}}>삭제</button>*/}
+                            {/*    )*/}
+                            {/*}*/}
                             <h2>{view.content.title}</h2>
                             <span className={cx("date")}>{moment(view.content.regDate).format("YYYY.MM.DD HH:MM")}</span>
                             <span>작성자 : {view.content.userName}</span>
                         </div>
 
                         <div className={cx("bbs_viewCont")}>
-                            <div className={"ql-editor"} dangerouslySetInnerHTML={{__html: view.content.content}}/>
+                            <div className={"ck-content"} dangerouslySetInnerHTML={{__html: view.content.content}}/>
                         </div>
                         {
                             board.board.useFile && view.files.length > 0 && (

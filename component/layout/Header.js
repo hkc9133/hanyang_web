@@ -140,7 +140,7 @@ const Header = () => {
                             </div>
                         </li>
                         <li>
-                            <Link href="/board/startup_info/list"><a>창업지원정보</a></Link>
+                            <Link href="/board/notice/list"><a>창업지원정보</a></Link>
                             <div className={cx("s_gnb")}>
                                 <ul>
                                     <li><Link href="/board/notice/list"><a>공지사항</a></Link></li>
@@ -148,6 +148,7 @@ const Header = () => {
                                     <li><Link href="/board/startup_info/list"><a>신규사업공고</a></Link></li>
                                     <li><Link href="/board/idea/list"><a>커뮤니티 게시판</a></Link></li>
                                     <li><Link href="/board/data_room/list"><a>자료실</a></Link></li>
+                                    <li><Link href="/board/faq/list"><a>FAQ</a></Link></li>
                                 </ul>
                             </div>
                         </li>
@@ -179,7 +180,7 @@ const Header = () => {
                                     <li><Link href="/introduce/infra"><a>인프라</a></Link></li>
                                     <li><Link href="/introduce/friendly"><a>창업친화적 제도</a></Link></li>
                                     <li><Link href="/board/media_report/list"><a>언론보도</a></Link></li>
-                                    <li><Link href="/board/news/list"><a>뉴스레터</a></Link></li>
+                                    <li><Link href="/introduce/news"><a>뉴스레터</a></Link></li>
                                     <li><Link href="/introduce/promotion"><a>소개자료</a></Link></li>
                                     <li><Link href="/introduce/location"><a>오시는 길</a></Link></li>
                                 </ul>
@@ -265,6 +266,7 @@ const Header = () => {
                                     <li><Link href="/board/startup_info/list"><a>신규사업공고</a></Link></li>
                                     <li><Link href="/board/idea/list"><a>커뮤니티 게시판</a></Link></li>
                                     <li><Link href="/board/data_room/list"><a>자료실</a></Link></li>
+                                    <li><Link href="/board/faq/list"><a>FAQ</a></Link></li>
                                 </ul>
                             </div>
                         </li>
@@ -296,7 +298,7 @@ const Header = () => {
                                     <li><Link href="/introduce/infra"><a>인프라</a></Link></li>
                                     <li><Link href="/introduce/friendly"><a>창업친화적 제도</a></Link></li>
                                     <li><Link href="/board/media_report/list"><a>언론보도</a></Link></li>
-                                    <li><Link href="/board/news/list"><a>뉴스레터</a></Link></li>
+                                    <li><Link href="/introduce/news"><a>뉴스레터</a></Link></li>
                                     <li><Link href="/introduce/promotion"><a>소개자료</a></Link></li>
                                     <li><Link href="/introduce/location"><a>오시는 길</a></Link></li>
                                 </ul>
