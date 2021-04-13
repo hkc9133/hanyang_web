@@ -173,7 +173,7 @@
 }
 /* ckeditor5-table/theme/table.css */
 .ck-content .table {
-    margin: 1em auto;
+    margin: unset;
     display: table;
 }
 /* ckeditor5-table/theme/table.css */

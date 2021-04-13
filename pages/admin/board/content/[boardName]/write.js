@@ -180,6 +180,7 @@ const Write = (props) => {
                 regDate: writeInfo.regDate != null ? writeInfo.regDate.format("YYYY-MM-DD HH:mm").toString() : null,
             }
             data.regDate == null && delete data.regDate
+
             dispatch(addBoardContent(data));
         }
     }

@@ -112,7 +112,7 @@ const AdminHeaderDetail = () => {
                             {dropdown["4_5"] && (
                             <ul>
                                 <li><Link href={'/admin/board/content/list?boardEnName=media_report'}><a>언론보도</a></Link></li>
-                                <li><Link href={'/admin/board/content/list?boardEnName=news'}><a>뉴스레터</a></Link></li>
+                                {/*<li><Link href={'/admin/board/content/list?boardEnName=news'}><a>뉴스레터</a></Link></li>*/}
                             </ul>
                             )}
                         </div>
