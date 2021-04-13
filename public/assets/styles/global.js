@@ -1,7 +1,7 @@
 import css from 'styled-jsx/css'
 
 export default css.global`
-        .kakao_menu{position: fixed; bottom: 3%; right: 3%; z-index: 99; width: 80px; height: 80px; border-radius: 10px; background-color: #ffeb3b; text-align: center;box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.151); }
+        .kakao_menu{position: fixed; bottom: 3%; right: 3%; z-index: 9; width: 80px; height: 80px; border-radius: 10px; background-color: #ffeb3b; text-align: center;box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.151); }
         .kakao_menu a{display: block; line-height: 80px; }
         
         @media screen and (max-width:768px){
