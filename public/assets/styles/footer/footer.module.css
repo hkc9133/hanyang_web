@@ -81,6 +81,7 @@
     .footer_family_site{ text-align:center; }
     .footer_cont{float:none; padding-top:30px; text-align:center; }
 
+    .footer_sns ul li:first-child{margin-left: 0;}
 
 
 

@@ -136,7 +136,7 @@ const Footer = () => {
                                 <li><Link href="https://blog.naver.com/hyustartup"><a target="_blank"><Image src="/assets/image/sns_icon_1.gif" width={24} height={24}  alt="naver_icon"/></a></Link></li>
                                 <li><Link href="https://www.facebook.com/startuphanyang"><a target="_blank"><Image src="/assets/image/sns_icon_2.gif"  width={24} height={24} alt="facebook_icon"/></a></Link></li>
                                 <li><Link href="https://www.youtube.com/c/%ED%95%9C%EC%96%91%EB%8C%80%ED%95%99%EA%B5%90%EC%B0%BD%EC%97%85%EC%A7%80%EC%9B%90%EB%8B%A8"><a target="_blank"><Image src="/assets/image/sns_icon_3.gif"  width={24} height={24} alt="google_icon"/></a></Link></li>
-                                <li><Link href="/"><a><Image src="/assets/image/sns_icon_4.gif"  width={24} height={24} alt="kakao_icon"/></a></Link></li>
+                                {/*<li><Link href="/"><a><Image src="/assets/image/sns_icon_4.gif"  width={24} height={24} alt="kakao_icon"/></a></Link></li>*/}
                             </ul>
                         </div>
                     </div>

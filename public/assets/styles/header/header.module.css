@@ -71,7 +71,7 @@
     z-index: 999;}
 .total_menu>ul>li{width: 50%;
     display: inline-block;
-    height: 230px;
+    height: 200px;
     float: left;
     text-align: center;
 }
@@ -111,7 +111,7 @@
 }
 .total_menu .s_menu.show{
     padding:10px;
-    height: 185px;
+    height: 160px;
     max-height: 500px; /* approximate max height */
     transition-property: max-height;
     /*transition-duration: 0.9s;*/

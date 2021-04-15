@@ -555,7 +555,7 @@ const Index = () => {
                     <div className={cx("main_tab")}>
                         <ul>
                             <li className={cx("on")}>
-                                <button type="button">창업지원 부서/기관</button>
+                                <button type="button">교내 창업지원 부서/기관</button>
                             </li>
                         </ul>
                     </div>
@@ -693,7 +693,7 @@ const Index = () => {
                                     </Link>
                                 </div>
                                 <div className={cx("txt_area")}>
-                                    <Link href="https://hywep.hanyang.ac.kr/index.do">
+                                    <Link href="http://cbi.hanyang.ac.kr/">
                                         <a target="_blank">
                                             <div className={cx("title")}>
                                                 창업보육센터
@@ -748,9 +748,7 @@ const Index = () => {
                                             </div>
                                             <div>산학협력 지원</div>
                                             <div className={cx("txt")}>
-                                                사회적 가치를 창출하는
-                                                <br/>
-                                                산업선도형 산학협력사업 수행
+                                                사회적 가치를 창출하는 산업선도형 산학협력사업 수행
                                             </div>
                                         </a>
                                     </Link>

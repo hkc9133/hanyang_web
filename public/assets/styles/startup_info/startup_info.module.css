@@ -504,7 +504,7 @@
 
     .sub_cont{padding:40px 20px;}
     .sub_cont_top{padding:60px 20px 30px; }
-    .sub_top_txt{margin-bottom:30px;}
+    .sub_top_txt{margin-bottom:30px; width: 100%; }
     .tab_style_2 li{margin:0 10px;}
     .tab_style_2 li a{padding-bottom:10px; font-size:14px;}
     .title_style_3{font-size:22px; }

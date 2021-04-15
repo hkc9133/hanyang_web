@@ -219,6 +219,24 @@ const Location = () => {
                                     <li>(서울캠퍼스 내 한양종합기술연구원 또는 백남학술정보관 하차)</li>
                                 </ul>
                             </div>
+                            <h4>주차안내</h4>
+                            <div className={cx("parking_area")}>
+                                <ul>
+                                    <li>교내 주차 가능 구역</li>
+                                    <li className={cx("parking_info")}> - 한양종합기술연구원(HIT) 지하주차장, 경영관 지하주차장, 대운동장 지하주차장</li>
+                                </ul>
+                                <ul>
+                                    <li>주차요금</li>
+                                    <li className={cx("parking_info")}> -입차 후 15분 미만 경과 : 무료</li>
+                                    <li className={cx("parking_info")}> -입차 후 15분 이상 30분 미만 경과 : 1,500원</li>
+                                    <li className={cx("parking_info")}> -입차 후 30분 이상 경과 : 10분당 500원씩 추가 부과</li>
+                                </ul>
+                                <ul>
+                                    <li>할인권(방문 부서에 별도 요청 필수)</li>
+                                    <li className={cx("parking_info")}> -출차 전 사전차량등록 또는 할인권 발급</li>
+                                    <li className={cx("parking_info")}> -2시간, 4시간, 6시간, 8시간 등록 및 발급 가능</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>

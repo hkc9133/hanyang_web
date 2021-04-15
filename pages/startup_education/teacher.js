@@ -15,7 +15,7 @@ const Teacher = () => {
             <section className={cx("container","teacherCont")}>
                 <div className={cx("sub_cont","sub_cont_top")}>
                     <h1 className={cx("sub_top_title")}>교원 대상</h1>
-                    <p className={cx("sub_top_txt")}>창의적융합인재 양성을 위하여 체계적인 창업교육 커리큘럼을 운영</p>
+                    <p className={cx("sub_top_txt")}>대학(원) 실험실 기술 중 창업 적합성 및 가능성이 우수하고, <br />1년 내 실제 창업이 가능한 기술을 선정해 실험실 창업 지원</p>
                 </div>
 
                 <div className={cx("gray_bg")}>
