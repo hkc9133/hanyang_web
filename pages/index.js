@@ -220,7 +220,7 @@ const Index = () => {
     return (
         <>
             <Head>
-                <title>한양대학교 창업지원단 메인</title>
+                <title>한양대학교 창업지원단</title>
             </Head>
             {mainData.popup.map((popup) =>
                 <PopupItem key={popup.popupId} popup={popup} cx={cx}/>
@@ -276,13 +276,13 @@ const Index = () => {
                                 </a>
                             </Link>
                         </li>
-                        {/*<li className={cx("icon_8")}>*/}
-                        {/*    <Link href="#">*/}
-                        {/*        <a onClick={moveReportApply}>*/}
-                        {/*            <span>학생창업자 신고</span>*/}
-                        {/*        </a>*/}
-                        {/*    </Link>*/}
-                        {/*</li>*/}
+                        <li className={cx("icon_8")}>
+                            <Link href="#">
+                                <a onClick={moveReportApply}>
+                                    <span>학생창업자 신고</span>
+                                </a>
+                            </Link>
+                        </li>
                     </ul>
                     <div className={cx("main_search_area")}>
                         <input type="text" placeholder="검색어를 입력하세요." value={searchValue} onChange={(e) => {

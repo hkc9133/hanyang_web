@@ -9,6 +9,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getStartupCalendarList} from "../../store/startupCalendar/startupCalendar";
 import PageNavigation from "../../component/layout/PageNavigation";
 import {Button, Modal} from "antd";
+import Head from "next/head";
 
 const cx = classnames.bind(styles);
 
@@ -94,7 +95,10 @@ const StartupEvent = () => {
     }
     return (
         <>
-            <PageNavigation/>
+
+            <Head>
+                <title>한양대학교 창업지원단 -창업캘린더</title>
+            </Head>
             <section className={cx("container")}>
                 <div className={cx("sub_container", "calendar")}>
                     <h1 className={cx("sub_top_title")}>창업캘린더</h1>

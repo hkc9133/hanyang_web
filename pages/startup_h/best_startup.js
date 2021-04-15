@@ -18,6 +18,7 @@ import {FileImageOutlined} from "@ant-design/icons";
 import Modal from "../../component/common/Modal";
 import Link from 'next/link';
 import {HomeOutlined} from '@ant-design/icons';
+import Head from "next/head";
 
 const cx = classnames.bind(styles);
 
@@ -97,7 +98,6 @@ const BestStartup = () => {
         })
 
         bestStartupList.count.forEach((item, index) => {
-            console.log(item)
             switch (item.gubun) {
                 case "학생":
                     countList.st = item.count
@@ -131,6 +131,9 @@ const BestStartup = () => {
     }
     return (
         <>
+            <Head>
+                <title>한양대학교 창업지원단 -우수 스타트업</title>
+            </Head>
             <PageNavigation/>
             <section className={cx("sub_container", "best_startup")}>
                 <h1 className={cx("sub_top_title")}>우수스타트업</h1>

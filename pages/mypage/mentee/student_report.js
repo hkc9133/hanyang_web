@@ -51,7 +51,7 @@ const StudentReportManagePage = () => {
                         <div className={cx("tab_style_2")}>
                             <ul>
                                 <li><Link href="/mypage/mentee"><a>창업상담 현황</a></Link></li>
-                                <li className={cx("on")}><Link href="/mypage/mentee/student_report"><a>학생창업신고 현황</a></Link></li>
+                                {/*<li className={cx("on")}><Link href="/mypage/mentee/student_report"><a>학생창업신고 현황</a></Link></li>*/}
                             </ul>
                         </div>
 

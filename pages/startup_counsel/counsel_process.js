@@ -10,6 +10,7 @@ import {getBestMentor} from "../../store/mentoring/mentoring";
 import Slider from "react-slick";
 import {Modal} from "antd";
 import {useRouter} from "next/router";
+import Head from "next/head";
 const cx = classnames.bind(styles);
 
 
@@ -72,6 +73,9 @@ const CounselApply = () => {
 
     return (
         <>
+            <Head>
+                <title>한양대학교 창업지원단 -창업상담</title>
+            </Head>
             <PageNavigation/>
             <section className={cx("sub_container","consultation")}>
                 <h1 className={cx("sub_top_title")}>창업상담</h1>

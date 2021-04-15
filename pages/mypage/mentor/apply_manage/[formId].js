@@ -22,6 +22,7 @@ import locale from "antd/lib/date-picker/locale/ko_KR";
 const {RangePicker} = DatePicker;
 import { UploadOutlined } from '@ant-design/icons';
 import client from "../../../../lib/api/client";
+import Head from "next/head";
 const Editor = dynamic(() => import("../../../../component/common/Editor"), {
     ssr: false,
     loading: () => <p>Loading ...</p>,
@@ -163,6 +164,9 @@ const CounselApplyDetail = () => {
 
     return (
         <>
+            <Head>
+                <title>한양대학교 창업지원단 -학생창업신고 현황</title>
+            </Head>
             {apply != null && (
                 <section className={cx("container")}>
                     <div className={cx("sub_container", "mentor_group_write")}>

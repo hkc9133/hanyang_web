@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from "next/image";
 import styles from '../../public/assets/styles/startup_education/startup_education.module.css';
 import classnames from "classnames/bind"
+import Head from "next/head";
 
 
 const cx = classnames.bind(styles);
@@ -11,6 +12,9 @@ const cx = classnames.bind(styles);
 const Teacher = () => {
     return (
         <>
+            <Head>
+                <title>한양대학교 창업지원단 -교원 대상</title>
+            </Head>
             <PageNavigation/>
             <section className={cx("container","teacherCont")}>
                 <div className={cx("sub_cont","sub_cont_top")}>

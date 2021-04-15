@@ -14,6 +14,7 @@ import styles from '../../../public/assets/styles/skin/board.module.css';
 import classnames from "classnames/bind"
 
 import qs from 'query-string';
+import Head from "next/head";
 const cx = classnames.bind(styles);
 
 
@@ -111,6 +112,10 @@ const List = () => {
         <>
             <PageNavigation/>
             {currentBoard.board != null && (
+                <>
+                    <Head>
+                        <title>한양대학교 창업지원단 -{currentBoard.board.boardKrName}</title>
+                    </Head>
                 <section className={cx("sub_container","online_content")}>
                     <h1 className={cx("sub_top_title")}>{currentBoard.board.boardKrName}</h1>
                     <p className={cx("sub_top_txt")}>{currentBoard.board.boardDesc}</p>
@@ -188,6 +193,7 @@ const List = () => {
 
 
                 </section>
+                    </>
             )}
 
         </>

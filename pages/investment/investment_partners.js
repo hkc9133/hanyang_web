@@ -12,6 +12,7 @@ import {getBoardContentList} from "../../store/board/board";
 import client from "../../lib/api/client";
 import {FileImageOutlined} from "@ant-design/icons";
 import Image from "next/image";
+import Head from "next/head";
 
 const cx = classnames.bind(styles);
 
@@ -94,6 +95,9 @@ const InvestmentPartners = () => {
 
     return (
         <>
+            <Head>
+                <title>한양대학교 창업지원단 -국내외 투자파트너스</title>
+            </Head>
             <PageNavigation/>
         <section className={cx("sub_container","irWrap")}>
             <h1 className={cx("sub_top_title")}>국내외 투자파트너스</h1>

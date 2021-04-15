@@ -1,11 +1,15 @@
 import React from 'react';
 import styles from '../public/assets/styles/startup_education/startup_education.module.css';
 import classnames from "classnames/bind"
+import Head from "next/head";
 
 const cx = classnames.bind(styles);
 const EmailPolicy = () => {
     return (
         <>
+            <Head>
+                <title>한양대학교 창업지원단 -이메일 주소 무단수집 거부</title>
+            </Head>
             <section className={cx("container","privacyPolicy")}>
                 <div className={cx("sub_container","startup_procedure")}>
                     <h1 className={cx("sub_top_title")}>이메일 주소 무단수집 거부</h1>

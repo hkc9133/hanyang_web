@@ -4,7 +4,7 @@ import client from "../../../../lib/api/client";
 import {addReply, deleteReply, getBoard, updateReply} from "../../../../store/board/board";
 import {END} from "redux-saga";
 import {useRouter} from "next/router";
-import {getBoardContent,deleteBoardContent,initialize} from "../../../../store/board/board";
+import {getBoardContent, deleteBoardContent, initialize} from "../../../../store/board/board";
 import {useDispatch, useSelector} from "react-redux";
 import Link from 'next/link'
 import moment from 'moment';
@@ -15,6 +15,8 @@ import {Input, Modal, Upload} from "antd";
 import {fileDownload, fileDownload2} from "../../../../store/file/file";
 import ReplyAdd from "../../../../component/board/ReplyAdd";
 import ReplyList from "../../../../component/board/ReplyList";
+import Head from "next/head";
+import PageNavigation from "../../../../component/layout/PageNavigation";
 
 const cx = classnames.bind(styles);
 
@@ -54,44 +56,48 @@ const BoardView = () => {
     const [showUpdateInput, setShowUpdateInput] = useState(null);
     const [showRemoveModal, setShowRemoveModal] = useState(false);
 
-    const {board,user, view, reply,deleteResult} = useSelector(({board,auth, loading}) => ({
-        user:auth.user,
+    const {board, user, view, reply, deleteResult} = useSelector(({board, auth, loading}) => ({
+        user: auth.user,
         board: board.board,
         view: board.view,
         reply: board.reply,
-        deleteResult:board.delete
+        deleteResult: board.delete
     }))
 
-    useEffect(() =>{
-        if(user.login != null){
-            if(board != null && user.login && view.content != null){
+    useEffect(() => {
+        if (user.login != null) {
+            if (board != null && user.login && view.content != null) {
 
-                if(board.board.isPrivacy && (user.role != 'ROLE_ADMIN' && user.info.userId != view.content.writerId)){
+                if (board.board.isPrivacy && (user.role != 'ROLE_ADMIN' && user.info.userId != view.content.writerId)) {
                     Modal.warning({
-                        title:"작성자만 확인 가능합니다",
-                        onOk:() =>{router.back();}
+                        title: "작성자만 확인 가능합니다",
+                        onOk: () => {
+                            router.back();
+                        }
                     });
-                }else{
+                } else {
                     setShow(true)
                 }
-            }else if(board != null && !user.login && view.content != null){
-                if(board.board.isPrivacy){
+            } else if (board != null && !user.login && view.content != null) {
+                if (board.board.isPrivacy) {
                     Modal.warning({
-                        title:"작성자만 확인 가능합니다",
-                        onOk:() =>{router.back();}
+                        title: "작성자만 확인 가능합니다",
+                        onOk: () => {
+                            router.back();
+                        }
                     });
-                }else{
+                } else {
                     setShow(true)
                 }
 
             }
 
         }
-    },[board,user,view])
+    }, [board, user, view])
 
-    useEffect(() =>{
+    useEffect(() => {
 
-    },[])
+    }, [])
 
     useEffect(() => {
         setNewReReply({
@@ -170,7 +176,7 @@ const BoardView = () => {
         const data = {
             ...updateReplyValue,
             replyId: replyId,
-            contentId:view.content.contentId
+            contentId: view.content.contentId
 
         }
         dispatch(updateReply(data));
@@ -193,137 +199,154 @@ const BoardView = () => {
 
     }
 
-    const handleDeleteContent = () =>{
+    const handleDeleteContent = () => {
         dispatch(deleteBoardContent(view.content.contentId))
     }
 
-    useEffect(() =>{
-        if(deleteResult.result && deleteResult.error == null){
+    useEffect(() => {
+        if (deleteResult.result && deleteResult.error == null) {
             Modal.success({
                 content: '글 삭제 완료되었습니다',
-                onOk:() => {router.back();}
+                onOk: () => {
+                    router.back();
+                }
             });
-        }else if(deleteResult.result == false && deleteResult.error != null){
+        } else if (deleteResult.result == false && deleteResult.error != null) {
             Modal.warning({
                 title: '삭제 중 에러가 발생하였습니다'
             });
             // dispatch(initialize())
         }
 
-    },[deleteResult])
+    }, [deleteResult])
 
     return (
         show && (
-            <section className={cx("container")}>
-                <div className={cx("sub_container", "board_view")}>
-                    <h1 className={cx("sub_top_title")}>{board.board.boardKrName}</h1>
-                    <p className={cx("sub_top_txt")}>{board.board.boardDesc}</p>
+            <>
+                <Head>
+                    <title>한양대학교 창업지원단 -{board.board.boardKrName}</title>
+                </Head>
+                <PageNavigation/>
+                <section className={cx("container")}>
+                    <div className={cx("sub_container", "board_view")}>
+                        <h1 className={cx("sub_top_title")}>{board.board.boardKrName}</h1>
+                        <p className={cx("sub_top_txt")}>{board.board.boardDesc}</p>
 
-                    <div className={cx("bbs_view")}>
-                        <div className={cx("topTitleArea")}>
-                            {/*{*/}
-                            {/*    user.info != null && (user.role == 'ROLE_ADMIN' || user.info.userId != view.content.writerId) &&(*/}
-                            {/*        <button className={cx("basic-btn05","btn-red-bd")} onClick={() =>{setShowRemoveModal(true)}}>삭제</button>*/}
-                            {/*    )*/}
-                            {/*}*/}
-                            <h2>{view.content.title}</h2>
-                            <span className={cx("date")}>{moment(view.content.regDate).format("YYYY.MM.DD HH:MM")}</span>
-                            <span>작성자 : {view.content.userName}</span>
-                        </div>
-
-                        <div className={cx("bbs_viewCont")}>
-                            <div className={"ck-content"} dangerouslySetInnerHTML={{__html: view.content.content}}/>
-                        </div>
-                        {
-                            board.board.useFile && view.files.length > 0 && (
-                                <div className={cx("bbs_attach_file")}>
-                                    <Upload
-                                        listType="picture"
-                                        fileList={view.files.map((file) => {
-                                            return {
-                                                uid: file.fileName,
-                                                name: file.fileOriginName,
-                                                status: 'done',
-                                                fileId: file.fileId
-                                            }
-                                        })}
-                                        showUploadList={{
-                                            showPreviewIcon: false,
-                                            showRemoveIcon: false,
-                                            showDownloadIcon: true
-                                        }}
-                                        onDownload={handleFileDownload}
-                                    >
-                                    </Upload>
-                                </div>
-                            )
-                        }
-
-                        {board.board.useComment && (
-                            <div className={cx("reply_box")}>
-                                <ReplyList list={reply.list} addNewReReply={addNewReReply}
-                                           changeAddReReply={changeAddReReply} newReReply={newReReply}
-                                           setShowInput={setShowInput} showInput={showInput}
-                                           handleUpdateReply={handleUpdateReply} showUpdateInput={showUpdateInput}
-                                           setShowUpdateInput={setShowUpdateInput} updateReplyValue={updateReplyValue}
-                                           changeUpdateReply={changeUpdateReply} handleDeleteReply={handleDeleteReply}
-
-                                />
-                                {user.login ? (
-                                    <div className={cx("add_box")}>
-                                        <ReplyAdd addNewReply={addNewReply} changeAddReply={changeAddReply} newReply={newReply}/>
-                                    </div>
-                                ):(
-                                    <div className={"txt_c"}>
-                                        <Link href={'/user/login'}><a>로그인 후 이용...</a></Link>
-                                    </div>
-                                )}
+                        <div className={cx("bbs_view")}>
+                            <div className={cx("topTitleArea")}>
+                                {/*{*/}
+                                {/*    user.info != null && (user.role == 'ROLE_ADMIN' || user.info.userId != view.content.writerId) &&(*/}
+                                {/*        <button className={cx("basic-btn05","btn-red-bd")} onClick={() =>{setShowRemoveModal(true)}}>삭제</button>*/}
+                                {/*    )*/}
+                                {/*}*/}
+                                <h2>{view.content.title}</h2>
+                                <span
+                                    className={cx("date")}>{moment(view.content.regDate).format("YYYY.MM.DD HH:MM")}</span>
+                                <span>작성자 : {view.content.userName}</span>
                             </div>
-                        )}
 
-                        <div className={cx("txt_c")}>
-                            <Link href={`/board/${board.board.boardEnName}/list?${qs.stringify({
-                                ...router.query,
-                                contentId: null
-                            })}`}><a className={cx("basic-btn04", "btn-black-bd")}>목록보기</a></Link>
-                        </div>
+                            <div className={cx("bbs_viewCont")}>
+                                <div className={"ck-content"} dangerouslySetInnerHTML={{__html: view.content.content}}/>
+                            </div>
+                            {
+                                board.board.useFile && view.files.length > 0 && (
+                                    <div className={cx("bbs_attach_file")}>
+                                        <Upload
+                                            listType="picture"
+                                            fileList={view.files.map((file) => {
+                                                return {
+                                                    uid: file.fileName,
+                                                    name: file.fileOriginName,
+                                                    status: 'done',
+                                                    fileId: file.fileId
+                                                }
+                                            })}
+                                            showUploadList={{
+                                                showPreviewIcon: false,
+                                                showRemoveIcon: false,
+                                                showDownloadIcon: true
+                                            }}
+                                            onDownload={handleFileDownload}
+                                        >
+                                        </Upload>
+                                    </div>
+                                )
+                            }
 
-                        <div className={cx("prev_next")}>
-                            <ul>
-                                {view.next != null && (
-                                    <li>
-                                        <span className={cx("title")}>다음글</span>
-                                        <Link
-                                            href={`/board/${router.query.boardName}/view/${view.next.contentId}`}><a>{view.next.title}</a></Link>
-                                        <span
-                                            className={cx("date")}>{moment(view.next.regDate).format("YYYY.MM.DD")}</span>
-                                    </li>
-                                )}
-                                {view.prev != null && (
-                                    <li>
-                                        <span className={cx("title")}>이전글</span>
-                                        <Link
-                                            href={`/board/${router.query.boardName}/view/${view.prev.contentId}`}><a>{view.prev.title}</a></Link>
-                                        <span
-                                            className={cx("date")}>{moment(view.prev.regDate).format("YYYY.MM.DD")}</span>
-                                    </li>
-                                )}
-                            </ul>
+                            {board.board.useComment && (
+                                <div className={cx("reply_box")}>
+                                    <ReplyList list={reply.list} addNewReReply={addNewReReply}
+                                               changeAddReReply={changeAddReReply} newReReply={newReReply}
+                                               setShowInput={setShowInput} showInput={showInput}
+                                               handleUpdateReply={handleUpdateReply} showUpdateInput={showUpdateInput}
+                                               setShowUpdateInput={setShowUpdateInput}
+                                               updateReplyValue={updateReplyValue}
+                                               changeUpdateReply={changeUpdateReply}
+                                               handleDeleteReply={handleDeleteReply}
+
+                                    />
+                                    {user.login ? (
+                                        <div className={cx("add_box")}>
+                                            <ReplyAdd addNewReply={addNewReply} changeAddReply={changeAddReply}
+                                                      newReply={newReply}/>
+                                        </div>
+                                    ) : (
+                                        <div className={"txt_c"}>
+                                            <Link href={'/user/login'}><a>로그인 후 이용...</a></Link>
+                                        </div>
+                                    )}
+                                </div>
+                            )}
+
+                            <div className={cx("txt_c")}>
+                                <Link href={`/board/${board.board.boardEnName}/list?${qs.stringify({
+                                    ...router.query,
+                                    contentId: null
+                                })}`}><a className={cx("basic-btn04", "btn-black-bd")}>목록보기</a></Link>
+                            </div>
+
+                            <div className={cx("prev_next")}>
+                                <ul>
+                                    {view.next != null && (
+                                        <li>
+                                            <span className={cx("title")}>다음글</span>
+                                            <Link
+                                                href={`/board/${router.query.boardName}/view/${view.next.contentId}`}><a>{view.next.title}</a></Link>
+                                            <span
+                                                className={cx("date")}>{moment(view.next.regDate).format("YYYY.MM.DD")}</span>
+                                        </li>
+                                    )}
+                                    {view.prev != null && (
+                                        <li>
+                                            <span className={cx("title")}>이전글</span>
+                                            <Link
+                                                href={`/board/${router.query.boardName}/view/${view.prev.contentId}`}><a>{view.prev.title}</a></Link>
+                                            <span
+                                                className={cx("date")}>{moment(view.prev.regDate).format("YYYY.MM.DD")}</span>
+                                        </li>
+                                    )}
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <Modal
-                    title="삭제하시겠습니까?"
-                    visible={showRemoveModal}
-                    onCancel={() =>{setShowRemoveModal(false)}}
-                    footer={[
-                        <button key={"cancel_btn"} className={cx("basic-btn06","btn-gray-bg")} onClick={() =>{setShowRemoveModal(false);}}>취소</button>,
-                        <button key={"delete_btn"} className={cx("basic-btn07","btn-red-bg")} onClick={handleDeleteContent}>삭제</button>
-                    ]}
-                >
-                    <p className={cx("warning")}>{view.content.title}</p>
-                </Modal>
-            </section>
+                    <Modal
+                        title="삭제하시겠습니까?"
+                        visible={showRemoveModal}
+                        onCancel={() => {
+                            setShowRemoveModal(false)
+                        }}
+                        footer={[
+                            <button key={"cancel_btn"} className={cx("basic-btn06", "btn-gray-bg")} onClick={() => {
+                                setShowRemoveModal(false);
+                            }}>취소</button>,
+                            <button key={"delete_btn"} className={cx("basic-btn07", "btn-red-bg")}
+                                    onClick={handleDeleteContent}>삭제</button>
+                        ]}
+                    >
+                        <p className={cx("warning")}>{view.content.title}</p>
+                    </Modal>
+                </section>
+            </>
         )
     );
 };

@@ -20,6 +20,7 @@ import KeywordBox from "../../../component/stratup_counsel/mentor_apply/KeywordB
 import CareerBox from "../../../component/stratup_counsel/mentor_apply/CareerBox";
 import client from "../../../lib/api/client";
 import Modal from "../../../component/common/Modal";
+import Head from "next/head";
 
 const cx = classnames.bind(styles);
 
@@ -140,6 +141,10 @@ const MentorProfile = () => {
     }
 
     return (
+        <>
+            <Head>
+                <title>한양대학교 창업지원단 -프로필 변경</title>
+            </Head>
         <div>
             <section className={cx("container")}>
                 <div className={cx("sub_container", "mentor_group_write")}>
@@ -350,6 +355,7 @@ const MentorProfile = () => {
                 </Modal>
             </section>
         </div>
+            </>
     );
 };
 

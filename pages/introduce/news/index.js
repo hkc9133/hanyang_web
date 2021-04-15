@@ -5,10 +5,14 @@ import classnames from "classnames/bind"
 const cx = classnames.bind(styles);
 import Link from 'next/link';
 import PageNavigation from "../../../component/layout/PageNavigation";
+import Head from "next/head";
 
 const NewsPage = () => {
     return (
         <>
+            <Head>
+                <title>한양대학교 창업지원단 -뉴스레터</title>
+            </Head>
             <PageNavigation/>
         <section className={cx("sub_container", "newsletter_content")}>
             <h1 className={cx("sub_top_title")}>뉴스레터</h1>

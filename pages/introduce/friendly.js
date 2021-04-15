@@ -4,6 +4,7 @@ import styles from '../../public/assets/styles/startup_education/startup_educati
 import classnames from "classnames/bind"
 import PageNavigation from "../../component/layout/PageNavigation";
 import {useRouter} from "next/router";
+import Head from "next/head";
 
 const cx = classnames.bind(styles);
 
@@ -22,6 +23,9 @@ const Friendly = () => {
 
     return (
         <>
+            <Head>
+                <title>한양대학교 창업지원단 -창업친화적 제도</title>
+            </Head>
             <PageNavigation/>
             <section className={cx("container","friendlyCont")}>
                 <div className={cx("sub_container","startup_procedure")}>

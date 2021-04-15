@@ -1,12 +1,16 @@
 import React from 'react';
 import styles from '../public/assets/styles/startup_education/startup_education.module.css';
 import classnames from "classnames/bind"
+import Head from "next/head";
 
 const cx = classnames.bind(styles);
 
 const TermsPage = () => {
     return (
         <>
+            <Head>
+                <title>한양대학교 창업지원단 -이용약관</title>
+            </Head>
             <section className={cx("container","privacyPolicy")}>
                 <div className={cx("sub_container","startup_procedure")}>
                     <h1 className={cx("sub_top_title")}>이용약관</h1>

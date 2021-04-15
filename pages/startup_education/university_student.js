@@ -11,6 +11,7 @@ import {
     isMobile
 } from "react-device-detect";
 import {baseUrl} from "../../lib/api/client";
+import Head from "next/head";
 
 const {SubMenu} = Menu;
 
@@ -27,6 +28,9 @@ const UniversityStudent = () => {
     }, [tabNum])
     return (
         <>
+            <Head>
+                <title>한양대학교 창업지원단 -대학(원)생 대상</title>
+            </Head>
             <PageNavigation/>
             <section className={cx("university_student")}>
                 <div className={cx("sub_cont", "sub_cont_top")}>

@@ -12,6 +12,7 @@ import {useRouter} from "next/router";
 import {addStudentReport, initialize} from "../../store/studentReport/studentReport";
 import PageNavigation from "../../component/layout/PageNavigation";
 import moment from "moment";
+import Head from "next/head";
 const StudentReportPage = () => {
 
     const [form] = Form.useForm();
@@ -100,6 +101,9 @@ const StudentReportPage = () => {
 
     return (
         <>
+            <Head>
+                <title>한양대학교 창업지원단 -학생창업자 신고</title>
+            </Head>
             {/*<PageNavigation/>*/}
             <section className={cx("container")}>
                 <Form form={form} onFinish={(e) =>{submitApply(e)}} onFinishFailed={(e) =>{}}>

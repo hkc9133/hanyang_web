@@ -8,6 +8,7 @@ import Image from "next/image";
 import {useRouter} from "next/router";
 import {Modal} from "antd";
 import {useSelector} from "react-redux";
+import Head from "next/head";
 
 const cx = classnames.bind(styles);
 const StartupProcedure = () => {
@@ -38,6 +39,9 @@ const StartupProcedure = () => {
     }
     return (
         <>
+            <Head>
+                <title>한양대학교 창업지원단 -창업절차</title>
+            </Head>
             <PageNavigation/>
             <section className={cx("container")}>
                 <div className={cx("sub_container","startup_procedure","teacher_startup")}>

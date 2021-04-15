@@ -11,6 +11,7 @@ import Pagination from "../../../component/common/Pagination";
 import styles from '../../../public/assets/styles/startup_info/startup_info.module.css';
 import classnames from "classnames/bind"
 import client from "../../../lib/api/client";
+import Head from "next/head";
 
 const cx = classnames.bind(styles);
 const MyComponent = () => {
@@ -58,6 +59,10 @@ const MyComponent = () => {
         dispatch(commissionDownload())
     }
     return (
+        <>
+            <Head>
+                <title>한양대학교 창업지원단 -나의 멘토링 현황</title>
+            </Head>
         <div>
             <section className={cx("container")}>
                 <div className={cx("sub_container", "mentor_groupList")}>
@@ -92,6 +97,7 @@ const MyComponent = () => {
                 </div>
             </section>
         </div>
+            </>
     );
 };
 

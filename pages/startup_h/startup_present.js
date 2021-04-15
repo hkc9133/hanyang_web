@@ -16,6 +16,7 @@ import moment from "moment";
 import Pagination from "../../component/common/Pagination";
 import client from "../../lib/api/client";
 import Image from "next/image";
+import Head from "next/head";
 
 const { Option } = Select;
 
@@ -157,6 +158,9 @@ const StartupPresent = () => {
 
     return (
         <>
+            <Head>
+                <title>한양대학교 창업지원단 -스타트업 배출현황</title>
+            </Head>
             <PageNavigation/>
             <section className={cx("sub_container","startup_emissions")}>
                 <h1 className={cx("sub_top_title")}>스타트업 배출현황</h1>

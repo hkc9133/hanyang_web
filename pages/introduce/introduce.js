@@ -4,6 +4,7 @@ import Link from 'next/link';
 import styles from '../../public/assets/styles/introduce/introduce.module.css';
 import classnames from "classnames/bind"
 import PageNavigation from "../../component/layout/PageNavigation";
+import Head from "next/head";
 
 const cx = classnames.bind(styles);
 
@@ -12,6 +13,9 @@ const Introduce = () => {
     const [showTable, setShowTable] = useState(false)
     return (
         <>
+            <Head>
+                <title>한양대학교 창업지원단 -기관소개</title>
+            </Head>
             <PageNavigation/>
             <section className={cx("container")}>
                 <div className={cx("introduction")}>

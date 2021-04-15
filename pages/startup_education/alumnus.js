@@ -6,12 +6,16 @@ import PageNavigation from "../../component/layout/PageNavigation";
 import {Menu} from "antd";
 import AcaHistory from '../../component/startup_education/AcaHistory';
 import ForumHistory from '../../component/startup_education/ForumHistory';
+import Head from "next/head";
 const {SubMenu} = Menu;
 
 const cx = classnames.bind(styles);
 const Alumnus = () => {
     return (
         <>
+            <Head>
+                <title>한양대학교 창업지원단 -동문 대상​</title>
+            </Head>
             <PageNavigation/>
         <section className={cx("container", "alumnus")}>
             <div className={cx("sub_cont", "sub_cont_top")}>

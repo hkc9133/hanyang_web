@@ -14,6 +14,7 @@ import qs from 'query-string';
 import {useRouter} from "next/router";
 import Pagination from "../../component/common/Pagination";
 import client from "../../lib/api/client";
+import Head from "next/head";
 
 
 const cx = classnames.bind(styles);
@@ -70,6 +71,9 @@ const MentorIntroduce = () => {
 
     return (
         <>
+            <Head>
+                <title>한양대학교 창업지원단 -멘토단 소개</title>
+            </Head>
             <PageNavigation/>
             <div className={cx("sub_container","mentor_group")}>
                 <h1 className={cx("sub_top_title")}>멘토단 소개</h1>

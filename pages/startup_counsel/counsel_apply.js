@@ -22,9 +22,7 @@ import client from '../../lib/api/client';
 
 
 const {CheckableTag} = Tag;
-import PageNavigation from "../../component/layout/PageNavigation";
 import {useSelector, useDispatch} from "react-redux";
-// import Modal from "../../component/common/Modal";
 import {useRouter} from "next/router";
 import {
     applyCounsel,
@@ -39,12 +37,21 @@ const Editor = dynamic(() => import("../../component/common/Editor"), {
 });
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import PersonalInfoForm from "../../component/stratup_counsel/counsel_apply/PersonalInfoForm";
+import wrapper from "../../store/configureStore";
+import {getMainData} from "../../store/main/main";
+import {END} from "redux-saga";
 
 const cx = classnames.bind(styles);
 
+export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
 
+    const cookie = context.req && context.req.headers.cookie ? context.req.headers.cookie : '';
+    client.defaults.headers.Cookie = cookie;
+
+    context.store.dispatch(END);
+    await context.store.sagaTask.toPromise();
+})
 const CounselApply = () => {
-
 
     const [form] = Form.useForm();
     const personalDev = useRef();

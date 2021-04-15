@@ -9,6 +9,7 @@ import {getCounselApplyList} from "../../store/mentoring/mentoring";
 import {useRouter} from "next/router";
 import {getBoardContentList} from "../../store/board/board";
 import Pagination from "../../component/common/Pagination";
+import Head from "next/head";
 
 const cx = classnames.bind(styles);
 const CounselApplyList = () => {
@@ -41,6 +42,9 @@ const CounselApplyList = () => {
 
     return (
         <>
+            <Head>
+                <title>한양대학교 창업지원단 -멘토단 소개</title>
+            </Head>
             <section className={cx("container")}>
                 <div className={cx("sub_container","mentor_groupList")}>
                     <h1 className={cx("sub_top_title")}>멘토단 소개</h1>

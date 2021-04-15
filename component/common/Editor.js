@@ -14,6 +14,7 @@ const Editor = ({setEditor,content}) => {
 
 
     useEffect(() => {
+        console.log(window.editor)
         if(window.editor != null){
             window.DecoupledDocumentEditor
                 .create(document.querySelector('#editor'), {
@@ -93,8 +94,12 @@ const Editor = ({setEditor,content}) => {
                 })
                 .then(newEditor => {
                     const toolbarContainer = document.querySelector('#toolbar-container');
+                    console.log(toolbarContainer)
                     //
-                    toolbarContainer.appendChild(newEditor.ui.view.toolbar.element);
+                    if(toolbarContainer != null){
+                        toolbarContainer.appendChild(newEditor.ui.view.toolbar.element);
+                    }
+                    console.log(content)
                     if(content != null){
                         newEditor.setData(content)
                     }
@@ -107,6 +112,13 @@ const Editor = ({setEditor,content}) => {
         }else{
             window.editor.setData(content)
         }
+
+        return () =>{
+            // console.log(document.querySelector('#editor'))
+            // document.querySelector('#editor').remove();
+            // delete window.editor;
+        }
+
 
     }, [])
 

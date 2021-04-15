@@ -240,8 +240,8 @@ const CounselApplyFormDetail = () => {
                                                     <th>구분</th>
                                                     <td colSpan={5}>
                                                         <ul>
-                                                        {applyValue.sortationItemList.map((item) =>{
-                                                            return <li key={item.itemId}>{item.item}</li>
+                                                        {applyValue.sortationItemList.map((item,index) =>{
+                                                            return <li key={index}>{item.item}</li>
                                                         })}
                                                         </ul>
                                                     </td>
@@ -256,8 +256,8 @@ const CounselApplyFormDetail = () => {
                                                     <th>희망 상담 방식</th>
                                                     <td colSpan={5}>
                                                         <ul>
-                                                            {applyValue.wayItemList.map((item) =>{
-                                                                return <li key={item.itemId}>{item.item}</li>
+                                                            {applyValue.wayItemList.map((item,index) =>{
+                                                                return <li key={index}>{item.item}</li>
                                                             })}
                                                         </ul>
                                                     </td>

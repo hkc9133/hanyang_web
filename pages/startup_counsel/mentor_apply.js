@@ -11,6 +11,7 @@ import CareerBox from "../../component/stratup_counsel/mentor_apply/CareerBox";
 import {applyMentor, getCounselFieldCode, getMentorCheck, initialize} from "../../store/mentoring/mentoring";
 import Modal from "../../component/common/Modal";
 import {useRouter} from "next/router";
+import Head from "next/head";
 
 const cx = classnames.bind(styles);
 
@@ -166,6 +167,9 @@ const MentorApply = () => {
 
     return (
         <>
+            <Head>
+                <title>한양대학교 창업지원단 -멘토단 신청</title>
+            </Head>
             <Modal visible={checkResultModal} closable={true} maskClosable={true} onClose={() => {setCheckResultModal(false);router.back();}} cx={cx} className={"mentor_apply_popup"}>
                 <h2 className={cx("popup_title")}>이미 신청한 내역이 있습니다</h2>
             </Modal>

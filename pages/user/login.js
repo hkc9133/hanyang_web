@@ -18,6 +18,7 @@ import GoogleLoginButton from "../../component/auth/GoogleLoginButton";
 import NaverLoginButton from "../../component/auth/NaverLoginButton";
 import Loader from "../../component/layout/Loader";
 import HanyangLoginButton from "../../component/auth/HanyangLoginButton";
+import Head from "next/head";
 const cx = classnames.bind(styles);
 
 
@@ -126,6 +127,9 @@ const Login = () => {
         <>
             {/*{user.login == true ? null : (*/}
                 <>
+                    <Head>
+                        <title>한양대학교 창업지원단 -로그인</title>
+                    </Head>
                     <PageNavigation/>
                     <section className={cx("container")}>
                         <div className={`${cx("login_wrap")} clfx`}>

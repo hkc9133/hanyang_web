@@ -4,12 +4,16 @@ import Link from 'next/link';
 import styles from '../../public/assets/styles/introduce/introduce.module.css';
 import classnames from "classnames/bind"
 import PageNavigation from "../../component/layout/PageNavigation";
+import Head from "next/head";
 
 const cx = classnames.bind(styles);
 
 const System = () => {
     return (
         <>
+            <Head>
+                <title>한양대학교 창업지원단 -지원체계</title>
+            </Head>
             <PageNavigation/>
             <section className={cx("container")}>
             <div className={cx("sub_container","startup_support_step")}>

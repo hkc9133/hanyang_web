@@ -4,12 +4,16 @@ import Link from 'next/link';
 import styles from '../../public/assets/styles/investment/investment.module.css';
 import classnames from "classnames/bind"
 import PageNavigation from "../../component/layout/PageNavigation";
+import Head from "next/head";
 
 const cx = classnames.bind(styles);
 
 const IR = () => {
     return (
         <>
+            <Head>
+                <title>한양대학교 창업지원단 -IR/투자 안내</title>
+            </Head>
             <PageNavigation/>
             <section className={cx("sub_container","irWrap")}>
                 <h1 className={cx("sub_top_title")}>IR/투자 안내</h1>

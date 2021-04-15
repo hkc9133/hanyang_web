@@ -14,6 +14,7 @@ import SignUpInfo from "../../component/auth/SignUpInfo";
 import JoinType from "../../component/auth/JoinType";
 import {Checkbox, Form} from "antd";
 import HanyangLoginButton from "../../component/auth/HanyangLoginButton";
+import Head from "next/head";
 
 const cx = classnames.bind(styles);
 
@@ -112,6 +113,9 @@ const Join = () => {
     };
     return (
         <>
+            <Head>
+                <title>한양대학교 창업지원단 -회원가입</title>
+            </Head>
             <PageNavigation/>
 
             {!showJoinInfoModal ? (

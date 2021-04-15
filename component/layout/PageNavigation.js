@@ -6,8 +6,12 @@ import {useRouter} from "next/router";
 import Link from "next/link";
 import {Modal} from "antd";
 import {useSelector} from "react-redux";
-
-
+import {ShareAltOutlined} from '@ant-design/icons';
+import { Popover, Button } from 'antd';
+import NaverShareButton from "../common/share/NaverShareButton";
+import FaceBookShareButton from "../common/share/FaceBookShareButton";
+import KaKaoShareButton from "../common/share/KaKaoShareButton";
+import {url} from "../../lib/api/client";
 const cx = classnames.bind(styles);
 
 // const siteMap =[
@@ -111,7 +115,7 @@ const PageNavigation = () => {
     }))
 
     useEffect(() => {
-
+        console.log(router)
         let str = "";
         if(router.asPath.indexOf("#") > 0){
             str = router.asPath.replace(router.asPath.substr(router.asPath.indexOf("#"),router.asPath.length),"");
@@ -141,7 +145,13 @@ const PageNavigation = () => {
         }
     }
 
-
+    const content = (
+        <div style={{display: 'flex', justifyContent: 'space-between',padding:'0px 10px',width:150}}>
+            <NaverShareButton url={`${url}${router.asPath}`}/>
+            <FaceBookShareButton url={`${url}${router.asPath}`}/>
+            <KaKaoShareButton url={`${url}${router.asPath}`}/>
+        </div>
+    );
     return (
         <div className={cx("navi_wrap")}>
             <div className={cx("navi")}>
@@ -184,6 +194,12 @@ const PageNavigation = () => {
                                 </ul>
                             </div>
                         </li>
+                            <li>
+                                <Popover placement="bottomLeft" title={"링크 공유하기"} content={content} trigger="click">
+                                    <ShareAltOutlined />
+                                </Popover>
+                                {/*<ShareAltOutlined />*/}
+                            </li>
                         </>
                         )}
                     {/*}*/}
