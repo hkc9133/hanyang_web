@@ -10,6 +10,7 @@ import {getStartupCalendarList} from "../../store/startupCalendar/startupCalenda
 import PageNavigation from "../../component/layout/PageNavigation";
 import {Button, Modal} from "antd";
 import Head from "next/head";
+import {isMobile} from "react-device-detect";
 
 const cx = classnames.bind(styles);
 
@@ -36,7 +37,7 @@ const StartupEvent = () => {
         const {type = "C"} = router.query
         setSearchInfo(searchInfo => ({
             ...searchInfo,
-            type: type
+            type: isMobile ? "L" : type
         }))
 
         const {page = 1, date = "", categoryCodeId = null, searchValue = null, searchField = null} = router.query
@@ -50,7 +51,6 @@ const StartupEvent = () => {
             showCalendar:true
         }
 
-        console.log(data)
         dispatch(getStartupCalendarList(data))
 
     }, [router.query])

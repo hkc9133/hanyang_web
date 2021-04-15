@@ -338,7 +338,7 @@ const UniversityStudent = () => {
                                         </li>
                                     </ul>
                                     <span className={cx("f-16", "c-blue")}>※ 운영 및 신청방법 매뉴얼 참고<Link
-                                        href={`${baseUrl}/hwp/2021-1 마이크로전공 운영 및 학생신청 매뉴얼.hwp`}><a
+                                        href={`${baseUrl}/hwp/2021_1_마이크로전공_운영_및_학생신청_매뉴얼.hwp`}><a
                                         style={{marginLeft: 8}} target="_blank" download><Image
                                         src="/assets/image/icon_download.gif" width={22} height={26}
                                         alt="다운로드"/></a></Link></span>

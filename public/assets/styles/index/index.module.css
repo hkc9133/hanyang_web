@@ -134,8 +134,8 @@
 
 
 .popup_content{border:1px solid lightgray;background-color: white;}
-.popup_footer{border-top:0.5px solid lightgray;}
-.popup_footer .popup_footer_btn{height: 30px;width:50%;font-size: 13px;}
+.popup_footer{border-top:0.5px solid lightgray;background-color: #495161;}
+.popup_footer .popup_footer_btn{height: 30px;width:50%;font-size: 13px;color:white;}
 .popup_footer .popup_footer_btn:first-child{border-right: 1px solid lightgray}
 
 

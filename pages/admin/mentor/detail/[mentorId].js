@@ -398,7 +398,7 @@ const DetailView = () => {
 
                                     <div className={cx("txt_c pt_60")}>
                                         <button type="submit" className={cx("basic-btn02", "btn-gray-bg")}>저장하기</button>
-                                        <button type="button" className={cx("basic-btn02", "btn-gray-bd2")}>취소하기</button>
+                                        <button type="button" className={cx("basic-btn02", "btn-gray-bd2")} onClick={() =>{router.back();}}>취소하기</button>
                                     </div>
                                 </div>
                             </div>

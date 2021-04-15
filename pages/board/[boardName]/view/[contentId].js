@@ -144,16 +144,23 @@ const BoardView = () => {
     }, [])
 
     const addNewReply = () => {
-        const data = {
-            ...newReply,
-            contentId: view.content.contentId
-        }
-        dispatch(addReply(data));
 
-        setNewReply({
-            replyContent: "",
-            parentId: ""
-        })
+        if(newReply.replyContent != null && newReply.replyContent != ""){
+            const data = {
+                ...newReply,
+                contentId: view.content.contentId
+            }
+            dispatch(addReply(data));
+
+            setNewReply({
+                replyContent: "",
+                parentId: ""
+            })
+        }else{
+            Modal.warning({
+                title:"내용을 입력해주세요"
+            })
+        }
     }
 
     const addNewReReply = ({parent, parentReply}) => {
@@ -299,10 +306,23 @@ const BoardView = () => {
                             )}
 
                             <div className={cx("txt_c")}>
-                                <Link href={`/board/${board.board.boardEnName}/list?${qs.stringify({
+                                {board.board.boardEnName == "Issue" ?
+                                    <Link href={"/"}>
+                                    <a className={cx("basic-btn04", "btn-black-bd")}>뒤로가기</a>
+                                    </Link>
+                                    :
+                                    <Link href={`/board/${board.board.boardEnName}/list?${qs.stringify({
                                     ...router.query,
                                     contentId: null
-                                })}`}><a className={cx("basic-btn04", "btn-black-bd")}>목록보기</a></Link>
+                                })}`}>
+                                    <a className={cx("basic-btn04", "btn-black-bd")}>목록보기</a>
+                                </Link>}
+                                {/*<Link href={`/board/${board.board.boardEnName}/list?${qs.stringify({*/}
+                                {/*    ...router.query,*/}
+                                {/*    contentId: null*/}
+                                {/*})}`}>*/}
+                                {/*    <a className={cx("basic-btn04", "btn-black-bd")}>목록보기</a>*/}
+                                {/*</Link>*/}
                             </div>
 
                             <div className={cx("prev_next")}>

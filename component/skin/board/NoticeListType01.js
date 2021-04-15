@@ -26,7 +26,7 @@ const NoticeListType01 = ({content,pageChange,board,category}) => {
                     <tbody>
                     {content.list.map((item) =>{
                         return (
-                            <tr key={item.contentId}>
+                            <tr key={item.contentId} className={cx(item.isNotice ? "notice" : "")}>
                                 <td>{item.isNotice  ? "공지" : item.rownum}</td>
                                 <td className={cx("txt_l")}><Link href={`/board/notice/view/${item.contentId}?${qs.stringify(router.query)}`}><a>{item.title}</a></Link></td>
                                 {board.categoryId != null &&

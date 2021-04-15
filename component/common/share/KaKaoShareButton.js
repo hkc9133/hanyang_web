@@ -6,6 +6,7 @@ const imageUrl = `http://61.109.248.203${port != null ? `:${port}` : ''}/api/ima
 const KaKaoShareButton = ({url}) => {
 
     useEffect(() =>{
+
         let k = document.createElement("script");
         k.setAttribute("src", "https://developers.kakao.com/sdk/js/kakao.min.js");
         k.onload = function () {
@@ -69,6 +70,7 @@ const KaKaoShareButton = ({url}) => {
     },[])
 
     const kakaoShare = () =>{
+        console.log(url)
         window.Kakao.Link.sendDefault({
             // container: '.kakao_share',
             objectType: 'feed',

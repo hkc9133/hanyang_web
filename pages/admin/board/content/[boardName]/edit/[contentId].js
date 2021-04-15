@@ -185,13 +185,12 @@ const ContentEditView = () => {
             ...writeInfo,
             // ...form.getFieldsValue(),
             contentId:router.query.contentId,
-            content:editor.getData(),
+            content: board.board.boardEnName != 'corp_press' ? editor.getData() : null,
             files:newFileList.map((item) => (item.originFileObj)),
             thumb:newThumbList.map((item) => (item.originFileObj)),
             boardEnName:router.query.boardName,
             regDate:writeInfo.regDate.format("YYYY-MM-DD HH:mm").toString()
         }
-        console.log(data)
         if(data.categoryCodeId == null){
             delete data.categoryCodeId
         }

@@ -177,7 +177,7 @@ const Calendar01 = ({events,cateList,changeCategory,changeType,handleShowContent
                 <ul>
                 {
                     moreEvent.events.map((event) =>
-                        {return <li><button key={event.id} onClick={() =>{handleShowContent(event)}}>{event.title}</button></li>;}
+                        {return <li><button key={event.id} onClick={() =>{handleShowContent(event)}}>- {event.title}</button></li>;}
                     )
                 }
                 </ul>

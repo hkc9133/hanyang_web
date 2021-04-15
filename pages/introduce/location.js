@@ -45,6 +45,69 @@ const Location = () => {
         }
         document.head.appendChild(s);
 
+        let k = document.createElement("script");
+        k.setAttribute("src", "https://developers.kakao.com/sdk/js/kakao.min.js");
+        k.onload = function () {
+            window.Kakao.init('e30e8790c8207f560e3b47879051adb8');
+            // window.Kakao.Link.createDefaultButton({
+            //     container: '#kakao_share',
+            //     objectType: 'feed',
+            //     content: {
+            //         title: '한양대학교 창업지원단',
+            //         // description: '#케익 #딸기 #삼평동 #카페 #분위기 #소개팅',
+            //         imageUrl: imageUrl,
+            //         link: {
+            //             mobileWebUrl: url,
+            //             webUrl: url,
+            //         }
+            //     },
+            //     buttons: [
+            //         // {
+            //         //     title: '웹으로 보기',
+            //         //     link: {
+            //         //         mobileWebUrl: mapUrl,
+            //         //         webUrl: mapUrl,
+            //         //     }
+            //         // },
+            //         // {
+            //         //     title: '앱으로 보기',
+            //         //     link: {
+            //         //         mobileWebUrl: 'http://61.109.248.203',
+            //         //         webUrl: 'http://61.109.248.203',
+            //         //     }
+            //         // }
+            //     ],
+            //     //
+            //     // objectType: 'feed',
+            //     // content: {
+            //     //     title: '한양대학교 창업지원단',
+            //     //     description: '창업지원단 지도',
+            //     //     imageUrl:
+            //     //         `${'http://61.109.248.203'}${port != null ? `:${port}` : ''}/api/image/logo.png`,
+            //     //     link: {
+            //     //         mobileWebUrl: 'https://map.naver.com/v5/entry/place/13341941?c=14110671.9385277,4513759.3942962,14,0,0,0,dh&placePath=%2Fhome%3Fentry=plt',
+            //     //     },
+            //     // },
+            //     // buttons: [
+            //     //     {
+            //     //         title: '네이버 지도 확인',
+            //     //         link: {
+            //     //             mobileWebUrl: 'https://map.naver.com/v5/entry/place/13341941?c=14110671.9385277,4513759.3942962,14,0,0,0,dh&placePath=%2Fhome%3Fentry=plt',
+            //     //         },
+            //     //     },
+            //     // ]
+            // });
+
+        }
+
+        document.head.appendChild(k);
+
+        return () =>{
+            k.remove();
+            s.remove();
+        }
+
+
     }, [])
 
     const initFacebookSdk = () =>{
@@ -69,12 +132,12 @@ const Location = () => {
     }
 
 
-    const facebookShare = (url) =>{
+    const facebookShare = () =>{
         let currentUrl = window.document.location.href;
 
         window.FB.ui({
                 method: 'share',
-                href: url
+                href: mapUrl
             }, function (response) {
                 if (response && !response.error_code) {
                     // alert('공유 완료');
@@ -85,14 +148,15 @@ const Location = () => {
         );
     }
 
-    const naverShare = (url) =>{
-        let link = encodeURI(encodeURIComponent(url));
+    const naverShare = () =>{
+        let link = encodeURI(encodeURIComponent(mapUrl));
         let title = encodeURI("한양대학교 창업지원단");
         let shareURL = "https://share.naver.com/web/shareView?url=" + link + "&title=" + title;
         document.location = shareURL;
     }
 
-    const kakaoShare = (url) =>{
+    const kakaoShare = () =>{
+        console.log(mapUrl)
         window.Kakao.Link.sendDefault({
             // container: '.kakao_share',
             objectType: 'feed',
@@ -101,8 +165,8 @@ const Location = () => {
                 // description: '#케익 #딸기 #삼평동 #카페 #분위기 #소개팅',
                 imageUrl: imageUrl,
                 link: {
-                    mobileWebUrl: url,
-                    webUrl: url,
+                    mobileWebUrl: mapUrl,
+                    webUrl: mapUrl,
                 }
             },
         });
@@ -113,12 +177,9 @@ const Location = () => {
         <Menu>
             <Menu.Item>
                 <div style={{display: 'flex', justifyContent: 'space-between',padding:'0px 20px'}}>
-                    <NaverShareButton url={mapUrl}/>
-                    <FaceBookShareButton url={mapUrl}/>
-                    <KaKaoShareButton  url={mapUrl}/>
-                    {/*<button onClick={() =>{naverShare(mapUrl)}}><Image src="/assets/image/startup_naver_blog.png" width={40} height={40} alt="sns_logo"/></button>*/}
-                    {/*<button onClick={() =>{facebookShare(mapUrl)}}><Image src="/assets/image/startup_facebook.png" width={40} height={40} alt="sns_logo"/></button>*/}
-                    {/*<button id="kakao_share" onClick={kakaoShare(mapUrl)} ><Image src="/assets/image/startup_kakao.png" width={40} height={40} alt="sns_logo"/></button>*/}
+                    <button onClick={() =>{naverShare()}}><Image src="/assets/image/startup_naver_blog.png" width={40} height={40} alt="sns_logo"/></button>
+                    <button onClick={() =>{facebookShare()}}><Image src="/assets/image/startup_facebook.png" width={40} height={40} alt="sns_logo"/></button>
+                    <button id="kakao_share" onClick={() =>{kakaoShare()}} ><Image src="/assets/image/startup_kakao.png" width={40} height={40} alt="sns_logo"/></button>
                 </div>
             </Menu.Item>
         </Menu>

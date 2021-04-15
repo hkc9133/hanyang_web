@@ -122,8 +122,8 @@ const Infra = () => {
                                         -대학창업지원, 산학연계교육
                                     </li>
                                     <li>
-                                        <span className={cx("s_title")}>Art&amp; Technology 학과</span>
-                                        -대학 스타트업 생태계 활성화
+                                        <span className={cx("s_title")}>산학협력 가족회사</span>
+                                        -가족회사 맞춤형 산학협력 서비스 제공
 
                                     </li>
                                     <li>

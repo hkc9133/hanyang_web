@@ -555,7 +555,7 @@ const Index = () => {
                     <div className={cx("main_tab")}>
                         <ul>
                             <li className={cx("on")}>
-                                <button type="button">창업지원 부서/기관</button>
+                                <button type="button">교내 창업지원 부서/기관</button>
                             </li>
                         </ul>
                     </div>
