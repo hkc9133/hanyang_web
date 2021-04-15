@@ -314,6 +314,10 @@
 
 }
 
+@media screen and (max-width: 800px){
+    .qa_list .dropdown_content{overflow-x: scroll; }
+}
+
 
 @media screen and (max-width: 768px){
 

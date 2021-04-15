@@ -63,7 +63,7 @@
 .sub_cont_top{position:relative; z-index:1; padding:120px 20px 60px; overflow:hidden;}
 .sub_cont_top:before{position:absolute; right:20px; top:25px; width:445px; height:288px; display:block; background:url(../../image/mentor_group_bg.jpg) no-repeat right 0; content:"";}
 .sub_container{position:relative; z-index:1; overflow:hidden;}
-.sub_container:before{position:absolute; right:20px; top:25px; width:445px; height:288px; display:block; background:url(../../image/mentor_group_bg.jpg) no-repeat right 0; content:"";}
+.sub_container:before{position:absolute; right:20px; top:25px; z-index: -1; width:445px; height:288px; display:block; background:url(../../image/mentor_group_bg.jpg) no-repeat right 0; content:"";}
 
 .txt_style_1{position:relative; margin:25px 0; padding-left:400px; }
 .txt_style_1 .left_title{position:absolute; left:0; top:0; width:400px; }
@@ -217,7 +217,7 @@
 .sssup .text_box .btm_area .list_3{float:right; width:47.32%;}
 
 span.btn_action{background: #f73c3c; color: white; border-radius: 4px; padding: 0 7px; cursor: pointer;}
-.sssup_step2{margin-top:100px;}
+/*.sssup_step2{margin-top:100px;}*/
 .sssup_step2 .building{position:relative; margin-bottom:30px; padding:15px 0 15px 168px; min-height:20px; border:1px solid #ddd; }
 .sssup_step2 .building span{font-size:16px; vertical-align:top;}
 .sssup_step2 .building .title{position:absolute; left:0; top:15px; width:135px; display:inline-block; text-align:center; box-sizing:border-box;}

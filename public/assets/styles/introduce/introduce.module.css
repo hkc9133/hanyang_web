@@ -121,9 +121,13 @@
 .location_wrap .location .info{margin-bottom:30px; }
 .location_wrap .location .info li{margin-right:10px; display:inline-block; font-size:16px; }
 .location_wrap .transportation li{padding-left:50px; margin-bottom:10px; min-height:30px; line-height: 30px; font-size:16px; }
+.location_wrap .transportation li:last-child{margin-bottom: 30px;}
 .location_wrap .transportation li.subway{background:url(../../image/icon_subway.gif) no-repeat 0 0; }
 .location_wrap .transportation li.green_bus{background:url(../../image/icon_bus_green.gif) no-repeat 0 0; }
 .location_wrap .transportation li.blue_bus{background:url(../../image/icon_bus_blue.gif) no-repeat 0 0; }
+.location_wrap .parking_area ul{margin-bottom: 10px;}
+.location_wrap .parking_area li{font-size: 16px;}
+.location_wrap .parking_area li.parking_info{padding-left: 10px;}
 
 
 .promotion .left_title h3{font-size:32px; font-family: 's-core-dream-medium';}
@@ -322,6 +326,7 @@
     .location_wrap .location address{font-size:14px; }
     .location_wrap .location .info li{display:block; font-size:14px; }
     .location_wrap .transportation li{font-size:14px;}
+    .location_wrap .parking_area li{font-size: 14px;}
     .location_wrap .txt_style_1 .left_title{top: 350px; margin-bottom: 20px; }
     .location{margin-top: 90px;}
 
@@ -352,6 +357,10 @@
 
 @media screen and (max-width: 400px){
     .vision_list>li{font-size: 14px; padding-top: 15px;}
+}
+
+@media screen and (max-width: 370px){
+    .vision_list>li{font-size: 11px; }
 }
 
 @media screen and (max-width: 350px){

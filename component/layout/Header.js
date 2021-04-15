@@ -235,7 +235,7 @@ const Header = () => {
                     <div className={cx("logoArea")}><Image src="/assets/image/left_menu_logo.jpg" width={108} height={36} alt="left_logo"/></div>
                     <ul className={"clfx"}>
                         <li>
-                            <a href="#" onClick={(e) => {e.preventDefault();handleShowMenuItem(1)}}>창업교육</a>
+                            <Link href="/startup_education/university_student"><a>창업교육</a></Link>
                             <div className={cx("s_menu","show")}>
                                 <ul>
                                     <li><Link href="/startup_education/university_student"><a>대학(원)생 대상</a></Link></li>
@@ -247,7 +247,7 @@ const Header = () => {
                             </div>
                         </li>
                         <li style={{marginTop:90}}>
-                            <a href="#" onClick={(e) => {e.preventDefault();handleShowMenuItem(2)}}>창업상담</a>
+                            <Link href="/startup_counsel/counsel_process"><a>창업상담</a></Link>
                             <div className={cx("s_menu","show")}>
                                 <ul>
                                     <li><Link href="/startup_counsel/counsel_process"><a>창업상담신청</a></Link></li>
@@ -258,7 +258,7 @@ const Header = () => {
                             </div>
                         </li>
                         <li>
-                            <a href="#" onClick={(e) => {e.preventDefault();handleShowMenuItem(3)}}>창업지원정보</a>
+                            <Link href="/board/notice/list"><a>창업지원정보</a></Link>
                             <div className={cx("s_menu","show")}>
                                 <ul>
                                     <li><Link href="/board/notice/list"><a>공지사항</a></Link></li>
@@ -271,7 +271,7 @@ const Header = () => {
                             </div>
                         </li>
                         <li>
-                            <a href="#" onClick={(e) => {e.preventDefault();handleShowMenuItem(4)}}>스타트업H</a>
+                            <Link href="/startup_h/best_startup"><a>스타트업H</a></Link>
                             <div className={cx("s_menu","show")}>
                                 <ul>
                                     <li><Link href="/startup_h/best_startup"><a>우수스타트업</a></Link></li>
@@ -281,7 +281,7 @@ const Header = () => {
                             </div>
                         </li>
                         <li>
-                            <a href="#" onClick={(e) => {e.preventDefault();handleShowMenuItem(5)}}>투자연계</a>
+                            <Link href="/investment/ir"><a>투자연계</a></Link>
                             <div className={cx("s_menu","show")} style={{height:250}}>
                                 <ul>
                                     <li><Link href="/investment/ir"><a>IR/투자 안내</a></Link></li>
@@ -290,7 +290,7 @@ const Header = () => {
                             </div>
                         </li>
                         <li>
-                            <a href="#" onClick={(e) => {e.preventDefault();handleShowMenuItem(6)}}>창업지원단 소개</a>
+                            <Link href="/introduce/introduce"><a>창업지원단 소개</a></Link>
                             <div className={cx("s_menu","show")} style={{height:250}}>
                                 <ul>
                                     <li><Link href="/introduce/introduce"><a>기관 소개</a></Link></li>
