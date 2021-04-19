@@ -59,6 +59,9 @@ const Footer = () => {
                 <li><Link href="https://hywep.hanyang.ac.kr/index.do"><a>현장실습지원센터</a></Link></li>
             </Menu.Item>
             <Menu.Item>
+                <li><Link href="http://entrepreneurship.hanyang.ac.kr/"><a>대학원 창업융합학과</a></Link></li>
+            </Menu.Item>
+            <Menu.Item>
                 <li><Link href="http://ericaresearch.hanyang.ac.kr/"><a>에리카 산학협력단</a></Link></li>
             </Menu.Item>
             <Menu.Item>
@@ -84,7 +87,7 @@ const Footer = () => {
                     <div className={cx("business_hours")}>
                         <ul>
                             <li>
-                                상담시간(월~금)&nbsp; 10:00-17:00
+                                상담시간(월~금)&nbsp; 10:00-17:00&nbsp;
                             </li>
                             <li>
                                 주말·공휴일 제외
@@ -103,7 +106,7 @@ const Footer = () => {
                         </ul>
                     </div>
                     <div className={cx("footer_notice")}>
-                        <h1>언론보도</h1>
+                        <Link href="/board/media_report/list"><a><h1>언론보도 &gt;</h1></a></Link>
                         <ul>
                             {mediaList.map( (item,index) =>
                                 index < 3 && <li key={item.contentId}><Link href={item.sub01}><a>{item.title}</a></Link></li>

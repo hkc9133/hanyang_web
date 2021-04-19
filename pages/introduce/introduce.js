@@ -233,8 +233,8 @@ const Introduce = () => {
                                     <h3><strong className={cx("c-sky")}>창업기업</strong> 배출실적</h3>
                                     <ul>
                                         <li>
-                                            학생창업기업 배출 국내대학 1위 <span className={cx("sky")}>4년 연속</span><br/>
-                                            <span className={cx("c-gray")}>16년 43개, 17년 53개, 18년 55개, 19년 58개</span>
+                                            학생창업기업 배출 국내대학 1위 {/*<span className={cx("sky")}>4년 연속</span>*/}<br/>
+                                            <span className={cx("c-gray")}>16년 43개, 17년 53개, 18년 55개, 19년 58개, 20년 50개</span>
                                         </li>
                                         <li>
                                             벤처인증기업 배출 국내대학 1위<span className={cx("sky")}>5년 연속</span>
@@ -242,12 +242,12 @@ const Introduce = () => {
                                         <li>
                                             7년 미만 초기 창업기업 배출 국내대학 1위<span className={cx("sky")}>3년 연속</span><br/>
                                             <span
-                                                className={cx("c-gray")}>창업기업 2,153개사 6개 주요 대학 대비 평균 1.5배 (2018년 12월)</span>
+                                                className={cx("c-gray")}>창업기업 2,286개사 6개 주요 대학 대비 평균 1.4배 (2020년 12월)</span>
                                         </li>
                                         <li>
-                                            7년 미만 초기 창업기업 배출 국내대학 1위<br/>
+                                            동문 CEO기업 배출 국내대학 1위 3년 연속<br/>
                                             <span
-                                                className={cx("c-gray")}>창업기업 2,153개사 6개 주요 대학 대비 평균 1.5배 (2018년 12월)</span>
+                                                className={cx("c-gray")}>기업수 11,071개, 매출 601조원(한국기업데이터, 2020년 12월)</span>
                                         </li>
                                     </ul>
                                 </li>
@@ -259,7 +259,7 @@ const Introduce = () => {
                                         </li>
                                         <li>교육부, 창업교육 최우수 대학 <span className={cx("c-gray")}>(2015년~2016년)</span> <span
                                             className={cx("sky")}>2년 연속</span></li>
-                                        <li>연간 39개 창업교과 운영 8,490명 이수 <span className={cx("c-gray")}>(2019년)</span></li>
+                                        <li>연간 449개 창업교과 운영 11,970명 이수 <span className={cx("c-gray")}>(2020년)</span></li>
                                     </ul>
                                 </li>
                                 <li className={cx("icon_3")}>
@@ -267,21 +267,21 @@ const Introduce = () => {
                                     <ul>
                                         <li>국내 사립대 최초의 산학협력단 설립<span className={cx("c-gray")}>(2003년)</span></li>
                                         <li>국내 대학 최초 대학기술지주회사 설립 <span className={cx("c-gray")}>(2008년)</span></li>
-                                        <li>TIPS운영사 지위확보, 대학창업펀드 조성 <span className={cx("c-gray")}>(2018년)</span></li>
+                                        <li>TIPS운영사 지위확보, 대학창업펀드 등 투자펀드(83억) 조성 <span className={cx("c-gray")}>(2018년)</span></li>
                                         <li>
                                             기술이전 및 기술 사업화 역량<br/>
-                                            <span className={cx("c-gray f-16")}>기술이전: 45건 / 30억원 (2019년)</span><br/>
-                                            <span className={cx("c-gray f-16")}>실험실 창업: 24개(2017년~2019년)</span>
+                                            <span className={cx("c-gray f-16")}>기술이전: 32건 / 31.5억원 (2020년)</span><br/>
+                                            <span className={cx("c-gray f-16")}>실험실 창업: 37개(2018년~2020년)</span>
                                         </li>
                                     </ul>
                                 </li>
                                 <li className={cx("icon_4")}>
-                                    <h3><strong className={cx("c-sky")}>글로벌 창업지원 인프라</strong> 구축</h3>
+                                    <h3><strong className={cx("c-sky")}>우수한 글로벌 창업지원</strong> 역량</h3>
                                     <ul>
                                         <li>글로벌 창업거점센터(미국,중국,베트남), 글로벌 스타트업 멘토단 구축운영</li>
                                         <li>
-                                            34개 글로벌 파트너사 업무 협력, 액셀러레이팅 프로그램 운영 <br/>
-                                            <span className={cx("c-gray f-16")}>87개사 대상 엑셀러레이팅 계약 35건, 14개사 해외진출 및 투자유치 등 성과창출 (2019년)</span>
+                                            50개 글로벌 파트너사 업무 협력, 액셀러레이팅 프로그램 운영 <br/>
+                                            {/*<span className={cx("c-gray f-16")}>87개사 대상 엑셀러레이팅 계약 35건, 14개사 해외진출 및 투자유치 등 성과창출 (2019년)</span>*/}
                                         </li>
                                     </ul>
                                 </li>
