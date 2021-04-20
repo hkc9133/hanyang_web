@@ -16,12 +16,12 @@ const NewsPage = () => {
             <PageNavigation/>
         <section className={cx("sub_container", "newsletter_content")}>
             <h1 className={cx("sub_top_title")}>뉴스레터</h1>
-            <p className={cx("sub_top_txt")}>뉴스레터 게시판 </p>
+            <p className={cx("sub_top_txt")}>한양스타트업뉴스레터는 창업을 준비하는 학생, 동문 및 <br />지역 사회 청년들에게 성공창업을 위한 정보를 부정기로 제공하는 온라인 소식지입니다.</p>
 
 
-            <div className={cx("news_banner")}>
+            {/*<div className={cx("news_banner")}>
                 <p>한양스타트업뉴스레터는 창업을 준비하는 한양대학교 재학생, 동문 및 <br/>지역 사회 청년들에게 성공창업을 위한 정보를 부정기로 제공하는 온라인 소식지입니다.</p>
-            </div>
+    </div>*/}
 
             <div className={cx("news_list")}>
                 <ul>

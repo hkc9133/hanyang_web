@@ -5,7 +5,7 @@
 .sub_cont_top{position:relative; z-index:1; padding:120px 20px 60px; overflow:hidden;}
 .sub_cont_top:before{position:absolute; right:20px; top:25px; width:445px; height:288px; display:block; background:url(../../image/mentor_group_bg.jpg) no-repeat right 0; content:"";}
 .sub_container{position:relative; z-index:1; overflow:hidden;}
-.sub_container:before{position:absolute; right:20px; top:25px; width:445px; height:288px; display:block; background:url(../../image/mentor_group_bg.jpg) no-repeat right 0; content:"";}
+.sub_container:before{position:absolute; right:20px; top:25px; z-index: -1; width:445px; height:288px; display:block; background:url(../../image/mentor_group_bg.jpg) no-repeat right 0; content:"";}
 
 .news_banner{width: 100%; height: auto; background-color: #f7f7f7;position: relative;z-index: 1;overflow: hidden;margin-bottom: 30px;}
 .news_banner p{padding: 40px 40px;font-size: 20px;font-family: 's-core-dream-bold';color:#444;position: relative;z-index: 3;}

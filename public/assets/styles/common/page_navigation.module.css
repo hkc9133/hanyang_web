@@ -61,7 +61,7 @@
     .navi>ul>li:last-child{width:auto}
     .navi>ul>li.home{display:none;}
     .navi>ul>li>span,
-    .navi>ul>li .s_navi_open{font-size:14px; }
+    .navi>ul>li .s_navi_open, .navi>ul>.s_navi_li a{font-size:14px; }
 
     .s_navi{top:45px;}
 
