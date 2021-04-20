@@ -141,6 +141,17 @@
 }
 
 @media screen and (max-width: 768px){
+    .sub_cont_top:before,
+    .sub_container:before{display:none; }
+    .sub_top_txt br{display:none; }
+    .sub_cont{padding:40px 20px;}
+    .sub_cont_top{padding:60px 20px 30px; }
+    .sub_top_title{margin-bottom:20px; font-size:26px; }
+    .sub_top_txt{margin-bottom:30px;}
+
+    .sub_container{padding:60px 20px; }
+    .sub_top_title{margin-bottom:20px; font-size:26px; }
+    .sub_top_txt{margin-bottom:50px; font-size:14px;width:100%;}
     .bbs_write table{margin-bottom:30px; border-top:none; }
     .bbs_write th{display:table; width:100%; font-size:16px; box-sizing:border-box; vertical-align:middle; border:none;}
     .bbs_write td{display:table; margin:10px 0;  padding:10px 0; width:100%; border:none;}

@@ -139,6 +139,8 @@
     .bo_notice .notice_icon{margin-top:-7px; width:30px; height:24px; line-height:22px; font-size:12px;}
     .bbs_tb_list th{font-size:12px; }
     .bbs_tb_list td a, .bbs_tb_list td{font-size:12px;}
+    .bbs_tb_list table td button{font-size:12px;}
+
 
     .bo_notice .notice_icon,
     .bbs_tb_list .icon_notice{padding:0 5px; height:26px; line-height:26px; font-size:11px; border-radius:20px; }

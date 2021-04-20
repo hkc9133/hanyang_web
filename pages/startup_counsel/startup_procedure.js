@@ -64,7 +64,7 @@ const StartupProcedure = () => {
                             </div>
                             <div className={cx("txt_2")}>학생창업자 신고 후 다양한 한양대학교 학생창업 지원 혜택을 누리세요.</div>
                             <div className={cx("txt_c")}>
-                                <Link href="/assets/pdf/한양대학교 학생창업자 지원 사항 안내.pdf" ><a className={cx("basic-btn04","btn-blue-bd")} target="_blank">한양대학교 학생창업 지원사항 안내서</a></Link>
+                                <Link href="/assets/pdf/한양대학교 학생창업자 지원 사항 안내.pdf" ><a className={cx("basic-btn04","btn-blue-bd")} target="_blank" download>한양대학교 학생창업 지원사항 안내서</a></Link>
                                 <Link href="#" ><a className={cx("basic-btn04", "btn-black-bd")} onClick={moveReportApply}>학생창업자 신고</a></Link>
                             </div>
                         </>

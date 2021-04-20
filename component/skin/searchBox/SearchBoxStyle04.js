@@ -34,7 +34,11 @@ const SearchBoxStyle04 = ({searchContent,changeSearchInfo,category,searchInfo}) 
                 </div>
             </div>
             <ul className={"clfx"}>
-            <div className={cx("all_cate")}><span>전체</span></div>
+            <div className={cx("all_cate")}><Link href={`/board/${router.query.boardName}/list`}>
+                <a>
+                    <span>전체</span>
+                </a>
+            </Link></div>
                 {category.map((item)=>
                     <li key={item.categoryCodeId} className={cx({on:router.query.categoryCodeId == item.categoryCodeId})}>
                         <Link href={`/board/${router.query.boardName}/list?categoryCodeId=${item.categoryCodeId}`}>

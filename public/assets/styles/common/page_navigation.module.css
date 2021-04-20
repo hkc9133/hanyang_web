@@ -6,7 +6,7 @@
 .navi>ul>li{float:left; position:relative; border-right:1px solid #ccc;  width:240px; height:55px; display:table;}
 .navi>ul>li:last-child{width:auto}
 .navi>ul>li.home{width:55px; line-height:55px; text-align:center; }
-.navi>ul>li>span{padding:0 20px; width:100%; box-sizing:border-box; display:table-cell; vertical-align:middle; font-size:16px; color:#404040; }
+.navi>ul>li>span{padding:0 15px; width:100%; box-sizing:border-box; display:table-cell; vertical-align:middle; font-size:16px; color:#404040; }
 .navi>ul>li .s_navi_open{padding:0 30px 0 20px; width:100%; text-align:left; box-sizing:border-box; display:table-cell; vertical-align:middle; background:url(../../image/navi_arrow.gif) no-repeat right 20px center; font-size:16px; color:#404040;z-index: 10; }
 .s_navi{position:absolute; left:-1px; top:55px;
     border-left:0.5px solid #ccc;
@@ -57,7 +57,7 @@
     .login_wrap{padding:60px 20px; }
     .navi>ul{border-left:none; }
     .navi>ul>li{height:45px; }
-    .navi>ul>li{width:44.5%; box-sizing:border-box;}
+    .navi>ul>li{width: 42.9%; box-sizing:border-box;}
     .navi>ul>li:last-child{width:auto}
     .navi>ul>li.home{display:none;}
     .navi>ul>li>span,
