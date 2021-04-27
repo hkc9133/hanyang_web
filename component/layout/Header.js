@@ -105,9 +105,14 @@ const Header = () => {
     }
 
     const handleLogout = () => {
-        router.push("/")
         dispatch(logout())
     }
+
+    useEffect(() => {
+        if(logoutResult){
+            router.push("/");
+        }
+    },[logoutResult])
 
 
     return (
@@ -200,7 +205,7 @@ const Header = () => {
                                 {/*{user.role == 'ROLE_SD' ? '창업상담 신청현황' : user.role == 'ROLE_ADMIN' ? "관리자" : "관리"}*/}
                                 {/*</a>*/}
                             </a>
-                        <a href="/logout">로그아웃</a>
+                        <a onClick={handleLogout}>로그아웃</a>
                         </>
                         :
                         <a href="/user/login">로그인</a>

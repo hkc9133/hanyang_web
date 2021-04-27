@@ -84,7 +84,7 @@ const StudentReportPage = () => {
             if(add.result && add.error == null){
                 Modal.success({
                     title: '작성이 완료되었습니다',
-                    // onOk:() =>{router.push("/")}
+                    onOk:() =>{router.push("/")}
                 });
             }else{
                 Modal.warning({

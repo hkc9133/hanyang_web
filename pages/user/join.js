@@ -142,9 +142,6 @@ const Join = () => {
                                 >
                                     <Checkbox name="terms" checked={agree.terms} onChange={(e)=>{changeCheck(e)}}>회원가입약관의 내용에 동의 합니다</Checkbox>
                                 </Form.Item>
-                                {/*<label htmlFor="terms_agree_1">회원가입약관의 내용에 동의 합니다.</label>*/}
-                                {/*<input type="checkbox" id="terms_agree_1" name='terms' onChange={(e) =>{changeCheck(e)}}/>*/}
-                                {/*{agree.terms.isShow && <p>{agree.terms.msg}</p>}*/}
                             </div>
                         </div>
                         <div className={cx("terms_content")}>
