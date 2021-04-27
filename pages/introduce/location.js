@@ -18,7 +18,7 @@ import {baseUrl} from "../../lib/api/client";
 const cx = classnames.bind(styles);
 
 const mapUrl = 'http://naver.me/FbRQpJoM';
-const imageUrl = `${baseUrl}/api/image/hanyang_logo.png`
+const imageUrl = `${baseUrl}/image/hanyang_logo.png`
 
 const Location = () => {
 
@@ -49,6 +49,30 @@ const Location = () => {
         k.setAttribute("src", "https://developers.kakao.com/sdk/js/kakao.min.js");
         k.onload = function () {
             window.Kakao.init('e30e8790c8207f560e3b47879051adb8');
+            // window.Kakao.Link.createDefaultButton({
+            //     container: '#kakao_share',
+            //     objectType: 'location',
+            //     address: '서울특별시 성동구 왕십리로 222',
+            //     addressTitle: '한양대학교 HIT 103호',
+            //     content: {
+            //         title: '한양대학교 창업지원단',
+            //         // description: '이번 주는 체리블라썸라떼 1+1',
+            //         imageUrl:imageUrl,
+            //         link: {
+            //             mobileWebUrl: mapUrl,
+            //             webUrl: mapUrl,
+            //         },
+            //     },
+            //     buttons: [
+            //         {
+            //             title: '웹으로 보기',
+            //             link: {
+            //                 mobileWebUrl: mapUrl,
+            //                 webUrl: mapUrl,
+            //             },
+            //         },
+            //     ],
+            // });
             // window.Kakao.Link.createDefaultButton({
             //     container: '#kakao_share',
             //     objectType: 'feed',
@@ -156,19 +180,44 @@ const Location = () => {
     }
 
     const kakaoShare = () =>{
+        // console.log(mapUrl)
+        // window.Kakao.Link.sendDefault({
+        //     // container: '.kakao_share',
+        //     objectType: 'feed',
+        //     content: {
+        //         title: '한양대학교 창업지원단',
+        //         // description: '#케익 #딸기 #삼평동 #카페 #분위기 #소개팅',
+        //         imageUrl: imageUrl,
+        //         link: {
+        //             mobileWebUrl: mapUrl,
+        //             webUrl: mapUrl,
+        //         }
+        //     },
+        // });
         window.Kakao.Link.sendDefault({
-            // container: '.kakao_share',
-            objectType: 'feed',
+            objectType: 'location',
+            address: '한양대학교 창업지원단',
+            addressTitle: '한양대학교 창업지원단',
             content: {
                 title: '한양대학교 창업지원단',
-                // description: '#케익 #딸기 #삼평동 #카페 #분위기 #소개팅',
-                imageUrl: imageUrl,
+                // description: '이번 주는 체리블라썸라떼 1+1',
+                imageUrl:imageUrl,
                 link: {
-                    mobileWebUrl: mapUrl,
-                    webUrl: mapUrl,
-                }
+                    mobileWebUrl: 'https://startup.hanyang.ac.kr',
+                    webUrl: 'https://startup.hanyang.ac.kr',
+                },
             },
+            buttons: [
+                {
+                    title: '홈페이지',
+                    link: {
+                        mobileWebUrl: 'https://startup.hanyang.ac.kr',
+                        webUrl: 'https://startup.hanyang.ac.kr',
+                    },
+                },
+            ],
         });
+
     }
 
 
@@ -189,7 +238,7 @@ const Location = () => {
             <Head>
                 <title>한양대학교 창업지원단 -오시는길</title>
             </Head>
-            <PageNavigation/>
+            <PageNavigation title={"한양대학교 창업지원단 -오시는길"} desc={"04763 서울특별시 성동구 왕십리로 222 한양대학교 HIT 103호, 한양대학교(서울) 창업지원단"}/>
             <section className={cx("container")}>
                 <div className={cx("sub_container", "location_wrap")}>
                     <h1 className={cx("sub_top_title")}>오시는 길</h1>

@@ -158,7 +158,6 @@ const Write = (props) => {
                 title:"글쓰기 완료",
                 onOk:() =>{router.back();}
             });
-            // setAddResultModal(true);
         }
     },[add])
 

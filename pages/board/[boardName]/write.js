@@ -8,11 +8,12 @@ import dynamic from "next/dynamic";
 import {useRouter} from "next/router";
 import {addBoardContent, getBoard, getBoardContentList, getBoardInfoAll, initialize} from "../../../store/board/board";
 import {useDispatch, useSelector} from "react-redux";
-import Modal from "../../../component/common/Modal";
-import { Upload } from 'antd';
+// import Modal from "../../../component/common/Modal";
+import { Upload,Modal } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import AuthFail from "../../user/auth_fail";
 import { UploadOutlined } from '@ant-design/icons';
+import moment from 'moment';
 
 
 const Editor = dynamic(() => import("../../../component/common/Editor"), {
@@ -112,10 +113,21 @@ const Write = () => {
 
     },[])
 
+    // useEffect(() =>{
+    //
+    //     if(add.result && add.error == null){
+    //         setAddResultModal(true);
+    //     }
+    // },[add])
+
+
     useEffect(() =>{
 
         if(add.result && add.error == null){
-            setAddResultModal(true);
+            Modal.success({
+                title:"글쓰기 완료",
+                onOk:() =>{router.back();}
+            });
         }
     },[add])
 
@@ -126,8 +138,10 @@ const Write = () => {
             ...writeInfo,
             content:editor.getData(),
             files:writeInfo.attachFiles.map((item) => (item.originFileObj)),
-            boardEnName:router.query.boardName
+            boardEnName:router.query.boardName,
+            regDate: moment().format("YYYY-MM-DD HH:mm").toString()
         }
+
         dispatch(addBoardContent(data));
     }
 
@@ -227,9 +241,9 @@ const Write = () => {
                         </div>
                     </div>
                 </Form>
-                <Modal visible={addResultModal} closable={true} maskClosable={true} onClose={() => {setAddResultModal(false);router.back();}} cx={cx} className={"add_result_popup"}>
-                    <h1 className={cx("popup_title")}>글쓰기 완료</h1>
-                </Modal>
+                {/*<Modal visible={addResultModal} closable={true} maskClosable={true} onClose={() => {setAddResultModal(false);router.back();}} cx={cx} className={"add_result_popup"}>*/}
+                {/*    <h1 className={cx("popup_title")}>글쓰기 완료</h1>*/}
+                {/*</Modal>*/}
             </section>
 
         )}

@@ -5,7 +5,7 @@ import classnames from "classnames/bind"
 
 const cx = classnames.bind(styles);
 
-const SearchBoxStyle01 = ({searchContent,changeSearchInfo,category,searchInfo,board}) => {
+const SearchBoxStyle01 = ({searchContent,changeSearchInfo,category,searchInfo}) => {
 
     const handleEnter = (e) => {
         if (e.key == "Enter") {
@@ -16,21 +16,18 @@ const SearchBoxStyle01 = ({searchContent,changeSearchInfo,category,searchInfo,bo
     return (
         <fieldset className={cx("search_wrap")}>
                 <div className={cx("search")}>
-                    {category.length > 0 && (
-                        <select name="categoryCodeId" value={searchInfo.categoryCodeId} style={{width:category.length > 0 ? "19%" : "38%"}} onChange={changeSearchInfo}>
-                            <option value={""}>분류</option>
-                            {category.map((item) =>
-                                (
-                                    <option key={item.categoryCodeId} value={item.categoryCodeId}>{item.categoryCodeName}</option>
-                                )
-                            )}
-                        </select>
-                    )}
-                    <select name="searchField" value={searchInfo.searchField} style={{width:category.length > 0 ? "19%" : "38%"}} onChange={changeSearchInfo}>
+                    {/*{category !== null && (*/}
+                    {/*    <select name="categoryCodeId" value={searchInfo.categoryCodeId} style={{width:category !== null ? "19%" : "38%"}} onChange={changeSearchInfo}>*/}
+                    {/*        <option value={""}>분류</option>*/}
+                    {/*        {category.map((item) =>*/}
+                    {/*            (*/}
+                    {/*                <option key={item.categoryCodeId} value={item.categoryCodeId}>{item.categoryCodeName}</option>*/}
+                    {/*            )*/}
+                    {/*        )}*/}
+                    {/*    </select>*/}
+                    {/*)}*/}
+                    <select name="searchField" value={searchInfo.searchField} style={{width:category !== null ? "19%" : "38%"}} onChange={changeSearchInfo}>
                         <option value="title">제목</option>
-                        {board.boardEnName != 'media_report' && (
-                            <option value="content">내용</option>
-                        )}
                         {/*<option value="user_name">작성자 이름</option>*/}
                     </select>
                     <div className={cx("sch_bar")}>

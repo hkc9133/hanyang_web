@@ -1,12 +1,16 @@
 import React, {useEffect} from 'react';
 import Image from "next/image";
-import {port} from "../../../lib/api/client";
+import {baseUrl, port} from "../../../lib/api/client";
 
-const imageUrl = `http://61.109.248.203${port != null ? `:${port}` : ''}/api/image/hanyang_logo.png`
+const imageUrl = `${baseUrl}/image/hanyang_logo.png`
 const KaKaoShareButton = ({url,title,desc}) => {
 
     useEffect(() =>{
 
+        console.log("----")
+        console.log(url)
+        console.log(title)
+        console.log("----")
         let k = document.createElement("script");
         k.setAttribute("src", "https://developers.kakao.com/sdk/js/kakao.min.js");
         k.onload = function () {

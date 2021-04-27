@@ -291,7 +291,7 @@ const StartupPresentManagePage = () => {
                                             <td>{item.companyOwner}</td>
                                             <td>{item.companyPhoneNum}</td>
                                             <td>
-                                                {item.homepage != null && (
+                                                {(item.homepage != null && item.homepage != '') && (
                                                     <Link href={item.homepage}>
                                                         <a target="_blank">
                                                             <HomeOutlined style={{fontSize:22,verticalAlign:'top'}}/>

@@ -4,6 +4,7 @@ import SearchBoxStyle02 from "./SearchBoxStyle02";
 import SearchBoxStyle03 from "./SearchBoxStyle03";
 import SearchBoxStyle04 from "./SearchBoxStyle04";
 import SearchBoxStyle05 from "./SearchBoxStyle05";
+import SearchBoxStyle06 from "./SearchBoxStyle06";
 
 
 const SearchBoxSelector = (props) => {
@@ -21,6 +22,8 @@ const SearchBoxSelector = (props) => {
                 return <SearchBoxStyle04 {...props}/>
             case 'SearchBoxStyle05':
                 return <SearchBoxStyle05 {...props}/>
+            case 'SearchBoxStyle06':
+                return <SearchBoxStyle06 {...props}/>
         }
     }
     return (
