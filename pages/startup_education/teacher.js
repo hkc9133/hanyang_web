@@ -39,7 +39,7 @@ const Teacher = () => {
                                         </li>
                                         <li>
                                             <span className={cx("title")}>일정</span>
-                                            년 총 2 회​
+                                            연 총 2 회​
                                         </li>
                                         <li>
                                             <span className={cx("title")}>참석대상 </span>

@@ -147,6 +147,7 @@ const Footer = () => {
                     <div className={cx("footer_cont")}>
                         <p>홈페이지 책임자: 구태용/ 관리자(담당자): 장상길</p>
                         <address>(04763) 서울특별시 성동구 왕십리로 222 한양대학교 HIT 103호</address>
+                        <p>약도 및 찾아오시는 길 안내: <Link href="/introduce/location"><a>바로가기</a></Link></p>
                         <p className={cx("copyright")}>&copy; 2021. Startup Support Foundation, Hanyang University. All rights
                             reserved.</p>
                     </div>
