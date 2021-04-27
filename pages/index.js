@@ -537,7 +537,7 @@ const Index = () => {
                             <span className={cx("txt_1")}>국내 1위 벤처창업 CEO 배출 대학</span>
                             {/*<span className={cx("txt_2")}>hanyang Startup</span>*/}
                             <p className={cx("txt_3")}>
-                                학생 창업자수 1위, 벤처 CEO 배출 1위 <br/>한양대 출신 CEO 기업 13,447개<br/>2019년 매출 607조, 국내 GDP 31.7%
+                                학생 창업자수 1위, 벤처 CEO 배출 1위 <br/>한양대 출신 CEO 기업 11,071개<br/>2020년 매출 602조원, 국내 GDP 33.3%
                             </p>
                         </li>
                         <li className={cx("icon_3")}>

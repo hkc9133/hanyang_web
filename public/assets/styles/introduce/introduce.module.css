@@ -114,7 +114,7 @@
     transition: all 0.35s ease-out;
 }
 .location_wrap .left_title .btn_area a:hover{background-color:#222; color:#fff;}
-.location_wrap .map_area{width:100%; height:480px;margin-top:200px;margin-bottom: 40px;}
+.location_wrap .map_area{width:100%; height:480px;margin-top:100px;margin-bottom: 40px;}
 /*.location_wrap .map_area iframe{width:100%; height:480px; }*/
 .location_wrap .location h4{margin-bottom:10px; font-size:18px; color:#222; font-family: 's-core-dream-medium';}
 .location_wrap .location address{margin-bottom:5px; font-size:16px; }
@@ -235,7 +235,7 @@
     .location_wrap .left_title h3{margin-bottom:20px; font-size:26px;}
     .location_wrap .left_title .btn_area li{margin-right:10px; display:inline-block; }
     .location_wrap .left_title .btn_area a{width:300px; height:50px; line-height:48px; font-size:16px; }
-    .location_wrap .map_area{margin-top: 150px;}
+    .location_wrap .map_area{margin-top: 0;}
     .location_wrap .txt_style_1 .left_title{top: 720px;}
 
     .ceo_info{float:none; margin-bottom:40px; width:100%; }

@@ -136,7 +136,7 @@ const BestStartup = () => {
             </Head>
             <PageNavigation/>
             <section className={cx("sub_container", "best_startup")}>
-                <h1 className={cx("sub_top_title")}>우수스타트업</h1>
+                <h1 className={cx("sub_top_title")}>우수 스타트업</h1>
                 <p className={cx("sub_top_txt")}>한양대학교 우수 스타트업을 소개합니다.</p>
 
 

@@ -34,7 +34,9 @@ const Location = () => {
         s.onload = function () {
             let mapOptions = {
                 center: new window.naver.maps.LatLng(37.55755459409449, 127.04686152506919),
-                zoom: 15
+                zoom: 15,
+                draggable: false,
+                scrollWheel: false
             };
             let map = new naver.maps.Map(mapArea.current, mapOptions);
 
@@ -193,7 +195,7 @@ const Location = () => {
             <section className={cx("container")}>
                 <div className={cx("sub_container", "location_wrap")}>
                     <h1 className={cx("sub_top_title")}>오시는 길</h1>
-                    {/*<p className={cx("sub_top_txt")}>당신의 꿈과 열정을 응원합니다. </p>*/}
+                    <p className={cx("sub_top_txt")}>창업지원단에 오시는 방법을 안내해 드립니다.</p>
                     <div className={cx("txt_style_1")}>
                         <div className={cx("left_title")}>
                             {/*<h3>오시는 길</h3>*/}

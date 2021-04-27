@@ -17,7 +17,7 @@ const System = () => {
             <PageNavigation/>
             <section className={cx("container")}>
             <div className={cx("sub_container","startup_support_step")}>
-                <h1 className={cx("sub_top_title")}>창업지원단 지원체계</h1>
+                <h1 className={cx("sub_top_title")}>창업지원체계</h1>
                 <p className={cx("sub_top_txt")}> 창업준비부터 창업실행, EXIT까지 창업 전주기 맞춤형 지원체계를 구축하고 있습니다</p>
 
                 <ol>
@@ -88,7 +88,7 @@ const System = () => {
                                         </li>
                                         <li>
                                             <span className={cx("s_title")}>제도</span>
-                                            창업유학
+                                            창업휴학
                                         </li>
                                     </ul>
                                 </li>
@@ -124,7 +124,7 @@ const System = () => {
                                     <ul>
                                         <li>
                                             <span className={cx("s_title")}>인프라 지원</span>
-                                            글로벌 창업거점센터 운영(미국 실리콘벨리 뉴욕,중국 상해, 베트남 하노이) 글로벌 스타트업 멘토단, 글로벌 엑셀러레이팅 프로그램
+                                            글로벌 창업거점센터 운영(미국 실리콘밸리, 뉴욕, 중국 상해, 베트남 하노이) 글로벌 스타트업 멘토단, 글로벌 액셀러레이팅 프로그램
                                         </li>
                                     </ul>
                                 </li>

@@ -279,7 +279,7 @@ const Header = () => {
                             <a href="/startup_h/best_startup">스타트업H</a>
                             <div className={cx("s_menu","show")}>
                                 <ul>
-                                    <li><a href="/startup_h/best_startup">우수스타트업</a></li>
+                                    <li><a href="/startup_h/best_startup">우수 스타트업</a></li>
                                     <li><a href="/startup_h/startup_present">스타트업 배출현황</a></li>
                                     <li><a href="/board/corp_press/list">기업언론보도</a></li>
                                 </ul>
