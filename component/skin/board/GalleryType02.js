@@ -24,22 +24,18 @@ const GalleryType02 = ({content,board, pageChange}) => {
                         return (
                             <li key={item.rownum}>
                                 <div className={cx("img_area")}>
-                                    <Link href={`/board/${board.boardEnName}/view/${item.contentId}?${qs.stringify(router.query)}`}>
-                                    <a href="#">
+                                    <a href={`/board/${board.boardEnName}/view/${item.contentId}?${qs.stringify(router.query)}`}>
                                         <img src={item.thumbList.length > 0 ? `${client.defaults.baseURL}/resource${item.thumbList[0].filePath}/${item.thumbList[0].fileName + item.thumbList[0].fileExtension}` : getRanThumbnail()}
                                              alt={"게시글 썸네일"}/>
                                     </a>
-                                    </Link>
                                 </div>
                                 <div className={cx("txt_area")}>
-                                    <Link href={`/board/${board.boardEnName}/view/${item.contentId}?${qs.stringify(router.query)}`}>
-                                    <a href="#">
+                                    <a href={`/board/${board.boardEnName}/view/${item.contentId}?${qs.stringify(router.query)}`}>
                                         <div className={cx("title")}>
                                             {item.title}
                                         </div>
                                         <span className={cx("date")}>2020.12.21</span>
                                     </a>
-                                    </Link>
                                 </div>
                             </li>
                         )

@@ -5,7 +5,7 @@ import classnames from "classnames/bind"
 import {useDispatch, useSelector} from "react-redux";
 import {getMentor, getCounselFieldCode, initialize, updateMentor} from "../../../../store/mentoring/adminMentoring";
 import {Button, Form, Input,Modal, Tag} from "antd";
-import client from '../../../../lib/api/client'
+import client, {baseUrl} from '../../../../lib/api/client'
 import CheckableTag from "antd/lib/tag/CheckableTag";
 import KeywordBox from "../../../../component/stratup_counsel/mentor_apply/KeywordBox";
 import CareerBox from "../../../../component/stratup_counsel/mentor_apply/CareerBox";
@@ -35,7 +35,7 @@ const DetailView = () => {
             setMentorInfo({
                 ...mentor.mentor,
             })
-            setImage(mentor.mentor.filePath != null && `${client.defaults.baseURL}/resource${mentor.mentor.filePath}/${mentor.mentor.fileName+mentor.mentor.fileExtension}`)
+            setImage(mentor.mentor.filePath != null && `${baseUrl}/resource${mentor.mentor.filePath}/${mentor.mentor.fileName+mentor.mentor.fileExtension}`)
         }
     }, [mentor.mentor])
 

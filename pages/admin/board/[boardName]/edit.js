@@ -15,15 +15,20 @@ const cx = classnames.bind(styles);
 
 export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
 
-    const cookie = context.req && context.req.headers.cookie ? context.req.headers.cookie : '';
-    client.defaults.headers.Cookie = cookie;
-
-
-    context.store.dispatch(getBoard(context.params.boardName));
-    context.store.dispatch(END);
-    await context.store.sagaTask.toPromise();
+    // const cookie = context.req && context.req.headers.cookie ? context.req.headers.cookie : '';
+    // client.defaults.headers.Cookie = cookie;
+    //
+    //
+    // context.store.dispatch(getBoard(context.params.boardName));
+    // context.store.dispatch(END);
+    // await context.store.sagaTask.toPromise();
+    return {
+        props: {
+            boardName: context.params.boardName,
+        }
+    }
 })
-const Edit = () => {
+const Edit = ({boardName}) => {
     const router = useRouter();
     const dispatch = useDispatch();
 
@@ -51,11 +56,7 @@ const Edit = () => {
     }))
 
     useEffect(() =>{
-        if(router.params == undefined){
-            return
-        }else{
-            // dispatch(getBoard(router.params.boardName));
-        }
+        dispatch(getBoard(boardName))
         return () => {
             dispatch(initializeForm('update'))
         }

@@ -5,6 +5,7 @@ import styles from '../../public/assets/styles/introduce/introduce.module.css';
 import classnames from "classnames/bind"
 import PageNavigation from "../../component/layout/PageNavigation";
 import Head from "next/head";
+import {baseUrl} from "../../lib/api/client";
 
 const cx = classnames.bind(styles);
 
@@ -70,8 +71,8 @@ const Promotion = () => {
                     </div>
                     <div className={cx("btn_area")}>
                         <ul className={`${cx("brochure_list")} clfx `}>
-                            <li><Link href="/assets/pdf/한양대학교 창업지원단 로고.zip"><a target="_blank" download>JPG 다운로드</a></Link></li>
-                            <li><Link href="/assets/pdf/한양대학교 창업지원단 로고.zip"드><a target="_blank" download>AI 다운로드</a></Link></li>
+                            <li><Link href={`${baseUrl}/hwp/한양대학교 창업지원단 로고.zip`}><a target="_blank" download>JPG 다운로드</a></Link></li>
+                            <li><Link href={`${baseUrl}/hwp/한양대학교 창업지원단 로고.zip`}><a target="_blank" download>AI 다운로드</a></Link></li>
                         </ul>
                     </div>
                 </div>

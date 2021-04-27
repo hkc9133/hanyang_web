@@ -3,7 +3,7 @@ import Image from "next/image";
 import {port} from "../../../lib/api/client";
 
 const imageUrl = `http://61.109.248.203${port != null ? `:${port}` : ''}/api/image/hanyang_logo.png`
-const KaKaoShareButton = ({url}) => {
+const KaKaoShareButton = ({url,title,desc}) => {
 
     useEffect(() =>{
 
@@ -70,13 +70,12 @@ const KaKaoShareButton = ({url}) => {
     },[])
 
     const kakaoShare = () =>{
-        console.log(url)
         window.Kakao.Link.sendDefault({
             // container: '.kakao_share',
             objectType: 'feed',
             content: {
-                title: '한양대학교 창업지원단',
-                // description: '#케익 #딸기 #삼평동 #카페 #분위기 #소개팅',
+                title: title != null ? title : '한양대학교 창업지원단',
+                description: desc != null ? desc : "",
                 imageUrl: imageUrl,
                 link: {
                     mobileWebUrl: url,

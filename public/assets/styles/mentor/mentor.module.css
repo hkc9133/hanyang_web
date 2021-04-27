@@ -264,7 +264,7 @@
     .mentor_month{margin:40px 0; padding:15px;}
     .mentor_month .title h2{font-size:26px; margin-bottom:10px;}
     .mentor_month .title p{font-size:14px; }
-    .mentor_month .photoArea .photo img{width:120px; height:120px;}
+    .mentor_month .photoArea .photo img{width:120px; height:120px;margin:0 auto}
     .mentor_month .photoArea .name{font-size:20px; }
     .mentor_month .txt_area p,
     .mentor_month .txt_area ul li,

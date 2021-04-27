@@ -23,10 +23,10 @@ const ListType01 = ({content,board,moveContentDetail,pageChange,category}) => {
                             <col style={{width: "10%"}}/>
                         )}
                         <col/>
-                        <col style={{width: "12%"}}/>
+                        {/*<col style={{width: "12%"}}/>*/}
                         <col style={{width: "12%"}}/>
                         <col style={{width: "10%"}}/>
-                        <col style={{width: "10%"}}/>
+                        {/*<col style={{width: "10%"}}/>*/}
                     </colgroup>
                     <thead>
                     <tr>
@@ -35,10 +35,10 @@ const ListType01 = ({content,board,moveContentDetail,pageChange,category}) => {
                             <th scope="col">분류</th>
                         )}
                         <th scope="col">제목</th>
-                        <th scope="col">작성자</th>
+                        {/*<th scope="col">작성자</th>*/}
                         <th scope="col">작성일자</th>
                         <th scope="col">첨부</th>
-                        <th scope="col">조회수</th>
+                        {/*<th scope="col">조회수</th>*/}
                     </tr>
                     </thead>
                     <tbody>
@@ -51,8 +51,8 @@ const ListType01 = ({content,board,moveContentDetail,pageChange,category}) => {
                                         <td scope="col">{item.categoryCodeName}</td>
                                     )}
                                     <td className={cx("txt_l")}><Link href={`/board/${board.boardEnName}/view/${item.contentId}?${qs.stringify(router.query)}`}><a>{item.title}</a></Link></td>
-                                    <td>{item.userName}</td>
-                                    <td>{moment(item.regDate).format("YYYY년 MM월 DD일").toString()}</td>
+                                    {/*<td>{item.userName}</td>*/}
+                                    <td>{moment(item.regDate).format("YYYY.MM.DD").toString()}</td>
                                     <td>
                                         {item.attachFileList != null && (
                                             item.attachFileList.map((attachFile)=>{
@@ -60,7 +60,7 @@ const ListType01 = ({content,board,moveContentDetail,pageChange,category}) => {
                                             })
                                         )}
                                     </td>
-                                    <td>{item.viewCnt}</td>
+                                    {/*<td>{item.viewCnt}</td>*/}
                                 </tr>
                             )
                         })

@@ -1,6 +1,6 @@
 
 import {useEffect} from "react";
-import {port, url} from "../../lib/api/client";
+import {baseUrl, port, url} from "../../lib/api/client";
 
 const Editor = ({setEditor,content}) => {
 
@@ -14,7 +14,8 @@ const Editor = ({setEditor,content}) => {
 
 
     useEffect(() => {
-        console.log(window.editor)
+
+
         if(window.editor != null){
             window.DecoupledDocumentEditor
                 .create(document.querySelector('#editor'), {
@@ -94,12 +95,10 @@ const Editor = ({setEditor,content}) => {
                 })
                 .then(newEditor => {
                     const toolbarContainer = document.querySelector('#toolbar-container');
-                    console.log(toolbarContainer)
                     //
                     if(toolbarContainer != null){
                         toolbarContainer.appendChild(newEditor.ui.view.toolbar.element);
                     }
-                    console.log(content)
                     if(content != null){
                         newEditor.setData(content)
                     }
@@ -148,7 +147,7 @@ class MyUploadAdapter {
         // CKEditor 5's FileLoader instance.
         this.loader = props;
         // URL where to send files.
-        this.url = `${url}:${port}/api/board/content/img`;
+        this.url = `${baseUrl}/board/content/img`;
     }
 
     // Starts the upload process.
@@ -194,7 +193,7 @@ class MyUploadAdapter {
             // If the upload is successful, resolve the upload promise with an object containing
             // at least the "default" URL, pointing to the image on the server.
             resolve({
-                default: response.url
+                default: `${baseUrl}${response.url}`
             });
         });
 

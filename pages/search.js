@@ -16,22 +16,33 @@ const cx = classnames.bind(styles);
 
 export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
 
-    const cookie = context.req && context.req.headers.cookie ? context.req.headers.cookie : '';
-    client.defaults.headers.Cookie = cookie;
+    // const cookie = context.req && context.req.headers.cookie ? context.req.headers.cookie : '';
+    // client.defaults.headers.Cookie = cookie;
     const { page = 1,boardEnName = null,searchValue = null,searchField = null} = context.query
-    const data = {
-        page:page,
-        boardEnName:boardEnName,
-        searchValue:searchValue,
-        searchField:searchField
+    // const data = {
+    //     page:page,
+    //     boardEnName:boardEnName,
+    //     searchValue:searchValue,
+    //     searchField:searchField
+    // }
+    // context.store.dispatch(getBoardSearchList(data));
+    // context.store.dispatch(END);
+    // await context.store.sagaTask.toPromise();
+
+    return {
+        props: {
+            info: {
+                page:page,
+                boardEnName:boardEnName,
+                searchValue:searchValue,
+                searchField:searchField
+            }
+        }
     }
-    context.store.dispatch(getBoardSearchList(data));
-    context.store.dispatch(END);
-    await context.store.sagaTask.toPromise();
 })
 
 
-const SearchPage = () => {
+const SearchPage = ({info}) => {
 
     const router = useRouter();
     const dispatch = useDispatch();
@@ -53,14 +64,13 @@ const SearchPage = () => {
             ...router.query
         })
 
+        dispatch(getBoardSearchList(info))
+
     },[])
 
 
     useEffect(() => {
-        console.log("aaaa")
-        if(boardSearch.list.length != 0){
-            console.log(boardSearch.list.length)
-            console.log("222")
+        // if(boardSearch.list.length != 0){
             const { page = 1,boardEnName = router.query.boardEnName,searchValue = null,searchField = null} = router.query
             const data = {
                 page:page,
@@ -68,10 +78,10 @@ const SearchPage = () => {
                 searchValue:searchValue,
                 searchField:searchField
             }
-            // dispatch(getBoardSearchList(data));
-        }
+            dispatch(getBoardSearchList(data));
+        // }
 
-    },[router.query])
+    },[router])
 
     const changeSearchInfo = (e) =>{
         const {name, value} = e.target;
@@ -120,13 +130,11 @@ const SearchPage = () => {
                 <ul className={cx("search_list_wrap")}>
                     {boardSearch.list.map((item) =>(
                         <li key={item.contentId}>
-                            <Link href={`/board/${item.boardEnName}/view/${item.contentId}`}>
-                            <a>
+                            <a href={`/board/${item.boardEnName}/view/${item.contentId}`}>
                                 <h3>{item.title}</h3>
                                 <div className={cx("search_list_content")} dangerouslySetInnerHTML={{__html: item.content.replace(/<(\/img|img)([^>]*)>/gi,"")}}></div>
                                 <span>{moment(item.regDate).format("YYYY-MM-DD").toString()}</span>
                             </a>
-                            </Link>
                         </li>
                     ))}
                 </ul>

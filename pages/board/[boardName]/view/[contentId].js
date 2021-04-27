@@ -23,16 +23,22 @@ const cx = classnames.bind(styles);
 export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
 
     const cookie = context.req && context.req.headers.cookie ? context.req.headers.cookie : '';
-    client.defaults.headers.Cookie = cookie;
+    // client.defaults.headers.Cookie = cookie;
+    //
+    // context.store.dispatch(getBoard(context.params.boardName));
+    // context.store.dispatch(getBoardContent(context.params.contentId));
+    // context.store.dispatch(END);
+    // await context.store.sagaTask.toPromise();
 
-
-    context.store.dispatch(getBoard(context.params.boardName));
-    context.store.dispatch(getBoardContent(context.params.contentId));
-    context.store.dispatch(END);
-    await context.store.sagaTask.toPromise();
+    return {
+        props: {
+            boardName: context.params.boardName,
+            contentId:context.params.contentId
+        }
+    }
 })
 
-const BoardView = () => {
+const BoardView = ({boardName,contentId}) => {
     const router = useRouter();
     const dispatch = useDispatch();
 
@@ -65,8 +71,13 @@ const BoardView = () => {
     }))
 
     useEffect(() => {
+        dispatch(getBoard(boardName));
+        dispatch(getBoardContent(contentId));
+    }, [])
+
+    useEffect(() => {
         if (user.login != null) {
-            if (board != null && user.login && view.content != null) {
+            if (board.board != null && user.login && view.content != null) {
 
                 if (board.board.isPrivacy && (user.role != 'ROLE_ADMIN' && user.info.userId != view.content.writerId)) {
                     Modal.warning({
@@ -78,7 +89,7 @@ const BoardView = () => {
                 } else {
                     setShow(true)
                 }
-            } else if (board != null && !user.login && view.content != null) {
+            } else if (board.board != null && !user.login && view.content != null) {
                 if (board.board.isPrivacy) {
                     Modal.warning({
                         title: "작성자만 확인 가능합니다",
@@ -95,9 +106,6 @@ const BoardView = () => {
         }
     }, [board, user, view])
 
-    useEffect(() => {
-
-    }, [])
 
     useEffect(() => {
         setNewReReply({
@@ -233,7 +241,7 @@ const BoardView = () => {
                 <Head>
                     <title>한양대학교 창업지원단 -{board.board.boardKrName}</title>
                 </Head>
-                <PageNavigation/>
+                <PageNavigation title={view.content.title} desc={view.content.content.replace(/(<([^>]+)>)/ig,"")}/>
                 <section className={cx("container")}>
                     <div className={cx("sub_container", "board_view")}>
                         <h1 className={cx("sub_top_title")}>{board.board.boardKrName}</h1>
@@ -308,7 +316,7 @@ const BoardView = () => {
                             <div className={cx("txt_c")}>
                                 {board.board.boardEnName == "Issue" ?
                                     <Link href={"/"}>
-                                    <a className={cx("basic-btn04", "btn-black-bd")}>뒤로가기</a>
+                                    <a className={cx("basic-btn04", "btn-black-bd")}>Home</a>
                                     </Link>
                                     :
                                     <Link href={`/board/${board.board.boardEnName}/list?${qs.stringify({
@@ -330,8 +338,7 @@ const BoardView = () => {
                                     {view.next != null && (
                                         <li>
                                             <span className={cx("title")}>다음글</span>
-                                            <Link
-                                                href={`/board/${router.query.boardName}/view/${view.next.contentId}`}><a>{view.next.title}</a></Link>
+                                            <a href={`/board/${router.query.boardName}/view/${view.next.contentId}`}>{view.next.title}</a>
                                             <span
                                                 className={cx("date")}>{moment(view.next.regDate).format("YYYY.MM.DD")}</span>
                                         </li>
@@ -339,8 +346,7 @@ const BoardView = () => {
                                     {view.prev != null && (
                                         <li>
                                             <span className={cx("title")}>이전글</span>
-                                            <Link
-                                                href={`/board/${router.query.boardName}/view/${view.prev.contentId}`}><a>{view.prev.title}</a></Link>
+                                            <a href={`/board/${router.query.boardName}/view/${view.prev.contentId}`}>{view.prev.title}</a>
                                             <span
                                                 className={cx("date")}>{moment(view.prev.regDate).format("YYYY.MM.DD")}</span>
                                         </li>

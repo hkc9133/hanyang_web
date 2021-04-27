@@ -45,4 +45,4 @@ const BoardSkinSelector = (props) => {
     );
 };
 
-export default React.memo(BoardSkinSelector);
+export default BoardSkinSelector;

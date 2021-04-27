@@ -1,12 +1,12 @@
 
-import "@babel/polyfill";
+// import "@babel/polyfill";
 import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector, useStore} from "react-redux";
 import wrapper from '../store/configureStore';
 import {useRouter} from "next/router";
-import client, {port} from '../lib/api/client'
+import client, {baseUrl, port} from '../lib/api/client'
 import {registerLocale} from "react-datepicker";
 import ko from 'date-fns/locale/ko';
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -34,7 +34,9 @@ import ScrollToTop from "../component/common/ScrollToTop";
 import GlobalStyles from '../public/assets/styles/global'
 import AdminGlobalStyles from '../public/assets/styles/admin_global'
 import {getMainData, getMediaList} from "../store/main/main";
-
+import {
+    isIE
+} from "react-device-detect";
 // import Favicon from '../public/assets/image/favicon.ico';
 
 // "dev": "NODE_ENV='development' node server.js",
@@ -51,11 +53,16 @@ const _App = ({Component, pageProps}) => {
 
     const [role, setRole] = useState(null);
 
-    useEffect(() => {
+    // useEffect(() => {
+    //     if(isIE){
+    //         window.open("microsoft-edge:"+ "https://startup.hanyang.ac.kr");
+    //     }
+    // }, [router])
 
-    }, [])
-
     useEffect(() => {
+        if(isIE){
+            window.open("microsoft-edge:"+ "https://startup.hanyang.ac.kr");
+        }
         dispatch(authCheck())
 
         if (!router.pathname.startsWith("/admin")) {
@@ -102,7 +109,9 @@ const _App = ({Component, pageProps}) => {
                       content="예비창업자 및 초기 기업가, 각 분야 전문가 멘토 간의 정보 교류, 한양대 글로벌기업가센터, 한양대 창업지원단, 한양대 창업지원단"/>
                 <meta name="naver-site-verification"
                       content="7418ad80b2b649e57cf89a6496ee646c915aea9c"/>
-                <meta property="og:image" content={`http://61.109.248.203${port != null ? `:${port}` : ''}/api/image/bg.jpg`}/>
+                <meta name="naver-site-verification" content="02b2936f394809c03fee674b83c3d69b16f04e11" />
+                <meta name="google-site-verification" content="0VqHl3NcslQqx6a4A6zb_lqg2DlKDFl9Z8_egKnahFw" />
+                <meta property="og:image" content={`${baseUrl}/api/image/bg.jpg`}/>
                 <meta property="og:url" content="http://startup.hanyang.ac.kr"/>
             </Head>
             <div id="wrap">

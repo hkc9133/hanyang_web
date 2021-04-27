@@ -24,7 +24,7 @@ const UniversityStudent = () => {
     const [showScore, setShowScore] = useState(false)
 
     useEffect(() => {
-        console.log(tabNum)
+
     }, [tabNum])
     return (
         <>

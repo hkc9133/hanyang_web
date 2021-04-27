@@ -22,15 +22,15 @@ import Head from "next/head";
 
 const cx = classnames.bind(styles);
 
-export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
-
-    const cookie = context.req && context.req.headers.cookie ? context.req.headers.cookie : '';
-    client.defaults.headers.Cookie = cookie;
-
-    context.store.dispatch(getBestStartupList());
-    context.store.dispatch(END);
-    await context.store.sagaTask.toPromise();
-})
+// export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
+//
+//     const cookie = context.req && context.req.headers.cookie ? context.req.headers.cookie : '';
+//     client.defaults.headers.Cookie = cookie;
+//
+//     context.store.dispatch(getBestStartupList());
+//     context.store.dispatch(END);
+//     await context.store.sagaTask.toPromise();
+// })
 
 const BestStartup = () => {
     const dispatch = useDispatch();
@@ -57,7 +57,7 @@ const BestStartup = () => {
     });
 
     useEffect(() => {
-
+        dispatch(getBestStartupList())
         return () => {
             dispatch(initialize())
         }

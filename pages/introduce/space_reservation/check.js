@@ -53,7 +53,10 @@ const Check = () => {
                     <h2 className={`${cx("title_style_2")} mb_10`}>예약시설안내</h2>
                     <div className={cx("purpose")}>
                         <ul>
-                            <li><span className={cx("num")}>1. </span>꼭확인하세요!</li>
+                            <li>
+                                {/*<span className={cx("num")}></span>*/}
+                                본인이 예약한 시설 공간 사항을 확인 또는 취소할 수 있습니다
+                            </li>
                         </ul>
                     </div>
 

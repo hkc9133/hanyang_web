@@ -17,18 +17,22 @@ import qs from 'query-string';
 import Head from "next/head";
 const cx = classnames.bind(styles);
 
-
 export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
 
-    const cookie = context.req && context.req.headers.cookie ? context.req.headers.cookie : '';
-    client.defaults.headers.Cookie = cookie;
+    // const cookie = context.req && context.req.headers.cookie ? context.req.headers.cookie : '';
+    // client.defaults.headers.Cookie = cookie;
     const { page = 1,boardName = context.params.boardName, categoryId = null,categoryCodeId = null,searchValue = null,searchField = null} = context.query
-    context.store.dispatch(getBoard(boardName));
-    context.store.dispatch(END);
-    await context.store.sagaTask.toPromise();
+    // context.store.dispatch(getBoard(boardName));
+    // context.store.dispatch(END);
+    // await context.store.sagaTask.toPromise();
+    return {
+        props: {
+            boardName: boardName
+        }
+    }
 })
 
-const List = () => {
+const List = ({boardName}) => {
 
 
     const router = useRouter();
@@ -54,13 +58,16 @@ const List = () => {
         contentListLoading:loading['board/GET_BOARD_CONTENT_LIST'],
     }))
 
+    useEffect(() =>{
+        dispatch(getBoard(boardName));
+    },[router])
+
     useEffect(() => {
         setSearchInfo(searchInfo =>({
             ...searchInfo,
             ...router.query
         }))
 
-        console.log(board.board)
         setCurrentBoard(currentBoard =>({
             ...currentBoard,
             board: board.board,
@@ -81,12 +88,8 @@ const List = () => {
             }
             dispatch(getBoardContentList(data));
         }
-    },[board,router.query])
+    },[board.board,router])
 
-
-    useEffect(() =>{
-        console.log(board.board)
-    },[])
 
     const changeSearchInfo = (e) =>{
 
@@ -102,11 +105,15 @@ const List = () => {
         router.push(`${router.pathname}?${queryString}`)
     },[searchInfo])
 
-
-    const pageChange = useCallback((pageNum) =>{
+    const pageChange = (pageNum) =>{
         const queryString = qs.stringify({...router.query,page:pageNum});
         router.push(`${router.pathname}?${queryString}`)
-    },[router.query])
+
+    }
+    // const pageChange = useCallback((pageNum) =>{
+    //     const queryString = qs.stringify({...router.query,page:pageNum});
+    //     router.push(`${router.pathname}?${queryString}`)
+    // },[router.query])
 
     return (
         <>
@@ -132,7 +139,7 @@ const List = () => {
                     {currentBoard.board.boardEnName == 'people' && (
                         <SearchBoxSelector skinName="SearchBoxStyle02" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
                     )}
-                    {currentBoard.board.boardEnName == 'data_room' || currentBoard.board.boardEnName == 'idea' || currentBoard.board.boardEnName == "startup_info" && (
+                    {currentBoard.board.boardEnName == 'idea' || currentBoard.board.boardEnName == "startup_info" && (
                         <SearchBoxSelector skinName="SearchBoxStyle01" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
                     )}
                     {(currentBoard.board.boardEnName == 'idea' || currentBoard.board.boardEnName == 'ir')  && (
@@ -144,14 +151,17 @@ const List = () => {
                     {(currentBoard.board.boardEnName == 'online_content') && (
                         <SearchBoxSelector skinName="SearchBoxStyle04" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
                     )}
+                    {(currentBoard.board.boardEnName == 'data_room') && (
+                        <SearchBoxSelector skinName="SearchBoxStyle04" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
+                    )}
                     {(currentBoard.board.boardEnName == 'issue') && (
                         <SearchBoxSelector skinName="SearchBoxStyle01" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
                     )}
 
                     {
-                        board.board.writeRole != null && (board.board.writeRole.indexOf(user.role) > 0) && currentBoard.board.boardEnName == 'idea' && (
+                        currentBoard.board.writeRole != null && (currentBoard.board.writeRole.indexOf(user.role) > 0) && currentBoard.board.boardEnName == 'idea' && (
                             <div className={cx("btn_box")}>
-                                <Link href={`/board/${board.board.boardEnName}/write`}><a className={cx("basic-btn03","write_btn")}>글쓰기</a></Link>
+                                <Link href={`/board/${currentBoard.board.boardEnName}/write`}><a className={cx("basic-btn03","write_btn")}>글쓰기</a></Link>
                             </div>
                         )
                     }

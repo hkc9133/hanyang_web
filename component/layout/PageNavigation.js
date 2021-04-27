@@ -104,7 +104,7 @@ const board = {
     corp_press:{parents:'startup_h'},
 }
 
-const PageNavigation = () => {
+const PageNavigation = ({title,desc}) => {
 
     const [navi, setNavi] = useState(null);
     const [subNavi, setSubNavi] = useState({key:null,name:null});
@@ -115,7 +115,6 @@ const PageNavigation = () => {
     }))
 
     useEffect(() => {
-        console.log(router)
         let str = "";
         if(router.asPath.indexOf("#") > 0){
             str = router.asPath.replace(router.asPath.substr(router.asPath.indexOf("#"),router.asPath.length),"");
@@ -147,9 +146,9 @@ const PageNavigation = () => {
 
     const content = (
         <div style={{display: 'flex', justifyContent: 'space-between',padding:'0px 10px',width:150}}>
-            <NaverShareButton url={`${url}${router.asPath}`}/>
-            <FaceBookShareButton url={`${url}${router.asPath}`}/>
-            <KaKaoShareButton url={`${url}${router.asPath}`}/>
+            <NaverShareButton url={`${url}${router.asPath}`} title={title != null ? title : null} desc={desc != null ? desc : null}/>
+            <FaceBookShareButton url={`${url}${router.asPath}`} title={title != null ? title : null} desc={desc != null ? desc : null}/>
+            <KaKaoShareButton url={`${url}${router.asPath}`} title={title != null ? title : null} desc={desc != null ? desc : null}/>
         </div>
     );
     return (

@@ -5,7 +5,7 @@ import styles from '../../public/assets/styles/mentor/mentor.module.css';
 import classnames from "classnames/bind"
 import Image from "next/image";
 import {useDispatch, useSelector} from "react-redux";
-import client from "../../lib/api/client";
+import client,{baseUrl} from "../../lib/api/client";
 import {getBestMentor} from "../../store/mentoring/mentoring";
 import Slider from "react-slick";
 import {Modal} from "antd";
@@ -44,7 +44,7 @@ const CounselApply = () => {
     useEffect(() => {
         if(bestMentor != null){
             setMentorInfo({...mentorInfo,...bestMentor})
-            setImage(bestMentor.filePath != null ? `${client.defaults.baseURL}/resource${bestMentor.filePath}/${bestMentor.fileName+bestMentor.fileExtension}` : null)
+            setImage(bestMentor.filePath != null ? `${baseUrl}/resource${bestMentor.filePath}/${bestMentor.fileName+bestMentor.fileExtension}` : null)
         }
 
     }, [bestMentor])
@@ -103,7 +103,7 @@ const CounselApply = () => {
                                         </div>
                                         <div className={cx("photoArea")}>
                                             <div className={cx("photo")}>
-                                                <Image src={item.filePath != null ? `${client.defaults.baseURL}/resource${item.filePath}/${item.fileName+item.fileExtension}`: '/assets/image/mentor_photo.jpg'} width={198} height={198} alt="mentor_photo"/>
+                                                <img src={item.filePath != null ? `${baseUrl}/resource${item.filePath}/${item.fileName+item.fileExtension}`: '/assets/image/mentor_photo.jpg'} width={198} height={198} alt="mentor_photo"/>
                                             </div>
                                             <span className={cx("name")}>{item.mentorName}</span>
                                             <span className={cx("job")}>{item.mentorPosition}</span>

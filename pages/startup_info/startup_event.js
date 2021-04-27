@@ -99,6 +99,7 @@ const StartupEvent = () => {
             <Head>
                 <title>한양대학교 창업지원단 -창업캘린더</title>
             </Head>
+            <PageNavigation/>
             <section className={cx("container")}>
                 <div className={cx("sub_container", "calendar")}>
                     <h1 className={cx("sub_top_title")}>창업캘린더</h1>

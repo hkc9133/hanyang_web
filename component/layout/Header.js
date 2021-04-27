@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import Link from "next/link";
+// import Link from "next/link";
 import styles from '../../public/assets/styles/header/header.module.css';
 import classnames from "classnames/bind"
 import Image from 'next/image'
@@ -113,76 +113,76 @@ const Header = () => {
     return (
         <div className={cx("header")}>
             <div className={cx("header_inner")}>
-                <div className={cx("logo")}><Link href="/"><a><Image src="/assets/image/logo.png" width={238} height={38} alt="한양대학교 창업지원단"/></a></Link></div>
+                <div className={cx("logo")}><a href="/"><Image src="/assets/image/logo.png" width={238} height={38} alt="한양대학교 창업지원단"/></a></div>
                 <div className={cx("gnb")}>
                     <ul className={"clfx"}>
                         <li>
-                            <Link href="/startup_education/university_student"><a>창업교육</a></Link>
+                            <a href="/startup_education/university_student">창업교육</a>
                             <div className={cx("s_gnb")}>
                                 <ul>
-                                    <li><Link href="/startup_education/university_student"><a>대학(원)생 대상</a></Link></li>
-                                    <li><Link href="/startup_education/teacher"><a>교원 대상</a></Link></li>
-                                    <li><Link href="/startup_education/alumnus"><a>동문 대상</a></Link></li>
-                                    <li><Link href="/board/people/list"><a>일반인 대상</a></Link></li>
-                                    <li><Link href="/board/online_content/list"><a>온라인 콘텐츠</a></Link></li>
+                                    <li><a href="/startup_education/university_student">대학(원)생 대상</a></li>
+                                    <li><a href="/startup_education/teacher">교원 대상</a></li>
+                                    <li><a href="/startup_education/alumnus">동문 대상</a></li>
+                                    <li><a href="/board/people/list">일반인 대상</a></li>
+                                    <li><a href="/board/online_content/list">온라인 콘텐츠</a></li>
                                 </ul>
                             </div>
                         </li>
                         <li>
-                            <Link href="/startup_counsel/counsel_process"><a>창업상담</a></Link>
+                            <a href="/startup_counsel/counsel_process">창업상담</a>
                             <div className={cx("s_gnb")}>
                                 <ul>
-                                    <li><Link href="/startup_counsel/counsel_process"><a>창업상담신청</a></Link></li>
-                                    <li><Link href="/startup_counsel/mentor_introduce?pageSize=1"><a>멘토단소개</a></Link></li>
+                                    <li><a href="/startup_counsel/counsel_process">창업상담신청</a></li>
+                                    <li><a href="/startup_counsel/mentor_introduce?pageSize=1">멘토단소개</a></li>
                                     <li><a onClick={() =>{moveMentorApply()}}>멘토신청</a></li>
-                                    <li><Link href="/startup_counsel/startup_procedure"><a>창업절차</a></Link></li>
+                                    <li><a href="/startup_counsel/startup_procedure">창업절차</a></li>
                                 </ul>
                             </div>
                         </li>
                         <li>
-                            <Link href="/board/notice/list"><a>창업지원정보</a></Link>
+                            <a href="/board/notice/list">창업지원정보</a>
                             <div className={cx("s_gnb")}>
                                 <ul>
-                                    <li><Link href="/board/notice/list"><a>공지사항</a></Link></li>
-                                    <li><Link href="/startup_info/startup_event"><a>창업캘린더</a></Link></li>
-                                    <li><Link href="/board/startup_info/list"><a>신규사업공고</a></Link></li>
-                                    <li><Link href="/board/idea/list"><a>커뮤니티 게시판</a></Link></li>
-                                    <li><Link href="/board/data_room/list"><a>자료실</a></Link></li>
-                                    <li><Link href="/board/faq/list"><a>FAQ</a></Link></li>
+                                    <li><a href="/board/notice/list">공지사항</a></li>
+                                    <li><a href="/startup_info/startup_event">창업캘린더</a></li>
+                                    <li><a href="/board/startup_info/list">신규사업공고</a></li>
+                                    <li><a href="/board/idea/list">커뮤니티 게시판</a></li>
+                                    <li><a href="/board/data_room/list">자료실</a></li>
+                                    <li><a href="/board/faq/list">FAQ</a></li>
                                 </ul>
                             </div>
                         </li>
                         <li>
-                            <Link href="/startup_h/best_startup"><a>스타트업H</a></Link>
+                            <a href="/startup_h/best_startup">스타트업H</a>
                             <div className={cx("s_gnb")}>
                                 <ul>
-                                    <li><Link href="/startup_h/best_startup"><a>우수스타트업</a></Link></li>
-                                    <li><Link href="/startup_h/startup_present"><a>스타트업 배출현황</a></Link></li>
-                                    <li><Link href="/board/corp_press/list"><a>기업언론보도</a></Link></li>
+                                    <li><a href="/startup_h/best_startup">우수스타트업</a></li>
+                                    <li><a href="/startup_h/startup_present">스타트업 배출현황</a></li>
+                                    <li><a href="/board/corp_press/list">기업언론보도</a></li>
                                 </ul>
                             </div>
                         </li>
                         <li>
-                            <Link href="/board/ir/list"><a>투자연계</a></Link>
+                            <a href="/investment/ir">투자연계</a>
                             <div className={cx("s_gnb")}>
                                 <ul>
-                                    <li><Link href="/investment/ir"><a>IR/투자 안내</a></Link></li>
-                                    <li><Link href="/investment/investment_partners"><a>국내외<br/> 투자파트너스</a></Link></li>
+                                    <li><a href="/investment/ir">IR/투자 안내</a></li>
+                                    <li><a href="/investment/investment_partners">국내외<br/> 투자파트너스</a></li>
                                 </ul>
                             </div>
                         </li>
                         <li>
-                            <Link href="/introduce/introduce"><a>창업지원단 소개</a></Link>
+                            <a href="/introduce/introduce">창업지원단 소개</a>
                             <div className={cx("s_gnb")}>
                                 <ul>
-                                    <li><Link href="/introduce/introduce"><a>기관 소개</a></Link></li>
-                                    <li><Link href="/introduce/system"><a>창업지원 체계</a></Link></li>
-                                    <li><Link href="/introduce/infra"><a>인프라</a></Link></li>
-                                    <li><Link href="/introduce/friendly"><a>창업친화적 제도</a></Link></li>
-                                    <li><Link href="/board/media_report/list"><a>언론보도</a></Link></li>
-                                    <li><Link href="/introduce/news"><a>뉴스레터</a></Link></li>
-                                    <li><Link href="/introduce/promotion"><a>소개자료</a></Link></li>
-                                    <li><Link href="/introduce/location"><a>오시는 길</a></Link></li>
+                                    <li><a href="/introduce/introduce">기관 소개</a></li>
+                                    <li><a href="/introduce/system">창업지원 체계</a></li>
+                                    <li><a href="/introduce/infra">인프라</a></li>
+                                    <li><a href="/introduce/friendly">창업친화적 제도</a></li>
+                                    <li><a href="/board/media_report/list">언론보도</a></li>
+                                    <li><a href="/introduce/news">뉴스레터</a></li>
+                                    <li><a href="/introduce/promotion">소개자료</a></li>
+                                    <li><a href="/introduce/location">오시는 길</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -192,26 +192,26 @@ const Header = () => {
                 <div className={cx("login_box")}>
                     {isLogin ?
                         <>
-                            <Link href={mypage}>
-                                <a className={cx("top_mypage")}>
+                            <a href={mypage} className={cx("top_mypage")}>
+                                {/*<a >*/}
                                     {user.role == 'ROLE_SD' && '창업상담 신청현황'}
                                     {(user.role == 'ROLE_ADMIN' || user.role == 'ROLE_TC')  && '관리자'}
                                     {user.role == 'ROLE_MT' && '관리'}
                                 {/*{user.role == 'ROLE_SD' ? '창업상담 신청현황' : user.role == 'ROLE_ADMIN' ? "관리자" : "관리"}*/}
-                                </a>
-                            </Link>
-                        <Link href="/logout"><a >로그아웃</a></Link>
+                                {/*</a>*/}
+                            </a>
+                        <a href="/logout">로그아웃</a>
                         </>
                         :
-                        <Link href="/user/login"><a href="#">로그인</a></Link>
+                        <a href="/user/login">로그인</a>
                     }
                 </div>
                 <div className={cx("language")}>
                     <button type="button" className={cx("language_open")}>KOR</button>
                     <div className={cx("language_list")}>
                         <ul>
-                            <li><Link href="/"><a>KOR</a></Link></li>
-                            <li><Link href="/"><a>EN</a></Link></li>
+                            <li><a href="/">KOR</a></li>
+                            <li><a href="/">EN</a></li>
                         </ul>
                     </div>
                 </div>
@@ -235,102 +235,83 @@ const Header = () => {
                     <div className={cx("logoArea")}><Image src="/assets/image/left_menu_logo.jpg" width={108} height={36} alt="left_logo"/></div>
                     <ul className={"clfx"}>
                         <li>
-                            <Link href="/startup_education/university_student"><a>창업교육</a></Link>
+                            <a href="/startup_education/university_student">창업교육</a>
                             <div className={cx("s_menu","show")}>
                                 <ul>
-                                    <li><Link href="/startup_education/university_student"><a>대학(원)생 대상</a></Link></li>
-                                    <li><Link href="/startup_education/teacher"><a>교원 대상</a></Link></li>
-                                    <li><Link href="/startup_education/alumnus"><a>동문 대상</a></Link></li>
-                                    <li><Link href="/board/people/list"><a>일반인 대상</a></Link></li>
-                                    <li><Link href="/board/online_content/list"><a>온라인 콘텐츠</a></Link></li>
+                                    <li><a href="/startup_education/university_student">대학(원)생 대상</a></li>
+                                    <li><a href="/startup_education/teacher">교원 대상</a></li>
+                                    <li><a href="/startup_education/alumnus">동문 대상</a></li>
+                                    <li><a href="/board/people/list">일반인 대상</a></li>
+                                    <li><a href="/board/online_content/list">온라인 콘텐츠</a></li>
                                 </ul>
                             </div>
                         </li>
                         <li style={{marginTop:90}}>
-                            <Link href="/startup_counsel/counsel_process"><a>창업상담</a></Link>
+                            <a href="/startup_counsel/counsel_process">창업상담</a>
                             <div className={cx("s_menu","show")}>
                                 <ul>
-                                    <li><Link href="/startup_counsel/counsel_process"><a>창업상담신청</a></Link></li>
-                                    <li><Link href="/startup_counsel/mentor_introduce?pageSize=1"><a>멘토단소개</a></Link></li>
+                                    <li><a href="/startup_counsel/counsel_process">창업상담신청</a></li>
+                                    <li><a href="/startup_counsel/mentor_introduce?pageSize=1">멘토단소개</a></li>
                                     <li><a onClick={() =>{moveMentorApply()}}>멘토신청</a></li>
-                                    <li><Link href="/startup_counsel/startup_procedure"><a>창업절차</a></Link></li>
+                                    <li><a href="/startup_counsel/startup_procedure">창업절차</a></li>
                                 </ul>
                             </div>
                         </li>
                         <li>
-                            <Link href="/board/notice/list"><a>창업지원정보</a></Link>
+                            <a href="/board/notice/list">창업지원정보</a>
                             <div className={cx("s_menu","show")}>
                                 <ul>
-                                    <li><Link href="/board/notice/list"><a>공지사항</a></Link></li>
-                                    <li><Link href="/startup_info/startup_event"><a>창업캘린더</a></Link></li>
-                                    <li><Link href="/board/startup_info/list"><a>신규사업공고</a></Link></li>
-                                    <li><Link href="/board/idea/list"><a>커뮤니티 게시판</a></Link></li>
-                                    <li><Link href="/board/data_room/list"><a>자료실</a></Link></li>
-                                    <li><Link href="/board/faq/list"><a>FAQ</a></Link></li>
+                                    <li><a href="/board/notice/list">공지사항</a></li>
+                                    <li><a href="/startup_info/startup_event">창업캘린더</a></li>
+                                    <li><a href="/board/startup_info/list">신규사업공고</a></li>
+                                    <li><a href="/board/idea/list">커뮤니티 게시판</a></li>
+                                    <li><a href="/board/data_room/list">자료실</a></li>
+                                    <li><a href="/board/faq/list">FAQ</a></li>
                                 </ul>
                             </div>
                         </li>
                         <li>
-                            <Link href="/startup_h/best_startup"><a>스타트업H</a></Link>
+                            <a href="/startup_h/best_startup">스타트업H</a>
                             <div className={cx("s_menu","show")}>
                                 <ul>
-                                    <li><Link href="/startup_h/best_startup"><a>우수스타트업</a></Link></li>
-                                    <li><Link href="/startup_h/startup_present"><a>스타트업 배출현황</a></Link></li>
-                                    <li><Link href="/board/corp_press/list"><a>기업언론보도</a></Link></li>
+                                    <li><a href="/startup_h/best_startup">우수스타트업</a></li>
+                                    <li><a href="/startup_h/startup_present">스타트업 배출현황</a></li>
+                                    <li><a href="/board/corp_press/list">기업언론보도</a></li>
                                 </ul>
                             </div>
                         </li>
                         <li>
-                            <Link href="/investment/ir"><a>투자연계</a></Link>
+                            <a href="/investment/ir">투자연계</a>
                             <div className={cx("s_menu","show")} style={{height:250}}>
                                 <ul>
-                                    <li><Link href="/investment/ir"><a>IR/투자 안내</a></Link></li>
-                                    <li><Link href="/investment/investment_partners"><a>국내외 투자파트너스</a></Link></li>
+                                    <li><a href="/investment/ir">IR/투자 안내</a></li>
+                                    <li><a href="/investment/investment_partners">국내외 투자파트너스</a></li>
                                 </ul>
                             </div>
                         </li>
                         <li>
-                            <Link href="/introduce/introduce"><a>창업지원단 소개</a></Link>
+                            <a href="/introduce/introduce">창업지원단 소개</a>
                             <div className={cx("s_menu","show")} style={{height:250}}>
                                 <ul>
-                                    <li><Link href="/introduce/introduce"><a>기관 소개</a></Link></li>
-                                    <li><Link href="/introduce/system"><a>창업지원 체계</a></Link></li>
-                                    <li><Link href="/introduce/infra"><a>인프라</a></Link></li>
-                                    <li><Link href="/introduce/friendly"><a>창업친화적 제도</a></Link></li>
-                                    <li><Link href="/board/media_report/list"><a>언론보도</a></Link></li>
-                                    <li><Link href="/introduce/news"><a>뉴스레터</a></Link></li>
-                                    <li><Link href="/introduce/promotion"><a>소개자료</a></Link></li>
-                                    <li><Link href="/introduce/location"><a>오시는 길</a></Link></li>
+                                    <li><a href="/introduce/introduce">기관 소개</a></li>
+                                    <li><a href="/introduce/system">창업지원 체계</a></li>
+                                    <li><a href="/introduce/infra">인프라</a></li>
+                                    <li><a href="/introduce/friendly">창업친화적 제도</a></li>
+                                    <li><a href="/board/media_report/list">언론보도</a></li>
+                                    <li><a href="/introduce/news">뉴스레터</a></li>
+                                    <li><a href="/introduce/promotion">소개자료</a></li>
+                                    <li><a href="/introduce/location">오시는 길</a></li>
                                 </ul>
                             </div>
                         </li>
                     </ul>
                     {isLogin &&
-                        <Link href={mypage}><a className={cx("mypage_link")}>{user.role == 'ROLE_SD' ? '창업상담 신청현황' : user.role == 'ROLE_ADMIN' ? "관리자콘솔" : "관리"}</a></Link>
+                        <a href={mypage} className={cx("mypage_link")}>{user.role == 'ROLE_SD' ? '창업상담 신청현황' : user.role == 'ROLE_ADMIN' ? "관리자콘솔" : "관리"}</a>
                     }
                 </div>
             </div>
         </div>
 
-        // <div>
-        //     <ul>
-        //         <li>
-        //             <Link href="/"><a>메인</a></Link>
-        //         </li>
-        //         <li>
-        //             <Link href="/auth/login"><a>로그인 화면</a></Link>
-        //         </li>
-        //         <li>
-        //             <Link href="/board/board"><a>글쓰기</a></Link>
-        //         </li>
-        //         <li>
-        //             <Link href="/space/rental"><a>공간예약</a></Link>
-        //         </li>
-        //         <li>
-        //             <Link href="/admin/main"><a>어드민</a></Link>
-        //         </li>
-        //     </ul>
-        // </div>
     );
 };
 

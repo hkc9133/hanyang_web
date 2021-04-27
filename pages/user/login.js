@@ -51,6 +51,7 @@ const Login = () => {
 
     useEffect(() => {
         if(user.login){
+            console.log("Aa")
             router.push("/")
         }
     },[user])
@@ -98,6 +99,7 @@ const Login = () => {
             // setShowJoinInfoModal(true);
         }
         else if(!loginLoading && user.login == true && loginCode == 200){
+            console.log("bb")
             router.push('/')
         }else if(!normalLoginLoading && user.login == false && loginCode == 400){
             AntdModal.warning({
@@ -109,6 +111,7 @@ const Login = () => {
 
     useEffect(() => {
         if (!signUpLoading && signup.result == true && signup.error == null) {
+            console.log("cc")
             router.push('/')
         }
     }, [signup, signUpLoading])

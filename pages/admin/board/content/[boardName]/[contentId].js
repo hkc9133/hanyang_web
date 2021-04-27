@@ -21,16 +21,22 @@ const cx = classnames.bind(styles);
 
 export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
 
-    const cookie = context.req && context.req.headers.cookie ? context.req.headers.cookie : '';
-    client.defaults.headers.Cookie = cookie;
-
-    context.store.dispatch(getBoard(context.params.boardName));
-    context.store.dispatch(getBoardContent(context.params.contentId));
-    context.store.dispatch(END);
-    await context.store.sagaTask.toPromise();
+    // const cookie = context.req && context.req.headers.cookie ? context.req.headers.cookie : '';
+    // client.defaults.headers.Cookie = cookie;
+    //
+    // context.store.dispatch(getBoard(context.params.boardName));
+    // context.store.dispatch(getBoardContent(context.params.contentId));
+    // context.store.dispatch(END);
+    // await context.store.sagaTask.toPromise();
+    return {
+        props: {
+            boardName: context.params.boardName,
+            contentId:context.params.contentId
+        }
+    }
 })
 
-const ContentView = () => {
+const ContentView = ({boardName,contentId}) => {
     const router = useRouter();
     const dispatch = useDispatch();
 
@@ -59,6 +65,11 @@ const ContentView = () => {
         deleteResult:adminBoard.delete,
         reply: adminBoard.reply
     }))
+
+    useEffect(() => {
+        dispatch(getBoard(boardName));
+        dispatch(getBoardContent(contentId));
+    }, [])
 
     useEffect(() => {
         setNewReReply({
@@ -180,7 +191,7 @@ const ContentView = () => {
     }
 
     return (
-        view.content != null && (
+        (view.content != null && board.board) && (
             <>
             <section className={cx("container","board_container")}>
                 <h1 className={cx("top_title")}>글 내용</h1>

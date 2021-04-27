@@ -56,7 +56,7 @@ const AdminHeaderDetail = () => {
                         <h3 className={cx("adm_menu_title")}>회원 관리</h3>
                     </div>
                     <ul>
-                        <li><Link href="/admin/users"><a>회원 관리</a></Link></li>
+                        <li><Link href="/admin/users">회원 관리</Link></li>
                     </ul>
                 </>
             )}
@@ -69,13 +69,13 @@ const AdminHeaderDetail = () => {
                         <h3 className={cx("adm_menu_title")}>사이트 관리</h3>
                     </div>
                     <ul>
-                        <li><Link href="/admin/board/list"><a>게시판 관리</a></Link></li>
+                        <li><Link href="/admin/board/list">게시판 관리</Link></li>
                         <li><button className={cx("board_title")} name="4_1" onClick={changeDropdown}>창업교육</button></li>
                         <div className={cx("board_sub")}>
                             {dropdown["4_1"] && (
                                 <ul>
-                                    <li><Link href={'/admin/board/content/list?boardEnName=people'}><a>일반인 대상</a></Link></li>
-                                    <li><Link href={'/admin/board/content/list?boardEnName=online_content'}><a>온라인 콘텐츠</a></Link></li>
+                                    <li><Link href={'/admin/board/content/list?boardEnName=people'}>일반인 대상</Link></li>
+                                    <li><Link href={'/admin/board/content/list?boardEnName=online_content'}>온라인 콘텐츠</Link></li>
                                 </ul>
                                 )}
                         </div>
@@ -83,11 +83,11 @@ const AdminHeaderDetail = () => {
                         <div className={cx("board_sub")}>
                             {dropdown["4_2"] && (
                             <ul>
-                                <li><Link href={'/admin/board/content/list?boardEnName=notice'}><a>공지사항</a></Link></li>
-                                <li><Link href={'/admin/board/content/list?boardEnName=startup_info'}><a>신규사업공고</a></Link></li>
-                                <li><Link href={'/admin/board/content/list?boardEnName=idea'}><a>커뮤니티 게시판</a></Link></li>
-                                <li><Link href={'/admin/board/content/list?boardEnName=data_room'}><a>자료실</a></Link></li>
-                                <li><Link href={'/admin/board/content/list?boardEnName=faq'}><a>FAQ</a></Link></li>
+                                <li><Link href={'/admin/board/content/list?boardEnName=notice'}>공지사항</Link></li>
+                                <li><Link href={'/admin/board/content/list?boardEnName=startup_info'}>신규사업공고</Link></li>
+                                <li><Link href={'/admin/board/content/list?boardEnName=idea'}>커뮤니티 게시판</Link></li>
+                                <li><Link href={'/admin/board/content/list?boardEnName=data_room'}>자료실</Link></li>
+                                <li><Link href={'/admin/board/content/list?boardEnName=faq'}>FAQ</Link></li>
                             </ul>
                             )}
                         </div>
@@ -95,7 +95,7 @@ const AdminHeaderDetail = () => {
                         <div className={cx("board_sub")}>
                             {dropdown["4_3"] && (
                             <ul>
-                                <li><Link href={'/admin/board/content/list?boardEnName=corp_press'}><a>기업언론보도</a></Link></li>
+                                <li><Link href={'/admin/board/content/list?boardEnName=corp_press'}>기업언론보도</Link></li>
                             </ul>
                             )}
                         </div>
@@ -103,7 +103,7 @@ const AdminHeaderDetail = () => {
                         <div className={cx("board_sub")}>
                             {dropdown["4_4"] && (
                             <ul>
-                                <li><Link href={'/admin/board/content/list?boardEnName=ir'}><a>IR/투자 안내</a></Link></li>
+                                <li><Link href={'/admin/board/content/list?boardEnName=ir'}>IR/투자 안내</Link></li>
                             </ul>
                             )}
                         </div>
@@ -111,8 +111,8 @@ const AdminHeaderDetail = () => {
                         <div className={cx("board_sub")}>
                             {dropdown["4_5"] && (
                             <ul>
-                                <li><Link href={'/admin/board/content/list?boardEnName=media_report'}><a>언론보도</a></Link></li>
-                                {/*<li><Link href={'/admin/board/content/list?boardEnName=news'}><a>뉴스레터</a></Link></li>*/}
+                                <li><Link href={'/admin/board/content/list?boardEnName=media_report'}>언론보도</Link></li>
+                                {/*<li><Link href={'/admin/board/content/list?boardEnName=news'}>뉴스레터</Link></li>*/}
                             </ul>
                             )}
                         </div>
@@ -120,13 +120,13 @@ const AdminHeaderDetail = () => {
                         <div className={cx("board_sub")}>
                             {dropdown["4_6"] && (
                                 <ul>
-                                    <li><Link href={'/admin/board/content/list?boardEnName=Issue'}><a>창업지원단 핫이슈</a></Link></li>
+                                    <li><Link href={'/admin/board/content/list?boardEnName=Issue'}>창업지원단 핫이슈</Link></li>
                                 </ul>
                             )}
                         </div>
-                        <li><Link href="/admin/startupCalendar/list"><a>창업캘린더 관리</a></Link></li>
-                        <li><Link href="/admin/popup"><a>팝업 관리</a></Link></li>
-                        <li><Link href="/admin/keyword"><a>검색어 관리</a></Link></li>
+                        <li><Link href="/admin/startupCalendar/list">창업캘린더 관리</Link></li>
+                        <li><Link href="/admin/popup">팝업 관리</Link></li>
+                        <li><Link href="/admin/keyword">검색어 관리</Link></li>
                     </ul>
                 </>
             )}
@@ -139,7 +139,7 @@ const AdminHeaderDetail = () => {
             {/*            <h3 className={cx("adm_menu_title")}>공지사항 관리</h3>*/}
             {/*        </div>*/}
             {/*        <ul>*/}
-            {/*            <li><Link href="/admin/startupCalendar/list"><a>공지사항 관리</a></Link></li>*/}
+            {/*            <li><Link href="/admin/startupCalendar/list">공지사항 관리</Link></li>*/}
             {/*        </ul>*/}
             {/*    </>*/}
             {/*)}*/}
@@ -153,8 +153,8 @@ const AdminHeaderDetail = () => {
                         <h3 className={cx("adm_menu_title")}>멘토링</h3>
                     </div>
                     <ul>
-                        <li><Link href="/admin/mentor"><a>멘토 관리</a></Link></li>
-                        <li><Link href="/admin/counsel_apply"><a>상담 신청서 관리</a></Link></li>
+                        <li><Link href="/admin/mentor">멘토 관리</Link></li>
+                        <li><Link href="/admin/counsel_apply">상담 신청서 관리</Link></li>
                     </ul>
                 </>
             )}
@@ -167,7 +167,7 @@ const AdminHeaderDetail = () => {
             {/*            <h3 className={cx("adm_menu_title")}>상담 신청서 관리</h3>*/}
             {/*        </div>*/}
             {/*        <ul>*/}
-            {/*            <li><Link href="/admin/counsel_apply"><a>상담 신청서 관리</a></Link></li>*/}
+            {/*            <li><Link href="/admin/counsel_apply">상담 신청서 관리</Link></li>*/}
             {/*        </ul>*/}
             {/*    </>*/}
             {/*)}*/}
@@ -180,8 +180,8 @@ const AdminHeaderDetail = () => {
                         <h3 className={cx("adm_menu_title")}>공간 대여 관리</h3>
                     </div>
                     <ul>
-                        <li><Link href="/admin/rental_place/manage"><a>대여 공간 관리</a></Link></li>
-                        <li><Link href="/admin/reservation_info"><a>예약 정보 목록보기</a></Link></li>
+                        <li><Link href="/admin/rental_place/manage">대여 공간 관리</Link></li>
+                        <li><Link href="/admin/reservation_info">예약 정보 목록보기</Link></li>
                     </ul>
                 </>
             )}
@@ -194,9 +194,9 @@ const AdminHeaderDetail = () => {
                         <h3 className={cx("adm_menu_title")}>기업 관리</h3>
                     </div>
                     <ul>
-                        <li><Link href="/admin/student_report"><a>학생 창업 신고 목록</a></Link></li>
-                        <li><Link href="/admin/startup_present"><a>스타트업 배출 목록</a></Link></li>
-                        <li><Link href="/admin/partner"><a>국내외 투자파트너스</a></Link></li>
+                        <li><Link href="/admin/student_report">학생 창업 신고 목록</Link></li>
+                        <li><Link href="/admin/startup_present">스타트업 배출 목록</Link></li>
+                        <li><Link href="/admin/partner">국내외 투자파트너스</Link></li>
                     </ul>
                 </>
             )}
@@ -209,7 +209,7 @@ const AdminHeaderDetail = () => {
             {/*            <h3 className={cx("adm_menu_title")}>팝업</h3>*/}
             {/*        </div>*/}
             {/*        <ul>*/}
-            {/*            <li><Link href="/admin/popup"><a>팝업 관리</a></Link></li>*/}
+            {/*            <li><Link href="/admin/popup">팝업 관리</Link></li>*/}
             {/*        </ul>*/}
             {/*    </>*/}
             {/*)}*/}
@@ -222,7 +222,7 @@ const AdminHeaderDetail = () => {
             {/*            <h3 className={cx("adm_menu_title")}>검색어 관리</h3>*/}
             {/*        </div>*/}
             {/*        <ul>*/}
-            {/*            <li><Link href="/admin/keyword"><a>검색어 관리</a></Link></li>*/}
+            {/*            <li><Link href="/admin/keyword">검색어 관리</Link></li>*/}
             {/*        </ul>*/}
             {/*    </>*/}
             {/*)}*/}

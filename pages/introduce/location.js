@@ -156,7 +156,6 @@ const Location = () => {
     }
 
     const kakaoShare = () =>{
-        console.log(mapUrl)
         window.Kakao.Link.sendDefault({
             // container: '.kakao_share',
             objectType: 'feed',

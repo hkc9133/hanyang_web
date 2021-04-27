@@ -19,14 +19,12 @@ const SearchBoxStyle02 = ({searchContent,changeSearchInfo,category,searchInfo}) 
             <ul className={"clfx"}>
                 {category.map((item)=>
                     <li key={item.categoryCodeId} className={cx({on:router.query.categoryCodeId == item.categoryCodeId})}>
-                        <Link href={`/board/${router.query.boardName}/list?categoryCodeId=${item.categoryCodeId}`}>
-                            <a>
+                            <a href={`/board/${router.query.boardName}/list?categoryCodeId=${item.categoryCodeId}`}>
                             <div className={cx("inner")}>
                                 <strong>{item.categoryCodeName}</strong>
                                 <span>{item.categoryCodeDesc}</span>
                             </div>
                             </a>
-                        </Link>
                     </li>
                 )}
             </ul>

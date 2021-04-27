@@ -23,7 +23,7 @@
 .bbs_tb_list td a{font-size:16px; }
 .bbs_tb_list table td button{font-size:16px;}
 .bbs_tb_list tr.notice{background-color: #f7f7f7;}
-.bbs_tb_list tr.content_view td{padding:30px 10px;font-size: unset;text-align: unset;}
+.bbs_tb_list tr.content_view td{padding:30px 10px;font-size: initial;text-align: left;}
 .bbs_tb_list tr.content_view td:first-child{text-align: center;font-size:18px;}
 .bbs_tb_list td.icon img{width:20px; }
 

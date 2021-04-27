@@ -17,7 +17,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getMainData} from "../store/main/main";
 import moment from 'moment';
 import PopupItem from "../component/main/PopupItem";
-import client from "../lib/api/client";
+import client, {baseUrl} from "../lib/api/client";
 import dynamic from "next/dynamic";
 import {useRouter} from "next/router";
 import {
@@ -352,8 +352,7 @@ const Index = () => {
                                                     <Link href={`/board/online_content/view/${item.contentId}`}
                                                           key={item.contentId}>
                                                         <a>
-                                                            <Image src={getThumbnail(item.content)} layout="fill"
-                                                                   alt="온라인 콘텐츠"/>
+                                                            <img src={getThumbnail(item.content)} alt="온라인 콘텐츠"/>
                                                         </a>
                                                     </Link>
                                                 )
@@ -399,8 +398,8 @@ const Index = () => {
                                                 <div className={cx("img_area")}>
                                                     <Link href={`/board/notice/view/${item.contentId}`}>
                                                         <a>
-                                                            <Image layout="fill"
-                                                                   src={item.thumbList.length > 0 ? `${client.defaults.baseURL}/resource${item.thumbList[0].filePath}/${item.thumbList[0].fileName + item.thumbList[0].fileExtension}` : getRanThumbnail()}
+                                                            <img
+                                                                   src={item.thumbList.length > 0 ? `${baseUrl}/resource${item.thumbList[0].filePath}/${item.thumbList[0].fileName + item.thumbList[0].fileExtension}` : getRanThumbnail()}
                                                                    alt={"게시글 썸네일"}/>
                                                         </a>
                                                     </Link>
@@ -434,6 +433,8 @@ const Index = () => {
                                 className={`${cx("slides", {hidden: showNotice})} main_board_list`} {...boardSliderSettings}>
                                 {
                                     mainData.startup_info.map((item) => {
+                                        // console.log(baseUrl)
+                                        // console.log(`${baseUrl}/resource${item.thumbList[0].filePath}/${item.thumbList[0].fileName + item.thumbList[0].fileExtension}`)
                                         return (
                                             <div className={cx("list")} key={item.contentId}>
                                                 <div className={cx("img_area")}>
@@ -441,8 +442,8 @@ const Index = () => {
                                                         <a>
                                                             {/*<Image src={getNoticeRanThumbnail(item.content)} layout="fill"*/}
                                                             {/*       alt="main_notice_img"/>*/}
-                                                            <Image layout="fill"
-                                                                   src={item.thumbList.length > 0 ? `${client.defaults.baseURL}/resource${item.thumbList[0].filePath}/${item.thumbList[0].fileName + item.thumbList[0].fileExtension}` : getRanThumbnail()}
+                                                            <img
+                                                                   src={item.thumbList.length > 0 ? `${baseUrl}/resource${item.thumbList[0].filePath}/${item.thumbList[0].fileName + item.thumbList[0].fileExtension}` : getRanThumbnail()}
                                                                    alt={"게시글 썸네일"}/>
                                                         </a>
                                                     </Link>
@@ -686,7 +687,7 @@ const Index = () => {
                             {/*6*/}
                             <div className={cx("list")} key={6}>
                                 <div className={cx("img_area")}>
-                                    <Link href="https://hywep.hanyang.ac.kr/index.do">
+                                    <Link href="http://cbi.hanyang.ac.kr/">
                                         <a target="_blank">
                                             <Image src={"/assets/image/hub06.png"} layout="fill" alt="main_notice_img"/>
                                         </a>
