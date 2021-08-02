@@ -239,9 +239,9 @@ const Header = () => {
                 <div className={cx("total_menu")} ref={totalMenu} style={Object.assign({}, menuStyles.menu, showMenu ? menuStyles.show : menuStyles.hidden)}>
                     <div className={cx("logoArea")}><Image src="/assets/image/left_menu_logo.jpg" width={108} height={36} alt="left_logo"/></div>
                     <ul className={"clfx"}>
-                        <li>
+                        <li className={cx("s_menu_1")}>
                             <a href="/startup_education/university_student">창업교육</a>
-                            <div className={cx("s_menu","show")}>
+                            <div className={cx("s_menu","show","s_menu_1")}>
                                 <ul>
                                     <li><a href="/startup_education/university_student">대학(원)생 대상</a></li>
                                     <li><a href="/startup_education/teacher">교원 대상</a></li>
@@ -251,9 +251,9 @@ const Header = () => {
                                 </ul>
                             </div>
                         </li>
-                        <li style={{marginTop:90}}>
+                        <li style={{marginTop:90}} className={cx("s_menu_2")}>
                             <a href="/startup_counsel/counsel_process">창업상담</a>
-                            <div className={cx("s_menu","show")}>
+                            <div className={cx("s_menu","show","s_menu_2")}>
                                 <ul>
                                     <li><a href="/startup_counsel/counsel_process">창업상담신청</a></li>
                                     <li><a href="/startup_counsel/mentor_introduce?pageSize=1">멘토단소개</a></li>

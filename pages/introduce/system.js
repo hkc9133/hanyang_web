@@ -57,12 +57,12 @@ const System = () => {
                                     <div className={cx("title")}>03 <span>사업검증</span></div>
                                     <ul>
                                         <li>
-                                            <span className={cx("s_title")}>프로그램</span>
-                                            시장.기술 검증 프로그램
+                                            <span className={cx("s_title")}>인프라 지원</span>
+                                            휴온스팹랩, 디자인랩, 공동기기원
                                         </li>
                                         <li>
-                                            <span className={cx("s_title")}>제도</span>
-                                            3D프린터, 레이저컷팅기, CNC 등 장비활용 지원
+                                            <span className={cx("s_title")}>프로그램</span>
+                                            시장/기술 검증 프로그램
                                         </li>
                                     </ul>
                                 </li>

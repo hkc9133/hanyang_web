@@ -257,7 +257,7 @@ const Write = (props) => {
                                             <input type="text" placeholder={"제목을 입력하세요."} name="title" value={writeInfo.title} onChange={changeWriteInfo}/>
                                         </td>
                                     </tr>
-                                    {(board.board.boardEnName != 'data_room' && board.board.boardEnName != 'media_report')  && (
+                                    {(board.board.boardEnName != 'data_room' && board.board.boardEnName != 'media_report' && board.board.boardEnName != 'Issue')  && (
                                         <tr>
                                             <td>썸네일</td>
                                             <td>

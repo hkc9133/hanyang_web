@@ -23,9 +23,9 @@ const CounselFieldCateList = ({cx,list}) => {
     return (
         <div className={cx("tab_style_1")}>
             <ul>
-                <li className={cx({on : router.query.counselField == "" || router.query.counselField == undefined})}><Link href={`${router.pathname}?pageSize=1`}><a><span>전체</span></a></Link></li>
+                <li className={cx({on : router.query.counselField == "" || router.query.counselField == undefined})}><Link href={`${router.pathname}?pageSize=6`}><a><span>전체</span></a></Link></li>
                 {list.map((item) => {
-                    return <li key={item.value} className={cx({on : item.value == router.query.counselField})}><Link href={`${router.pathname}?pageSize=1&counselField=${item.value}`}><a><span>{item.label}</span></a></Link></li>
+                    return <li key={item.value} className={cx({on : item.value == router.query.counselField})}><Link href={`${router.pathname}?pageSize=6&counselField=${item.value}`}><a><span>{item.label}</span></a></Link></li>
                 })}
                 {/*<li><a href="#"><span>세무·회계</span></a></li>*/}
                 {/*<li><a href="#"><span>법률·법무</span></a></li>*/}

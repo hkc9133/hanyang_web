@@ -79,7 +79,9 @@ const _App = ({Component, pageProps}) => {
     let allowed = true;
     if (router.pathname.startsWith("/admin") && role !== "ROLE_ADMIN") {
         allowed = false;
-    } else if ((router.pathname.startsWith("/mypage/mentee") || router.pathname.startsWith("/startup_counsel/student_report")) && (user.login !== true || role != 'ROLE_SD')) {
+    } else if ((router.pathname.startsWith("/mypage/mentee")) && (user.login !== true && role != 'ROLE_SD')) {
+        allowed = false;
+    }else if(router.pathname.startsWith("/startup_counsel/student_report")  && (user.login === false || role == 'ROLE_MT')) {
         allowed = false;
     } else if ((router.pathname.startsWith("/mypage/mentor") || router.pathname.startsWith("/startup_counsel/mentor_apply")) && (user.login !== true || role != 'ROLE_MT')) {
         allowed = false;

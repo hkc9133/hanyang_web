@@ -92,6 +92,7 @@
     "@babel/core": "7.13.10",
     "@babel/plugin-proposal-logical-assignment-operators": "7.13.8",
     "@ckeditor/ckeditor5-dev-utils": "24.4.2",
-    "@ckeditor/ckeditor5-dev-webpack-plugin": "24.4.2"
+    "@ckeditor/ckeditor5-dev-webpack-plugin": "24.4.2",
+    "babel-plugin-transform-remove-console": "6.9.4"
   }
 }

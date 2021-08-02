@@ -3,7 +3,7 @@ import React from 'react';
 const AcaHistory = ({cx}) => {
     return (
         <>
-            <div className={cx("tb_style_1")}>
+            <div className={cx("tb_style_1","s_x")}>
                 <table>
                     <colgroup>
                         <col />

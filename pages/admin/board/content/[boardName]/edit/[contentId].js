@@ -94,10 +94,6 @@ const ContentEditView = () => {
                 sub06:view.content.sub06,
                 sub07:view.content.sub07,
             })
-            // form.setFieldsValue({
-            //     categoryCodeId:view.content.categoryCodeId
-            // })
-            // setContent(view.content.content)
         }
 
     },[view])
@@ -149,8 +145,6 @@ const ContentEditView = () => {
             regDate:e,
         })
     }
-
-
 
     const handleFileRemove = (file) => {
         setWriteInfo({
@@ -281,7 +275,7 @@ const ContentEditView = () => {
                                         {/*</Form.Item>*/}
                                     </td>
                                 </tr>
-                                {(board.board.boardEnName != 'data_room' && board.board.boardEnName != 'media_report')  && (
+                                {(board.board.boardEnName != 'data_room' && board.board.boardEnName != 'media_report' && board.board.boardEnName != 'Issue')  && (
                                 <tr>
                                     <th>썸네일</th>
                                     <td>

@@ -123,6 +123,11 @@
     transition: all 0.3s ease-out;
 }
 
+.total_menu .s_menu_1 .s_menu.show,.total_menu .s_menu_2 .s_menu.show{
+    height: 160px;
+}
+.total_menu .s_menu_1,.total_menu .s_menu_2{height: 210px}
+
 .total_menu .s_menu>ul>li>a{padding:5px 0; display:block; font-size:14px; }
 
 /*@-webkit-keyframes slide-up {*/

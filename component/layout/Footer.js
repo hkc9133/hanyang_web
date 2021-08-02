@@ -35,43 +35,43 @@ const Footer = () => {
     const siteList = (
         <Menu>
             <Menu.Item>
-                <li><Link href="https://www.hanyang.ac.kr/"><a>한양대학교</a></Link></li>
+                <Link href="https://www.hanyang.ac.kr/"><a>한양대학교</a></Link>
             </Menu.Item>
             <Menu.Item>
-                <li><Link href="http://research.hanyang.ac.kr/"><a>산학협력단</a></Link></li>
+                <Link href="http://research.hanyang.ac.kr/"><a>산학협력단</a></Link>
             </Menu.Item>
             <Menu.Item>
-                <li><Link href="http://hyuholdings.com/html/"><a>기술지주회사</a></Link></li>
+                <Link href="http://hyuholdings.com/html/"><a>기술지주회사</a></Link>
             </Menu.Item>
             <Menu.Item>
-                <li><Link href="http://cbi.hanyang.ac.kr/"><a>창업보육센터</a></Link></li>
+                <Link href="http://cbi.hanyang.ac.kr/"><a>창업보육센터</a></Link>
             </Menu.Item>
             <Menu.Item>
-                <li><Link href="http://hmcc.hanyang.ac.kr/main/main.php"><a>공동기기원</a></Link></li>
+                <Link href="http://hmcc.hanyang.ac.kr/main/main.php"><a>공동기기원</a></Link>
             </Menu.Item>
             <Menu.Item>
-                <li><Link href="http://fablab.hanyang.ac.kr/"><a>휴온스팹랩</a></Link></li>
+                <Link href="http://fablab.hanyang.ac.kr/"><a>휴온스팹랩</a></Link>
             </Menu.Item>
             <Menu.Item>
-                <li><Link href="http://lincplus.hanyang.ac.kr/"><a>LINC+사업단</a></Link></li>
+                <Link href="http://lincplus.hanyang.ac.kr/"><a>LINC+사업단</a></Link>
             </Menu.Item>
             <Menu.Item>
-                <li><Link href="https://hywep.hanyang.ac.kr/index.do"><a>현장실습지원센터</a></Link></li>
+                <Link href="https://hywep.hanyang.ac.kr/index.do"><a>현장실습지원센터</a></Link>
             </Menu.Item>
             <Menu.Item>
-                <li><Link href="http://entrepreneurship.hanyang.ac.kr/"><a>대학원 창업융합학과</a></Link></li>
+                <Link href="http://entrepreneurship.hanyang.ac.kr/"><a>대학원 창업융합학과</a></Link>
             </Menu.Item>
             <Menu.Item>
-                <li><Link href="http://ericaresearch.hanyang.ac.kr/"><a>에리카 산학협력단</a></Link></li>
+                <Link href="http://ericaresearch.hanyang.ac.kr/"><a>에리카 산학협력단</a></Link>
             </Menu.Item>
             <Menu.Item>
-                <li><Link href="http://eec.hanyang.ac.kr/"><a>에리카 창업교육센터</a></Link></li>
+                <Link href="http://eec.hanyang.ac.kr/"><a>에리카 창업교육센터</a></Link>
             </Menu.Item>
             <Menu.Item>
-                <li><Link href="http://hbi.hanyang.ac.kr/"><a>에리카 창업보육센터</a></Link></li>
+                <Link href="http://hbi.hanyang.ac.kr/"><a>에리카 창업보육센터</a></Link>
             </Menu.Item>
             <Menu.Item>
-                <li><Link href="https://www.hycu.ac.kr/user/index.do"><a>한양사이버대학교</a></Link></li>
+                <Link href="https://www.hycu.ac.kr/user/index.do"><a>한양사이버대학교</a></Link>
             </Menu.Item>
         </Menu>
     );
@@ -148,7 +148,7 @@ const Footer = () => {
                         <p>홈페이지 책임자: 구태용/ 관리자(담당자): 장상길</p>
                         <address>(04763) 서울특별시 성동구 왕십리로 222 한양대학교 HIT 103호</address>
                         <p>약도 및 찾아오시는 길 안내: <Link href="/introduce/location"><a>바로가기</a></Link></p>
-                        <p className={cx("copyright")}>&copy; 2021. Startup Support Foundation, Hanyang University. All rights
+                        <p className={cx("copyright")}>&copy; 2021. Hanyang Institute for Entrepreneurship, Hanyang University. All rights
                             reserved.</p>
                     </div>
                 </div>

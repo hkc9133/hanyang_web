@@ -10,7 +10,6 @@ import CheckableTag from "antd/lib/tag/CheckableTag";
 import KeywordBox from "../../../../component/stratup_counsel/mentor_apply/KeywordBox";
 import CareerBox from "../../../../component/stratup_counsel/mentor_apply/CareerBox";
 import Image from "next/image";
-// import Modal from "../../../../component/common/Modal";
 
 const cx = classnames.bind(styles);
 
@@ -92,7 +91,6 @@ const DetailView = () => {
     }
 
     const saveMentor = () => {
-        console.log(mentorInfo)
         dispatch(updateMentor(mentorInfo));
     }
 
@@ -354,48 +352,6 @@ const DetailView = () => {
                                             </tbody>
                                         </table>
                                     </div>
-
-                                    {/*<h2>위촉장 발행 리스트</h2>*/}
-                                    {/*<div className={cx("tb_style_1")}>*/}
-                                    {/*    <table>*/}
-                                    {/*        <colgroup>*/}
-                                    {/*            <col style={{width:195}}/>*/}
-                                    {/*            <col />*/}
-                                    {/*            <col style={{width:200}}/>*/}
-                                    {/*            <col style={{width:190}}/>*/}
-                                    {/*        </colgroup>*/}
-                                    {/*        <thead>*/}
-                                    {/*        <tr>*/}
-                                    {/*            <th scope="col">NO</th>*/}
-                                    {/*            <th scope="col">발급사유</th>*/}
-                                    {/*            <th scope="col">발급일</th>*/}
-                                    {/*            <th scope="col">다운로드</th>*/}
-                                    {/*        </tr>*/}
-                                    {/*        </thead>*/}
-                                    {/*        <tbody>*/}
-                                    {/*        <tr>*/}
-                                    {/*            <td>2</td>*/}
-                                    {/*            <td>공기관 제출용</td>*/}
-                                    {/*            <td>2020.11.24</td>*/}
-                                    {/*            <td>*/}
-                                    {/*                <button type="button"><img src="../img/btn_download.gif" alt=""/>*/}
-                                    {/*                </button>*/}
-                                    {/*            </td>*/}
-                                    {/*        </tr>*/}
-                                    {/*        <tr>*/}
-                                    {/*            <td>2</td>*/}
-                                    {/*            <td>공기관 제출용</td>*/}
-                                    {/*            <td>2020.11.24</td>*/}
-                                    {/*            <td>*/}
-                                    {/*                <button type="button"><img src="../img/btn_download.gif" alt=""/>*/}
-                                    {/*                </button>*/}
-                                    {/*            </td>*/}
-                                    {/*        </tr>*/}
-                                    {/*        </tbody>*/}
-                                    {/*    </table>*/}
-                                    {/*</div>*/}
-
-
                                     <div className={cx("txt_c pt_60")}>
                                         <button type="submit" className={cx("basic-btn02", "btn-gray-bg")}>저장하기</button>
                                         <button type="button" className={cx("basic-btn02", "btn-gray-bd2")} onClick={() =>{router.back();}}>취소하기</button>
@@ -404,14 +360,6 @@ const DetailView = () => {
                             </div>
                         </div>
                     </Form>
-                    {/*<Modal visible={showResultModal} closable={true} maskClosable={true} onClose={() => {*/}
-                    {/*    setShowResultModal(false);*/}
-                    {/*}} cx={cx} className={"mentor_popup"}>*/}
-                    {/*    <h2 className={cx("popup_title")}>저장이 완료되었습니다</h2>*/}
-                    {/*    <div className={cx("btn_box")}>*/}
-                    {/*        <button className={cx("basic-btn01","btn-gray-bg")} onClick={() =>{setShowResultModal(false);router.push("/admin/mentor")}}>확인</button>*/}
-                    {/*    </div>*/}
-                    {/*</Modal>*/}
                 </section>
             )}
         </>

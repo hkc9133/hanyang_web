@@ -166,7 +166,7 @@ const InvestmentPartners = () => {
                             </td>
                             <td>{item.field}</td>
                             <td>{item.location}</td>
-                            <td><Link href={item.homepage}><a target="_blank"><Image src="/assets/image/icon_navi.gif" width={16} height={14} alt="home" /></a></Link></td>
+                            <td><Link href={item.homepage}><a target="_blank">{(item.homepage != null && item.homepage != "") && <Image src="/assets/image/icon_navi.gif" width={16} height={14} alt="home" />}</a></Link></td>
                         </tr>
                     ))}
                     </tbody>

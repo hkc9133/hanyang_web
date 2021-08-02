@@ -163,8 +163,8 @@
 
 
 .student_report .mentoring_applicants{padding:40px 40px 20px;}
-.student_report .mentoring_applicants ul.w_3 li{margin-bottom:20px; }
-.student_report .mentoring_applicants ul li.w_60{margin-right:0; width:65.5%;}
+.student_report .mentoring_applicants ul.w_3 li{margin-bottom:20px; min-height: 120px;}
+.student_report .mentoring_applicants ul li.w_60{margin-right:0; width:62%;}
 .list_style_4 li{position:relative; padding:0 10px; font-size:18px; }
 .list_style_4 li:before{position:absolute; left:0; top:10px; width:3px; height:3px; display:block; background-color:#333; content:""; }
 .student_report .list_style_4{margin-bottom:50px; padding:40px;}
@@ -362,6 +362,8 @@
 
     .form_style_1 ul.list_2 label{width:100%; margin:10px 0px;}
     .form_style_1 ul.list_3 label{width:33%; margin:10px 0px;}
+
+    .mentor_group_write .list_5 label{margin:5px 0px; width:100%;}
 
 
 
@@ -579,7 +581,6 @@
 
     .basic-btn03{width:140px; height:40px; line-height:38px; font-size:13px;}
 
-    .mentor_group_write .list_5 label{margin:5px 0px; width:100%;}
     .mentor_group_write .personal_info .photoArea .photo_img{width:120px; height:120px; }
     /*.mentor_group_write .personal_info .photoArea .photo_img img{width:60px; height:60px; }*/
     .mentor_group_write .personal_info .photoArea .size_info{font-size:13px;}

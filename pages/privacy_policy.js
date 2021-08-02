@@ -24,7 +24,7 @@ const PrivacyPolicy = () => {
                     <p>한양대학교 창업지원단은 다음의 목적을 위하여 개인정보를 처리합니다. 처리하고 있는 개인정보는 다음의 목적 이외의 용도로는 이용되지 않으며, 이용 목적이 변경되는 경우에는
                         개인정보 보호법 제18조에 따라 별도의 동의를 받는 등 필요한 조치를 이행할 예정입니다.</p>
                     <br/>
-                    <p>가. 한양대학교 창업지원단 홈페이지에서 제공하는 회원제 서비스(창업상담, 아이디어제안, 사업모델평가) 이용에 따른 서비스를 제공하기 위해 개인정보(신청자 성명, e-mail,
+                    <p>가. 한양대학교 창업지원단 홈페이지에서 제공하는 회원서비스(창업상담, 공간예약, 학생창업자 신고) 이용에 따른 서비스를 제공하기 위해 개인정보(신청자 성명, e-mail,
                         전화번호)를 처리합니다.</p>
                     <br/>
                     <h3>제2조(개인정보의 처리 및 보유기간)</h3>
@@ -50,7 +50,7 @@ const PrivacyPolicy = () => {
                             </thead>
                             <tbody>
                             <tr>
-                                <td>홈페이지<br/>(창업상담, 아이디어제안, 사업모델평가)</td>
+                                <td>홈페이지<br/>(창업상담, 공간예약, 학생창업자 신고)</td>
                                 <td>정보주체동의</td>
                                 <td>성명, 이메일, 전화번호</td>
                                 <td>3년</td>
@@ -129,19 +129,23 @@ const PrivacyPolicy = () => {
                             </colgroup>
                             <tbody>
                             <tr style={{borderTop:"1px solid #aaa"}}>
+                                <td>창업상담</td>
+                                <td style={{textAlign:"left",borderLeft:"1px solid #ddd"}}>성명, 이메일, 전화번호</td>
+                            </tr>
+                            <tr style={{borderTop:"1px solid #aaa"}}>
+                                <td>공간예약</td>
+                                <td style={{textAlign:"left",borderLeft:"1px solid #ddd"}}>성명, 이메일, 전화번호</td>
+                            </tr>
+                            <tr style={{borderTop:"1px solid #aaa"}}>
+                                <td>학생창업자 신고</td>
+                                <td style={{textAlign:"left",borderLeft:"1px solid #ddd"}}>성명, 이메일, 전화번호</td>
+                            </tr>
+                            <tr style={{borderTop:"1px solid #aaa"}}>
                                 <td>개인정보파일명칭</td>
                                 <td style={{textAlign:"left",borderLeft:"1px solid #ddd"}}>개인정보파일에 기록되는 개인정보의 항목</td>
                             </tr>
                             <tr>
                                 <td>창업상담(온라인)</td>
-                                <td style={{textAlign:"left",borderLeft:"1px solid #ddd"}}>성명, 이메일, 전화번호</td>
-                            </tr>
-                            <tr>
-                                <td>아이디어제안</td>
-                                <td style={{textAlign:"left",borderLeft:"1px solid #ddd"}}>성명, 이메일, 전화번호</td>
-                            </tr>
-                            <tr>
-                                <td>사업모델평가</td>
                                 <td style={{textAlign:"left",borderLeft:"1px solid #ddd"}}>성명, 이메일, 전화번호</td>
                             </tr>
                             </tbody>
@@ -195,7 +199,7 @@ const PrivacyPolicy = () => {
                                 <td>전화 : 02-2220-2861<br/>메일 : danielku@hanyang.ac.kr</td>
                             </tr>
                             <tr>
-                                <td>개인정보 보호책임자</td>
+                                <td>개인정보 보호관리자</td>
                                 <td>한양대학교 창업지원단</td>
                                 <td>장상길</td>
                                 <td>전화 : 02-2220-2871<br/>메일 : sgch77@hanyang.ac.kr</td>

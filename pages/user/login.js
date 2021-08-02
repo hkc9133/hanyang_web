@@ -135,7 +135,7 @@ const Login = () => {
                         <div className={`${cx("login_wrap")} clfx`}>
                             <h1>로그인</h1>
                             <div className={cx("loginArea")}>
-                                <p>한양인으로 로그인 하려면 아이디/비번을 입력해주세요</p>
+                                <p>회원 가입시 선택한 로그인 방식을 클릭하세요.</p>
                                 <ul className={cx("login_form")}>
                                     <li><input type="text" name="userId" placeholder="아이디" onChange={handleChangeLoginInfo}/></li>
                                     <li><input type="password" name="userPassword" placeholder="비밀번호" onChange={handleChangeLoginInfo} onKeyPress={handleEnter}/></li>

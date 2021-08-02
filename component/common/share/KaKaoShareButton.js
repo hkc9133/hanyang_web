@@ -7,10 +7,6 @@ const KaKaoShareButton = ({url,title,desc}) => {
 
     useEffect(() =>{
 
-        console.log("----")
-        console.log(url)
-        console.log(title)
-        console.log("----")
         let k = document.createElement("script");
         k.setAttribute("src", "https://developers.kakao.com/sdk/js/kakao.min.js");
         k.onload = function () {

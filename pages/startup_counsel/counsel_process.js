@@ -50,7 +50,7 @@ const CounselApply = () => {
     }, [bestMentor])
 
     const moveCounselApply = () =>{
-        if(user.login == false || (user.role != "ROLE_SD" && user.role != "ROLE_ADMIN") ){
+        if(user.login == false || (user.role == "ROLE_MT") ){
             Modal.warning({
                 title: '로그인 후 이용하실 수 있습니다.',
             });
@@ -94,7 +94,7 @@ const CounselApply = () => {
                     <Slider className="mentor_slider" {...mentorSliderSettings}>
                         {
                             bestMentor.map((item,j) =>(
-                                <>
+                                <div key={j}>
                                         <div className={cx("title")}>
                                             <h2>우수 멘토</h2>
                                             <p>
@@ -114,14 +114,14 @@ const CounselApply = () => {
                                             </div>
                                             <ul>
                                                 {item.mentorCareer.map((career,i)=>(
-                                                    i < 2 && <li>{career}</li>
+                                                    i < 2 && <li key={i}>{career}</li>
                                                 ))}
                                             </ul>
                                             <p>
                                                 {item.mentorIntroduction}
                                             </p>
                                         </div>
-                                    </>
+                                    </div>
                                 )
                             )
                         }

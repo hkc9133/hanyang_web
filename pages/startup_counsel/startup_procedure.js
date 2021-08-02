@@ -29,10 +29,16 @@ const StartupProcedure = () => {
     },[router.query])
 
     const moveReportApply = () =>{
-        if(user.login == false || (user.role != "ROLE_SD" && user.role != "ROLE_ADMIN") ){
-            Modal.warning({
-                title: '로그인 후 이용하실 수 있습니다.',
-            });
+        if(user.login == false || (user.role == "ROLE_MT") ){
+            if(user.role == "ROLE_MT"){
+                Modal.warning({
+                    title: '권한이 없습니다',
+                });
+            }else{
+                Modal.warning({
+                    title: '로그인 후 이용하실 수 있습니다.',
+                });
+            }
         }else{
             router.push("/startup_counsel/student_report")
         }

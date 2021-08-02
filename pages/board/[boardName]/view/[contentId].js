@@ -235,8 +235,12 @@ const BoardView = ({boardName,contentId}) => {
 
     }, [deleteResult])
 
+    const moveEdit = () =>{
+        router.push(`/board/${board.board.boardEnName}/edit/${view.content.contentId}`);
+    }
+
     return (
-        show && (
+        (show && board.board != null && view.content != null) && (
             <>
                 <Head>
                     <title>한양대학교 창업지원단 -{board.board.boardKrName}</title>
@@ -249,11 +253,14 @@ const BoardView = ({boardName,contentId}) => {
 
                         <div className={cx("bbs_view")}>
                             <div className={cx("topTitleArea")}>
-                                {/*{*/}
-                                {/*    user.info != null && (user.role == 'ROLE_ADMIN' || user.info.userId != view.content.writerId) &&(*/}
-                                {/*        <button className={cx("basic-btn05","btn-red-bd")} onClick={() =>{setShowRemoveModal(true)}}>삭제</button>*/}
-                                {/*    )*/}
-                                {/*}*/}
+                                {
+                                    board.board.boardEnName == "idea" && user.info != null && (user.role == 'ROLE_ADMIN' || user.info.userId == view.content.writerId) &&(
+                                        <>
+                                            <button className={cx("basic-btn05","btn-red-bd")} onClick={() =>{setShowRemoveModal(true)}}>삭제</button>
+                                            <button className={cx("basic-btn05","btn-blue-bd")} onClick={moveEdit}>수정</button>
+                                        </>
+                                    )
+                                }
                                 <h2>{view.content.title}</h2>
                                 <span
                                     className={cx("date")}>{moment(view.content.regDate).format("YYYY.MM.DD HH:MM")}</span>

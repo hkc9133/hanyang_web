@@ -3,7 +3,7 @@ import React from 'react';
 const ForumHistory = ({cx}) => {
     return (
         <>
-            <div className={cx("tb_style_1")}>
+            <div className={cx("tb_style_1","s_x")}>
                 <table>
                     <colgroup>
                         <col style={{width:"5%"}} />
@@ -33,8 +33,8 @@ const ForumHistory = ({cx}) => {
                             <td>신헌철 SK에너지 부회장</td>
                         </tr>
                         <tr>
-                            
-                            
+
+
                             <td>잃어버린 10년을 기회의 10년으로 바꾼 일본 기업들</td>
                             <td>조미나 IGM 상무</td>
                         </tr>

@@ -72,6 +72,7 @@ const boardSliderSettings = {
     dots: true,
     infinite: false,
     arrows: false,
+    autoplay: true,
     speed: 300,
     slidesToShow: 4,
     slidesToScroll: 1,
@@ -175,7 +176,7 @@ const Index = () => {
     const borderSlider = React.useRef();
     const router = useRouter();
 
-    const [showNotice, setShowNotice] = useState(true);
+    const [showNotice, setShowNotice] = useState(1);
     const [searchValue, setSearchValue] = useState("");
 
     const {mainData,user} = useSelector(({main,auth, loading}) => ({
@@ -188,8 +189,8 @@ const Index = () => {
         dispatch(getMainData())
     }, [router])
 
-    const toggleNoticeSlider = () => {
-        setShowNotice(!showNotice)
+    const toggleNoticeSlider = (num) => {
+        setShowNotice(num)
     }
     const searchBoard = () => {
         router.push(`/search?page&searchField=title&searchValue=${searchValue}`)
@@ -203,7 +204,7 @@ const Index = () => {
     }
 
     const moveReportApply = () =>{
-        if(user.login == false || (user.role != "ROLE_SD" && user.role != "ROLE_ADMIN") ){
+        if(user.login == false || (user.role == "ROLE_MT") ){
             if(user.role == "ROLE_MT"){
                 Modal.warning({
                     title: '권한이 없습니다',
@@ -370,15 +371,15 @@ const Index = () => {
                 <div className={cx("main_cont")}>
                     <div className={cx("main_tab")}>
                         <ul>
-                            <li className={cx({on: showNotice})}>
+                            <li className={cx({on: showNotice == 1})}>
                                 <button type="button" onClick={() => {
-                                    toggleNoticeSlider()
+                                    toggleNoticeSlider(1)
                                 }}>공지사항
                                 </button>
                             </li>
-                            <li className={cx({on: !showNotice})}>
+                            <li className={cx({on: showNotice == 2})}>
                                 <button type="button" onClick={() => {
-                                    toggleNoticeSlider()
+                                    toggleNoticeSlider(2)
                                 }}>신규사업공고
                                 </button>
                             </li>
@@ -389,7 +390,7 @@ const Index = () => {
                         {/*공지사항*/}
                         {mainData.notice.length > 0 ? (
                             <Slider
-                                className={`${cx("slides", {hidden: !showNotice})} main_board_list`} {...boardSliderSettings}
+                                className={`${cx("slides", {hidden: showNotice !== 1})} main_board_list`} {...boardSliderSettings}
                                 ref={borderSlider}>
                                 {
                                     mainData.notice.map((item, index) => {
@@ -430,7 +431,7 @@ const Index = () => {
                         ) : "LOADING"}
                         {mainData.startup_info.length > 0 ? (
                             <Slider
-                                className={`${cx("slides", {hidden: showNotice})} main_board_list`} {...boardSliderSettings}>
+                                className={`${cx("slides", {hidden: showNotice !== 2})} main_board_list`} {...boardSliderSettings}>
                                 {
                                     mainData.startup_info.map((item) => {
                                         // console.log(baseUrl)
@@ -490,7 +491,7 @@ const Index = () => {
                                 </p>
                                 <span className={cx("txt_3")}>학생 창업기업 수</span>
                             </div>
-                            <span className={cx("number")}>287</span>
+                            <span className={cx("number")}>347</span>
                         </li>
                         <li>
                             <div className={cx("left_area")}>
@@ -500,7 +501,7 @@ const Index = () => {
                                 </p>
                                 <span className={cx("txt_3")}>아카데미 창업기업 수</span>
                             </div>
-                            <span className={cx("number")}>428</span>
+                            <span className={cx("number")}>545</span>
                         </li>
                         <li>
                             <div className={cx("left_area")}>
@@ -510,7 +511,7 @@ const Index = () => {
                                 </p>
                                 <span className={cx("txt_3")}>동문 CEO 기업 수</span>
                             </div>
-                            <span className={cx("number")}>13,447</span>
+                            <span className={cx("number")}>11,071</span>
                         </li>
                     </ul>
                 </div>

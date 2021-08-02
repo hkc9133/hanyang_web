@@ -84,7 +84,26 @@ const StudentReportPage = () => {
             if(add.result && add.error == null){
                 Modal.success({
                     title: '작성이 완료되었습니다',
-                    onOk:() =>{router.push("/")}
+                    onOk:() =>{
+                        setReportForm({
+                            studentName: "",
+                            studentAttach:"",
+                            studentClassYear:"",
+                            studentPhoneNum: "",
+                            studentEmail: "",
+                            companyNum:"",
+                            companyName:"",
+                            companyOwner:"",
+                            companyKind:"",
+                            createDate:"",
+                            businessItem:"",
+                            sales:0,
+                            staffNum:0,
+                            isAgree: false,
+                        });
+                        form.resetFields();
+                        window.scrollTo(0, 0);
+                    }
                 });
             }else{
                 Modal.warning({

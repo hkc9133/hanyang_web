@@ -136,7 +136,7 @@ const PageNavigation = ({title,desc}) => {
     const moveMentorApply = () =>{
         if(user.login == false ||  user.role != "ROLE_ADMIN" ){
             Modal.warning({
-                title: '맨토신청은 당해년 05월 01일 부터 05월 31일까지 진행 합니다.',
+                title: '멘토신청은 당해년 05월 01일 부터 05월 31일까지 진행 합니다.',
                 content:'멘토신청을 원하시면 멘토로 회원가입 및 인증 후 신청 가능 합니다.'
             });
         }else{

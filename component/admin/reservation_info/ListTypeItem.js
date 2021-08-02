@@ -78,7 +78,7 @@ const ListTypeItem = ({schedule,manageItem,setManageItem,saveStatus}) => {
             <td>
                 {manageItem == schedule.scheduleId ? (
                         <select value={editStatus.status} onChange={(e) =>{changeStatus(e.target.value)}}>
-                            <option value="APPLY">{getRentalType("APPLY")}</option>
+                            {/*<option value="APPLY">{getRentalType("APPLY")}</option>*/}
                             <option value="RETURN">{getRentalType("RETURN")}</option>
                             <option value="ACCEPT">{getRentalType("ACCEPT")}</option>
                             <option value="CANCEL">{getRentalType("CANCEL")}</option>

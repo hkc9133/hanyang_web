@@ -255,7 +255,7 @@ const Alumnus = () => {
                                 style={{height: '100%', borderRight: 'none'}}
                             >
                                 <SubMenu key="sub1" className={cx("dropdown_title")} title={<div className={cx("question")}>한양스타트업아카데미 HISTORY</div>}>
-                                    <Menu.Item key="0" className={cx("dropdown_content")} style={{height: 'auto'}}>
+                                    <Menu.Item key="0" className={cx("dropdown_content")} style={{height: 'auto'}} >
                                         <AcaHistory cx={cx}/>
                                     </Menu.Item>
                                 </SubMenu>
@@ -263,15 +263,15 @@ const Alumnus = () => {
                                     <Menu.Item key="1" className={cx("dropdown_content")}
                                                style={{height: 'auto', padding: 10}}>
                                                 <div className={cx("answer")}>
-                                                    <p className={cx("txt_1")}>
-                                                        한양 스타트업 아카데미 수료생이 중심이 되어원우회가 운영되고있습니다. <br/>
-                                                        2019년기준 770여명의 원우회원이 활동중입니다.
+                                                    <p className={cx("txt_1")} style={{fontSize:18,color:"#222"}}>
+                                                        한양 스타트업 아카데미 수료생이 중심이 되어 원우회가 운영되고 있습니다. <br/>
+                                                        2019년 기준 770여명의 원우회원이 활동 중입니다.
                                                     </p>
                                                     <div className={cx("txt_c mb_30")}>
 
                                                         <img src="/assets/image/alumnus_organization.jpg" alt=""/>
                                                     </div>
-                                                    <h2 className={cx("title_style_4")}>원우회운영진명단(2020년)</h2>
+                                                    <h2 className={cx("title_style_4")}>원우회 운영진 명단(2020년)</h2>
                                                     <table>
                                                         <colgroup>
 
@@ -322,13 +322,13 @@ const Alumnus = () => {
 
                                                     <h2 className={cx("title_style_4")}>연간활동사항</h2>
                                                     <ul className={cx("list_1")}>
-                                                        <li>- 한양스타트업아카데미교육생네트워킹, 멘토링등지원</li>
-                                                        <li>- 한양스타트업포럼운영(연4회)</li>
-                                                        <li>- 정부지원사업설명회</li>
-                                                        <li>- 원우회조직구성</li>
-                                                        <li>- 원우회자체세미나, 체육활동등</li>
-                                                        <li>- 원우기업성과조사</li>
-                                                        <li>- 기타원우회활동</li>
+                                                        <li>- 한양 스타트업 아카데미 교육생 네트워킹, 멘토링 등 지원</li>
+                                                        <li>- 한양 스타트업 포럼 운영(연 4회)</li>
+                                                        <li>- 정부지원사업 설명회</li>
+                                                        <li>- 원우회 조직 구성</li>
+                                                        <li>- 원우회 자체 세미나, 체육활동 등</li>
+                                                        <li>- 원우 기업 성과조사</li>
+                                                        <li>- 기타 원우회 활동</li>
                                                     </ul>
                                                 </div>
                                     </Menu.Item>

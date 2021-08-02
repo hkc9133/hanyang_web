@@ -41,7 +41,7 @@ const MentorIntroduce = () => {
             pageSize:6
         }
         const queryString = qs.stringify(data);
-        router.push(`${router.pathname}?${queryString}`)
+        // router.push(`${router.pathname}?${queryString}`)
         dispatch(getCounselFieldCode(router.query));
     },[])
 

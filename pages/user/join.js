@@ -20,7 +20,7 @@ const cx = classnames.bind(styles);
 
 const Join = () => {
     const dispatch = useDispatch();
-    const [showJoinInfoModal, setShowJoinInfoModal] = useState(false);
+    const [showJoinInfoModal, setShowJoinInfoModal] = useState(true);
     const [showJoinSuccessModal, setShowJoinSuccessModal] = useState(false);
     const [agree, setAgree] = useState({
         terms:false,

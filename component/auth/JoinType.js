@@ -29,7 +29,9 @@ const JoinType = ({handleSignUp}) => {
                     </li>
                     <li className={cx("member_type_2")}>
                         <button type="button" onClick={(e) =>{checkRole("ROLE_TC")}}>
-                            <span>교직원</span>
+                            <span>교직원</span><br/>
+                            <p style={{fontSize:13}}>(한양대 창업지원단 교직원만 선택)</p>
+
                         </button>
                     </li>
                     <li className={cx("member_type_3")}>

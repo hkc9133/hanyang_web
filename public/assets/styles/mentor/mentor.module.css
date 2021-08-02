@@ -209,6 +209,8 @@
     .mentor_month .photoArea{float:none; width:100%;padding-right:0; text-align:center; }
     .mentor_month .photoArea .name{max-width:100%;}
     .mentor_month .photoArea .job{max-width:100%;}
+    .mentor_month .photoArea .photo img{width:120px; height:120px;margin:0 auto}
+    .mentor_month .photoArea .name{font-size:20px; }
     .mentor_month .txt_area{float:none; width:100%; padding-top:30px; text-align:center; }
     .before_counseling .icon_list li a{font-size:20px;}
 

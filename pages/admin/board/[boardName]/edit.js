@@ -74,10 +74,10 @@ const Edit = ({boardName}) => {
             setCategoryValue(category);
             setCategoryCodeValue(categoryCode);
         }
-    },[board])
+    },[board,boardLoading])
 
     useEffect(() => {
-        console.log(boardValue)
+
     },[boardValue])
 
     useEffect(() => {

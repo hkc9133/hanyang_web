@@ -226,6 +226,18 @@ const CounselApplyFormDetail = () => {
                                                     </td>
                                                 </tr>
                                                 <tr>
+                                                    <th>연락처</th>
+                                                    <td colSpan={1}>
+                                                        {applyValue.menteePhoneNumber}
+                                                    </td>
+                                                    <th>
+                                                        E-MAIL
+                                                    </th>
+                                                    <td colSpan={1}>
+                                                        {applyValue.menteeEmail}
+                                                    </td>
+                                                </tr>
+                                                <tr>
                                                     <th>희망 멘토</th>
                                                     <td>
                                                         <Link
