@@ -181,4 +181,18 @@
     margin: 0 3px;
 }
 
+.main_slider.slick-slider .slick-dots{
+    display: inline-block !important;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.main_slider.slick-slider .slick-dots li button:before{
+    color: #fff;
+}
+
+.main_slider.slick-slider .slick-dots li.slick-active button:before{
+    opacity: 1;
+}
+
 

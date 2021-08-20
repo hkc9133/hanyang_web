@@ -15,6 +15,8 @@ import AuthFail from "./user/auth_fail";
 import AdminHeader from "../component/layout/AdminHeader";
 import Footer from "../component/layout/Footer";
 import Header from "../component/layout/Header";
+import Header_eng from "../component/layout/Header_eng";
+import Footer_eng from "../component/layout/Footer_eng";
 
 import {authCheck} from "../store/auth/auth";
 
@@ -135,11 +137,13 @@ const _App = ({Component, pageProps}) => {
                             <style jsx global>
                                 {GlobalStyles}
                             </style>
-                            <Header/>
+                            {(router.pathname.startsWith("/en")) ? <Header_eng /> : <Header />}
+                            {/*<Header/>*/}
                             <div className="container">
                                 <ComponentToRender {...pageProps} />
                             </div>
-                            <Footer/>
+                            {(router.pathname.startsWith("/en")) ? <Footer_eng /> : <Footer />}
+                            {/*<Footer/>*/}
                             <div className="kakao_menu">
                                 <a href="https://pf.kakao.com/_fWsJd/chat" target="_blank">
                                     <img src="/assets/image/hanyang_talk.png" alt="상담톡"/>

@@ -216,7 +216,7 @@ const Header = () => {
                     <div className={cx("language_list")}>
                         <ul>
                             <li><a href="/">KOR</a></li>
-                            <li><a href="/">EN</a></li>
+                            <li><a href="/en">EN</a></li>
                         </ul>
                     </div>
                 </div>
