@@ -62,9 +62,11 @@
 .btn_menu_open.open span:after{top:0; transform: rotate( 90deg );}
 .login_box{position: absolute;right: 160px;top: 35px;}
 .login_box a{color: white;margin-right: 30px;font-size: 15px;}
-.language{position:absolute; right:110px; top:35px;}
+.language{position:absolute; right:110px; top:35px; z-index: 9;}
 .language_open{padding-right:15px; background:url(../../image/language_arrow.gif) no-repeat right center; font-size:15px; color:#ddd; }
-.language_list{display:none;}
+.language_list{visibility: hidden; opacity: 0; transition-duration: .5s; background-color: #fff; box-shadow:2px 2px 2px 2px rgba(0,0,0,0.1);}
+.language_list li{padding: 5px 15px;}
+.language:hover .language_list{visibility: visible; opacity: 1;}
 .total_menu{position:fixed; right:-350px; top:0; bottom:0; width:300px; height:100%; z-index:10; background-color:#f7f8fa; text-align:left; overflow:auto; box-shadow:5px 5px 5px 5px rgba(150,150,150,0.4);}
 .total_menu .logoArea{padding:25px 20px 0; height:90px; background-color:#3d89f9; box-sizing:border-box; position: fixed;
     width: 100%;
@@ -191,7 +193,7 @@
     .header_inner{height:70px;}
     .btn_menu_open{width:60px; height:70px; }
     .btn_menu_open span{top:22px;}
-    .language{right:80px; top:25px;display: none; }
+    .language{right:110px; top:25px; }
     .login_box{top: 26px;right: 60px;}
     .login_box a{margin-right: 15px;}
 
