@@ -97,6 +97,7 @@
 .seed_cont .tabCont .title_style_2{font-size: 33px; font-family: 's-core-dream-bold'; margin-bottom: 50px; }
 .seed_cont .tabCont .txtArea>ul>li{margin-bottom: 50px; }
 .seed_cont .tabCont .txtArea .title_style_4{font-size: 28px; margin-bottom: 10px; }
+.seed_cont .tabCont .txtArea .title_style_5{font-size: 24px; margin-bottom: 10px; }
 .seed_cont .tabCont .txtArea p{font-size: 18px; ;}
 .seed_cont .tabCont .txtArea p>strong{color: #ff8b1b; }
 .seed_cont .tabCont .txtArea>ul>li>ul>li{position: relative; font-size: 18px; padding-left: 20px; margin-top: 5px; }
@@ -109,6 +110,9 @@
 .seed_cont .tabCont .txtArea .tb_style_1 td:last-child{border-right: 0; }
 .seed_cont .tabCont .txtArea .tb_style_1 tr:last-child td{border-bottom: 0; }
 .seed_cont .tabCont .txtArea .tb_style_2 td:last-child{text-align: left; padding-left: 25px; }
+.seed_cont .tabCont .txtArea .tb_style_3 td:first-child{font-family: 's-core-dream-bold'; }
+.seed_cont .tabCont .txtArea .process_list_wrap{display: flex; flex-wrap: wrap; justify-content: space-between; margin-top: 20px; }
+.seed_cont .tabCont .txtArea .process_list{display: flex; justify-content: center; align-items: center; flex-basis: 250px; height: 250px; border-radius: 50%; background-color: #fff; font-size: 24px; text-align: center; box-shadow: 5px 5px 10px rgba(0,0,0,.2); }
 
 
 /*Portfolio*/
@@ -375,6 +379,8 @@
     .seed_cont .tabTitle>ul>li:nth-child(5),
     .seed_cont .tabTitle>ul>li:nth-child(6){flex-basis: 50%; }
     .seed_cont .tabTitle>ul>li:last-child{flex-basis: 100%; }
+    .seed_cont .tabCont .txtArea .process_list{margin-bottom: 30px; }
+
 
     .search_type_2 select,
     .search_type_2 input[type=text],
@@ -448,6 +454,7 @@
     .seed_cont .tabTitle>ul>li:nth-child(5),
     .seed_cont .tabTitle>ul>li:nth-child(6),
     .seed_cont .tabTitle>ul>li:last-child{flex-basis: 100%; }
+    .seed_cont .tabCont .txtArea .tb_style_1{overflow-x: scroll; }
 
     .search_type_2{padding-right:0;}
     .search_type_2 .search_01{ width:32%; height:40px; line-height:38px; font-size:14px; }
@@ -551,6 +558,8 @@
     
     .search_type_2 .search_01{width: 100%; margin-right: 0; margin-bottom: 5px; }
     .search_type_2 select{width: 100%; padding-left: 5px; }
+
+    .seed_cont .tabCont .txtArea .process_list_wrap{justify-content: center; }
 }
 
 @media screen and (max-width: 400px){
