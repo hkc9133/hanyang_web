@@ -65,7 +65,7 @@ const About = () => {
                         <p>The start-up support group establishes start-up strategies for universities, and conducts start-up education, start-up training, networking, start-up childcare and investment, entrepreneurship research, and international cooperation for students, graduates, teachers, and the general public.<br />
                         The start-up support group consists of the head of the start-up support group, vice-director, global entrepreneur center, student start-up child care center, global start-up support center, and one-stop start-up counseling center. The total number of people in the organization is 00, with 2 full-time professors, 2 industry-academic cooperation professors, 00 concurrent professors, and 00 general staff.</p>
                         <div className={cx("img_area")}>
-                            <img src="/assets/image/organization.jpg" alt="" />
+                            <img src="/assets/image/organization_en.jpg" alt="" />
                         </div>
                     </div>
 
@@ -83,7 +83,7 @@ const About = () => {
                         <p>How to start a startup at Hanyang University?<br />
                         Introduces start-up lectures, programs, and infrastructure from conception of start-up ideas to prototype production, start-up execution, investment attraction, and successful start-up.</p>
                         <div className={cx("img_area")}>
-                            <img src="/assets/image/startup_procedure.jpg" alt="" />
+                            <img src="/assets/image/startup_procedure_en.jpg" alt="" />
                         </div>
                         <ul className={cx("btn_area")}>
                             <li>
