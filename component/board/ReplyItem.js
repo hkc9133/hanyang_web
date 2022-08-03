@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Input} from "antd";
 
 import styles from '../../public/assets/styles/board/board.module.css';
@@ -12,6 +12,7 @@ const ReplyItem = ({reply,addNewReReply,newReReply,changeAddReReply,showInput,se
     const {user} = useSelector(({auth}) => ({
         user:auth.user,
     }))
+
 
     const addReReply = () =>{
         const data = {

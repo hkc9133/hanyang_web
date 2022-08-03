@@ -241,7 +241,7 @@ const CounselApplyFormDetail = () => {
                                                     <th>희망 멘토</th>
                                                     <td>
                                                         <Link
-                                                            href={`/admin/mentor/detail/${applyValue.mentorId}`}><a>{applyValue.mentorName}</a></Link>
+                                                            href={`/admin/mentor/detail/${applyValue.hopeMentor}`}><a>{applyValue.mentorName}</a></Link>
                                                     </td>
                                                     <th>희망 멘토링 분야</th>
                                                     <td>

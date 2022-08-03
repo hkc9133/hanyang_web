@@ -18,8 +18,8 @@ const JoinType = ({handleSignUp}) => {
     return (
         <section className={cx("container")}>
             <div className={`${cx("sub_container","join_type")} clfx `}>
-                <h1 className={cx("sub_top_title")}>회원가입</h1>
-                <p className={cx("sub_top_txt")}> 회원가입약관 및 개인정보처리방침안내의 <br/>내용에 동의하셔야 회원가입 하실 수 있습니다.</p>
+                {/*<h1 className={cx("sub_top_title")}>회원가입</h1>*/}
+                {/*<p className={cx("sub_top_txt")}> 회원가입약관 및 개인정보처리방침안내의 <br/>내용에 동의하셔야 회원가입 하실 수 있습니다.</p>*/}
                 <h2>회원유형 선택</h2>
                 <ul className={cx("member_type_list")}>
                     <li className={cx("member_type_1")}>

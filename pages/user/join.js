@@ -118,33 +118,37 @@ const Join = () => {
             </Head>
             <PageNavigation/>
 
-            {!showJoinInfoModal ? (
+            {/*{showJoinInfoModal ? (*/}
+
+            {(agree.personal && agree.terms) ? (
+                <JoinType handleSignUp={handleSignUp}/>
+            ):(
                 <div className={`${cx("sub_container", "join_terms")} clfx`}>
                     <Form form={form} onFinish={(e) =>{console.log(e)}} onFinishFailed={(e) =>{console.log(e)}}>
-                    <h1 className={cx("sub_top_title")}>회원가입</h1>
-                    <p className={cx("sub_top_txt")}> 회원가입약관 및 개인정보처리방침안내의 내용에 동의하셔야 회원가입 하실 수 있습니다.</p>
-                    <div className={cx("all_agree")}>
-                        <Checkbox name="all" onChange={(e)=>{changeCheck(e)}}>전체 동의</Checkbox>
-                    </div>
-
-                    <div className={cx("terms_box")}>
-                        <div className={cx("titleArea")}>
-                            <h2>회원가입약관</h2>
-                            <div className={cx("chk")} ref={termsDev}>
-                                <Form.Item
-                                    name="terms"
-                                    rules={[
-                                        {
-                                            required: !agree.terms,
-                                            message: '회원가입약관의 내용에 동의는 필수입니다',
-                                        },
-                                    ]}
-                                >
-                                    <Checkbox name="terms" checked={agree.terms} onChange={(e)=>{changeCheck(e)}}>회원가입약관의 내용에 동의 합니다</Checkbox>
-                                </Form.Item>
-                            </div>
+                        <h1 className={cx("sub_top_title")}>회원가입</h1>
+                        <p className={cx("sub_top_txt")}> 회원가입약관 및 개인정보처리방침안내의 내용에 동의하셔야 회원가입 하실 수 있습니다.</p>
+                        <div className={cx("all_agree")}>
+                            <Checkbox name="all" onChange={(e)=>{changeCheck(e)}}>전체 동의</Checkbox>
                         </div>
-                        <div className={cx("terms_content")}>
+
+                        <div className={cx("terms_box")}>
+                            <div className={cx("titleArea")}>
+                                <h2>회원가입약관</h2>
+                                <div className={cx("chk")} ref={termsDev}>
+                                    <Form.Item
+                                        name="terms"
+                                        rules={[
+                                            {
+                                                required: !agree.terms,
+                                                message: '회원가입약관의 내용에 동의는 필수입니다',
+                                            },
+                                        ]}
+                                    >
+                                        <Checkbox name="terms" checked={agree.terms} onChange={(e)=>{changeCheck(e)}}>회원가입약관의 내용에 동의 합니다</Checkbox>
+                                    </Form.Item>
+                                </div>
+                            </div>
+                            <div className={cx("terms_content")}>
 <pre>
 
 제 1 장 총칙
@@ -241,30 +245,30 @@ const Join = () => {
 10.기타 관련 법령이나 창업지원단이 정한 이용 조건에 위배되는 행위를 한 경우
 
 </pre>
-                        </div>
-                    </div>
-
-                    <div className={cx("terms_box")}>
-                        <div className={cx("titleArea")}>
-                            <h2>개인정보처리방침 </h2>
-                            <div className={cx("chk")} ref={personalDev}>
-                                {/*<label htmlFor="terms_agree_2">개인정보처리방침 내용에 동의 합니다.</label>*/}
-                                {/*<input type="checkbox" id="terms_agree_2" name="personal"  onChange={(e) =>{changeCheck(e)}}/>*/}
-                                {/*{agree.personal.isShow && <p>{agree.personal.msg}</p>}*/}
-                                <Form.Item
-                                    name="personal"
-                                    rules={[
-                                        {
-                                            required: !agree.personal,
-                                            message: '개인정보처리방침 내용에 동의는 필수입니다.',
-                                        },
-                                    ]}
-                                >
-                                    <Checkbox name="personal" checked={agree.personal} onChange={(e)=>{changeCheck(e)}}>개인정보처리방침 내용에 동의 합니다.</Checkbox>
-                                </Form.Item>
                             </div>
                         </div>
-                        <div className={cx("terms_content")}>
+
+                        <div className={cx("terms_box")}>
+                            <div className={cx("titleArea")}>
+                                <h2>개인정보처리방침 </h2>
+                                <div className={cx("chk")} ref={personalDev}>
+                                    {/*<label htmlFor="terms_agree_2">개인정보처리방침 내용에 동의 합니다.</label>*/}
+                                    {/*<input type="checkbox" id="terms_agree_2" name="personal"  onChange={(e) =>{changeCheck(e)}}/>*/}
+                                    {/*{agree.personal.isShow && <p>{agree.personal.msg}</p>}*/}
+                                    <Form.Item
+                                        name="personal"
+                                        rules={[
+                                            {
+                                                required: !agree.personal,
+                                                message: '개인정보처리방침 내용에 동의는 필수입니다.',
+                                            },
+                                        ]}
+                                    >
+                                        <Checkbox name="personal" checked={agree.personal} onChange={(e)=>{changeCheck(e)}}>개인정보처리방침 내용에 동의 합니다.</Checkbox>
+                                    </Form.Item>
+                                </div>
+                            </div>
+                            <div className={cx("terms_content")}>
 <pre>
 개인정보처리방침
  
@@ -283,35 +287,36 @@ const Join = () => {
 나. 각각의 개인정보 처리 및 보유기간은 다음과 같습니다.
 
 </pre>
+                            </div>
                         </div>
-                    </div>
-
-                    <div className={cx("sns_login")}>
-                        <h2 className={cx("title_style_1")}>SNS 계정가입</h2>
-                        <ul className={cx("clfx")}>
-                            <li className={cx("icon_5")}>
-                                <HanyangLoginButton  onFormCheck={onFormCheck}/>
-                            </li>
-                            <li className={cx("icon_1")}>
-                                <NaverLoginButton handleSocialLogin={handleSocialLogin} onFormCheck={onFormCheck}/>
-                            </li>
-                            <li className={cx("icon_2")}>
-                                <FaceBookLoginButton handleSocialLogin={handleSocialLogin} onFormCheck={onFormCheck}/>
-                            </li>
-                            <li className={cx("icon_3")}>
-                                <KakaoLoginButton handleSocialLogin={handleSocialLogin}  onFormCheck={onFormCheck}/>
-                            </li>
-                            <li className={cx("icon_4")}>
-                                <GoogleLoginButton handleSocialLogin={handleSocialLogin}  onFormCheck={onFormCheck}/>
-                            </li>
-                        </ul>
-                    </div>
+                        {/*<div className={cx("sns_login")}>*/}
+                        {/*    <h2 className={cx("title_style_1")}>SNS 계정가입</h2>*/}
+                        {/*    <ul className={cx("clfx")}>*/}
+                        {/*        <li className={cx("icon_5")}>*/}
+                        {/*            <HanyangLoginButton  onFormCheck={onFormCheck}/>*/}
+                        {/*        </li>*/}
+                        {/*        <li className={cx("icon_1")}>*/}
+                        {/*            <NaverLoginButton handleSocialLogin={handleSocialLogin} onFormCheck={onFormCheck}/>*/}
+                        {/*        </li>*/}
+                        {/*        <li className={cx("icon_2")}>*/}
+                        {/*            <FaceBookLoginButton handleSocialLogin={handleSocialLogin} onFormCheck={onFormCheck}/>*/}
+                        {/*        </li>*/}
+                        {/*        <li className={cx("icon_3")}>*/}
+                        {/*            <KakaoLoginButton handleSocialLogin={handleSocialLogin}  onFormCheck={onFormCheck}/>*/}
+                        {/*        </li>*/}
+                        {/*        <li className={cx("icon_4")}>*/}
+                        {/*            <GoogleLoginButton handleSocialLogin={handleSocialLogin}  onFormCheck={onFormCheck}/>*/}
+                        {/*        </li>*/}
+                        {/*    </ul>*/}
+                        {/*</div>*/}
 
                     </Form>
                 </div>
-            ) : (
-                <JoinType handleSignUp={handleSignUp}/>
+
             )}
+            {/*// ) : (*/}
+            {/*//     <JoinType handleSignUp={handleSignUp}/>*/}
+            {/*// )}*/}
             {showJoinSuccessModal && <Modal visible={showJoinSuccessModal} closable={true} maskClosable={true} onClose={() => {setShowJoinSuccessModal(false);setShowJoinInfoModal(false);router.push('/')}}><div className={cx("popup_title")}>가입이 완료되었습니다</div></Modal>}
 
 
