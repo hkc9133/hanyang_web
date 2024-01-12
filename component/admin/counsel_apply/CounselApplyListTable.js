@@ -2,6 +2,7 @@ import React from 'react';
 import Link from "next/link";
 import moment from "moment";
 import {getCounselStatus} from '../../common/util/StatusUtil'
+import {useRouter} from "next/router";
 const MyComponent = ({list,cx}) => {
     return (
         <table>
@@ -40,12 +41,13 @@ const MyComponent = ({list,cx}) => {
 };
 
 const CounselApplyListItem = ({item}) =>{
+    const router = useRouter();
     return(
         <tr key={item.rownum}>
             <td>{item.rownum}</td>
             <td>{item.userId}</td>
             <td>{item.menteeName}</td>
-            <td><Link href={`/admin/counsel_apply/detail/${item.formId}`}><a>{item.title}</a></Link></td>
+            <td><Link href={`/admin/counsel_apply/detail/${item.formId}?prev=${router.asPath}`}><a>{item.title}</a></Link></td>
             <td>{item.menteePhoneNumber}</td>
             <td>{item.menteeEmail}</td>
             <td>{getCounselStatus(item.applyStatus)}</td>

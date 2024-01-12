@@ -145,7 +145,7 @@ const Footer = () => {
                     </div>
                     <div className={cx("footer_logo")}><Image src="/assets/image/footer_logo.png"  width={238} height={38} alt="한양대학교 창업지원단"/></div>
                     <div className={cx("footer_cont")}>
-                        <p>홈페이지 책임자: 구태용/ 관리자(담당자): 장상길</p>
+                        <p>홈페이지 책임자: 진기철/ 관리자(담당자): 장상길</p>
                         <address>(04763) 서울특별시 성동구 왕십리로 222 한양대학교 HIT 103호</address>
                         <p>약도 및 찾아오시는 길 안내: <Link href="/introduce/location"><a>바로가기</a></Link></p>
                         <p className={cx("copyright")}>&copy; 2021. Hanyang Institute for Entrepreneurship, Hanyang University. All rights

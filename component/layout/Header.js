@@ -94,14 +94,15 @@ const Header = () => {
 
 
     const moveMentorApply = () =>{
-        if(user.login == false ||  user.role != "ROLE_ADMIN" ){
-            Modal.warning({
-                title: '맨토신청은 당해년 05월 01일 부터 05월 31일까지 진행 합니다.',
-                content:'멘토신청을 원하시면 멘토로 회원가입 및 인증 후 신청 가능 합니다.'
-            });
-        }else{
-            router.push("/startup_counsel/mentor_apply")
-        }
+        router.push("/startup_counsel/mentor_apply")
+        // if(user.login == false ||  user.role != "ROLE_ADMIN" ){
+        //     Modal.warning({
+        //         title: '맨토신청은 당해년 05월 01일 부터 05월 31일까지 진행 합니다.',
+        //         content:'멘토신청을 원하시면 멘토로 회원가입 및 인증 후 신청 가능 합니다.'
+        //     });
+        // }else{
+        //     router.push("/startup_counsel/mentor_apply")
+        // }
     }
 
     const handleLogout = () => {
@@ -151,7 +152,7 @@ const Header = () => {
                                     <li><a href="/board/notice/list">공지사항</a></li>
                                     <li><a href="/startup_info/startup_event">창업캘린더</a></li>
                                     <li><a href="/board/startup_info/list">신규사업공고</a></li>
-                                    <li><a href="/board/idea/list">커뮤니티 게시판</a></li>
+                                    {/*<li><a href="/board/idea/list">커뮤니티 게시판</a></li>*/}
                                     <li><a href="/board/data_room/list">자료실</a></li>
                                     <li><a href="/board/faq/list">FAQ</a></li>
                                 </ul>
@@ -267,9 +268,9 @@ const Header = () => {
                             <div className={cx("s_menu","show")}>
                                 <ul>
                                     <li><a href="/board/notice/list">공지사항</a></li>
-                                    <li><a href="/startup_info/startup_event">창업캘린더</a></li>
+                                    <li><a href="/startup_info/startup_event">티창업캘린더</a></li>
                                     <li><a href="/board/startup_info/list">신규사업공고</a></li>
-                                    <li><a href="/board/idea/list">커뮤니티 게시판</a></li>
+                                    {/*<li><a href="/board/idea/list">커뮤니티 게시판</a></li>*/}
                                     <li><a href="/board/data_room/list">자료실</a></li>
                                     <li><a href="/board/faq/list">FAQ</a></li>
                                 </ul>

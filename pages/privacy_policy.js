@@ -195,7 +195,7 @@ const PrivacyPolicy = () => {
                             <tr>
                                 <td>개인정보 보호책임자</td>
                                 <td>한양대학교 창업지원단</td>
-                                <td>구태용</td>
+                                <td>진기철</td>
                                 <td>전화 : 02-2220-2861<br/>메일 : danielku@hanyang.ac.kr</td>
                             </tr>
                             <tr>

@@ -105,14 +105,14 @@ const UniversityStudent = () => {
                                     <SubMenu key="sub1" className={cx("dropdown_title")}
                                              title={<div className={cx("question")}>1학기 운영강좌</div>}>
                                         <Menu.Item key="0" className={cx("dropdown_content")} style={{height: 'auto'}}>
-                                            <img src={"/assets/image/university_student_class_1.jpg"}/>
+                                            <img src={"/assets/image/poster/university_student_class_1.png"}/>
                                         </Menu.Item>
                                     </SubMenu>
                                     <SubMenu key="sub2" className={cx("dropdown_title")}
                                              title={<div className={cx("question")}>2학기 운영강좌</div>}>
                                         <Menu.Item key="1" className={cx("dropdown_content")}
                                                    style={{height: 'auto', padding: 10}}>
-                                            <img src={"/assets/image/university_student_class_2.jpg"}/>
+                                            <img src={"/assets/image/poster/university_student_class_2.jpg"}/>
                                         </Menu.Item>
                                     </SubMenu>
                                 </Menu>
@@ -131,15 +131,15 @@ const UniversityStudent = () => {
                                     selectable={false}
                                     style={{height: '100%', borderRight: 'none'}}
                                 >
-                                    <SubMenu key="sub3" className={cx("dropdown_title")}
-                                             title={<div className={cx("question")}>2016년~2019년 교육과정</div>}>
-                                        <Menu.Item key="2" className={cx("dropdown_content")}
-                                                   style={{height: 'auto', padding: 10}}>
-                                            {/*<Edu1619 cx={cx}/>*/}
-                                            <img src={"/assets/image/university_student_class_3.jpg"}/>
-                                            <img src={"/assets/image/university_student_class_4.jpg"}/>
-                                        </Menu.Item>
-                                    </SubMenu>
+                                    {/*<SubMenu key="sub3" className={cx("dropdown_title")}*/}
+                                    {/*         title={<div className={cx("question")}>2016년~2019년 교육과정</div>}>*/}
+                                    {/*    <Menu.Item key="2" className={cx("dropdown_content")}*/}
+                                    {/*               style={{height: 'auto', padding: 10}}>*/}
+                                    {/*        /!*<Edu1619 cx={cx}/>*!/*/}
+                                    {/*        <img src={"/assets/image/university_student_class_3.jpg"}/>*/}
+                                    {/*        <img src={"/assets/image/university_student_class_4.jpg"}/>*/}
+                                    {/*    </Menu.Item>*/}
+                                    {/*</SubMenu>*/}
                                     <SubMenu key="sub4" className={cx("dropdown_title")}
                                              title={<div className={cx("question")}>2020년~2023년 교육과정</div>}>
                                         <Menu.Item key="3" className={cx("dropdown_content")}
@@ -147,6 +147,12 @@ const UniversityStudent = () => {
                                             {/*<Edu2030 cx={cx}/>*/}
                                             <img src={"/assets/image/university_student_class_5.jpg"}/>
                                             <img src={"/assets/image/university_student_class_6.jpg"}/>
+                                        </Menu.Item>
+                                    </SubMenu>
+                                    <SubMenu key="sub5" className={cx("dropdown_title")}
+                                             title={<div className={cx("question")}>2024년~2027년 교육과정</div>}>
+                                        <Menu.Item key="5" className={cx("dropdown_content")}
+                                                   style={{height: 'auto', padding: 10}}>
                                         </Menu.Item>
                                     </SubMenu>
                                 </Menu>
@@ -188,11 +194,11 @@ const UniversityStudent = () => {
                                             {showScore && (
                                                 <div>
                                                     <br/>
-                                                    <p>[2016~2019 교육과정 적용]</p>
-                                                    <p>- 제 2전공 : 전공핵심 21학점, 전공심화 6학점 포함하여 전공과목 36학점 이상 이수<br/>
-                                                        - 부전공 : 전공핵심 12학점 포함하여 전공과목 21학점 이상 이수</p>
-                                                    <br/>
-                                                    <p>[2020~2023 교육과정 적용]</p>
+                                                    {/*<p>[2016~2019 교육과정 적용]</p>*/}
+                                                    {/*<p>- 제 2전공 : 전공핵심 21학점, 전공심화 6학점 포함하여 전공과목 36학점 이상 이수<br/>*/}
+                                                    {/*    - 부전공 : 전공핵심 12학점 포함하여 전공과목 21학점 이상 이수</p>*/}
+                                                    {/*<br/>*/}
+                                                    {/*<p>[2020~2023 교육과정 적용]</p>*/}
                                                     <p>- 제 2전공 : 200~300단위 21학점, 400단위 6학점, 자율선택 9학점 전체 36학점 이상 이수<br/>
                                                         - 부전공 : 200~300단위 12학점, 자율선택 9학점, 전체 21학점 이상 이수</p>
                                                 </div>
@@ -273,18 +279,24 @@ const UniversityStudent = () => {
                                 selectable={false}
                                 style={{height: '100%', borderRight: 'none'}}
                             >
-                                <SubMenu key="sub2" className={cx("dropdown_title")}
-                                         title={<div className={cx("question")}>2016년~2019년 교육과정</div>}>
-                                    <Menu.Item key="2" className={cx("dropdown_content")}
-                                               style={{height: 'auto', padding: 10}}>
-                                        <Edu1619 cx={cx}/>
-                                    </Menu.Item>
-                                </SubMenu>
+                                {/*<SubMenu key="sub2" className={cx("dropdown_title")}*/}
+                                {/*         title={<div className={cx("question")}>2016년~2019년 교육과정</div>}>*/}
+                                {/*    <Menu.Item key="2" className={cx("dropdown_content")}*/}
+                                {/*               style={{height: 'auto', padding: 10}}>*/}
+                                {/*        <Edu1619 cx={cx}/>*/}
+                                {/*    </Menu.Item>*/}
+                                {/*</SubMenu>*/}
                                 <SubMenu key="sub1" className={cx("dropdown_title")}
                                          title={<div className={cx("question")}>2020년~2023년 교육과정</div>}>
                                     <Menu.Item key="1" className={cx("dropdown_content")}
                                                style={{height: 'auto', padding: 10}}>
                                         <Edu2030 cx={cx}/>
+                                    </Menu.Item>
+                                </SubMenu>
+                                <SubMenu key="sub2" className={cx("dropdown_title")}
+                                         title={<div className={cx("question")}>2024년~2027년 교육과정</div>}>
+                                    <Menu.Item key="2" className={cx("dropdown_content")}
+                                               style={{height: 'auto', padding: 10}}>
                                     </Menu.Item>
                                 </SubMenu>
                             </Menu>

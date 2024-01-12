@@ -129,7 +129,7 @@ const CounselApplyFormDetail = () => {
         if(update.result === true && update.error === null){
             Modal.success({
                 content: '저장이 완료되었습니다',
-                onOk:() => {router.push("/admin/counsel_apply");}
+                onOk:() => {router.query.prev ? router.push(router.query.prev) : router.push("/admin/counsel_apply");}
             });
         }
 
@@ -186,7 +186,15 @@ const CounselApplyFormDetail = () => {
                                                 <tr>
                                                     <th>신청 상태</th>
                                                     <td>
-                                                        {getCounselStatus(applyValue.applyStatus)}
+                                                        <select name="applyStatus" onChange={changeApplyValue} defaultValue={applyValue.applyStatus}>
+                                                            <option value="APPLY">{getCounselStatus("APPLY")}</option>
+                                                            <option value="ASSIGN">{getCounselStatus("ASSIGN")}</option>
+                                                            <option value="RETURN">{getCounselStatus("RETURN")}</option>
+                                                            <option value="PROCESS">{getCounselStatus("PROCESS")}</option>
+                                                            <option value="COMPLETED">{getCounselStatus("COMPLETED")}</option>
+                                                            <option value="CANCEL">{getCounselStatus("CANCEL")}</option>
+                                                            <option value="HOLD">{getCounselStatus("HOLD")}</option>
+                                                        </select>
                                                     </td>
                                                     <th>
                                                         담당 멘토

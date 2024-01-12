@@ -16,6 +16,12 @@ export const getCounselStatus = (status)=>{
         case "COMPLETED":
             returnStatus =  "상담 완료"
             break;
+        case "CANCEL":
+            returnStatus =  "신청 취소"
+            break;
+        case "HOLD":
+            returnStatus =  "보류"
+            break;
     }
     return returnStatus;
 }

@@ -20,15 +20,17 @@ const AuthFail =() => {
             setMsg("창업상담신청은 로그인 후 이용하실 수 있습니다.")
         }else if(router.pathname.startsWith("/mypage/mentor")) {
             setMsg("멘토 권한이 아닙니다")
-        }else if(router.pathname.startsWith("/startup_counsel/mentor_apply")){
-            setMsg(
-            <div style={{textAlign:'center'}}>
-                <h2>맨토신청은 당해년 05월 01일 부터 05월 31일까지 진행 합니다.</h2>
-                <p>멘토신청을 원하시면 멘토로 회원가입 및 인증 후 신청 가능 합니다.</p>
-            </div>
-            )
-            // setMsg("맨토신청은 당해년 05월 01일 부터 05월 31일까지 진행 합니다. \n" + "멘토신청을 원하시면 멘토로 회원가입 및 인증 후 신청 가능 합니다.")
-        }else if(router.pathname.startsWith("/introduce/space_reservation")){
+        }
+        // else if(router.pathname.startsWith("/startup_counsel/mentor_apply")){
+        //     setMsg(
+        //     <div style={{textAlign:'center'}}>
+        //         <h2>맨토신청은 당해년 05월 01일 부터 05월 31일까지 진행 합니다.</h2>
+        //         <p>멘토신청을 원하시면 멘토로 회원가입 및 인증 후 신청 가능 합니다.</p>
+        //     </div>
+        //     )
+        //     // setMsg("맨토신청은 당해년 05월 01일 부터 05월 31일까지 진행 합니다. \n" + "멘토신청을 원하시면 멘토로 회원가입 및 인증 후 신청 가능 합니다.")
+        // }
+        else if(router.pathname.startsWith("/introduce/space_reservation")){
             setMsg("로그인 후 이용 가능합니다")
         }
 

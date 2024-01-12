@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from "moment";
 import Link from 'next/link';
+import {useRouter} from "next/router";
 
 const MentorListTable = ({list,cx}) => {
     return (
@@ -39,11 +40,12 @@ const MentorListTable = ({list,cx}) => {
 };
 
 const MentorListItem = ({item}) =>{
+    const router = useRouter();
     return(
         <tr key={item.rownum}>
             <td>{item.rownum}</td>
             <td>{item.userId}</td>
-            <td><Link href={`/admin/mentor/detail/${item.mentorId}`}><a>{item.mentorName}</a></Link></td>
+            <td><Link href={`/admin/mentor/detail/${item.mentorId}?prev=${router.asPath}`}><a>{item.mentorName}</a></Link></td>
             <td>{item.mentorCompany}</td>
             <td>{item.mentorPhoneNumber}</td>
             <td>{item.mentorEmail}</td>

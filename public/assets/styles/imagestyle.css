@@ -19,6 +19,7 @@
 
 .ck-content {
     overflow-x: scroll;
+    font-family: s-core-dream-regular,MalgunGothic,맑은 고딕,돋움,tahoma,"sans-serif";
 }
 .ck-content *{
     -webkit-user-select: text !important;
@@ -28,7 +29,7 @@
 }
 
 /* ckeditor5-font/theme/fontsize.css */
-table td .ck-content p{margin:unset;color:unset;font-size: unset;display: unset;}
+/*table td .ck-content p{margin:unset;color:unset;font-size: unset;display: unset;}*/
 .ck-content .text-tiny {
     font-size: .7em;
 }

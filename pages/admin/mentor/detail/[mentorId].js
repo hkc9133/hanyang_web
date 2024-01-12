@@ -101,7 +101,7 @@ const DetailView = () => {
             // setShowResultModal(true)
             Modal.success({
                 content: '저장이 완료되었습니다',
-                onOk:() => {router.push("/admin/mentor")}
+                onOk:() => {router.query.prev ? router.push(router.query.prev) : router.push("/admin/mentor");}
             });
         }
 
