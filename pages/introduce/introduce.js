@@ -26,8 +26,8 @@ const Introduce = () => {
                         </p>
 
                         <div className={"clfx"}>
+                            <h2>인사말</h2>
                             <div className={cx("ceo_info")}>
-                                <h2>인사말</h2>
                                 <div className={cx("ceo_img")}>
                                     <img src="/assets/image/ceo.jpg" alt="ceo"/>
                                 </div>
