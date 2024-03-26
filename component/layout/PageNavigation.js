@@ -52,7 +52,7 @@ const dep1 = {
             notice: {name:'공지사항',link:'/board/notice/list'},
             startup_event: {name:'창업캘린더',link:'/startup_info/startup_event'},
             startup_info: {name:'신규사업공고',link:'/board/startup_info/list'},
-            idea: {name:'커뮤니티 게시판',link:'/board/idea/list'},
+            //idea: {name:'커뮤니티 게시판',link:'/board/idea/list'},
             data_room: {name:'자료실',link:'/board/data_room/list'},
             faq: {name:'FAQ',link:'/board/faq/list'},
         }
@@ -93,7 +93,7 @@ const dep1 = {
 
 const board = {
     notice:{parents:'startup_info'},
-    idea:{parents:'startup_info'},
+    //idea:{parents:'startup_info'},
     data_room:{parents:'startup_info'},
     startup_info:{parents:'startup_info'},
     people:{parents:'startup_education'},
