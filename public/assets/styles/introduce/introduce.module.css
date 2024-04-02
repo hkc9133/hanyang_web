@@ -35,7 +35,7 @@
 
 
 .introduction h2{margin-bottom:40px; font-size:32px; color:#222; font-family: 's-core-dream-medium';}
-.ceo_info{float:left; padding:0 10px; width:50%; box-sizing:border-box; }
+.ceo_info{float:left; padding:0 80px 0 10px; width:50%; box-sizing:border-box; }
 .ceo_img{text-align:center; }
 .ceo_info .info{position:relative; padding-left:120px; }
 .ceo_info .name{position:absolute; left:0; top:0; font-size:24px; font-family: 's-core-dream-medium';}
