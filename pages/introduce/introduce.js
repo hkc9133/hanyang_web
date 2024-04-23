@@ -168,6 +168,8 @@ const Introduce = () => {
                                             <li>청년 드림 베스트프랙티스 창업부문 최우수 대학 선정</li>
                                         </ul>
                                     </li>
+                                </ul>
+                                <ul>
                                     <li>
                                         <span className={cx("year")}>2017</span>
                                         <ul>
@@ -180,8 +182,6 @@ const Introduce = () => {
                                             <li className={cx("c-blue")}>대학원 창업융합학과 신설 및 운영</li>
                                         </ul>
                                     </li>
-                                </ul>
-                                <ul>
                                     <li>
                                         <span className={cx("year")}>2018</span>
                                         <ul>
@@ -214,35 +214,6 @@ const Introduce = () => {
                                             <li>한양 글로벌 스타트업 챌린지 운영</li>
                                             <li className={cx("c-blue")}>중국 상하이, 베트남 하노이, 호치민 글로벌 스타트업 멘토단 위촉</li>
                                             <li>서울시 캠퍼스타운 조성사업 주관기관 선정</li>
-                                        </ul>
-                                    </li>
-                                    {/*<li>*/}
-                                    {/*    <span className={cx("year")}>2021</span>*/}
-                                    {/*    <ul>*/}
-                                    {/*        <li>창업도약패키지 사업 주관기관 선정</li>*/}
-                                    {/*        <li>예비창업패키지 사업 주관기관 선정</li>*/}
-                                    {/*        <li>실전창업교육 주관기관 선정</li>*/}
-                                    {/*        <li className={cx("c-blue")}>초기창업패키지 사업 최우수 주관기관 선정(2년 연속, '19~'20)</li>*/}
-                                    {/*        <li>서울시 캠퍼스타운 단위형 주관기관 선정</li>*/}
-                                    {/*    </ul>*/}
-                                    {/*</li>*/}
-                                    <li>
-                                        <span className={cx("year")}>2022</span>
-                                        <ul>
-                                            <li>창업중심대학 사업주관기관 선정(2022~2026)</li>
-                                            <li>서울시 캠퍼스타운 종합형 주관기관 선정(2023~2026)</li>
-                                            <li>혁신창업스쿨 주관기관 선정</li>
-                                            <li>서울시 새싹(SeSAC)클래스 인 캠퍼스 주관기관 선정</li>
-                                            <li>2021 창업도약패키지 사업 최우수 주관기관 선정</li>
-                                            <li>2021 예비창업패키지 사업 최우수 주관기관 선정</li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <span className={cx("year")}>2023</span>
-                                        <ul>
-                                            <li>2023 특화형 창업중심대학 주관기관 선정</li>
-                                            <li>혁신창업스쿨 주관기관 선정(2023~2024)</li>
-                                            <li>서울시 새싹(SeSAC)인캠퍼스 주관기관 선정</li>
                                         </ul>
                                     </li>
                                     <li>
@@ -530,11 +501,11 @@ const Introduce = () => {
                                     <col/>
                                 </colgroup>
                                 <thead>
-                                    <tr>
-                                        <th>성함</th>
-                                        <th>소속</th>
-                                        <th>직위</th>
-                                    </tr>
+                                <tr>
+                                    <th>성함</th>
+                                    <th>소속</th>
+                                    <th>직위</th>
+                                </tr>
                                 </thead>
                                 <tbody>
                                 <tr>

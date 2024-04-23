@@ -1,81 +1,48 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import styles from '../../public/assets/styles/startup_info/startup_info.module.css';
-import classnames from "classnames/bind"
-import Link from 'next/link'
-import {
-    Input,
-    Tag,
-    Button,
-    Select,
-    Form,
-    Radio,
-    Checkbox,
-    Upload,
-    Progress,
-    Typography,
-    Modal,
-    Modal as AntdModal
-} from 'antd';
-
-const {Option} = Select;
-
-import client from '../../lib/api/client';
-
-
-import {useSelector, useDispatch} from "react-redux";
-import {useRouter} from "next/router";
 import {
     getCounselApply,
-    getCounselFieldCode, getMentorList,
-    getProgressItem, getSortationItem, getWayItem,
-    initialize
-} from "../../store/mentoring/mentoring";
-import dynamic from "next/dynamic";
-
-const Editor = dynamic(() => import("../../component/common/Editor"), {
+    getCounselFieldCode,
+    getMentorList,
+    getProgressItem,
+    getSortationItem, getWayItem, initialize
+} from "../../../store/mentoring/mentoring";
+const Editor = dynamic(() => import("../../../component/common/Editor"), {
     ssr: false,
     loading: () => <p>Loading ...</p>,
 });
-import {LoadingOutlined, PlusOutlined} from '@ant-design/icons';
-import PersonalInfoForm from "../../component/stratup_counsel/counsel_apply/PersonalInfoForm";
-import wrapper from "../../store/configureStore";
-import {END} from "redux-saga";
-import {htmlTagRemove} from "../../lib/util/StringUtil";
-import {fileDownload} from "../../store/file/file";
-import {applyCounsel, updateApplyCounsel} from "../../lib/api/mentoring/mentoring";
+import {useDispatch, useSelector} from "react-redux";
+import {useRouter} from "next/router";
+import {Checkbox, Form, Input, Modal, Radio, Select, Typography, Upload} from "antd";
+import {htmlTagRemove} from "../../../lib/util/StringUtil";
+import client from "../../../lib/api/client";
+import Link from "next/link";
+import PersonalInfoForm from "../../../component/stratup_counsel/counsel_apply/PersonalInfoForm";
+import {LoadingOutlined, PlusOutlined} from "@ant-design/icons";
+
+import styles from '../../../public/assets/styles/startup_info/startup_info.module.css';
+import classnames from "classnames/bind"
+import dynamic from "next/dynamic";
+import {fileDownload} from "../../../store/file/file";
+import {applyCounsel, updateApplyCounsel} from "../../../lib/api/mentoring/mentoring";
 
 const cx = classnames.bind(styles);
 
-
-export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
-
-    const cookie = context.req && context.req.headers.cookie ? context.req.headers.cookie : '';
-    client.defaults.headers.Cookie = cookie;
-
-    context.store.dispatch(END);
-    await context.store.sagaTask.toPromise();
-})
-const CounselApply = () => {
+const applyFormDetail = () => {
 
     const maxCnt = 250
     const [form] = Form.useForm();
     const personalDev = useRef();
-    const hopeMentorSelect = useRef();
-    const dispatch = useDispatch();
     const router = useRouter();
-
-    const {user, counselApply, mentorList, counselField, progressItem, sortationItem, wayItem} = useSelector(({
-                                                                                                                  auth,
-                                                                                                                  mentoring,
-                                                                                                                  loading
-                                                                                                              }) => ({
+    const dispatch = useDispatch();
+    const {user, counselApply,mentorList, counselField, progressItem, sortationItem, wayItem, getLoading} = useSelector(({auth, mentoring, loading}) => ({
         user: auth.user,
         mentorList: mentoring.mentorList,
         counselField: mentoring.counselField,
         progressItem: mentoring.progressItem,
         sortationItem: mentoring.sortationItem,
         wayItem: mentoring.wayItem,
-        counselApply: mentoring.counselApply,
+        counselApply: mentoring.getCounselApply,
+        getLoading: loading['mentoring/GET_COUNSEL_APPLY']
     }))
 
     const [applyForm, setApplyForm] = useState({
@@ -98,7 +65,7 @@ const CounselApply = () => {
         isAgree: false,
         uploadResultList: [],
         oldUploadResultList: [],
-        removeFiles: []
+        removeFiles:[]
     })
     const [content, setContent] = useState("");
     const [editor, setEditor] = useState(null);
@@ -130,6 +97,37 @@ const CounselApply = () => {
         }
     }, [])
 
+    useEffect(() => {
+        if(router.query.formId){
+            dispatch(getCounselApply(router.query.formId));
+        }
+    }, [router.query]);
+
+    useEffect(() => {
+        if(counselApply.counselApply != null && editor != null){
+            const data = counselApply.counselApply;
+            const formData = {
+                ...data,
+                menteeName: data.menteeName,
+                menteePhoneNumber: data.menteePhoneNumber,
+                menteeEmail: data.menteeEmail,
+                isAgree:true,
+                formSortationItem:data.sortationItemList.map((item) =>item.itemId),
+                formProgressItem:data.formProgressItem,
+                fieldId:data.fieldId,
+                formWayItem:data.wayItemList.map((item) =>item.itemId),
+            }
+            setApplyForm({
+                ...applyForm,
+                oldUploadResultList: counselApply.files
+            })
+            editor.setData(data.content)
+            form.setFieldsValue({
+                ...formData
+            })
+        }
+    }, [counselApply,editor]);
+
     const handleChangeUploadFile = ({fileList}) => {
         setApplyForm({
             ...applyForm,
@@ -147,7 +145,7 @@ const CounselApply = () => {
     const changeHopeMentorField = (value) => {
         form.setFieldsValue({
             ...form.getFieldsValue(),
-            hopeMentor: null
+            hopeMentor:null
         })
         if (value == "") {
             setHopeMentorList(mentorList.list)
@@ -157,18 +155,18 @@ const CounselApply = () => {
 
     }
 
-    useEffect(() => {
-        if (maxCnt) {
-            if (content) {
-                if (htmlTagRemove(content).length > maxCnt) {
-                    Modal.warning({
-                        title: '',
-                        content: `${maxCnt}자 까지 입력가능합니다.`
-                    });
-                }
-            }
-        }
-    }, [content])
+    // useEffect(() => {
+    //     if(maxCnt){
+    //         if (content) {
+    //             if (htmlTagRemove(content).length > maxCnt) {
+    //                 Modal.warning({
+    //                     title: '',
+    //                     content: `${maxCnt}자 까지 입력가능합니다.`
+    //                 });
+    //             }
+    //         }
+    //     }
+    // }, [content])
 
 
     const uploadFile = async options => {
@@ -203,7 +201,26 @@ const CounselApply = () => {
         }
     };
 
+    const handlePreview = useCallback((file) =>{
+        const fileURL = URL.createObjectURL(file.originFileObj);
+        window.open(fileURL);
+    },[])
+
+    const handleFileDownload = useCallback(({fileId}) => {
+        if (fileId != undefined) {
+            dispatch(fileDownload(fileId))
+        }
+    }, [])
+
+    const handleFileRemove = (file) => {
+        setApplyForm({
+            ...applyForm,
+            removeFiles: applyForm.removeFiles.concat(file.fileId),
+            oldUploadResultList: applyForm.oldUploadResultList.filter((item)=> {return item.fileId != file.fileId})
+        })
+    }
     const submitApply = (type) => {
+        console.log(type)
         if (user.role == "ROLE_MT" || user.role == "ROLE_USER") {
             Modal.warning({
                 title: '창업상담신청은 로그인 후 이용하실 수 있습니다.',
@@ -218,21 +235,21 @@ const CounselApply = () => {
             }
             const data = {
                 ...form.getFieldsValue(),
-                applyStatus: type,
+                formId:router.query.formId,
+                applyStatus:type,
                 content: editor.getData(),
-                sortationIdList: form.getFieldValue("formSortationItem"),
-                wayIdList: form.getFieldValue("formWayItem"),
+                sortationIdList:form.getFieldValue("formSortationItem"),
+                wayIdList:form.getFieldValue("formWayItem"),
+                removeFiles:applyForm.removeFiles ? applyForm.removeFiles : [],
                 uploadResultList: applyForm.uploadResultList.map((item) => {
                     return item.fileId
-                }),
-                removeFiles:[]
+                })
             }
             // data.hopeMentor == null || data.hopeMentor == '' && delete data.hopeMentor
             if (data.hopeMentor == null || data.hopeMentor == '') {
                 delete data.hopeMentor
             }
-
-            applyCounsel(data).then((e) =>{
+            updateApplyCounsel(data).then((e) =>{
                 Modal.info({
                     title: `${type == "TEMP" ? "저장" : "신청"}이 완료되었습니다.`,
                     okText:"닫기",
@@ -252,16 +269,13 @@ const CounselApply = () => {
     }
 
     const submitTemp = (e) => {
-        form.validateFields().then((e) => {
+        form.validateFields().then((e) =>{
             submitApply("TEMP")
-        }).catch((error) => {
-            console.log(error)
-            if (error.errorFields.length > 0) {
+        }).catch((error) =>{
+            if(error.errorFields.length > 0 ){
                 form.scrollToField(error.errorFields[0]['name'][0])
             }
-
         })
-
     }
 
 
@@ -272,7 +286,7 @@ const CounselApply = () => {
                 <Form form={form} onFinish={(e) => {
                     console.log(e)
                     submitApply("APPLY")
-                }} scrollToFirstError={true}>
+                }}  scrollToFirstError={true}>
                     <div className={cx("sub_container", "mentor_group_write")}>
                         <h1 className={cx("sub_top_title")}>창업 상담</h1>
                         <p className={cx("sub_top_txt")}>(예비)창업자의 기술‧경영 애로사항을 해결하기 위해 <br/>온·오프라인 창업상담 프로그램을 운영합니다.</p>
@@ -330,7 +344,7 @@ const CounselApply = () => {
                                     ]}
                                 >
                                     <Checkbox.Group name="formSortationItem" options={sortationItem.list}
-                                    />
+                                                    />
                                 </Form.Item>
                             </ul>
                         </div>
@@ -347,7 +361,8 @@ const CounselApply = () => {
                                         },
                                     ]}
                                 >
-                                    <Radio.Group name="formProgressItem" options={progressItem.list}/>
+                                <Radio.Group name="formProgressItem" options={progressItem.list}
+                                             defaultValue={1}/>
                                 </Form.Item>
                             </ul>
                         </div>
@@ -377,34 +392,32 @@ const CounselApply = () => {
                                 <Option value="">전체</Option>
                                 {
                                     counselField.list.map((item) => {
-                                        return <Option value={item.value}
-                                                       key={`${item.value}_mentor_field`}>{item.label}</Option>
+                                        return <Option value={item.value} key={`${item.value}_mentor_field`}>{item.label}</Option>
                                     })
                                 }
                             </Select>
                             <Form.Item
                                 name="hopeMentor"
-                                style={{display: 'inline-block'}}
+                                style={{display:'inline-block'}}
                             >
-                                <Select
-                                    name="hopeMentor"
-                                    size='large'
-                                    showSearch
-                                    placeholder="희망하는 멘토가 있을 시 선택"
-                                    optionFilterProp="children"
-                                    value={applyForm.hopeMentor}
-                                    filterOption={(input, option) =>
-                                        option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                                    }
-                                    filterSort={(optionA, optionB) =>
-                                        optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
-                                    }
-                                >
-                                    {hopeMentorList.map((item, index) => {
-                                        return <Option value={item.mentorId}
-                                                       key={`${item.mentorId}_mentor`}>{item.mentorName}</Option>
-                                    })}
-                                </Select>
+                            <Select
+                                name="hopeMentor"
+                                size='large'
+                                showSearch
+                                placeholder="희망하는 멘토가 있을 시 선택"
+                                optionFilterProp="children"
+                                value={applyForm.hopeMentor}
+                                filterOption={(input, option) =>
+                                    option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                }
+                                filterSort={(optionA, optionB) =>
+                                    optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
+                                }
+                            >
+                                {hopeMentorList.map((item, index) => {
+                                    return <Option value={item.mentorId} key={`${item.mentorId}_mentor`}>{item.mentorName}</Option>
+                                })}
+                            </Select>
                             </Form.Item>
                         </div>
 
@@ -453,6 +466,25 @@ const CounselApply = () => {
                                 <span className={cx("title")}>첨부파일 (10MB 미만)</span>
                                 <div className={`clfx `}>
                                     <Upload
+                                        listType="picture-card"
+                                        fileList={applyForm.oldUploadResultList.map((file) => {
+                                            return {
+                                                uid: file.fileName,
+                                                name: file.fileOriginName,
+                                                fileOriginName:file.fileOriginName,
+                                                status: 'done',
+                                                fileId: file.fileId
+                                            }
+                                        })}
+                                        showUploadList={{
+                                            showRemoveIcon: true,
+                                            showDownloadIcon: true
+                                        }}
+                                        onPreview={handlePreview}
+                                        onDownload={handleFileDownload}
+                                        onRemove={handleFileRemove}
+                                    />
+                                    <Upload
                                         customRequest={(e) => {
                                             uploadFile(e)
                                         }}
@@ -478,9 +510,7 @@ const CounselApply = () => {
                         <div className={cx("txt_c")} style={{marginTop: 40}}>
                             <input type="submit" value="신청하기" className={cx("basic-btn03", "btn-blue-bg2")}/>
                             <input type="button" value="임시 저장하기"
-                                   onClick={() => {
-                                       submitTemp()
-                                   }}
+                                   onClick={() =>{submitTemp()}}
                                    className={cx("basic-btn03", "btn-black-bd", "tmp_btn")}/>
                         </div>
                     </div>
@@ -490,4 +520,5 @@ const CounselApply = () => {
     );
 };
 
-export default React.memo(CounselApply);
+
+export default applyFormDetail;

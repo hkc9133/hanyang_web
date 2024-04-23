@@ -13,6 +13,8 @@ import {getCounselApplyList, getMentorList} from "../../../store/mentoring/admin
 import CounselApplyListTable from "../../../component/admin/counsel_apply/CounselApplyListTable";
 import Link from "next/link";
 import {port, url} from "../../../lib/api/client";
+import locale from "antd/lib/date-picker/locale/ko_KR";
+import {DatePicker} from "antd";
 
 const cx = classnames.bind(styles);
 
@@ -34,10 +36,10 @@ const CounselApplyListPage = () => {
     },[])
 
     useEffect(() => {
-        const { page = 1,searchValue = null,searchField = null,mentorStatus = null} = router.query
+        const { page = 1,searchValue = null,searchField = null,status = "",startDate="",endDate=""} = router.query
         const data = {
             page:page,
-            ...searchInfo
+            ...router.query
         }
         dispatch(getCounselApplyList(data));
     },[router.query])
@@ -52,7 +54,7 @@ const CounselApplyListPage = () => {
     }
 
     const searchUser = (e) => {
-        const queryString = qs.stringify(router.query);
+        const queryString = qs.stringify(searchInfo);
         router.push(`${router.pathname}?${queryString}`)
     }
 
@@ -60,6 +62,10 @@ const CounselApplyListPage = () => {
         const queryString = qs.stringify({...router.query,page:pageNum});
         router.push(`${router.pathname}?${queryString}`)
     }
+
+    useEffect(() => {
+        console.log(searchInfo)
+    }, [searchInfo]);
     return (
         <section className={cx("container")}>
             <h1 className={cx("top_title")}>상담신청서 관리</h1>
@@ -75,19 +81,35 @@ const CounselApplyListPage = () => {
                     </ul>
 
                     <div className={`${cx("mentor_id_search")} clfx`}>
+                        <DatePicker.RangePicker locale={locale} style={{width:220}}
+                                                onc
+                                                onChange={(e) =>{
+                            setSearchInfo({
+                                ...searchInfo,
+                                startDate:e ?  e[0].format("YYYY-MM-DD") : "",
+                                endDate:e ? e[1].format("YYYY-MM-DD") : "",
+                            })
 
-                        {/*<select name="mentorStatus" onChange={(e) =>{changeSearchInfo(e)}}>*/}
-                        {/*    <option value="">승인 상태</option>*/}
-                        {/*    <option value="STANDBY">미승인</option>*/}
-                        {/*    <option value="ACCEPT">승인</option>*/}
-                        {/*</select>*/}
+                        }} format="YYYY-MM-DD"
+                        />
+                        <select name="status" onChange={(e) => {
+                            changeSearchInfo(e)
+                        }}>
+                            <option value="">상태</option>
+                            <option value="APPLY">신청</option>
+                            <option value="ASSIGN">배정 완료</option>
+                            <option value="RETURN">반려</option>
+                            <option value="PROCESS">상담 진행중</option>
+                            <option value="COMPLETED">상담 완료</option>
+                            <option value="CANCEL">신청 취소</option>
+                            <option value="HOLD">보류</option>
+                        </select>
                         <select name="searchField" onChange={(e) =>{changeSearchInfo(e)}}>
                             <option value="">검색조건</option>
                             <option value="user_id">아이디</option>
-                            <option value="mentor_name">이름</option>
-                            <option value="mentor_company">소속</option>
-                            <option value="mentorPhoneNumber">핸드폰번호</option>
-                            <option value="mentor_email">E-MAIL</option>
+                            <option value="mentee_name">이름</option>
+                            <option value="mentee_phone_number">핸드폰번호</option>
+                            <option value="mentee_email">E-MAIL</option>
                         </select>
                         <input type="text" name="searchValue" onChange={(e) =>{changeSearchInfo(e)}} />
                         <button type="button" className={cx("btn_search")} onClick={()=>{searchUser()}}>

@@ -13,9 +13,9 @@
 /*.mentor_info>ul>li .icon_3{padding-left:34px; background:url(../../../image/admin/mentor_icon_3.png) no-repeat 0 center; }*/
 .mentor_info>ul>li .number{float:right; margin-left:30px; line-height:1; display:block; font-size:14px; font-weight:200; }
 .mentor_info>ul>li .number strong{font-size:24px; font-weight:400; vertical-align:bottom;}
-.mentor_info .mentor_id_search{float:right; position:relative; width:640px; }
-.mentor_info .mentor_id_search select{float:left; width:24.3%; height:35px; line-height:33px; background-color:#ebf0f9;margin-right: 0.5%}
-.mentor_info .mentor_id_search input[type=text]{float:right; padding-right:39px;width:74%; height:35px; line-height:33px; box-sizing:border-box; }
+.mentor_info .mentor_id_search{float:right; position:relative; width:840px;    display: flex;justify-content: flex-end; }
+.mentor_info .mentor_id_search select{float:left; width:15%; height:35px; line-height:33px; background-color:#ebf0f9;margin: 0px 0.5%}
+.mentor_info .mentor_id_search input[type=text]{float:right; padding-right:39px;width:40%; height:35px; line-height:33px; box-sizing:border-box; }
 .mentor_info .mentor_id_search .btn_search{position:absolute; right:1px; top:1px; width:40px; height:33px; }
 .admin_cont{padding:30px 20px; background-color:#fff; box-shadow:2px 2px 3px 2px rgba(150,150,150,0.1); background-color:#fff; }
 .txt_style_1{margin-bottom:15px; font-size:14px; font-weight:200; }

@@ -69,6 +69,10 @@ const MentorIntroduce = () => {
 
     }
 
+    useEffect(() => {
+        console.log(mentorList)
+    }, [mentorList]);
+
     return (
         <>
             <Head>

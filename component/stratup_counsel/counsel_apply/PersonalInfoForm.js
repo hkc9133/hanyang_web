@@ -1,7 +1,7 @@
 import React from 'react';
 import {Form, Input} from "antd";
 
-const PersonalInfoForm = ({cx,changeApplyFormValue,applyForm}) => {
+const PersonalInfoForm = ({cx}) => {
     return (
         <div className={`${cx("personal_info", "photo_no")} clfx `}>
             <ul className={"clfx"}>
@@ -19,8 +19,7 @@ const PersonalInfoForm = ({cx,changeApplyFormValue,applyForm}) => {
                                 },
                             ]}
                         >
-                            <Input placeholder={"이름"} name="menteeName"
-                                   value={applyForm.menteeName} onChange={changeApplyFormValue}/>
+                            <Input placeholder={"이름"} name="menteeName"/>
                         </Form.Item>
                     </div>
                 </li>
@@ -34,14 +33,13 @@ const PersonalInfoForm = ({cx,changeApplyFormValue,applyForm}) => {
                                 {
                                     required: true,
                                     pattern: new RegExp(
-                                        /^-?\d*(\.\d*)?$/
+                                        /^(01[0-9]{1}-?[0-9]{4}-?[0-9]{4}|01[0-9]{8})$/
                                     ),
-                                    message: "'-' 없이 숫자만 입력 가능합니다",
+                                    message: "'-' 없이 핸드폰번호를 입력해주세요",
                                 },
                             ]}
                         >
-                            <Input placeholder={"연락처"} name="menteePhoneNumber" value={applyForm.menteePhoneNumber}
-                                   onChange={changeApplyFormValue}/>
+                            <Input placeholder={"연락처"} name="menteePhoneNumber"/>
                         </Form.Item>
                     </div>
                 </li>
@@ -58,8 +56,7 @@ const PersonalInfoForm = ({cx,changeApplyFormValue,applyForm}) => {
                                 },
                             ]}
                         >
-                            <Input placeholder={"E-MAIL"} name="menteeEmail" value={applyForm.menteeEmail}
-                                   onChange={changeApplyFormValue}/>
+                            <Input placeholder={"E-MAIL"} name="menteeEmail"/>
                         </Form.Item>
                     </div>
                 </li>

@@ -139,7 +139,7 @@ const Header = () => {
                             <div className={cx("s_gnb")}>
                                 <ul>
                                     <li><a href="/startup_counsel/counsel_process">창업상담신청</a></li>
-                                    <li><a href="/startup_counsel/mentor_introduce?pageSize=1">멘토단소개</a></li>
+                                    <li><a href="/startup_counsel/mentor_introduce?page=1">멘토단소개</a></li>
                                     <li><a onClick={() =>{moveMentorApply()}}>멘토신청</a></li>
                                     <li><a href="/startup_counsel/startup_procedure">창업절차</a></li>
                                 </ul>
@@ -257,7 +257,7 @@ const Header = () => {
                             <div className={cx("s_menu","show","s_menu_2")}>
                                 <ul>
                                     <li><a href="/startup_counsel/counsel_process">창업상담신청</a></li>
-                                    <li><a href="/startup_counsel/mentor_introduce?pageSize=1">멘토단소개</a></li>
+                                    <li><a href="/startup_counsel/mentor_introduce?page=1">멘토단소개</a></li>
                                     <li><a onClick={() =>{moveMentorApply()}}>멘토신청</a></li>
                                     <li><a href="/startup_counsel/startup_procedure">창업절차</a></li>
                                 </ul>

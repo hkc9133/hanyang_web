@@ -22,6 +22,9 @@ export const getCounselStatus = (status)=>{
         case "HOLD":
             returnStatus =  "보류"
             break;
+        case "TEMP":
+            returnStatus =  "임시저장"
+            break;
     }
     return returnStatus;
 }
