@@ -6,6 +6,7 @@ import styles from '../../public/assets/styles/startup_education/startup_educati
 import classnames from "classnames/bind"
 import {Menu, Dropdown} from 'antd';
 import Edu2030 from '../../component/startup_education/Edu2030';
+import Edu2024 from '../../component/startup_education/Edu2024';
 import Edu1619 from '../../component/startup_education/Edu1619';
 import {
     isMobile
@@ -105,7 +106,7 @@ const UniversityStudent = () => {
                                     <SubMenu key="sub1" className={cx("dropdown_title")}
                                              title={<div className={cx("question")}>1학기 운영강좌</div>}>
                                         <Menu.Item key="0" className={cx("dropdown_content")} style={{height: 'auto'}}>
-                                            <img src={"/assets/image/poster/university_student_class_1.png"}/>
+                                            <img src={"/assets/image/poster/university_student_class_1.png"} alt="1학기 운영강좌" />
                                         </Menu.Item>
                                     </SubMenu>
                                     <SubMenu key="sub2" className={cx("dropdown_title")}
@@ -145,14 +146,14 @@ const UniversityStudent = () => {
                                         <Menu.Item key="3" className={cx("dropdown_content")}
                                                    style={{height: 'auto', padding: 10}}>
                                             {/*<Edu2030 cx={cx}/>*/}
-                                            <img src={"/assets/image/university_student_class_5.jpg"}/>
-                                            <img src={"/assets/image/university_student_class_6.jpg"}/>
+                                            <img src={"/assets/image/university_student_class_5.png"} alt="2020년~2023년 교육과정"/>
                                         </Menu.Item>
                                     </SubMenu>
                                     <SubMenu key="sub5" className={cx("dropdown_title")}
                                              title={<div className={cx("question")}>2024년~2027년 교육과정</div>}>
                                         <Menu.Item key="5" className={cx("dropdown_content")}
                                                    style={{height: 'auto', padding: 10}}>
+                                            <img src={"/assets/image/university_student_class_6.png"} alt="2024년~2027년 교육과정"/>
                                         </Menu.Item>
                                     </SubMenu>
                                 </Menu>
@@ -297,6 +298,7 @@ const UniversityStudent = () => {
                                          title={<div className={cx("question")}>2024년~2027년 교육과정</div>}>
                                     <Menu.Item key="2" className={cx("dropdown_content")}
                                                style={{height: 'auto', padding: 10}}>
+                                        <Edu2024 cx={cx}/>
                                     </Menu.Item>
                                 </SubMenu>
                             </Menu>

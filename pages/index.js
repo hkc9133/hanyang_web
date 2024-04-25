@@ -271,7 +271,7 @@ const Index = () => {
                             </Link>
                         </li>
                         <li className={cx("icon_7")}>
-                            <Link href="/introduce/space_reservation">
+                            <Link href="/board/notice/view/2791">
                                 <a>
                                     <span>공간예약</span>
                                 </a>
@@ -499,7 +499,7 @@ const Index = () => {
                                 </p>
                                 <span className={cx("txt_3")}>학생 창업기업 수</span>
                             </div>
-                            <span className={cx("number")}>347</span>
+                            <span className={cx("number")}>534</span>
                         </li>
                         <li>
                             <div className={cx("left_area")}>
@@ -509,7 +509,7 @@ const Index = () => {
                                 </p>
                                 <span className={cx("txt_3")}>아카데미 창업기업 수</span>
                             </div>
-                            <span className={cx("number")}>545</span>
+                            <span className={cx("number")}>571</span>
                         </li>
                         <li>
                             <div className={cx("left_area")}>
@@ -519,7 +519,7 @@ const Index = () => {
                                 </p>
                                 <span className={cx("txt_3")}>동문 CEO 기업 수</span>
                             </div>
-                            <span className={cx("number")}>11,071</span>
+                            <span className={cx("number")}>12,452</span>
                         </li>
                     </ul>
                 </div>
@@ -546,7 +546,7 @@ const Index = () => {
                             <span className={cx("txt_1")}>국내 1위 벤처창업 CEO 배출 대학</span>
                             {/*<span className={cx("txt_2")}>hanyang Startup</span>*/}
                             <p className={cx("txt_3")}>
-                                학생 창업자수 1위, 벤처 CEO 배출 1위 <br/>한양대 출신 CEO 기업 11,071개<br/>2020년 매출 602조원, 국내 GDP 33.3%
+                                학생 창업자수 1위, 벤처 CEO 배출 1위 <br/>한양대 출신 CEO 기업 12,452개<br/>2022년 매출 385조원, 국내 GDP 18.6%
                             </p>
                         </li>
                         <li className={cx("icon_3")}>
