@@ -383,115 +383,82 @@ const Introduce = () => {
                                 <tr>
                                     <td>창업지원단 총괄</td>
                                     <td>2861</td>
-                                    <td className={cx("c-sky")}>danielku@hanyang.ac.kr</td>
+                                    <td className={cx("c-sky")}>jinake@hanyang.ac.kr</td>
                                 </tr>
                                 <tr>
-                                    <td>학생/동문창업 업무 총괄</td>
-                                    <td>2865</td>
-                                    <td className={cx("c-sky")}>lsyhy@hanyang.ac.kr
-                                    </td>
+                                    <td>학생창업(창업동아리, 창업경진대회 등)</td>
+                                    <td>2858, 2230, 2863</td>
+                                    <td className={cx("c-sky")}>eh0305@hanyang.ac.kr <br/>lovemango2@hanyang.ac.kr</td>
                                 </tr>
                                 <tr>
-                                    <td>기업 액셀러레이팅 업무 총괄</td>
-                                    <td>1341</td>
-                                    <td className={cx("c-sky")}>chose@hanyang.ac.kr
-                                    </td>
+                                    <td>동문창업(한양스타트업아카데미, 한양 스타트업포럼 등)</td>
+                                    <td>2863</td>
+                                    <td className={cx("c-sky")}>lovemango2@hanyang.ac.kr</td>
                                 </tr>
                                 <tr>
-                                    <td>창업도약패키지 사업운영 총괄</td>
-                                    <td>2871</td>
-                                    <td className={cx("c-sky")}>sgch77@hanyang.ac.kr</td>
+                                    <td>원스톱창업상담실</td>
+                                    <td>2870, 1978</td>
+                                    <td className={cx("c-sky")}>ckkang@hanyang.ac.kr <br/>jungshan@hanyang.ac.kr</td>
                                 </tr>
                                 <tr>
-                                    <td>원스톱창업상담실 운영 총괄</td>
-                                    <td>2870</td>
-                                    <td className={cx("c-sky")}>ckkang@hanyang.ac.kr</td>
+                                    <td>창업멘토링</td>
+                                    <td>2879, 2868</td>
+                                    <td className={cx("c-sky")}>mentoring1@hanyang.ac.kr</td>
                                 </tr>
                                 <tr>
-                                    <td>투자유치, 대기업/중견기업 오픈이노베이션 업무 총괄</td>
-                                    <td>1978</td>
-                                    <td className={cx("c-sky")}>jungshan@hanyang.ac.kr</td>
-                                </tr>
-                                <tr>
-                                    <td>창업강좌</td>
-                                    <td>2984, 2856, 2859</td>
-                                    <td className={cx("c-sky")}>yjkim0808@hanyang.ac.kr</td>
-                                </tr>
-                                <tr>
-                                    <td>창업융합전공, 창업친화적학사제도</td>
-                                    <td>2533</td>
-                                    <td className={cx("c-sky")}>pleasure@hanyang.ac.kr
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>창업동아리, 창업경진대회</td>
-                                    <td>2858</td>
-                                    <td className={cx("c-sky")}>wooli44@hanyang.ac.kr</td>
-                                </tr>
-                                <tr>
-                                    <td>247 스타트업 돔</td>
-                                    <td>2866</td>
-                                    <td className={cx("c-sky")}>mhparkhy@hanyang.ac.kr</td>
-                                </tr>
-                                <tr>
-                                    <td>한양스타트업아카데미, 스타트업포럼</td>
-                                    <td>2866</td>
-                                    <td className={cx("c-sky")}>mhparkhy@hanyang.ac.kr</td>
-                                </tr>
-                                <tr>
-                                    <td>원우회</td>
-                                    <td>2870</td>
-                                    <td className={cx("c-sky")}>ckkang@hanyang.ac.kr</td>
-                                </tr>
-                                <tr>
-                                    <td>창업상담 신청(멘토스온콜), 창업멘토 관리</td>
-                                    <td>2879</td>
-                                    <td className={cx("c-sky")}>hyomin91@hanyang.ac.kr</td>
-                                </tr>
-                                <tr>
-                                    <td>글로벌 창업 지원</td>
-                                    <td>2230</td>
-                                    <td className={cx("c-sky")}>jhkim511@hanyang.ac.kr</td>
-                                </tr>
-                                <tr>
-                                    <td>창업공간 예약</td>
-                                    <td>2872</td>
-                                    <td className={cx("c-sky")}>startup@hanyang.ac.kr</td>
-                                </tr>
-                                <tr>
-                                    <td>실전창업교육 운영</td>
-                                    <td>2862, 2863</td>
-                                    <td className={cx("c-sky")}>lyuda@hanyang.ac.kr</td>
-                                </tr>
-                                <tr>
-                                    <td>예비창업패키지 사업화 지원</td>
-                                    <td>2852, 2857, 2982</td>
-                                    <td className={cx("c-sky")}>yechang@hanyang.ac.kr</td>
-                                </tr>
-                                <tr>
-                                    <td>초기창업패키지 사업화 지원</td>
-                                    <td>2851, 2867, 2879</td>
-                                    <td className={cx("c-sky")}>rywmy@hanyang.ac.kr</td>
-                                </tr>
-                                <tr>
-                                    <td>창업도약패키지 사업화 지원</td>
-                                    <td>1979, 2868, 2864, 2878</td>
+                                    <td>투자유치, 오픈이노베이션</td>
+                                    <td>1979</td>
                                     <td className={cx("c-sky")}>woomj@hanyang.ac.kr</td>
                                 </tr>
                                 <tr>
-                                    <td>캠퍼스타운</td>
-                                    <td>2530, 2983</td>
-                                    <td className={cx("c-sky")}>ujinj@hanyang.ac.kr</td>
+                                    <td>창업강좌</td>
+                                    <td>2984</td>
+                                    <td className={cx("c-sky")}>yjkim0808@hanyang.ac.kr</td>
                                 </tr>
                                 <tr>
-                                    <td>LINC+사업(창업)</td>
-                                    <td>2859</td>
-                                    <td className={cx("c-sky")}>yes1003kr@hanyang.ac.kr</td>
+                                    <td>창업융합전공, 창업학사제도</td>
+                                    <td>2533</td>
+                                    <td className={cx("c-sky")}>seul2@hanyang.ac.kr</td>
+                                </tr>
+                                <tr>
+                                    <td>247 스타트업 돔</td>
+                                    <td>1565</td>
+                                    <td className={cx("c-sky")}>campustown@hanyang.ac.kr</td>
+                                </tr>
+                                <tr>
+                                    <td>글로벌 창업지원</td>
+                                    <td>2867, 2857</td>
+                                    <td className={cx("c-sky")}>if@hanyang.ac.kr</td>
+                                </tr>
+                                <tr>
+                                    <td>창업중심대학(예비)</td>
+                                    <td>2858, 2859, 2852, 2878</td>
+                                    <td className={cx("c-sky")}>yechang@hanyang.ac.kr</td>
+                                </tr>
+                                <tr>
+                                    <td>창업중심대학(초기)</td>
+                                    <td>2867, 2862, 2851, 2864</td>
+                                    <td className={cx("c-sky")}>if@hanyang.ac.kr</td>
+                                </tr>
+                                <tr>
+                                    <td>창업중심대학(도약기)</td>
+                                    <td>2871, 1979, 2879, 2868</td>
+                                    <td className={cx("c-sky")}>scaleup@hanyang.ac.kr</td>
+                                </tr>
+                                <tr>
+                                    <td>캠퍼스타운</td>
+                                    <td>2530, 2983, 2872, 2856, 1565</td>
+                                    <td className={cx("c-sky")}>campustown@hanyang.ac.kr</td>
+                                </tr>
+                                <tr>
+                                    <td>LINC3.0사업(창업)</td>
+                                    <td>2230, 2863</td>
+                                    <td className={cx("c-sky")}>eh0305@hanyang.ac.kr <br/>lovemango2@hanyang.ac.kr</td>
                                 </tr>
                                 <tr>
                                     <td>대학혁신지원사업(창업)</td>
                                     <td>2533</td>
-                                    <td className={cx("c-sky")}>pleasure@hanyang.ac.kr</td>
+                                    <td className={cx("c-sky")}>seul2@hanyang.ac.kr</td>
                                 </tr>
                                 </tbody>
                             </table>
