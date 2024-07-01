@@ -14,6 +14,7 @@ import FaceBookShareButton from "../../component/common/share/FaceBookShareButto
 import KaKaoShareButton from "../../component/common/share/KaKaoShareButton";
 import Head from "next/head";
 import {baseUrl} from "../../lib/api/client";
+import PageNavigationEng from "../../component/layout/PageNavigation_eng";
 
 const cx = classnames.bind(styles);
 
@@ -240,100 +241,55 @@ const Location = () => {
             <Head>
                 <title>HANYANG STARTUP - Contact</title>
             </Head>
-            <PageNavigation title={"한양대학교 창업지원단 -오시는길"} desc={"04763 서울특별시 성동구 왕십리로 222 한양대학교 HIT 103호, 한양대학교(서울) 창업지원단"}/>
-            <section className={cx("container")}>
-                <div className={cx("sub_container", "location_wrap")}>
-                    <h1 className={cx("sub_top_title")}>Contact</h1>
-                    <p className={cx("sub_top_txt")}>Thank you for visiting the website of the start-up support group.<br />Students, teachers, alumni, and general start-ups who are interested<br />in starting a business or need help, please contact us and we will<br />consider and support you so that you can successfully start a business.</p>
 
-                    <div className={cx("contact_cont")}>
-                        <h3>Curious about starting a business?</h3>
-                        <p className={cx("contact_list_big")}>Start-up Consultation Email : startup@hanyang.ac.kr</p>
-                        <p className={cx("contact_list_big")}>Start-up Consultation Phone : +82-2-2220-3000</p>
-                        <p className={cx("contact_list_big")}>KakaoTalk Channel : 한양스타트업톡톡 (Hanyang Start-up TalkTalk) <img src="/assets/image/icon_kakao.png" alt="" /></p>
-                    </div>
+            <PageNavigationEng title={"About"} dep={"dep1"} />
 
-                    <div className={cx("contact_cont")}>
-                        <h3>Startup Consultation Procedure</h3>
-                        <div className={cx("contact_list")}>
-                            <h3><strong>01.</strong> Request for consultation</h3>
-                            <div className={cx("contact_list_flex")}>
-                                <p>Consultation target :</p>
-                                <span>Hanyang University Startup Support Group startup support project and program beneficiaries, Hanyang University (graduate) students and alumni, Hanyang Cyber ​​University students</span>
-                            </div>
-                            <div className={cx("contact_list_flex")}>
-                                <p>Consultation field :</p>
-                                <span>Taxation, Accounting / Legal Affairs / Intellectual Property / Marketing Market / Labor / Investment / Initial Start-up Funding / Business Modeling / Prototype Development / Global Advancement / Scale-up (COSDAQ CEO, etc.) / Private Technology Advisor (Executive Officer) / Peer CEO</span>
-                            </div>
-                        </div>
-                        <div className={cx("contact_list")}>
-                            <h3><strong>02.</strong> Mentor assignment</h3>
-                            <p>Mentor assignment takes up to a week.</p>
-                        </div>
-                        <div className={cx("contact_list")}>
-                            <h3><strong>03.</strong> Counseling schedule adjustment</h3>
-                            <p>The final assigned mentor will contact the mentee to coordinate the consultation date, time, location, and mentoring method.</p>
-                        </div>
-                        <div className={cx("contact_list")}>
-                            <h3><strong>04.</strong> Mentoring progress</h3>
-                            <p>Counseling can be conducted in a variety of ways, including online (video), offline, landline, and e-mail.</p>
-                        </div>
-                        <div className={cx("contact_list")}>
-                            <h3><strong>05.</strong> Statisfaction survey</h3>
-                            <p>In order to provide quality mentoring service, mentoring satisfaction is surveyed.</p>
-                            <p>After the satisfaction survey, you can read the mentor's general opinion.</p>
-                        </div>
-                    </div>
+            <section>
+                <div className={cx("sub_container", "contact")}>
+                    <h1 className={cx("sub_top_title")}>Contact Us</h1>
+                    <p className={cx("sub_top_txt")}>&nbsp;</p>
+                </div>
 
-                    <div className={cx("txt_style_1", "contact_cont")}>
-                        <h3>Way to come</h3>
-                        <p>We will guide you on how to come to the Startup Support Team.</p>
-                        <div id="map_area" className={cx("map_area")} ref={mapArea}></div>
-                        <div className={cx("btn_area")}>
-                            <ul>
-                                <li><Link href="/assets/pdf/map.pdf" ><a target="_blank" download>Download Schematic Image</a></Link></li>
-                                <li>
-                                <Dropdown overlay={menu} trigger={['click']} placement="bottomCenter" arrow>
-                                    <a onClick={(e)=>{e.preventDefault();}}>Share Schematic</a>
-                                </Dropdown>
-                                </li>
-                            </ul>
-                        </div>
-                        <div className={cx("location")}>
-                            <h4>Address and Contacts</h4>
-                            <address>Hanyang University HIT 103, 222 Wangsimni-ro, Seongdong-gu, Seoul 04763, Hanyang University (Seoul) Startup Support Group</address>
-                            <div className={cx("info")}>
+                <div className={cx("contact_cont_wrap")}>
+                    <div className={cx("container")}>
+                        <div className={cx("contact_cont")}>
+                            <div className={cx("contact_map")}>
+                                <div id="map_area" className={cx("map_area")} ref={mapArea}></div>
+                            </div>
+
+                            <div className={cx("contact_address")}>
                                 <ul>
-                                    <li>Tel. 02-2220-3000</li>
-                                    <li>E-mail: startup@hanyang.ac.kr</li>
+                                    <li>
+                                        <div className={cx("icon")}>
+                                            <img src="/assets/image/icon_pin.png" alt="pin icon"/>
+                                        </div>
+                                        <p>
+                                            #103, Hanyang Institute of Technology, 222, Wangsimni-ro, Seongdong-gu, Seoul, Republic of Korea
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <div className={cx("icon")}>
+                                            <img src="/assets/image/icon_tel.png" alt="tel icon" />
+                                        </div>
+                                        <p>+82 2 2220 3000</p>
+                                    </li>
+                                    <li>
+                                        <div className={cx("icon")}>
+                                            <img src="/assets/image/icon_mail.png" alt="mail icon" />
+                                        </div>
+                                        <p>startup@hanyang.ac.kr</p>
+                                    </li>
                                 </ul>
                             </div>
-                            <h4>Transportation Guide</h4>
-                            <div className={cx("transportation")}>
-                                <ul>
-                                    <li className={cx("subway")}>Hanyang University Station Exit 2 of Subway Line 2</li>
-                                    <li className={cx("green_bus")}>Main bus: No. 302, No. 410.</li>
-                                    <li className={cx("blue_bus")}>Branch number: 2012 (Cheongnyangni), 2013, 2014, 2222</li>
-                                    <li className={cx("green_bus")}>Village Bus : Seongdong 03-2 (Get off at Hanyang Institute of Technology or Paiknam Academic Information Center in Seoul Campus)</li>
-                                </ul>
-                            </div>
-                            <h4>Parking Information</h4>
-                            <div className={cx("parking_area")}>
-                                <ul>
-                                    <li>On-campus parking area</li>
-                                    <li className={cx("parking_info")}>- Hanyang Institute of Technology (HIT) underground parking lot, business building underground parking lot, large sports ground underground parking lot</li>
-                                </ul>
-                                <ul>
-                                    <li>Parking fee</li>
-                                    <li className={cx("parking_info")}>- Less than 15 minutes after entering : Free</li>
-                                    <li className={cx("parking_info")}>- More than 15 minutes and less than 30 minutes after entering : 1,500 won</li>
-                                    <li className={cx("parking_info")}>- More than 30 minutes after entering the car : 500 won per 10 minutes additionally charged</li>
-                                </ul>
-                                <ul>
-                                    <li>Discount voucher (requires separate request from visiting department)</li>
-                                    <li className={cx("parking_info")}>- Register pre-vehicle or issue discount voucher before departure</li>
-                                    <li className={cx("parking_info")}>- 2 hours, 4 hours, 6 hours, and 8 hours can be registered and issued</li>
-                                </ul>
+
+                            <div className={cx("contact_qr")}>
+                                <div className={cx("qr_img")}>
+                                    <img src="/assets/image/qr.png" alt="qr code" />
+                                </div>
+                                <p>
+                                    <strong>Scan me!</strong> or Search 한양스타트업톡톡 at kakaoTalk <br/>
+                                    Online counseling service for all dreaming of startup
+                                </p>
                             </div>
                         </div>
                     </div>

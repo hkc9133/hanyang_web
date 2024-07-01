@@ -157,7 +157,7 @@ const PageNavigation = ({title,desc}) => {
                 <ul>
                     {navi != null && (
                         <>
-                    <li className={cx("home")}><Link href={"/"}><a><Image src="/assets/image/icon_navi.gif" width={16} height={14} alt="home" /></a></Link></li>
+                        <li className={cx("home")}><Link href={"/"}><a><Image src="/assets/image/icon_navi.gif" width={16} height={14} alt="home" /></a></Link></li>
                         <li className={cx("s_navi_li")}>
                             <a href="#" className={cx("s_navi_open")}>{navi.name}</a>
                             <div className={cx("s_navi")}>

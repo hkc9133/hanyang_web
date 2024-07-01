@@ -236,40 +236,54 @@ const Index = () => {
                 <PopupItem key={popup.popupId} popup={popup} cx={cx}/>
             )}
             <div className={cx("main_cont_1")}>
-                <Slider className={'main_slider'} {...mainbannerSliderSettings}>
-                    <div className={cx("list")}></div>
-                    <div className={cx("list")}></div>
-                    <div className={cx("list")}></div>
-                </Slider>
-            </div>
-
-            <div className={cx("quick_menu")}>
-                <ul>
-                    <li>
-                        <Link href="/assets/pdf/en_brochure.pdf"><a target="_blank" download>
-                            <img src={"/assets/image/quick_brochure.png"} />
-                            <span>Brochure(pdf)</span>
-                        </a></Link>
-                    </li>
-                    <li>
-                        <Link href="/assets/pdf/en_programbook.pdf"><a target="_blank" download>
-                            <img src={"/assets/image/quick_book.png"} />
-                            <span>Program Book for Startup(pdf)</span>
-                        </a></Link>
-                    </li>
-                    <li>
-                        <Link href="http://www.newshyu.com/index.html?editcode=MAIN_18f"><a target="_blank">
-                            <img src={"/assets/image/quick_news.png"} />
-                            <span>Hanyang News</span>
-                        </a></Link>
-                    </li>
-                    <li>
-                        <Link href="https://www.hanyang.ac.kr/web/eng"><a target="_blank">
-                            <img src={"/assets/image/quick_about.png"} />
-                            <span>About Hanyang University </span>
-                        </a></Link>
-                    </li>
-                </ul>
+                <div className={cx("main_cont")}>
+                    <h1>Do you need help to<strong>Startup?</strong></h1>
+                    <ul className={`${cx("link_list")} clfx `}>
+                        <li className={cx("icon_1")}>
+                            <Link href="/startup_counsel/counsel_process">
+                                <a><span>Startup Support System</span></a>
+                            </Link>
+                        </li>
+                        <li className={cx("icon_3")}>
+                            <Link href="#">
+                                <a>
+                                    <span>Undergraduate Courses</span>
+                                </a>
+                            </Link>
+                        </li>
+                        <li className={cx("icon_8")}>
+                            <Link href="#">
+                                <a>
+                                    <span>Graduate Courses</span>
+                                </a>
+                            </Link>
+                        </li>
+                        <li className={cx("icon_6")}>
+                            <Link href="/assets/pdf/en_brochure.pdf">
+                                <a target="_blank" download>
+                                    <span>Brochure</span>
+                                </a>
+                            </Link>
+                        </li>
+                    </ul>
+                    <div className={cx("main_search_area")}>
+                        <input type="text" placeholder="What are you Looking for?" value={searchValue} onChange={(e) => {
+                            setSearchValue(e.target.value)
+                        }} onKeyPress={handleEnter}/>
+                        <button type="button" className={cx("btn_search")} onClick={() => searchBoard()}>검색</button>
+                    </div>
+                    <div className={cx("searchWord")}>
+                        <ul>
+                            {mainData.keyword.map((item) => (
+                                <li key={item.keywordId}>
+                                    <Link href={`/search?page&searchField=title&searchValue=${item.keyword}`}>
+                                        <button type="button"># {item.keyword}</button>
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
             </div>
 
             <div className={cx("main_cont_3")}>
@@ -283,8 +297,8 @@ const Index = () => {
                                 </button>
                             </li>
                             </ul>*/}
-                        <h3>HANYANG STARTUP NEWS</h3>
-                        <p><Link href="/board/notice/list"><a>More</a></Link></p>
+                        <h3>HYU Startup NOW</h3>
+                        <p><Link href="/en/board/notice/list"><a>More</a></Link></p>
                     </div>
 
                     <div className={cx("main_board_list", "main_tabCont")}>
@@ -376,278 +390,6 @@ const Index = () => {
                         <div>
                         </div>
 
-                    </div>
-                </div>
-            </div>
-
-            <div className={cx("main_cont_4")}>
-                <div className={cx("main_cont")}>
-                    <h1>Meet our Startups</h1>
-                    <ul className={'clfx'}>
-                        <li>
-                            <div className={cx("left_area")}>
-                                <span className={cx("txt_1")}>Student Startups</span>
-                                <p className={cx("txt_2")}>
-                                    We are Together. <br/>Prepare for the Future.
-                                </p>
-                                <span className={cx("txt_3")}>Student Start-ups</span>
-                            </div>
-                            <span className={cx("number")}>287</span>
-                        </li>
-                        <li>
-                            <div className={cx("left_area")}>
-                                <span className={cx("txt_1")}>Startup Academy</span>
-                                <p className={cx("txt_2")}>
-                                Start business together<br />Hanyang Startup Academy!
-                                </p>
-                                <span className={cx("txt_3")}>Academy Start-ups</span>
-                            </div>
-                            <span className={cx("number")}>428</span>
-                        </li>
-                        <li>
-                            <div className={cx("left_area")}>
-                                <span className={cx("txt_1")}>Alumni Startups</span>
-                                <p className={cx("txt_2")}>
-                                Future Together<br />We are Hanyang people.
-                                </p>
-                                <span className={cx("txt_3")}>Alumni Start-ups</span>
-                            </div>
-                            <span className={cx("number")}>13,447</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div className={cx("main_cont_2")}>
-                <div className={cx("main_cont")}>
-                    <ul>
-                        <li>
-                            <Link href="#"><a>
-                                <div className={cx("img_area")}>
-                                    <img src={'/assets/image/main_wadiz.jpg'} alt="" />
-                                </div>
-                                <div className={cx("txt_area")}>
-                                    <h3>wadiz platform Co.</h3>
-                                    <p>Crowdfunding Platform</p>
-                                </div>
-                            </a></Link>
-                        </li>
-                        <li>
-                            <Link href="#"><a>
-                                <div className={cx("img_area")}>
-                                    <img src={'/assets/image/main_backpacker.jpg'} alt="" />
-                                </div>
-                                <div className={cx("txt_area")}>
-                                    <h3>Co. Backpacker</h3>
-                                    <p>Electronic Commerce<br />(Handcrafted Products)</p>
-                                </div>
-                            </a></Link>
-                        </li>
-                        <li>
-                            <Link href="#"><a>
-                                <div className={cx("img_area")}>
-                                    <img src={'/assets/image/main_toad.jpg'} alt="" />
-                                </div>
-                                <div className={cx("txt_area")}>
-                                    <h3>Toad World</h3>
-                                    <p>Real estate direct brokerage Platform</p>
-                                </div>
-                            </a></Link>
-                        </li>
-                        <li>
-                            <Link href="#"><a>
-                                <div className={cx("img_area")}>
-                                    <img src={'/assets/image/main_brandi.jpg'} alt="" />
-                                </div>
-                                <div className={cx("txt_area")}>
-                                    <h3>Co. BRANDI</h3>
-                                    <p>Mobile Fashion Commerce Platform</p>
-                                </div>
-                            </a></Link>
-                        </li>
-                        <li>
-                            <Link href="#"><a>
-                                <div className={cx("img_area")}>
-                                    <img src={'/assets/image/main_blank.jpg'} alt="" />
-                                </div>
-                                <div className={cx("txt_area")}>
-                                    <h3>Co. blank Coporation</h3>
-                                    <p>Contents, Media Commerce</p>
-                                </div>
-                            </a></Link>
-                        </li>
-                        <li>
-                            <Link href="#"><a>
-                                <div className={cx("img_area")}>
-                                    <img src={'/assets/image/main_mathpresso.jpg'} alt="" />
-                                </div>
-                                <div className={cx("txt_area")}>
-                                    <h3>Co. MATHPRESSO</h3>
-                                    <p>AI Mathematical solving Resolve service<br />‘QANDA’</p>
-                                </div>
-                            </a></Link>
-                        </li>
-                        <li>
-                            <Link href="#"><a>
-                                <div className={cx("img_area")}>
-                                    <img src={'/assets/image/main_letin.jpg'} alt="" />
-                                </div>
-                                <div className={cx("txt_area")}>
-                                    <h3>Co. LetinAR</h3>
-                                    <p>Pin Mirror Technology Base<br />AR/VR Glass</p>
-                                </div>
-                            </a></Link>
-                        </li>
-                        <li>
-                            <Link href="#"><a>
-                                <div className={cx("img_area")}>
-                                    <img src={'/assets/image/main_cardoc.jpg'} alt="" />
-                                </div>
-                                <div className={cx("txt_area")}>
-                                    <h3>Co. cardoc</h3>
-                                    <p>Car Aftermarket Platform</p>
-                                </div>
-                            </a></Link>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div className={cx("main_cont_5")}>
-                <h1>Global Network</h1>
-                <div className={cx("img_area")}><Image src="/assets/image/main_network.png" width={1531} height={492}
-                                                       alt="main_network"/></div>
-            </div>
-
-            <div className={cx("main_cont_6")}>
-                <div className={cx("main_cont")}>
-                    <h1>The secret of No.1 startup university is 'Innovation'</h1>
-                    <ul className={'clfx'}>
-                        <li className={cx("icon_1")}>
-                            <span className={cx("txt_1")}>Best Start-up Education University</span>
-                            {/*<span className={cx("txt_2")}>Student Startup</span>*/}
-                            <p className={cx("txt_3")}>
-                                Selection of excellent universities for start-up education,<br />
-                                Prime Minister's Commendation for Venture Start-up Promotion,<br />
-                                First place in start-up courses,<br />
-                                First place in non-departmental start-up activities.
-                            </p>
-                        </li>
-                        <li className={cx("icon_2")}>
-                            <span className={cx("txt_1")}>No.1 Venture start-up CEO-producing university</span>
-                            {/*<span className={cx("txt_2")}>hanyang Startup</span>*/}
-                            <p className={cx("txt_3")}>
-                                No.1 Student entrepreneurs,<br />
-                                No.1 Venture CEO production,<br />
-                                11,071 CEO companies from Hanyang University,<br />
-                                2020 sales of 602 trillion won, domestic GDP 33.3%.
-                            </p>
-                        </li>
-                        <li className={cx("icon_3")}>
-                            <span className={cx("txt_1")}>Startup, Scale Up!</span>
-                            {/*<span className={cx("txt_2")}>hanyang Startup</span>*/}
-                            <p className={cx("txt_3")}>
-                                Establishment of Industry-Academic<br />
-                                Cooperation Group for the first time in Korea's,<br />
-                                Establishment of the first technology<br />
-                                holding company in Korea,<br />
-                                Highest technology transfer and commercialization<br />
-                                capabilities in Korean universities.
-                            </p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div className={cx("main_logo_rolling")}>
-                <div className={cx("main_cont")}>
-                    <div className={cx("main_logo_rolling_list")}>
-                        <Slider className={cx("slide")} {...logoSliderSettings} ref={logoSlider}>
-                            <div className={cx("list")}>
-                                <Link href="https://www.moe.go.kr/main.do?s=moe"><a target="_blank">
-                                    <Image src="/assets/image/family_site_8.jpg" width={170} height={88}
-                                           alt="family_site"/>
-                                </a></Link>
-                            </div>
-                            <div className={cx("list")}>
-                                <Link href="https://www.mss.go.kr/site/smba/main.do"><a target="_blank">
-                                    <Image src="/assets/image/family_site_1.jpg" width={150} height={88}
-                                           alt="family_site"/>
-                                </a></Link>
-                            </div>
-                            <div className={cx("list")}>
-                                <Link href="https://www.kised.or.kr/"><a target="_blank">
-                                    <Image src="/assets/image/family_site_3.jpg" width={114} height={88}
-                                           alt="family_site"/>
-                                </a></Link>
-                            </div>
-                            <div className={cx("list")}>
-                                <Link href="https://www.k-startup.go.kr/main.do"><a target="_blank">
-                                    <Image src="/assets/image/family_site_2.jpg" width={126} height={88}
-                                           alt="family_site"/>
-                                </a></Link>
-                            </div>
-                            <div className={cx("list")}>
-                                <Link href="https://new.sba.kr/user/main.do"><a target="_blank">
-                                    <Image src="/assets/image/family_site_5.jpg" width={170} height={88}
-                                           alt="family_site"/>
-                                </a></Link>
-                            </div>
-                            <div className={cx("list")}>
-                                <Link href="https://seoulstartuphub.com/"><a target="_blank">
-                                    <Image src="/assets/image/family_site_6.jpg" width={170} height={88}
-                                           alt="family_site"/>
-                                </a></Link>
-                            </div>
-                            <div className={cx("list")}>
-                                <Link href="https://ccei.creativekorea.or.kr/seoul/main.do"><a target="_blank">
-                                    <Image src="/assets/image/family_site_7.jpg" width={170} height={88}
-                                           alt="family_site"/>
-                                </a></Link>
-                            </div>
-                            <div className={cx("list")}>
-                                <Link href="https://www.kocca.kr"><a target="_blank">
-                                    <Image src="/assets/image/family_site_4.jpg" width={86} height={88}
-                                           alt="family_site"/>
-                                </a></Link>
-                            </div>
-                            <div className={cx("list")}>
-                                <Link href="https://www.nipa.kr/"><a target="_blank">
-                                    <Image src="/assets/image/family_site_9.jpg" width={170} height={88}
-                                           alt="family_site"/>
-                                </a></Link>
-                            </div>
-                            <div className={cx("list")}>
-                                <Link href="https://www.kita.net/"><a target="_blank">
-                                    <Image src="/assets/image/family_site_10.jpg" width={170} height={88}
-                                           alt="family_site"/>
-                                </a></Link>
-                            </div>
-                        </Slider>
-                        <div className={cx("slick_controller")}>
-                            <ul className={'clfx'}>
-                                <li>
-                                    <button type="button" className={cx("slick_prev")} onClick={() => {
-                                        logoSlider.current.slickPrev()
-                                    }}><Image src="/assets/image/family_site_prev.jpg" width={44} height={46}
-                                              alt="family_site_prev"/></button>
-                                </li>
-                                <li>
-                                    <button type="button" className={cx("slick_pause")} onClick={() => {
-                                        logoSlider.current.slickPause()
-                                    }}><Image src="/assets/image/family_site_stop.jpg" width={44} height={46}
-                                              alt="family_site_stop"/></button>
-                                </li>
-                                <li>
-                                    <button type="button" className={cx("slick_next")} onClick={() => {
-                                        logoSlider.current.slickNext()
-                                    }}>
-                                        <Image src="/assets/image/family_site_next.jpg" width={44} height={46}
-                                               alt="family_site_next"/>
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </div>

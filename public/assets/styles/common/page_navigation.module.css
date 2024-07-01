@@ -50,8 +50,6 @@
     transition-timing-function: linear;
 }
 
-
-
 @media screen and (max-width: 768px){
 
     .login_wrap{padding:60px 20px; }
