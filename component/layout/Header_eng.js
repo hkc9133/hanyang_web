@@ -158,6 +158,9 @@ const Header = () => {
                 </div>
 
                 <div className={cx("login_box")}>
+                    <a href="https://kr.linkedin.com/company/hanyang-institute-for-entrepreneurship" target="_blank" className={cx("sns_link")}>
+                        <img src="/assets/image/linkedin.png" alt="linkedin icon" />
+                    </a>
                     {isLogin ?
                         <>
                             <a href={mypage} className={cx("top_mypage")}>
@@ -168,10 +171,10 @@ const Header = () => {
                                 {/*{user.role == 'ROLE_SD' ? '창업상담 신청현황' : user.role == 'ROLE_ADMIN' ? "관리자" : "관리"}*/}
                                 {/*</a>*/}
                             </a>
-                            <a onClick={handleLogout}>로그아웃</a>
+                            <a onClick={handleLogout}>Logout</a>
                         </>
                         :
-                        <a href="/user/login">로그인</a>
+                        <a href="/user/login">Login</a>
                     }
                 </div>
                 <div className={cx("language")}>
