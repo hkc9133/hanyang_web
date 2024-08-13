@@ -60,7 +60,7 @@
 .btn_menu_open.open span:before{width:0; display:none;}
 .btn_menu_open.open span{top:42px; transform: rotate( -45deg );}
 .btn_menu_open.open span:after{top:0; transform: rotate( 90deg );}
-.login_box{position: absolute;right: 160px;top: 35px;}
+.login_box{position: absolute;right: 160px;top: 30px;}
 .login_box a{color: white;margin-right: 30px;font-size: 15px;}
 .language{position:absolute; right:110px; top:35px; z-index: 9;}
 .language_open{padding-right:15px; background:url("../../image/language_arrow.gif") no-repeat right center; font-size:15px; color:#ddd; }
@@ -195,6 +195,7 @@
     .language{right:110px; top:25px; }
     .login_box{top: 26px;right: 60px;}
     .login_box a{margin-right: 15px;}
+    .login_box .sns_link{display: none; }
 
 
 

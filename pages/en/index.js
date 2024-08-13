@@ -240,19 +240,19 @@ const Index = () => {
                     <h1>Do you need help to<strong>Startup?</strong></h1>
                     <ul className={`${cx("link_list")} clfx `}>
                         <li className={cx("icon_1")}>
-                            <Link href="/startup_counsel/counsel_process">
-                                <a><span>Startup Support System</span></a>
+                            <Link href="/en/academic_5">
+                                <a><span>Startup Programs</span></a>
                             </Link>
                         </li>
                         <li className={cx("icon_3")}>
-                            <Link href="#">
+                            <Link href="/en/academic_2">
                                 <a>
                                     <span>Undergraduate Courses</span>
                                 </a>
                             </Link>
                         </li>
                         <li className={cx("icon_8")}>
-                            <Link href="#">
+                            <Link href="/en/academic_3">
                                 <a>
                                     <span>Graduate Courses</span>
                                 </a>
@@ -261,7 +261,7 @@ const Index = () => {
                         <li className={cx("icon_6")}>
                             <Link href="/assets/pdf/en_brochure.pdf">
                                 <a target="_blank" download>
-                                    <span>Brochure</span>
+                                    <span>Brochure11</span>
                                 </a>
                             </Link>
                         </li>
