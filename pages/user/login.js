@@ -160,7 +160,7 @@ const Login = () => {
                                 </div>
                                 <div className={`${cx("login_join")} clfx`}>
                                     <p>멘토링, 공간예약을 이용하시려면 <br/>회원가입이 필요합니다.</p>
-                                    <div className={cx("btn")}><Link href="/user/join"><a>회원가입</a></Link></div>
+                                    {/*<div className={cx("btn")}><Link href="/user/join"><a>회원가입</a></Link></div>*/}
                                 </div>
                                 <div className={cx("sns_login")}>
                                     <ul className={"clfx"}>

@@ -32,6 +32,7 @@ const initialState = {
     mainData:{
         result:null,
         notice:[],
+        notice_en:[],
         calendar:[],
         issue:[],
         startup_info:[],
@@ -60,6 +61,7 @@ const main = handleActions(
             produce(state,draft => {
                 draft.mainData.result = true;
                 draft.mainData.notice = response.data.notice;
+                draft.mainData.notice_en = response.data.notice_en;
                 draft.mainData.calendar = response.data.calendar;
                 draft.mainData.issue = response.data.issue;
                 draft.mainData.startup_info = response.data.startup_info;

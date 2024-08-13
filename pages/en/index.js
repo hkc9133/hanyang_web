@@ -228,7 +228,7 @@ const Index = () => {
     }
     return (
         <>
-        
+
             <Head>
                 <title>HANYANG STARTUP</title>
             </Head>
@@ -303,47 +303,43 @@ const Index = () => {
 
                     <div className={cx("main_board_list", "main_tabCont")}>
                         {/*공지사항*/}
-                        {mainData.notice.length > 0 ? (
-                            <Slider
-                                className={`${cx("slides", {hidden: !showNotice})} main_board_list`} {...boardSliderSettings}
-                                ref={borderSlider}>
-                                {
-                                    mainData.notice.map((item, index) => {
-                                        return (
-                                            <div className={cx("list")} key={item.contentId}>
-                                                <div className={cx("img_area")}>
-                                                    <Link href={`/board/notice/view/${item.contentId}`}>
-                                                        <a>
-                                                            <img
-                                                                   src={item.thumbList.length > 0 ? `${baseUrl}/resource${item.thumbList[0].filePath}/${item.thumbList[0].fileName + item.thumbList[0].fileExtension}` : getRanThumbnail()}
-                                                                   alt={"게시글 썸네일"}/>
-                                                        </a>
-                                                    </Link>
-                                                </div>
-                                                <div className={cx("txt_area")}>
-                                                    <Link href={`/board/notice/view/${item.contentId}`}>
-                                                        <a>
-                                                            <div className={cx("title")}>
-                                                                {item.title}
-                                                            </div>
-                                                            <div className={cx("txt")}>
-                                                                {/*<div dangerouslySetInnerHTML={{__html: item.content.replace(/<img[^>]*>/g, '')}}/>*/}
-                                                                {item.sub01}
-                                                            </div>
-                                                            <span
-                                                                className={cx("date")}>{moment(item.regDate).format("YYYY년 MM월 DD일")}</span>
-                                                        </a>
-                                                    </Link>
-                                                </div>
+                        <Slider
+                            className={`${cx("slides", {hidden: !showNotice})} main_board_list`} {...boardSliderSettings}
+                            ref={borderSlider}>
+                            {
+                                mainData.notice_en.map((item, index) => {
+                                    return (
+                                        <div className={cx("list")} key={item.contentId}>
+                                            <div className={cx("img_area")}>
+                                                <Link href={`/en/board/notice_en/view/${item.contentId}`}>
+                                                    <a>
+                                                        <img
+                                                            src={item.thumbList.length > 0 ? `${baseUrl}/resource${item.thumbList[0].filePath}/${item.thumbList[0].fileName + item.thumbList[0].fileExtension}` : getRanThumbnail()}
+                                                            alt={"게시글 썸네일"}/>
+                                                    </a>
+                                                </Link>
                                             </div>
+                                            <div className={cx("txt_area")}>
+                                                <Link href={`/en/board/notice/view/${item.contentId}`}>
+                                                    <a>
+                                                        <div className={cx("title")}>
+                                                            {item.title}
+                                                        </div>
+                                                        <div className={cx("txt")}>
+                                                            {/*<div dangerouslySetInnerHTML={{__html: item.content.replace(/<img[^>]*>/g, '')}}/>*/}
+                                                            {item.sub01}
+                                                        </div>
+                                                        <span
+                                                            className={cx("date")}>{moment(item.regDate).format("YYYY년 MM월 DD일")}</span>
+                                                    </a>
+                                                </Link>
+                                            </div>
+                                        </div>
 
-                                        )
-                                    })
-                                }
-                            </Slider>
-
-
-                        ) : "LOADING"}
+                                    )
+                                })
+                            }
+                        </Slider>
                         {mainData.startup_info.length > 0 ? (
                             <Slider
                                 className={`${cx("slides", {hidden: showNotice})} main_board_list`} {...boardSliderSettings}>
@@ -354,7 +350,7 @@ const Index = () => {
                                         return (
                                             <div className={cx("list")} key={item.contentId}>
                                                 <div className={cx("img_area")}>
-                                                    <Link href={`/board/startup_info/view/${item.contentId}`}>
+                                                    <Link href={`/en/board/startup_info/view/${item.contentId}`}>
                                                         <a>
                                                             {/*<Image src={getNoticeRanThumbnail(item.content)} layout="fill"*/}
                                                             {/*       alt="main_notice_img"/>*/}
@@ -365,7 +361,7 @@ const Index = () => {
                                                     </Link>
                                                 </div>
                                                 <div className={cx("txt_area")}>
-                                                    <Link href={`/board/startup_info/view/${item.contentId}`}>
+                                                    <Link href={`/en/board/startup_info/view/${item.contentId}`}>
                                                         <a>
                                                             <div className={cx("title")}>
                                                                 {item.title}

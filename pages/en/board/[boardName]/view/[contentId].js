@@ -1,22 +1,22 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import wrapper from "../../../../store/configureStore";
-import client from "../../../../lib/api/client";
-import {addReply, deleteReply, getBoard, updateReply} from "../../../../store/board/board";
+import wrapper from "../../../../../store/configureStore";
+import client from "../../../../../lib/api/client";
+import {addReply, deleteReply, getBoard, updateReply} from "../../../../../store/board/board";
 import {END} from "redux-saga";
 import {useRouter} from "next/router";
-import {getBoardContent, deleteBoardContent, initialize} from "../../../../store/board/board";
+import {getBoardContent, deleteBoardContent, initialize} from "../../../../../store/board/board";
 import {useDispatch, useSelector} from "react-redux";
 import Link from 'next/link'
 import moment from 'moment';
-import styles from '../../../../public/assets/styles/board/board.module.css';
+import styles from '../../../../../public/assets/styles/board/board.module.css';
 import classnames from "classnames/bind"
 import qs from 'query-string';
 import {Input, Modal, Upload} from "antd";
-import {fileDownload, fileDownload2} from "../../../../store/file/file";
-import ReplyAdd from "../../../../component/board/ReplyAdd";
-import ReplyList from "../../../../component/board/ReplyList";
+import {fileDownload, fileDownload2} from "../../../../../store/file/file";
+import ReplyAdd from "../../../../../component/board/ReplyAdd";
+import ReplyList from "../../../../../component/board/ReplyList";
 import Head from "next/head";
-import PageNavigation from "../../../../component/layout/PageNavigation";
+import PageNavigation from "../../../../../component/layout/PageNavigation";
 
 const cx = classnames.bind(styles);
 
@@ -326,11 +326,11 @@ const BoardView = ({boardName,contentId}) => {
                                     <a className={cx("basic-btn04", "btn-black-bd")}>Home</a>
                                     </Link>
                                     :
-                                    <Link href={`/board/${board.board.boardEnName}/list?${qs.stringify({
+                                    <Link href={`/en/board/${board.board.boardEnName}/list?${qs.stringify({
                                     ...router.query,
                                     contentId: null
                                 })}`}>
-                                    <a className={cx("basic-btn04", "btn-black-bd")}>목록보기</a>
+                                    <a className={cx("basic-btn04", "btn-black-bd")}>List</a>
                                 </Link>}
                                 {/*<Link href={`/board/${board.board.boardEnName}/list?${qs.stringify({*/}
                                 {/*    ...router.query,*/}
@@ -344,16 +344,16 @@ const BoardView = ({boardName,contentId}) => {
                                 <ul>
                                     {view.next != null && (
                                         <li>
-                                            <span className={cx("title")}>다음글</span>
-                                            <a href={`/board/${router.query.boardName}/view/${view.next.contentId}`}>{view.next.title}</a>
+                                            <span className={cx("title")}>Next</span>
+                                            <a href={`/en/board/${router.query.boardName}/view/${view.next.contentId}`}>{view.next.title}</a>
                                             <span
                                                 className={cx("date")}>{moment(view.next.regDate).format("YYYY.MM.DD")}</span>
                                         </li>
                                     )}
                                     {view.prev != null && (
                                         <li>
-                                            <span className={cx("title")}>이전글</span>
-                                            <a href={`/board/${router.query.boardName}/view/${view.prev.contentId}`}>{view.prev.title}</a>
+                                            <span className={cx("title")}>Prev</span>
+                                            <a href={`/en/board/${router.query.boardName}/view/${view.prev.contentId}`}>{view.prev.title}</a>
                                             <span
                                                 className={cx("date")}>{moment(view.prev.regDate).format("YYYY.MM.DD")}</span>
                                         </li>

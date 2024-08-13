@@ -275,20 +275,17 @@ const Introduce = () => {
                                     <ul>
                                         <li>
                                             학생창업기업 배출 국내대학 1위 {/*<span className={cx("sky")}>4년 연속</span>*/}<br/>
-                                            <span className={cx("c-gray")}>16년 43개, 17년 53개, 18년 55개, 19년 58개, 20년 54개</span>
+                                            <span className={cx("c-gray")}>20년 55개, 21년 60개, 22년 62개, 23년 69개</span>
                                         </li>
                                         <li>
-                                            벤처인증기업 배출 국내대학 1위<span className={cx("sky")}>5년 연속</span>
-                                        </li>
-                                        <li>
-                                            7년 미만 초기 창업기업 배출 국내대학 1위<span className={cx("sky")}>3년 연속</span><br/>
+                                            7년 미만 초기 창업기업 배출 국내대학 1위<br/>
                                             <span
-                                                className={cx("c-gray")}>창업기업 2,286개사 6개 주요 대학 대비 평균 1.4배 (2020년 12월)</span>
+                                                className={cx("c-gray")}>창업기업 2,948개사  6개 주요 대학 대비 평균 1.6배 (한국평가데이터, ‘22.12월)</span>
                                         </li>
                                         <li>
-                                            동문 CEO기업 배출 국내대학 1위 3년 연속<br/>
+                                            동문 CEO 기업 배출 국내대학 1위<br/>
                                             <span
-                                                className={cx("c-gray")}>기업수 11,071개, 매출 602조원(한국기업데이터, 2020년 12월)</span>
+                                                className={cx("c-gray")}>기업 수 12,452개, 매출 약 385조원 (한국평가데이터, ‘22.12월)</span>
                                         </li>
                                     </ul>
                                 </li>
@@ -298,9 +295,9 @@ const Introduce = () => {
                                         <li>국내 대학 최초 창업기업 양성을 위한 글로벌기업가센터 설립 <br/><span
                                             className={cx("c-gray")}>(2009년)</span>
                                         </li>
-                                        <li>교육부, 창업교육 최우수 대학 <span className={cx("c-gray")}>(2015년~2016년)</span> <span
-                                            className={cx("sky")}>2년 연속</span></li>
-                                        <li>연간 449개 창업교과 운영 11,970명 이수 <span className={cx("c-gray")}>(2020년)</span></li>
+                                        <li>교육부, 창업교육 최우수 대학 <span className={cx("c-gray")}>(‘15, ‘21)</span></li>
+                                        <li>연간 515개 창업교과 운영 11,335명 이수 <span className={cx("c-gray")}>(‘23 대학정보공시)</span>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li className={cx("icon_3")}>
@@ -308,11 +305,12 @@ const Introduce = () => {
                                     <ul>
                                         <li>국내 사립대 최초의 산학협력단 설립<span className={cx("c-gray")}>(2003년)</span></li>
                                         <li>국내 대학 최초 대학기술지주회사 설립 <span className={cx("c-gray")}>(2008년)</span></li>
-                                        <li>TIPS운영사 지위확보, 대학창업펀드 등 투자펀드(83억) 조성 <span className={cx("c-gray")}>(2018년)</span></li>
+                                        <li>TIPS운영사 지위확보, 대학창업펀드 등 투자펀드(83억) 조성 <span
+                                            className={cx("c-gray")}>(2018년)</span></li>
                                         <li>
                                             기술이전 및 기술 사업화 역량<br/>
-                                            <span className={cx("c-gray f-16")}>기술이전: 32건 / 31.5억원 (2020년)</span><br/>
-                                            <span className={cx("c-gray f-16")}>실험실 창업: 37개(2018년~2020년)</span>
+                                            <span className={cx("c-gray f-16")}>기술이전(‘21~23, 최근3년) : 160건 / 372억원</span><br/>
+                                            <span className={cx("c-gray f-16")}>실험실 창업 : 47개 (’21~’23)</span>
                                         </li>
                                     </ul>
                                 </li>
@@ -341,7 +339,7 @@ const Introduce = () => {
                                 <li className={cx("icon_1")}>
                                     창업기업가가 갖추어야 할 소양, 태도 <br/>
                                     및 역량을 체계적으로 교육함으로써 <br/>
-                                    <strong className={cx("c-sky")}>“혁신 기술창업인” 양성</strong>
+                                    <strong className={cx("c-sky")}>“준비된 기술창업인” 양성</strong>
                                 </li>
                                 <li className={cx("icon_2")}>
                                     실용인재 육성을 통해 국가발전의 큰 <br/>
@@ -379,6 +377,13 @@ const Introduce = () => {
                                     <col style={{width: "18.18%"}}/>
                                     <col/>
                                 </colgroup>
+                                <thead>
+                                <tr>
+                                    <th>업무명</th>
+                                    <th>내선번호<br/>(02-2220-)</th>
+                                    <th>이메일</th>
+                                </tr>
+                                </thead>
                                 <tbody>
                                 <tr>
                                     <td>창업지원단 총괄</td>
@@ -388,12 +393,12 @@ const Introduce = () => {
                                 <tr>
                                     <td>학생창업(창업동아리, 창업경진대회 등)</td>
                                     <td>2858, 2230, 2863</td>
-                                    <td className={cx("c-sky")}>eh0305@hanyang.ac.kr <br/>lovemango2@hanyang.ac.kr</td>
+                                    <td className={cx("c-sky")}>eh0305@hanyang.ac.kr</td>
                                 </tr>
                                 <tr>
                                     <td>동문창업(한양스타트업아카데미, 한양 스타트업포럼 등)</td>
                                     <td>2863</td>
-                                    <td className={cx("c-sky")}>lovemango2@hanyang.ac.kr</td>
+                                    <td className={cx("c-sky")}>startup@hanyang.ac.kr</td>
                                 </tr>
                                 <tr>
                                     <td>원스톱창업상담실</td>
@@ -453,7 +458,7 @@ const Introduce = () => {
                                 <tr>
                                     <td>LINC3.0사업(창업)</td>
                                     <td>2230, 2863</td>
-                                    <td className={cx("c-sky")}>eh0305@hanyang.ac.kr <br/>lovemango2@hanyang.ac.kr</td>
+                                    <td className={cx("c-sky")}>eh0305@hanyang.ac.kr</td>
                                 </tr>
                                 <tr>
                                     <td>대학혁신지원사업(창업)</td>
@@ -479,103 +484,88 @@ const Introduce = () => {
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>전상경</td>
-                                    <td>한양대 경영대학 파이낸스경영학과</td>
+                                    <td>류창완</td>
+                                    <td>산업융합학부</td>
                                     <td>창업지원단장</td>
                                 </tr>
                                 <tr>
-                                    <td>이임성</td>
-                                    <td>법무법인 대원법률</td>
-                                    <td>대표변호사</td>
+                                    <td>권규현</td>
+                                    <td>기술경영전문대학원</td>
+                                    <td>창업지원단 부단장</td>
                                 </tr>
                                 <tr>
-                                    <td>이재만</td>
-                                    <td>K-ICT 창업멘토링센터</td>
-                                    <td>CEO멘토</td>
+                                    <td>김은섭</td>
+                                    <td>아이디벤처스</td>
+                                    <td>대표</td>
                                 </tr>
                                 <tr>
-                                    <td>변우석</td>
-                                    <td>코맥스벤처러스</td>
-                                    <td>대표이사</td>
+                                    <td>김종헌</td>
+                                    <td>프롤로그벤처스㈜</td>
+                                    <td>본부장</td>
                                 </tr>
                                 <tr>
-                                    <td>이종훈</td>
-                                    <td>롯데 액셀러레이터</td>
-                                    <td>투자본부장</td>
+                                    <td>김주희</td>
+                                    <td>동덕여자대학교</td>
+                                    <td>교수</td>
                                 </tr>
                                 {
                                     showTable && (
                                         <>
                                             <tr>
-                                                <td>김달호</td>
-                                                <td>한양대 상해센터</td>
+                                                <td>명승은</td>
+                                                <td>벤처스퀘어</td>
                                                 <td>대표</td>
                                             </tr>
                                             <tr>
-                                                <td>한기수</td>
-                                                <td>필옵틱스</td>
-                                                <td>대표이사</td>
-                                            </tr>
-                                            <tr>
-                                                <td>심재헌</td>
-                                                <td>AIM 인베스트먼트</td>
+                                                <td>박찬용</td>
+                                                <td>우용인베스트㈜</td>
                                                 <td>대표</td>
                                             </tr>
                                             <tr>
-                                                <td>백필호</td>
-                                                <td>한국IT비즈니스진흥협회</td>
-                                                <td>본부장</td>
+                                                <td>송용준</td>
+                                                <td>스마트스터디벤처스</td>
+                                                <td>센터장</td>
                                             </tr>
                                             <tr>
-                                                <td>류창완</td>
-                                                <td>한양대 산업융합학부</td>
+                                                <td>신기영</td>
+                                                <td>디자이노블</td>
+                                                <td>대표</td>
+                                            </tr>
+                                            <tr>
+                                                <td>신진오</td>
+                                                <td>와이앤아처㈜</td>
+                                                <td>대표</td>
+                                            </tr>
+                                            <tr>
+                                                <td>이근식</td>
+                                                <td>LKSA건축사사무소</td>
+                                                <td>대표</td>
+                                            </tr>
+                                            <tr>
+                                                <td>이종수</td>
+                                                <td>서울대학교 공과대학 SNU공학컨설팅센터</td>
                                                 <td>교수</td>
                                             </tr>
                                             <tr>
-                                                <td>김영수</td>
-                                                <td>한국청년기업가정신재단</td>
-                                                <td>사무총장</td>
+                                                <td>이종훈</td>
+                                                <td>엑스플로인베스트먼트㈜</td>
+                                                <td>대표</td>
                                             </tr>
-                                            {/*<tr>*/}
-                                            {/*    <td>임정욱</td>*/}
-                                            {/*    <td>티비티(TBT)</td>*/}
-                                            {/*    <td>공동대표</td>*/}
-                                            {/*</tr>*/}
-                                            {/*<tr>*/}
-                                            {/*    <td>송은강</td>*/}
-                                            {/*    <td>캡스톤파트너스</td>*/}
-                                            {/*    <td>대표이사</td>*/}
-                                            {/*</tr>*/}
-                                            {/*<tr>*/}
-                                            {/*    <td>정남이</td>*/}
-                                            {/*    <td>아산나눔재단</td>*/}
-                                            {/*    <td>상임이사</td>*/}
-                                            {/*</tr>*/}
-                                            {/*<tr>*/}
-                                            {/*    <td>변우석</td>*/}
-                                            {/*    <td>코맥스벤처러스</td>*/}
-                                            {/*    <td>대표이사</td>*/}
-                                            {/*</tr>*/}
-                                            {/*<tr>*/}
-                                            {/*    <td>이종훈</td>*/}
-                                            {/*    <td>롯데액셀러레이터</td>*/}
-                                            {/*    <td>투자본부장</td>*/}
-                                            {/*</tr>*/}
-                                            {/*<tr>*/}
-                                            {/*    <td>김진</td>*/}
-                                            {/*    <td>머니매그넷</td>*/}
-                                            {/*    <td>대표이사</td>*/}
-                                            {/*</tr>*/}
-                                            {/*<tr>*/}
-                                            {/*    <td>도현명</td>*/}
-                                            {/*    <td>임팩트스퀘어</td>*/}
-                                            {/*    <td>대표이사</td>*/}
-                                            {/*</tr>*/}
-                                            {/*<tr>*/}
-                                            {/*    <td>김태호</td>*/}
-                                            {/*    <td>KIMC Group</td>*/}
-                                            {/*    <td>대표이사</td>*/}
-                                            {/*</tr>*/}
+                                            <tr>
+                                                <td>이희우</td>
+                                                <td>한림대학교 기술지주회사</td>
+                                                <td>대표</td>
+                                            </tr>
+                                            <tr>
+                                                <td>정혁훈</td>
+                                                <td>매일경제신문</td>
+                                                <td>부국장</td>
+                                            </tr>
+                                            <tr>
+                                                <td>한인석</td>
+                                                <td>K-바이오랩허브 사업추진단</td>
+                                                <td>단장</td>
+                                            </tr>
                                         </>
                                     )
 

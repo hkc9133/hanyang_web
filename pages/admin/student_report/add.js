@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
-import {DatePicker, Form, Input, Modal} from "antd";
+import {Button, DatePicker, Form, Input, Modal, Upload} from "antd";
 import {
     getStudentReport,
     initialize,
@@ -12,12 +12,16 @@ import classnames from "classnames/bind"
 const cx = classnames.bind(styles);
 import moment from "moment";
 import locale from "antd/lib/date-picker/locale/ko_KR";
+import client, {baseUrl} from "../../../lib/api/client";
+import {UploadOutlined} from "@ant-design/icons";
 
 const StudentReportAddPage = () => {
 
     const dispatch = useDispatch();
     const router = useRouter();
     const [form] = Form.useForm();
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
     const [reportForm, setReportForm] = useState({
         studentName: "",
         studentAttach:"",
@@ -33,6 +37,7 @@ const StudentReportAddPage = () => {
         sales:0,
         staffNum:0,
         isAgree: false,
+        fileList:[],
     })
 
     const [showRemoveModal, setShowRemoveModal] = useState(false);
@@ -84,6 +89,60 @@ const StudentReportAddPage = () => {
         }
 
     }, [add])
+
+    const normFile = (e) => {
+        if (Array.isArray(e)) {
+            return e;
+        }
+        return e?.fileList;
+    };
+
+    const handleRemove = (e) =>{
+        setReportForm({
+            ...reportForm,
+            fileList: reportForm.fileList.filter((item) => item.uid != e.uid)
+        })
+        form.setFieldsValue({ fileList: reportForm.fileList.filter((item) => item.uid != e.uid) });
+    }
+
+    const uploadFile = async options => {
+        const {onSuccess, onError, file, onProgress} = options;
+        setLoading(true)
+
+        const fmData = new FormData();
+        const config = {
+            headers: {"content-type": "multipart/form-data"},
+            onUploadProgress: event => {
+                onProgress({percent: (event.loaded / event.total) * 100});
+            }
+        };
+        fmData.append("file", file);
+        try {
+            const res = await client.post(
+                "/resource/attach_file/CERTIFICATE_IMG",
+                fmData,
+                config
+            );
+            onSuccess("Ok");
+
+            const data = {
+                ...res.data,
+                url:baseUrl+res.data.url
+            }
+            setReportForm({
+                ...reportForm,
+                fileList: reportForm.fileList.concat(data)
+            })
+            form.setFieldsValue({ fileList: reportForm.fileList.concat(data) });
+            setLoading(false)
+        } catch (err) {
+            // console.log(err)
+            setError("업로드 중 에러가 발생하였습니다");
+            setLoading(false)
+            onError({err});
+        }
+    };
+
 
 
     return (
@@ -299,6 +358,38 @@ const StudentReportAddPage = () => {
                                                             <option value="법인">법인</option>
                                                             <option value="개인">개인</option>
                                                         </select>
+                                                    </Form.Item>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope={"row"}>사업자등록증</th>
+                                                <td colSpan={3}>
+                                                    <Form.Item
+                                                        name="fileList"
+                                                        className={(cx("antd_input"))}
+                                                        valuePropName="fileList"
+                                                        getValueFromEvent={normFile}
+                                                        rules={[
+                                                            {
+                                                                required: true,
+                                                                message: '사업자등록증을 첨부해주세요',
+                                                            }
+                                                        ]}
+                                                    >
+                                                        <Upload
+                                                            customRequest={(e) => {
+                                                                uploadFile(e)
+                                                            }}
+                                                            accept={"image/*"}
+                                                            listType="picture-card"
+                                                            fileList={reportForm.fileList}
+                                                            onRemove={handleRemove}
+                                                        >
+                                                            {reportForm.fileList.length >= 1 ? null :
+                                                                <Button style={{marginTop: 7}} className={"upload"}
+                                                                        icon={<UploadOutlined/>}>업로드</Button>}
+                                                        </Upload>
+                                                        <span className={cx("title")}>첨부파일 (10MB 미만)</span>
                                                     </Form.Item>
                                                 </td>
                                             </tr>

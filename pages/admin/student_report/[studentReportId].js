@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
-import {DatePicker, Form, Input, Modal} from "antd";
+import {Button, DatePicker, Form, Input, Modal, Upload} from "antd";
 // import {deletePopup, getPopup, initialize, updatePopup} from "../../../store/popup/adminPopup";
 import moment from "moment";
 import locale from "antd/lib/date-picker/locale/ko_KR";
@@ -13,18 +13,22 @@ import {
 } from "../../../store/studentReport/adminStudentReport";
 import styles from '../../../public/assets/styles/admin/studentReport/studentReport.module.css';
 import classnames from "classnames/bind"
+import client, {baseUrl} from "../../../lib/api/client";
+import {UploadOutlined} from "@ant-design/icons";
+import {fileDownload} from "../../../store/file/file";
+
 const cx = classnames.bind(styles);
 const StudentReportEditPage = () => {
 
     const dispatch = useDispatch();
     const router = useRouter();
     const [form] = Form.useForm();
-    const [reportInfo, setReportInfo] = useState({
-
-    });
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const [reportInfo, setReportInfo] = useState({});
 
     const [showRemoveModal, setShowRemoveModal] = useState(false);
-    const {report, update,deleteResult} = useSelector(({adminStudentReport, loading}) => ({
+    const {report, update, deleteResult} = useSelector(({adminStudentReport, loading}) => ({
         report: adminStudentReport.getStudentReport,
         update: adminStudentReport.updateStudentReport,
         deleteResult: adminStudentReport.deleteStudentReport,
@@ -38,16 +42,25 @@ const StudentReportEditPage = () => {
             dispatch(initialize());
         }
 
-    }, [])
+    }, [router.query.studentReportId])
 
     useEffect(() => {
 
         if (report != null) {
+            const fileList = report.certificateFile ? [{
+                url: `${baseUrl}/resource${report.certificateFile.filePath}/${report.certificateFile.fileName + report.certificateFile.fileExtension}`,
+                uid: report.certificateFile.fileId,
+                name: report.certificateFile.fileOriginName,
+                status: "done",
+                fileId: report.certificateFile.fileId
+            }] : []
             setReportInfo({
                 ...reportInfo,
                 ...report,
-                createDate:moment(report.createDate,'YYYY-MM-DD')
+                fileList: fileList,
+                createDate: moment(report.createDate, 'YYYY-MM-DD')
             })
+            form.setFieldsValue({ fileList: fileList });
         }
 
     }, [report])
@@ -60,18 +73,27 @@ const StudentReportEditPage = () => {
         })
     }
 
+    const handleDownload = useCallback((fileId) => {
+        if (fileId != undefined) {
+            dispatch(fileDownload(fileId))
+        }
+    }, [])
+
 
     const submit = () => {
         const data = {
             ...reportInfo,
-            createDate:reportInfo.createDate.format("YYYY-MM-DD").toString()
+            certificateFile: reportInfo.fileList.length == 0 ? null :  {
+                fileId:reportInfo.fileList[0].fileId
+            },
+            createDate: reportInfo.createDate.format("YYYY-MM-DD").toString()
         }
 
         dispatch(updateStudentReport(data));
 
     }
 
-    const handleDeleteReport = () =>{
+    const handleDeleteReport = () => {
         dispatch(deleteStudentReport(reportInfo.studentReportId))
     }
 
@@ -99,6 +121,59 @@ const StudentReportEditPage = () => {
 
     }, [deleteResult])
 
+    const normFile = (e) => {
+        if (Array.isArray(e)) {
+            return e;
+        }
+        return e?.fileList;
+    };
+
+    const handleRemove = (e) => {
+        setReportInfo({
+            ...reportInfo,
+            fileList: reportInfo.fileList.filter((item) => item.uid != e.uid)
+        })
+        form.setFieldsValue({fileList: reportInfo.fileList.filter((item) => item.uid != e.uid)});
+    }
+
+    const uploadFile = async options => {
+        const {onSuccess, onError, file, onProgress} = options;
+        setLoading(true)
+
+        const fmData = new FormData();
+        const config = {
+            headers: {"content-type": "multipart/form-data"},
+            onUploadProgress: event => {
+                onProgress({percent: (event.loaded / event.total) * 100});
+            }
+        };
+        fmData.append("file", file);
+        try {
+            const res = await client.post(
+                "/resource/attach_file/CERTIFICATE_IMG",
+                fmData,
+                config
+            );
+            onSuccess("Ok");
+
+            const data = {
+                ...res.data,
+                url: baseUrl + res.data.url
+            }
+            setReportInfo({
+                ...reportInfo,
+                fileList: reportInfo.fileList.concat(data)
+            })
+            form.setFieldsValue({fileList: reportInfo.fileList.concat(data)});
+            setLoading(false)
+        } catch (err) {
+            // console.log(err)
+            setError("업로드 중 에러가 발생하였습니다");
+            setLoading(false)
+            onError({err});
+        }
+    };
+
     return (
         <>
             {reportInfo.studentReportId != null && (
@@ -107,18 +182,18 @@ const StudentReportEditPage = () => {
                     <Form form={form} onFinish={submit}
                           initialValues={{
                               studentName: report.studentName,
-                              studentAttach:report.studentAttach,
-                              studentClassYear:report.studentClassYear,
+                              studentAttach: report.studentAttach,
+                              studentClassYear: report.studentClassYear,
                               studentPhoneNum: report.studentPhoneNum,
                               studentEmail: report.studentEmail,
-                              companyNum:report.companyNum,
-                              companyName:report.companyName,
-                              companyOwner:report.companyOwner,
-                              companyKind:report.companyKind,
-                              createDate:moment(report.createDate,'YYYY-MM-DD'),
-                              businessItem:report.businessItem,
-                              sales:report.sales,
-                              staffNum:report.staffNum
+                              companyNum: report.companyNum,
+                              companyName: report.companyName,
+                              companyOwner: report.companyOwner,
+                              companyKind: report.companyKind,
+                              createDate: moment(report.createDate, 'YYYY-MM-DD'),
+                              businessItem: report.businessItem,
+                              sales: report.sales,
+                              staffNum: report.staffNum
                           }}
                     >
                         <div className={cx("adm_container")}>
@@ -130,7 +205,7 @@ const StudentReportEditPage = () => {
                                             <colgroup>
                                                 <col style={{width: 270}}/>
                                                 <col style={{width: 400}}/>
-                                                <col  style={{width: 270}}/>
+                                                <col style={{width: 270}}/>
                                                 <col/>
                                             </colgroup>
                                             <tbody>
@@ -147,7 +222,8 @@ const StudentReportEditPage = () => {
                                                             },
                                                         ]}
                                                     >
-                                                        <Input placeholder={"이름"} name="studentName" value={reportInfo.studentName}
+                                                        <Input placeholder={"이름"} name="studentName"
+                                                               value={reportInfo.studentName}
                                                                onChange={(e) => {
                                                                    changeReportInfo(e)
                                                                }}/>
@@ -175,7 +251,8 @@ const StudentReportEditPage = () => {
                                                             },
                                                         ]}
                                                     >
-                                                        <Input placeholder={"소속"} name="studentAttach" value={reportInfo.studentAttach}
+                                                        <Input placeholder={"소속"} name="studentAttach"
+                                                               value={reportInfo.studentAttach}
                                                                onChange={(e) => {
                                                                    changeReportInfo(e)
                                                                }}/>
@@ -193,7 +270,8 @@ const StudentReportEditPage = () => {
                                                             },
                                                         ]}
                                                     >
-                                                        <Input placeholder={"학번"} name="studentClassYear" value={reportInfo.studentClassYear}
+                                                        <Input placeholder={"학번"} name="studentClassYear"
+                                                               value={reportInfo.studentClassYear}
                                                                onChange={(e) => {
                                                                    changeReportInfo(e)
                                                                }}/>
@@ -216,7 +294,8 @@ const StudentReportEditPage = () => {
                                                             },
                                                         ]}
                                                     >
-                                                        <Input placeholder={"연락처"} name="studentPhoneNum" value={reportInfo.studentPhoneNum}
+                                                        <Input placeholder={"연락처"} name="studentPhoneNum"
+                                                               value={reportInfo.studentPhoneNum}
                                                                onChange={(e) => {
                                                                    changeReportInfo(e)
                                                                }}/>
@@ -235,7 +314,8 @@ const StudentReportEditPage = () => {
                                                             },
                                                         ]}
                                                     >
-                                                        <Input placeholder={"E-MAIL"} name="studentEmail" value={reportInfo.studentEmail}
+                                                        <Input placeholder={"E-MAIL"} name="studentEmail"
+                                                               value={reportInfo.studentEmail}
                                                                onChange={(e) => {
                                                                    changeReportInfo(e)
                                                                }}/>
@@ -255,7 +335,8 @@ const StudentReportEditPage = () => {
                                                             },
                                                         ]}
                                                     >
-                                                        <Input placeholder={"기업명"} name="companyName" value={reportInfo.companyName}
+                                                        <Input placeholder={"기업명"} name="companyName"
+                                                               value={reportInfo.companyName}
                                                                onChange={(e) => {
                                                                    changeReportInfo(e)
                                                                }}/>
@@ -273,7 +354,8 @@ const StudentReportEditPage = () => {
                                                             },
                                                         ]}
                                                     >
-                                                        <Input placeholder={"대표자명"} name="companyOwner" value={reportInfo.companyOwner}
+                                                        <Input placeholder={"대표자명"} name="companyOwner"
+                                                               value={reportInfo.companyOwner}
                                                                onChange={(e) => {
                                                                    changeReportInfo(e)
                                                                }}/>
@@ -293,7 +375,8 @@ const StudentReportEditPage = () => {
                                                             },
                                                         ]}
                                                     >
-                                                        <Input placeholder={"사업자등록번호"} name="companyNum" value={reportInfo.companyNum}
+                                                        <Input placeholder={"사업자등록번호"} name="companyNum"
+                                                               value={reportInfo.companyNum}
                                                                onChange={(e) => {
                                                                    changeReportInfo(e)
                                                                }}/>
@@ -311,14 +394,46 @@ const StudentReportEditPage = () => {
                                                             },
                                                         ]}
                                                     >
-                                                        <select name="companyKind" id="" value={reportInfo.companyKind} onChange={(e) => {
-                                                            changeReportInfo(e)
-                                                        }}>
+                                                        <select name="companyKind" id="" value={reportInfo.companyKind}
+                                                                onChange={(e) => {
+                                                                    changeReportInfo(e)
+                                                                }}>
                                                             <option value="">선택</option>
                                                             <option value="법인">법인</option>
                                                             <option value="개인">개인</option>
                                                         </select>
                                                     </Form.Item>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope={"row"}>사업자등록증</th>
+                                                <td colSpan={3}>
+                                                    <Form.Item
+                                                        name="fileList"
+                                                        className={(cx("antd_input"))}
+                                                        valuePropName="fileList"
+                                                        getValueFromEvent={normFile}
+                                                    >
+                                                        <Upload
+                                                            customRequest={(e) => {
+                                                                uploadFile(e)
+                                                            }}
+                                                            accept={"image/*"}
+                                                            listType="picture-card"
+                                                            fileList={reportInfo.fileList}
+                                                            onRemove={handleRemove}
+                                                        >
+                                                            {reportInfo.fileList.length >= 1 ? null :
+                                                                <Button style={{marginTop: 7}} className={"upload"}
+                                                                        icon={<UploadOutlined/>}>업로드</Button>}
+                                                        </Upload>
+                                                        <span className={cx("title")}>첨부파일 (10MB 미만)</span>
+                                                    </Form.Item>
+                                                    {(reportInfo.fileList.length > 0 && reportInfo.fileList[0].fileId) && (
+                                                        <button type="button"onClick={() => {
+                                                            handleDownload(reportInfo.fileList[0].fileId)
+                                                        }}>다운로드</button>
+                                                    )}
                                                 </td>
                                             </tr>
                                             <tr>
@@ -334,7 +449,10 @@ const StudentReportEditPage = () => {
                                                             },
                                                         ]}
                                                     >
-                                                        <DatePicker locale={locale} format={"YYYY-MM-DD"} value={reportInfo.createDate} onChange={(v) =>{setReportInfo({...reportInfo,createDate:v})}}/>
+                                                        <DatePicker locale={locale} format={"YYYY-MM-DD"}
+                                                                    value={reportInfo.createDate} onChange={(v) => {
+                                                            setReportInfo({...reportInfo, createDate: v})
+                                                        }}/>
                                                     </Form.Item>
                                                 </td>
                                             </tr>
@@ -351,7 +469,9 @@ const StudentReportEditPage = () => {
                                                             },
                                                         ]}
                                                     >
-                                                        <Input.TextArea placeholder={"사업아이템"} rows={5} name="businessItem" value={reportInfo.businessItem}
+                                                        <Input.TextArea placeholder={"사업아이템"} rows={5}
+                                                                        name="businessItem"
+                                                                        value={reportInfo.businessItem}
                                                                         onChange={(e) => {
                                                                             changeReportInfo(e)
                                                                         }}/>
@@ -374,7 +494,8 @@ const StudentReportEditPage = () => {
                                                             },
                                                         ]}
                                                     >
-                                                        <Input placeholder={"당해 연도 매출액(해당하는 경우에만 입력, 단위:원)"} name="sales" value={reportInfo.sales}
+                                                        <Input placeholder={"당해 연도 매출액(해당하는 경우에만 입력, 단위:원)"}
+                                                               name="sales" value={reportInfo.sales}
                                                                onChange={(e) => {
                                                                    changeReportInfo(e)
                                                                }}/>
@@ -396,7 +517,8 @@ const StudentReportEditPage = () => {
                                                             },
                                                         ]}
                                                     >
-                                                        <Input placeholder={"당해 연도 고용인원(해당하는 경우에만 입력)"} name="staffNum" value={reportInfo.staffNum}
+                                                        <Input placeholder={"당해 연도 고용인원(해당하는 경우에만 입력)"} name="staffNum"
+                                                               value={reportInfo.staffNum}
                                                                onChange={(e) => {
                                                                    changeReportInfo(e)
                                                                }}/>
@@ -423,10 +545,16 @@ const StudentReportEditPage = () => {
                         visible={showRemoveModal}
                         key={1}
                         // confirmLoading={deletePlaceResult.result}
-                        onCancel={() =>{setShowRemoveModal(false)}}
+                        onCancel={() => {
+                            setShowRemoveModal(false)
+                        }}
                         footer={[
-                            <button className={cx("basic-btn01","btn-red-bg")} onClick={() =>{handleDeleteReport()}}>삭제</button>,
-                            <button className={cx("basic-btn01","btn-gray-bg")} onClick={() =>{setShowRemoveModal(false);}}>취소</button>
+                            <button className={cx("basic-btn01", "btn-red-bg")} onClick={() => {
+                                handleDeleteReport()
+                            }}>삭제</button>,
+                            <button className={cx("basic-btn01", "btn-gray-bg")} onClick={() => {
+                                setShowRemoveModal(false);
+                            }}>취소</button>
                         ]}
                     >
                     </Modal>

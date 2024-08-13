@@ -2,13 +2,15 @@ import React, {useCallback, useRef, useState} from 'react';
 
 import styles from '../public/assets/styles/student_startup_report/student_startup_report.module.css';
 import classnames from "classnames/bind"
-import {Checkbox, Form, Input,Select,DatePicker} from "antd";
+import {Checkbox, Form, Input, Select, DatePicker, Upload, Button} from "antd";
 const { Option } = Select;
 import {useDispatch} from "react-redux";
 import {useRouter} from "next/router";
 import styled from "styled-components";
 
 import {applyCounsel} from "../store/mentoring/mentoring";
+import { UploadOutlined } from '@ant-design/icons';
+
 const cx = classnames.bind(styles);
 
 const BusinessTypeSelect = styled(Select)`
@@ -53,7 +55,8 @@ const StudentStartupReport = () => {
         counselFieldIdList: [],
         hopeMentor:null,
         isAgree: false,
-        uploadResultList:[]
+        uploadResultList:[],
+        fileList:[],
     })
 
     const scrollIntoView = () =>{
@@ -80,6 +83,20 @@ const StudentStartupReport = () => {
 
     },[])
 
+    const changeFileList = useCallback(({fileList}) =>{
+        setStartupInfo(startupInfo =>({
+            ...startupInfo,
+            fileList: fileList
+        }))
+    },[])
+
+    const handlePreview = useCallback((file) =>{
+
+        const fileURL = URL.createObjectURL(file.originFileObj);
+        window.open(fileURL);
+
+    },[])
+
     const changeStartupDate = useCallback((value) =>{
         setStartupInfo(startupInfo =>({
             ...startupInfo,
@@ -102,15 +119,10 @@ const StudentStartupReport = () => {
     return (
         <section className={"container"}>
             <style jsx>{`
-                &.ant-select-single .ant-select-selector{
-                    height:50px;
-                  }
-                //@media (max-width: 600px) {
-                //  div {
-                //    background: blue;
-                //  }
-        }
-      `}</style>
+                &.ant-select-single .ant-select-selector {
+                    height: 50px;
+                }
+            `}</style>
             <div className={cx("sub_container","mentor_group_write","student_report")}>
                 <Form form={form} onFinish={submitReport} onFinishFailed={scrollIntoView}>
                 <h1 className={cx("sub_top_title")}>학생창업자 신고</h1>
@@ -254,7 +266,8 @@ const StudentStartupReport = () => {
                                     },
                                 ]}
                             >
-                                <Input placeholder={"기업명"} name="companyName" value={startupInfo.companyName} onChange={changeStartupInfoValue}/>
+                                <Input placeholder={"기업명"} name="companyName" value={startupInfo.companyName}
+                                       onChange={changeStartupInfoValue}/>
                             </Form.Item>
                         </li>
                         <li>
@@ -269,7 +282,31 @@ const StudentStartupReport = () => {
                                     },
                                 ]}
                             >
-                                <Input  placeholder={"대표자명"} name="ownerName" value={startupInfo.ownerName} onChange={changeStartupInfoValue}/>
+                                <Input placeholder={"대표자명"} name="ownerName" value={startupInfo.ownerName}
+                                       onChange={changeStartupInfoValue}/>
+                            </Form.Item>
+                        </li>
+                        <li className={cx("w_100")}>
+                            <Form.Item
+                                label="사업자등록증"
+                                className={(cx("antd_input"))}
+                                name="certificate_file"
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: '사업자등록증을 첨부해주세요',
+                                    },
+                                ]}
+                            >
+                                <Upload
+                                    listType="picture"
+                                    fileList={startupInfo.fileList}
+                                    onPreview={handlePreview}
+                                    onChange={changeFileList}
+                                >
+                                    {startupInfo.fileList.length >= 1 ? null : <Button style={{marginTop:7}} className={"upload"} icon={<UploadOutlined />}>업로드</Button>}
+                                </Upload>
+                                <span className={cx("title")}>첨부파일 (10MB 미만)</span>
                             </Form.Item>
                         </li>
                         <li>
@@ -285,7 +322,8 @@ const StudentStartupReport = () => {
                                     },
                                 ]}
                             >
-                                <BusinessTypeSelect name="businessType" defaultValue="personal" onChange={changeStartupBusinessType}>
+                                <BusinessTypeSelect name="businessType" defaultValue="personal"
+                                                    onChange={changeStartupBusinessType}>
                                     <Option value="personal"></Option>
                                     <Option value="lucy">Lucy</Option>
                                 </BusinessTypeSelect>
@@ -303,7 +341,7 @@ const StudentStartupReport = () => {
                                     },
                                 ]}
                             >
-                                <StartupDatePicker placeholder={"창업일"} onChange={changeStartupDate} />
+                                <StartupDatePicker placeholder={"창업일"} onChange={changeStartupDate}/>
                                 {/*<Input  placeholder={"대표자명"} name="ownerName" value={startupInfo.ownerName} onChange={changeStartupInfoValue}/>*/}
                             </Form.Item>
                             {/*<label htmlFor="mentoring_applicants_info4">창업일</label>*/}
@@ -321,7 +359,9 @@ const StudentStartupReport = () => {
                                     },
                                 ]}
                             >
-                                <Input.TextArea  placeholder={"사업 아이템"}  name="businessItem" value={startupInfo.businessItem} onChange={changeStartupInfoValue} rows="10"/>
+                                <Input.TextArea placeholder={"사업 아이템"} name="businessItem"
+                                                value={startupInfo.businessItem} onChange={changeStartupInfoValue}
+                                                rows="10"/>
                             </Form.Item>
                         </li>
                     </ul>

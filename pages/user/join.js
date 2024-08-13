@@ -5,15 +5,9 @@ import PageNavigation from "../../component/layout/PageNavigation";
 import {useDispatch, useSelector} from "react-redux";
 import {initializeForm, socialLogin, socialSignUp} from "../../store/auth/auth";
 import {useRouter} from "next/router";
-import NaverLoginButton from "../../component/auth/NaverLoginButton";
-import FaceBookLoginButton from "../../component/auth/FaceBookLoginButton";
-import KakaoLoginButton from "../../component/auth/KakaoLoinButton";
-import GoogleLoginButton from "../../component/auth/GoogleLoginButton";
 import Modal from "../../component/common/Modal";
-import SignUpInfo from "../../component/auth/SignUpInfo";
 import JoinType from "../../component/auth/JoinType";
 import {Checkbox, Form} from "antd";
-import HanyangLoginButton from "../../component/auth/HanyangLoginButton";
 import Head from "next/head";
 
 const cx = classnames.bind(styles);

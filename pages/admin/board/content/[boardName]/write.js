@@ -233,7 +233,7 @@ const Write = (props) => {
                                                         if(board.board.categoryId == item.categoryId){
                                                             return <option key={item.categoryCodeId} value={item.categoryCodeId}>{item.categoryCodeName}</option>
                                                         }
-                                                    })}}
+                                                    })}
                                                 </select>
 
                                             </td>

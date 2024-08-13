@@ -12,7 +12,6 @@ import moment from 'moment';
 const NoticeListType01 = ({content,pageChange,board,category}) => {
     const router = useRouter();
 
-    console.log(content)
     return (
         <>
             <div className={cx("bbs_tb_list")}>

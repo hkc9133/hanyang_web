@@ -15,7 +15,8 @@ const AdminHeaderDetail = () => {
         '4_3':false,
         '4_4':false,
         '4_5':false,
-        '4_6':false
+        '4_6':false,
+        '4_7':false,
     })
 
     const changeDropdown = (e) =>{
@@ -27,6 +28,7 @@ const AdminHeaderDetail = () => {
             '4_4':false,
             '4_5':false,
             '4_6':false,
+            '4_7':false,
             [name]:!dropdown[name]
         })
 
@@ -70,57 +72,84 @@ const AdminHeaderDetail = () => {
                     </div>
                     <ul>
                         <li><Link href="/admin/board/list">게시판 관리</Link></li>
-                        <li><button className={cx("board_title")} name="4_1" onClick={changeDropdown}>창업교육</button></li>
+                        <li>
+                            <button className={cx("board_title")} name="4_1" onClick={changeDropdown}>창업교육</button>
+                        </li>
                         <div className={cx("board_sub")}>
                             {dropdown["4_1"] && (
                                 <ul>
                                     <li><Link href={'/admin/board/content/list?boardEnName=people'}>일반인 대상</Link></li>
-                                    <li><Link href={'/admin/board/content/list?boardEnName=online_content'}>온라인 콘텐츠</Link></li>
+                                    <li><Link href={'/admin/board/content/list?boardEnName=online_content'}>온라인
+                                        콘텐츠</Link></li>
                                 </ul>
-                                )}
+                            )}
                         </div>
-                        <li><button className={cx("board_title")} name="4_2" onClick={changeDropdown}>창업지원정보</button></li>
+                        <li>
+                            <button className={cx("board_title")} name="4_2" onClick={changeDropdown}>창업지원정보</button>
+                        </li>
                         <div className={cx("board_sub")}>
                             {dropdown["4_2"] && (
-                            <ul>
-                                <li><Link href={'/admin/board/content/list?boardEnName=notice'}>공지사항</Link></li>
-                                <li><Link href={'/admin/board/content/list?boardEnName=startup_info'}>신규사업공고</Link></li>
-                                <li><Link href={'/admin/board/content/list?boardEnName=idea'}>커뮤니티 게시판</Link></li>
-                                <li><Link href={'/admin/board/content/list?boardEnName=data_room'}>자료실</Link></li>
-                                <li><Link href={'/admin/board/content/list?boardEnName=faq'}>FAQ</Link></li>
-                            </ul>
+                                <ul>
+                                    <li><Link href={'/admin/board/content/list?boardEnName=notice'}>공지사항</Link></li>
+                                    <li><Link href={'/admin/board/content/list?boardEnName=startup_info'}>신규사업공고</Link>
+                                    </li>
+                                    <li><Link href={'/admin/board/content/list?boardEnName=idea'}>커뮤니티 게시판</Link></li>
+                                    <li><Link href={'/admin/board/content/list?boardEnName=data_room'}>자료실</Link></li>
+                                    <li><Link href={'/admin/board/content/list?boardEnName=faq'}>FAQ</Link></li>
+                                </ul>
                             )}
                         </div>
-                        <li><button className={cx("board_title")} name="4_3" onClick={changeDropdown}>스타트업H</button></li>
+                        <li>
+                            <button className={cx("board_title")} name="4_3" onClick={changeDropdown}>스타트업H</button>
+                        </li>
                         <div className={cx("board_sub")}>
                             {dropdown["4_3"] && (
-                            <ul>
-                                <li><Link href={'/admin/board/content/list?boardEnName=corp_press'}>기업언론보도</Link></li>
-                            </ul>
+                                <ul>
+                                    <li><Link href={'/admin/board/content/list?boardEnName=corp_press'}>기업언론보도</Link>
+                                    </li>
+                                </ul>
                             )}
                         </div>
-                        <li><button className={cx("board_title")} name="4_4" onClick={changeDropdown}>투자연계</button></li>
+                        <li>
+                            <button className={cx("board_title")} name="4_4" onClick={changeDropdown}>투자연계</button>
+                        </li>
                         <div className={cx("board_sub")}>
                             {dropdown["4_4"] && (
-                            <ul>
-                                <li><Link href={'/admin/board/content/list?boardEnName=ir'}>IR/투자 안내</Link></li>
-                            </ul>
+                                <ul>
+                                    <li><Link href={'/admin/board/content/list?boardEnName=ir'}>IR/투자 안내</Link></li>
+                                </ul>
                             )}
                         </div>
-                        <li><button className={cx("board_title")} name="4_5" onClick={changeDropdown}>창업지원단 소개</button></li>
+                        <li>
+                            <button className={cx("board_title")} name="4_5" onClick={changeDropdown}>창업지원단 소개</button>
+                        </li>
                         <div className={cx("board_sub")}>
                             {dropdown["4_5"] && (
-                            <ul>
-                                <li><Link href={'/admin/board/content/list?boardEnName=media_report'}>언론보도</Link></li>
-                                {/*<li><Link href={'/admin/board/content/list?boardEnName=news'}>뉴스레터</Link></li>*/}
-                            </ul>
+                                <ul>
+                                    <li><Link href={'/admin/board/content/list?boardEnName=media_report'}>언론보도</Link>
+                                    </li>
+                                    {/*<li><Link href={'/admin/board/content/list?boardEnName=news'}>뉴스레터</Link></li>*/}
+                                </ul>
                             )}
                         </div>
-                        <li><button className={cx("board_title")} name="4_6" onClick={changeDropdown}>기타</button></li>
+                        <li>
+                            <button className={cx("board_title")} name="4_6" onClick={changeDropdown}>기타</button>
+                        </li>
                         <div className={cx("board_sub")}>
                             {dropdown["4_6"] && (
                                 <ul>
                                     <li><Link href={'/admin/board/content/list?boardEnName=Issue'}>창업지원단 핫이슈</Link></li>
+                                </ul>
+                            )}
+                        </div>
+                        <li>
+                            <button className={cx("board_title")} name="4_7" onClick={changeDropdown}>영문 사이트</button>
+                        </li>
+                        <div className={cx("board_sub")}>
+                            {dropdown["4_7"] && (
+                                <ul>
+                                    <li><Link href={'/admin/board/content/list?boardEnName=notice_en'}>영문 공지사항</Link></li>
+                                    <li><Link href={'/admin/board/content/list?boardEnName=company_en'}>기업</Link></li>
                                 </ul>
                             )}
                         </div>

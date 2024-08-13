@@ -1,6 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import wrapper from "../../../../store/configureStore";
-import client from "../../../../lib/api/client";
 import {getBoard, getBoardContentList, getBoardInfoAll} from "../../../../store/board/board";
 import {END} from "redux-saga";
 import {useRouter} from "next/router";
@@ -125,11 +124,16 @@ const List = ({boardName}) => {
                         <title>한양대학교 창업지원단 - HYU Startup NOW</title>
                     </Head>
                 <section className={cx("sub_container","online_content")}>
-                    <h1 className={cx("sub_top_title")}>{currentBoard.board.boardKrName}</h1>
+                    <h1 className={cx("sub_top_title")}>
+                        {currentBoard.board.boardEnName == 'notice' ? "HYU Startup NOW" :currentBoard.board.boardKrName}
+                    </h1>
                     <p className={cx("sub_top_txt")}>{currentBoard.board.boardDesc}</p>
 
                     {(currentBoard.board.boardEnName == 'notice')  && (
                         <SearchBoxSelector skinName="SearchBoxStyle03" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
+                    )}
+                    {(currentBoard.board.boardEnName == 'company_en')  && (
+                        <SearchBoxSelector skinName="SearchBoxStyle07" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
                     )}
                     {
                         currentBoard.board.writeRole != null && (currentBoard.board.writeRole.indexOf(user.role) > 0) && currentBoard.board.boardEnName == 'idea' && (
@@ -142,6 +146,9 @@ const List = ({boardName}) => {
 
                     {currentBoard.board.boardEnName == 'notice' && (
                         <BoardSkinSelector skinName="NoticeListType01" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
+                    )}
+                    {currentBoard.board.boardEnName == 'company_en' && (
+                        <BoardSkinSelector skinName="GalleryType03" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
                     )}
                 </section>
                     </>

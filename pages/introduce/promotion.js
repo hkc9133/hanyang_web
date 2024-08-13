@@ -39,11 +39,11 @@ const Promotion = () => {
                     <ul className={`${cx("brochure_list")} clfx `}>
                         <li>
                             <span>브로슈어 국문</span>
-                            <Link href="/assets/pdf/한양대학교 창업지원단 브로슈어(국문).pdf"><a target="_blank" download>PDF로 보기</a></Link>
+                            <Link href="/assets/download/한양대학교 창업지원단 브로슈어(국문).pdf"><a target="_blank" download>PDF로 보기</a></Link>
                         </li>
                         <li>
                             <span>브로슈어 영문</span>
-                            <Link href="/assets/pdf/한양대학교 창업지원단 브로슈어(영문).pdf"><a target="_blank" download>PDF로 보기</a></Link>
+                            <Link href="/assets/download/한양대학교 창업지원단 브로슈어(영문).pdf"><a target="_blank" download>PDF로 보기</a></Link>
                         </li>
                     </ul>
                 </div>
@@ -58,21 +58,21 @@ const Promotion = () => {
                             <ul>
                                 <li><img src="/assets/image/ci_img_1.jpg" alt=""/></li>
                                 <li><img src="/assets/image/ci_img_2.jpg" alt=""/></li>
-                                <li><img src="/assets/image/ci_img_3.jpg" alt=""/></li>
+                                <li><img style={{border:'1px solid lightgray'}} src="/assets/image/ci_img_3.png" alt=""/></li>
                             </ul>
                         </div>
                         <div className={cx("right_ci")}>
                             <ul>
                                 <li><img src="/assets/image/ci_img_4.jpg" alt=""/></li>
                                 <li><img src="/assets/image/ci_img_5.jpg" alt=""/></li>
-                                <li><img src="/assets/image/ci_img_6.jpg" alt=""/></li>
+                                <li><img style={{backgroundColor:'#0E4A84'}} src="/assets/image/ci_img_6.png" alt=""/></li>
                             </ul>
                         </div>
                     </div>
                     <div className={cx("btn_area")}>
                         <ul className={`${cx("brochure_list")} clfx `}>
-                            <li><Link href={`${baseUrl}/hwp/한양대학교 창업지원단 로고.zip`}><a target="_blank" download>JPG 다운로드</a></Link></li>
-                            <li><Link href={`${baseUrl}/hwp/한양대학교 창업지원단 로고.zip`}><a target="_blank" download>AI 다운로드</a></Link></li>
+                            <li><Link href={"/assets/download/한양대학교 창업지원단 로고.zip"}><a target="_blank" download>JPG 다운로드</a></Link></li>
+                            <li><Link href={"/assets/download/한양대학교 창업지원단 로고.ai"}><a target="_blank" download>AI 다운로드</a></Link></li>
                         </ul>
                     </div>
                 </div>
