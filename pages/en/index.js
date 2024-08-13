@@ -298,7 +298,7 @@ const Index = () => {
                             </li>
                             </ul>*/}
                         <h3>HYU Startup NOW</h3>
-                        <p><Link href="/en/board/notice/list"><a>More</a></Link></p>
+                        <p><Link href="/en/board/notice_en/list"><a>More</a></Link></p>
                     </div>
 
                     <div className={cx("main_board_list", "main_tabCont")}>
@@ -330,7 +330,7 @@ const Index = () => {
                                                             {item.sub01}
                                                         </div>
                                                         <span
-                                                            className={cx("date")}>{moment(item.regDate).format("YYYY년 MM월 DD일")}</span>
+                                                            className={cx("date")}>{moment(item.regDate).format("YYYY-MM-DD")}</span>
                                                     </a>
                                                 </Link>
                                             </div>

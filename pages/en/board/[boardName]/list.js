@@ -129,7 +129,7 @@ const List = ({boardName}) => {
                     </h1>
                     <p className={cx("sub_top_txt")}>{currentBoard.board.boardDesc}</p>
 
-                    {(currentBoard.board.boardEnName == 'notice')  && (
+                    {(currentBoard.board.boardEnName == 'notice_en')  && (
                         <SearchBoxSelector skinName="SearchBoxStyle03" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
                     )}
                     {(currentBoard.board.boardEnName == 'company_en')  && (
@@ -144,8 +144,8 @@ const List = ({boardName}) => {
                     }
 
 
-                    {currentBoard.board.boardEnName == 'notice' && (
-                        <BoardSkinSelector skinName="NoticeListType01" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
+                    {currentBoard.board.boardEnName == 'notice_en' && (
+                        <BoardSkinSelector skinName="NoticeEnListType01" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
                     )}
                     {currentBoard.board.boardEnName == 'company_en' && (
                         <BoardSkinSelector skinName="GalleryType03" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
