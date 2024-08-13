@@ -261,7 +261,7 @@ const Index = () => {
                         <li className={cx("icon_6")}>
                             <Link href="/assets/pdf/en_brochure.pdf">
                                 <a target="_blank" download>
-                                    <span>Brochure</span>
+                                    <span>Brochure11</span>
                                 </a>
                             </Link>
                         </li>
