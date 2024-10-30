@@ -5,8 +5,14 @@ import classnames from "classnames/bind"
 import CounselApplyList from "./CounselApplyList";
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
-import {getCounselApply, getCounselApplyList, updateDiary} from "../../../store/mentoring/mentoring";
+import {
+    getCounselApply,
+    getCounselApplyList, initializeForm,
+    updateCounselApplyStatus,
+    updateDiary
+} from "../../../store/mentoring/mentoring";
 import Pagination from "../../common/Pagination";
+import {Modal} from "antd";
 const cx = classnames.bind(styles);
 
 const CounselApplyHistoryList = () => {
@@ -16,8 +22,9 @@ const CounselApplyHistoryList = () => {
     const [showAnswer, setShowAnswer] = useState(false);
     const [answer, setAnswer] = useState(null);
 
-    const {user,counselApply,counselApplyList,updateDiaryResult} = useSelector(({auth,mentoring, loading}) => ({
+    const {user,counselApply,counselApplyList,statusUpdate,updateDiaryResult} = useSelector(({auth,mentoring, loading}) => ({
         user: auth.user,
+        statusUpdate: mentoring.statusUpdate,
         counselApply:mentoring.getCounselApply.counselApply,
         counselApplyList:mentoring.counselApplyList,
         updateDiaryResult:mentoring.updateDiary
@@ -28,13 +35,17 @@ const CounselApplyHistoryList = () => {
     },[])
 
     useEffect(() => {
+        fetchList()
+
+    },[router.query])
+
+    const fetchList = () =>{
         const { page = 1} = router.query
         const data = {
             page:page,
         }
         dispatch(getCounselApplyList(data))
-
-    },[router.query])
+    }
 
     useEffect(() =>{
         if(updateDiaryResult.result && updateDiaryResult.error == null){
@@ -65,6 +76,37 @@ const CounselApplyHistoryList = () => {
         dispatch(updateDiary(data))
     }
 
+    const cancelConfirm = (formId) =>{
+        Modal.confirm({
+            title: '상담을 취소하시겠습니까?',
+            onOk: () => {
+                changeStatus(formId)
+            },
+            okText:"상담 취소",
+            cancelText:"닫기",
+        });
+    }
+    const changeStatus = (formId) => {
+        const data = {
+            formId: formId,
+            applyStatus: "CANCEL"
+        }
+        dispatch(updateCounselApplyStatus(data));
+    }
+
+    useEffect(() => {
+        if (statusUpdate.result) {
+            Modal.info({
+                title: '상담 취소가 완료되었습니다',
+                okText:"닫기",
+                maskClosable:false,
+                onOk:() =>{router.reload();}
+            });
+            initializeForm('statusUpdate');
+        }
+
+    }, [statusUpdate])
+
     return (
         <div>
             <section className={cx("container")}>
@@ -93,10 +135,11 @@ const CounselApplyHistoryList = () => {
                             <li className={cx("w_3")}>상담 제목</li>
                             <li className={cx("w_4")}>상담진행 상태</li>
                             <li className={cx("w_5")}>담당멘토</li>
+                            <li className={cx("w_6")}>관리</li>
                         </ul>
                     </div>
                     <div className={cx("td_content")}>
-                        <CounselApplyList list={counselApplyList.list} cx={cx} handleShowAnswer={handleShowAnswer} showAnswer={showAnswer} handleUpdateScore={handleUpdateScore}/>
+                        <CounselApplyList list={counselApplyList.list} cx={cx} handleShowAnswer={handleShowAnswer} showAnswer={showAnswer} handleUpdateScore={handleUpdateScore} cancelConfirm={cancelConfirm}/>
                     </div>
                     {counselApplyList.page != null && (
                         <Pagination

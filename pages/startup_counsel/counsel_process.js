@@ -60,14 +60,19 @@ const CounselApply = () => {
     }
 
     const moveMentorApply = () =>{
-        if(user.login == false ||  user.role != "ROLE_ADMIN" ){
-            Modal.warning({
-                title: '맨토신청은 당해년 05월 01일 부터 05월 31일까지 진행 합니다.',
-                content:'멘토신청을 원하시면 멘토로 회원가입 및 인증 후 신청 가능 합니다.'
-            });
-        }else{
-            router.push("/startup_counsel/mentor_apply")
-        }
+        Modal.warning({
+            title: '창업지원단(02-2220-3000)으로 문의바랍니다',
+            content:''
+        });
+        // router.push("/startup_counsel/mentor_apply")
+        // if(user.login == false ||  user.role != "ROLE_ADMIN" ){
+        //     Modal.warning({
+        //         title: '맨토신청은 당해년 05월 01일 부터 05월 31일까지 진행 합니다.',
+        //         content:'멘토신청을 원하시면 멘토로 회원가입 및 인증 후 신청 가능 합니다.'
+        //     });
+        // }else{
+        //     router.push("/startup_counsel/mentor_apply")
+        // }
     }
 
 
@@ -200,7 +205,7 @@ const CounselApply = () => {
                                     <span className={cx("number")}><strong>01.</strong> 상담신청</span>
                                     <ul>
                                         <li><span>상담대상: </span>한양대 창업지원단 창업지원사업 및 프로그램 수혜자, 한양대학교(원) 재(휴)학생 및 동문,
-                                            한양사이버대학교 재학생
+                                            수도권 내 대학 재(휴)학생, 수도권 소재 창업기업 대표, 수도권 거주자
                                         </li>
                                         <li><span>상담분야: </span>세무,회계 / 법률법무 / 지식재산권 / 마케팅판로 / 노무 / 투자 / 초기 창업자금 조달 /
                                             비즈니스모델링 / 시제품개발 /<br/>글로벌진출 / 스케일업(코스닥 CEO등) / 민간 기술자문(대기업 임직원) / 또래CEO
@@ -222,7 +227,7 @@ const CounselApply = () => {
                                 <li>
                                     <span className={cx("number")}><strong>04.</strong> 멘토링 진행</span>
                                     <p>
-                                        온라인(화상), 오프라인, 유선, 이메일 등 다양한 방식으로 상담을 진행할 수 있습니다.
+                                        온라인(화상) 또는 오프라인으로 상담을 진행할 수 있습니다.
                                     </p>
                                 </li>
                                 <li>

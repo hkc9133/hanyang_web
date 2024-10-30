@@ -55,8 +55,6 @@ export function* adminMentoringSaga(){
     yield takeLatest(GET_COUNSEL_APPLY_LIST, getCounselApplyListSaga);
     yield takeLatest(GET_COUNSEL_APPLY, getCounselApplySaga);
     yield takeLatest(UPDATE_COUNSEL_APPLY, updateCounselApplySaga);
-
-
 }
 
 const initialState = {

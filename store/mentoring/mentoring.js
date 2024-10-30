@@ -21,6 +21,7 @@ const [GET_MENTOR_LIST,GET_MENTOR_LIST_SUCCESS, GET_MENTOR_LIST_FAILURE] = creat
 const [APPLY_MENTOR,APPLY_MENTOR_SUCCESS, APPLY_MENTOR_FAILURE] = createRequestActionTypes('mentoring/APPLY_MENTOR')
 const [UPDATE_MENTOR_PROFILE,UPDATE_MENTOR_PROFILE_SUCCESS, UPDATE_MENTOR_PROFILE_FAILURE] = createRequestActionTypes('mentoring/UPDATE_MENTOR_PROFILE')
 const [APPLY_COUNSEL,APPLY_COUNSEL_SUCCESS, APPLY_COUNSEL_FAILURE] = createRequestActionTypes('mentoring/APPLY_COUNSEL')
+const [UPDATE_APPLY_COUNSEL,UPDATE_APPLY_COUNSEL_SUCCESS, UPDATE_APPLY_COUNSEL_FAILURE] = createRequestActionTypes('mentoring/UPDATE_APPLY_COUNSEL')
 const [GET_COUNSEL_APPLY_LIST,GET_COUNSEL_APPLY_LIST_SUCCESS, GET_COUNSEL_APPLY_LIST_FAILURE] = createRequestActionTypes('mentoring/GET_COUNSEL_APPLY_LIST')
 const [GET_COUNSEL_APPLY,GET_COUNSEL_APPLY_SUCCESS, GET_COUNSEL_APPLY_FAILURE] = createRequestActionTypes('mentoring/GET_COUNSEL_APPLY')
 const [UPDATE_COUNSEL_APPLY_STATUS,UPDATE_COUNSEL_APPLY_STATUS_SUCCESS, UPDATE_COUNSEL_APPLY_STATUS_FAILURE] = createRequestActionTypes('mentoring/UPDATE_COUNSEL_APPLY_STATUS')
@@ -48,6 +49,7 @@ export const getMentorList = createAction(GET_MENTOR_LIST, form => form);
 export const applyMentor = createAction(APPLY_MENTOR, form => form);
 export const updateMentorProfile = createAction(UPDATE_MENTOR_PROFILE, form => form);
 export const applyCounsel = createAction(APPLY_COUNSEL, form => form);
+export const updateApplyCounsel = createAction(UPDATE_APPLY_COUNSEL, form => form);
 export const getCounselFieldCode = createAction(GET_COUNSEL_FIELD_CODE);
 export const getProgressItem = createAction(GET_PROGRESS_ITEM);
 export const getSortationItem = createAction(GET_SORTATION_ITEM);
@@ -75,6 +77,7 @@ const getCounselFieldCodeSaga = createRequestSaga(GET_COUNSEL_FIELD_CODE, mentor
 const applyMentorSaga = createRequestSaga(APPLY_MENTOR, mentoringAPI.applyMentor);
 const updateMentorProfileSaga = createRequestSaga(UPDATE_MENTOR_PROFILE, mentoringAPI.updateMentorProfile);
 const applyCounselSaga = createRequestSaga(APPLY_COUNSEL, mentoringAPI.applyCounsel);
+const updateApplyCounselSaga = createRequestSaga(UPDATE_APPLY_COUNSEL, mentoringAPI.updateApplyCounsel);
 
 
 const getProgressItemSaga = createRequestSaga(GET_PROGRESS_ITEM, mentoringAPI.getProgressItem);
@@ -109,6 +112,7 @@ export function* mentoringSaga(){
     yield takeLatest(APPLY_MENTOR, applyMentorSaga);
     yield takeLatest(UPDATE_MENTOR_PROFILE, updateMentorProfileSaga);
     yield takeLatest(APPLY_COUNSEL, applyCounselSaga);
+    yield takeLatest(UPDATE_APPLY_COUNSEL, updateApplyCounselSaga);
 
     yield takeLatest(GET_COUNSEL_APPLY, getCounselApplySaga);
     yield takeLatest(UPDATE_COUNSEL_APPLY_STATUS, updateCounselApplyStatusSaga);
@@ -154,6 +158,10 @@ const initialState = {
         list:[]
     },
     apply:{
+        result:null,
+        error:null
+    },
+    updateCounsel:{
         result:null,
         error:null
     },
@@ -263,6 +271,16 @@ const mentoring = handleActions(
                 draft.counselApply.result = false
                 draft.counselApply.error = error.response.data
             }),
+        [UPDATE_APPLY_COUNSEL_SUCCESS]: (state, {payload: response}) =>
+            produce(state, draft => {
+                draft.updateCounsel.result = true
+                draft.updateCounsel.error = null
+            }),
+        [UPDATE_APPLY_COUNSEL_FAILURE]: (state, {payload: error}) =>
+            produce(state, draft => {
+                draft.updateCounsel.result = false
+                draft.updateCounsel.error = error.response.data
+            }),
         [GET_MENTOR_SUCCESS]: (state, {payload: response}) =>
             produce(state, draft => {
                 draft.mentor = response.data.mentor
@@ -321,7 +339,7 @@ const mentoring = handleActions(
         [UPDATE_COUNSEL_APPLY_STATUS_SUCCESS]: (state, {payload: response}) =>
             produce(state, draft => {
                 draft.statusUpdate.result = true
-                draft.getCounselApply.counselApply.applyStatus = response.data
+                // draft.getCounselApply.counselApply.applyStatus = response.data
             }),
         [UPDATE_COUNSEL_APPLY_STATUS_FAILURE]: (state, {payload: error}) =>
             produce(state, draft => {

@@ -11,6 +11,7 @@ import qs from 'query-string';
 import {useRouter} from "next/router";
 import {getRanThumbnail, getThumbnail} from '../../common/util/ThumbnailUtil';
 import client from "../../../lib/api/client";
+import moment from "moment";
 
 const GalleryType02 = ({content,board, pageChange}) => {
     const router = useRouter();
@@ -34,7 +35,7 @@ const GalleryType02 = ({content,board, pageChange}) => {
                                         <div className={cx("title")}>
                                             {item.title}
                                         </div>
-                                        <span className={cx("date")}>2020.12.21</span>
+                                        <span className={cx("date")}>{moment(item.regDate).format("YYYY-MM-DD").toString()}</span>
                                     </a>
                                 </div>
                             </li>

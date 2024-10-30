@@ -145,7 +145,7 @@ const BestStartup = () => {
                         <div className={cx("title_area")}>
                             <h2>학생<span className={cx("txt_2")}>창업기업</span></h2>
                             {/*<span className={cx("txt_1")}>학생 창업기업</span>*/}
-                            <span className={cx("number")}><strong>287</strong>개(’10~’20)</span>
+                            <span className={cx("number")}><strong>406</strong>개(’10~’21)</span>
                         </div>
 
                         <div className={cx("logo_list")}>

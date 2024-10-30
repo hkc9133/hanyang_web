@@ -78,78 +78,31 @@ const Footer = () => {
 
     return (
         <section className={cx("footer_wrap")}>
-            <div className={cx("footer_top")}>
-                <div className={cx("footer","clfx")}>
-                    <div className={cx("cs_center")}>
-                        <h1>OneStop Start-up Counseling</h1>
-                        <div className={cx("tel")}>02-2220-3000</div>
-                    </div>
-                    <div className={cx("business_hours")}>
-                        <ul>
-                            <li>
-                                Mon-Fri&nbsp; 10:00-17:00&nbsp;
-                            </li>
-                            <li>
-                                (Excluding Weekends and Holidays)
-                            </li>
-                            <li>
-                                E-mail&nbsp;&nbsp;startup@hanyang.ac.kr
-                            </li>
-                        </ul>
-                    </div>
-                    <div className={cx("footer_link")}>
-                        <ul className={cx("clfx")}>
-                            <li className={cx("icon_1")}><Link href="/board/faq/list"><a>FAQ</a></Link></li>
-                            {/*<li className={cx("icon_2")}><Link href="/board/qna/list"><a>Q&amp;A</a></Link></li>*/}
-                            <li className={cx("icon_3")}><Link href="https://pf.kakao.com/_fWsJd/chat"><a target="_blank">1:1 Inquiries</a></Link></li>
-                            <li className={cx("icon_4")}><Link href="/board/data_room/list"><a>Archive</a></Link></li>
-                        </ul>
-                    </div>
-                    <div className={cx("footer_notice")}>
-                        <Link href="/board/media_report/list"><a><h1>Media &gt;</h1></a></Link>
-                        <ul>
-                            {mediaList.map( (item,index) =>
-                                index < 3 && <li key={item.contentId}><Link href={item.sub01}><a>{item.title}</a></Link></li>
-
-                            )}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div className={cx("footer_menu")}>
-                <div className={cx("footer")}>
-                    <ul>
-                        <li><Link href="/privacy_policy"><a><strong>Privacy Policy</strong></a></Link></li>
-                        <li><Link href="/terms"><a>Terms and Conditions</a></Link></li>
-                        <li><Link href="/email_policy"><a>Deny unauthorized collection of email addresses</a></Link></li>
-                    </ul>
-                </div>
-            </div>
             <div className={cx("footer_inner")}>
                 <div className={cx("footer")}>
 
                     <div className={cx("footer_right")}>
-                        <div className={cx("footer_family_site")}>
-                            <Dropdown overlay={siteList} placement="topCenter">
-                                <button type="button" className={cx("open_footer_family_site")}>Family Site</button>
-                            </Dropdown>
-                        </div>
                         <div className={cx("footer_sns")}>
                             <ul>
                                 <li><Link href="https://blog.naver.com/hyustartup"><a target="_blank"><Image src="/assets/image/sns_icon_1.gif" width={24} height={24}  alt="naver_icon"/></a></Link></li>
                                 <li><Link href="https://www.facebook.com/startuphanyang"><a target="_blank"><Image src="/assets/image/sns_icon_2.gif"  width={24} height={24} alt="facebook_icon"/></a></Link></li>
                                 <li><Link href="https://www.youtube.com/c/%ED%95%9C%EC%96%91%EB%8C%80%ED%95%99%EA%B5%90%EC%B0%BD%EC%97%85%EC%A7%80%EC%9B%90%EB%8B%A8"><a target="_blank"><Image src="/assets/image/sns_icon_3.gif"  width={24} height={24} alt="google_icon"/></a></Link></li>
                                 {/*<li><Link href="/"><a><Image src="/assets/image/sns_icon_4.gif"  width={24} height={24} alt="kakao_icon"/></a></Link></li>*/}
+                                <li>
+                                    <Link href="https://kr.linkedin.com/company/hanyang-institute-for-entrepreneurship">
+                                        <a target="_blank">
+                                            <Image src="/assets/image/sns_icon_4.gif" width={24} height={24} alt="linkedin icon" />
+                                        </a>
+                                    </Link>
+                                </li>
                             </ul>
                         </div>
                     </div>
                     <div className={cx("footer_logo")}><Image src="/assets/image/footer_logo.png"  width={238} height={38} alt="한양대학교 창업지원단"/></div>
                     <div className={cx("footer_cont")}>
-                        <p>Director of Website: Tae-Yong Koo/ Manager(Responsible Person): Sang-Gil Jang</p>
-                        <address>(04763) Hanyang University HIT 103, 222 Wangsimni-ro, Seongdong-gu, Seoul</address>
-                        <p>Map and Directions: <Link href="/introduce/location"><a>Shortcut</a></Link></p>
-                        <p className={cx("copyright")}>&copy; 2021. Hanyang Institute for Entrepreneurship, Hanyang University. All rights
-                            reserved.</p>
+                        <p>Hanyang Institute for Entrepreneurship (HIE)</p>
+                        <address>222, Wangsimni-ro, Seongdong-gu, Seoul, 04763, Korea</address>
+                        <p className={cx("copyright")}>&copy; 2021. Hanyang Institute for Entrepreneurship, Hanyang University. All rights reserved.</p>
                     </div>
                 </div>
             </div>

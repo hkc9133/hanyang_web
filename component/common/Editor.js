@@ -1,10 +1,10 @@
 
 import {useEffect} from "react";
 import {baseUrl, port, url} from "../../lib/api/client";
+import {Modal} from "antd";
+import {htmlTagRemove} from "../../lib/util/StringUtil";
 
-const Editor = ({setEditor,content}) => {
-
-
+const Editor = ({setEditor,setContent, content, placeholder="",maxCnt}) => {
 
     function MyCustomUploadAdapterPlugin(editor) {
         editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
@@ -14,7 +14,6 @@ const Editor = ({setEditor,content}) => {
 
 
     useEffect(() => {
-
 
         if(window.editor != null){
             window.DecoupledDocumentEditor
@@ -69,6 +68,7 @@ const Editor = ({setEditor,content}) => {
                     },
                     mediaEmbed: {previewsInData: true},
                     language: 'ko',
+                    placeholder:placeholder,
                     image: {
                         styles: [
                             'alignLeft', 'alignCenter', 'alignRight'
@@ -102,6 +102,9 @@ const Editor = ({setEditor,content}) => {
                     if(content != null){
                         newEditor.setData(content)
                     }
+                    newEditor.model.document.on('change:data', (evt, data) => {
+                        setContent && setContent(newEditor.getData())
+                    });
                     setEditor(newEditor)
                     window.editor = newEditor;
                 })

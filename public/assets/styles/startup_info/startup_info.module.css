@@ -229,7 +229,7 @@
 }
 .mentor_groupList .tab_style_2{margin-bottom:40px; }
 .mentor_groupList .td_content .satisfaction .btn_save:hover{background-color:#222; color:#fff; }
-.mentor_groupList .td_content .question{cursor:pointer;}
+/*.mentor_groupList .td_content .question{cursor:pointer;}*/
 .mentor_groupList .td_content .answer{max-height:0;overflow:hidden;padding:0px 40px; transition: max-height,padding 0.3s ease-in-out;}
 .mentor_groupList .td_content .answer.show{opacity: 1;max-height: 1000px; padding:40px;overflow: auto; display: list-item;
     }
@@ -245,9 +245,13 @@
 
 .mentor_groupList ul li.w_1{width:11.36%;}
 .mentor_groupList ul li.w_2{width:14.4%;}
-.mentor_groupList ul li.w_3{width:36.76%; }
+.mentor_groupList ul li.w_3{width:30.76%; }
 .mentor_groupList ul li.w_4{width:14%;}
-.mentor_groupList ul li.w_5{width:23.48%;}
+.mentor_groupList ul li.w_5{width:20.48%;}
+.mentor_groupList ul li.w_6{width:9%;}
+
+.mentor_groupList ul li.w_3 button{text-decoration: underline;font-size: 15px}
+
 .review .star{margin-right:8px; width:18px; height:18px; display:inline-block; vertical-align:top; background:url(../../image/star_off.png) no-repeat center center; cursor:pointer;}
 .review .star.on{width:18px; height:18px; display:inline-block; vertical-align:top; background:url(../../image/star_on.png) no-repeat center center; }
 .mentor_groupList .mentors_opinion{padding:40px; background-color:#fff; display:none;}
@@ -303,6 +307,7 @@
 
 .btn-black-bd{border:1px solid #222; }
 .btn-black-bd:hover{background-color:#222; color:#fff; }
+.tmp_btn{margin-left: 10px;}
 
 
 

@@ -1,11 +1,13 @@
-import React, {createRef, useCallback, useRef, useState} from 'react';
+import React, {createRef, useCallback, useEffect, useRef, useState} from 'react';
 import Link from "next/link";
 import moment from "moment";
 import {getCounselStatus} from "../../common/util/StatusUtil";
 import {useDispatch, useSelector} from "react-redux";
-import {Upload} from "antd";
+import {Modal, Upload} from "antd";
 import {fileDownload} from "../../../store/file/file";
 import {Rate} from 'antd';
+import {useRouter} from "next/router";
+import {initializeForm, updateCounselApplyStatus} from "../../../store/mentoring/mentoring";
 
 const CounselApplyList = (props) => {
     return (
@@ -22,12 +24,14 @@ const CounselApplyList = (props) => {
     );
 };
 
-const CounselApplyListItem = React.memo(({item, handleShowAnswer, showAnswer, handleUpdateScore, cx}) => {
+const CounselApplyListItem = React.memo(({item, handleShowAnswer, showAnswer, handleUpdateScore,cancelConfirm, cx}) => {
+        const router =useRouter();
         const questionRef = useRef();
         const dispatch = useDispatch();
         const [updateScore, setUpdateScore] = useState(2.5)
-        const {user, counselApply, loading} = useSelector(({auth, mentoring, loading}) => ({
+        const {user, counselApply,statusUpdate, loading} = useSelector(({auth, mentoring, loading}) => ({
             user: auth.user,
+            statusUpdate: mentoring.statusUpdate,
             counselApply: mentoring.getCounselApply,
             loading: loading['mentoring/GET_COUNSEL_APPLY']
         }))
@@ -44,42 +48,47 @@ const CounselApplyListItem = React.memo(({item, handleShowAnswer, showAnswer, ha
             }
         }, [])
 
+
+
         return (
             <ul ref={questionRef}>
-                <li className={cx("question")} onClick={() => {
-                    handleShowAnswer(item.formId);
-                    scrollToRef();
-                }}>
+                <li className={cx("question")} >
                     <ul>
                         <li className={cx("w_1")}>{item.rownum}</li>
                         <li className={cx("w_2")}>{moment(item.regDate).format("YYYY.MM.DD")}</li>
-                        <li className={cx("w_3")}>{item.title}</li>
+                        <li className={cx("w_3")} onClick={() => {
+                            item.applyStatus == "TEMP"?
+                            router.push(`/mypage/mentee/${item.formId}`) : item.applyStatus == "CANCEL" ? "" : handleShowAnswer(item.formId)
+                        }}><button type={"button"}>{item.title}</button></li>
                         <li className={cx("w_4")}>{getCounselStatus(item.applyStatus)}</li>
                         <li className={cx("w_5")}>{item.mentorName}</li>
+                        <li className={cx("w_6")}>{(item.applyStatus == "APPLY" ||item.applyStatus == "TEMP") && <button type={"button"} onClick={() =>{cancelConfirm(item.formId)}}>상담 취소</button>}</li>
+
                     </ul>
                 </li>
                 {counselApply.counselApply != null && (
                     <li className={cx("answer", {show: showAnswer == item.formId, hidden: showAnswer != item.formId})}>
                         <div className={cx("info")}>
                             <ul className={"clfx"}>
-                                <li>구분 </li>
-                                    <ul className={cx("dep_2")}>
-                                        {counselApply.counselApply.sortationItemList.map((item) =>{
-                                            return <li key={item.itemId}>-{item.item}</li>
-                                        })}
-                                    </ul>
+                                <li>구분</li>
+                                <ul className={cx("dep_2")}>
+                                    {counselApply.counselApply.sortationItemList.map((item) => {
+                                        return <li key={item.itemId}>-{item.item}</li>
+                                    })}
+                                </ul>
                                 <li>상담멘토 : {counselApply.counselApply.mentorName}</li>
                                 <li>창업진행상황 : {counselApply.counselApply.formProgressItemName}</li>
                                 <li>희망상담방식 :</li>
-                                    <ul className={cx("dep_2")}>
-                                    {counselApply.counselApply.wayItemList.map((item) =>{
+                                <ul className={cx("dep_2")}>
+                                    {counselApply.counselApply.wayItemList.map((item) => {
                                         return <li key={item.itemId}>-{item.item}</li>
                                     })}
-                                    </ul>
+                                </ul>
                                 <li>희망멘토링분야
                                     : {counselApply.counselApply.fieldName}</li>
                                 <li className={cx("counsel_content")}>문의 내용
-                                    <div className={"ck-content"} dangerouslySetInnerHTML={{__html: counselApply.counselApply.content}}/>
+                                    <div className={"ck-content"}
+                                         dangerouslySetInnerHTML={{__html: counselApply.counselApply.content}}/>
                                 </li>
                             </ul>
                             {

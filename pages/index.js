@@ -179,7 +179,7 @@ const Index = () => {
     const [showNotice, setShowNotice] = useState(1);
     const [searchValue, setSearchValue] = useState("");
 
-    const {mainData,user} = useSelector(({main,auth, loading}) => ({
+    const {mainData, user} = useSelector(({main, auth, loading}) => ({
         mainData: main.mainData,
         user: auth.user
     }))
@@ -203,18 +203,18 @@ const Index = () => {
 
     }
 
-    const moveReportApply = () =>{
-        if(user.login == false || (user.role == "ROLE_MT") ){
-            if(user.role == "ROLE_MT"){
+    const moveReportApply = () => {
+        if (user.login == false || (user.role == "ROLE_MT")) {
+            if (user.role == "ROLE_MT") {
                 Modal.warning({
                     title: '권한이 없습니다',
                 });
-            }else{
+            } else {
                 Modal.warning({
                     title: '로그인 후 이용하실 수 있습니다.',
                 });
             }
-        }else{
+        } else {
             router.push("/startup_counsel/student_report")
         }
     }
@@ -271,7 +271,7 @@ const Index = () => {
                             </Link>
                         </li>
                         <li className={cx("icon_7")}>
-                            <Link href="/introduce/space_reservation">
+                            <Link href="/board/notice/view/2791">
                                 <a>
                                     <span>공간예약</span>
                                 </a>
@@ -389,88 +389,96 @@ const Index = () => {
                     <div className={cx("main_board_list", "main_tabCont")}>
                         {/*공지사항*/}
                         {mainData.notice.length > 0 ? (
-                            <Slider
-                                className={`${cx("slides", {hidden: showNotice !== 1})} main_board_list`} {...boardSliderSettings}
-                                ref={borderSlider}>
-                                {
-                                    mainData.notice.map((item, index) => {
-                                        return (
-                                            <div className={cx("list")} key={item.contentId}>
-                                                <div className={cx("img_area")}>
-                                                    <Link href={`/board/notice/view/${item.contentId}`}>
-                                                        <a>
-                                                            <img
-                                                                   src={item.thumbList.length > 0 ? `${baseUrl}/resource${item.thumbList[0].filePath}/${item.thumbList[0].fileName + item.thumbList[0].fileExtension}` : getRanThumbnail()}
-                                                                   alt={"게시글 썸네일"}/>
-                                                        </a>
-                                                    </Link>
+                            <>
+                                <div className={`${cx("more_link", {hidden: showNotice !== 1})}`}>
+                                    <Link href={"/board/notice/list"}><a>더보기</a></Link>
+                                </div>
+                                <Slider
+                                    className={`${cx("slides", {hidden: showNotice !== 1})} main_board_list`} {...boardSliderSettings}
+                                    ref={borderSlider}>
+                                    {
+                                        mainData.notice.map((item, index) => {
+                                            return (
+                                                <div className={cx("list")} key={item.contentId}>
+                                                    <div className={cx("img_area")}>
+                                                        <Link href={`/board/notice/view/${item.contentId}`}>
+                                                            <a>
+                                                                <img
+                                                                    src={item.thumbList.length > 0 ? `${baseUrl}/resource${item.thumbList[0].filePath}/${item.thumbList[0].fileName + item.thumbList[0].fileExtension}` : getRanThumbnail()}
+                                                                    alt={"게시글 썸네일"}/>
+                                                            </a>
+                                                        </Link>
+                                                    </div>
+                                                    <div className={cx("txt_area")}>
+                                                        <Link href={`/board/notice/view/${item.contentId}`}>
+                                                            <a>
+                                                                <div className={cx("title")}>
+                                                                    {item.title}
+                                                                </div>
+                                                                <div className={cx("txt")}>
+                                                                    {/*<div dangerouslySetInnerHTML={{__html: item.content.replace(/<img[^>]*>/g, '')}}/>*/}
+                                                                    {item.sub01}
+                                                                </div>
+                                                                <span
+                                                                    className={cx("date")}>{moment(item.regDate).format("YYYY년 MM월 DD일")}</span>
+                                                            </a>
+                                                        </Link>
+                                                    </div>
                                                 </div>
-                                                <div className={cx("txt_area")}>
-                                                    <Link href={`/board/notice/view/${item.contentId}`}>
-                                                        <a>
-                                                            <div className={cx("title")}>
-                                                                {item.title}
-                                                            </div>
-                                                            <div className={cx("txt")}>
-                                                                {/*<div dangerouslySetInnerHTML={{__html: item.content.replace(/<img[^>]*>/g, '')}}/>*/}
-                                                                {item.sub01}
-                                                            </div>
-                                                            <span
-                                                                className={cx("date")}>{moment(item.regDate).format("YYYY년 MM월 DD일")}</span>
-                                                        </a>
-                                                    </Link>
-                                                </div>
-                                            </div>
 
-                                        )
-                                    })
-                                }
-                            </Slider>
-
-
+                                            )
+                                        })
+                                    }
+                                </Slider>
+                            </>
                         ) : "LOADING"}
                         {mainData.startup_info.length > 0 ? (
-                            <Slider
-                                className={`${cx("slides", {hidden: showNotice !== 2})} main_board_list`} {...boardSliderSettings}>
-                                {
-                                    mainData.startup_info.map((item) => {
-                                        // console.log(baseUrl)
-                                        // console.log(`${baseUrl}/resource${item.thumbList[0].filePath}/${item.thumbList[0].fileName + item.thumbList[0].fileExtension}`)
-                                        return (
-                                            <div className={cx("list")} key={item.contentId}>
-                                                <div className={cx("img_area")}>
-                                                    <Link href={`/board/startup_info/view/${item.contentId}`}>
-                                                        <a>
-                                                            {/*<Image src={getNoticeRanThumbnail(item.content)} layout="fill"*/}
-                                                            {/*       alt="main_notice_img"/>*/}
-                                                            <img
-                                                                   src={item.thumbList.length > 0 ? `${baseUrl}/resource${item.thumbList[0].filePath}/${item.thumbList[0].fileName + item.thumbList[0].fileExtension}` : getRanThumbnail()}
-                                                                   alt={"게시글 썸네일"}/>
-                                                        </a>
-                                                    </Link>
+                            <>
+                                <div className={`${cx("more_link", {hidden: showNotice !== 2})}`}>
+                                    <Link href={"/board/startup_info/list"}><a>더보기</a></Link>
+                                </div>
+                                <Slider
+                                    className={`${cx("slides", {hidden: showNotice !== 2})} main_board_list`} {...boardSliderSettings}>
+                                    {
+                                        mainData.startup_info.map((item) => {
+                                            // console.log(baseUrl)
+                                            // console.log(`${baseUrl}/resource${item.thumbList[0].filePath}/${item.thumbList[0].fileName + item.thumbList[0].fileExtension}`)
+                                            return (
+                                                <div className={cx("list")} key={item.contentId}>
+                                                    <div className={cx("img_area")}>
+                                                        <Link href={`/board/startup_info/view/${item.contentId}`}>
+                                                            <a>
+                                                                {/*<Image src={getNoticeRanThumbnail(item.content)} layout="fill"*/}
+                                                                {/*       alt="main_notice_img"/>*/}
+                                                                <img
+                                                                    src={item.thumbList.length > 0 ? `${baseUrl}/resource${item.thumbList[0].filePath}/${item.thumbList[0].fileName + item.thumbList[0].fileExtension}` : getRanThumbnail()}
+                                                                    alt={"게시글 썸네일"}/>
+                                                            </a>
+                                                        </Link>
+                                                    </div>
+                                                    <div className={cx("txt_area")}>
+                                                        <Link href={`/board/startup_info/view/${item.contentId}`}>
+                                                            <a>
+                                                                <div className={cx("title")}>
+                                                                    {item.title}
+                                                                </div>
+                                                                <div className={cx("txt")}>
+                                                                    {/*<div*/}
+                                                                    {/*    dangerouslySetInnerHTML={{__html: item.content.replace(/<img[^>]*>/g, '')}}/>*/}
+                                                                    {item.sub01}
+                                                                </div>
+                                                                <span
+                                                                    className={cx("date")}>{moment(item.regDate).format("YYYY년 MM월 DD일")}</span>
+                                                            </a>
+                                                        </Link>
+                                                    </div>
                                                 </div>
-                                                <div className={cx("txt_area")}>
-                                                    <Link href={`/board/startup_info/view/${item.contentId}`}>
-                                                        <a>
-                                                            <div className={cx("title")}>
-                                                                {item.title}
-                                                            </div>
-                                                            <div className={cx("txt")}>
-                                                                {/*<div*/}
-                                                                {/*    dangerouslySetInnerHTML={{__html: item.content.replace(/<img[^>]*>/g, '')}}/>*/}
-                                                                {item.sub01}
-                                                            </div>
-                                                            <span
-                                                                className={cx("date")}>{moment(item.regDate).format("YYYY년 MM월 DD일")}</span>
-                                                        </a>
-                                                    </Link>
-                                                </div>
-                                            </div>
 
-                                        )
-                                    })
-                                }
-                            </Slider>
+                                            )
+                                        })
+                                    }
+                                </Slider>
+                            </>
                         ) : "LOADING"}
                         <div>
                         </div>
@@ -491,7 +499,7 @@ const Index = () => {
                                 </p>
                                 <span className={cx("txt_3")}>학생 창업기업 수</span>
                             </div>
-                            <span className={cx("number")}>347</span>
+                            <span className={cx("number")}>534</span>
                         </li>
                         <li>
                             <div className={cx("left_area")}>
@@ -501,7 +509,7 @@ const Index = () => {
                                 </p>
                                 <span className={cx("txt_3")}>아카데미 창업기업 수</span>
                             </div>
-                            <span className={cx("number")}>545</span>
+                            <span className={cx("number")}>571</span>
                         </li>
                         <li>
                             <div className={cx("left_area")}>
@@ -511,7 +519,7 @@ const Index = () => {
                                 </p>
                                 <span className={cx("txt_3")}>동문 CEO 기업 수</span>
                             </div>
-                            <span className={cx("number")}>11,071</span>
+                            <span className={cx("number")}>12,452</span>
                         </li>
                     </ul>
                 </div>
@@ -538,7 +546,7 @@ const Index = () => {
                             <span className={cx("txt_1")}>국내 1위 벤처창업 CEO 배출 대학</span>
                             {/*<span className={cx("txt_2")}>hanyang Startup</span>*/}
                             <p className={cx("txt_3")}>
-                                학생 창업자수 1위, 벤처 CEO 배출 1위 <br/>한양대 출신 CEO 기업 11,071개<br/>2020년 매출 602조원, 국내 GDP 33.3%
+                                학생 창업자수 1위, 벤처 CEO 배출 1위 <br/>한양대 출신 CEO 기업 12,452개<br/>2022년 매출 385조원, 국내 GDP 18.6%
                             </p>
                         </li>
                         <li className={cx("icon_3")}>
