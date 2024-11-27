@@ -1,22 +1,26 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import wrapper from "../../../../store/configureStore";
-import client from "../../../../lib/api/client";
-import {addReply, deleteReply, getBoard, updateReply} from "../../../../store/board/board";
-import {END} from "redux-saga";
+import wrapper from "../../../../../store/configureStore";
+import {
+    addReply,
+    deleteBoardContent,
+    deleteReply,
+    getBoard,
+    getBoardContent,
+    updateReply
+} from "../../../../../store/board/board";
 import {useRouter} from "next/router";
-import {getBoardContent, deleteBoardContent, initialize} from "../../../../store/board/board";
 import {useDispatch, useSelector} from "react-redux";
 import Link from 'next/link'
 import moment from 'moment';
-import styles from '../../../../public/assets/styles/board/board.module.css';
+import styles from '../../../../../public/assets/styles/board/board.module.css';
 import classnames from "classnames/bind"
 import qs from 'query-string';
-import {Input, Modal, Upload} from "antd";
-import {fileDownload, fileDownload2} from "../../../../store/file/file";
-import ReplyAdd from "../../../../component/board/ReplyAdd";
-import ReplyList from "../../../../component/board/ReplyList";
+import {Modal, Upload} from "antd";
+import {fileDownload} from "../../../../../store/file/file";
+import ReplyAdd from "../../../../../component/board/ReplyAdd";
+import ReplyList from "../../../../../component/board/ReplyList";
 import Head from "next/head";
-import PageNavigation from "../../../../component/layout/PageNavigation";
+import PageNavigation from "../../../../../component/layout/PageNavigation";
 
 const cx = classnames.bind(styles);
 

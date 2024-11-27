@@ -1,8 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import wrapper from "../../../../store/configureStore";
-import client from "../../../../lib/api/client";
-import {getBoard, getBoardContentList, getBoardInfoAll} from "../../../../store/board/board";
-import {END} from "redux-saga";
+// import {getBoard, getBoardContentList} from "../../../../store/board/board";
+import {getBoard, getBoardContentList} from "../../../../store/board/board";
 import {useRouter} from "next/router";
 import {useDispatch, useSelector} from "react-redux";
 import PageNavigationEng from "../../../../component/layout/PageNavigation_eng";
@@ -15,6 +14,7 @@ import classnames from "classnames/bind"
 
 import qs from 'query-string';
 import Head from "next/head";
+
 const cx = classnames.bind(styles);
 
 export const getServerSideProps = wrapper.getServerSideProps(async (context) => {

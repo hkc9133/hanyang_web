@@ -169,6 +169,14 @@ const ContentEditView = () => {
 
 
     const submitApply = (e) => {
+
+        if (!writeInfo.eventDateStr) {
+            Modal.warning({
+                title: '행사일을 선택해 주세요.',
+            });
+            return ;
+        }
+
         const data = {
             ...writeInfo,
             // startupCalendarId:view.startupCalendar.startupCalendarId,

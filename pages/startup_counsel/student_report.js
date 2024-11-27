@@ -3,7 +3,7 @@ import React, {useCallback, useEffect, useState} from 'react';
 
 import styles from '../../public/assets/styles/startup_info/startup_info.module.css';
 import classnames from "classnames/bind"
-import {Checkbox, Form, Input, Modal} from "antd";
+import {Checkbox, Form, Input, Modal, Typography, Upload} from "antd";
 const cx = classnames.bind(styles);
 import { DatePicker, Space } from 'antd';
 import locale from "antd/lib/date-picker/locale/ko_KR";
@@ -13,11 +13,16 @@ import {addStudentReport, initialize} from "../../store/studentReport/studentRep
 import PageNavigation from "../../component/layout/PageNavigation";
 import moment from "moment";
 import Head from "next/head";
+import {LoadingOutlined, PlusOutlined} from "@ant-design/icons";
+import client from "../../lib/api/client";
 const StudentReportPage = () => {
 
     const [form] = Form.useForm();
     const dispatch = useDispatch();
     const router = useRouter();
+
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     const [reportForm, setReportForm] = useState({
         studentName: "",
@@ -34,6 +39,11 @@ const StudentReportPage = () => {
         sales:0,
         staffNum:0,
         isAgree: false,
+
+        uploadResultList: [],
+        oldUploadResultList: [],
+        removeFiles: []
+
     })
 
     const {add} = useSelector(({studentReport, loading}) => ({
@@ -69,9 +79,17 @@ const StudentReportPage = () => {
     },[])
 
     const submitApply = (e) => {
+
+        console.log("reportForm", reportForm);
+
+
         const data = {
             ...reportForm,
-            createDate:reportForm.createDate.format("YYYY-MM-DD").toString()
+            createDate:reportForm.createDate.format("YYYY-MM-DD").toString(),
+            uploadResultList: reportForm.uploadResultList.map((item) => {
+                return item.fileId
+            }),
+            removeFiles:[]
 
         }
 
@@ -100,6 +118,11 @@ const StudentReportPage = () => {
                             sales:0,
                             staffNum:0,
                             isAgree: false,
+
+                            uploadResultList: [],
+                            oldUploadResultList: [],
+                            removeFiles: []
+
                         });
                         form.resetFields();
                         window.scrollTo(0, 0);
@@ -117,6 +140,50 @@ const StudentReportPage = () => {
         // Can not select days before today and today
         return current && current > moment().endOf('day');
     }
+
+
+    const handleChangeUploadFile = ({fileList}) => {
+        setReportForm({
+            ...reportForm,
+            uploadResultList: fileList
+        })
+    }
+
+    const uploadFile = async options => {
+        const {onSuccess, onError, file, onProgress} = options;
+        setLoading(true)
+
+        const fmData = new FormData();
+        const config = {
+            headers: {"content-type": "multipart/form-data"},
+            onUploadProgress: event => {
+                onProgress({percent: (event.loaded / event.total) * 100});
+            }
+        };
+        fmData.append("file", file);
+        try {
+            const res = await client.post(
+                "/resource/attach_file/STUDENT_ATTACH",
+                fmData,
+                config
+            );
+            onSuccess("Ok");
+
+            console.log("res.data.fileId", res.data.fileId);
+            // const uploadResultList = [...reportForm.uploadResultList, res.data.fileId]
+            setReportForm({
+                ...reportForm,
+                uploadResultList: reportForm.uploadResultList.concat(res.data)
+
+            })
+            setLoading(false)
+        } catch (err) {
+            console.log(err)
+            setError("업로드 중 에러가 발생하였습니다");
+            setLoading(false)
+            onError({err});
+        }
+    };
 
     return (
         <>
@@ -407,6 +474,35 @@ const StudentReportPage = () => {
                                 </Form.Item>
                             </li>
                         </ul>
+
+
+                        <ul className={`${cx("w_3")} clfx `}>
+                            <li>
+                                <span className={cx("title")}>첨부파일 (10MB 미만)</span>
+                                <div className={`clfx `}>
+                                    <Upload
+                                        customRequest={(e) => {
+                                            uploadFile(e)
+                                        }}
+                                        listType="picture-card"
+                                        fileList={reportForm.uploadResultList}
+                                        onChange={(e) => {
+                                            handleChangeUploadFile(e)
+                                        }}
+                                    >
+                                        {reportForm.uploadResultList?.length >= 3 ? null : (
+                                            <div>
+                                                {loading ? <LoadingOutlined/> : <PlusOutlined/>}
+                                                <div style={{marginTop: 8}}>Upload</div>
+                                            </div>
+                                        )}
+                                    </Upload>
+                                    <Typography.Text type="danger">{error}</Typography.Text>
+                                </div>
+                                <p className={cx("help_txt01")}>※ 신청하신 멘토링과 관련된 참고자료를 첨부해주세요. 첨부파일은 담당 멘토에게 전달되며, 최대3개까지
+                                    첨부 가능합니다.</p>
+                            </li>
+                        </ul>
                     </div>
 
                     <div className={cx("termsArea")}>
@@ -423,17 +519,18 @@ const StudentReportPage = () => {
 </pre>
                         </div>
                         <div className={cx("agree")}>
-                                <Form.Item
-                                    name="isAgree"
-                                    rules={[
-                                        {
-                                            required: !reportForm.isAgree,
-                                            message: '개인정보 처라방침 동의는 필수 입니다.',
-                                        },
-                                    ]}
-                                >
-                                    <Checkbox name="isAgree" checked={reportForm.isAgree} onChange={changeReportFormValue}>개인정보처리방침안내 내용에 동의 합니다</Checkbox>
-                                </Form.Item>
+                            <Form.Item
+                                name="isAgree"
+                                rules={[
+                                    {
+                                        required: !reportForm.isAgree,
+                                        message: '개인정보 처라방침 동의는 필수 입니다.',
+                                    },
+                                ]}
+                            >
+                                <Checkbox name="isAgree" checked={reportForm.isAgree} onChange={changeReportFormValue}>개인정보처리방침안내
+                                    내용에 동의 합니다</Checkbox>
+                            </Form.Item>
                         </div>
                     </div>
 

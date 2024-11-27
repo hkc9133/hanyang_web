@@ -1,28 +1,26 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import wrapper from "../../../../store/configureStore";
-import client from "../../../../lib/api/client";
-import {addReply, deleteReply, getBoard, updateReply} from "../../../../store/board/board";
-import {END} from "redux-saga";
+import wrapper from "../../../../../store/configureStore";
+import {
+    deleteBoardContent,
+    getBoard,
+    getBoardContent,
+    initialize,
+    updateBoardContent
+} from "../../../../../store/board/board";
 import {useRouter} from "next/router";
-import {getBoardContent, deleteBoardContent, initialize,updateBoardContent} from "../../../../store/board/board";
 import {useDispatch, useSelector} from "react-redux";
-import Link from 'next/link'
 import moment from 'moment';
-import styles from '../../../../public/assets/styles/board/board.module.css';
+import styles from '../../../../../public/assets/styles/board/board.module.css';
 import classnames from "classnames/bind"
-import qs from 'query-string';
-import {Button, Checkbox, DatePicker, Form, Input, Modal, Upload} from "antd";
-import {fileDownload, fileDownload2} from "../../../../store/file/file";
-import ReplyAdd from "../../../../component/board/ReplyAdd";
-import ReplyList from "../../../../component/board/ReplyList";
+import {Button, Form, Modal, Upload} from "antd";
+import {fileDownload} from "../../../../../store/file/file";
 import Head from "next/head";
-import PageNavigation from "../../../../component/layout/PageNavigation";
+import PageNavigation from "../../../../../component/layout/PageNavigation";
+import {UploadOutlined} from '@ant-design/icons';
+import dynamic from "next/dynamic";
 
 const cx = classnames.bind(styles);
-import { UploadOutlined } from '@ant-design/icons';
-import locale from "antd/lib/date-picker/locale/ko_KR";
-import dynamic from "next/dynamic";
-const Editor = dynamic(() => import("../../../../component/common/Editor"), {
+const Editor = dynamic(() => import("../../../../../component/common/Editor"), {
     ssr: false,
     loading: () => <p>Loading ...</p>,
 });

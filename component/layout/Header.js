@@ -150,7 +150,7 @@ const Header = () => {
                             <div className={cx("s_gnb")}>
                                 <ul>
                                     <li><a href="/board/notice/list">공지사항</a></li>
-                                    <li><a href="/startup_info/startup_event">창업캘린더</a></li>
+                                    <li><a href="/startup_info/startup_event?type=C">창업캘린더</a></li>
                                     <li><a href="/board/startup_info/list">신규사업공고</a></li>
                                     {/*<li><a href="/board/idea/list">커뮤니티 게시판</a></li>*/}
                                     <li><a href="/board/data_room/list">자료실</a></li>
@@ -268,7 +268,7 @@ const Header = () => {
                             <div className={cx("s_menu","show")}>
                                 <ul>
                                     <li><a href="/board/notice/list">공지사항</a></li>
-                                    <li><a href="/startup_info/startup_event">티창업캘린더</a></li>
+                                    <li><a href="/startup_info/startup_event?type=C">창업캘린더</a></li>
                                     <li><a href="/board/startup_info/list">신규사업공고</a></li>
                                     {/*<li><a href="/board/idea/list">커뮤니티 게시판</a></li>*/}
                                     <li><a href="/board/data_room/list">자료실</a></li>

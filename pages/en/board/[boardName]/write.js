@@ -1,22 +1,19 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import Link from 'next/link'
 
-import styles from '../../../public/assets/styles/board/board.module.css';
+import styles from '../../../../public/assets/styles/board/board.module.css';
 import classnames from "classnames/bind"
-import {Button, Form, Input, Select} from "antd";
+// import Modal from "../../../component/common/Modal";
+import {Button, Form, Input, Modal, Select, Upload} from "antd";
 import dynamic from "next/dynamic";
 import {useRouter} from "next/router";
-import {addBoardContent, getBoard, getBoardContentList, getBoardInfoAll, initialize} from "../../../store/board/board";
+import {addBoardContent, getBoard, initialize} from "../../../../store/board/board";
 import {useDispatch, useSelector} from "react-redux";
-// import Modal from "../../../component/common/Modal";
-import { Upload,Modal } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
-import AuthFail from "../../user/auth_fail";
-import { UploadOutlined } from '@ant-design/icons';
+import {UploadOutlined} from '@ant-design/icons';
+import AuthFail from "../../../user/auth_fail";
 import moment from 'moment';
 
 
-const Editor = dynamic(() => import("../../../component/common/Editor"), {
+const Editor = dynamic(() => import("../../../../component/common/Editor"), {
     ssr: false,
     loading: () => <p>Loading ...</p>,
 });

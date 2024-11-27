@@ -122,7 +122,8 @@ const List = () => {
                             </select>
                             <select name="searchField" value={searchInfo.searchField} onChange={(e) =>{changeSearchInfo(e)}}>
                                 <option value="">검색조건</option>
-                                <option value="eventName">행사명</option>
+                                {/*<option value="eventName">행사명</option>*/}
+                                <option value="title">행사명</option>
                             </select>
                             <input type="text" name="searchValue" value={searchInfo.searchValue} onChange={(e) => {changeSearchInfo(e)}}/>
                             <button type="button" className={cx("btn_search")} onClick={()=>{searchEvent()}}>

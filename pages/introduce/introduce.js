@@ -275,20 +275,20 @@ const Introduce = () => {
                                     <ul>
                                         <li>
                                             학생창업기업 배출 국내대학 1위 {/*<span className={cx("sky")}>4년 연속</span>*/}<br/>
-                                            <span className={cx("c-gray")}>16년 43개, 17년 53개, 18년 55개, 19년 58개, 20년 54개</span>
+                                            <span className={cx("c-gray")}>20년 55개, 21년 60개, 22년 62개, 23년 69개 </span>
                                         </li>
-                                        <li>
+                                        {/*<li>
                                             벤처인증기업 배출 국내대학 1위<span className={cx("sky")}>5년 연속</span>
+                                        </li>*/}
+                                        <li>
+                                            7년 미만 초기 창업기업 배출 국내대학 1위{/*<span className={cx("sky")}>3년 연속</span>*/}<br/>
+                                            <span
+                                                className={cx("c-gray")}>창업기업 2,948개사  6개 주요 대학 대비 평균 1.6배 <br/> (한국평가데이터, ‘22.12월) </span>
                                         </li>
                                         <li>
-                                            7년 미만 초기 창업기업 배출 국내대학 1위<span className={cx("sky")}>3년 연속</span><br/>
+                                            동문 CEO 기업 배출 국내대학 1위<br/>
                                             <span
-                                                className={cx("c-gray")}>창업기업 2,286개사 6개 주요 대학 대비 평균 1.4배 (2020년 12월)</span>
-                                        </li>
-                                        <li>
-                                            동문 CEO기업 배출 국내대학 1위 3년 연속<br/>
-                                            <span
-                                                className={cx("c-gray")}>기업수 11,071개, 매출 602조원(한국기업데이터, 2020년 12월)</span>
+                                                className={cx("c-gray")}>기업 수 12,452개, 매출 약 385조원 (한국평가데이터, ‘22.12월)</span>
                                         </li>
                                     </ul>
                                 </li>
@@ -298,9 +298,9 @@ const Introduce = () => {
                                         <li>국내 대학 최초 창업기업 양성을 위한 글로벌기업가센터 설립 <br/><span
                                             className={cx("c-gray")}>(2009년)</span>
                                         </li>
-                                        <li>교육부, 창업교육 최우수 대학 <span className={cx("c-gray")}>(2015년~2016년)</span> <span
+                                        <li>교육부, 창업교육 최우수 대학 <span className={cx("c-gray")}>(‘15, ‘21)</span> <span
                                             className={cx("sky")}>2년 연속</span></li>
-                                        <li>연간 449개 창업교과 운영 11,970명 이수 <span className={cx("c-gray")}>(2020년)</span></li>
+                                        <li>연간 515개 창업교과 운영 11,335명 이수 <span className={cx("c-gray")}>(‘23 대학정보공시)</span></li>
                                     </ul>
                                 </li>
                                 <li className={cx("icon_3")}>
@@ -311,8 +311,8 @@ const Introduce = () => {
                                         <li>TIPS운영사 지위확보, 대학창업펀드 등 투자펀드(83억) 조성 <span className={cx("c-gray")}>(2018년)</span></li>
                                         <li>
                                             기술이전 및 기술 사업화 역량<br/>
-                                            <span className={cx("c-gray f-16")}>기술이전: 32건 / 31.5억원 (2020년)</span><br/>
-                                            <span className={cx("c-gray f-16")}>실험실 창업: 37개(2018년~2020년)</span>
+                                            <span className={cx("c-gray f-16")}>기술이전(‘21~23, 최근3년) : 160건 / 372억원</span><br/>
+                                            <span className={cx("c-gray f-16")}>실험실 창업: 47개 (’21~’23)</span>
                                         </li>
                                     </ul>
                                 </li>
@@ -398,12 +398,12 @@ const Introduce = () => {
                                 <tr>
                                     <td>학생창업(창업동아리, 창업경진대회 등)</td>
                                     <td>2858, 2230, 2863</td>
-                                    <td className={cx("c-sky")}>eh0305@hanyang.ac.kr <br/>lovemango2@hanyang.ac.kr</td>
+                                    <td className={cx("c-sky")}>eh0305@hanyang.ac.kr </td>
                                 </tr>
                                 <tr>
                                     <td>동문창업(한양스타트업아카데미, 한양 스타트업포럼 등)</td>
                                     <td>2863</td>
-                                    <td className={cx("c-sky")}>lovemango2@hanyang.ac.kr</td>
+                                    <td className={cx("c-sky")}>startup@hanyang.ac.kr</td>
                                 </tr>
                                 <tr>
                                     <td>원스톱창업상담실</td>
@@ -463,7 +463,7 @@ const Introduce = () => {
                                 <tr>
                                     <td>LINC3.0사업(창업)</td>
                                     <td>2230, 2863</td>
-                                    <td className={cx("c-sky")}>eh0305@hanyang.ac.kr <br/>lovemango2@hanyang.ac.kr</td>
+                                    <td className={cx("c-sky")}>eh0305@hanyang.ac.kr </td>
                                 </tr>
                                 <tr>
                                     <td>대학혁신지원사업(창업)</td>

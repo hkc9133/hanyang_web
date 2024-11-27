@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
-import {DatePicker, Form, Input, Modal} from "antd";
+import {DatePicker, Form, Input, Modal, Upload} from "antd";
 // import {deletePopup, getPopup, initialize, updatePopup} from "../../../store/popup/adminPopup";
 import moment from "moment";
 import locale from "antd/lib/date-picker/locale/ko_KR";
@@ -13,6 +13,7 @@ import {
 } from "../../../store/studentReport/adminStudentReport";
 import styles from '../../../public/assets/styles/admin/studentReport/studentReport.module.css';
 import classnames from "classnames/bind"
+import {fileDownload} from "../../../store/file/file";
 const cx = classnames.bind(styles);
 const StudentReportEditPage = () => {
 
@@ -99,6 +100,12 @@ const StudentReportEditPage = () => {
 
     }, [deleteResult])
 
+    const handleFileDownload = useCallback(({fileId}) => {
+        if (fileId != undefined) {
+            dispatch(fileDownload(fileId))
+        }
+    }, [])
+
     return (
         <>
             {reportInfo.studentReportId != null && (
@@ -147,7 +154,8 @@ const StudentReportEditPage = () => {
                                                             },
                                                         ]}
                                                     >
-                                                        <Input placeholder={"이름"} name="studentName" value={reportInfo.studentName}
+                                                        <Input placeholder={"이름"} name="studentName"
+                                                               value={reportInfo.studentName}
                                                                onChange={(e) => {
                                                                    changeReportInfo(e)
                                                                }}/>
@@ -175,7 +183,8 @@ const StudentReportEditPage = () => {
                                                             },
                                                         ]}
                                                     >
-                                                        <Input placeholder={"소속"} name="studentAttach" value={reportInfo.studentAttach}
+                                                        <Input placeholder={"소속"} name="studentAttach"
+                                                               value={reportInfo.studentAttach}
                                                                onChange={(e) => {
                                                                    changeReportInfo(e)
                                                                }}/>
@@ -193,7 +202,8 @@ const StudentReportEditPage = () => {
                                                             },
                                                         ]}
                                                     >
-                                                        <Input placeholder={"학번"} name="studentClassYear" value={reportInfo.studentClassYear}
+                                                        <Input placeholder={"학번"} name="studentClassYear"
+                                                               value={reportInfo.studentClassYear}
                                                                onChange={(e) => {
                                                                    changeReportInfo(e)
                                                                }}/>
@@ -216,7 +226,8 @@ const StudentReportEditPage = () => {
                                                             },
                                                         ]}
                                                     >
-                                                        <Input placeholder={"연락처"} name="studentPhoneNum" value={reportInfo.studentPhoneNum}
+                                                        <Input placeholder={"연락처"} name="studentPhoneNum"
+                                                               value={reportInfo.studentPhoneNum}
                                                                onChange={(e) => {
                                                                    changeReportInfo(e)
                                                                }}/>
@@ -235,7 +246,8 @@ const StudentReportEditPage = () => {
                                                             },
                                                         ]}
                                                     >
-                                                        <Input placeholder={"E-MAIL"} name="studentEmail" value={reportInfo.studentEmail}
+                                                        <Input placeholder={"E-MAIL"} name="studentEmail"
+                                                               value={reportInfo.studentEmail}
                                                                onChange={(e) => {
                                                                    changeReportInfo(e)
                                                                }}/>
@@ -255,7 +267,8 @@ const StudentReportEditPage = () => {
                                                             },
                                                         ]}
                                                     >
-                                                        <Input placeholder={"기업명"} name="companyName" value={reportInfo.companyName}
+                                                        <Input placeholder={"기업명"} name="companyName"
+                                                               value={reportInfo.companyName}
                                                                onChange={(e) => {
                                                                    changeReportInfo(e)
                                                                }}/>
@@ -273,7 +286,8 @@ const StudentReportEditPage = () => {
                                                             },
                                                         ]}
                                                     >
-                                                        <Input placeholder={"대표자명"} name="companyOwner" value={reportInfo.companyOwner}
+                                                        <Input placeholder={"대표자명"} name="companyOwner"
+                                                               value={reportInfo.companyOwner}
                                                                onChange={(e) => {
                                                                    changeReportInfo(e)
                                                                }}/>
@@ -293,7 +307,8 @@ const StudentReportEditPage = () => {
                                                             },
                                                         ]}
                                                     >
-                                                        <Input placeholder={"사업자등록번호"} name="companyNum" value={reportInfo.companyNum}
+                                                        <Input placeholder={"사업자등록번호"} name="companyNum"
+                                                               value={reportInfo.companyNum}
                                                                onChange={(e) => {
                                                                    changeReportInfo(e)
                                                                }}/>
@@ -311,9 +326,10 @@ const StudentReportEditPage = () => {
                                                             },
                                                         ]}
                                                     >
-                                                        <select name="companyKind" id="" value={reportInfo.companyKind} onChange={(e) => {
-                                                            changeReportInfo(e)
-                                                        }}>
+                                                        <select name="companyKind" id="" value={reportInfo.companyKind}
+                                                                onChange={(e) => {
+                                                                    changeReportInfo(e)
+                                                                }}>
                                                             <option value="">선택</option>
                                                             <option value="법인">법인</option>
                                                             <option value="개인">개인</option>
@@ -334,7 +350,10 @@ const StudentReportEditPage = () => {
                                                             },
                                                         ]}
                                                     >
-                                                        <DatePicker locale={locale} format={"YYYY-MM-DD"} value={reportInfo.createDate} onChange={(v) =>{setReportInfo({...reportInfo,createDate:v})}}/>
+                                                        <DatePicker locale={locale} format={"YYYY-MM-DD"}
+                                                                    value={reportInfo.createDate} onChange={(v) => {
+                                                            setReportInfo({...reportInfo, createDate: v})
+                                                        }}/>
                                                     </Form.Item>
                                                 </td>
                                             </tr>
@@ -351,7 +370,9 @@ const StudentReportEditPage = () => {
                                                             },
                                                         ]}
                                                     >
-                                                        <Input.TextArea placeholder={"사업아이템"} rows={5} name="businessItem" value={reportInfo.businessItem}
+                                                        <Input.TextArea placeholder={"사업아이템"} rows={5}
+                                                                        name="businessItem"
+                                                                        value={reportInfo.businessItem}
                                                                         onChange={(e) => {
                                                                             changeReportInfo(e)
                                                                         }}/>
@@ -374,7 +395,8 @@ const StudentReportEditPage = () => {
                                                             },
                                                         ]}
                                                     >
-                                                        <Input placeholder={"당해 연도 매출액(해당하는 경우에만 입력, 단위:원)"} name="sales" value={reportInfo.sales}
+                                                        <Input placeholder={"당해 연도 매출액(해당하는 경우에만 입력, 단위:원)"}
+                                                               name="sales" value={reportInfo.sales}
                                                                onChange={(e) => {
                                                                    changeReportInfo(e)
                                                                }}/>
@@ -396,11 +418,39 @@ const StudentReportEditPage = () => {
                                                             },
                                                         ]}
                                                     >
-                                                        <Input placeholder={"당해 연도 고용인원(해당하는 경우에만 입력)"} name="staffNum" value={reportInfo.staffNum}
+                                                        <Input placeholder={"당해 연도 고용인원(해당하는 경우에만 입력)"} name="staffNum"
+                                                               value={reportInfo.staffNum}
                                                                onChange={(e) => {
                                                                    changeReportInfo(e)
                                                                }}/>
                                                     </Form.Item>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>첨부파일</th>
+                                                <td colSpan={5}>
+                                                    {
+                                                        reportInfo.files != null && reportInfo.files.length > 0 && (
+                                                            <Upload
+                                                                listType="picture"
+                                                                fileList={reportInfo.files.map((file) => {
+                                                                    return {
+                                                                        uid: file.fileName,
+                                                                        name: file.fileOriginName,
+                                                                        status: 'done',
+                                                                        fileId: file.fileId
+                                                                    }
+                                                                })}
+                                                                showUploadList={{
+                                                                    showPreviewIcon: false,
+                                                                    showRemoveIcon: false,
+                                                                    showDownloadIcon: true
+                                                                }}
+                                                                onDownload={handleFileDownload}
+                                                            >
+                                                            </Upload>
+                                                        )
+                                                    }
                                                 </td>
                                             </tr>
                                             </tbody>
@@ -423,10 +473,16 @@ const StudentReportEditPage = () => {
                         visible={showRemoveModal}
                         key={1}
                         // confirmLoading={deletePlaceResult.result}
-                        onCancel={() =>{setShowRemoveModal(false)}}
+                        onCancel={() => {
+                            setShowRemoveModal(false)
+                        }}
                         footer={[
-                            <button className={cx("basic-btn01","btn-red-bg")} onClick={() =>{handleDeleteReport()}}>삭제</button>,
-                            <button className={cx("basic-btn01","btn-gray-bg")} onClick={() =>{setShowRemoveModal(false);}}>취소</button>
+                            <button className={cx("basic-btn01", "btn-red-bg")} onClick={() => {
+                                handleDeleteReport()
+                            }}>삭제</button>,
+                            <button className={cx("basic-btn01", "btn-gray-bg")} onClick={() => {
+                                setShowRemoveModal(false);
+                            }}>취소</button>
                         ]}
                     >
                     </Modal>
