@@ -261,7 +261,7 @@ const Index = () => {
                         <li className={cx("icon_6")}>
                             <Link href="/assets/pdf/en_brochure.pdf">
                                 <a target="_blank" download>
-                                    <span>Brochure11</span>
+                                    <span>Brochure</span>
                                 </a>
                             </Link>
                         </li>
@@ -272,7 +272,7 @@ const Index = () => {
                         }} onKeyPress={handleEnter}/>
                         <button type="button" className={cx("btn_search")} onClick={() => searchBoard()}>검색</button>
                     </div>
-                    <div className={cx("searchWord")}>
+                    {/*<div className={cx("searchWord")}>
                         <ul>
                             {mainData.keyword.map((item) => (
                                 <li key={item.keywordId}>
@@ -282,7 +282,7 @@ const Index = () => {
                                 </li>
                             ))}
                         </ul>
-                    </div>
+                    </div>*/}
                 </div>
             </div>
 

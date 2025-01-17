@@ -313,7 +313,7 @@ const Index = () => {
                 <div className={`${cx("main_cont")} clfx`}>
                     <div className={cx("main_calendar")}>
                         {/*<h1>창업캘린더 <Link href={"/startup_info/startup_event?"}><a className={cx("all")}>전체일정*/}
-                        <h1>창업캘린더 <Link href={"/startup_info/startup_event?categoryCodeId=&page=1&type=L?"}><a className={cx("all")}>전체일정
+                        <h1>창업캘린더 <Link href={"/startup_info/startup_event?categoryCodeId=&page=1&type=L"}><a className={cx("all")}>전체일정
                             보기</a></Link></h1>
                         {mainData.calendar.length > 0 ?
                             <Slider className="main_calendar" {...calendarSliderSettings}>
@@ -872,9 +872,9 @@ const Index = () => {
                 </div>
             </div>
 
-            {tempPopup && (
+            {/*{tempPopup && (
                 <TempPopup onClose={() => setTempPopup(!tempPopup)} />
-            )}
+            )}*/}
         </>
     );
 };

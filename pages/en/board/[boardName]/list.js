@@ -122,10 +122,10 @@ const List = ({boardName}) => {
             {currentBoard.board != null && (
                 <>
                     <Head>
-                        <title>한양대학교 창업지원단 - HYU Startup NOW</title>
+                        <title>HANYANG STARTUP - HYU Startup NOW</title>
                     </Head>
                 <section className={cx("sub_container","online_content")}>
-                    <h1 className={cx("sub_top_title")}>{currentBoard.board.boardKrName}</h1>
+                    <h1 className={cx("sub_top_title")}>{currentBoard.board.boardEnName}</h1>
                     <p className={cx("sub_top_txt")}>{currentBoard.board.boardDesc}</p>
 
                     {(currentBoard.board.boardEnName == 'notice')  && (
