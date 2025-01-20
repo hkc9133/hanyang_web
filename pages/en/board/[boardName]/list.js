@@ -125,23 +125,23 @@ const List = ({boardName}) => {
                         <title>HANYANG STARTUP - HYU Startup NOW</title>
                     </Head>
                 <section className={cx("sub_container","online_content")}>
-                    <h1 className={cx("sub_top_title")}>{currentBoard.board.boardEnName}</h1>
+                    <h1 className={cx("sub_top_title")}>{currentBoard.board.boardKrName}</h1>
                     <p className={cx("sub_top_txt")}>{currentBoard.board.boardDesc}</p>
 
-                    {(currentBoard.board.boardEnName == 'notice')  && (
+                    {(currentBoard.board.boardEnName == 'notice_en')  && (
                         <SearchBoxSelector skinName="SearchBoxStyle03" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
                     )}
                     {
                         currentBoard.board.writeRole != null && (currentBoard.board.writeRole.indexOf(user.role) > 0) && currentBoard.board.boardEnName == 'idea' && (
                             <div className={cx("btn_box")}>
-                                <Link href={`/board/${currentBoard.board.boardEnName}/write`}><a className={cx("basic-btn03","write_btn")}>글쓰기</a></Link>
+                                <Link href={`/en/board/${currentBoard.board.boardEnName}/write`}><a className={cx("basic-btn03","write_btn")}>Write</a></Link>
                             </div>
                         )
                     }
 
 
-                    {currentBoard.board.boardEnName == 'notice' && (
-                        <BoardSkinSelector skinName="NoticeListType01" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
+                    {currentBoard.board.boardEnName == 'notice_en' && (
+                        <BoardSkinSelector skinName="EnNoticeListType01" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
                     )}
                 </section>
                     </>

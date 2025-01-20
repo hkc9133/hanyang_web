@@ -298,7 +298,7 @@ const Index = () => {
                             </li>
                             </ul>*/}
                         <h3>HYU Startup NOW</h3>
-                        <p><Link href="/en/board/notice/list"><a>More</a></Link></p>
+                        <p><Link href="/en/board/notice_en/list"><a>More</a></Link></p>
                     </div>
 
                     <div className={cx("main_board_list", "main_tabCont")}>
@@ -312,7 +312,7 @@ const Index = () => {
                                         return (
                                             <div className={cx("list")} key={item.contentId}>
                                                 <div className={cx("img_area")}>
-                                                    <Link href={`/board/notice/view/${item.contentId}`}>
+                                                    <Link href={`/en/board/notice_en/view/${item.contentId}`}>
                                                         <a>
                                                             <img
                                                                    src={item.thumbList.length > 0 ? `${baseUrl}/resource${item.thumbList[0].filePath}/${item.thumbList[0].fileName + item.thumbList[0].fileExtension}` : getRanThumbnail()}
@@ -321,7 +321,7 @@ const Index = () => {
                                                     </Link>
                                                 </div>
                                                 <div className={cx("txt_area")}>
-                                                    <Link href={`/board/notice/view/${item.contentId}`}>
+                                                    <Link href={`/en/board/notice_en/view/${item.contentId}`}>
                                                         <a>
                                                             <div className={cx("title")}>
                                                                 {item.title}
@@ -331,7 +331,7 @@ const Index = () => {
                                                                 {item.sub01}
                                                             </div>
                                                             <span
-                                                                className={cx("date")}>{moment(item.regDate).format("YYYY년 MM월 DD일")}</span>
+                                                                className={cx("date")}>{moment(item.regDate).format("YYYY. MM. DD")}</span>
                                                         </a>
                                                     </Link>
                                                 </div>

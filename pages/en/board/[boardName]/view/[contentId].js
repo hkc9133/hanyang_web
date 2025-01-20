@@ -240,14 +240,14 @@ const BoardView = ({boardName,contentId}) => {
     }, [deleteResult])
 
     const moveEdit = () =>{
-        router.push(`/board/${board.board.boardEnName}/edit/${view.content.contentId}`);
+        router.push(`/en/board/${board.board.boardEnName}/edit/${view.content.contentId}`);
     }
 
     return (
         (show && board.board != null && view.content != null) && (
             <>
                 <Head>
-                    <title>한양대학교 창업지원단 -{board.board.boardKrName}</title>
+                    <title>HANYANG STARTUP - {board.board.boardKrName}</title>
                 </Head>
                 <PageNavigation title={view.content.title} desc={view.content.content.replace(/(<([^>]+)>)/ig,"")}/>
                 <section className={cx("container")}>
@@ -260,8 +260,8 @@ const BoardView = ({boardName,contentId}) => {
                                 {
                                     board.board.boardEnName == "idea" && user.info != null && (user.role == 'ROLE_ADMIN' || user.info.userId == view.content.writerId) &&(
                                         <>
-                                            <button className={cx("basic-btn05","btn-red-bd")} onClick={() =>{setShowRemoveModal(true)}}>삭제</button>
-                                            <button className={cx("basic-btn05","btn-blue-bd")} onClick={moveEdit}>수정</button>
+                                            <button className={cx("basic-btn05","btn-red-bd")} onClick={() =>{setShowRemoveModal(true)}}>Del</button>
+                                            <button className={cx("basic-btn05","btn-blue-bd")} onClick={moveEdit}>Edit</button>
                                         </>
                                     )
                                 }
@@ -326,15 +326,15 @@ const BoardView = ({boardName,contentId}) => {
 
                             <div className={cx("txt_c")}>
                                 {board.board.boardEnName == "Issue" ?
-                                    <Link href={"/"}>
+                                    <Link href={"/en"}>
                                     <a className={cx("basic-btn04", "btn-black-bd")}>Home</a>
                                     </Link>
                                     :
-                                    <Link href={`/board/${board.board.boardEnName}/list?${qs.stringify({
+                                    <Link href={`/en/board/${board.board.boardEnName}/list?${qs.stringify({
                                     ...router.query,
                                     contentId: null
                                 })}`}>
-                                    <a className={cx("basic-btn04", "btn-black-bd")}>목록보기</a>
+                                    <a className={cx("basic-btn04", "btn-black-bd")}>To List</a>
                                 </Link>}
                                 {/*<Link href={`/board/${board.board.boardEnName}/list?${qs.stringify({*/}
                                 {/*    ...router.query,*/}
@@ -348,16 +348,16 @@ const BoardView = ({boardName,contentId}) => {
                                 <ul>
                                     {view.next != null && (
                                         <li>
-                                            <span className={cx("title")}>다음글</span>
-                                            <a href={`/board/${router.query.boardName}/view/${view.next.contentId}`}>{view.next.title}</a>
+                                            <span className={cx("title")}>Next</span>
+                                            <a href={`/en/board/${router.query.boardName}/view/${view.next.contentId}`}>{view.next.title}</a>
                                             <span
                                                 className={cx("date")}>{moment(view.next.regDate).format("YYYY.MM.DD")}</span>
                                         </li>
                                     )}
                                     {view.prev != null && (
                                         <li>
-                                            <span className={cx("title")}>이전글</span>
-                                            <a href={`/board/${router.query.boardName}/view/${view.prev.contentId}`}>{view.prev.title}</a>
+                                            <span className={cx("title")}>Prev</span>
+                                            <a href={`/en/board/${router.query.boardName}/view/${view.prev.contentId}`}>{view.prev.title}</a>
                                             <span
                                                 className={cx("date")}>{moment(view.prev.regDate).format("YYYY.MM.DD")}</span>
                                         </li>

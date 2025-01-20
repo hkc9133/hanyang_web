@@ -27,6 +27,7 @@ export async function getStaticPaths() {
             { params: { boardName: 'idea' } },
             { params: { boardName: 'data_room' } },
             { params: { boardName: 'notice' } },
+            { params: { boardName: 'notice_en' } },
             { params: { boardName: 'startup_info' } },
             { params: { boardName: 'startup_news' } },
             { params: { boardName: 'people' } },
@@ -189,7 +190,7 @@ const Write = () => {
                                 </tr>
                             )}
                             <tr>
-                                <th scope="row">제목</th>
+                                <th scope="row">Title</th>
                                 <td>
                                     <Form.Item
                                         name="title"
@@ -207,14 +208,14 @@ const Write = () => {
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="row">내용</th>
+                                <th scope="row">Content</th>
                                 <td>
                                     <Editor setEditor={setEditor}/>
                                 </td>
                             </tr>
                             {board.board.useFile && (
                                 <tr>
-                                    <th scope="row">첨부파일</th>
+                                    <th scope="row">File</th>
                                     <td>
                                         <Upload
                                             listType="picture"
@@ -225,7 +226,7 @@ const Write = () => {
                                         >
                                             {writeInfo.attachFiles.length >= 8 ? null : uploadButton}
                                         </Upload>
-                                        <span className={cx("title")}>첨부파일 (10MB 미만)</span>
+                                        <span className={cx("title")}>Attached File (10MB under)</span>
                                     </td>
                                 </tr>
                             )}
@@ -233,8 +234,8 @@ const Write = () => {
                         </table>
 
                         <div className={"txt_c"}>
-                            <button type="submit" className={cx("basic-btn02","btn-blue-bd")}>저장</button>
-                            <button type="button" className={cx("basic-btn02","btn-gray-bd")} onClick={router.back}>취소</button>
+                            <button type="submit" className={cx("basic-btn02","btn-blue-bd")}>Save</button>
+                            <button type="button" className={cx("basic-btn02","btn-gray-bd")} onClick={router.back}>Cancel</button>
                         </div>
                     </div>
                 </Form>

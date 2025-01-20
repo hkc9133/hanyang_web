@@ -149,8 +149,8 @@ const Header = () => {
                             <div className={cx("s_gnb")}>
                                 <ul>
                                     <li><a href="/en/statistic">Startup Statistics</a></li>
-                                    <li><a href="/en/company_list">Successful Student Startups of Hanyang</a></li>
-                                    <li><a href="/en/board/notice/list">HYU Startup NOW</a></li>
+                                    <li><a href="/en/company_en">Successful Student Startups of Hanyang</a></li>
+                                    <li><a href="/en/board/notice_en/list">HYU Startup NOW</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -221,8 +221,8 @@ const Header = () => {
                             <div className={cx("s_menu","show")}>
                                 <ul>
                                     <li><a href="/en/statistic">Startup Statistics</a></li>
-                                    <li><a href="/en/company_list">Successful Student Startups of Hanyang</a></li>
-                                    <li><a href="/en/board/notice/list">HYU Startup NOW</a></li>
+                                    <li><a href="/en/company_en">Successful Student Startups of Hanyang</a></li>
+                                    <li><a href="/en/board/notice_en/list">HYU Startup NOW</a></li>
                                 </ul>
                             </div>
                         </li>

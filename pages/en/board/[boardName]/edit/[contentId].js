@@ -229,7 +229,7 @@ const BoardView = ({boardName,contentId}) => {
         (show && board.board != null && view.content != null) && (
             <>
                 <Head>
-                    <title>한양대학교 창업지원단 -{board.board.boardKrName}</title>
+                    <title>HANYANG STARTUP - {board.board.boardKrName}</title>
                 </Head>
                 <PageNavigation title={view.content.title} desc={view.content.content.replace(/(<([^>]+)>)/ig,"")}/>
                 <section className={cx("sub_container")}>
@@ -254,7 +254,7 @@ const BoardView = ({boardName,contentId}) => {
                                     <tbody>
                                     {board.board.categoryId != null &&(
                                         <tr>
-                                            <th>분류</th>
+                                            <th>Category</th>
                                             <td>
                                                 <select name='categoryCodeId' className={cx("cate")} onChange={changeWriteInfo} value={writeInfo.categoryCodeId}>
                                                     {board.cate.map((item) => {
@@ -265,7 +265,7 @@ const BoardView = ({boardName,contentId}) => {
                                         </tr>
                                     )}
                                     <tr>
-                                        <th>제목</th>
+                                        <th>Title</th>
                                         <td>
                                             <input type="text" placeholder={"제목을 입력하세요."} name="title" value={writeInfo.title} onChange={changeWriteInfo}/>
                                             {/*<Form.Item*/}
@@ -339,7 +339,7 @@ const BoardView = ({boardName,contentId}) => {
                                     )}
                                     {board.board.boardEnName != 'corp_press' && (
                                         <tr>
-                                            <th>내용</th>
+                                            <th>Content</th>
                                             <td>
                                                 {/*<QuillEditor Contents={content} QuillChange={setContent}/>*/}
                                                 <Editor setEditor={setEditor} content={view.content.content}/>
@@ -348,7 +348,7 @@ const BoardView = ({boardName,contentId}) => {
                                     )}
                                     {board.board.useFile && (
                                         <tr>
-                                            <th>첨부파일</th>
+                                            <th>Attached File</th>
                                             <td>
                                                 <Upload
                                                     listType="picture"
@@ -390,8 +390,8 @@ const BoardView = ({boardName,contentId}) => {
                                     </tbody>
                                 </table>
                                 <div className={"txt_c"}>
-                                    <button type="submit" className={cx("basic-btn02","btn-blue-bd")}>저장</button>
-                                    <button type="button" className={cx("basic-btn02","btn-gray-bd")} onClick={router.back}>취소</button>
+                                    <button type="submit" className={cx("basic-btn02","btn-blue-bd")}>Save</button>
+                                    <button type="button" className={cx("basic-btn02","btn-gray-bd")} onClick={router.back}>Cancel</button>
                                 </div>
                             </div>
                         </Form>

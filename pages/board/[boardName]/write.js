@@ -30,6 +30,7 @@ export async function getStaticPaths() {
             { params: { boardName: 'idea' } },
             { params: { boardName: 'data_room' } },
             { params: { boardName: 'notice' } },
+            { params: { boardName: 'notice_en' } },
             { params: { boardName: 'startup_info' } },
             { params: { boardName: 'startup_news' } },
             { params: { boardName: 'people' } },
