@@ -3,8 +3,7 @@ import React, {useCallback, useEffect, useState} from 'react';
 
 import styles from '../../public/assets/styles/startup_info/startup_info.module.css';
 import classnames from "classnames/bind"
-import {Button, Checkbox, Form, Input, Modal, Typography, Upload} from "antd";
-import {LoadingOutlined, PlusOutlined, UploadOutlined} from '@ant-design/icons';
+import {Checkbox, Form, Input, Modal, Typography, Upload} from "antd";
 const cx = classnames.bind(styles);
 import { DatePicker, Space } from 'antd';
 import locale from "antd/lib/date-picker/locale/ko_KR";
@@ -14,12 +13,14 @@ import {addStudentReport, initialize} from "../../store/studentReport/studentRep
 import PageNavigation from "../../component/layout/PageNavigation";
 import moment from "moment";
 import Head from "next/head";
-import client, {baseUrl} from "../../lib/api/client";
+import {LoadingOutlined, PlusOutlined} from "@ant-design/icons";
+import client from "../../lib/api/client";
 const StudentReportPage = () => {
 
     const [form] = Form.useForm();
     const dispatch = useDispatch();
     const router = useRouter();
+
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -38,7 +39,11 @@ const StudentReportPage = () => {
         sales:0,
         staffNum:0,
         isAgree: false,
-        fileList:[],
+
+        uploadResultList: [],
+        oldUploadResultList: [],
+        removeFiles: []
+
     })
 
     const {add} = useSelector(({studentReport, loading}) => ({
@@ -73,19 +78,18 @@ const StudentReportPage = () => {
 
     },[])
 
-    const normFile = (e) => {
-        if (Array.isArray(e)) {
-            return e;
-        }
-        return e?.fileList;
-    };
     const submitApply = (e) => {
+
+        console.log("reportForm", reportForm);
+
+
         const data = {
             ...reportForm,
             createDate:reportForm.createDate.format("YYYY-MM-DD").toString(),
-            certificateFile:{
-                fileId:reportForm.fileList[0].fileId
-            }
+            uploadResultList: reportForm.uploadResultList.map((item) => {
+                return item.fileId
+            }),
+            removeFiles:[]
 
         }
 
@@ -114,7 +118,11 @@ const StudentReportPage = () => {
                             sales:0,
                             staffNum:0,
                             isAgree: false,
-                            fileList: [],
+
+                            uploadResultList: [],
+                            oldUploadResultList: [],
+                            removeFiles: []
+
                         });
                         form.resetFields();
                         window.scrollTo(0, 0);
@@ -133,12 +141,12 @@ const StudentReportPage = () => {
         return current && current > moment().endOf('day');
     }
 
-    const handleRemove = (e) =>{
+
+    const handleChangeUploadFile = ({fileList}) => {
         setReportForm({
             ...reportForm,
-            fileList: reportForm.fileList.filter((item) => item.uid != e.uid)
+            uploadResultList: fileList
         })
-        form.setFieldsValue({ fileList: reportForm.fileList.filter((item) => item.uid != e.uid) });
     }
 
     const uploadFile = async options => {
@@ -155,33 +163,27 @@ const StudentReportPage = () => {
         fmData.append("file", file);
         try {
             const res = await client.post(
-                "/resource/attach_file/CERTIFICATE_IMG",
+                "/resource/attach_file/STUDENT_ATTACH",
                 fmData,
                 config
             );
             onSuccess("Ok");
 
-            const data = {
-                ...res.data,
-                url:baseUrl+res.data.url
-            }
+            console.log("res.data.fileId", res.data.fileId);
+            // const uploadResultList = [...reportForm.uploadResultList, res.data.fileId]
             setReportForm({
                 ...reportForm,
-                fileList: reportForm.fileList.concat(data)
+                uploadResultList: reportForm.uploadResultList.concat(res.data)
+
             })
-            form.setFieldsValue({ fileList: reportForm.fileList.concat(data) });
             setLoading(false)
         } catch (err) {
-            // console.log(err)
+            console.log(err)
             setError("업로드 중 에러가 발생하였습니다");
             setLoading(false)
             onError({err});
         }
     };
-
-    useEffect(() => {
-        console.log(reportForm)
-    }, [reportForm]);
 
     return (
         <>
@@ -405,40 +407,7 @@ const StudentReportPage = () => {
                                         },
                                     ]}
                                 >
-                                    <DatePicker disabledDate={disabledDate} locale={locale} format={"YYYY-MM-DD"}
-                                                value={reportForm.createDate} onChange={(v) => {
-                                        setReportForm({...reportForm, createDate: v})
-                                    }}/>
-                                </Form.Item>
-                            </li>
-                            <li className={cx("w_100")}>
-                                <Form.Item
-                                    label="사업자등록증"
-                                    name="fileList"
-                                    className={(cx("antd_input"))}
-                                    valuePropName="fileList"
-                                    getValueFromEvent={normFile}
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: '사업자등록증을 첨부해주세요',
-                                        }
-                                    ]}
-                                >
-                                    <Upload
-                                        customRequest={(e) => {
-                                            uploadFile(e)
-                                        }}
-                                        accept={"image/*"}
-                                        listType="picture-card"
-                                        fileList={reportForm.fileList}
-                                        onRemove={handleRemove}
-                                    >
-                                        {reportForm.fileList.length >= 1 ? null :
-                                            <Button style={{marginTop: 7}} className={"upload"}
-                                                    icon={<UploadOutlined/>}>업로드</Button>}
-                                    </Upload>
-                                    <span className={cx("title")}>첨부파일 (10MB 미만)</span>
+                                    <DatePicker disabledDate={disabledDate} locale={locale} format={"YYYY-MM-DD"} value={reportForm.createDate} onChange={(v) =>{setReportForm({...reportForm,createDate:v})}}/>
                                 </Form.Item>
                             </li>
                             <li className={cx("w_100")}>
@@ -453,11 +422,10 @@ const StudentReportPage = () => {
                                         },
                                     ]}
                                 >
-                                    <Input.TextArea placeholder={"사업아이템"} rows={5} name="businessItem"
-                                                    value={reportForm.businessItem}
-                                                    onChange={(e) => {
-                                                        changeReportFormValue(e)
-                                                    }}/>
+                                    <Input.TextArea placeholder={"사업아이템"} rows={5} name="businessItem" value={reportForm.businessItem}
+                                           onChange={(e) => {
+                                               changeReportFormValue(e)
+                                           }}/>
                                 </Form.Item>
                             </li>
                         </ul>
@@ -477,8 +445,7 @@ const StudentReportPage = () => {
                                         },
                                     ]}
                                 >
-                                    <Input placeholder={"당해 연도 매출액(해당하는 경우에만 입력, 단위:원)"} name="sales"
-                                           value={reportForm.sales}
+                                    <Input placeholder={"당해 연도 매출액(해당하는 경우에만 입력, 단위:원)"} name="sales" value={reportForm.sales}
                                            onChange={(e) => {
                                                changeReportFormValue(e)
                                            }}/>
@@ -507,6 +474,35 @@ const StudentReportPage = () => {
                                 </Form.Item>
                             </li>
                         </ul>
+
+
+                        <ul className={`${cx("w_3")} clfx `}>
+                            <li>
+                                <span className={cx("title")}>첨부파일 (10MB 미만)</span>
+                                <div className={`clfx `}>
+                                    <Upload
+                                        customRequest={(e) => {
+                                            uploadFile(e)
+                                        }}
+                                        listType="picture-card"
+                                        fileList={reportForm.uploadResultList}
+                                        onChange={(e) => {
+                                            handleChangeUploadFile(e)
+                                        }}
+                                    >
+                                        {reportForm.uploadResultList?.length >= 3 ? null : (
+                                            <div>
+                                                {loading ? <LoadingOutlined/> : <PlusOutlined/>}
+                                                <div style={{marginTop: 8}}>Upload</div>
+                                            </div>
+                                        )}
+                                    </Upload>
+                                    <Typography.Text type="danger">{error}</Typography.Text>
+                                </div>
+                                <p className={cx("help_txt01")}>※ 신청하신 멘토링과 관련된 참고자료를 첨부해주세요. 첨부파일은 담당 멘토에게 전달되며, 최대3개까지
+                                    첨부 가능합니다.</p>
+                            </li>
+                        </ul>
                     </div>
 
                     <div className={cx("termsArea")}>
@@ -523,17 +519,18 @@ const StudentReportPage = () => {
 </pre>
                         </div>
                         <div className={cx("agree")}>
-                                <Form.Item
-                                    name="isAgree"
-                                    rules={[
-                                        {
-                                            required: !reportForm.isAgree,
-                                            message: '개인정보 처라방침 동의는 필수 입니다.',
-                                        },
-                                    ]}
-                                >
-                                    <Checkbox name="isAgree" checked={reportForm.isAgree} onChange={changeReportFormValue}>개인정보처리방침안내 내용에 동의 합니다</Checkbox>
-                                </Form.Item>
+                            <Form.Item
+                                name="isAgree"
+                                rules={[
+                                    {
+                                        required: !reportForm.isAgree,
+                                        message: '개인정보 처라방침 동의는 필수 입니다.',
+                                    },
+                                ]}
+                            >
+                                <Checkbox name="isAgree" checked={reportForm.isAgree} onChange={changeReportFormValue}>개인정보처리방침안내
+                                    내용에 동의 합니다</Checkbox>
+                            </Form.Item>
                         </div>
                     </div>
 

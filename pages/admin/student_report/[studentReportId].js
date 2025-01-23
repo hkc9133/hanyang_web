@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
-import {Button, DatePicker, Form, Input, Modal, Upload} from "antd";
+import {DatePicker, Form, Input, Modal, Upload} from "antd";
 // import {deletePopup, getPopup, initialize, updatePopup} from "../../../store/popup/adminPopup";
 import moment from "moment";
 import locale from "antd/lib/date-picker/locale/ko_KR";
@@ -13,22 +13,19 @@ import {
 } from "../../../store/studentReport/adminStudentReport";
 import styles from '../../../public/assets/styles/admin/studentReport/studentReport.module.css';
 import classnames from "classnames/bind"
-import client, {baseUrl} from "../../../lib/api/client";
-import {UploadOutlined} from "@ant-design/icons";
 import {fileDownload} from "../../../store/file/file";
-
 const cx = classnames.bind(styles);
 const StudentReportEditPage = () => {
 
     const dispatch = useDispatch();
     const router = useRouter();
     const [form] = Form.useForm();
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
-    const [reportInfo, setReportInfo] = useState({});
+    const [reportInfo, setReportInfo] = useState({
+
+    });
 
     const [showRemoveModal, setShowRemoveModal] = useState(false);
-    const {report, update, deleteResult} = useSelector(({adminStudentReport, loading}) => ({
+    const {report, update,deleteResult} = useSelector(({adminStudentReport, loading}) => ({
         report: adminStudentReport.getStudentReport,
         update: adminStudentReport.updateStudentReport,
         deleteResult: adminStudentReport.deleteStudentReport,
@@ -42,25 +39,16 @@ const StudentReportEditPage = () => {
             dispatch(initialize());
         }
 
-    }, [router.query.studentReportId])
+    }, [])
 
     useEffect(() => {
 
         if (report != null) {
-            const fileList = report.certificateFile ? [{
-                url: `${baseUrl}/resource${report.certificateFile.filePath}/${report.certificateFile.fileName + report.certificateFile.fileExtension}`,
-                uid: report.certificateFile.fileId,
-                name: report.certificateFile.fileOriginName,
-                status: "done",
-                fileId: report.certificateFile.fileId
-            }] : []
             setReportInfo({
                 ...reportInfo,
                 ...report,
-                fileList: fileList,
-                createDate: moment(report.createDate, 'YYYY-MM-DD')
+                createDate:moment(report.createDate,'YYYY-MM-DD')
             })
-            form.setFieldsValue({ fileList: fileList });
         }
 
     }, [report])
@@ -73,27 +61,18 @@ const StudentReportEditPage = () => {
         })
     }
 
-    const handleDownload = useCallback((fileId) => {
-        if (fileId != undefined) {
-            dispatch(fileDownload(fileId))
-        }
-    }, [])
-
 
     const submit = () => {
         const data = {
             ...reportInfo,
-            certificateFile: reportInfo.fileList.length == 0 ? null :  {
-                fileId:reportInfo.fileList[0].fileId
-            },
-            createDate: reportInfo.createDate.format("YYYY-MM-DD").toString()
+            createDate:reportInfo.createDate.format("YYYY-MM-DD").toString()
         }
 
         dispatch(updateStudentReport(data));
 
     }
 
-    const handleDeleteReport = () => {
+    const handleDeleteReport = () =>{
         dispatch(deleteStudentReport(reportInfo.studentReportId))
     }
 
@@ -121,58 +100,11 @@ const StudentReportEditPage = () => {
 
     }, [deleteResult])
 
-    const normFile = (e) => {
-        if (Array.isArray(e)) {
-            return e;
+    const handleFileDownload = useCallback(({fileId}) => {
+        if (fileId != undefined) {
+            dispatch(fileDownload(fileId))
         }
-        return e?.fileList;
-    };
-
-    const handleRemove = (e) => {
-        setReportInfo({
-            ...reportInfo,
-            fileList: reportInfo.fileList.filter((item) => item.uid != e.uid)
-        })
-        form.setFieldsValue({fileList: reportInfo.fileList.filter((item) => item.uid != e.uid)});
-    }
-
-    const uploadFile = async options => {
-        const {onSuccess, onError, file, onProgress} = options;
-        setLoading(true)
-
-        const fmData = new FormData();
-        const config = {
-            headers: {"content-type": "multipart/form-data"},
-            onUploadProgress: event => {
-                onProgress({percent: (event.loaded / event.total) * 100});
-            }
-        };
-        fmData.append("file", file);
-        try {
-            const res = await client.post(
-                "/resource/attach_file/CERTIFICATE_IMG",
-                fmData,
-                config
-            );
-            onSuccess("Ok");
-
-            const data = {
-                ...res.data,
-                url: baseUrl + res.data.url
-            }
-            setReportInfo({
-                ...reportInfo,
-                fileList: reportInfo.fileList.concat(data)
-            })
-            form.setFieldsValue({fileList: reportInfo.fileList.concat(data)});
-            setLoading(false)
-        } catch (err) {
-            // console.log(err)
-            setError("업로드 중 에러가 발생하였습니다");
-            setLoading(false)
-            onError({err});
-        }
-    };
+    }, [])
 
     return (
         <>
@@ -182,18 +114,18 @@ const StudentReportEditPage = () => {
                     <Form form={form} onFinish={submit}
                           initialValues={{
                               studentName: report.studentName,
-                              studentAttach: report.studentAttach,
-                              studentClassYear: report.studentClassYear,
+                              studentAttach:report.studentAttach,
+                              studentClassYear:report.studentClassYear,
                               studentPhoneNum: report.studentPhoneNum,
                               studentEmail: report.studentEmail,
-                              companyNum: report.companyNum,
-                              companyName: report.companyName,
-                              companyOwner: report.companyOwner,
-                              companyKind: report.companyKind,
-                              createDate: moment(report.createDate, 'YYYY-MM-DD'),
-                              businessItem: report.businessItem,
-                              sales: report.sales,
-                              staffNum: report.staffNum
+                              companyNum:report.companyNum,
+                              companyName:report.companyName,
+                              companyOwner:report.companyOwner,
+                              companyKind:report.companyKind,
+                              createDate:moment(report.createDate,'YYYY-MM-DD'),
+                              businessItem:report.businessItem,
+                              sales:report.sales,
+                              staffNum:report.staffNum
                           }}
                     >
                         <div className={cx("adm_container")}>
@@ -205,7 +137,7 @@ const StudentReportEditPage = () => {
                                             <colgroup>
                                                 <col style={{width: 270}}/>
                                                 <col style={{width: 400}}/>
-                                                <col style={{width: 270}}/>
+                                                <col  style={{width: 270}}/>
                                                 <col/>
                                             </colgroup>
                                             <tbody>
@@ -406,37 +338,6 @@ const StudentReportEditPage = () => {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th scope={"row"}>사업자등록증</th>
-                                                <td colSpan={3}>
-                                                    <Form.Item
-                                                        name="fileList"
-                                                        className={(cx("antd_input"))}
-                                                        valuePropName="fileList"
-                                                        getValueFromEvent={normFile}
-                                                    >
-                                                        <Upload
-                                                            customRequest={(e) => {
-                                                                uploadFile(e)
-                                                            }}
-                                                            accept={"image/*"}
-                                                            listType="picture-card"
-                                                            fileList={reportInfo.fileList}
-                                                            onRemove={handleRemove}
-                                                        >
-                                                            {reportInfo.fileList.length >= 1 ? null :
-                                                                <Button style={{marginTop: 7}} className={"upload"}
-                                                                        icon={<UploadOutlined/>}>업로드</Button>}
-                                                        </Upload>
-                                                        <span className={cx("title")}>첨부파일 (10MB 미만)</span>
-                                                    </Form.Item>
-                                                    {(reportInfo.fileList.length > 0 && reportInfo.fileList[0].fileId) && (
-                                                        <button type="button"onClick={() => {
-                                                            handleDownload(reportInfo.fileList[0].fileId)
-                                                        }}>다운로드</button>
-                                                    )}
-                                                </td>
-                                            </tr>
-                                            <tr>
                                                 <th scope="row">창업일</th>
                                                 <td colSpan={3}>
                                                     <Form.Item
@@ -523,6 +424,33 @@ const StudentReportEditPage = () => {
                                                                    changeReportInfo(e)
                                                                }}/>
                                                     </Form.Item>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>첨부파일</th>
+                                                <td colSpan={5}>
+                                                    {
+                                                        reportInfo.files != null && reportInfo.files.length > 0 && (
+                                                            <Upload
+                                                                listType="picture"
+                                                                fileList={reportInfo.files.map((file) => {
+                                                                    return {
+                                                                        uid: file.fileName,
+                                                                        name: file.fileOriginName,
+                                                                        status: 'done',
+                                                                        fileId: file.fileId
+                                                                    }
+                                                                })}
+                                                                showUploadList={{
+                                                                    showPreviewIcon: false,
+                                                                    showRemoveIcon: false,
+                                                                    showDownloadIcon: true
+                                                                }}
+                                                                onDownload={handleFileDownload}
+                                                            >
+                                                            </Upload>
+                                                        )
+                                                    }
                                                 </td>
                                             </tr>
                                             </tbody>

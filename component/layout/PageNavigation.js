@@ -50,7 +50,7 @@ const dep1 = {
         link:"/board/notice/list",
         sub:{
             notice: {name:'공지사항',link:'/board/notice/list'},
-            startup_event: {name:'창업캘린더',link:'/startup_info/startup_event'},
+            startup_event: {name:'창업캘린더',link:'/startup_info/startup_event?type=C'},
             startup_info: {name:'신규사업공고',link:'/board/startup_info/list'},
             //idea: {name:'커뮤니티 게시판',link:'/board/idea/list'},
             data_room: {name:'자료실',link:'/board/data_room/list'},

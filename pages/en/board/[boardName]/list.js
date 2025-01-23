@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import wrapper from "../../../../store/configureStore";
-import {getBoard, getBoardContentList, getBoardInfoAll} from "../../../../store/board/board";
-import {END} from "redux-saga";
+// import {getBoard, getBoardContentList} from "../../../../store/board/board";
+import {getBoard, getBoardContentList} from "../../../../store/board/board";
 import {useRouter} from "next/router";
 import {useDispatch, useSelector} from "react-redux";
 import PageNavigationEng from "../../../../component/layout/PageNavigation_eng";
@@ -14,6 +14,7 @@ import classnames from "classnames/bind"
 
 import qs from 'query-string';
 import Head from "next/head";
+
 const cx = classnames.bind(styles);
 
 export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
@@ -121,34 +122,26 @@ const List = ({boardName}) => {
             {currentBoard.board != null && (
                 <>
                     <Head>
-                        <title>한양대학교 창업지원단 - HYU Startup NOW</title>
+                        <title>HANYANG STARTUP - HYU Startup NOW</title>
                     </Head>
                 <section className={cx("sub_container","online_content")}>
-                    <h1 className={cx("sub_top_title")}>
-                        {currentBoard.board.boardEnName == 'notice' ? "HYU Startup NOW" :currentBoard.board.boardKrName}
-                    </h1>
+                    <h1 className={cx("sub_top_title")}>{currentBoard.board.boardKrName}</h1>
                     <p className={cx("sub_top_txt")}>{currentBoard.board.boardDesc}</p>
 
                     {(currentBoard.board.boardEnName == 'notice_en')  && (
                         <SearchBoxSelector skinName="SearchBoxStyle03" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
                     )}
-                    {(currentBoard.board.boardEnName == 'company_en')  && (
-                        <SearchBoxSelector skinName="SearchBoxStyle07" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
-                    )}
                     {
                         currentBoard.board.writeRole != null && (currentBoard.board.writeRole.indexOf(user.role) > 0) && currentBoard.board.boardEnName == 'idea' && (
                             <div className={cx("btn_box")}>
-                                <Link href={`/board/${currentBoard.board.boardEnName}/write`}><a className={cx("basic-btn03","write_btn")}>글쓰기</a></Link>
+                                <Link href={`/en/board/${currentBoard.board.boardEnName}/write`}><a className={cx("basic-btn03","write_btn")}>Write</a></Link>
                             </div>
                         )
                     }
 
 
                     {currentBoard.board.boardEnName == 'notice_en' && (
-                        <BoardSkinSelector skinName="NoticeEnListType01" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
-                    )}
-                    {currentBoard.board.boardEnName == 'company_en' && (
-                        <BoardSkinSelector skinName="GalleryType03" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
+                        <BoardSkinSelector skinName="EnNoticeListType01" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
                     )}
                 </section>
                     </>

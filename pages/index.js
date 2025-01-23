@@ -27,6 +27,7 @@ import {
     getRanThumbnail
 } from "../component/common/util/ThumbnailUtil";
 import {Modal} from "antd";
+import TempPopup from "../component/main/TempPopup";
 
 
 const cx = classnames.bind(styles);
@@ -179,6 +180,9 @@ const Index = () => {
     const [showNotice, setShowNotice] = useState(1);
     const [searchValue, setSearchValue] = useState("");
 
+    const [tempPopup, setTempPopup] = useState(true);
+
+
     const {mainData, user} = useSelector(({main, auth, loading}) => ({
         mainData: main.mainData,
         user: auth.user
@@ -308,7 +312,8 @@ const Index = () => {
             <div className={cx("main_cont_2")}>
                 <div className={`${cx("main_cont")} clfx`}>
                     <div className={cx("main_calendar")}>
-                        <h1>창업캘린더 <Link href={"/startup_info/startup_event?type=L"}><a className={cx("all")}>전체일정
+                        {/*<h1>창업캘린더 <Link href={"/startup_info/startup_event?"}><a className={cx("all")}>전체일정*/}
+                        <h1>창업캘린더 <Link href={"/startup_info/startup_event?categoryCodeId=&page=1&type=L"}><a className={cx("all")}>전체일정
                             보기</a></Link></h1>
                         {mainData.calendar.length > 0 ?
                             <Slider className="main_calendar" {...calendarSliderSettings}>
@@ -866,6 +871,10 @@ const Index = () => {
                     </div>
                 </div>
             </div>
+
+            {/*{tempPopup && (
+                <TempPopup onClose={() => setTempPopup(!tempPopup)} />
+            )}*/}
         </>
     );
 };

@@ -1,18 +1,22 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import wrapper from "../../../../../store/configureStore";
-import client from "../../../../../lib/api/client";
-import {addReply, deleteReply, getBoard, updateReply} from "../../../../../store/board/board";
-import {END} from "redux-saga";
+import {
+    addReply,
+    deleteBoardContent,
+    deleteReply,
+    getBoard,
+    getBoardContent,
+    updateReply
+} from "../../../../../store/board/board";
 import {useRouter} from "next/router";
-import {getBoardContent, deleteBoardContent, initialize} from "../../../../../store/board/board";
 import {useDispatch, useSelector} from "react-redux";
 import Link from 'next/link'
 import moment from 'moment';
 import styles from '../../../../../public/assets/styles/board/board.module.css';
 import classnames from "classnames/bind"
 import qs from 'query-string';
-import {Input, Modal, Upload} from "antd";
-import {fileDownload, fileDownload2} from "../../../../../store/file/file";
+import {Modal, Upload} from "antd";
+import {fileDownload} from "../../../../../store/file/file";
 import ReplyAdd from "../../../../../component/board/ReplyAdd";
 import ReplyList from "../../../../../component/board/ReplyList";
 import Head from "next/head";
@@ -236,14 +240,14 @@ const BoardView = ({boardName,contentId}) => {
     }, [deleteResult])
 
     const moveEdit = () =>{
-        router.push(`/board/${board.board.boardEnName}/edit/${view.content.contentId}`);
+        router.push(`/en/board/${board.board.boardEnName}/edit/${view.content.contentId}`);
     }
 
     return (
         (show && board.board != null && view.content != null) && (
             <>
                 <Head>
-                    <title>한양대학교 창업지원단 -{board.board.boardKrName}</title>
+                    <title>HANYANG STARTUP - {board.board.boardKrName}</title>
                 </Head>
                 <PageNavigation title={view.content.title} desc={view.content.content.replace(/(<([^>]+)>)/ig,"")}/>
                 <section className={cx("container")}>
@@ -256,8 +260,8 @@ const BoardView = ({boardName,contentId}) => {
                                 {
                                     board.board.boardEnName == "idea" && user.info != null && (user.role == 'ROLE_ADMIN' || user.info.userId == view.content.writerId) &&(
                                         <>
-                                            <button className={cx("basic-btn05","btn-red-bd")} onClick={() =>{setShowRemoveModal(true)}}>삭제</button>
-                                            <button className={cx("basic-btn05","btn-blue-bd")} onClick={moveEdit}>수정</button>
+                                            <button className={cx("basic-btn05","btn-red-bd")} onClick={() =>{setShowRemoveModal(true)}}>Del</button>
+                                            <button className={cx("basic-btn05","btn-blue-bd")} onClick={moveEdit}>Edit</button>
                                         </>
                                     )
                                 }
@@ -322,7 +326,7 @@ const BoardView = ({boardName,contentId}) => {
 
                             <div className={cx("txt_c")}>
                                 {board.board.boardEnName == "Issue" ?
-                                    <Link href={"/"}>
+                                    <Link href={"/en"}>
                                     <a className={cx("basic-btn04", "btn-black-bd")}>Home</a>
                                     </Link>
                                     :
@@ -330,7 +334,7 @@ const BoardView = ({boardName,contentId}) => {
                                     ...router.query,
                                     contentId: null
                                 })}`}>
-                                    <a className={cx("basic-btn04", "btn-black-bd")}>List</a>
+                                    <a className={cx("basic-btn04", "btn-black-bd")}>To List</a>
                                 </Link>}
                                 {/*<Link href={`/board/${board.board.boardEnName}/list?${qs.stringify({*/}
                                 {/*    ...router.query,*/}

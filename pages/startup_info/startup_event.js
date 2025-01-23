@@ -34,7 +34,7 @@ const StartupEvent = () => {
 
     useEffect(() => {
 
-        const {type = "C"} = router.query
+        const {type = "L"} = router.query
         setSearchInfo(searchInfo => ({
             ...searchInfo,
             type: isMobile ? "L" : type

@@ -107,6 +107,15 @@ const Write = () => {
 
 
     const submitApply = (e) => {
+
+        // console.log("writeInfo", writeInfo);
+        if (!writeInfo.eventDateStr) {
+            Modal.warning({
+                title: '행사일을 선택해 주세요.',
+            });
+            return ;
+        }
+        // eventDateStr
         const data = {
             ...writeInfo,
             content: editor.getData(),
