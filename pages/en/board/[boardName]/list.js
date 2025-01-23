@@ -143,6 +143,9 @@ const List = ({boardName}) => {
                     {currentBoard.board.boardEnName == 'notice_en' && (
                         <BoardSkinSelector skinName="EnNoticeListType01" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
                     )}
+                    {currentBoard.board.boardEnName == 'company_en' && (
+                        <BoardSkinSelector skinName="GalleryType03" pageChange={pageChange} board={currentBoard.board} content={content} category={currentBoard.cate} loading={contentListLoading}/>
+                    )}
                 </section>
                     </>
             )}
