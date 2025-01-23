@@ -1,0 +1,80 @@
+.temp_popup {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 20;
+    width: 100%;
+    height: 100vh;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.2);
+    -webkit-transition: all 0.35s ease-out;
+    -moz-transition: all 0.35s ease-out;
+    -ms-transition: all 0.35s ease-out;
+    -o-transition: all 0.35s ease-out;
+    transition: all 0.35s ease-out;
+
+    opacity: 1;
+    visibility: visible;
+}
+
+
+.temp_popup .wrap {
+    z-index: 100;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding-top: 34px;
+}
+
+.temp_popup .wrap .img_wrap {
+    justify-items: center;
+}
+
+.temp_popup .wrap a {
+    display: flex;
+}
+
+.temp_popup .wrap img {
+    display: block;
+}
+
+
+.btn_close {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    top: 17px;
+    right: 17px;
+    font-size: 0;
+    border: 0;
+    background: none;
+
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.btn_close::before {
+    content: "";
+    width: 2px;
+    height: 32px;
+    background-color: #333;
+    position: absolute;
+    top: 0;
+    left: 15px;
+    transform: rotate(45deg);
+}
+
+
+.btn_close::after {
+    content: "";
+    width: 32px;
+    height: 2px;
+    background-color: #333;
+    position: absolute;
+    top: 15px;
+    left: 0;
+    transform: rotate(45deg);
+}
