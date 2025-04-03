@@ -9,6 +9,8 @@ import * as mainAPI from '../../lib/api/main/main';
 const [GET_MAIN_DATA,GET_MAIN_DATA_SUCCESS, GET_MAIN_DATA_FAILURE] = createRequestActionTypes('main/GET_MAIN_DATA')
 const [GET_MEDIA_LIST,GET_MEDIA_LIST_SUCCESS, GET_MEDIA_LIST_FAILURE] = createRequestActionTypes('main/GET_MEDIA_LIST')
 const [GET_BOARD_SEARCH_LIST,GET_BOARD_SEARCH_LIST_SUCCESS, GET_BOARD_SEARCH_LIST_FAILURE] = createRequestActionTypes('main/GET_BOARD_SEARCH_LIST')
+const [GET_BOARD_SEARCH_LIST_EN, GET_BOARD_SEARCH_LIST_EN_SUCCESS, GET_BOARD_SEARCH_LIST_EN_FAILURE] = createRequestActionTypes('main/GET_BOARD_SEARCH_LIST_EN');
+
 const INITIALIZE = 'main/INITIALIZE';
 
 
@@ -17,15 +19,18 @@ export const initialize = createAction(INITIALIZE);
 export const getMainData = createAction(GET_MAIN_DATA);
 export const getMediaList = createAction(GET_MEDIA_LIST);
 export const getBoardSearchList = createAction(GET_BOARD_SEARCH_LIST);
+export const getBoardSearchListEn = createAction(GET_BOARD_SEARCH_LIST_EN);
 
 const getMainDataSaga = createRequestSaga(GET_MAIN_DATA, mainAPI.getMainData);
 const getMediaListSaga = createRequestSaga(GET_MEDIA_LIST, mainAPI.getMediaList);
 const getBoardSearchListSaga = createRequestSaga(GET_BOARD_SEARCH_LIST, mainAPI.getBoardSearchList);
+const getBoardSearchListEnSaga = createRequestSaga(GET_BOARD_SEARCH_LIST_EN, mainAPI.getBoardSearchListEn);
 
 export function* mainSaga(){
     yield takeLatest(GET_MAIN_DATA, getMainDataSaga);
     yield takeLatest(GET_MEDIA_LIST, getMediaListSaga);
     yield takeLatest(GET_BOARD_SEARCH_LIST, getBoardSearchListSaga);
+    yield takeLatest(GET_BOARD_SEARCH_LIST_EN, getBoardSearchListEnSaga);
 }
 
 const initialState = {
@@ -75,6 +80,7 @@ const main = handleActions(
             produce(state, draft => {
                 draft.mainData.result = false;
                 draft.mainData.notice = [];
+                draft.mainData.notice_en = [];
                 draft.mainData.calendar = [];
                 draft.mainData.issue = [];
                 draft.mainData.startup_info = [];
@@ -102,6 +108,20 @@ const main = handleActions(
 
         [GET_BOARD_SEARCH_LIST_FAILURE]: (state, {payload: error}) =>
             produce(state, draft => {
+                draft.boardSearch.list = [];
+                draft.boardSearch.page = null;
+                draft.boardSearch.cate = [];
+                draft.boardSearch.boardList = [];
+            }),
+        [GET_BOARD_SEARCH_LIST_EN_SUCCESS]: (state, {payload: response}) =>
+            produce(state,draft => {
+                draft.boardSearch.list = response.data.list;
+                draft.boardSearch.page = response.data.page;
+                draft.boardSearch.cate = response.data.cate;
+                draft.boardSearch.boardList = response.data.boardList;
+            }),
+        [GET_BOARD_SEARCH_LIST_EN_FAILURE]: (state, {payload: error}) =>
+            produce(state,draft => {
                 draft.boardSearch.list = [];
                 draft.boardSearch.page = null;
                 draft.boardSearch.cate = [];

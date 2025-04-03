@@ -201,7 +201,7 @@ const Index = () => {
         setShowNotice(!showNotice)
     }
     const searchBoard = () => {
-        router.push(`/search?page&searchField=title&searchValue=${searchValue}`)
+        router.push(`/en/search?page&searchField=title&searchValue=${searchValue}`)
     }
 
     const handleEnter = (e) => {
@@ -303,12 +303,12 @@ const Index = () => {
 
                     <div className={cx("main_board_list", "main_tabCont")}>
                         {/*공지사항*/}
-                        {mainData.notice.length > 0 ? (
+                        {mainData.notice_en.length > 0 ? (
                             <Slider
                                 className={`${cx("slides", {hidden: !showNotice})} main_board_list`} {...boardSliderSettings}
                                 ref={borderSlider}>
                                 {
-                                    mainData.notice.map((item, index) => {
+                                    mainData.notice_en.map((item, index) => {
                                         return (
                                             <div className={cx("list")} key={item.contentId}>
                                                 <div className={cx("img_area")}>

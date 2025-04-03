@@ -140,7 +140,9 @@ const Header = () => {
                                 <ul>
                                     <li><a href="/startup_counsel/counsel_process">창업상담신청</a></li>
                                     <li><a href="/startup_counsel/mentor_introduce?page=1">멘토단소개</a></li>
-                                    <li><a onClick={() =>{moveMentorApply()}}>멘토신청</a></li>
+                                    <li><a onClick={() => {
+                                        moveMentorApply()
+                                    }}>멘토신청</a></li>
                                     <li><a href="/startup_counsel/startup_procedure">창업절차</a></li>
                                 </ul>
                             </div>
@@ -192,13 +194,16 @@ const Header = () => {
                                 </ul>
                             </div>
                         </li>
+                        <li>
+                            <a href="https://startup-gse.hanyang.ac.kr/" target="_blank">창업대학원</a>
+                        </li>
                     </ul>
                 </div>
 
                 <div className={cx("login_box")}>
                     {isLogin ?
                         <>
-                            <a href={mypage} className={cx("top_mypage")}>
+                        <a href={mypage} className={cx("top_mypage")}>
                                 {/*<a >*/}
                                     {user.role == 'ROLE_SD' && '창업상담 신청현황'}
                                     {(user.role == 'ROLE_ADMIN' || user.role == 'ROLE_TC')  && '관리자'}
@@ -242,7 +247,7 @@ const Header = () => {
                     <ul className={"clfx"}>
                         <li className={cx("s_menu_1")}>
                             <a href="/startup_education/university_student">창업교육</a>
-                            <div className={cx("s_menu","show","s_menu_1")}>
+                            <div className={cx("s_menu", "show", "s_menu_1")}>
                                 <ul>
                                     <li><a href="/startup_education/university_student">대학(원)생 대상</a></li>
                                     <li><a href="/startup_education/teacher">교원 대상</a></li>
@@ -252,20 +257,22 @@ const Header = () => {
                                 </ul>
                             </div>
                         </li>
-                        <li style={{marginTop:90}} className={cx("s_menu_2")}>
+                        <li style={{marginTop: 90}} className={cx("s_menu_2")}>
                             <a href="/startup_counsel/counsel_process">창업상담</a>
-                            <div className={cx("s_menu","show","s_menu_2")}>
+                            <div className={cx("s_menu", "show", "s_menu_2")}>
                                 <ul>
                                     <li><a href="/startup_counsel/counsel_process">창업상담신청</a></li>
                                     <li><a href="/startup_counsel/mentor_introduce?page=1">멘토단소개</a></li>
-                                    <li><a onClick={() =>{moveMentorApply()}}>멘토신청</a></li>
+                                    <li><a onClick={() => {
+                                        moveMentorApply()
+                                    }}>멘토신청</a></li>
                                     <li><a href="/startup_counsel/startup_procedure">창업절차</a></li>
                                 </ul>
                             </div>
                         </li>
                         <li>
                             <a href="/board/notice/list">창업지원정보</a>
-                            <div className={cx("s_menu","show")}>
+                            <div className={cx("s_menu", "show")}>
                                 <ul>
                                     <li><a href="/board/notice/list">공지사항</a></li>
                                     <li><a href="/startup_info/startup_event?type=C">창업캘린더</a></li>
@@ -278,7 +285,7 @@ const Header = () => {
                         </li>
                         <li>
                             <a href="/startup_h/best_startup">스타트업H</a>
-                            <div className={cx("s_menu","show")}>
+                            <div className={cx("s_menu", "show")}>
                                 <ul>
                                     <li><a href="/startup_h/best_startup">우수 스타트업</a></li>
                                     <li><a href="/startup_h/startup_present">스타트업 배출현황</a></li>
@@ -288,7 +295,7 @@ const Header = () => {
                         </li>
                         <li>
                             <a href="/investment/ir">투자연계</a>
-                            <div className={cx("s_menu","show")} style={{height:250}}>
+                            <div className={cx("s_menu", "show")} style={{height: 250}}>
                                 <ul>
                                     <li><a href="/investment/ir">IR/투자 안내</a></li>
                                     <li><a href="/investment/investment_partners">국내외 투자파트너스</a></li>
@@ -297,7 +304,7 @@ const Header = () => {
                         </li>
                         <li>
                             <a href="/introduce/introduce">창업지원단 소개</a>
-                            <div className={cx("s_menu","show")} style={{height:250}}>
+                            <div className={cx("s_menu", "show")} style={{height: 250}}>
                                 <ul>
                                     <li><a href="/introduce/introduce">기관 소개</a></li>
                                     <li><a href="/introduce/system">창업지원 체계</a></li>
@@ -310,9 +317,13 @@ const Header = () => {
                                 </ul>
                             </div>
                         </li>
+                        <li>
+                            <a href="https://startup-gse.hanyang.ac.kr/" target="_blank">창업대학원</a>
+                        </li>
                     </ul>
                     {isLogin &&
-                        <a href={mypage} className={cx("mypage_link")}>{user.role == 'ROLE_SD' ? '창업상담 신청현황' : user.role == 'ROLE_ADMIN' ? "관리자콘솔" : "관리"}</a>
+                        <a href={mypage}
+                           className={cx("mypage_link")}>{user.role == 'ROLE_SD' ? '창업상담 신청현황' : user.role == 'ROLE_ADMIN' ? "관리자콘솔" : "관리"}</a>
                     }
                 </div>
             </div>

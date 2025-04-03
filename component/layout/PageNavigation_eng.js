@@ -48,7 +48,7 @@ const nav = {
         link:"/en/statistic",
         sub : [
             {name:'Startup Statistics',link:'/en/statistic'},
-            {name:'Successful Student Startups of Hanyang',link:'/en/company_list'},
+            {name:'Successful Student Startups of Hanyang',link:'/en/board/company_en/list'},
             {name:'HYU Startup NOW',link:'/en/board/notice_en/list'},
         ]
     },
