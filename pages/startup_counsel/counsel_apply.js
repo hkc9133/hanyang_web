@@ -57,7 +57,7 @@ export const getServerSideProps = wrapper.getServerSideProps(async (context) => 
 })
 const CounselApply = () => {
 
-    const maxCnt = 500
+    const maxCnt = 300
     const [form] = Form.useForm();
     const personalDev = useRef();
     const hopeMentorSelect = useRef();
