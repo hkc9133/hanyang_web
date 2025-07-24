@@ -160,10 +160,10 @@ const CounselApply = () => {
     useEffect(() => {
         if (maxCnt) {
             if (content) {
-                if (htmlTagRemove(content).length > maxCnt) {
+                if (htmlTagRemove(content).length < maxCnt) {
                     Modal.warning({
                         title: '',
-                        content: `${maxCnt}자 까지 입력가능합니다.`
+                        content: `${maxCnt}자 이상 작성해야합니다.`
                     });
                 }
             }

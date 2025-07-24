@@ -512,6 +512,11 @@ const Introduce = () => {
                                     showTable && (
                                         <>
                                             <tr>
+                                                <td>김태훈</td>
+                                                <td>넥세드㈜</td>
+                                                <td>대표</td>
+                                            </tr>
+                                            <tr>
                                                 <td>명승은</td>
                                                 <td>벤처스퀘어</td>
                                                 <td>대표</td>
@@ -520,6 +525,11 @@ const Introduce = () => {
                                                 <td>박찬용</td>
                                                 <td>우용인베스트㈜</td>
                                                 <td>대표</td>
+                                            </tr>
+                                            <tr>
+                                                <td>서정욱</td>
+                                                <td>Bracco Medical Technology</td>
+                                                <td>Manager/Sr. Principal Engineer</td>
                                             </tr>
                                             <tr>
                                                 <td>송용준</td>
@@ -540,6 +550,11 @@ const Introduce = () => {
                                                 <td>이근식</td>
                                                 <td>LKSA건축사사무소</td>
                                                 <td>대표</td>
+                                            </tr>
+                                            <tr>
+                                                <td>이옥근</td>
+                                                <td>Stanford University</td>
+                                                <td>Post doc</td>
                                             </tr>
                                             <tr>
                                                 <td>이종수</td>
