@@ -4,7 +4,6 @@ import classnames from "classnames/bind"
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
 import qs from "query-string";
-import Link from "next/link";
 import Pagination from "../../../component/common/Pagination";
 import {
     addKeyword,
@@ -14,10 +13,9 @@ import {
     initialize,
     updateKeyword
 } from "../../../store/keyword/adminKeyword";
+import {Form, Modal} from 'antd';
+
 const cx = classnames.bind(styles);
-import {DatePicker, Form, Input, Modal} from 'antd';
-import moment from "moment";
-import locale from "antd/lib/date-picker/locale/ko_KR";
 
 const KeywordManagePage = () => {
     const dispatch = useDispatch();

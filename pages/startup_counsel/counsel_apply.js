@@ -90,7 +90,7 @@ const CounselApply = () => {
         formProgressItem: 1,
         sortationIdList: [],
         wayIdList: [],
-        menteeName: "asdasda",
+        menteeName: "",
         menteeEmail: "",
         menteePhoneNumber: "",
         counselFieldIdList: [],
