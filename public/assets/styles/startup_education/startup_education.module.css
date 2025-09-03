@@ -17,11 +17,13 @@
 
 .tab_style_1{margin-bottom:60px; }
 .tab_style_1 ul:after{ clear: both; content: "."; display: block; height: 0; visibility: hidden; font-size: 0;}
-.tab_style_1 ul li{position:Relative; float:left; margin:-1px 0 0 -1px; width:16.7%; border:1px solid #d8d8d8; box-sizing:border-box; }
+.tab_style_1 ul li{position:Relative; float:left; margin:-1px 0 0 -1px; width:/*16.7%*/ 25%; border:1px solid #d8d8d8; box-sizing:border-box; }
 .tab_style_1 ul li span{vertical-align:middle;font-size: 16px; font-family: 's-core-dream-medium'; color:#aaa; }
 .tab_style_1 ul li button{padding:0 5px; box-sizing:border-box; width:100%; height:60px; display:table; text-align:center; }
 .tab_style_1 ul li.on:before{position:absolute; left:0; top:0; bottom:0; width:100%; height:100%; border:1px solid #3d89f9; box-sizing:border-box; display:block; content:""; }
-.tab_style_1 ul li.on a span{color:#3d89f9;}
+.tab_style_1 ul li.on a,
+.tab_style_1 ul li.on a span,
+.tab_style_1 ul li.on span{color:#3d89f9;}
 
 
 /*title*/
@@ -81,6 +83,14 @@
 .university_studentCont_4 .info{/*padding-top:50px;*/ margin-bottom:10px; }
 .university_studentCont_4 .info li{margin-right:10px; display:inline-block; font-size:18px; }
 .university_studentCont_4 .kakao{padding-left:40px; background:url(../../image/icon_kakao.png) no-repeat 0 center; font-size:18px;}
+
+.benefit_list>ul{display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px 0;}
+.benefit_list>ul>li{position: relative; z-index: 5; display: flex; flex-direction: column; align-items: center; width: 48%; height: auto; padding: 30px 15px 30px 25px !important; margin-bottom: 0 !important; border: 2px solid rgba(187, 187, 187, .47) !important; background-color: #fff; box-shadow: 7px 7px 8px 1px rgba(0,0,0,.02); box-sizing: border-box;}
+.benefit_list>ul>li .img_wrap{display: flex; justify-content: center; align-items: center; height: 90px; margin-bottom: 20px;}
+.benefit_list>ul>li .txt_wrap{width: 100%; text-align: center;}
+.benefit_list>ul>li .txt_wrap h3{font-size: 22px; font-weight: 600; color: #1947b1; margin-bottom: 15px;}
+.benefit_list>ul>li .txt_wrap p{position: relative; padding-left: 15px; margin-bottom: 5px; font-size: 18px; font-weight: 300; text-align: left; word-break: keep-all; box-sizing: border-box; }
+.benefit_list>ul>li .txt_wrap p::before{content: ""; position: absolute; top: 8px; left: 0; width: 5px; height: 5px; border-radius: 50%; background-color: #4964e5;}
 
 .university_studentCont_6 .txtArea p{font-size:16px; line-height:1.6; }
 .university_studentCont_6 .txtArea ul{margin-bottom:50px; }
@@ -205,6 +215,15 @@
 .privacyPolicy .sub_cont .tb_style_1 th{font-size: 16px; }
 .privacyPolicy .sub_cont .tb_style_1 td{font-size: 14px; text-align: center; }
 .privacyPolicy .sub_cont .tb_style_1 td:last-child{padding-left: 5px; }
+
+.grad_cont{margin-bottom: 40px;}
+.grad_cont h3{font-size: 28px; font-family: "s-core-dream-medium"; margin-bottom: 10px; }
+.grad_cont h3 strong{font-family: "s-core-dream-bold"; color:#3d89f9; }
+.grad_cont p{font-size: 18px;}
+.grad_list>ul{display: flex; flex-direction: column; gap: 20px; }
+.grad_list>ul>li h3{position: relative; font-size: 22px; font-family: "s-core-dream-medium"; margin-bottom: 10px; }
+.grad_list>ul>li h3 strong{color: #3d89f9;}
+.grad_list>ul>li p{padding-left: 12px; font-size: 18px;}
 
 @media screen and (max-width: 1400px){
 
@@ -415,4 +434,11 @@
     .qa_list .answer .txt_1{margin-bottom:20px; }
     .alumnus{padding-bottom:50px; }
 
+}
+
+@media screen and (max-width: 500px) {
+    .benefit_list>ul>li{width: 100%; }
+    .benefit_list>ul>li .txt_wrap h3{font-size: 20px; }
+    .benefit_list>ul>li .txt_wrap p{padding-left: 12px; font-size: 16px;}
+    .benefit_list>ul>li .txt_wrap p::before{top: 6px; }
 }

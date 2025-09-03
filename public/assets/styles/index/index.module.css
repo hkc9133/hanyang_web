@@ -104,12 +104,12 @@
 
 .main_cont_4{background:url(../../image/main_bg.jpg) no-repeat center center; background-size:cover;}
 .main_cont_4 h1{margin-bottom:70px; line-height:1; text-align:center; font-size:38px; color:#fff; font-family: 's-core-dream-medium';}
-.main_cont_4 ul li{position:relative; float:left; padding:0 20px 0 40px; width:33.33%; min-height:155px; display:table; box-sizing:border-box; }
+.main_cont_4 ul li{position:relative; float:left; padding:0 20px 0 30px; width:33.33%; min-height:155px; display:table; box-sizing:border-box; }
 .main_cont_4 ul li:before{position:absolute; left:0; top:0; width:1px; height:155px; background-color:#fff; opacity:0.4; content:"";}
 .main_cont_4 ul li:after{ clear: both; content: "."; display: block; height: 0; visibility: hidden; font-size: 0;}
 .main_cont_4 ul li .left_area{display:table-cell; width:55%; color:#fff; vertical-align:middle;}
 .main_cont_4 ul li .txt_1{margin-bottom:20px; display:block; font-family: 's-core-dream-medium'; font-size:16px; }
-.main_cont_4 ul li .txt_2{margin-bottom:15px; display:block; font-size:18px; color:#fff; font-family: 's-core-dream-light';}
+.main_cont_4 ul li .txt_2{margin-bottom:15px; display:block; font-size:17px; color:#fff; font-family: 's-core-dream-light';}
 .main_cont_4 ul li .txt_3{display:block; font-size:22px; font-family: 's-core-dream-medium'; }
 .main_cont_4 ul li .number{display:table-cell; width:45%; text-align:center; color:#fff; vertical-align:middle; font-size:60px; font-family: 's-core-dream-medium'; letter-spacing:-2px;}
 .main_cont_4 ul li:first-child:before{display:none;}
@@ -122,7 +122,7 @@
 .main_cont_6 ul li{float:left;  width:33.33%; text-align:center; font-family: 's-core-dream-medium';}
 .main_cont_6 ul li .txt_1{padding-top:110px; margin-bottom:18px; display:block; font-size:22px; color:#3d89f9; }
 .main_cont_6 ul li .txt_2{margin-bottom:18px; display:block; font-size:16px; }
-.main_cont_6 ul li .txt_3{display:block; font-size:16px; font-family: 's-core-dream-regular';}
+.main_cont_6 ul li .txt_3{display:block; font-size:16px; font-family: 's-core-dream-regular'; word-break: keep-all;}
 .main_cont_6 ul li.icon_1 .txt_1{background:url(../../image/main_startup_1.png) no-repeat center 0; }
 .main_cont_6 ul li.icon_2 .txt_1{background:url(../../image/main_startup_2.png) no-repeat center 0; }
 .main_cont_6 ul li.icon_3 .txt_1{background:url(../../image/main_startup_3.png) no-repeat center 0; }

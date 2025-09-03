@@ -66,7 +66,7 @@ const Introduce = () => {
                                 <p>
                                     한양대학교는 창업지원단 설립 이래 국내 대학 창업교육의 롤 모델을 구축하고 청년 창업 문화를 선도하고 있으며, 창업교육 최우수 대학, 벤처기업가 배출
                                     1위 대학, 학생 창업자 배출 1위 대학으로 선정되는 등 CEO 사관학교의 지위를 확고히 하고 있습니다. 특히, 우리 대학은 창업교육 · 창업훈련 ·
-                                    네트워킹 · 창업보육 · 투자유치 · 글로벌 진출까지 한국형 창업교육 시스템을 구축하고, 연간 450여개의 창업 강좌를 개설해 매년 12,000명
+                                    네트워킹 · 창업보육 · 투자유치 · 글로벌 진출까지 한국형 창업교육 시스템을 구축하고, 연간 500여개의 창업 강좌를 개설해 매년 12,000명
                                     이상의 수강생을 배출하고 있습니다.
 
                                 </p>
@@ -168,8 +168,6 @@ const Introduce = () => {
                                             <li>청년 드림 베스트프랙티스 창업부문 최우수 대학 선정</li>
                                         </ul>
                                     </li>
-                                </ul>
-                                <ul>
                                     <li>
                                         <span className={cx("year")}>2017</span>
                                         <ul>
@@ -182,6 +180,8 @@ const Introduce = () => {
                                             <li className={cx("c-blue")}>대학원 창업융합학과 신설 및 운영</li>
                                         </ul>
                                     </li>
+                                </ul>
+                                <ul>
                                     <li>
                                         <span className={cx("year")}>2018</span>
                                         <ul>
@@ -248,6 +248,21 @@ const Introduce = () => {
                                             <li className={cx("c-blue")}>혁신창업스쿨 주관기관 중소벤처기업부 장관상 수상</li>
                                         </ul>
                                     </li>
+                                    <li>
+                                        <span className={cx("year")}>2024</span>
+                                        <ul>
+                                            <li>중소벤처기업부 2024 창업중심대학사업 성과평가 최우수 대학 선정(S등급)</li>
+                                            <li>서울시 캠퍼스타운사업 우수 대학 선정(A+등급)</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <span className={cx("year")}>2025</span>
+                                        <ul>
+                                            <li>실험실 특화형 창업선도대학 선정</li>
+                                            <li>VivaTech 2025 참가 및 한국관 운영</li>
+                                            <li>서울시 RISE ‘글로벌 산학협력 선도(본글로벌 창업), 서울캠퍼스타운’ 사업 선정</li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </div>
                             {/*<div className={cx("btn_area")}>*/}
@@ -275,7 +290,7 @@ const Introduce = () => {
                                     <ul>
                                         <li>
                                             학생창업기업 배출 국내대학 1위 {/*<span className={cx("sky")}>4년 연속</span>*/}<br/>
-                                            <span className={cx("c-gray")}>20년 55개, 21년 60개, 22년 62개, 23년 69개</span>
+                                            <span className={cx("c-gray")}>20년 55개, 21년 60개, 22년 62개, 23년 69개, 24년 67개</span>
                                         </li>
                                         <li>
                                             7년 미만 초기 창업기업 배출 국내대학 1위<br/>
@@ -285,7 +300,7 @@ const Introduce = () => {
                                         <li>
                                             동문 CEO 기업 배출 국내대학 1위<br/>
                                             <span
-                                                className={cx("c-gray")}>기업 수 12,452개, 매출 약 385조원 (한국평가데이터, ‘22.12월)</span>
+                                                className={cx("c-gray")}>기업 수 13,636개, 매출 약 462조원 (한국평가데이터, ‘24.12월)</span>
                                         </li>
                                     </ul>
                                 </li>
@@ -296,7 +311,7 @@ const Introduce = () => {
                                             className={cx("c-gray")}>(2009년)</span>
                                         </li>
                                         <li>교육부, 창업교육 최우수 대학 <span className={cx("c-gray")}>(‘15, ‘21)</span></li>
-                                        <li>연간 515개 창업교과 운영 11,335명 이수 <span className={cx("c-gray")}>(‘23 대학정보공시)</span>
+                                        <li>연간 502개 창업교과 운영 11,866명 이수 <span className={cx("c-gray")}>(‘25 대학정보공시)</span>
                                         </li>
                                     </ul>
                                 </li>
@@ -309,8 +324,8 @@ const Introduce = () => {
                                             className={cx("c-gray")}>(2018년)</span></li>
                                         <li>
                                             기술이전 및 기술 사업화 역량<br/>
-                                            <span className={cx("c-gray f-16")}>기술이전(‘21~23, 최근3년) : 160건 / 372억원</span><br/>
-                                            <span className={cx("c-gray f-16")}>실험실 창업 : 47개 (’21~’23)</span>
+                                            <span className={cx("c-gray f-16")}>기술이전(‘22~24, 최근3년) : 178건 / 394억원</span><br/>
+                                            <span className={cx("c-gray f-16")}>실험실 창업 : 39개 (’22~’24)</span>
                                         </li>
                                     </ul>
                                 </li>
@@ -388,42 +403,42 @@ const Introduce = () => {
                                 <tr>
                                     <td>창업지원단 총괄</td>
                                     <td>2861</td>
-                                    <td className={cx("c-sky")}>jinake@hanyang.ac.kr</td>
+                                    <td className={cx("c-sky")}>danielku@hanyang.ac.kr</td>
                                 </tr>
                                 <tr>
                                     <td>학생창업(창업동아리, 창업경진대회 등)</td>
-                                    <td>2858, 2230, 2863</td>
-                                    <td className={cx("c-sky")}>eh0305@hanyang.ac.kr</td>
+                                    <td>2230, 2863</td>
+                                    <td className={cx("c-sky")}>youngceo@hanyang.ac.kr</td>
+                                </tr>
+                                <tr>
+                                    <td>교원창업, 실험실창업</td>
+                                    <td>2858</td>
+                                    <td className={cx("c-sky")}>wooli44@hanyang.ac.kr</td>
                                 </tr>
                                 <tr>
                                     <td>동문창업(한양스타트업아카데미, 한양 스타트업포럼 등)</td>
-                                    <td>2863</td>
-                                    <td className={cx("c-sky")}>startup@hanyang.ac.kr</td>
+                                    <td>2864</td>
+                                    <td className={cx("c-sky")}>yjkim0808@hanyang.ac.kr</td>
                                 </tr>
                                 <tr>
                                     <td>원스톱창업상담실</td>
                                     <td>2870, 1978</td>
-                                    <td className={cx("c-sky")}>ckkang@hanyang.ac.kr <br/>jungshan@hanyang.ac.kr</td>
+                                    <td className={cx("c-sky")}>ckkang@hanyang.ac.kr <br/>gwlee@hanyang.ac.kr</td>
                                 </tr>
                                 <tr>
                                     <td>창업멘토링</td>
-                                    <td>2879, 2868</td>
+                                    <td>2868</td>
                                     <td className={cx("c-sky")}>mentoring1@hanyang.ac.kr</td>
                                 </tr>
                                 <tr>
                                     <td>투자유치, 오픈이노베이션</td>
-                                    <td>1979</td>
-                                    <td className={cx("c-sky")}>woomj@hanyang.ac.kr</td>
+                                    <td>2871</td>
+                                    <td className={cx("c-sky")}>sgch77@hanyang.ac.kr</td>
                                 </tr>
                                 <tr>
-                                    <td>창업강좌</td>
+                                    <td>창업강좌, 창업융합전공, 창업학사제도</td>
                                     <td>2984</td>
                                     <td className={cx("c-sky")}>yjkim0808@hanyang.ac.kr</td>
-                                </tr>
-                                <tr>
-                                    <td>창업융합전공, 창업학사제도</td>
-                                    <td>2533</td>
-                                    <td className={cx("c-sky")}>seul2@hanyang.ac.kr</td>
                                 </tr>
                                 <tr>
                                     <td>247 스타트업 돔</td>
@@ -432,43 +447,28 @@ const Introduce = () => {
                                 </tr>
                                 <tr>
                                     <td>글로벌 창업지원</td>
-                                    <td>2867, 2857</td>
-                                    <td className={cx("c-sky")}>if@hanyang.ac.kr</td>
+                                    <td>2866</td>
+                                    <td className={cx("c-sky")}>mhparkhy@hanyang.ac.kr</td>
                                 </tr>
                                 <tr>
-                                    <td>창업중심대학(예비)</td>
-                                    <td>2858, 2859, 2852, 2878</td>
-                                    <td className={cx("c-sky")}>yechang@hanyang.ac.kr</td>
+                                    <td>창업중심대학</td>
+                                    <td>2862, 1979, 2859</td>
+                                    <td className={cx("c-sky")}>yechang@hanyang.ac.kr <br/>if@hanyang.ac.kr <br/>scaleup@hanyang.ac.kr</td>
                                 </tr>
                                 <tr>
-                                    <td>창업중심대학(초기)</td>
-                                    <td>2867, 2862, 2851, 2864</td>
-                                    <td className={cx("c-sky")}>if@hanyang.ac.kr</td>
-                                </tr>
-                                <tr>
-                                    <td>창업중심대학(도약기)</td>
-                                    <td>2871, 1979, 2879, 2868</td>
-                                    <td className={cx("c-sky")}>scaleup@hanyang.ac.kr</td>
-                                </tr>
-                                <tr>
-                                    <td>캠퍼스타운</td>
-                                    <td>2530, 2983, 2872, 2856, 1565</td>
+                                    <td>캠퍼스타운, RISE사업(본글로벌, 서울캠퍼스타운)</td>
+                                    <td>1565</td>
                                     <td className={cx("c-sky")}>campustown@hanyang.ac.kr</td>
                                 </tr>
                                 <tr>
-                                    <td>LINC3.0사업(창업)</td>
-                                    <td>2230, 2863</td>
-                                    <td className={cx("c-sky")}>eh0305@hanyang.ac.kr</td>
-                                </tr>
-                                <tr>
-                                    <td>대학혁신지원사업(창업)</td>
-                                    <td>2533</td>
-                                    <td className={cx("c-sky")}>seul2@hanyang.ac.kr</td>
+                                    <td>창업보육센터(BI센터)</td>
+                                    <td>2982</td>
+                                    <td className={cx("c-sky")}>kjw1218@hanyang.ac.kr</td>
                                 </tr>
                                 </tbody>
                             </table>
 
-                            <h2>IAB 자문위원</h2>
+                            <h2>IAB 자문교수</h2>
                             <table>
                                 <colgroup>
                                     <col style={{width: "34%"}}/>
@@ -487,11 +487,6 @@ const Introduce = () => {
                                     <td>류창완</td>
                                     <td>산업융합학부</td>
                                     <td>창업지원단장</td>
-                                </tr>
-                                <tr>
-                                    <td>권규현</td>
-                                    <td>기술경영전문대학원</td>
-                                    <td>창업지원단 부단장</td>
                                 </tr>
                                 <tr>
                                     <td>김은섭</td>

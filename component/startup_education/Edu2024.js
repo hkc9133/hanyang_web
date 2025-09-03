@@ -198,8 +198,8 @@ const Edu2024 = ({cx}) => {
                         </tr>
                         <tr>
                             <td>VEN3001</td>
-                            <td>창업심화:스타트업MBA</td>
-                            <td>200</td>
+                            <td>창업심화:스타트업법률이슈 <br/>(구, 창업심화:스타트업MBA)</td>
+                            <td>300</td>
                             <td>3</td>
                             <td>3</td>
                             <td>0</td>
@@ -208,8 +208,8 @@ const Edu2024 = ({cx}) => {
                         </tr>
                         <tr>
                             <td>VEN3009</td>
-                            <td>창업심화:스타트업투자유치</td>
-                            <td>200</td>
+                            <td>창업심화:스타트업투자유치전략 (구, 창업심화:스타트업투자유치)</td>
+                            <td>300</td>
                             <td>3</td>
                             <td>2</td>
                             <td>1</td>
@@ -218,8 +218,8 @@ const Edu2024 = ({cx}) => {
                         </tr>
                         <tr>
                             <td>VEN2018</td>
-                            <td>창업심화:창업마케팅</td>
-                            <td>200</td>
+                            <td>창업심화:스타트업마케팅 <br/>(구, 창업심화:창업마케팅)</td>
+                            <td>300</td>
                             <td>3</td>
                             <td>1</td>
                             <td>2</td>
@@ -228,8 +228,8 @@ const Edu2024 = ({cx}) => {
                         </tr>
                         <tr>
                             <td>VEN3002</td>
-                            <td>창업심화:특허와창의적사업전략</td>
-                            <td>200</td>
+                            <td>창업심화:스타트업특허 <br/>(구, 창업심화:특허와창의적사업전략)</td>
+                            <td>300</td>
                             <td>3</td>
                             <td>1</td>
                             <td>2</td>
@@ -268,7 +268,7 @@ const Edu2024 = ({cx}) => {
                         </tr>
                         <tr>
                             <td>VEN3025</td>
-                            <td>엔엘코드(No-LowCode)를활용한IT서비스기획</td>
+                            <td>창업실무:엔엘코드(No-LowCode)를활용한IT서비스기획 <br/>(구, 엔엘코드(No-LowCode)를활용한IT서비스기획)</td>
                             <td>300</td>
                             <td>3</td>
                             <td>3</td>
@@ -388,8 +388,8 @@ const Edu2024 = ({cx}) => {
                         </tr>
                         <tr>
                             <td>VEN4006</td>
-                            <td>스타트업전략</td>
-                            <td>400</td>
+                            <td>창업실무:스타트업경영전략 <br/>(구, 스타트업전략)</td>
+                            <td>300</td>
                             <td>3</td>
                             <td>3</td>
                             <td>0</td>
@@ -454,6 +454,36 @@ const Edu2024 = ({cx}) => {
                             <td>0</td>
                             <td>3</td>
                             <td>글로벌기업가센터</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>TOU3083</td>
+                            <td>디지털트랜스포메이션과관광혁신창업</td>
+                            <td>400</td>
+                            <td>3</td>
+                            <td>3</td>
+                            <td>0</td>
+                            <td>관광학부</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>ITE4012</td>
+                            <td>신제품개발</td>
+                            <td>400</td>
+                            <td>3</td>
+                            <td>3</td>
+                            <td>0</td>
+                            <td>산업융합학부 경영공학전공</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>APS4022</td>
+                            <td>비즈니스모델디자인</td>
+                            <td>400</td>
+                            <td>3</td>
+                            <td>3</td>
+                            <td>0</td>
+                            <td>산업융합학부 경영공학전공</td>
                             <td></td>
                         </tr>
                     </tbody>

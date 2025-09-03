@@ -504,27 +504,27 @@ const Index = () => {
                                 </p>
                                 <span className={cx("txt_3")}>학생 창업기업 수</span>
                             </div>
-                            <span className={cx("number")}>534</span>
-                        </li>
-                        <li>
-                            <div className={cx("left_area")}>
-                                <span className={cx("txt_1")}>Startup Academy</span>
-                                <p className={cx("txt_2")}>
-                                    선배 CEO가 창업 시행착오 <br/>줄이는 법을 알려드립니다.
-                                </p>
-                                <span className={cx("txt_3")}>아카데미 창업기업 수</span>
-                            </div>
-                            <span className={cx("number")}>571</span>
+                            <span className={cx("number")}>600</span>
                         </li>
                         <li>
                             <div className={cx("left_area")}>
                                 <span className={cx("txt_1")}>Alumni Startups</span>
                                 <p className={cx("txt_2")}>
-                                    함께 하는 미래 <br/>우리는 한양인입니다.
+                                    함께 하는 미래 <br/>우리는 한양입니다.
+                                </p>
+                                <span className={cx("txt_3")}>동문 창업기업 수</span>
+                            </div>
+                            <span className={cx("number")}>3,104</span>
+                        </li>
+                        <li>
+                            <div className={cx("left_area")}>
+                                <span className={cx("txt_1")}>Alumni CEO</span>
+                                <p className={cx("txt_2")}>
+                                    선배 CEO가 창업 시행착오 <br/>줄이는 법을 알려드립니다.
                                 </p>
                                 <span className={cx("txt_3")}>동문 CEO 기업 수</span>
                             </div>
-                            <span className={cx("number")}>12,452</span>
+                            <span className={cx("number")}>13,636</span>
                         </li>
                     </ul>
                 </div>
@@ -544,14 +544,14 @@ const Index = () => {
                             <span className={cx("txt_1")}>최고 창업교육 우수대학</span>
                             {/*<span className={cx("txt_2")}>Student Startup</span>*/}
                             <p className={cx("txt_3")}>
-                                창업교육 우수대학 선정 <br/>벤처창업진흥 유공 국무총리 표창<br/>창업강좌수 1위, 비교과 창업활동 1위
+                                창업교육 우수대학 선정 <br/>벤처창업진흥 유공 국무총리 표창<br/>교원⠂학생 창업(‘22~’24) 고용 1위, 매출 2위, 창업기업수 3위
                             </p>
                         </li>
                         <li className={cx("icon_2")}>
                             <span className={cx("txt_1")}>국내 1위 벤처창업 CEO 배출 대학</span>
                             {/*<span className={cx("txt_2")}>hanyang Startup</span>*/}
                             <p className={cx("txt_3")}>
-                                학생 창업자수 1위, 벤처 CEO 배출 1위 <br/>한양대 출신 CEO 기업 12,452개<br/>2022년 매출 385조원, 국내 GDP 18.6%
+                                학생 창업자수 1위, 벤처 CEO 배출 1위 <br/>한양대 출신 CEO 기업 13,636개<br/>2024년 매출 461조원, 국내 GDP 19.18%
                             </p>
                         </li>
                         <li className={cx("icon_3")}>
@@ -684,10 +684,10 @@ const Index = () => {
                                     </Link>
                                 </div>
                                 <div className={cx("txt_area")}>
-                                    <Link href="http://entrepreneurship.hanyang.ac.kr/">
+                                    <Link href="https://startup-gse.hanyang.ac.kr/">
                                         <a target="_blank">
                                             <div className={cx("title")}>
-                                                대학원 창업융합학과
+                                                창업대학원
                                             </div>
                                             <div>실전창업교육, 창업연구</div>
                                             <div className={cx("txt")}>
@@ -756,14 +756,14 @@ const Index = () => {
                                     </Link>
                                 </div>
                                 <div className={cx("txt_area")}>
-                                    <Link href="http://lincplus.hanyang.ac.kr/">
+                                    <Link href="https://seoulrise.hanyang.ac.kr/">
                                         <a target="_blank">
                                             <div className={cx("title")}>
-                                                LINC+사업단
+                                                RISE지산학협력단
                                             </div>
                                             <div>산학협력 지원</div>
                                             <div className={cx("txt")}>
-                                                사회적 가치를 창출하는 산업선도형 산학협력사업 수행
+                                                서울시 RISE 사업을 통해 지산학관 협력을 선도하며, 기술로 연결하고 실용으로 실행하는 글로벌 혁신대학으로 도약
                                             </div>
                                         </a>
                                     </Link>

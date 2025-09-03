@@ -164,7 +164,7 @@ const Infra = () => {
                                         <img src="/assets/image/infra_dom_2.jpg" alt="infra_dom_2"/>
                                     </li>
                                 </ul>
-                                <span className={cx("txt")}>코워킹스페이스, 기숙사(11개실), 회의실 등 (면적 637㎡)</span>
+                                <span className={cx("txt")}>코워킹스페이스, 기숙사(13개실), 회의실 등 (면적 000㎡)</span>
                             </div>
                         </div>
 

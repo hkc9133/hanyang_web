@@ -81,9 +81,12 @@
 
 .ir_text {padding: 0 20px;position: relative;left: 0;top: 50%;transform: translateY(-50%);font-family: 's-core-dream-regular';font-size: 14px;line-height: 1.8;}
 
-.ir_box .ir_box_content:nth-child(2) .ir_text_box,.ir_box .ir_box_content:nth-child(3) .ir_text_box,.ir_box .ir_box_content:nth-child(4) .ir_text_box,.ir_box .ir_box_content:nth-child(5) .ir_text_box {position: relative;left: 0;top: 50%;transform: translateY(-50%);}
+.ir_box .ir_box_content:nth-child(2) .ir_text_box,.ir_box .ir_box_content:nth-child(3) .ir_text_box,.ir_box .ir_box_content:nth-child(4) .ir_text_box,.ir_box .ir_box_content:nth-child(5) .ir_text_box, .ir_box .ir_box_content:nth-child(8) .ir_text_box, .ir_box .ir_box_content:nth-child(9) .ir_text_box {position: relative;left: 0;top: 50%;transform: translateY(-50%);}
 
-.ir_box .ir_box_content:nth-child(2) .ir_text_box .ir_text_title:nth-child(1),.ir_box .ir_box_content:nth-child(3) .ir_text_box .ir_text_title:nth-child(1),.ir_box .ir_box_content:nth-child(4) .ir_text_box .ir_text_title:nth-child(1),ir_box .ir_box_content:nth-child(5) .ir_text_box .ir_text_title:nth-child(1) {font-family: 's-core-dream-extrabold';font-size: 21px;}
+.ir_box .ir_box_content:nth-child(2) .ir_text_box .ir_text_title:nth-child(1),.ir_box .ir_box_content:nth-child(3) .ir_text_box .ir_text_title:nth-child(1),.ir_box .ir_box_content:nth-child(4) .ir_text_box .ir_text_title:nth-child(1),ir_box .ir_box_content:nth-child(5) .ir_text_box .ir_text_title:nth-child(1), .ir_box .ir_box_content:nth-child(7) .ir_text_box .ir_text_title:nth-child(1), .ir_box .ir_box_content:nth-child(8) .ir_text_box .ir_text_title:nth-child(1), .ir_box .ir_box_content:nth-child(9) .ir_text_box .ir_text_title:nth-child(1) {font-family: 's-core-dream-extrabold';font-size: 21px;}
+
+.btn_area{margin-top: 40px; text-align: center;}
+.btn_area a{display: inline-block; padding: 10px 20px; border-radius: 8px; background-color: #0069f8; font-size: 18px; font-weight: 500; color: #fff; }
 
 @media screen and (max-width: 1400px){
     .infrastructure_list>li.list_3{left:300px; }

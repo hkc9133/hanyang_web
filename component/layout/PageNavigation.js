@@ -28,7 +28,7 @@ const dep1 = {
         sub:{
             university_student:{name:"대학(원)생 대상",link:"/startup_education/university_student"},
             teacher:{name:"교원 대상",link:"/startup_education/teacher"},
-            alumnus:{name:"동문 대상",link:"/startup_education/alumnus"},
+            alumnus:{name:"한양 스타트업 아카데미",link:"/startup_education/alumnus"},
             people:{name:"일반인 대상",link:"/board/people/list"},
             online_content:{name:"온라인 콘텐츠",link:"/board/online_content/list"},
         }

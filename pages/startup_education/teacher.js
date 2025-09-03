@@ -19,41 +19,30 @@ const Teacher = () => {
             <section className={cx("container","teacherCont")}>
                 <div className={cx("sub_cont","sub_cont_top")}>
                     <h1 className={cx("sub_top_title")}>교원 대상</h1>
-                    <p className={cx("sub_top_txt")}>대학(원) 실험실 기술 중 창업 적합성 및 가능성이 우수하고, <br />1년 내 실제 창업이 가능한 기술을 선정해 실험실 창업 지원</p>
+                    <p className={cx("sub_top_txt")}>대학(원) 실험실 기술 중 창업 적합성 및 가능성이 우수하고, <br />1년 내 실제 창업이 가능한 기술을 선정해 실험실 창업 지원</p>
                 </div>
 
                 <div className={cx("gray_bg")}>
                     <div className={cx("sub_cont")}>
                         <div className={cx("txt_style_1")}>
                             <div className={cx("left_title")}>
-                                <h1 className={cx("title_style_2")}>교원 창업포럼</h1>
+                                <h1 className={cx("title_style_2")}>한양교원창업 포럼</h1>
                             </div>
                             <div className={cx("txtArea")}>
-                                <p className={cx("txt_1")}>한양대 교수 및 연구원, 실험실 창업 우수 기업 기술창업 유관 기관등이 참가하는 대학내 긍정적인 교원 창업 문화 조성을
-                                    위한 실전 창업 정보 공유, 소통 및 교류의 장입니다.</p>
+                                <p className={cx("txt_1")}>한양대학교 교수 및 연구원, 실험실 창업 우수 기업 기술창업 유관 기관등이 참가하는 대학내 긍정적인 교원 창업 문화 조성을 위한 실전 창업 정보 공유, 소통 및 교류의 장입니다.</p>
                                 <div className={cx("list_style_1")}>
                                     <ul>
                                         <li>
                                             <span className={cx("title")}>모집대상 </span>
-                                            교내 실험실 창업을 준비 또는 창업한 교수, 연구원, 대학원생, 기타 관계자 등​
+                                            한양대학교(서울·ERICA) 교원창업자 및 실험실 소속 대학원생, 창업에 관심있는 (예비)교원창업자
                                         </li>
                                         <li>
                                             <span className={cx("title")}>일정</span>
-                                            연 총 2 회​
-                                        </li>
-                                        <li>
-                                            <span className={cx("title")}>참석대상 </span>
-                                            교원, 실험실 연구원, 유관단체 산학협력단, 창업지원단, 한양대 지주회사, 기타​
+                                            연 1회
                                         </li>
                                         <li>
                                             <span className={cx("title")}>세부내용</span>
-                                            <ul>
-                                                <li>본교 교원의 기술창업 활성화를 위한 현직 대학교수 및 연구원, 창업전문가, 교원창업 성공기업 CEO들의 정보공유 및 소통의 장 마련​
-                                                </li>
-                                                <li>교원 창업 유경험자로부터 성공 창업 스토리를 공유하고, 실험실 창업팀의 창업기술 과제 발표와 각 기술 분야별 전문가와의 심사와
-                                                    멘토링을 통해 사업화 단계별 맞춤형 문제 해결 방안을 모색하는 등 교원의 창업 분위기 확산의 장 마련
-                                                </li>
-                                            </ul>
+                                            교수, 대학원생, 교원창업 성공기업 CEO 간 정보 공유와 교류의 장을 마련하여 교원창업 유경험자의 성공 사례 및 창업 과정에서의 문제 해결 방안을 모색하는 등 교원 창업 분위기 확산에 기여할 수 있는 네트워크 구축
                                         </li>
                                     </ul>
                                 </div>
@@ -65,31 +54,23 @@ const Teacher = () => {
                 <div className={cx("sub_cont")}>
                     <div className={cx("txt_style_1")}>
                         <div className={cx("left_title")}>
-                            <h1 className={cx("title_style_2")}>Lab 2 Market <br/>Incubating</h1>
+                            <h1 className={cx("title_style_2")}>원스톱 창업상담실</h1>
                         </div>
                         <div className={cx("txtArea")}>
-                            <p className={cx("txt_1")}>한양대학교 소속 실험실을 대상으로 하는 집체 실습 교육 프로그램으로 기술사업화 로드맵에 근거한 타겟 기술의 사업화 타당성을 검증과
-                                실제 시장 내 고객의 탐색 (Customer Discovery) 과정을 진행합니다.</p>
+                            <p className={cx("txt_1")}>한양대학교 전담 창업상담실을 조성하여 창업특화 전문가 2인 이상이 상주하며 교원 및 대학원생을 대상으로 멘토링을 지원합니다.</p>
                             <div className={cx("list_style_1")}>
                                 <ul>
                                     <li>
                                         <span className={cx("title")}>모집대상 </span>
-                                        한양대학교 실험실 중 , 2020 실험실 특화형 창업선도대학 사업참여 실험실 팀
+                                        한양대학교 실험실 및 교원창업에 관심있는 교원
                                     </li>
                                     <li>
                                         <span className={cx("title")}>일정</span>
-                                        연 1 회​
+                                        수시운영
                                     </li>
-                                    {/*<li>
-                                        <span className={cx("title")}>참석대상 </span>
-                                        교원, 실험실 연구원, 유관단체 산학협력단, 창업지원단, 한양대 지주회사, 기타​
-                                    </li>*/}
                                     <li>
                                         <span className={cx("title")}>세부내용</span>
-                                        <ul>
-                                            <li>실험실창업 및 기술창업 투자유치 성공사례를 공유하여 참여 실험실 팀들의 창업을 독려​</li>
-                                            <li>실험실 팀 별 기술 사업계획서 작성 및 전문가 멘토링을 통해 BMP 고도화 도모</li>
-                                        </ul>
+                                        창업기업 운영에 필요한 필수사항 및 창업자의 애로사항에 대해 대학이 보유하고 있는 분야별 전문가와 맞춤형 멘토링을 진행하여 문제점 해결 및 개선방안 도출
                                     </li>
                                 </ul>
                             </div>
@@ -101,39 +82,109 @@ const Teacher = () => {
                     <div className={cx("sub_cont")}>
                         <div className={cx("txt_style_1")}>
                             <div className={cx("left_title")}>
-                                <h1 className={cx("title_style_2")}>Lab Startup <br/>데모데이</h1>
+                                <h1 className={cx("title_style_2")}>IR-Deck 컨설팅</h1>
                             </div>
                             <div className={cx("txtArea")}>
-                                <p className={cx("txt_1")}>한양대학교 소속 실험실을 대상으로 하는 Lab 2 Market 아이템 검증 및 고객 탐색 프로그램의 결과를 바탕으로 최종<br/>
-                                    성과에 대해 IR 발표를 진행하고, 이를 통해 실험실별 창업역량을 강화합니다.</p>
+                                <p className={cx("txt_1")}>한양대학교 소속 혁신창업실험실을 대상으로 기술사업화를 위한 실험실 유망기술 소개 및 투자유치를 위한 IR-Deck 작성 컨설팅을 진행합니다.</p>
                                 <div className={cx("list_style_1")}>
                                     <ul>
                                         <li>
-                                            <span className={cx("title")}>모집대상 </span>
-                                            한양대학교 실험실 중 , 2020 실험실 특화형 창업선도대학 사업참여 실험실 팀
+                                            <span className={cx("title")}>지원대상 </span>
+                                            한양대학교(서울) 실험실 중, 2025년 실험실 특화형 창업선도대학 사업 참여 실험실
                                         </li>
                                         <li>
                                             <span className={cx("title")}>일정</span>
-                                            연 1 회​
+                                            연 1회
                                         </li>
-                                        {/*<li>
-                                            <span className={cx("title")}>참석대상 </span>
-                                            교원, 실험실 연구원, 유관단체 산학협력단, 창업지원단, 한양대 지주회사, 기타​
-                                        </li>*/}
                                         <li>
                                             <span className={cx("title")}>세부내용</span>
-                                            <ul>
-                                                <li>실험실별로 기술자체분석 보고서를 기반으로 기술사업화 로드맵 방법론을 근거하여 해당 기술의 사업화 타당성을 검증하고
-                                                    해당기술이 실제 창업을 통해시장에서 적합하게 사업화 될 수 있는가에 대한 타당성 검증을 위한 고객 탐색
-                                                    (Customer Discovery) 과정을 수행해보고 최종 성과 실험실 기술사업화를 발표함으로써 실험실별 창업역량을 강화​
-                                                </li>
-                                                <li>참여 실험실 특화형 창업선도대학 사업 참여 지원 기술 팀들의 사업화 성과 공유 및 사후 지원, 후속 투자 유치 방안 모색 등
-                                                    논의​
-                                                </li>
-                                            </ul>
+                                            혁신창업실험실의 기술사업화 전략을 구체화하여 투자유치 가능성을 높이고 실험실의 사업화 진입을 가속화 하기위한 IR-Deck 디자인 및 제작
                                         </li>
                                     </ul>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className={cx("sub_cont")}>
+                    <div className={cx("txt_style_1")}>
+                        <div className={cx("left_title")}>
+                            <h1 className={cx("title_style_2")}>BM보완 및 고도화</h1>
+                        </div>
+                        <div className={cx("txtArea")}>
+                            <p className={cx("txt_1")}>한양대학교 소속 혁신창업실험실을 대상으로 기술(비즈니스모델)의 타당성을 검증하고 시장에 적합한 사업화를 위한 고객 관점에서의 분석(가설수립 및 고객인터뷰 등)을 통해 개선 및 보완하여 수요 맞춤형 아이템으로 고도화합니다. </p>
+                            <div className={cx("list_style_1")}>
+                                <ul>
+                                    <li>
+                                        <span className={cx("title")}>지원대상 </span>
+                                        한양대학교(서울) 실험실 중, 2025년 실험실 특화형 창업선도대학 사업 참여 실험실
+                                    </li>
+                                    <li>
+                                        <span className={cx("title")}>일정</span>
+                                        연 1회
+                                    </li>
+                                    <li>
+                                        <span className={cx("title")}>세부내용</span>
+                                        혁신창업실험실별 전담 인스트럭터를 매칭하여 각 실험실의 비즈니스 모델을 실제고객(시장)의 관점에서 분석하고 검증하는 과정을 통해 시장수요에 적합한 비즈니스 모델 보완 및 고도화
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className={cx("gray_bg")}>
+                    <div className={cx("sub_cont")}>
+                        <div className={cx("txt_style_1")}>
+                            <div className={cx("left_title")}>
+                                <h1 className={cx("title_style_2")}>IP R&amp;D 컨설팅</h1>
+                            </div>
+                            <div className={cx("txtArea")}>
+                                <p className={cx("txt_1")}>한양대학교 소속 혁신창업실험실의 기술보호 및 기술가치 제고를 위한 맞춤형 컨설팅을 진행하여 핵심기술 도출, 독자적 기술(특허)확보 전략 수립 등 지식재산권 경쟁력을 강화하고 기술사업화 성공률을 높일 수 있는 개선점을 도출합니다.</p>
+                                <div className={cx("list_style_1")}>
+                                    <ul>
+                                        <li>
+                                            <span className={cx("title")}>지원대상 </span>
+                                            한양대학교(서울) 실험실 중, 2025년 실험실 특화형 창업선도대학 사업 참여 실험실
+                                        </li>
+                                        <li>
+                                            <span className={cx("title")}>일정</span>
+                                            연 1회
+                                        </li>
+                                        <li>
+                                            <span className={cx("title")}>세부내용</span>
+                                            원천기술 보호, 핵심특허 발굴 및 IP리스크 대응 전략 수립 등을 통한 BM-IP 연계 핵심기술 도출
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className={cx("sub_cont")}>
+                    <div className={cx("txt_style_1")}>
+                        <div className={cx("left_title")}>
+                            <h1 className={cx("title_style_2")}>Final Demo Day <br/>(Lab to Biz Challenge)</h1>
+                        </div>
+                        <div className={cx("txtArea")}>
+                            <p className={cx("txt_1")}>한양대학교 소속 혁신창업실험실을 대상으로  핵심기술 개발 성과를 공유하며 기업의 사업성 검증 및 투자유치 기회를 제공하고, (예비)창업실험실의 기술 설명 및 사업화 전략 발표 등 교원창업 생태계 조성을 위한 기회를 마련합니다.</p>
+                            <div className={cx("list_style_1")}>
+                                <ul>
+                                    <li>
+                                        <span className={cx("title")}>참여대상 </span>
+                                        한양대학교(서울) 실험실 중 2025년 실험실 특화형 창업선도대학 사업 참여 실험실 및 실험실 창업에 관심있는 교원
+                                    </li>
+                                    <li>
+                                        <span className={cx("title")}>일정</span>
+                                        연 1회
+                                    </li>
+                                    <li>
+                                        <span className={cx("title")}>세부내용</span>
+                                        2025년 실험실 특화형 창업선도대학 사업 참여 실험실의 우수성과 발표(우수기업 시상 및 후속사업 연계 등) 및 차년도 유망 (예비)혁신창업실험실의 기술 설명 및 사업화 전략 발표
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>

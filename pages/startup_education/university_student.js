@@ -106,14 +106,14 @@ const UniversityStudent = () => {
                                     <SubMenu key="sub1" className={cx("dropdown_title")}
                                              title={<div className={cx("question")}>1학기 운영강좌</div>}>
                                         <Menu.Item key="0" className={cx("dropdown_content")} style={{height: 'auto'}}>
-                                            <img src={"/assets/image/poster/university_student_class_1.png"} alt="1학기 운영강좌" />
+                                            <img src={"/assets/image/poster/university_student_class_1.jpg"} alt="1학기 운영강좌" />
                                         </Menu.Item>
                                     </SubMenu>
                                     <SubMenu key="sub2" className={cx("dropdown_title")}
                                              title={<div className={cx("question")}>2학기 운영강좌</div>}>
                                         <Menu.Item key="1" className={cx("dropdown_content")}
                                                    style={{height: 'auto', padding: 10}}>
-                                            <img src={"/assets/image/poster/university_student_class_2.jpg"}/>
+                                            <img src={"/assets/image/poster/university_student_class_2.jpg"} alt="2학기 운영강좌"/>
                                         </Menu.Item>
                                     </SubMenu>
                                 </Menu>
@@ -366,34 +366,33 @@ const UniversityStudent = () => {
                     <div className={cx("sub_cont", "university_studentCont_5")}>
                         <div className={cx("txt_style_1")}>
                             <div className={cx("left_title")}>
-                                <h1 className={cx("title_style_3")}><strong>대학원 정규교과</strong></h1>
+                                <h1 className={cx("title_style_3")}><strong>창업대학원 정규교과</strong></h1>
                             </div>
                             <div className={cx("txtArea")}>
-                                <div className={cx("list_style_3")}>
+                                <div className={cx("grad_cont")}>
+                                    <h3><strong>D.A.R.E.</strong> to be Better, <strong>D.A.R.E.</strong> to be Different</h3>
+                                    <p>
+                                        "창업대학원의 교육과정은 세계 최고 수준의 프로그램으로 구성되어 있으며, <br/>
+                                        기술경영, 인공지능, 공학, 관광 등의 다른 대학원과 공동으로 추가 교육 커리큘럼을 제공합니다."
+                                    </p>
+                                </div>
+                                <div className={cx("grad_list")}>
                                     <ul>
                                         <li>
-                                            <span className={cx("title")}><b>01.</b> 기업가 역량 개발</span>
-                                            벤처창업의 이해, 데이터 분석방법론, 창업가의 난제, 리더십과 커뮤니케이션, 사회적기업가정신
+                                            <h3>· <strong>D</strong>igital Powered (디지털 기술 한양대)</h3>
+                                            <p>창업대학원 프로그램은 by the Digital, of the Digital and For the Digital입니다.</p>
                                         </li>
                                         <li>
-                                            <span className={cx("title")}><b>02.</b> 사업기회 포착과 사업계획 수립</span>
-                                            글로벌창업트렌드, 창업기회론, 비즈니스모델 개발과 평가, 신제품개발론
+                                            <h3>· <strong>A</strong>ction Oriented (실전기반, 경험기반)</h3>
+                                            <p>한양대 창업대학원은 Experiential Education 철학에 기반한 실전기반의 대학원입니다.</p>
                                         </li>
                                         <li>
-                                            <span className={cx("title")}><b>03.</b> 창업기업 경영</span>
-                                            창업기업 운영 특론, 창업마케팅
+                                            <h3>· <strong>R</strong>esource and Resilience (회복 탄력성)</h3>
+                                            <p>한양대 창업대학원은 회복탄력성의 확보에 모든 역량을 집중합니다.</p>
                                         </li>
                                         <li>
-                                            <span className={cx("title")}><b>04.</b> 성장과 회수</span>
-                                            창업기업과 성장전략, 자금조달과 투자유치
-                                        </li>
-                                        <li>
-                                            <span className={cx("title")}><b>05.</b> 실전창업</span>
-                                            디자인씽킹과 린스타트업, 창업인턴쉽 1,2
-                                        </li>
-                                        <li>
-                                            <span className={cx("title")}><b>06.</b> 창업연구</span>
-                                            창업융합연구세미나, 창업정책세미나, 연구조사방법론, 석사논문연구
+                                            <h3>· <strong>E</strong>ntrepreneurial Mindset (기업가 정신)</h3>
+                                            <p>한양대 창업대학원과 기업가정신은 동치입니다.</p>
                                         </li>
                                     </ul>
                                 </div>
@@ -409,32 +408,22 @@ const UniversityStudent = () => {
                             <li className={cx({on: tabNum == 0})} onClick={() => {
                                 setTabNum(0)
                             }}>
-                                <button><span>기업가 역량 개발</span></button>
+                                <button><span>Digital Powered</span></button>
                             </li>
                             <li className={cx({on: tabNum == 1})} onClick={() => {
                                 setTabNum(1)
                             }}>
-                                <button><span>사업기회 포착/사업계획 수립</span></button>
+                                <button><span>Action Oriented</span></button>
                             </li>
                             <li className={cx({on: tabNum == 2})} onClick={() => {
                                 setTabNum(2)
                             }}>
-                                <button><span>창업기업 경영</span></button>
+                                <button><span>Resource and Resilience</span></button>
                             </li>
                             <li className={cx({on: tabNum == 3})} onClick={() => {
                                 setTabNum(3)
                             }}>
-                                <button><span>성장과 회수</span></button>
-                            </li>
-                            <li className={cx({on: tabNum == 4})} onClick={() => {
-                                setTabNum(4)
-                            }}>
-                                <button><span>실전창업</span></button>
-                            </li>
-                            <li className={cx({on: tabNum == 5})} onClick={() => {
-                                setTabNum(5)
-                            }}>
-                                <button><span>창업연구</span></button>
+                                <button><span>Entrepreneurial Mindset</span></button>
                             </li>
                         </ul>
                     </div>
@@ -443,51 +432,38 @@ const UniversityStudent = () => {
 
                         <div className={`${cx({show: tabNum == 0})} txt_style_1 `}>
                             <div className={cx("left_title")}>
-                                <h1 className={cx("title_style_2")}>기업가 역량 개발</h1>
+                                <h1 className={cx("title_style_2")}>Digital Powered</h1>
                             </div>
                             <div className={cx("txtArea")}>
                                 <ul>
                                     <li>
-                                        <h2 className={cx("title_style_4")}>벤처창업의 이해</h2>
+                                        <h2 className={cx("title_style_4")}>스타트업 프로그래밍</h2>
                                         <p>
-                                            벤처창업에 대한 입문 과목으로 창업생태계 및 창업과 관련된 일련의 프로세스와 활동들에 관하여 다룬다. 구체적으로 기업가 정신과
-                                            벤처기업가,
-                                            벤처기업과 산업환경, 벤처 기업전략, 사업기회 발견, 자금조달과 관리, 벤처캐피털, 벤처마케팅, 벤처조직 및
-                                            인사관리, M&A와 기업공개, 벤처의 글로벌화 등 벤처창업에 관한 전반적인 내용을 포함한다. 이를 통하여 학생들은 각 분야의 심화 교과목
-                                            으로 들어가기전에 벤처창업의 전반적인 프로세스와 주요 내용을 이해할 수 있다.
+                                            파이썬 등 스타트업의 운영 및 가치제안의 개발에 필요한 프로그래밍의 실무지식 함양
                                         </p>
                                     </li>
                                     <li>
-                                        <h2 className={cx("title_style_4")}>데이터 분석방법론</h2>
+                                        <h2 className={cx("title_style_4")}>AI와 비즈니스</h2>
                                         <p>
-                                            창업가들의 데이터 분석능력과 분석결과 해석을 통한 통찰력을 배양하기 위하여 다양한 데이터 분석방법과 해석방법을 다룬다. 구체적으로
-                                            데이터의 이해, 데이터처리기술의 이해, 데이터분석과 기획, 데이터 분석방법론 및 데이터 시각화 등에 관하여 학습한다.
+                                            인공지능시대의 스타트업의 비즈니스 모델에 대한 개념적 이해 및 개발사례 분석
                                         </p>
                                     </li>
                                     <li>
-                                        <h2 className={cx("title_style_4")}>창업가의 난제 </h2>
+                                        <h2 className={cx("title_style_4")}>스타트업을 위한 기술 트랜드</h2>
                                         <p>
-                                            창업가는 창업과정과 창업기업을 경영하며 자금조달과 관리, 인력 관리, 리더십, 시장 니즈 검증, EXIT 등과 관련된 다양한 어려움에
-                                            봉착하게 된다.
-                                            본 과목을 통해 학생들은 창업 시 빈번하게 발생하고 있는 구체적인 문제상황을 인지하고 문제 해결을 위하여 여러 관련된
-                                            stakeholder의 입장이 되어 토론을 수행한다. 이러한 과정을 통하여 학생들은 창업기업의 난제에 대한 간접 경험을 할 수 있고
-                                            문제 해결 역량을 기를 수 있다. ​
+                                            다양한 첨단기술의 현재와 미래, 그리고 사회 트랜드에 대해 이해하고, 토론하여 스타트업의 전략적 방향을 도출
                                         </p>
                                     </li>
                                     <li>
-                                        <h2 className={cx("title_style_4")}>리더십과 커뮤니케이션</h2>
+                                        <h2 className={cx("title_style_4")}>기술사업화</h2>
                                         <p>
-                                            창업가의 리더십과 커뮤니케이션 능력을 배양하는 것을 목표로 한다. 성공적인 창업가가 되기 위한 기초적 역량 중에 하나가
-                                            리더십과 커뮤니케이션 스킬로서, 창업가의 리더십 및 커뮤니케이션 능력 개발을 위하여 각 개인의 리더십 형태와 커뮤니케이션
-                                            방법을 진단하고 리더로서의 자질 개발 및 비즈니스 커뮤니케이션 역량 증진을 위한 각종 실전적 프로그램을 수행한다.
+                                            기술기반의 창업프로세스를 이해하고 기술의 사업화 과정에 대한 이론적, 실무적 접근을 학습
                                         </p>
                                     </li>
                                     <li>
-                                        <h2 className={cx("title_style_4")}>사회적기업가정신</h2>
+                                        <h2 className={cx("title_style_4")}>디지털혁신</h2>
                                         <p>
-                                            사회적 기업은 최근에 빠르게 등장하고 있는 미션 중심 기업을 지칭하는 것으로서, 사회적 기업 현상을 면밀히 살펴보고, 학생들로
-                                            하여금 향후 사회적 기업을 위한 비즈니스플랜을 작성하는데 기초를 제공한다. 본 수업을 통해 학생들은 실제 운영중인 사회적 기업의 사례를
-                                            학습한다.
+                                            디지털 기술을 기반으로한 다양한 혁신모델들을 이해
                                         </p>
                                     </li>
                                 </ul>
@@ -500,42 +476,44 @@ const UniversityStudent = () => {
 
                         <div className={`${cx({show: tabNum == 1})} txt_style_1 `}>
                             <div className={cx("left_title")}>
-                                <h1 className={cx("title_style_2")}>사업기회 포착/사업계획 수립</h1>
+                                <h1 className={cx("title_style_2")}>Action Oriented</h1>
                             </div>
                             <div className={cx("txtArea")}>
                                 <ul>
                                     <li>
-                                        <h2 className={cx("title_style_4")}>글로벌창업트렌드</h2>
+                                        <h2 className={cx("title_style_4")}>스타트업 프랙티컴</h2>
                                         <p>
-                                            최근 글로벌 시장에서 떠오르는 스타트업 비즈니스 모델과 사례에 관하여 학습한다. 지역별(유럽, 동남아시아,
-                                            미국/캐나다, 중국), 기술별(ICT, 바이오 등), 산업별(패션, 음식, 농업) 등 다양한 분류를 기반으로 전 세계에 떠오르는 각종
-                                            스타트업 사례를 소개하고 이들의 성공요인 및 유사 사례 등에 관하여 고찰해 본다. 이를 통하여 학생들은 새로운 비즈니스 모델에 관한
-                                            통찰력 뿐 아니라 글로벌 비즈니스 마인드를 얻을 수 있다.
+                                            창업활동 중인 기업의 현안문제를 다양한 전문가의 멘토링을 통해 문제 해결
                                         </p>
                                     </li>
                                     <li>
-                                        <h2 className={cx("title_style_4")}>창업기회론</h2>
+                                        <h2 className={cx("title_style_4")}>스타트업 인턴쉽</h2>
                                         <p>
-                                            창업가들은 지식과 경험, 취미 혹은 기획 발굴 등 다양한 방법을 통하여 창업기회를 포착할 수 있다. 창업가의 기회포착을 위한
-                                            기술트렌드 및 방법론에 관하여 학습한다. 또한 특정 분야의 유망 스타트업 사례를 연구하고 학생들이 관심 있는 산업분야에 대한 심층적
-                                            분석을 수행해 봄으로써 실제 창업기회의 가치를 평가해 보는 경험을 가진다.
+                                            스타트업에 인턴십의 형태로 근무하면서 실전적 지식을 함양
                                         </p>
                                     </li>
                                     <li>
-                                        <h2 className={cx("title_style_4")}>비즈니스 모델 개발과 평가 </h2>
+                                        <h2 className={cx("title_style_4")}>비즈니스모델과 평가</h2>
                                         <p>
-                                            비즈니스 모델 개발에 필요한 지식과 이를 평가하기 위한 방법론을 학습한다. 비즈니스 모델은 창업의 가장 핵심적인 부분으로
-                                            제품이나 서비스를 어떻게 고객에서 전달하고 어떻게 수익을 창출하고 조직을 운영할 것인지에 관한 일련의 계획으로 볼 수 있다. 본
-                                            과목에서는 비즈니스 모델 기획과 설계 방법론, 혁신적인 비즈니스 모델 전략, 비즈니스 모델 디자인 프로세스 및 성공한 비즈니스 모델 사례
-                                            등을 다룬다. 본 과목을 통하여 학생들은 새로운 비즈니스 모델 수립에 대한 인사이트를 얻을 수 있다.
+                                            비즈니스모델의 이론적 접근과 실전적 개발 및 사업적 평가모델에 대한 이해
                                         </p>
                                     </li>
                                     <li>
-                                        <h2 className={cx("title_style_4")}>신제품 개발론</h2>
+                                        <h2 className={cx("title_style_4")}>디자인씽킹과 린스타업</h2>
                                         <p>
-                                            창업가의 신제품개발 전략, 프로세스 및 론칭 전략을 다룬다. 구체적으로 신제품 기회발견, 신제품 기획 및 설계, 신제품
-                                            수요예측, 신제품개발 프로세스, 시장 세분화, 신제품 마케팅 등에 관하여 학습한다. 또한 본 과목에서 학생들은 다양한 산업 분야의
-                                            창업기업의 신제품 개발 사례를 선정하여 소논문을 작성하는 프로젝트를 수행할 수 있다.
+                                            디자인 씽킹에 기반한 창의적, 발산적 아이디에이션과 린스타트업 프로세스를 연계
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <h2 className={cx("title_style_4")}>스타트업 시뮬레이션</h2>
+                                        <p>
+                                            창업기업의 다양한 의사결정과정을 게임 시뮬레이션 방법을 통해 체험하고, 실전역량배양
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <h2 className={cx("title_style_4")}>글로벌 스타트업 실무</h2>
+                                        <p>
+                                            글로벌 스타트업이 되기위한 여러가지 실무적 지식의 함양
                                         </p>
                                     </li>
                                 </ul>
@@ -548,27 +526,44 @@ const UniversityStudent = () => {
 
                         <div className={`${cx({show: tabNum == 2})} txt_style_1 `}>
                             <div className={cx("left_title")}>
-                                <h1 className={cx("title_style_2")}>창업기업 경영</h1>
+                                <h1 className={cx("title_style_2")}>Resource and Resilience</h1>
                             </div>
                             <div className={cx("txtArea")}>
                                 <ul>
                                     <li>
-                                        <h2 className={cx("title_style_4")}>창업기업 운영 특론</h2>
+                                        <h2 className={cx("title_style_4")}>스타트업 툴킷101</h2>
                                         <p>
-                                            스타트업 경영에 있어서 핵심적인 경영관리상의 이슈로 부각되는 특정주제를 정하고 이에 대한 관리 방안 및 사례 연구를 통하여 학생들이
-                                            스타트업 경영에 대하여 이론적,
-                                            실무적 이해를 높이고자 한다. 또한 성공한 스타트업 경영인의 특강을 통하여 학생들의 창업에 관한 관심을 높이고 현장감 있는 지식을
-                                            전달하고자 한다.
+                                            스타트업을 위한 다양한 비즈니스 툴킷을 옴니버스식으로 구성하고 온라인으로 학습
                                         </p>
                                     </li>
                                     <li>
-                                        <h2 className={cx("title_style_4")}>창업 마케팅 </h2>
+                                        <h2 className={cx("title_style_4")}>투자유치와 M&amp;A</h2>
                                         <p>
-                                            초기 창업 기업에 바로 적용 가능한, 새로운 마케팅 기법을 다룬다. 전통적인 마케팅 기법과는 차별화된, 파괴적(Disruptive)
-                                            마케팅,
-                                            바이럴(Viral) 마케팅, 래디컬(Radical)마케팅, 컨버전스(Convergence) 마케팅, 탐험적(expeditionary)
-                                            마케팅과 같은 새로운 시각의 개념을 학습하고 실습한다. 본 수업을 통해 학생들은 마케팅의 측면에서 현실 비즈니스의 실제 사례를 읽고
-                                            토론한다.
+                                            창업기업의 투자유치 및 기업합병 등과 관련한 이슈를 이해
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <h2 className={cx("title_style_4")}>인사조직 실무</h2>
+                                        <p>
+                                            창업기업의 인사/조직 문제를 각 단계별, 이슈별 실전사례학습을 통해 문제해결 역량 배양
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <h2 className={cx("title_style_4")}>마케팅 기획과 실무</h2>
+                                        <p>
+                                            창업기업의 다양한 마케팅 이슈를 다루며, 최근 들어 부각되고 있는 새로운 미디어에 대한 접근을 통해 마케팅 효과를 극대화 할 수 있는 방안을 도출
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <h2 className={cx("title_style_4")}>특허분쟁사례분석</h2>
+                                        <p>
+                                            창업기업의 특허분쟁사례를 기반으로 기술의 보호, 그리고, 사업화를 위한 전략을 수립
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <h2 className={cx("title_style_4")}>지속가능성과 소셜이슈</h2>
+                                        <p>
+                                            기후테크, ESG 등 지속가능성을 위한 전략을 탐구하고 창업으로의 연계학습
                                         </p>
                                     </li>
                                 </ul>
@@ -581,26 +576,62 @@ const UniversityStudent = () => {
 
                         <div className={`${cx({show: tabNum == 3})} txt_style_1 `}>
                             <div className={cx("left_title")}>
-                                <h1 className={cx("title_style_2")}>성장과 회수</h1>
+                                <h1 className={cx("title_style_2")}>Entrepreneurial Mindset</h1>
                             </div>
                             <div className={cx("txtArea")}>
                                 <ul>
                                     <li>
-                                        <h2 className={cx("title_style_4")}>창업기업과 성장전략</h2>
+                                        <h2 className={cx("title_style_4")}>창업기업특허전략</h2>
                                         <p>
-                                            많은 창업가들은 기업가정신을 가지고 기업을 창업하지만 기업을 창업한 것으로 기업가 정신이 완성되는 것이 아니다. 스타트업들이 성장에 대한
-                                            명확한 목표를 가지고 지속적인 시행착오를 거쳐 기업의 성장을 이루어 내야 하므로 창업 이후 성장을 지속하기 위한 성장 전략과 스타트업
-                                            성장의 주요 핵심요인을 학습한다. 스타트업들의 성장전략과 성장의 주요핵심요인을 실전에 적용하기 위한 주요 사례와 구체적인 전략에 대하여
-                                            학습하고 토론한다.
+                                            기술창업에서 가장 중요한 특허에 대해 이해하고, 이의 개발, 활용 등 특허 전략을 수립하는 방법을 이해
                                         </p>
                                     </li>
                                     <li>
-                                        <h2 className={cx("title_style_4")}>자금조달과투자유치</h2>
+                                        <h2 className={cx("title_style_4")}>기업가정신 이론과 실제</h2>
                                         <p>
-                                            자금조달은 창업기업의 성장과 성공에 있어 가장 중요한 부분 중에 하나이다. 본 과목은 창업기업의 입장에서 고려할 수 있는 다양한 자금조달
-                                            방법과 투자유치에 관하여 자세히 다룬다. 구체적으로 금융시장의 구조, 성장별 자금조달 방법, 간접금융을 통한 자금조달, 정책자금,
-                                            신용보증제도, 벤처캐피털과 엔젤, 주식시장과 M&A, 주식가치평가 및 크라우딩 펀등 등을 다룬다. 또한 투자자의 입장에서 사업계획서를
-                                            평가하고 투자 의사결정이 루어지는 과정에 대해서도 상세히 다룬다.
+                                            기업가정신에 대한 이론적 학습을 통한  창업가의 리더십에 대한 고찰, 실전 사례 분석을 통해 기업가 정신을 이해
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <h2 className={cx("title_style_4")}>실리콘밸리 라이브</h2>
+                                        <p>
+                                            실리콘밸리에서 활동 중인 다양한 창업관련 전문가들의 실시간 강의를 통해 글로벌 최신 트렌드를 학습
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <h2 className={cx("title_style_4")}>이머징마켓 창업전략</h2>
+                                        <p>
+                                            중국, 동남아, 인도 등 새롭게 부상하는 글로벌 시장을 이해하고 창업관점에서 기회요인 분석
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <h2 className={cx("title_style_4")}>창업가의 난제</h2>
+                                        <p>
+                                            창업활동 중 직면하는 다양한 난제에 대한 토론과 해결방안 도출
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <h2 className={cx("title_style_4")}>연구조사방법론</h2>
+                                        <p>
+                                            질적, 양적, 그리고 혼합연구 방법론에 대한 이해
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <h2 className={cx("title_style_4")}>창업기업 스케일업의 비밀</h2>
+                                        <p>
+                                            창업기업의 성장전략에 대한 이해 및 성공적인 스케일업을 위한 요건을 학습
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <h2 className={cx("title_style_4")}>창업연구특수논제</h2>
+                                        <p>
+                                            창업분야의 새로운 이론에 대한 토론 및 토의를 통해 새로운 연구의 주제를 발굴
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <h2 className={cx("title_style_4")}>스타트업 콜로퀴엄</h2>
+                                        <p>
+                                            스타트업과 관련한 다양한 주제와 이슈를 세미나형 수업으로 진행
                                         </p>
                                     </li>
                                 </ul>
@@ -610,103 +641,6 @@ const UniversityStudent = () => {
                                 </div>
                             </div>
                         </div>
-
-                        <div className={`${cx({show: tabNum == 4})} txt_style_1 `}>
-                            <div className={cx("left_title")}>
-                                <h1 className={cx("title_style_2")}>실전창업</h1>
-                            </div>
-                            <div className={cx("txtArea")}>
-                                <ul>
-                                    <li>
-                                        <h2 className={cx("title_style_4")}>디자인씽킹과 린스타트업</h2>
-                                        <p>
-                                            디자인씽킹을 활용하여 창업을 계획하고 수행하는 과정을 다루는 실전과목이다. 디자인씽킹은 디자인적 사고와 이를 구현하는 디자인
-                                            기법으로 구성이 되는데 이러한 관점은 창업가의 신제품개발 및 새로운 비즈니스 모델 개발에 있어서도 매우 유용한 방법론이다. 본 과목을
-                                            통하여 학생들은 문제를 공감하고 해결하기 위하여 솔루션을 시각화하고 고객에게 검증을 받고 문제를 재정의하는 디자인씽킹 기법을 활용하여
-                                            비즈니스 모델 및 신제품을 시장에서 검증하며 지속적으로 업데이트하고 발전시키는 프로젝트를 수행한다.
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <h2 className={cx("title_style_4")}>창업인턴십1</h2>
-                                        <p>
-                                            학생들에게 실전창업경험 및 창업기업에서의 근무 경험을 제공함으로써 실제 창업 현장에서 발생하는 문제들의 사전적 경험 및
-                                            문제해결 역량을 기르기 위하여 개설되었다. 창업인턴십은 학생들이 각자 발견한 기회나 문제를 기반으로 창업모델을 세우고 발전시켜보는 경우와
-                                            창업기업에 인턴으로 근무하여 창업기업의 당면한 문제 및 문제 해결 과정을 경험해보는 형태 두 가지로 구분된다. 또한 이러한 창업인턴십은
-                                            학생 수요에 따라 국내와 해외에서 수행된다. 창업인턴십 종료 후 학생들은 인턴기간 동안 수행한 사업관련 리서치 결과물과 창업기업의 경험을
-                                            공유하는 리포트를 제출해야 한다.
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <h2 className={cx("title_style_4")}>창업인턴십2</h2>
-                                        <p>
-                                            학생들에게 실전창업경험 및 창업기업에서의 근무 경험을 제공함으로써 실제 창업 현장에서 발생하는 문제들의 사전적 경험 및
-                                            문제해결 역량을 기르기 위하여 개설된 창업인턴십1의 심화과목이다. 창업인턴십은 학생들이 각자 발견한 기회나 문제를 기반으로 창업모델을
-                                            세우고 발전시켜보는 경우와 창업기업에 인턴으로 근무하여 창업기업의 당면한 문제 및 문제 해결 과정을 경험해보는 형태 두 가지로 구분된다.
-                                            또한 이러한 창업인턴십은 학생 수요에 따라 국내와 해외에서 수행된다. 창업인턴십 종료 후 학생들은 인턴기간 동안 수행한 사업관련 리서치
-                                            결과물과 창업기업의 경험을 공유하는 리포트를 제출해야 한다.
-                                        </p>
-                                    </li>
-                                </ul>
-                                <div className={cx("btn_area")} style={{textAlign: 'center'}}>
-                                    <a href="http://entrepreneurship.hanyang.ac.kr/" className={cx("btn_more")}
-                                       target="_blank">자세히 알아보기</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className={`${cx({show: tabNum == 5})} txt_style_1`}>
-                            <div className={cx("left_title")}>
-                                <h1 className={cx("title_style_2")}>창업연구</h1>
-                            </div>
-                            <div className={cx("txtArea")}>
-                                <ul>
-                                    <li>
-                                        <h2 className={cx("title_style_4")}>창업융합연구세미나 </h2>
-                                        <p>
-                                            창업융합학과 학생들의 논문주제 탐색을 위한 세미나 수업이다. 본 과목은 창업융합트렌드와 관련된 다양한 주제들을 학습한다. 관련
-                                            분야는
-                                            창업가특성, 기술창업, 창업정책, 창업생태계, 비즈니스모델 등으로 포괄적이다. 관련 세부 주제와 읽기자료는 학기마다 변동이 있을 수
-                                            있다. 본
-                                            수업에서 학생들은 매주 주어진 논문을 읽고 크리틱을 작성해서 제출해야 하고 수업은 학생들의 발표와 토론으로 이루어진다.
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <h2 className={cx("title_style_4")}>창업정책세미나 </h2>
-                                        <p>
-                                            창업 정책 연구를 위한 세미나 수업이다. 학생들은 최근 창업 정책에 관한 연구를 학습하게 된다. 구체적으로, 창업 전반에 관한
-                                            교육,
-                                            금융, 법과 제도에대한 이론적 및 실증적 연구들을 접한다. 본 수업에서 학생들은 관련 논문을 읽고 수업은 학생들의 발표와 토론으로
-                                            이루어진다.
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <h2 className={cx("title_style_4")}>연구조사방법론 </h2>
-                                        <p>
-                                            석사논문 작성을 위한 논문작성 방법론을 다룬다. 본 과목에서는 논문작성 방법과 자료분석 방법 등을 다룬다. 구체적으로
-                                            연구조사의
-                                            개념, 연구조사를 위한 통계 방법론, 타당성 및 신뢰성 분석, 분산분석, 요인분석, 회귀분석과 같은 분석 방법론 등을 포함한다. 경우에
-                                            따라서
-                                            통계적 분석을 사용한 방법론 수업이 아닌 사례연구 방법론을 다룰 수도 있다.
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <h2 className={cx("title_style_4")}>석사논문연구 </h2>
-                                        <p>
-                                            창업융합분야에 대하여 학생들이 선택한 주제를 가지고 지도교수와 석사 논문으로 확장한다. 학기 중 학생들과 지도교수간의 긴밀한 의사소통을
-                                            통하여
-                                            논문을 진행하고 추후 졸업 논문을 위한 기반을 마련한다.
-                                        </p>
-                                    </li>
-                                </ul>
-                                <div className={cx("btn_area")} style={{textAlign: 'center'}}>
-                                    <a href="http://entrepreneurship.hanyang.ac.kr/" className={cx("btn_more")}
-                                       target="_blank">자세히 알아보기</a>
-                                </div>
-                            </div>
-                        </div>
-
-
-
                     </div>
                     <div className={cx("sub_cont")}>
                         <div className={`${cx({show: true})} txt_style_1 `}>
@@ -719,24 +653,14 @@ const UniversityStudent = () => {
                                         <li>
                                             <h2 className={cx("title_style_4")}>창업경진대회 </h2>
                                             <ul>
-                                                <li>벤처창업경진대회 : 대학(원)생들의 창의적 · 혁신적인 비즈니스모델 조기 발굴 및 육성을 위한 창업경진대회​</li>
-                                                <li>라이언컵 경진대회 : 당해 창업경진대회 수상자 중 최고의 혁신 아이템을 선발하는 창업경진대회 왕중왕전​</li>
-                                                <li>캠퍼스 CEO 창업경진대회 : 창업강좌 수강생들이 한 학기동안 발굴한 참신한 사업 아이디어를 점검하는 교내
-                                                    창업경진대회​
-                                                </li>
-                                                <li>소프트웨어 창업아이디어 경진대회 : 대학생 개발자 , 디자이너 , 마케터 등이 한 팀을 구성해 소프트웨어 기반 혁신 창업
-                                                    아이디어를 발굴하는 창업경진대회
-                                                </li>
+                                                <li>벤처창업경진대회 : 대학(원)생들의 창의적 · 혁신적인 비즈니스모델 조기 발굴 및 육성을 위한 창업경진대회</li>
                                             </ul>
                                         </li>
                                         <li>
                                             <h2 className={cx("title_style_4")}>창업 인턴십 </h2>
                                             <ul>
-                                                <li>내가 바로 CEO: 사업계획서 집중 멘토링 , 비즈니스모델 고도화 등 사업아이템 검증을 위한 실전 창업캠프 창업인턴십​
-                                                </li>
-                                                <li>국내 창업인턴십 : 창업교육을 통해 쌓은 지식을 활용하여 스타트업 등 국내 기업에서 직접 창업실무 경험​</li>
-                                                <li>글로벌 창업인턴십 : 해외 기업인들과 함께 현지 시장조사 , 사업기회 발굴 등의 미션을 수행하며 글로벌 창업과정 체험
-                                                </li>
+                                                <li>국내 창업인턴십 : 창업교육을 통해 쌓은 지식을 활용하여 스타트업 등 국내 기업에서 직접 창업실무 경험</li>
+                                                <li>글로벌 창업인턴십 : 해외 기업인들과 함께 현지 시장조사 , 사업기회 발굴 등의 미션을 수행하며 글로벌 창업과정 체험</li>
                                             </ul>
                                         </li>
                                         <li>

@@ -42,6 +42,102 @@ const Friendly = () => {
 
                 {tab == 0 ? (
                     <div className={cx("friendly_1")}>
+                        <div className={cx("gray_bg")}>
+                            <div className={cx("sub_cont")}>
+                                <div className={cx("txt_style_1")}>
+                                    <div className={cx("left_title")}>
+                                        <h1 className={cx("title_style_2")}>창업대학원</h1>
+                                    </div>
+                                    <div className={cx("txtArea")}>
+                                        <div className={cx("list_style_1")}>
+                                            <ul>
+                                                <li>
+                                                    <span className={cx("title")}>목적 </span>
+                                                    1. 창업기업가가 갖추어야 할 소양, 태도 및 역량을 체계적으로 교육함으로써 “준비된 기술창업인” 양성 <br/>
+                                                    2. 실용인재 육성을 통해 국가발전의 큰 축을 담당해 온 한양대학교의 실용학풍과 건학이념을 지속적 계승.발전 <br/>
+                                                    3. 지식 전달만이 아닌 현장 중심의 실질적 교육.훈련 실질적 교육.훈련을 통해 창업 성공률 제고 및 지속 경영능력 배양 <br/>
+                                                    4. 기업가정신(Entrepreneurship) 부활 및 창업 마인드 고취를 통한 일자리 창출과 산업구조 고도화에 기여 <br/>
+                                                    5. 우수한 예비창업자를 발굴하여 창업을 지원하고, 동문 인프라 연계를 통한 체계적 육성
+                                                </li>
+                                                <li>
+                                                    <span className={cx("title")}>지원자격 </span>
+                                                    · 국내·외 4년제 대학졸업자 및 2025년 8월 졸업 예정자 <br/>
+                                                    · 법령에 의하여 위와 동등이상의 학력이 있다고 인정을 받은 자 <br/>
+                                                    · 출신대학의 전공학과와 관계없이 지원 가능 <br/>
+                                                    · 외국소재 대학 출신자의 경우, 대학이 해당 국가의 공인을 받은 경우에만 지원 가능
+                                                </li>
+                                                <li>
+                                                    <span className={cx("title")}>특전 </span>
+                                                    <div className={cx("benefit_list")}>
+                                                        <ul>
+                                                            <li>
+                                                                <div className={cx("img_wrap")}>
+                                                                    <img src="/assets/image/benefit_1.png" alt="창업장학금"/>
+                                                                </div>
+                                                                <div className={cx("txt_wrap")}>
+                                                                    <h3>장학금</h3>
+                                                                    <p>신입생 전원 등록금 20% 장학금 지급(입학 우수자 등록금 80% 추가지급)</p>
+                                                                    <p>본교 학부졸업생 선배 창업가 장학금 지급</p>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div className={cx("img_wrap")}>
+                                                                    <img src="/assets/image/benefit_5.png" alt="프로그램"/>
+                                                                </div>
+                                                                <div className={cx("txt_wrap")}>
+                                                                    <h3>프로그램</h3>
+                                                                    <p>대학 동문 글로벌 멘토단 연계 연수프로그램(북미, 아시아, 유럽 등)</p>
+                                                                    <p>원스톱창업상담실 통한 창업분야별 전문가 그룹(100명) 멘토링 상시지원</p>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div className={cx("img_wrap")}>
+                                                                    <img src="/assets/image/benefit_2.png" alt="사업화 지원"/>
+                                                                </div>
+                                                                <div className={cx("txt_wrap")}>
+                                                                    <h3>사업화 지원</h3>
+                                                                    <p>대학에서 수행중인 정부, 지자체 지원사업 통한 사업화자금 지원</p>
+                                                                    <p>기업지원프로그램(대·중견기업 오픈이노베이션, 글로벌 액셀러레이팅) 참여기회 부여</p>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div className={cx("img_wrap")}>
+                                                                    <img src="/assets/image/benefit_3.png" alt="투자유치"/>
+                                                                </div>
+                                                                <div className={cx("txt_wrap")}>
+                                                                    <h3>투자유치</h3>
+                                                                    <p>창업기업의 투자역량 강화를 위한 IR활동 지원</p>
+                                                                    <p>대학기술지주회사 및 대학 외부 투자컨소시엄을 통한 직접 투자유치 기회 제공</p>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div className={cx("img_wrap")}>
+                                                                    <img src="/assets/image/benefit_7.png" alt="동문"/>
+                                                                </div>
+                                                                <div className={cx("txt_wrap")}>
+                                                                    <h3>동문네트워크</h3>
+                                                                    <p>한양벤처동문회, HYU유니콘클럽 등 선배창업가들과의 협력 네트워크 활동 연계</p>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div className={cx("img_wrap")}>
+                                                                    <img src="/assets/image/benefit_4.png" alt="공간"/>
+                                                                </div>
+                                                                <div className={cx("txt_wrap")}>
+                                                                    <h3>창업 인프라 지원</h3>
+                                                                    <p>창업활동을 위한 전용 사무공간, 회의실, 시제품제작, 공용기자재 등 지원</p>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div className={cx("sub_cont")}>
                             <div className={cx("txt_style_1")}>
                                 <div className={cx("left_title")}>
@@ -70,8 +166,8 @@ const Friendly = () => {
                                                         <tr>
                                                             <td>창업휴학</td>
                                                             <td>
-                                                                - 기타휴학 1년 인정<br/>
-                                                                - 1회 연장 가능(최대 2년)<br/>
+                                                                - 기타휴학 인정 <br/>(3년 이내이며, 1년 단위의 휴학기간 연장이 허용 가능)<br/>
+                                                                - 3년 초과 시 심의를 거친 후 1년 단위로 연장<br/>
                                                                 - 일반휴학(최대 3년)에 추가 가능
                                                             </td>
                                                         </tr>
@@ -181,7 +277,7 @@ const Friendly = () => {
                                             </li>
                                             <li>
                                                 <span className={cx("title")}>혜택 </span>
-                                                1인당 1,984,000원(1년)의 창업기숙사 장학금 지원
+                                                1인당 2,844,000원(1년)의 창업기숙사 장학금 지원
                                             </li>
                                         </ul>
                                     </div>

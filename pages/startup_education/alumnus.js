@@ -14,12 +14,12 @@ const Alumnus = () => {
     return (
         <>
             <Head>
-                <title>한양대학교 창업지원단 -동문 대상​</title>
+                <title>한양대학교 창업지원단 -한양 스타트업 아카데미</title>
             </Head>
             <PageNavigation/>
         <section className={cx("container", "alumnus")}>
             <div className={cx("sub_cont", "sub_cont_top")}>
-                <h1 className={cx("sub_top_title")}>동문 대상​</h1>
+                <h1 className={cx("sub_top_title")}>한양스타트업아카데미</h1>
                 <p className={cx("sub_top_txt")}>한양 동문 및 일반 예비창업자를 적극적으로 발굴, 육성 사업화 과정을 지원</p>
             </div>
 
@@ -27,9 +27,9 @@ const Alumnus = () => {
                 <div className={cx("sub_cont")}>
                     <div className={cx("txt_style_1")}>
                         <div className={cx("left_title")}>
-                            <h1 className={cx("title_style_3")}>한양 스타트업 아카데미</h1>
+                            <h1 className={cx("title_style_3")}>한양스타트업아카데미</h1>
                             <div>
-                                <Link href="/board/notice/view/1744?boardEnName=&boardName=notice&categoryCodeId=&categoryId=&page=1&searchField=title&searchValue=%EC%95%84%EC%B9%B4%EB%8D%B0%EB%AF%B8"><a className={cx("basic-btn03","btn-blue-bg")}>최근 모집공고 보기</a></Link>
+                                <Link href="https://startup.hanyang.ac.kr/board/notice/view/3817?boardName=notice"><a className={cx("basic-btn03","btn-blue-bg")}>최근 모집공고 보기</a></Link>
                             </div>
                         </div>
                         <div className={cx("txtArea")}>
@@ -46,7 +46,7 @@ const Alumnus = () => {
                                     </li>
                                     <li>
                                         <span className={cx("title")}>일정</span>
-                                        매년 하반기 (15주 과정)
+                                        매년 하반기 (14주 과정)
                                     </li>
                                     <li>
                                         <span className={cx("title")}>세부내용 </span>
@@ -68,25 +68,24 @@ const Alumnus = () => {
                     <div className={cx("txtArea")}>
                         <ul>
                             <li>
-                                <span className={cx("title")}>기본 과정 (1~7주차)</span>
+                                <span className={cx("title")}>기본 과정 (1~8주차)</span>
                                 <ul>
                                     <li>- 오리엔테이션 및 교육생 창업아이템 소개</li>
                                     <li>- 스타트업 기본 지식 강의</li>
                                 </ul>
                             </li>
                             <li>
-                                <span className={cx("title")}>실전마케팅 과정 (8~9주차)</span>
+                                <span className={cx("title")}>실전마케팅 과정 (9~10주차)</span>
                                 <ul>
                                     <li>- 마케팅 판로개척 강의</li>
                                     <li>- 디지털 마케팅 전략, SNS 마케팅</li>
                                 </ul>
                             </li>
                             <li>
-                                <span className={cx("title")}>투자유치 과정 (10~15주차)</span>
+                                <span className={cx("title")}>투자유치 과정 (11~14주차)</span>
                                 <ul>
                                     <li>- 정부 정책 자금 조달 및 활용법</li>
                                     <li>- 자금조달과 투자유치, 데모데이, 네트워킹 데이</li>
-                                    {/*<li>- 교육생 간 정보 교류 및 역량 강화를 위한 실습교육, 네트워킹 프로그램 등 진행</li>*/}
                                 </ul>
                             </li>
                             <li>
@@ -107,11 +106,10 @@ const Alumnus = () => {
                     </div>
                     <div className={cx("txtArea")}>
                         <ul>
-                            <li>- 한양대학교 총장 명의 수료증 발급</li>
-                            <li>- 한양스타트업아카데미 원우회 네트워킹 기회 제공</li>
-                            <li>- 데모데이 우수팀 대상 한양대학교 투자펀드 연계 기회 제공</li>
-                            <li>- 한양대학교에서 주관하는 정부 창업지원사업 지원시 우대</li>
-                            <li>- 특허, 법률, 회계, 마케팅, 판로 개척 등 멘토링 상시 제공</li>
+                            <li>ㆍ 한양대학교 총장 명의 수료증 발급</li>
+                            <li>ㆍ 데모데이 우수팀, 한양대 기술지주회사 투자 연계 기회 제공</li>
+                            <li>ㆍ 특허‧법률‧회계 등 창업전문분야 100명 내외 멘토링 연계</li>
+                            <li>ㆍ 한양스타트업아카데미 원우회 네트워킹 지원</li>
                         </ul>
                     </div>
                 </div>
@@ -129,84 +127,15 @@ const Alumnus = () => {
                 </div>
             </div>
 
-            <div className={cx("sub_cont", "alumnusCont_3")}>
+            <div className={cx("sub_cont", "alumnusCont_2")}>
                 <div className={cx("txt_style_1")}>
                     <div className={cx("left_title")}>
-                        <h1 className={cx("title_style_2")}>서류평가 기준</h1>
+                        <h1 className={cx("title_style_2")}>평가기준</h1>
                     </div>
                     <div className={cx("txtArea")}>
-                        <div className={cx("tb_style_1")}>
-                            <table>
-                                <colgroup>
-                                    <col style={{width:"38%"}}/>
-                                    <col style={{width:"12%"}}/>
-                                    <col/>
-                                </colgroup>
-                                <thead>
-                                <tr>
-                                    <th scope="col">심사 기준</th>
-                                    <th scope="col">점 수</th>
-                                    <th scope="col">내 용</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>창업에 대한 지식과 이해력</td>
-                                    <td>20점</td>
-                                    <td>유사 직종 재직 경험, 전문적인 지식, 네트워크 보유 등</td>
-                                </tr>
-                                <tr>
-                                    <td>사업화 계획의 적정성 및 실현 가능성</td>
-                                    <td>40점</td>
-                                    <td>추진계획의 구체성, 사업화 실현 가능성, 개혁 지향적인 의지와 추진 능력 등</td>
-                                </tr>
-                                <tr>
-                                    <td>창업 아이템의 우수성</td>
-                                    <td>40점</td>
-                                    <td>기술의 차별성 및 파급 효과, 구제성 및 구현 가능성 등</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className={cx("sub_cont", "alumnusCont_4")}>
-                <div className={cx("txt_style_1")}>
-                    <div className={cx("left_title")}>
-                        <h1 className={cx("title_style_2")}>면접평가 기준</h1>
-                    </div>
-                    <div className={cx("txtArea")}>
-                        <div className={cx("tb_style_1")}>
-                            <table>
-                                <colgroup>
-
-                                    <col style={{width:"38%"}}/>
-                                    <col style={{width:"12%"}}/>
-                                    <col/>
-                                </colgroup>
-                                <thead>
-                                <tr>
-                                    <th scope="col">심사 기준</th>
-                                    <th scope="col">점 수</th>
-                                    <th scope="col">내 용</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>창업가적 기질</td>
-                                    <td>40점</td>
-                                    <td>기업가정신, 창업을 위한 역량, 전문성, 윤리의식 등</td>
-                                </tr>
-                                <tr>
-                                    <td>시장성</td>
-                                    <td>60점</td>
-                                    <td>시장규모및 경쟁제품에 대한 우위, <br/>시장진출의 가능성, 기술보유 여부 등</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        <ul>
+                            <li>기업가정신 및 창업실행의지, 실현가능성, 아이템 우수성 및 시장성, 교육참여의지 등</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -219,22 +148,22 @@ const Alumnus = () => {
                     <div className={cx("txtArea")}>
                         <ul>
                             <li>
-                                <div className={cx("img_area")}><img src="/assets/image/alumnus_img_13.jpg" alt=""/></div>
+                                <div className={cx("img_area")}><img src="/assets/image/alumnus_img_17.jpg" alt=""/></div>
                             </li>
                             <li>
-                                <div className={cx("img_area")}><img src="/assets/image/alumnus_img_12.jpg" alt=""/></div>
+                                <div className={cx("img_area")}><img src="/assets/image/alumnus_img_18.jpg" alt=""/></div>
                             </li>
                             <li>
-                                <div className={cx("img_area")}><img src="/assets/image/alumnus_img_11.jpg" alt=""/></div>
+                                <div className={cx("img_area")}><img src="/assets/image/alumnus_img_19.jpg" alt=""/></div>
                             </li>
                             <li>
-                                <div className={cx("img_area")}><img src="/assets/image/alumnus_img_9_10.jpg" alt=""/></div>
+                                <div className={cx("img_area")}><img src="/assets/image/alumnus_img_20.jpg" alt=""/></div>
                             </li>
                             <li>
-                                <div className={cx("img_area")}><img src="/assets/image/alumnus_img_8.jpg" alt=""/></div>
+                                <div className={cx("img_area")}><img src="/assets/image/alumnus_img_21_1.jpg" alt=""/></div>
                             </li>
                             <li>
-                                <div className={cx("img_area")}><img src="/assets/image/alumnus_img_7.jpg" alt=""/></div>
+                                <div className={cx("img_area")}><img src="/assets/image/alumnus_img_21_2.jpg" alt=""/></div>
                             </li>
                         </ul>
                     </div>

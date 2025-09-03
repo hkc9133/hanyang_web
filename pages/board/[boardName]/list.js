@@ -136,9 +136,9 @@ const List = ({boardName}) => {
                     {currentBoard.board.boardEnName == 'media_report' && (
                         <SearchBoxSelector skinName="SearchBoxStyle01" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate} board={currentBoard.board}/>
                     )}
-                    {currentBoard.board.boardEnName == 'people' && (
+                    {/*{currentBoard.board.boardEnName == 'people' && (
                         <SearchBoxSelector skinName="SearchBoxStyle02" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate}/>
-                    )}
+                    )}*/}
                     {currentBoard.board.boardEnName == 'idea' || currentBoard.board.boardEnName == "startup_info" && (
                         <SearchBoxSelector skinName="SearchBoxStyle01" changeSearchInfo={changeSearchInfo} searchInfo={searchInfo} searchContent={searchContent} category={currentBoard.cate} board={currentBoard.board}/>
                     )}
