@@ -14,12 +14,12 @@ const Alumnus = () => {
     return (
         <>
             <Head>
-                <title>한양대학교 창업지원단 -한양 스타트업 아카데미</title>
+                <title>한양대학교 창업지원단 -동문 대상</title>
             </Head>
             <PageNavigation/>
         <section className={cx("container", "alumnus")}>
             <div className={cx("sub_cont", "sub_cont_top")}>
-                <h1 className={cx("sub_top_title")}>한양스타트업아카데미</h1>
+                <h1 className={cx("sub_top_title")}>동문 대상</h1>
                 <p className={cx("sub_top_txt")}>한양 동문 및 일반 예비창업자를 적극적으로 발굴, 육성 사업화 과정을 지원</p>
             </div>
 

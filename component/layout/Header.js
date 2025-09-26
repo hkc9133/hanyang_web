@@ -128,7 +128,7 @@ const Header = () => {
                                 <ul>
                                     <li><a href="/startup_education/university_student">대학(원)생 대상</a></li>
                                     <li><a href="/startup_education/teacher">교원 대상</a></li>
-                                    <li><a href="/startup_education/alumnus">한양 스타트업 아카데미</a></li>
+                                    <li><a href="/startup_education/alumnus">동문 대상</a></li>
                                     <li><a href="/board/people/list">일반인 대상</a></li>
                                     <li><a href="/board/online_content/list">온라인 콘텐츠</a></li>
                                 </ul>
@@ -251,7 +251,7 @@ const Header = () => {
                                 <ul>
                                     <li><a href="/startup_education/university_student">대학(원)생 대상</a></li>
                                     <li><a href="/startup_education/teacher">교원 대상</a></li>
-                                    <li><a href="/startup_education/alumnus">한양스타트업아카데미</a></li>
+                                    <li><a href="/startup_education/alumnus">동문 대상</a></li>
                                     <li><a href="/board/people/list">일반인 대상</a></li>
                                     <li><a href="/board/online_content/list">온라인 콘텐츠</a></li>
                                 </ul>
