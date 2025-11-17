@@ -275,7 +275,7 @@ const Index = () => {
                             </Link>
                         </li>
                         <li className={cx("icon_7")}>
-                            <Link href="/board/notice/view/2791">
+                            <Link href="/introduce/space_reservation">
                                 <a>
                                     <span>공간예약</span>
                                 </a>
