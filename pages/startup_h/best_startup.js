@@ -141,42 +141,42 @@ const BestStartup = () => {
 
 
                 <div className={cx("best_startup_list")}>
-                    <div className={cx("box")}>
-                        <div className={cx("title_area")}>
-                            <h2>학생<span className={cx("txt_2")}>창업기업</span></h2>
-                            {/*<span className={cx("txt_1")}>학생 창업기업</span>*/}
-                            <span className={cx("number")}><strong>406</strong>개(’10~’21)</span>
-                        </div>
+                    {/*<div className={cx("box")}>*/}
+                    {/*    <div className={cx("title_area")}>*/}
+                    {/*        <h2>학생<span className={cx("txt_2")}>창업기업</span></h2>*/}
+                    {/*        <span className={cx("txt_1")}>학생 창업기업</span>*/}
+                    {/*        <span className={cx("number")}><strong>406</strong>개(’10~’21)</span>*/}
+                    {/*    </div>*/}
 
-                        <div className={cx("logo_list")}>
-                            <ul>
-                                {best.st.map((item) => (
-                                    <li key={item.startupId} onClick={() => {
-                                        handleDetailModal(item.startupId)
-                                    }}>
-                                        <div className={cx("logo")}>
-                                            {item.attachFile != null ? <img
-                                                src={`${client.defaults.baseURL}/resource${item.attachFile.filePath}/${item.attachFile.fileName + item.attachFile.fileExtension}`}
-                                                width={38} height={38} alt={"LOGO"}/> : (
-                                                <FileImageOutlined style={{fontSize: 33, verticalAlign: 'middle'}}/>
-                                            )}
-                                        </div>
-                                        <span className={cx("name")}>{item.companyName}</span>
-                                        <br/>
-                                        <span className={cx("item")}>{item.item}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>
+                    {/*    <div className={cx("logo_list")}>*/}
+                    {/*        <ul>*/}
+                    {/*            {best.st.map((item) => (*/}
+                    {/*                <li key={item.startupId} onClick={() => {*/}
+                    {/*                    handleDetailModal(item.startupId)*/}
+                    {/*                }}>*/}
+                    {/*                    <div className={cx("logo")}>*/}
+                    {/*                        {item.attachFile != null ? <img*/}
+                    {/*                            src={`${client.defaults.baseURL}/resource${item.attachFile.filePath}/${item.attachFile.fileName + item.attachFile.fileExtension}`}*/}
+                    {/*                            width={38} height={38} alt={"LOGO"}/> : (*/}
+                    {/*                            <FileImageOutlined style={{fontSize: 33, verticalAlign: 'middle'}}/>*/}
+                    {/*                        )}*/}
+                    {/*                    </div>*/}
+                    {/*                    <span className={cx("name")}>{item.companyName}</span>*/}
+                    {/*                    <br/>*/}
+                    {/*                    <span className={cx("item")}>{item.item}</span>*/}
+                    {/*                </li>*/}
+                    {/*            ))}*/}
+                    {/*        </ul>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
 
                     <div className={cx("box")}>
-                        <div className={cx("title_area")}>
-                            <h2>동문<span className={cx("txt_2")}>창업기업</span></h2>
-                            {/*<span className={cx("txt_1")}>(스타트업아카테미)
-                            </span>*/}
-                            <span className={cx("number")}><strong>428</strong>개</span>
-                        </div>
+                        {/*<div className={cx("title_area")}>*/}
+                        {/*    <h2>동문<span className={cx("txt_2")}>창업기업</span></h2>*/}
+                        {/*    /!*<span className={cx("txt_1")}>(스타트업아카테미)*/}
+                        {/*    </span>*!/*/}
+                        {/*    <span className={cx("number")}><strong>428</strong>개</span>*/}
+                        {/*</div>*/}
 
                         <div className={cx("logo_list")}>
                             <ul>
@@ -200,66 +200,66 @@ const BestStartup = () => {
                         </div>
                     </div>
 
-                    <div className={cx("box")}>
-                        <div className={cx("title_area")}>
-                            <h2>교원<span className={cx("txt_2")}>창업기업</span></h2>
-                {/*            <span className={cx("txt_1")}>*/}
-				{/*	<br/>교원 창업기업*/}
-				{/*</span>*/}
-                            <span className={cx("number")}><strong>54</strong>개(’00~’20)</span>
-                        </div>
+                {/*    <div className={cx("box")}>*/}
+                {/*        <div className={cx("title_area")}>*/}
+                {/*            <h2>교원<span className={cx("txt_2")}>창업기업</span></h2>*/}
+                {/*/!*            <span className={cx("txt_1")}>*!/*/}
+				{/*/!*	<br/>교원 창업기업*!/*/}
+				{/*/!*</span>*!/*/}
+                {/*            <span className={cx("number")}><strong>54</strong>개(’00~’20)</span>*/}
+                {/*        </div>*/}
 
-                        <div className={cx("logo_list")}>
-                            <ul>
-                                {best.tc.map((item) => (
-                                    <li key={item.startupId} onClick={() => {
-                                        handleDetailModal(item.startupId)
-                                    }}>
-                                        <div className={cx("logo")}>
-                                            {item.attachFile != null ? <img
-                                                src={`${client.defaults.baseURL}/resource${item.attachFile.filePath}/${item.attachFile.fileName + item.attachFile.fileExtension}`}
-                                                width={38} height={38} alt={"LOGO"}/> : (
-                                                <FileImageOutlined style={{fontSize: 33, verticalAlign: 'middle'}}/>
-                                            )}
-                                        </div>
-                                        <span className={cx("name")}>{item.companyName}</span>
-                                        <br/>
-                                        <span className={cx("item")}>{item.item}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>
-                    <div className={cx("box")}>
-                        <div className={cx("title_area")}>
-                            <h2>일반인<span className={cx("txt_2")}>창업기업</span></h2>
-                {/*            <span className={cx("txt_1")}>*/}
-				{/*	<br/>일반인 창업기업*/}
-				{/*</span>*/}
-                            <span className={cx("number")}><strong>216</strong>개(‘17~’20)</span>
-                        </div>
+                {/*        <div className={cx("logo_list")}>*/}
+                {/*            <ul>*/}
+                {/*                {best.tc.map((item) => (*/}
+                {/*                    <li key={item.startupId} onClick={() => {*/}
+                {/*                        handleDetailModal(item.startupId)*/}
+                {/*                    }}>*/}
+                {/*                        <div className={cx("logo")}>*/}
+                {/*                            {item.attachFile != null ? <img*/}
+                {/*                                src={`${client.defaults.baseURL}/resource${item.attachFile.filePath}/${item.attachFile.fileName + item.attachFile.fileExtension}`}*/}
+                {/*                                width={38} height={38} alt={"LOGO"}/> : (*/}
+                {/*                                <FileImageOutlined style={{fontSize: 33, verticalAlign: 'middle'}}/>*/}
+                {/*                            )}*/}
+                {/*                        </div>*/}
+                {/*                        <span className={cx("name")}>{item.companyName}</span>*/}
+                {/*                        <br/>*/}
+                {/*                        <span className={cx("item")}>{item.item}</span>*/}
+                {/*                    </li>*/}
+                {/*                ))}*/}
+                {/*            </ul>*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
+                {/*    <div className={cx("box")}>*/}
+                {/*        <div className={cx("title_area")}>*/}
+                {/*            <h2>일반인<span className={cx("txt_2")}>창업기업</span></h2>*/}
+                {/*/!*            <span className={cx("txt_1")}>*!/*/}
+				{/*/!*	<br/>일반인 창업기업*!/*/}
+				{/*/!*</span>*!/*/}
+                {/*            <span className={cx("number")}><strong>216</strong>개(‘17~’20)</span>*/}
+                {/*        </div>*/}
 
-                        <div className={cx("logo_list")}>
-                            <ul>
-                                {best.gn.map((item) => (
-                                    <li key={item.startupId} onClick={() => {
-                                        handleDetailModal(item.startupId)
-                                    }}>
-                                        <div className={cx("logo")}>
-                                            {item.attachFile != null ? <img
-                                                src={`${client.defaults.baseURL}/resource${item.attachFile.filePath}/${item.attachFile.fileName + item.attachFile.fileExtension}`}
-                                                width={38} height={38} alt={"LOGO"}/> : (
-                                                <FileImageOutlined style={{fontSize: 33, verticalAlign: 'middle'}}/>
-                                            )}
-                                        </div>
-                                        <span className={cx("name")}>{item.companyName}</span>
-                                        <br/>
-                                        <span className={cx("item")}>{item.item}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>
+                {/*        <div className={cx("logo_list")}>*/}
+                {/*            <ul>*/}
+                {/*                {best.gn.map((item) => (*/}
+                {/*                    <li key={item.startupId} onClick={() => {*/}
+                {/*                        handleDetailModal(item.startupId)*/}
+                {/*                    }}>*/}
+                {/*                        <div className={cx("logo")}>*/}
+                {/*                            {item.attachFile != null ? <img*/}
+                {/*                                src={`${client.defaults.baseURL}/resource${item.attachFile.filePath}/${item.attachFile.fileName + item.attachFile.fileExtension}`}*/}
+                {/*                                width={38} height={38} alt={"LOGO"}/> : (*/}
+                {/*                                <FileImageOutlined style={{fontSize: 33, verticalAlign: 'middle'}}/>*/}
+                {/*                            )}*/}
+                {/*                        </div>*/}
+                {/*                        <span className={cx("name")}>{item.companyName}</span>*/}
+                {/*                        <br/>*/}
+                {/*                        <span className={cx("item")}>{item.item}</span>*/}
+                {/*                    </li>*/}
+                {/*                ))}*/}
+                {/*            </ul>*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
 
                     <div className={cx("btn_box")}>
                         <Link href={"/startup_h/startup_present"}><a className={cx("btn-01")}>스타트업 더보기</a></Link>
