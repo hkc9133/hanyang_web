@@ -246,6 +246,13 @@ const Index = () => {
                                 </a>
                             </Link>
                         </li>
+                        <li className={cx("icon_6")}>
+                            <Link href="/startup_education/teacher">
+                                <a>
+                                    <span>교원창업</span>
+                                </a>
+                            </Link>
+                        </li>
                         <li className={cx("icon_3")}>
                             <Link href="https://scdp.hanyang.ac.kr/">
                                 <a target="_blank">
@@ -264,13 +271,6 @@ const Index = () => {
                             <Link href="/introduce/infra">
                                 <a>
                                     <span>창업인프라</span>
-                                </a>
-                            </Link>
-                        </li>
-                        <li className={cx("icon_6")}>
-                            <Link href="/introduce/friendly">
-                                <a>
-                                    <span>창업친화적제도</span>
                                 </a>
                             </Link>
                         </li>

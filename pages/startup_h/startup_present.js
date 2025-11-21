@@ -190,9 +190,8 @@ const StartupPresent = () => {
                     <table>
                         <colgroup>
                             <col style={{width:"5%"}}/>
-                            <col style={{width:"12%"}}/>
-                            <col style={{width:"6%"}}/>
-                            <col style={{width:"6%"}}/>
+                            <col style={{width:"14%"}}/>
+                            <col style={{width:"10%"}}/>
                             <col style={{width:"20%"}}/>
                             <col style={{width:"10%"}}/>
                         </colgroup>
@@ -201,7 +200,6 @@ const StartupPresent = () => {
                             <th scope="col">번호</th>
                             <th scope="col">기업명</th>
                             <th scope="col">비즈니스 분야</th>
-                            <th scope="col">활용 기술</th>
                             <th scope="col">사업 아이템</th>
                             <th scope="col">링크</th>
                         </tr>
@@ -216,11 +214,11 @@ const StartupPresent = () => {
                                         `${field.businessName} ${i != item.businessFieldList.length-1 ? '|' :  ''} `
                                     ))}
                                 </td>
-                                <td>
+                                {/*<td>
                                     {item.techFieldList.map((field,i) =>(
                                         `${field.techName} ${i != item.techFieldList.length-1 ? '|' :  ''} `
                                     ))}
-                                </td>
+                                </td>*/}
                                 <td>{item.item}</td>
                                 <td>
                                     {(item.homepage != null && item.homepage != "") && (

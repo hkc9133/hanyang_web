@@ -175,7 +175,7 @@ const BestStartup = () => {
                             <h2>동문<span className={cx("txt_2")}>창업기업</span></h2>
                             {/*<span className={cx("txt_1")}>(스타트업아카테미)
                             </span>*/}
-                            <span className={cx("number")}><strong>428</strong>개(’12~’20)</span>
+                            <span className={cx("number")}><strong>428</strong>개</span>
                         </div>
 
                         <div className={cx("logo_list")}>
