@@ -269,16 +269,38 @@ const SpaceReservation = () => {
                                         <span className={cx("txt")}>(예비)창업자들을 위한 회의공간(면적 47.49㎡)</span>
                                     </div>
                                     <div className={cx("right_area")}>
-                                        <h2>HIT B224 아이디어팩토리</h2>
+                                        <h2>코맥스 스타트업 타운 - 데카콘룸</h2>
                                         <ul>
                                             <li>
-                                                <img src="/assets/image/place03.jpg" alt="infra_dom_1"/>
+                                                <img src="/assets/image/place03.jpg" alt="데카콘룸"/>
                                             </li>
                                             <li>
-                                                <img src="/assets/image/place04.jpg" alt="infra_dom_2" />
+                                                <img src="/assets/image/place04.jpg" alt="데카콘룸" />
                                             </li>
                                         </ul>
-                                        <span className={cx("txt")}>창업강좌 및 특강에 적합한 맞춤공간(면적 73.97㎡)</span>
+                                        <span className={cx("txt")}>&nbsp;</span>
+                                    </div>
+                                    <div className={cx("left_area")}>
+                                        <h2>양민용라운지 - Action</h2>
+                                        <ul>
+                                            <li>
+                                                <img src="/assets/image/place05.jpg" alt="양민용라운지-Action"/>
+                                            </li>
+                                            <li>
+                                                <img src="/assets/image/place06.jpg" alt="양민용라운지-Action"/>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div className={cx("right_area")}>
+                                        <h2>양민용라운지 - Design</h2>
+                                        <ul>
+                                            <li>
+                                                <img src="/assets/image/place07.jpg" alt="양민용라운지-Design"/>
+                                            </li>
+                                            <li>
+                                                <img src="/assets/image/place08.jpg" alt="양민용라운지-Design" />
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
