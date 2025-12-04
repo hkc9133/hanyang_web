@@ -127,7 +127,7 @@ const Header = () => {
                             <div className={cx("s_gnb")}>
                                 <ul>
                                     <li><a href="/startup_education/university_student">대학(원)생 대상</a></li>
-                                    <li><a href="/startup_education/teacher">교원 대상</a></li>
+                                    <li><a href="/startup_education/teacher">교원 창업</a></li>
                                     <li><a href="/startup_education/alumnus">동문 대상</a></li>
                                     <li><a href="/board/people/list">일반인 대상</a></li>
                                     <li><a href="/board/online_content/list">온라인 콘텐츠</a></li>
@@ -250,7 +250,7 @@ const Header = () => {
                             <div className={cx("s_menu", "show", "s_menu_1")}>
                                 <ul>
                                     <li><a href="/startup_education/university_student">대학(원)생 대상</a></li>
-                                    <li><a href="/startup_education/teacher">교원 대상</a></li>
+                                    <li><a href="/startup_education/teacher">교원 창업</a></li>
                                     <li><a href="/startup_education/alumnus">동문 대상</a></li>
                                     <li><a href="/board/people/list">일반인 대상</a></li>
                                     <li><a href="/board/online_content/list">온라인 콘텐츠</a></li>

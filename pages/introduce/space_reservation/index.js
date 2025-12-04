@@ -257,7 +257,7 @@ const SpaceReservation = () => {
                             <div className={cx("infrastructure_btm")}>
                                 <div className={"clfx"}>
                                     <div className={cx("left_area")}>
-                                        <h2>HIT B233 회의실</h2>
+                                        <h2>HIT - B233 회의실</h2>
                                         <ul>
                                             <li>
                                                 <img src="/assets/image/place01.jpg" alt="infra_town_1"/>
@@ -266,7 +266,7 @@ const SpaceReservation = () => {
                                                 <img src="/assets/image/place02.jpg" alt="infra_town_1"/>
                                             </li>
                                         </ul>
-                                        <span className={cx("txt")}>(예비)창업자들을 위한 회의공간(면적 47.49㎡)</span>
+                                        <span className={cx("txt")}>최대 10인</span>
                                     </div>
                                     <div className={cx("right_area")}>
                                         <h2>코맥스 스타트업 타운 - 데카콘룸</h2>
@@ -278,37 +278,50 @@ const SpaceReservation = () => {
                                                 <img src="/assets/image/place04.jpg" alt="데카콘룸" />
                                             </li>
                                         </ul>
-                                        <span className={cx("txt")}>&nbsp;</span>
+                                        <span className={cx("txt")}>최대 30인</span>
                                     </div>
                                     <div className={cx("left_area")}>
-                                        <h2>양민용라운지 - Action</h2>
+                                        <h2>양민용라운지 - Action1</h2>
                                         <ul>
                                             <li>
                                                 <img src="/assets/image/place05.jpg" alt="양민용라운지-Action"/>
                                             </li>
+                                        </ul>
+                                        <span className={cx("txt")}>최대 4인</span>
+                                    </div>
+                                    <div className={cx("right_area")}>
+                                        <h2>양민용라운지 - Action2</h2>
+                                        <ul>
                                             <li>
                                                 <img src="/assets/image/place06.jpg" alt="양민용라운지-Action"/>
                                             </li>
                                         </ul>
+                                        <span className={cx("txt")}>최대 4인</span>
                                     </div>
-                                    <div className={cx("right_area")}>
-                                        <h2>양민용라운지 - Design</h2>
+                                    <div className={cx("left_area")}>
+                                        <h2>양민용라운지 - Design1</h2>
                                         <ul>
                                             <li>
                                                 <img src="/assets/image/place07.jpg" alt="양민용라운지-Design"/>
                                             </li>
+                                        </ul>
+                                        <span className={cx("txt")}>최대 6인</span>
+                                    </div>
+                                    <div className={cx("right_area")}>
+                                        <h2>양민용라운지 - Design2</h2>
+                                        <ul>
                                             <li>
                                                 <img src="/assets/image/place08.jpg" alt="양민용라운지-Design" />
                                             </li>
                                         </ul>
+                                        <span className={cx("txt")}>최대 6인</span>
                                     </div>
                                 </div>
                             </div>
 
                             <div className={`${cx("top_area")} clfx mb_20`}>
-                                <p className={cx("left_txt")}>*본 공간은 한양대학교 학생 및 구성원, 입주기업만 신청이 가능합니다.(외부인 신청불가)
-                                    *B224 아이디어팩토리 공간 예약 문의는 담당자에게 연락주시기 바랍니다. (02-2220-2872)</p>
-                                <p className={cx("left_txt")}>*공간명을 클릭하면 자세한 사항을 볼 수 있습니다.</p>
+                                <p className={cx("left_txt")}>*본 공간은 한양대학교 학생 및 구성원, 창업중심대, 캠퍼스타운, 창업동아리를 대상으로 운영하는 회의실입니다. (외부인 신청불가)</p>
+                                <p className={cx("left_txt")}>*일 최대 3시간까지 예약이 가능하며, 기타문의 사항은 창업지원단(02-2220-3000)으로 연락바랍니다.</p>
                             </div>
                             <div className={cx("apply_hd")}>
                                 <div className={cx("w_1")}>공간설명</div>

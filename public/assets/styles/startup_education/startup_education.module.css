@@ -113,7 +113,7 @@
 .list_style_1 ul li li{margin-bottom:10px; padding:0 0 0 10px; position:Relative; font-size:18px; color:#222; border-bottom:none;}
 .list_style_1 ul li li:before{position:absolute; left:0; top:10px; width:6px; height:2px; background-color:#000; display:block; content:"";display: none;}
 .list_style_1 ul li li:first-child{border-top:none;}
-.teacherCont .txt_1, .alumnusCont_1 .txtArea .txt_1 {margin-bottom:45px; font-size:18px; color:#222;}
+.teacherCont .txt_1, .alumnusCont_1 .txtArea .txt_1 {margin-bottom:45px; font-size:18px; color:#222; word-break: keep-all;}
 .teacherCont .list_style_1 ul li{padding-left:135px; }
 .teacherCont .list_style_1 ul li .title{width:135px; }
 .teacherCont .list_style_1 ul li li{padding-left:0; margin-bottom:20px; }
@@ -224,6 +224,25 @@
 .grad_list>ul>li h3{position: relative; font-size: 22px; font-family: "s-core-dream-medium"; margin-bottom: 10px; }
 .grad_list>ul>li h3 strong{color: #3d89f9;}
 .grad_list>ul>li p{padding-left: 12px; font-size: 18px;}
+
+.info_tb thead tr{border-top: 1px solid #aaa; border-bottom: 1px solid #aaa; }
+.info_tb tr{border-bottom: 1px solid #ddd;}
+.info_tb th{padding: 12px 4px; border-right: 1px solid #ddd; font-size: 18px; font-family: "s-core-dream-medium"; text-align: center;}
+.info_tb th:last-child{border-right: 0;}
+.info_tb td{padding: 12px 4px; border-right: 1px solid #ddd; font-size: 14px; font-family: "s-core-dream-light"; text-align: center;}
+.info_tb td:last-child{border-right: 0;}
+.info_box{width: 100%; padding: 30px; border: 2px solid rgba(187, 187, 187, 0.47); box-shadow: 1px 1px 7px 1px rgba(95, 95, 95, 0.2); margin-bottom: 20px; box-sizing: border-box;}
+.info_box:last-of-type{margin-bottom: 0;}
+.info_box .title{display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid #ddd; margin-bottom: 20px; padding-bottom: 10px;}
+.info_box .title h3{font-size: 18px; font-family: "s-core-dream-medium"; word-break: keep-all;}
+.info_box .title>ul{display: flex; gap: 10px;}
+.info_box .title>ul>li{font-size: 14px; font-family: "s-core-dream-medium";}
+.info_box .title>ul>li em{color: #3d89f9;}
+.info_box .info_cont>ul{display: flex; flex-direction: column; gap: 16px;}
+.info_box .info_cont>ul>li{font-size: 18px; font-family: "s-core-dream-light"; word-break: keep-all;}
+.info_box .info_cont>ul>li strong{font-family: "s-core-dream-medium";}
+.info_box .info_cont>ul>li a{font-size: 18px; font-family: "s-core-dream-light"; word-break: keep-all;}
+.info_box .info_cont>ul>li a img{width: 12px; margin-left: 6px;}
 
 @media screen and (max-width: 1400px){
 
@@ -434,6 +453,9 @@
     .qa_list .answer .txt_1{margin-bottom:20px; }
     .alumnus{padding-bottom:50px; }
 
+    .info_box .title{flex-direction: column; gap: 10px;}
+    .info_box .info_cont>ul>li{font-size: 16px;}
+    .info_box .info_cont>ul>li a{font-size: 16px;}
 }
 
 @media screen and (max-width: 500px) {
@@ -441,4 +463,6 @@
     .benefit_list>ul>li .txt_wrap h3{font-size: 20px; }
     .benefit_list>ul>li .txt_wrap p{padding-left: 12px; font-size: 16px;}
     .benefit_list>ul>li .txt_wrap p::before{top: 6px; }
+
+    .info_box .title>ul{flex-direction: column; }
 }
