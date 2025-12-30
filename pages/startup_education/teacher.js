@@ -110,24 +110,24 @@ const Teacher = () => {
                                 <div className={cx("info_cont")}>
                                     <ul>
                                         <li>
-                                            <Link href="#">
-                                                <a target="_blank" download>
+                                            <Link href="/assets/download/실험실창업_허가신청서.hwp">
+                                                <a download>
                                                     - 서식2 실험실창업 허가신청서
                                                     <img src="/assets/image/icon_download.gif" alt="download"/>
                                                 </a>
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link href="#">
-                                                <a target="_blank" download>
+                                            <Link href="/assets/download/실험실창업_사업계획서.hwp">
+                                                <a download>
                                                     - 서식3 실험실창업 사업계획서
                                                     <img src="/assets/image/icon_download.gif" alt="download"/>
                                                 </a>
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link href="#">
-                                                <a target="_blank" download>
+                                            <Link href="/assets/download/실험실창업_대상기술리스트.hwp">
+                                                <a download>
                                                     - 서식4 실험실창업 대상기술리스트
                                                     <img src="/assets/image/icon_download.gif" alt="download"/>
                                                 </a>
@@ -152,8 +152,8 @@ const Teacher = () => {
                                     <ul>
                                         <li>- 단과대학 &gt;&gt; 교무팀 공문 신청</li>
                                         <li>
-                                            <Link href="#">
-                                                <a target="_blank" download>
+                                            <Link href="/assets/download/겸직허가신청서.hwpx">
+                                                <a download>
                                                     - 별표 제 2호 겸직허가 신청서
                                                     <img src="/assets/image/icon_download.gif" alt="download"/>
                                                 </a>
@@ -196,6 +196,9 @@ const Teacher = () => {
                                         <li>- <strong>법인설립:</strong> 법인사업체 소재지 관할 등기소</li>
                                         <li>- <strong>사업자등록:</strong> 관할세무소 민원봉사실</li>
                                         <li>- <strong>벤처기업확인 신청:</strong> 기술보증기금 or 중소기업진흥공단</li>
+                                        <li>
+                                            - <strong>공간사용 확인서</strong> <Link href="/assets/download/공간사용_확인서.hwp"><a download>(파일 다운로드)</a></Link>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
