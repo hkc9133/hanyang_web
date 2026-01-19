@@ -26,13 +26,30 @@ const Teacher = () => {
                     <div className={cx("sub_cont")}>
                         <div className={cx("txt_style_1")}>
                             <div className={cx("left_title")}>
-                                <h1 className={cx("title_style_2")}>교원창업 목적</h1>
+                                <h1 className={cx("title_style_2")}>교원창업 가이드북</h1>
                             </div>
                             <div className={cx("txtArea")}>
-                                <p className={cx("txt_1")}>
-                                    대학 내 교수 및 연구실의 실험실 연구성과를 창업아이템으로 하여 기술력과 일정조건을 갖춘 교수 및 연구실에 대해 벤처기업으로의 창업을 허가함으로써 대학의 기술지주회사 제도와 함께 성공적 기술사업화를 통한 실용학풍의 구현 및 대학과 산업발전에 이바지함을 목적으로 한다.
-                                </p>
+                                    <Link href="/assets/download/한양대학교서울_교원창업_가이드북_25년12월_1.pdf">
+                                        <a download target="_blank">
+                                            <p className={cx("txt_1")}>
+                                                교원창업 가이드북(ver. 2025.12) 다운받기
+                                            </p>
+                                        </a>
+                                    </Link>
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className={cx("sub_cont")}>
+                    <div className={cx("txt_style_1")}>
+                        <div className={cx("left_title")}>
+                            <h1 className={cx("title_style_2")}>교원창업 목적</h1>
+                        </div>
+                        <div className={cx("txtArea")}>
+                            <p className={cx("txt_1")}>
+                                대학 내 교수 및 연구실의 실험실 연구성과를 창업아이템으로 하여 기술력과 일정조건을 갖춘 교수 및 연구실에 대해 벤처기업으로의 창업을 허가함으로써 대학의 기술지주회사 제도와 함께 성공적 기술사업화를 통한 실용학풍의 구현 및 대학과 산업발전에 이바지함을 목적으로 한다.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -83,7 +100,7 @@ const Teacher = () => {
                                 <h1 className={cx("title_style_2")}>교원창업 절차도</h1>
                             </div>
                             <div className={cx("txtArea")}>
-                                <img src="/assets/image/teacher_process.svg" alt="process"/>
+                                <img src="/assets/image/teacher_process.png" alt="process"/>
                             </div>
                         </div>
                     </div>
@@ -100,7 +117,7 @@ const Teacher = () => {
                                     <h3>실험실창업 허가 신청</h3>
                                     <ul>
                                         <li>
-                                            <em>처리:</em> 기술사업화센터(내선 2207)
+                                            <em>처리:</em> 창업지원단(내선 2858)
                                         </li>
                                         <li>
                                             <em>규정:</em> 실험실창업 관리내규
@@ -169,7 +186,7 @@ const Teacher = () => {
                                     <h3>(사업장소재지 확인 후)무상임대계약서 발급</h3>
                                     <ul>
                                         <li>
-                                            <em>처리:</em> 기술사업화센터(내선 2207)
+                                            <em>처리:</em> 창업지원단(내선 2858)
                                         </li>
                                         <li>
                                             <em>규정:</em> 관재처 관재팀
@@ -213,7 +230,7 @@ const Teacher = () => {
                         </div>
                         <div className={cx("txtArea")}>
                             <p className={cx("txt_1")}>
-                                Tel. 02-2220-2215 <br/>
+                                Tel. 02-2220-2858 <br/>
                                 Mail. wooli44@hanyang.ac.kr
                             </p>
                         </div>
