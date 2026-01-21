@@ -52,7 +52,12 @@ const CounselApply = () => {
     const moveCounselApply = () =>{
         if(user.login == false || (user.role == "ROLE_MT") ){
             Modal.warning({
-                title: '로그인 후 이용하실 수 있습니다.',
+                title: (
+                    <div>
+                        원스톱창업상담은 현재 일시 중단이 되었고 <br/>
+                        프로그램 재개 시 홈페이지 공지됩니다.(2026.03.예정)
+                    </div>
+                ),
             });
         }else{
             router.push("/startup_counsel/counsel_apply")
