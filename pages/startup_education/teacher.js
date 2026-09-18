@@ -29,13 +29,11 @@ const Teacher = () => {
                                 <h1 className={cx("title_style_2")}>교원창업 가이드북</h1>
                             </div>
                             <div className={cx("txtArea")}>
-                                <Link href="/assets/download/한양대학교서울_교원창업_가이드북_25년12월_1.pdf">
-                                    <a download target="_blank">
-                                        <p className={cx("txt_1")}>
-                                            교원창업 가이드북(ver. 2025.12) 다운받기
-                                        </p>
-                                    </a>
-                                </Link>
+                                <a href="/assets/download/guidebook_2512.pdf" download="한양대학교서울_교원창업_가이드북_25년12월_1.pdf" target="_blank">
+                                    <p className={cx("txt_1")}>
+                                        교원창업 가이드북(ver. 2025.12) 다운받기
+                                    </p>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -127,28 +125,22 @@ const Teacher = () => {
                                 <div className={cx("info_cont")}>
                                     <ul>
                                         <li>
-                                            <Link href="/assets/download/실험실창업_허가신청서.hwp">
-                                                <a download>
-                                                    - 서식2 실험실창업 허가신청서
-                                                    <img src="/assets/image/icon_download.gif" alt="download"/>
-                                                </a>
-                                            </Link>
+                                            <a href="/assets/download/permit.hwp" download="실험실창업 허가신청서.hwp">
+                                                - 서식2 실험실창업 허가신청서
+                                                <img src="/assets/image/icon_download.gif" alt="download"/>
+                                            </a>
                                         </li>
                                         <li>
-                                            <Link href="/assets/download/실험실창업_사업계획서.hwp">
-                                                <a download>
-                                                    - 서식3 실험실창업 사업계획서
-                                                    <img src="/assets/image/icon_download.gif" alt="download"/>
-                                                </a>
-                                            </Link>
+                                            <a href="/assets/download/business_plan.hwp" download="실험실창업 사업계획서.hwp">
+                                                - 서식3 실험실창업 사업계획서
+                                                <img src="/assets/image/icon_download.gif" alt="download"/>
+                                            </a>
                                         </li>
                                         <li>
-                                            <Link href="/assets/download/실험실창업_대상기술리스트.hwp">
-                                                <a download>
-                                                    - 서식4 실험실창업 대상기술리스트
-                                                    <img src="/assets/image/icon_download.gif" alt="download"/>
-                                                </a>
-                                            </Link>
+                                            <a href="/assets/download/tech_list.hwp" download="실험실창업 대상기술리스트.hwp">
+                                                - 서식4 실험실창업 대상기술리스트
+                                                <img src="/assets/image/icon_download.gif" alt="download"/>
+                                            </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -169,12 +161,10 @@ const Teacher = () => {
                                     <ul>
                                         <li>- 단과대학 &gt;&gt; 교무팀 공문 신청</li>
                                         <li>
-                                            <Link href="/assets/download/겸직허가신청서.hwpx">
-                                                <a download>
-                                                    - 별표 제 2호 겸직허가 신청서
-                                                    <img src="/assets/image/icon_download.gif" alt="download"/>
-                                                </a>
-                                            </Link>
+                                            <a href="/assets/download/concurrent_permission.hwpx" download="겸직허가신청서.hwpx">
+                                                - 별표 제 2호 겸직허가 신청서
+                                                <img src="/assets/image/icon_download.gif" alt="download"/>
+                                            </a>
                                             <br/>
                                             (실제 창업 행정 절차 진행 시 신청)
                                         </li>
@@ -214,7 +204,7 @@ const Teacher = () => {
                                         <li>- <strong>사업자등록:</strong> 관할세무소 민원봉사실</li>
                                         <li>- <strong>벤처기업확인 신청:</strong> 기술보증기금 or 중소기업진흥공단</li>
                                         <li>
-                                            - <strong>공간사용 확인서</strong> <Link href="/assets/download/공간사용_확인서.hwp"><a download>(파일 다운로드)</a></Link>
+                                            - <strong>공간사용 확인서</strong> <a href="/assets/download/space_use.hwp" download="공간사용 확인서.hwp">(파일 다운로드)</a>
                                         </li>
                                     </ul>
                                 </div>
